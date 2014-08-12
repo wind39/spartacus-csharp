@@ -54,5 +54,6 @@
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="bin\Release\TestServer.exe" />
     <None Include="bin\Release\TestServer.exe.mdb" />
+    <None Include="LICENSE.txt" />
   </ItemGroup>
 </Project>

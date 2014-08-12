@@ -62,5 +62,6 @@
     <None Include="bin\Release\SpartacusDataClient.exe.mdb" />
     <None Include="spartacusdataclient.ico" />
     <None Include="bin\Release\spartacusdataclient.ico" />
+    <None Include="LICENSE.txt" />
   </ItemGroup>
 </Project>

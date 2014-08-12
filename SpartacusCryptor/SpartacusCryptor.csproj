@@ -53,6 +53,7 @@
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
+    <None Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\home\william\Projects\Repositories\Spartacus\Spartacus\Spartacus.csproj">
