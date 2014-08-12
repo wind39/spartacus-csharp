@@ -1,0 +1,48 @@
+\hypertarget{namespaceSpartacus_1_1Database}{\section{Pacote Spartacus.\+Database}
+\label{namespaceSpartacus_1_1Database}\index{Spartacus.\+Database@{Spartacus.\+Database}}
+}
+\subsection*{Estruturas de Dados}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Command}{Command}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Command}{Command}. Representa um comando S\+Q\+L que pode possuir parâmetros entre \#. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Exception}{Exception}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}. Herda da classe System.\+Exception. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird} .N\+E\+T Provider para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Generic}{Generic}
+\begin{DoxyCompactList}\small\item\em Classe abstrata \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. Provê polimorfismo, por ser uma classe abstrata. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Mysql}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o My\+S\+Q\+L .N\+E\+T Provider para acessar um S\+G\+B\+D My\+S\+Q\+L. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Odbc}{Odbc}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Odbc}{Spartacus.\+Database.\+Odbc}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza a implementação O\+D\+B\+C (Open \hyperlink{namespaceSpartacus_1_1Database}{Database} Connectivity) para acessar qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Oledb}{Oledb}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Oledb}{Spartacus.\+Database.\+Oledb}; Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza a implementação O\+L\+E D\+B para acessar qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Parameter}{Parameter}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Parameter}{Parameter}. Representa um parâmetro da classe \hyperlink{classSpartacus_1_1Database_1_1Command}{Spartacus.\+Database.\+Command}. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Sqlite}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Spartacus.\+Database.\+Sqlite}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o Mono.\+Data.\+Sqlite para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Sqlite}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerações}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceSpartacus_1_1Database_a9d4c2be7c9bc257b8d34c84b43e5ec32}{Type} 
+\begin{DoxyCompactList}\small\item\em Tipos de Dados. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Database_a5c77dce887cad55e7ea67f0f98a7d71f}{Locale} 
+\begin{DoxyCompactList}\small\item\em Representações de números reais\+: A\+M\+E\+R\+I\+C\+A\+N\+: separador decimal\+: . separador de milhar\+: , E\+U\+R\+O\+P\+E\+A\+N\+: separador decimal\+: , separador de milhar\+: . \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Enumerações}
+\hypertarget{namespaceSpartacus_1_1Database_a5c77dce887cad55e7ea67f0f98a7d71f}{\index{Spartacus\+::\+Database@{Spartacus\+::\+Database}!Locale@{Locale}}
+\index{Locale@{Locale}!Spartacus\+::\+Database@{Spartacus\+::\+Database}}
+\subsubsection[{Locale}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Database.\+Locale}}}\label{namespaceSpartacus_1_1Database_a5c77dce887cad55e7ea67f0f98a7d71f}
+
+
+Representações de números reais\+: A\+M\+E\+R\+I\+C\+A\+N\+: separador decimal\+: . separador de milhar\+: , E\+U\+R\+O\+P\+E\+A\+N\+: separador decimal\+: , separador de milhar\+: . 
+
+\hypertarget{namespaceSpartacus_1_1Database_a9d4c2be7c9bc257b8d34c84b43e5ec32}{\index{Spartacus\+::\+Database@{Spartacus\+::\+Database}!Type@{Type}}
+\index{Type@{Type}!Spartacus\+::\+Database@{Spartacus\+::\+Database}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Database.\+Type}}}\label{namespaceSpartacus_1_1Database_a9d4c2be7c9bc257b8d34c84b43e5ec32}
+
+
+Tipos de Dados. 
+

@@ -1,0 +1,83 @@
+\hypertarget{namespaceSpartacus_1_1Utils}{\section{Pacote Spartacus.\+Utils}
+\label{namespaceSpartacus_1_1Utils}\index{Spartacus.\+Utils@{Spartacus.\+Utils}}
+}
+\subsection*{Estruturas de Dados}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classSpartacus_1_1Utils_1_1Exception}{Exception}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Utils_1_1Exception}{Spartacus.\+Utils.\+Exception}. Herda da classe System.\+Exception. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Utils_1_1File}{File}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Utils_1_1File}{File}. Representa um arquivo ou um diretório. Pode ser usado em listas de arquivos para processamento em massa, ou para construção de árvores de arquivos. \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer}{File\+Explorer}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer}{File\+Explorer}. Representa um explorador de arquivos genérico, que pode ser usado em qualquer interface (prompt de comando, desktop ou web). \end{DoxyCompactList}\item 
+class \hyperlink{classSpartacus_1_1Utils_1_1Synchronizer}{Synchronizer}
+\begin{DoxyCompactList}\small\item\em Classe \hyperlink{classSpartacus_1_1Utils_1_1Synchronizer}{Synchronizer}. Sincroniza duas pastas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerações}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a2bc44488e88db523cb2dcffaa6e77541}{File\+Type} 
+\begin{DoxyCompactList}\small\item\em A classe \hyperlink{classSpartacus_1_1Utils_1_1File}{Spartacus.\+Utils.\+File} pode representar tanto um arquivo quanto um diretório. A única coisa que diferencia é o tipo do arquivo. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a9ee24558a33d60b42674bae3eed2a094}{Path\+Separator} 
+\begin{DoxyCompactList}\small\item\em Separador de diretórios do nome do arquivo. Em sistemas Unix é S\+L\+A\+S\+H (/), e em sistemas Windows é B\+A\+C\+K\+S\+L\+A\+S\+H (). \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a81ab9f259fbae2db00ea1cd29690a6cf}{File\+Attributes} 
+\begin{DoxyCompactList}\small\item\em Enumera os atributos de arquivos apresentados no grid de arquivos. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_ae4b47116ae1dc35f3dc3ea735874beee}{Tree\+Type} 
+\begin{DoxyCompactList}\small\item\em A classe \hyperlink{classSpartacus_1_1Utils_1_1Synchronizer}{Spartacus.\+Utils.\+Synchronizer} pode obter a árvore de arquivos automaticamente ou através de arquivo. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a835f63b39808393d4b72d203056ae42e}{Sync\+Action} 
+\begin{DoxyCompactList}\small\item\em Ação a ser tomada ao ser detectada a diferença. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a64d6efe7b3923d4631036138e1b8b57f}{Locality} 
+\begin{DoxyCompactList}\small\item\em Localidade da pasta. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceSpartacus_1_1Utils_a71ccbdd8fb504defa1e9ea38771651e5}{Direction} 
+\begin{DoxyCompactList}\small\item\em Direção da pasta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Enumerações}
+\hypertarget{namespaceSpartacus_1_1Utils_a71ccbdd8fb504defa1e9ea38771651e5}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!Direction@{Direction}}
+\index{Direction@{Direction}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{Direction}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+Direction}}}\label{namespaceSpartacus_1_1Utils_a71ccbdd8fb504defa1e9ea38771651e5}
+
+
+Direção da pasta. 
+
+\hypertarget{namespaceSpartacus_1_1Utils_a81ab9f259fbae2db00ea1cd29690a6cf}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!File\+Attributes@{File\+Attributes}}
+\index{File\+Attributes@{File\+Attributes}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{File\+Attributes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+File\+Attributes}}}\label{namespaceSpartacus_1_1Utils_a81ab9f259fbae2db00ea1cd29690a6cf}
+
+
+Enumera os atributos de arquivos apresentados no grid de arquivos. 
+
+\hypertarget{namespaceSpartacus_1_1Utils_a2bc44488e88db523cb2dcffaa6e77541}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!File\+Type@{File\+Type}}
+\index{File\+Type@{File\+Type}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{File\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+File\+Type}}}\label{namespaceSpartacus_1_1Utils_a2bc44488e88db523cb2dcffaa6e77541}
+
+
+A classe \hyperlink{classSpartacus_1_1Utils_1_1File}{Spartacus.\+Utils.\+File} pode representar tanto um arquivo quanto um diretório. A única coisa que diferencia é o tipo do arquivo. 
+
+\hypertarget{namespaceSpartacus_1_1Utils_a64d6efe7b3923d4631036138e1b8b57f}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!Locality@{Locality}}
+\index{Locality@{Locality}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{Locality}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+Locality}}}\label{namespaceSpartacus_1_1Utils_a64d6efe7b3923d4631036138e1b8b57f}
+
+
+Localidade da pasta. 
+
+\hypertarget{namespaceSpartacus_1_1Utils_a9ee24558a33d60b42674bae3eed2a094}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!Path\+Separator@{Path\+Separator}}
+\index{Path\+Separator@{Path\+Separator}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{Path\+Separator}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+Path\+Separator}}}\label{namespaceSpartacus_1_1Utils_a9ee24558a33d60b42674bae3eed2a094}
+
+
+Separador de diretórios do nome do arquivo. Em sistemas Unix é S\+L\+A\+S\+H (/), e em sistemas Windows é B\+A\+C\+K\+S\+L\+A\+S\+H (). 
+
+\hypertarget{namespaceSpartacus_1_1Utils_a835f63b39808393d4b72d203056ae42e}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!Sync\+Action@{Sync\+Action}}
+\index{Sync\+Action@{Sync\+Action}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{Sync\+Action}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+Sync\+Action}}}\label{namespaceSpartacus_1_1Utils_a835f63b39808393d4b72d203056ae42e}
+
+
+Ação a ser tomada ao ser detectada a diferença. 
+
+\hypertarget{namespaceSpartacus_1_1Utils_ae4b47116ae1dc35f3dc3ea735874beee}{\index{Spartacus\+::\+Utils@{Spartacus\+::\+Utils}!Tree\+Type@{Tree\+Type}}
+\index{Tree\+Type@{Tree\+Type}!Spartacus\+::\+Utils@{Spartacus\+::\+Utils}}
+\subsubsection[{Tree\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Spartacus.\+Utils.\+Tree\+Type}}}\label{namespaceSpartacus_1_1Utils_ae4b47116ae1dc35f3dc3ea735874beee}
+
+
+A classe \hyperlink{classSpartacus_1_1Utils_1_1Synchronizer}{Spartacus.\+Utils.\+Synchronizer} pode obter a árvore de arquivos automaticamente ou através de arquivo. 
+

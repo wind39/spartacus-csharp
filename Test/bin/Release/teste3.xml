@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report>
+
+    <!-- Definição de conexão com o banco -->
+    <connection>
+        <type>odbc</type>
+        <provider></provider>
+        <host></host>
+        <port></port>
+        <service>TPMP563</service>
+        <user>planning</user>
+        <password>plaserv</password>
+    </connection>
+
+    <settings>
+        <layout>LANDSCAPE</layout>
+    
+        <topmargin>30,0</topmargin>
+        <bottommargin>20,0</bottommargin>
+        <leftmargin>30,0</leftmargin>
+        <rightmargin>20,0</rightmargin>
+    
+        <dataheaderborder>TOP,BOTTOM</dataheaderborder>
+        <datafieldborder>NONE</datafieldborder>
+        <groupheaderborder>NONE</groupheaderborder>
+        <groupfooterborder>NONE</groupfooterborder>
+        
+        <dataheadercolor>WHITE</dataheadercolor>
+        <datafieldevencolor>WHITE</datafieldevencolor>
+        <datafieldoddcolor>WHITE</datafieldoddcolor>
+        <groupheadercolor>LIGHTGRAY</groupheadercolor>
+        <groupfootercolor>LIGHTGRAY</groupfootercolor>
+        
+        <reportheaderfont>
+            <family>HELVETICA</family>
+            <bold>FALSE</bold>
+            <italic>FALSE</italic>
+            <size>8,0</size>
+        </reportheaderfont>
+        
+        <reportfooterfont>
+            <family>HELVETICA</family>
+            <bold>FALSE</bold>
+            <italic>FALSE</italic>
+            <size>8,0</size>
+        </reportfooterfont>
+        
+        <dataheaderfont>
+            <family>HELVETICA</family>
+            <bold>FALSE</bold>
+            <italic>FALSE</italic>
+            <size>8,0</size>
+        </dataheaderfont>
+        
+        <datafieldfont>
+            <family>HELVETICA</family>
+            <bold>FALSE</bold>
+            <italic>FALSE</italic>
+            <size>7,0</size>
+        </datafieldfont>
+        
+        <groupheaderfont>
+            <family>HELVETICA</family>
+            <bold>TRUE</bold>
+            <italic>FALSE</italic>
+            <size>7,0</size>
+        </groupheaderfont>
+        
+        <groupfooterfont>
+            <family>HELVETICA</family>
+            <bold>TRUE</bold>
+            <italic>FALSE</italic>
+            <size>7,0</size>
+        </groupfooterfont>
+    </settings>
+
+    <command>
+        <sql>
+            select 'Importacoes de Empresas Vinculadas' as titulo,
+                   'Por Produto - Analitico' as subtitulo,
+                   'ARAG DO BRASIL' as empresa,
+                   'Ano: 2013' as ano,
+                   'logoarag.png' as imagem,
+                   'Usuario: William Ivanski' as usuario,
+                   'Sistema: Planner v0.7.0 - Modulo de Relatorios v1' as sistema,
+                   'Emissao: ' || to_char(sysdate, 'dd/mm/yyyy hh24:mi:ss') as emissao,
+                   
+                   to_char(p.prid) as prid,
+                   'Produto: ' || to_char(p.prid) || ' - ' || p.prdescricao as produto,
+                   to_char(trim(cf.cfid)) as cfid,
+                   to_char(cf.cfrazao) as cfrazao,
+                   to_char(cf.cfpais) as cfpais,
+                   to_char(e.enserie) as enserie,
+                   to_char(e.ennf) as ennf,
+                   to_char(e.enentrada, 'dd/mm/yyyy') as enentrada,
+                   to_char(e.ntid) as ntid,
+                   to_char(e.enqtde) as enqtde,
+                   to_char(e.enun) as enun,
+                   to_char(e.encustofob) as encustofob,
+                   to_char(e.enii) as enii,
+                   to_char(e.enfrete) as enfrete,
+                   to_char(e.enseguro) as enseguro,
+                   to_char(e.enaduaneiras) as enaduaneiras,
+                   to_char(e.encomplementares) as encomplementares,
+                   to_char((e.encustofob +
+                    e.enii +
+                    e.enfrete +
+                    e.enseguro +
+                    e.enaduaneiras +
+                    e.encomplementares)) as encustocif
+            from planning.entradas e,
+                 planning.produtos p,
+                 planning.cfop c,
+                 planning.clifor cf
+            where p.emid = e.emid
+              and p.prano = e.enano
+              and p.prid = e.prid
+              and c.emid = e.emid
+              and c.ano = e.enano
+              and c.ntid = e.ntid
+              and c.nttrpm = 'S'
+              and cf.emid = e.emid
+              and cf.cfano = e.enano
+              and cf.cfid = e.cfid
+              and cf.cftipo = e.cftipo
+              and cf.cfgrupo = 'SIM'
+              and e.emid = #EMID#
+              and e.enano = #ANO#
+        </sql>
+        <parameters>
+            <parameter>
+                <name>EMID</name>
+                <type>INTEGER</type>
+            </parameter>
+            <parameter>
+                <name>ANO</name>
+                <type>INTEGER</type>
+            </parameter>
+        </parameters>
+    </command>
+
+    <header>
+        <height>50,0</height>
+        <object>
+            <type>IMAGE</type>
+            <column>imagem</column>
+            <posx>0,0</posx>
+            <posy>0,0</posy>
+            <align>LEFT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>empresa</column>
+            <posx>180,0</posx>
+            <posy>5,0</posy>
+            <align>LEFT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>ano</column>
+            <posx>0,0</posx>
+            <posy>5,0</posy>
+            <align>RIGHT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>titulo</column>
+            <posx>180,0</posx>
+            <posy>22,0</posy>
+            <align>LEFT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>emissao</column>
+            <posx>0,0</posx>
+            <posy>22,0</posy>
+            <align>RIGHT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>subtitulo</column>
+            <posx>180,0</posx>
+            <posy>40,0</posy>
+            <align>LEFT</align>
+        </object>
+        <object>
+            <type>PAGENUMBER</type>
+            <column></column>
+            <posx>0,0</posx>
+            <posy>40,0</posy>
+            <align>RIGHT</align>
+        </object>
+    </header>
+
+    <footer>
+        <height>20,0</height>
+        <object>
+            <type>TEXT</type>
+            <column>sistema</column>
+            <posx>0,0</posx>
+            <posy>15,0</posy>
+            <align>LEFT</align>
+        </object>
+        <object>
+            <type>TEXT</type>
+            <column>usuario</column>
+            <posx>0,0</posx>
+            <posy>15,0</posy>
+            <align>RIGHT</align>
+        </object>
+    </footer>
+
+    <fields>
+        <field>
+            <title>Código</title>
+            <column>cfid</column>
+            <align>LEFT</align>
+            <fill>7</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Fornecedor</title>
+            <column>cfrazao</column>
+            <align>LEFT</align>
+            <fill>11</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>País</title>
+            <column>cfpais</column>
+            <align>LEFT</align>
+            <fill>8</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Ser</title>
+            <column>enserie</column>
+            <align>CENTER</align>
+            <fill>3</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Nota</title>
+            <column>ennf</column>
+            <align>CENTER</align>
+            <fill>4</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Entrada</title>
+            <column>enentrada</column>
+            <align>CENTER</align>
+            <fill>5</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Nat.</title>
+            <column>ntid</column>
+            <align>CENTER</align>
+            <fill>3</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Qtde</title>
+            <column>enqtde</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Un.</title>
+            <column>enun</column>
+            <align>CENTER</align>
+            <fill>3</fill>
+            <type>STRING</type>
+        </field>
+        <field>
+            <title>Custo FOB</title>
+            <column>encustofob</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>II</title>
+            <column>enii</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Frete</title>
+            <column>enfrete</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Seguro</title>
+            <column>enseguro</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Aduan.</title>
+            <column>enaduaneiras</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Compl.</title>
+            <column>encomplementares</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Custo CIF</title>
+            <column>encustocif</column>
+            <align>RIGHT</align>
+            <fill>7</fill>
+            <type>REAL</type>
+        </field>
+    </fields>
+
+    <groups>
+        <group>
+            <level>1</level>
+            <column>prid</column>
+            <sort>enentrada asc, ennf asc</sort>
+            
+            <showheader>TRUE</showheader>
+            <headerfields>
+                <headerfield>
+                    <title></title>
+                    <column>produto</column>
+                    <align>LEFT</align>
+                    <fill>100</fill>
+                    <type>STRING</type>
+                </headerfield>
+            </headerfields>
+            
+            <showfooter>FALSE</showfooter>
+            <footerfields>
+                <footerfield>
+                    <title></title>
+                    <column>produto</column>
+                    <align>RIGHT</align>
+                    <fill>100</fill>
+                    <type>STRING</type>
+                </footerfield>
+            </footerfields>
+        </group>
+    </groups>
+
+</report>

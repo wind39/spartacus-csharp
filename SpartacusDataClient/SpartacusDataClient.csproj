@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CADFC2EE-9E78-4224-86CA-F35C702BC14D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpartacusDataClient</RootNamespace>
+    <AssemblyName>SpartacusDataClient</AssemblyName>
+    <ApplicationIcon>..\..\..\..\..\home\william\Projects\Repositories\Spartacus\SpartacusDataClient\spartacusdataclient.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\home\william\Projects\Repositories\Spartacus\Spartacus\Spartacus.csproj">
+      <Project>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</Project>
+      <Name>Spartacus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Release\Community.CsharpSqlite.dll" />
+    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
+    <None Include="bin\Release\EPPlus.dll" />
+    <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
+    <None Include="bin\Release\Mono.Security.dll" />
+    <None Include="bin\Release\MySql.Data.dll" />
+    <None Include="bin\Release\Npgsql.dll" />
+    <None Include="bin\Release\PDFjet.dll" />
+    <None Include="bin\Release\Spartacus.dll" />
+    <None Include="bin\Release\SpartacusDataClient.exe" />
+    <None Include="bin\Release\SpartacusDataClient.exe.mdb" />
+    <None Include="spartacusdataclient.ico" />
+    <None Include="bin\Release\spartacusdataclient.ico" />
+  </ItemGroup>
+</Project>

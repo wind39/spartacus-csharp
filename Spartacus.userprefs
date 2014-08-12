@@ -1,0 +1,36 @@
+﻿<Properties GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Cryptor.cs">
+    <Files>
+      <File FileName="Spartacus/Spartacus.Net.Cryptor.cs" Line="26" Column="37" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Option id="ShowAllFiles" value="True" />
+          <Node name="Spartacus" expanded="True" />
+          <Node name="SpartacusDataClient" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="bin" expanded="True" />
+            <Node name="Properties" expanded="True" />
+          </Node>
+          <Node name="SpartacusDataServer" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="Test" expanded="True" />
+          <Node name="TestServer" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,236 @@
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite}{\section{Referência da Classe Spartacus.\+Database.\+Sqlite}
+\label{classSpartacus_1_1Database_1_1Sqlite}\index{Spartacus.\+Database.\+Sqlite@{Spartacus.\+Database.\+Sqlite}}
+}
+
+
+Classe \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Spartacus.\+Database.\+Sqlite}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o Mono.\+Data.\+Sqlite para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Sqlite}.  
+
+
+
+
+Diagrama de Hierarquia para Spartacus.\+Database.\+Sqlite\+:
+
+
+Diagrama de colaboração para Spartacus.\+Database.\+Sqlite\+:
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Database_1_1Sqlite_ac093bc658547c155306908a97e7e725d}{Sqlite} (string p\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Spartacus.\+Database.\+Sqlite}. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a7bbbff1d7f1b76d0545cc6fd7ce03c32}{Connect} ()
+\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a1ecb802399c8b374d23edaf4237ce667}{Disconnect} ()
+\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a6b452dd40baf4fb82f3cf1dc2b5adef2}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a935c96905011800e4df8ad0a7ca9bcf3}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Sqlite_adb68d4ddb00d814f9741ec87e88d788a}{Execute} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Executa um código S\+Q\+L no banco de dados. \end{DoxyCompactList}\item 
+override string \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a0f8931cb84b7c91dce7bd45089896d46}{Execute\+Scalar} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Sqlite_aef2f3f04e82b23a55a684c532f6aee99}{v\+\_\+connectionstring}
+\begin{DoxyCompactList}\small\item\em String de conexão para acessar o banco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Spartacus.\+Database.\+Sqlite}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o Mono.\+Data.\+Sqlite para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Sqlite}. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_ac093bc658547c155306908a97e7e725d}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Sqlite@{Sqlite}}
+\index{Sqlite@{Sqlite}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Sqlite}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Sqlite.\+Sqlite (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Sqlite_ac093bc658547c155306908a97e7e725d}
+
+
+Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Sqlite}{Spartacus.\+Database.\+Sqlite}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+file} & Caminho para o arquivo D\+B. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_a7bbbff1d7f1b76d0545cc6fd7ce03c32}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Connect@{Connect}}
+\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Sqlite.\+Connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_a7bbbff1d7f1b76d0545cc6fd7ce03c32}
+
+
+Conectar ao banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_a1ecb802399c8b374d23edaf4237ce667}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Sqlite.\+Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_a1ecb802399c8b374d23edaf4237ce667}
+
+
+Desconectar do banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_adb68d4ddb00d814f9741ec87e88d788a}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Execute@{Execute}}
+\index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Sqlite.\+Execute (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_adb68d4ddb00d814f9741ec87e88d788a}
+
+
+Executa um código S\+Q\+L no banco de dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser executado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_a0f8931cb84b7c91dce7bd45089896d46}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Execute\+Scalar@{Execute\+Scalar}}
+\index{Execute\+Scalar@{Execute\+Scalar}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Execute\+Scalar}]{\setlength{\rightskip}{0pt plus 5cm}override string Spartacus.\+Database.\+Sqlite.\+Execute\+Scalar (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_a0f8931cb84b7c91dce7bd45089896d46}
+
+
+Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+string com o dado de retorno. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_a6b452dd40baf4fb82f3cf1dc2b5adef2}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Sqlite.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_a6b452dd40baf4fb82f3cf1dc2b5adef2}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_a935c96905011800e4df8ad0a7ca9bcf3}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Sqlite.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename, }
+\item[{System.\+Data.\+Data\+Table}]{p\+\_\+table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Sqlite_a935c96905011800e4df8ad0a7ca9bcf3}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+{\em p\+\_\+table} & Tabela que contém definições de nomes e tipos de colunas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{Spartacus.\+Database.\+Generic}.
+
+
+
+\subsection{Campos}
+\hypertarget{classSpartacus_1_1Database_1_1Sqlite_aef2f3f04e82b23a55a684c532f6aee99}{\index{Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}!v\+\_\+connectionstring@{v\+\_\+connectionstring}}
+\index{v\+\_\+connectionstring@{v\+\_\+connectionstring}!Spartacus\+::\+Database\+::\+Sqlite@{Spartacus\+::\+Database\+::\+Sqlite}}
+\subsubsection[{v\+\_\+connectionstring}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Sqlite.\+v\+\_\+connectionstring}}\label{classSpartacus_1_1Database_1_1Sqlite_aef2f3f04e82b23a55a684c532f6aee99}
+
+
+String de conexão para acessar o banco. 
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Database.\+Sqlite.\+cs\end{DoxyCompactItemize}

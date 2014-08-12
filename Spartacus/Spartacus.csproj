@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Spartacus</RootNamespace>
+    <AssemblyName>Spartacus</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>lib\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="PDFjet">
+      <HintPath>lib\PDFjet.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="Community.CsharpSqlite">
+      <HintPath>lib\Community.CsharpSqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Community.CsharpSqlite.SQLiteClient">
+      <HintPath>lib\Community.CsharpSqlite.SQLiteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>lib\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>lib\Npgsql.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Spartacus.Utils.CSVTable.cs" />
+    <Compile Include="Spartacus.Utils.Exception.cs" />
+    <Compile Include="Spartacus.Utils.File.cs" />
+    <Compile Include="Spartacus.Utils.FileExplorer.cs" />
+    <Compile Include="Spartacus.Utils.ProgressEvent.cs" />
+    <Compile Include="Spartacus.Utils.WarningEvent.cs" />
+    <Compile Include="Spartacus.Database.Command.cs" />
+    <Compile Include="Spartacus.Database.Exception.cs" />
+    <Compile Include="Spartacus.Database.Generic.cs" />
+    <Compile Include="Spartacus.Database.Odbc.cs" />
+    <Compile Include="Spartacus.Database.Parameter.cs" />
+    <Compile Include="Spartacus.Utils.Synchronizer.cs" />
+    <Compile Include="Spartacus.Database.Firebird.cs" />
+    <Compile Include="Spartacus.Database.Mysql.cs" />
+    <Compile Include="Spartacus.Database.Oledb.cs" />
+    <Compile Include="Spartacus.Reporting.Exception.cs" />
+    <Compile Include="Spartacus.Reporting.Field.cs" />
+    <Compile Include="Spartacus.Reporting.Report.cs" />
+    <Compile Include="Spartacus.Reporting.Group.cs" />
+    <Compile Include="Spartacus.Reporting.Border.cs" />
+    <Compile Include="Spartacus.Reporting.Settings.cs" />
+    <Compile Include="Spartacus.Reporting.Font.cs" />
+    <Compile Include="Spartacus.Reporting.Block.cs" />
+    <Compile Include="Spartacus.Reporting.Object.cs" />
+    <Compile Include="Spartacus.Database.Sqlite.cs" />
+    <Compile Include="Spartacus.Utils.Excel.cs" />
+    <Compile Include="Spartacus.Net.Cryptor.cs" />
+    <Compile Include="Spartacus.Net.Server.cs" />
+    <Compile Include="Spartacus.Net.Client.cs" />
+    <Compile Include="Spartacus.Net.Packet.cs" />
+    <Compile Include="Spartacus.Net.Exception.cs" />
+    <Compile Include="Spartacus.Net.Endpoint.cs" />
+    <Compile Include="Spartacus.Database.Postgresql.cs" />
+    <Compile Include="Spartacus.Utils.FileArray.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="lib\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="lib\MySql.Data.dll" />
+    <None Include="lib\ICSharpCode.SharpZipLib.dll" />
+    <None Include="lib\PDFjet.dll" />
+    <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
+    <None Include="bin\Release\MySql.Data.dll" />
+    <None Include="bin\Release\PDFjet.dll" />
+    <None Include="bin\Release\Spartacus.dll" />
+    <None Include="doc\Doxyfile" />
+    <None Include="lib\EPPlus.dll" />
+    <None Include="bin\Release\EPPlus.dll" />
+    <None Include="bin\Release\Community.CsharpSqlite.dll" />
+    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
+    <None Include="lib\Community.CsharpSqlite.dll" />
+    <None Include="lib\Community.CsharpSqlite.SQLiteClient.dll" />
+    <None Include="lib\Mono.Security.dll" />
+    <None Include="lib\Npgsql.dll" />
+    <None Include="bin\Release\Mono.Security.dll" />
+    <None Include="bin\Release\Npgsql.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="doc\" />
+  </ItemGroup>
+</Project>

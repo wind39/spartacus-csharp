@@ -1,0 +1,305 @@
+\hypertarget{classSpartacus_1_1Database_1_1Generic}{\section{Referência da Classe Spartacus.\+Database.\+Generic}
+\label{classSpartacus_1_1Database_1_1Generic}\index{Spartacus.\+Database.\+Generic@{Spartacus.\+Database.\+Generic}}
+}
+
+
+Classe abstrata \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. Provê polimorfismo, por ser uma classe abstrata.  
+
+
+
+
+Diagrama de Hierarquia para Spartacus.\+Database.\+Generic\+:
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Database_1_1Generic_a622b197eddc5c95c47c848a5820addca}{Generic} (string p\+\_\+host, string p\+\_\+port, string p\+\_\+service, string p\+\_\+user, string p\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Database_1_1Generic_ae767e531163e6d35c9da13bf1a26da5b}{Generic} (string p\+\_\+dsn, string p\+\_\+user, string p\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Database_1_1Generic_a135fa36ed3379d3e7360a44935d3507e}{Generic} (string p\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
+abstract void \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Connect} ()
+\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
+abstract void \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Disconnect} ()
+\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
+abstract System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um . \end{DoxyCompactList}\item 
+abstract System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um . \end{DoxyCompactList}\item 
+abstract void \hyperlink{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{Execute} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Executa uma instrução S\+Q\+L no banco de dados. \end{DoxyCompactList}\item 
+abstract string \hyperlink{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}{Execute\+Scalar} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_adcf095a019d81c98b5f4c23ffe010cc4}{v\+\_\+host}
+\begin{DoxyCompactList}\small\item\em Hostname ou I\+P onde o banco de dados está localizado. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a5df6e2c77be89b3e34903ca4fc0068d0}{v\+\_\+port}
+\begin{DoxyCompactList}\small\item\em Porta T\+C\+P para conectar-\/se ao S\+G\+B\+G. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a3b7fd3196d76de6475c4a18edbfeea8f}{v\+\_\+service}
+\begin{DoxyCompactList}\small\item\em Nome do serviço que representa o banco ao qual desejamos nos conectar. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a945755698e1b479f3e581ea918338ef5}{v\+\_\+user}
+\begin{DoxyCompactList}\small\item\em Usuário ou schema para se conectar ao banco de dados. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a7a40ef878e5d8371034ced66a7b7b2bb}{v\+\_\+password}
+\begin{DoxyCompactList}\small\item\em A senha do usuário ou schema. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a91f7c26ea6ab2875fbeafc42905b423f}{v\+\_\+dsn}
+\begin{DoxyCompactList}\small\item\em D\+S\+N (Data Source Name) \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Generic_a2afdda7bc7ad1bad84a5dc08bf6bd4e6}{v\+\_\+file}
+\begin{DoxyCompactList}\small\item\em Arquivo do banco de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe abstrata \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. Provê polimorfismo, por ser uma classe abstrata. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a622b197eddc5c95c47c848a5820addca}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Generic@{Generic}}
+\index{Generic@{Generic}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Generic}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Generic.\+Generic (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+host, }
+\item[{string}]{p\+\_\+port, }
+\item[{string}]{p\+\_\+service, }
+\item[{string}]{p\+\_\+user, }
+\item[{string}]{p\+\_\+password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Generic_a622b197eddc5c95c47c848a5820addca}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+host} & Hostname ou I\+P onde o banco de dados está localizado. \\
+\hline
+{\em p\+\_\+port} & Porta T\+C\+P para conectar-\/se ao S\+G\+B\+G. \\
+\hline
+{\em p\+\_\+service} & Nome do serviço que representa o banco ao qual desejamos nos conectar. \\
+\hline
+{\em p\+\_\+user} & Usuário ou schema para se conectar ao banco de dados. \\
+\hline
+{\em p\+\_\+password} & A senha do usuário ou schema. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Database_1_1Generic_ae767e531163e6d35c9da13bf1a26da5b}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Generic@{Generic}}
+\index{Generic@{Generic}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Generic}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Generic.\+Generic (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+dsn, }
+\item[{string}]{p\+\_\+user, }
+\item[{string}]{p\+\_\+password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Generic_ae767e531163e6d35c9da13bf1a26da5b}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+file} & D\+S\+N (Data Source Name). \\
+\hline
+{\em p\+\_\+user} & Usuário ou schema para se conectar ao banco de dados. \\
+\hline
+{\em p\+\_\+password} & A senha do usuário ou schema. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a135fa36ed3379d3e7360a44935d3507e}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Generic@{Generic}}
+\index{Generic@{Generic}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Generic}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Generic.\+Generic (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Generic_a135fa36ed3379d3e7360a44935d3507e}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+file} & Arquivo do banco de dados. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Connect@{Connect}}
+\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}
+
+
+Conectar ao banco de dados. 
+
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_aef894ba4132ad7cd504680e5e33e9e9a}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a306058e9deb3a18bfdb228488a5d7641}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a7bbbff1d7f1b76d0545cc6fd7ce03c32}{Spartacus.\+Database.\+Sqlite}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}
+
+
+Desconectar do banco de dados. 
+
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_a79d7dfb5d9aa1849f371056093996c9e}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a7b2a59398269853f6ad7f3af308afadf}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a1ecb802399c8b374d23edaf4237ce667}{Spartacus.\+Database.\+Sqlite}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Execute@{Execute}}
+\index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Execute (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}
+
+
+Executa uma instrução S\+Q\+L no banco de dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser executado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_acfe60cb51ca949f93a1197c3cdf88231}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a1844a94a27db40450a91a1d415a9d456}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_afdef08fb8a30287e8c550798aa6b6742}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a37ff1148e0cb0c03941189bf21d9b8ed}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_adb68d4ddb00d814f9741ec87e88d788a}{Spartacus.\+Database.\+Sqlite}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Execute\+Scalar@{Execute\+Scalar}}
+\index{Execute\+Scalar@{Execute\+Scalar}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Execute\+Scalar}]{\setlength{\rightskip}{0pt plus 5cm}abstract string Spartacus.\+Database.\+Generic.\+Execute\+Scalar (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}
+
+
+Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+string com o dado de retorno. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_a7131081aa9dcb742321104b3a2c0c1f5}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_ab785abbc3e5f8b989c10c3a771981a83}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_ac6d8b14aed570a1a740481a0720620ab}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_ab4fcfd110084f00e66aded3478f13aca}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a0f8931cb84b7c91dce7bd45089896d46}{Spartacus.\+Database.\+Sqlite}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}abstract System.\+Data.\+Data\+Table Spartacus.\+Database.\+Generic.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um . 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+\end{DoxyParams}
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_a6f914652553778f6e0a683ac92ab1f87}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a10235140b612dd5b178169461962d2df}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_a3546716a22fd53251603f2ab36d34410}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a2332e648d04783ce92a9680f6cd69411}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a6b452dd40baf4fb82f3cf1dc2b5adef2}{Spartacus.\+Database.\+Sqlite}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}abstract System.\+Data.\+Data\+Table Spartacus.\+Database.\+Generic.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename, }
+\item[{System.\+Data.\+Data\+Table}]{p\+\_\+table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um . 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+{\em p\+\_\+table} & Tabela que contém definições de nomes e tipos de colunas. \\
+\hline
+\end{DoxyParams}
+
+
+Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_ab5f3ae20ac53dcc95182c0845a04d460}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a6243d18345e2b5f44ddcda032f6b2b9e}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_a2b7f2096a3ee819670c49ed41cf04f75}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a7b6d07dad45f3124d081976d2b51ed4b}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a935c96905011800e4df8ad0a7ca9bcf3}{Spartacus.\+Database.\+Sqlite}.
+
+
+
+\subsection{Campos}
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a91f7c26ea6ab2875fbeafc42905b423f}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+dsn@{v\+\_\+dsn}}
+\index{v\+\_\+dsn@{v\+\_\+dsn}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+dsn}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+dsn}}\label{classSpartacus_1_1Database_1_1Generic_a91f7c26ea6ab2875fbeafc42905b423f}
+
+
+D\+S\+N (Data Source Name) 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a2afdda7bc7ad1bad84a5dc08bf6bd4e6}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+file@{v\+\_\+file}}
+\index{v\+\_\+file@{v\+\_\+file}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+file}}\label{classSpartacus_1_1Database_1_1Generic_a2afdda7bc7ad1bad84a5dc08bf6bd4e6}
+
+
+Arquivo do banco de dados. 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_adcf095a019d81c98b5f4c23ffe010cc4}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+host@{v\+\_\+host}}
+\index{v\+\_\+host@{v\+\_\+host}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+host}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+host}}\label{classSpartacus_1_1Database_1_1Generic_adcf095a019d81c98b5f4c23ffe010cc4}
+
+
+Hostname ou I\+P onde o banco de dados está localizado. 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a7a40ef878e5d8371034ced66a7b7b2bb}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+password@{v\+\_\+password}}
+\index{v\+\_\+password@{v\+\_\+password}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+password}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+password}}\label{classSpartacus_1_1Database_1_1Generic_a7a40ef878e5d8371034ced66a7b7b2bb}
+
+
+A senha do usuário ou schema. 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a5df6e2c77be89b3e34903ca4fc0068d0}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+port@{v\+\_\+port}}
+\index{v\+\_\+port@{v\+\_\+port}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+port}}\label{classSpartacus_1_1Database_1_1Generic_a5df6e2c77be89b3e34903ca4fc0068d0}
+
+
+Porta T\+C\+P para conectar-\/se ao S\+G\+B\+G. 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a3b7fd3196d76de6475c4a18edbfeea8f}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+service@{v\+\_\+service}}
+\index{v\+\_\+service@{v\+\_\+service}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+service}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+service}}\label{classSpartacus_1_1Database_1_1Generic_a3b7fd3196d76de6475c4a18edbfeea8f}
+
+
+Nome do serviço que representa o banco ao qual desejamos nos conectar. 
+
+\hypertarget{classSpartacus_1_1Database_1_1Generic_a945755698e1b479f3e581ea918338ef5}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!v\+\_\+user@{v\+\_\+user}}
+\index{v\+\_\+user@{v\+\_\+user}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
+\subsubsection[{v\+\_\+user}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Generic.\+v\+\_\+user}}\label{classSpartacus_1_1Database_1_1Generic_a945755698e1b479f3e581ea918338ef5}
+
+
+Usuário ou schema para se conectar ao banco de dados. 
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Database.\+Generic.\+cs\end{DoxyCompactItemize}

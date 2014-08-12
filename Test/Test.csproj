@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EDDD86EB-9185-4434-8B6C-75AAADB4AE15}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Spartacus\Spartacus.csproj">
+      <Project>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</Project>
+      <Name>Spartacus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Release\teste.xml" />
+    <None Include="bin\Release\teste2.xml" />
+    <None Include="bin\Release\teste3.xml" />
+    <None Include="bin\Release\output.pdf" />
+    <None Include="bin\Release\PDFjet.dll" />
+    <None Include="bin\Release\Spartacus.dll" />
+    <None Include="bin\Release\MySql.Data.dll" />
+    <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Release\Test.exe" />
+    <None Include="bin\Release\output_semlinhas.pdf" />
+    <None Include="bin\Release\output_comlinhas.pdf" />
+    <None Include="bin\Release\logoarag.png" />
+    <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
+    <None Include="bin\Release\logoarag_bkp.png" />
+    <None Include="bin\Release\EPPlus.dll" />
+    <None Include="bin\Release\teste.xlsx" />
+    <None Include="bin\Release\Community.CsharpSqlite.dll" />
+    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
+    <None Include="bin\Release\teste.txt" />
+    <None Include="bin\Release\teste.db" />
+    <None Include="bin\Release\Mono.Security.dll" />
+    <None Include="bin\Release\Npgsql.dll" />
+  </ItemGroup>
+</Project>

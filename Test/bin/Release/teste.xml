@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report>
+	<connection>
+        <type>odbc</type>
+        <provider></provider>
+		<host></host>
+		<port></port>
+		<service>TPMP563</service>
+		<user>planning</user>
+		<password>plaserv</password>
+	</connection>
+
+	<command>
+		<sql>
+			select prid, prdescricao, prncm
+			from planning.produtos
+			where emidpr = #EMID#
+			  and prano = #ANO#
+		</sql>
+		<parameters>
+			<parameter>
+				<name>EMID</name>
+				<type>INTEGER</type>
+			</parameter>
+			<parameter>
+				<name>ANO</name>
+				<type>INTEGER</type>
+			</parameter>
+		</parameters>
+	</command>
+
+	<fields>
+		<field>
+			<title>Código</title>
+			<column>prid</column>
+			<align>LEFT</align>
+			<fill>20</fill>
+		</field>
+		<field>
+			<title>Descrição</title>
+			<column>prdescricao</column>
+			<align>LEFT</align>
+			<fill>70</fill>
+		</field>
+		<field>
+			<title>NCM</title>
+			<column>prncm</column>
+			<align>LEFT</align>
+			<fill>10</fill>
+		</field>
+	</fields>
+
+</report>

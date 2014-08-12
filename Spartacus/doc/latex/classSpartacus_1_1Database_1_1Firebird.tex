@@ -1,0 +1,248 @@
+\hypertarget{classSpartacus_1_1Database_1_1Firebird}{\section{Referência da Classe Spartacus.\+Database.\+Firebird}
+\label{classSpartacus_1_1Database_1_1Firebird}\index{Spartacus.\+Database.\+Firebird@{Spartacus.\+Database.\+Firebird}}
+}
+
+
+Classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird} .N\+E\+T Provider para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}.  
+
+
+
+
+Diagrama de Hierarquia para Spartacus.\+Database.\+Firebird\+:
+
+
+Diagrama de colaboração para Spartacus.\+Database.\+Firebird\+:
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Database_1_1Firebird_ad561c2ad372a44fc785238e72dbc10b4}{Firebird} (string p\+\_\+source, string p\+\_\+port, string p\+\_\+file, string p\+\_\+user, string p\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{Connect} ()
+\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{Disconnect} ()
+\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Firebird_a10235140b612dd5b178169461962d2df}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Firebird_a6243d18345e2b5f44ddcda032f6b2b9e}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Firebird_a1844a94a27db40450a91a1d415a9d456}{Execute} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Executa um código S\+Q\+L no banco de dados. \end{DoxyCompactList}\item 
+override string \hyperlink{classSpartacus_1_1Database_1_1Firebird_ab785abbc3e5f8b989c10c3a771981a83}{Execute\+Scalar} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Firebird_afb3d04d42e84e18c12d75bed71fb0b45}{v\+\_\+connectionstring}
+\begin{DoxyCompactList}\small\item\em String de conexão para acessar o banco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird} .N\+E\+T Provider para acessar um S\+G\+B\+D \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_ad561c2ad372a44fc785238e72dbc10b4}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Firebird@{Firebird}}
+\index{Firebird@{Firebird}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Firebird}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Firebird.\+Firebird (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+source, }
+\item[{string}]{p\+\_\+port, }
+\item[{string}]{p\+\_\+file, }
+\item[{string}]{p\+\_\+user, }
+\item[{string}]{p\+\_\+password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Firebird_ad561c2ad372a44fc785238e72dbc10b4}
+
+
+Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+source} & I\+P do servidor \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}. \\
+\hline
+{\em p\+\_\+port} & Porta de conexão. \\
+\hline
+{\em p\+\_\+file} & Caminho completo para o arquivo F\+D\+B ou G\+D\+B. \\
+\hline
+{\em p\+\_\+user} & Usuário do \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}. \\
+\hline
+{\em p\+\_\+password} & Senha do \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Firebird}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Connect@{Connect}}
+\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}
+
+
+Conectar ao banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}
+
+
+Desconectar do banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_a1844a94a27db40450a91a1d415a9d456}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Execute@{Execute}}
+\index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Execute (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a1844a94a27db40450a91a1d415a9d456}
+
+
+Executa um código S\+Q\+L no banco de dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser executado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_ab785abbc3e5f8b989c10c3a771981a83}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Execute\+Scalar@{Execute\+Scalar}}
+\index{Execute\+Scalar@{Execute\+Scalar}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Execute\+Scalar}]{\setlength{\rightskip}{0pt plus 5cm}override string Spartacus.\+Database.\+Firebird.\+Execute\+Scalar (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_ab785abbc3e5f8b989c10c3a771981a83}
+
+
+Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+string com o dado de retorno. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_a10235140b612dd5b178169461962d2df}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Firebird.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a10235140b612dd5b178169461962d2df}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_a6243d18345e2b5f44ddcda032f6b2b9e}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Firebird.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename, }
+\item[{System.\+Data.\+Data\+Table}]{p\+\_\+table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a6243d18345e2b5f44ddcda032f6b2b9e}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+{\em p\+\_\+table} & Tabela que contém definições de nomes e tipos de colunas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{Spartacus.\+Database.\+Generic}.
+
+
+
+\subsection{Campos}
+\hypertarget{classSpartacus_1_1Database_1_1Firebird_afb3d04d42e84e18c12d75bed71fb0b45}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!v\+\_\+connectionstring@{v\+\_\+connectionstring}}
+\index{v\+\_\+connectionstring@{v\+\_\+connectionstring}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
+\subsubsection[{v\+\_\+connectionstring}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Firebird.\+v\+\_\+connectionstring}}\label{classSpartacus_1_1Database_1_1Firebird_afb3d04d42e84e18c12d75bed71fb0b45}
+
+
+String de conexão para acessar o banco. 
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Database.\+Firebird.\+cs\end{DoxyCompactItemize}

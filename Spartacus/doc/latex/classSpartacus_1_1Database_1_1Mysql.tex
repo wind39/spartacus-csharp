@@ -1,0 +1,248 @@
+\hypertarget{classSpartacus_1_1Database_1_1Mysql}{\section{Referência da Classe Spartacus.\+Database.\+Mysql}
+\label{classSpartacus_1_1Database_1_1Mysql}\index{Spartacus.\+Database.\+Mysql@{Spartacus.\+Database.\+Mysql}}
+}
+
+
+Classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o My\+S\+Q\+L .N\+E\+T Provider para acessar um S\+G\+B\+D My\+S\+Q\+L.  
+
+
+
+
+Diagrama de Hierarquia para Spartacus.\+Database.\+Mysql\+:
+
+
+Diagrama de colaboração para Spartacus.\+Database.\+Mysql\+:
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Database_1_1Mysql_aa1a7b4639cb22e84da677a4186efa060}{Mysql} (string p\+\_\+server, string p\+\_\+port, string p\+\_\+database, string p\+\_\+user, string p\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{Connect} ()
+\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{Disconnect} ()
+\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Mysql_a3546716a22fd53251603f2ab36d34410}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Mysql_a2b7f2096a3ee819670c49ed41cf04f75}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
+override void \hyperlink{classSpartacus_1_1Database_1_1Mysql_afdef08fb8a30287e8c550798aa6b6742}{Execute} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Executa um código S\+Q\+L no banco de dados. \end{DoxyCompactList}\item 
+override string \hyperlink{classSpartacus_1_1Database_1_1Mysql_ac6d8b14aed570a1a740481a0720620ab}{Execute\+Scalar} (string p\+\_\+sql)
+\begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classSpartacus_1_1Database_1_1Mysql_ac29f25cd328e6bedd0b2f122040674ca}{v\+\_\+connectionstring}
+\begin{DoxyCompactList}\small\item\em String de conexão para acessar o banco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. Herda da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Utiliza o My\+S\+Q\+L .N\+E\+T Provider para acessar um S\+G\+B\+D My\+S\+Q\+L. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_aa1a7b4639cb22e84da677a4186efa060}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Mysql@{Mysql}}
+\index{Mysql@{Mysql}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Mysql}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Database.\+Mysql.\+Mysql (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+server, }
+\item[{string}]{p\+\_\+port, }
+\item[{string}]{p\+\_\+database, }
+\item[{string}]{p\+\_\+user, }
+\item[{string}]{p\+\_\+password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Database_1_1Mysql_aa1a7b4639cb22e84da677a4186efa060}
+
+
+Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+server} & I\+P do servidor My\+S\+Q\+L. \\
+\hline
+{\em p\+\_\+port} & Porta de conexão. \\
+\hline
+{\em p\+\_\+database} & Nome da base de dados ou schema. \\
+\hline
+{\em p\+\_\+user} & Usuário do My\+S\+Q\+L. \\
+\hline
+{\em p\+\_\+password} & Senha do My\+S\+Q\+L. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Connect@{Connect}}
+\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}
+
+
+Conectar ao banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}
+
+
+Desconectar do banco de dados. 
+
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_afdef08fb8a30287e8c550798aa6b6742}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Execute@{Execute}}
+\index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Execute (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_afdef08fb8a30287e8c550798aa6b6742}
+
+
+Executa um código S\+Q\+L no banco de dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser executado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_ac6d8b14aed570a1a740481a0720620ab}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Execute\+Scalar@{Execute\+Scalar}}
+\index{Execute\+Scalar@{Execute\+Scalar}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Execute\+Scalar}]{\setlength{\rightskip}{0pt plus 5cm}override string Spartacus.\+Database.\+Mysql.\+Execute\+Scalar (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_ac6d8b14aed570a1a740481a0720620ab}
+
+
+Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+string com o dado de retorno. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar o código S\+Q\+L.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a983620fd71f520deb71ae55304b98bf6}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_a3546716a22fd53251603f2ab36d34410}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Mysql.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_a3546716a22fd53251603f2ab36d34410}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{Spartacus.\+Database.\+Generic}.
+
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_a2b7f2096a3ee819670c49ed41cf04f75}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Query@{Query}}
+\index{Query@{Query}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}override System.\+Data.\+Data\+Table Spartacus.\+Database.\+Mysql.\+Query (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+sql, }
+\item[{string}]{p\+\_\+tablename, }
+\item[{System.\+Data.\+Data\+Table}]{p\+\_\+table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_a2b7f2096a3ee819670c49ed41cf04f75}
+
+
+Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+sql} & Código S\+Q\+L a ser consultado no banco de dados. \\
+\hline
+{\em p\+\_\+tablename} & Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache. \\
+\hline
+{\em p\+\_\+table} & Tabela que contém definições de nomes e tipos de colunas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma System.\+Data.\+Data\+Table com os dados de retorno da consulta.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível executar a consulta.\\
+\hline
+\end{DoxyExceptions}
+
+
+Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{Spartacus.\+Database.\+Generic}.
+
+
+
+\subsection{Campos}
+\hypertarget{classSpartacus_1_1Database_1_1Mysql_ac29f25cd328e6bedd0b2f122040674ca}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!v\+\_\+connectionstring@{v\+\_\+connectionstring}}
+\index{v\+\_\+connectionstring@{v\+\_\+connectionstring}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
+\subsubsection[{v\+\_\+connectionstring}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Database.\+Mysql.\+v\+\_\+connectionstring}}\label{classSpartacus_1_1Database_1_1Mysql_ac29f25cd328e6bedd0b2f122040674ca}
+
+
+String de conexão para acessar o banco. 
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Database.\+Mysql.\+cs\end{DoxyCompactItemize}
