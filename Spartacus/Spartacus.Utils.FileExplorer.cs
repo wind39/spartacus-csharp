@@ -849,19 +849,24 @@ namespace Spartacus.Utils
         public Spartacus.Utils.File CompressDirectory(string p_zipfilename, Spartacus.Utils.File p_directory)
         {
             ICSharpCode.SharpZipLib.Zip.FastZip v_fastzip;
-            Spartacus.Utils.File v_zipfile;
+            Spartacus.Utils.File v_zipfiletmp, v_zipfile;
+            System.IO.FileInfo v_fileinfo;
             string v_context;
 
             if (p_directory.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
-                v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
+                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
             else
-                v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "\\" + p_zipfilename);
+                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "\\" + p_zipfilename);
 
             try
             {
                 v_fastzip = new ICSharpCode.SharpZipLib.Zip.FastZip();
                 v_fastzip.CreateEmptyDirectories = true;
-                v_fastzip.CreateZip(v_zipfile.CompleteFileName(), p_directory.CompleteFileName(), true, null);
+                v_fastzip.CreateZip(v_zipfiletmp.CompleteFileName(), p_directory.CompleteFileName(), true, null);
+
+                v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
+
+                v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, v_zipfiletmp.CompleteFileName(), v_fileinfo.LastWriteTime, v_fileinfo.Length);
             }
             catch (System.Exception e)
             {
