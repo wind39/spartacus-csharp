@@ -2,23 +2,61 @@ using System;
 
 namespace Spartacus.Net
 {
+    /// <summary>
+    /// Classe Cryptor.
+    /// Objeto genérico que pode criptografar e descriptografar strings e arquivos.
+    /// </summary>
     public class Cryptor
     {
+        /// <summary>
+        /// Senha da Criptografia.
+        /// A mesma senha usada para criptografar deve ser usada para descriptografar.
+        /// Obrigatório.
+        /// </summary>
         private string v_password;
 
+        /// <summary>
+        /// Vetor de Inicialização.
+        /// Deve ser uma string de exatamente 16 caracteres.
+        /// O padrão é a string "0123456789ABCDEF".
+        /// </summary>
         private string v_initvector;
 
+        /// <summary>
+        /// Tamanho da Chave.
+        /// Pode ser 128, 192 ou 256. Quanto maior, mais forte é a criptografia.
+        /// O padrão é 256.
+        /// </summary>
         private int v_keysize;
 
+        /// <summary>
+        /// Tamanho mínimo do SALT (string aleatória incluída na criptografia).
+        /// Deve estar entre 8 e 255 caracteres.
+        /// O padrão é 8 caracteres.
+        /// </summary>
         private int v_minsaltlength;
 
+        /// <summary>
+        /// Tamanho máximo do SALT (string aleatória incluída na criptografia).
+        /// Deve estar entre 8 e 255 caracteres.
+        /// O padrão é 8 caracteres.
+        /// </summary>
         private int v_maxsaltlength;
 
+        /// <summary>
+        /// Objeto Criptografador.
+        /// </summary>
         private System.Security.Cryptography.ICryptoTransform v_encryptor;
 
+        /// <summary>
+        /// Objeto Descriptografador.
+        /// </summary>
         private System.Security.Cryptography.ICryptoTransform v_decryptor;
 
-
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
         public Cryptor(string p_password)
         {
             this.v_password = p_password;
@@ -28,6 +66,11 @@ namespace Spartacus.Net
             this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
         public Cryptor(string p_password, string p_initvector)
         {
             this.v_password = p_password;
@@ -40,6 +83,12 @@ namespace Spartacus.Net
             this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+        /// <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param>
         public Cryptor(string p_password, int p_minsaltlength, int p_maxsaltlength)
         {
             this.v_password = p_password;
@@ -55,6 +104,13 @@ namespace Spartacus.Net
                 this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+        /// <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+        /// <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param>
         public Cryptor(string p_password, string p_initvector, int p_minsaltlength, int p_maxsaltlength)
         {
             this.v_password = p_password;
@@ -73,6 +129,11 @@ namespace Spartacus.Net
                 this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
         public Cryptor(string p_password, int p_keysize)
         {
             this.v_password = p_password;
@@ -85,6 +146,12 @@ namespace Spartacus.Net
             this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+        /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
         public Cryptor(string p_password, int p_keysize, string p_initvector)
         {
             this.v_password = p_password;
@@ -100,6 +167,13 @@ namespace Spartacus.Net
             this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+        /// <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+        /// <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param>
         public Cryptor(string p_password, int p_keysize, int p_minsaltlength, int p_maxsaltlength)
         {
             this.v_password = p_password;
@@ -118,6 +192,14 @@ namespace Spartacus.Net
                 this.v_maxsaltlength = 8;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// </summary>
+        /// <param name="p_password">Senha da Criptografia.</param>
+        /// <param name="p_keysize">Tamanho da Chave (128,192 ou 256).</param>
+        /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+        /// <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+        /// <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param>
         public Cryptor(string p_password, int p_keysize, string p_initvector, int p_minsaltlength, int p_maxsaltlength)
         {
             this.v_password = p_password;
@@ -138,13 +220,15 @@ namespace Spartacus.Net
             else
                 this.v_maxsaltlength = 8;
         }
-        
+
+        /// <summary>
+        /// Initializa os objetos necessários para realizar criptografia e descriptografia.
+        /// </summary>
         private void Initialize()
         {
             System.Security.Cryptography.RijndaelManaged v_rijndael;
             System.Security.Cryptography.Rfc2898DeriveBytes v_passwordbytes;
             byte[] v_initvectorbytes;
-            //byte[] v_salt;
             byte[] v_keybytes;
 
             v_rijndael = new System.Security.Cryptography.RijndaelManaged();
@@ -159,21 +243,43 @@ namespace Spartacus.Net
             this.v_decryptor = v_rijndael.CreateDecryptor(v_keybytes, v_initvectorbytes);
         }
 
+        #region ENCRYPT
+
+        /// <summary>
+        /// Criptografa uma string em outra string.
+        /// </summary>
+        /// <returns>String criptografada.</returns>
+        /// <param name="p_plaintext">String em texto puro.</param>
         public string Encrypt(string p_plaintext)
         {
             return this.Encrypt(System.Text.Encoding.UTF8.GetBytes(p_plaintext));
         }
 
+        /// <summary>
+        /// Criptografa um array de bytes em uma string.
+        /// </summary>
+        /// <returns>String criptografada.</returns>
+        /// <param name="p_plaintextbytes">Array de bytes.</param>
         public string Encrypt(byte[] p_plaintextbytes)
         {
             return System.Convert.ToBase64String(this.EncryptToBytes(p_plaintextbytes));
         }
 
+        /// <summary>
+        /// Criptografa uma string em um array de bytes.
+        /// </summary>
+        /// <returns>Array de bytes criptografado.</returns>
+        /// <param name="p_plaintext">String em texto puro.</param>
         public byte[] EncryptToBytes(string p_plaintext)
         {
             return this.EncryptToBytes(System.Text.Encoding.UTF8.GetBytes(p_plaintext));
         }
 
+        /// <summary>
+        /// Criptografa um array de bytes em outro array de bytes.
+        /// </summary>
+        /// <returns>Array de bytes criptografado.</returns>
+        /// <param name="p_plaintextbytes">Array de bytes.</param>
         public byte[] EncryptToBytes(byte[] p_plaintextbytes)
         {
             byte[] v_ciphertextbytes;
@@ -202,6 +308,12 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Criptografa um arquivo em outro arquivo.
+        /// O tamanho do bloco é 1 MB.
+        /// </summary>
+        /// <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+        /// <param name="p_outputfilename">Nome do arquivo de saída.</param>
         public void EncryptFile(string p_inputfilename, string p_outputfilename)
         {
             System.IO.FileStream v_inputfile, v_outputfile;
@@ -254,6 +366,12 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Criptografa um arquivo em outro arquivo.
+        /// </summary>
+        /// <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+        /// <param name="p_outputfilename">Nome do arquivo de saída.</param>
+        /// <param name="p_chunksize">Tamanho do bloco em bytes.</param>
         public void EncryptFile(string p_inputfilename, string p_outputfilename, int p_chunksize)
         {
             System.IO.FileStream v_inputfile, v_outputfile;
@@ -306,21 +424,45 @@ namespace Spartacus.Net
             }
         }
 
+        #endregion
+
+        #region DECRYPT
+
+        /// <summary>
+        /// Descriptografa uma string em outra string.
+        /// </summary>
+        /// <returns>String descriptografada em texto puro.</returns>
+        /// <param name="p_ciphertext">String criptografada.</param>
         public string Decrypt(string p_ciphertext)
         {
             return this.Decrypt(System.Convert.FromBase64String(p_ciphertext));
         }
 
+        /// <summary>
+        /// Descriptografa um array de bytes em uma string.
+        /// </summary>
+        /// <returns>String descriptografada em texto puro.</returns>
+        /// <param name="p_ciphertextbytes">Array de bytes criptografado.</param>
         public string Decrypt(byte[] p_ciphertextbytes)
         {
             return System.Text.Encoding.UTF8.GetString(this.DecryptToBytes(p_ciphertextbytes));
         }
 
+        /// <summary>
+        /// Descriptografa uma string em um array de bytes.
+        /// </summary>
+        /// <returns>Array de bytes descriptografado.</returns>
+        /// <param name="p_ciphertext">String criptografada.</param>
         public byte[] DecryptToBytes(string p_ciphertext)
         {
             return this.DecryptToBytes(System.Convert.FromBase64String(p_ciphertext));
         }
 
+        /// <summary>
+        /// Descriptografa um array de bytes em outro array de bytes.
+        /// </summary>
+        /// <returns>Array de bytes descriptografado.</returns>
+        /// <param name="p_ciphertextbytes">Array de bytes criptografado.</param>
         public byte[] DecryptToBytes(byte[] p_ciphertextbytes)
         {
             byte[] v_plaintextbytes;
@@ -357,6 +499,11 @@ namespace Spartacus.Net
             return v_plaintextbytes;
         }
 
+        /// <summary>
+        /// Descriptografa um arquivo em outro arquivo.
+        /// </summary>
+        /// <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+        /// <param name="p_outputfilename">Nome do arquivo de saída.</param>
         public void DecryptFile(string p_inputfilename, string p_outputfilename)
         {
             System.IO.FileStream v_inputfile, v_outputfile;
@@ -404,6 +551,14 @@ namespace Spartacus.Net
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Adiciona SALT a um array de bytes.
+        /// SALT é uma string gerada aleatoriamente.
+        /// </summary>
+        /// <returns>Array de bytes com SALT.</returns>
+        /// <param name="p_plaintextbytes">Array de bytes.</param>
         private byte[] AddSalt(byte[] p_plaintextbytes)
         {
             byte[] v_plaintextbyteswithsalt;
@@ -420,6 +575,10 @@ namespace Spartacus.Net
             return v_plaintextbyteswithsalt;
         }
 
+        /// <summary>
+        /// Gera um SALT.
+        /// </summary>
+        /// <returns>SALT.</returns>
         private byte[] GenerateSalt()
         {
             System.Security.Cryptography.RNGCryptoServiceProvider v_randomnumbergenerator;
@@ -444,6 +603,12 @@ namespace Spartacus.Net
             return v_salt;
         }
 
+        /// <summary>
+        /// Gera um número aleatório contido no intervalo especificado.
+        /// </summary>
+        /// <returns>Número aleatório.</returns>
+        /// <param name="p_minvalue">Valor mínimo.</param>
+        /// <param name="p_maxvalue">Valor máximo.</param>
         private int GenerateRandomNumber(int p_minvalue, int p_maxvalue)
         {
             System.Security.Cryptography.RNGCryptoServiceProvider v_randomnumbergenerator;

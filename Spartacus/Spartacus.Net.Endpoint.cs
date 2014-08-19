@@ -2,21 +2,48 @@ using System;
 
 namespace Spartacus.Net
 {
+    /// <summary>
+    /// Classe Endpoint.
+    /// Representa um ponto de comunicação, que pode ser tanto um cliente ou um servidor.
+    /// </summary>
     public class Endpoint
     {
+        /// <summary>
+        /// IP do ponto de comunicação.
+        /// </summary>
         public string v_ip;
 
+        /// <summary>
+        /// Porta do ponto de comunicação.
+        /// </summary>
         public int v_port;
 
+        /// <summary>
+        /// Socket usado para comunicação.
+        /// </summary>
         public System.Net.Sockets.TcpClient v_socket;
 
+        /// <summary>
+        /// Stream usada para comunicação.
+        /// </summary>
         public System.Net.Sockets.NetworkStream v_stream;
 
+        /// <summary>
+        /// Tamanho do buffer para envio e recebimento.
+        /// O padrão é 1 MB.
+        /// </summary>
         public readonly int v_buffersize;
 
+        /// <summary>
+        /// Buffer usado para envio e recebimento.
+        /// </summary>
         public byte[] v_recvbuffer;
 
-
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Endpoint"/>.
+        /// </summary>
+        /// <param name="p_ip">IP do ponto de comunicação.</param>
+        /// <param name="p_port">Porta do ponto de comunicação.</param>
         public Endpoint(string p_ip, int p_port)
         {
             this.v_ip = p_ip;
@@ -32,6 +59,11 @@ namespace Spartacus.Net
 
         #region RECEIVE
 
+        /// <summary>
+        /// Recebe um pacote.
+        /// </summary>
+        /// <returns>Pacote.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception>
         public Spartacus.Net.Packet Recv()
         {
             byte[] v_tmpbuffer;
@@ -58,6 +90,12 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Recebe uma string.
+        /// Pode ser necessário vários pacotes para montar essa string.
+        /// </summary>
+        /// <returns>String.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception>
         public string RecvString()
         {
             string v_text;
@@ -116,63 +154,12 @@ namespace Spartacus.Net
             }
         }
 
-        /*public System.Data.DataTable RecvDataTable()
-        {
-            System.Data.DataTable v_table;
-            System.Data.DataRow v_row;
-            string v_text;
-            string[] v_lines;
-            string[] v_line;
-            int i, j;
-            string[] v_sep;
-            string v_context;
-
-            v_sep = new string[1];
-            v_sep [0] = "\r\n";
-
-            try
-            {
-                v_text = this.RecvString();
-
-                v_table = new System.Data.DataTable("RESULTS");
-
-                v_lines = v_text.Split(v_sep, System.StringSplitOptions.None);
-
-                v_line = v_lines[0].Split(';');
-
-                foreach (string s in v_line)
-                    v_table.Columns.Add(s);
-
-                for (i = 1; i < v_lines.Length; i++)
-                {
-                    v_row = v_table.NewRow();
-                    v_line = v_lines[i].Split(';');
-
-                    if (v_line.Length != v_table.Columns.Count)
-                    {
-                        v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                        throw new Spartacus.Net.Exception(v_context, "Numero de colunas diferente na linha " + i.ToString() + ". " + v_table.Columns.Count.ToString() + " x " + v_line.Length.ToString() + ".");
-                    }
-
-                    for (j = 0; j < v_table.Columns.Count; j++)
-                        v_row[j] = v_line[j];
-
-                    v_table.Rows.Add(v_row);
-                }
-
-                return v_table;
-            }
-            catch (Spartacus.Net.Exception exc_net)
-            {
-                throw exc_net;
-            }
-            catch (System.Exception exc)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
-            }
-        }*/
-
+        /// <summary>
+        /// Recebe uma <see cref="System.Data.DataTable"/>.
+        /// Recebe um pacote por linha da <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <returns><see cref="System.Data.DataTable"/>.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="System.Data.DataTable"/>.</exception>
         public System.Data.DataTable RecvDataTable()
         {
             System.Data.DataTable v_table;
@@ -255,6 +242,11 @@ namespace Spartacus.Net
 
         #region SEND
 
+        /// <summary>
+        /// Envia um pacote.
+        /// </summary>
+        /// <param name="p_packet">Pacote.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
         public void Send(Spartacus.Net.Packet p_packet)
         {
             string v_context;
@@ -274,6 +266,12 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Envia uma string.
+        /// Pode ser necessário quebrar essa string em vários pacotes.
+        /// </summary>
+        /// <param name="p_text">String.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception>
         public void SendString(string p_text)
         {
             Spartacus.Net.Packet v_packetsend, v_packetrecv;
@@ -328,6 +326,12 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Envia uma <see cref="System.Data.DataTable"/>.
+        /// Envia uma linha por pacote.
+        /// </summary>
+        /// <param name="p_table"><see cref="System.Data.DataTable"/>.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="System.Data.DataTable"/>.</exception>
         public void SendDataTable(System.Data.DataTable p_table)
         {
             Spartacus.Net.Packet v_packetsend, v_packetrecv;
@@ -405,43 +409,11 @@ namespace Spartacus.Net
             }
         }
 
-        /*public void SendDataTable(System.Data.DataTable p_table)
-        {
-            string v_text;
-            int i, j;
-            string v_context;
-
-            v_text = p_table.Columns[0].ColumnName;
-            for (j = 1; j < p_table.Columns.Count; j++)
-                v_text += ";" + p_table.Columns[j].ColumnName;
-            v_text += "\r\n";
-
-            for (i = 0; i < p_table.Rows.Count; i++)
-            {
-                v_text += p_table.Rows[i][0].ToString();
-                for (j = 1; j < p_table.Columns.Count; j++)
-                    v_text += ";" + p_table.Rows[i][j].ToString().Replace(";", ",").Replace("\r\n", " ");
-                if (i < (p_table.Rows.Count-1))
-                    v_text += "\r\n";
-            }
-
-            try
-            {
-                this.SendString(v_text);
-            }
-            catch (Spartacus.Net.Exception exc_net)
-            {
-                throw exc_net;
-            }
-            catch (System.Exception exc)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
-            }
-        }*/
-
         #endregion
 
+        /// <summary>
+        /// Fecha o canal de comunicação.
+        /// </summary>
         public void Stop()
         {
             string v_context;

@@ -1,24 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Cryptor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Client.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Net.Cryptor.cs" Line="26" Column="37" />
+      <File FileName="Spartacus/Spartacus.Net.Endpoint.cs" Line="16" Column="22" />
+      <File FileName="Spartacus/Spartacus.Net.Client.cs" Line="21" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
+        <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="Spartacus" expanded="True" />
-          <Node name="SpartacusDataClient" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="bin" expanded="True" />
-            <Node name="Properties" expanded="True" />
+          <Node name="Spartacus" expanded="True">
+            <Node name="Spartacus.Net.Client.cs" selected="True" />
           </Node>
-          <Node name="SpartacusDataServer" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="Test" expanded="True" />
-          <Node name="TestServer" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

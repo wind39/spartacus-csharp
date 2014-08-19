@@ -92,6 +92,7 @@ namespace Spartacus.Utils
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
             this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+            this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_files = new System.Collections.ArrayList();
@@ -111,6 +112,7 @@ namespace Spartacus.Utils
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
             this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+            this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
@@ -135,6 +137,7 @@ namespace Spartacus.Utils
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
             this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+            this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
@@ -454,13 +457,10 @@ namespace Spartacus.Utils
             {
                 v_file = (Spartacus.Utils.File)this.v_files[p_id-1];
 
-                //if (! v_file.v_protected)
-                //{
-                    if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
-                        System.IO.Directory.Delete(v_file.CompleteFileName(), true);
-                    else
-                        System.IO.File.Delete(v_file.CompleteFileName());
-                //}
+                if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+                    System.IO.Directory.Delete(v_file.CompleteFileName(), true);
+                else
+                    System.IO.File.Delete(v_file.CompleteFileName());
             }
             catch (System.Exception e)
             {

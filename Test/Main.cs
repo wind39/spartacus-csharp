@@ -10,7 +10,7 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            CryptoFileTest(args[0], args[1], args[2]);
+            FileTest();
         }
 
         #region DATABASE
@@ -139,16 +139,16 @@ namespace Test
                             System.Console.WriteLine(e.v_message);
                         }
                         break;
-                    //case "z":
-                    //    try
-                    //    {
-                    //        Spartacus.Utils.File v_zipfile = v_explorer.CompressDirectory("teste.zip", v_explorer.Get(System.Convert.ToInt32(v_line.Split(v_separator)[1])));
-                    //    }
-                    //    catch (Spartacus.Utils.Exception e)
-                    //    {
-                    //        System.Console.WriteLine(e.v_message);
-                    //    }
-                    //    break;
+                    case "z":
+                        try
+                        {
+                            Spartacus.Utils.File v_zipfile = v_explorer.CompressDirectory("teste.zip", v_explorer.Get(System.Convert.ToInt32(v_line.Split(v_separator)[1])));
+                        }
+                        catch (Spartacus.Utils.Exception e)
+                        {
+                            System.Console.WriteLine(e.v_message);
+                        }
+                        break;
                     default:
                         System.Console.WriteLine("[" + v_line + "]: Comando não encontrado.");
                         break;
