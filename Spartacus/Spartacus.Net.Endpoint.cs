@@ -238,6 +238,88 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Recebe um arquivo.
+        /// </summary>
+        /// <returns>Nome do arquivo.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception>
+        public string RecvFile()
+        {
+            System.IO.FileStream v_file;
+            System.IO.BinaryWriter v_writer;
+            Spartacus.Net.Packet v_packetrecv, v_packetsend;
+            int v_numpackets, v_sequence;
+            string v_context;
+
+            try
+            {
+                // recebendo nome do arquivo
+                v_packetrecv = this.Recv();
+
+                if (v_packetrecv.v_type != Spartacus.Net.PacketType.FILE)
+                    return null;
+
+                v_file = new System.IO.FileStream(v_packetrecv.GetString(), System.IO.FileMode.Create, System.IO.FileAccess.Write);
+
+                v_writer = new System.IO.BinaryWriter(v_file);
+
+                // enviando ack
+                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, "");
+                this.Send(v_packetsend);
+
+                // recebendo primeiro pacote de dados do arquivo
+                v_packetrecv = this.Recv();
+
+                v_sequence = 0;
+                v_numpackets = v_packetrecv.v_numpackets;
+
+                // se a sequencia estah errada, entao precisa tratar um erro
+                // if (v_packet.v_sequence != v_sequence)
+
+                v_writer.Write(v_packetrecv.v_data);
+
+                // enviando ack
+                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
+                this.Send(v_packetsend);
+
+                v_sequence++;
+                while (v_sequence < v_numpackets)
+                {
+                    // recebendo pacote
+                    v_packetrecv = this.Recv();
+
+                    // se a sequencia estah errada, entao precisa tratar um erro
+                    // if (v_packet.v_sequence != v_sequence)
+
+                    // se o numero de pacotes estah errado, entao precisa tratar um erro
+                    // if (v_packet.v_numpackets != v_numpackets)
+
+                    // acumulando conteudo dos dados do pacote na string
+                    v_writer.Write(v_packetrecv.v_data);
+
+                    // enviando ack
+                    v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
+                    this.Send(v_packetsend);
+
+                    v_sequence++;
+                }
+
+                v_writer.Flush();
+                v_writer.Close();
+
+                return v_file.Name;
+            }
+            catch (Spartacus.Net.Exception exc_net)
+            {
+                throw exc_net;
+            }
+            catch (System.Exception exc)
+            {
+                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                throw new Spartacus.Net.Exception(v_context, exc);
+            }
+        }
+
         #endregion
 
         #region SEND
@@ -401,6 +483,94 @@ namespace Spartacus.Net
             catch (Spartacus.Net.Exception exc_net)
             {
                 throw exc_net;
+            }
+            catch (System.Exception exc)
+            {
+                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                throw new Spartacus.Net.Exception(v_context, exc);
+            }
+        }
+
+        /// <summary>
+        /// Envia um arquivo.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception>
+        public void SendFile(string p_filename)
+        {
+            System.IO.FileStream v_file;
+            System.IO.BinaryReader v_reader;
+            Spartacus.Net.Packet v_packetsend, v_packetrecv;
+            int v_chunksize;
+            byte[] v_chunk;
+            int v_numpackets, v_sequence;
+            int k;
+            string v_context;
+            bool v_ack;
+
+            try
+            {
+                v_file = new System.IO.FileStream(p_filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+
+                v_reader = new System.IO.BinaryReader(v_file);
+
+                // tamanho dos dados eh igual ao tamanho total do pacote menos o cabecalho (25)
+                v_chunksize = this.v_buffersize - 25;
+
+                // numero de pacotes
+                v_numpackets = (int) System.Math.Ceiling((double) v_file.Length / (double) v_chunksize);
+
+                // montando pacote com nome do arquivo
+                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.FILE, p_filename);
+
+                // enquanto nao recebeu ACK, precisa reenviar ate receber
+                v_ack = false;
+                while (! v_ack)
+                {
+                    // enviando pacote
+                    this.Send(v_packetsend);
+
+                    // recebendo ACK
+                    v_packetrecv = this.Recv();
+                    if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK)
+                        v_ack = true;
+                }
+
+                v_sequence = 0;
+                for (k = 0; k < v_file.Length; k += v_chunksize)
+                {
+                    // se eh o ultimo pacote, entao o tamanho dos dados serah menor
+                    if ((k + v_chunksize) > v_file.Length)
+                        v_chunksize = (int) v_file.Length - k;
+
+                    // lendo dados do arquivo
+                    v_chunk = v_reader.ReadBytes(v_chunksize);
+
+                    // montando pacote
+                    v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.DATA, v_sequence, v_numpackets, v_chunk);
+
+                    // enquanto nao recebeu ACK, precisa reenviar ate receber
+                    v_ack = false;
+                    while (! v_ack)
+                    {
+                        // enviando pacote
+                        this.Send(v_packetsend);
+
+                        // recebendo ACK
+                        v_packetrecv = this.Recv();
+                        if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK && v_packetrecv.v_sequence == v_sequence)
+                            v_ack = true;
+                    }
+
+                    v_sequence++;
+                }
+
+                v_reader.Close();
+            }
+            catch (System.IO.IOException exc_io)
+            {
+                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                throw new Spartacus.Net.Exception(v_context, exc_io);
             }
             catch (System.Exception exc)
             {

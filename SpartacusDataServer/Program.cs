@@ -50,8 +50,8 @@ namespace SpartacusDataServer
 
                         switch (v_packet.v_type)
                         {
-                            case Spartacus.Net.PacketType.QUERY:
-                                System.Console.WriteLine("Recebido: QUERY.");
+                            case Spartacus.Net.PacketType.DATA: // consulta sql
+                                System.Console.WriteLine("Recebido: DATA.");
                                 System.Console.Write("Enviando ACK... ");
                                 v_server.Send(v_packetack);
                                 System.Console.WriteLine("Enviei ACK.");
@@ -80,12 +80,6 @@ namespace SpartacusDataServer
                                     v_server.Send(v_packeterror);
                                 }
 
-                                break;
-                            case Spartacus.Net.PacketType.DATA:
-                                System.Console.WriteLine("Recebido: DATA. Não sei como tratar!");
-                                System.Console.Write("Enviando NACK... ");
-                                v_server.Send(v_packetnack);
-                                System.Console.WriteLine("Enviei NACK.");
                                 break;
                             case Spartacus.Net.PacketType.ACK:
                                 System.Console.WriteLine("Recebido: ACK. Não sei como tratar!");

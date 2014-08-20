@@ -4,12 +4,12 @@ namespace Spartacus.Net
 {
     public enum PacketType
     {
-        QUERY,
         DATA,
         ACK,
         NACK,
         WARNING,
-        ERROR
+        ERROR,
+        FILE
     }
 
     public class Packet
@@ -35,6 +35,30 @@ namespace Spartacus.Net
             this.v_sequence = 0;
             this.v_numpackets = 1;
             this.v_data = null;
+
+            this.BuildBuffer();
+        }
+
+        public Packet(Spartacus.Net.PacketType p_type, byte[] p_data)
+        {
+            this.v_encoding = new System.Text.ASCIIEncoding();
+
+            this.v_type = p_type;
+            this.v_sequence = 0;
+            this.v_numpackets = 1;
+            this.v_data = p_data;
+
+            this.BuildBuffer();
+        }
+
+        public Packet(Spartacus.Net.PacketType p_type, string p_data)
+        {
+            this.v_encoding = new System.Text.ASCIIEncoding();
+
+            this.v_type = p_type;
+            this.v_sequence = 0;
+            this.v_numpackets = 1;
+            this.v_data = this.v_encoding.GetBytes(p_data);
 
             this.BuildBuffer();
         }
@@ -84,9 +108,9 @@ namespace Spartacus.Net
             // tipo do pacote
             switch (this.v_type)
             {
-                case Spartacus.Net.PacketType.QUERY:
-                    v_tmpbuffer = this.v_encoding.GetBytes("QUERY");
-                    break;
+                //case Spartacus.Net.PacketType.QUERY:
+                //    v_tmpbuffer = this.v_encoding.GetBytes("QUERY");
+                //    break;
                 case Spartacus.Net.PacketType.DATA:
                     v_tmpbuffer = this.v_encoding.GetBytes("DATA ");
                     break;
@@ -101,6 +125,9 @@ namespace Spartacus.Net
                     break;
                 case Spartacus.Net.PacketType.WARNING:
                     v_tmpbuffer = this.v_encoding.GetBytes("WARNG");
+                    break;
+                case Spartacus.Net.PacketType.FILE:
+                    v_tmpbuffer = this.v_encoding.GetBytes("FILE ");
                     break;
                 default:
                     v_tmpbuffer = null;
@@ -140,9 +167,9 @@ namespace Spartacus.Net
             // tipo do pacote
             switch (v_tmp.Substring(0, 5))
             {
-                case "QUERY":
-                    this.v_type = Spartacus.Net.PacketType.QUERY;
-                    break;
+                //case "QUERY":
+                //    this.v_type = Spartacus.Net.PacketType.QUERY;
+                //    break;
                 case "DATA ":
                     this.v_type = Spartacus.Net.PacketType.DATA;
                     break;
@@ -157,6 +184,9 @@ namespace Spartacus.Net
                     break;
                 case "WARNG":
                     this.v_type = Spartacus.Net.PacketType.WARNING;
+                    break;
+                case "FILE ":
+                    this.v_type = Spartacus.Net.PacketType.FILE;
                     break;
                 default:
                     v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;

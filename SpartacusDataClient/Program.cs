@@ -130,7 +130,7 @@ namespace SpartacusDataClient
             try
             {
                 // montando consulta
-                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.QUERY, 0, 1, this.txt_sql.Text);
+                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.DATA, 0, 1, this.txt_sql.Text);
 
                 v_ack = false;
                 while (! v_ack)

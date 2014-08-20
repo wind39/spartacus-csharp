@@ -17,12 +17,12 @@ namespace Test
 
         private static void DatabaseTest()
         {
-            //v_database = new Spartacus.Database.Odbc("tpprodu", "pscore", "plaservcore");
+            //v_database = new Spartacus.Database.Odbc("tpprodu", "planning", "password");
             //v_database = new Spartacus.Database.Firebird("localhost", "3050", "/work/clientes/escriba/sanmod.gdb", "SYSDBA", "masterkey");
-            //v_database = new Spartacus.Database.Mysql("localhost", "3306", "wassina3_00555", "root", "knightroot");
-            //v_database = new Spartacus.Database.Oledb("Oracle", "127.0.0.1", "1521", "XE", "pscore", "plaservcore");
+            //v_database = new Spartacus.Database.Mysql("localhost", "3306", "wassina3_00555", "root", "password");
+            //v_database = new Spartacus.Database.Oledb("Oracle", "127.0.0.1", "1521", "XE", "pscore", "password");
             //v_database = new Spartacus.Database.Sqlite("teste.db");
-            v_database = new Spartacus.Database.Postgresql("localhost", "5432", "test", "postgres", "postgres123");
+            v_database = new Spartacus.Database.Postgresql("localhost", "5432", "test", "postgres", "password");
 
             try
             {
@@ -143,6 +143,7 @@ namespace Test
                         try
                         {
                             Spartacus.Utils.File v_zipfile = v_explorer.CompressDirectory("teste.zip", v_explorer.Get(System.Convert.ToInt32(v_line.Split(v_separator)[1])));
+                            System.Console.WriteLine("Arquivo " + v_zipfile.v_name + " comprimido com sucesso!");
                         }
                         catch (Spartacus.Utils.Exception e)
                         {
