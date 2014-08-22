@@ -123,6 +123,7 @@
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="lib\Mono.Data.Sqlite.dll" />
     <None Include="bin\Release\sqlite3.dll" />
+    <None Include="lib\sqlite3.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
