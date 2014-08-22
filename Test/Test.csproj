@@ -32,6 +32,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -61,12 +63,13 @@
     <None Include="bin\Release\logoarag_bkp.png" />
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\teste.xlsx" />
-    <None Include="bin\Release\Community.CsharpSqlite.dll" />
-    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
     <None Include="bin\Release\teste.txt" />
     <None Include="bin\Release\teste.db" />
     <None Include="bin\Release\Mono.Security.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="LICENSE.txt" />
+    <None Include="bin\Release\sc_register.db" />
+    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Release\sqlite3.dll" />
   </ItemGroup>
 </Project>

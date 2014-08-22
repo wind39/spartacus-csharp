@@ -6,7 +6,7 @@ Spartacus is a multi-purpose library written in C#, focused on:
   - Render reports from a unique XML markup to PDF, using own database objects.
 
 Spartacus links this libraries:
-  - csharp-sqlite (https://code.google.com/p/csharp-sqlite/)
+  - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - EPPlus (http://epplus.codeplex.com/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - SharpZipLib (http://icsharpcode.github.io/SharpZipLib/)

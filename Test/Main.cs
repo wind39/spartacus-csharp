@@ -10,7 +10,7 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            FileTest();
+            FormsTest();
         }
 
         #region DATABASE
@@ -354,6 +354,50 @@ namespace Test
 
             foreach (Spartacus.Utils.File v_file in v_filearray.v_files)
                 System.Console.WriteLine(v_file.CompleteFileName() + "  " + v_file.CompleteFileName(true));
+        }
+
+        #endregion
+
+        #region FORMS
+
+        private static void FormsTest()
+        {
+            Spartacus.Forms.Container v_window;
+            Spartacus.Forms.Component v_textbox, v_textbox2;
+            Spartacus.Forms.Component v_grid;
+            Spartacus.Database.Generic v_database;
+            System.Data.DataTable v_table;
+
+            try
+            {
+                v_database = new Spartacus.Database.Sqlite("sc_register.db");
+                v_database.Connect();
+
+                v_table = v_database.Query("select pais_st_codigo, pais_st_nome from paises", "PAISES");
+
+                v_window = new Spartacus.Forms.Container(Spartacus.Forms.ContainerType.FORM);
+                v_window.SetTitle("Formulario Teste");
+
+                v_textbox = new Spartacus.Forms.Textbox(v_window, 40);
+                v_textbox.SetTitle("Digite seu nome:");
+                v_window.Add(v_textbox);
+
+                v_textbox2 = new Spartacus.Forms.Textbox(v_window, 40);
+                v_textbox2.SetTitle("Digite sua idade:");
+                v_window.Add(v_textbox2);
+
+                v_grid = new Spartacus.Forms.Grid(v_window);
+                v_grid.SetHeight(150);
+                v_grid.Populate(v_table);
+                v_window.Add(v_grid);
+
+                System.Windows.Forms.Application.EnableVisualStyles();
+                System.Windows.Forms.Application.Run((System.Windows.Forms.Form)v_window.v_control);
+            }
+            catch(Spartacus.Database.Exception e)
+            {
+                System.Console.WriteLine(e.v_message);
+            }
         }
 
         #endregion

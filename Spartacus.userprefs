@@ -1,18 +1,24 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Endpoint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/Main.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Net.Packet.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Net.Endpoint.cs" Line="10" Column="6" />
+      <File FileName="Test/Main.cs" Line="394" Column="19" />
+      <File FileName="Spartacus/Spartacus.Forms.Container.cs" Line="15" Column="53" />
+      <File FileName="Spartacus/Spartacus.Forms.Component.cs" Line="59" Column="70" />
+      <File FileName="Spartacus/Spartacus.Forms.Textbox.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Forms.Grid.cs" Line="73" Column="2" />
+      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="2" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
           <Node name="Spartacus" expanded="True">
-            <Node name="Spartacus.Net.Endpoint.cs" selected="True" />
+            <Node name="References" expanded="True" />
           </Node>
-          <Node name="Test" expanded="True" />
+          <Node name="Test" expanded="True">
+            <Node name="Main.cs" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

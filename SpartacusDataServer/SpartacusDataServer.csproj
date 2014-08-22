@@ -45,8 +45,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Release\Community.CsharpSqlite.dll" />
-    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
@@ -56,7 +54,8 @@
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="bin\Release\SpartacusDataServer.exe" />
-    <None Include="bin\Release\SpartacusDataServer.exe.mdb" />
     <None Include="LICENSE.txt" />
+    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Release\sqlite3.dll" />
   </ItemGroup>
 </Project>

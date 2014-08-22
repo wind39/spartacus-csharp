@@ -48,17 +48,16 @@
       <HintPath>lib\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="Community.CsharpSqlite">
-      <HintPath>lib\Community.CsharpSqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Community.CsharpSqlite.SQLiteClient">
-      <HintPath>lib\Community.CsharpSqlite.SQLiteClient.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>lib\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +96,10 @@
     <Compile Include="Spartacus.Net.Endpoint.cs" />
     <Compile Include="Spartacus.Database.Postgresql.cs" />
     <Compile Include="Spartacus.Utils.FileArray.cs" />
+    <Compile Include="Spartacus.Forms.Container.cs" />
+    <Compile Include="Spartacus.Forms.Component.cs" />
+    <Compile Include="Spartacus.Forms.Textbox.cs" />
+    <Compile Include="Spartacus.Forms.Grid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -112,15 +115,14 @@
     <None Include="doc\Doxyfile" />
     <None Include="lib\EPPlus.dll" />
     <None Include="bin\Release\EPPlus.dll" />
-    <None Include="bin\Release\Community.CsharpSqlite.dll" />
-    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
-    <None Include="lib\Community.CsharpSqlite.dll" />
-    <None Include="lib\Community.CsharpSqlite.SQLiteClient.dll" />
     <None Include="lib\Mono.Security.dll" />
     <None Include="lib\Npgsql.dll" />
     <None Include="bin\Release\Mono.Security.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="LICENSE.txt" />
+    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
+    <None Include="lib\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Release\sqlite3.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

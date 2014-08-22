@@ -41,10 +41,7 @@
   <ItemGroup>
     <None Include="spartacuscryptor.ico" />
     <None Include="bin\Release\SpartacusCryptor.exe" />
-    <None Include="bin\Release\SpartacusCryptor.exe.mdb" />
     <None Include="bin\Release\spartacuscryptor.ico" />
-    <None Include="bin\Release\Community.CsharpSqlite.dll" />
-    <None Include="bin\Release\Community.CsharpSqlite.SQLiteClient.dll" />
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
@@ -54,6 +51,8 @@
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="LICENSE.txt" />
+    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Release\sqlite3.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\home\william\Projects\Repositories\Spartacus\Spartacus\Spartacus.csproj">
