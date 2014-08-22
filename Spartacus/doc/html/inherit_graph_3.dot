@@ -1,7 +1,0 @@
-digraph "Gráfico de Hierarquia de Classes"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="Spartacus.Database.Parameter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSpartacus_1_1Database_1_1Parameter.html",tooltip="Classe Parameter. Representa um parâmetro da classe Spartacus.Database.Command. "];
-}

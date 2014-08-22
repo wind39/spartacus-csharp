@@ -1,0 +1,453 @@
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor}{\section{Referência da Classe Spartacus.\+Net.\+Cryptor}
+\label{classSpartacus_1_1Net_1_1Cryptor}\index{Spartacus.\+Net.\+Cryptor@{Spartacus.\+Net.\+Cryptor}}
+}
+
+
+Classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Cryptor}. Objeto genérico que pode criptografar e descriptografar strings e arquivos.  
+
+
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a5c76a4b6b5815664fb8eae9a3f609ff7}{Cryptor} (string p\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a8d4320e54c937dea7ed97d37efdc68a5}{Cryptor} (string p\+\_\+password, string p\+\_\+initvector)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_aad82c26437402976596842bbf56f67a3}{Cryptor} (string p\+\_\+password, int p\+\_\+minsaltlength, int p\+\_\+maxsaltlength)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a819d80d2a1716d595f86606eff2c274a}{Cryptor} (string p\+\_\+password, string p\+\_\+initvector, int p\+\_\+minsaltlength, int p\+\_\+maxsaltlength)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a7b6ba3b157d68fc1cba8e54473ee31d2}{Cryptor} (string p\+\_\+password, int p\+\_\+keysize)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a950f5a483790a9157aa41931563e84af}{Cryptor} (string p\+\_\+password, int p\+\_\+keysize, string p\+\_\+initvector)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a268451d8e02dcfc497dfbad8f9bc5991}{Cryptor} (string p\+\_\+password, int p\+\_\+keysize, int p\+\_\+minsaltlength, int p\+\_\+maxsaltlength)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Net_1_1Cryptor_a769e71a85f005fd001df0823ef4bb783}{Cryptor} (string p\+\_\+password, int p\+\_\+keysize, string p\+\_\+initvector, int p\+\_\+minsaltlength, int p\+\_\+maxsaltlength)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a21fe44b9046d49fa0efc47b544f1c571}{Encrypt} (string p\+\_\+plaintext)
+\begin{DoxyCompactList}\small\item\em Criptografa uma string em outra string. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a6f1c6d8afb1c54433b25c61b9191369b}{Encrypt} (byte\mbox{[}$\,$\mbox{]} p\+\_\+plaintextbytes)
+\begin{DoxyCompactList}\small\item\em Criptografa um array de bytes em uma string. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a6754cccd8952bbe30b24e6e25eb532f1}{Encrypt\+To\+Bytes} (string p\+\_\+plaintext)
+\begin{DoxyCompactList}\small\item\em Criptografa uma string em um array de bytes. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classSpartacus_1_1Net_1_1Cryptor_ae214f6b814e81b0e4b92b6e5794cf1b3}{Encrypt\+To\+Bytes} (byte\mbox{[}$\,$\mbox{]} p\+\_\+plaintextbytes)
+\begin{DoxyCompactList}\small\item\em Criptografa um array de bytes em outro array de bytes. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a3bb69644aa1fdd89b7db8485611bb586}{Encrypt\+File} (string p\+\_\+inputfilename, string p\+\_\+outputfilename)
+\begin{DoxyCompactList}\small\item\em Criptografa um arquivo em outro arquivo. O tamanho do bloco é 1 M\+B. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a145685027a2ccab140e2bb99fb9c0bf9}{Encrypt\+File} (string p\+\_\+inputfilename, string p\+\_\+outputfilename, int p\+\_\+chunksize)
+\begin{DoxyCompactList}\small\item\em Criptografa um arquivo em outro arquivo. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a726d070b8bd0acb36db75226dc6e0ed5}{Decrypt} (string p\+\_\+ciphertext)
+\begin{DoxyCompactList}\small\item\em Descriptografa uma string em outra string. \end{DoxyCompactList}\item 
+string \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a5263cb77b7c998c411ff6d989becd883}{Decrypt} (byte\mbox{[}$\,$\mbox{]} p\+\_\+ciphertextbytes)
+\begin{DoxyCompactList}\small\item\em Descriptografa um array de bytes em uma string. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a1e42806a2c32d77fee2cf6fd29fb49ef}{Decrypt\+To\+Bytes} (string p\+\_\+ciphertext)
+\begin{DoxyCompactList}\small\item\em Descriptografa uma string em um array de bytes. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classSpartacus_1_1Net_1_1Cryptor_a543578fac1b6611d94f29e61a83c44f6}{Decrypt\+To\+Bytes} (byte\mbox{[}$\,$\mbox{]} p\+\_\+ciphertextbytes)
+\begin{DoxyCompactList}\small\item\em Descriptografa um array de bytes em outro array de bytes. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Net_1_1Cryptor_ab5b04f4ae7e87ae36362f9d5ae991482}{Decrypt\+File} (string p\+\_\+inputfilename, string p\+\_\+outputfilename)
+\begin{DoxyCompactList}\small\item\em Descriptografa um arquivo em outro arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Cryptor}. Objeto genérico que pode criptografar e descriptografar strings e arquivos. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a5c76a4b6b5815664fb8eae9a3f609ff7}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a5c76a4b6b5815664fb8eae9a3f609ff7}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a8d4320e54c937dea7ed97d37efdc68a5}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{string}]{p\+\_\+initvector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a8d4320e54c937dea7ed97d37efdc68a5}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+initvector} & Vetor de Inicialização (deve conter 16 caracteres).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_aad82c26437402976596842bbf56f67a3}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{int}]{p\+\_\+minsaltlength, }
+\item[{int}]{p\+\_\+maxsaltlength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_aad82c26437402976596842bbf56f67a3}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+minsaltlength} & Tamanho mínimo do S\+A\+L\+T (entre 8 e 255).\\
+\hline
+{\em p\+\_\+maxsaltlength} & Tamanho máximo do S\+A\+L\+T (entre 8 e 255).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a819d80d2a1716d595f86606eff2c274a}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{string}]{p\+\_\+initvector, }
+\item[{int}]{p\+\_\+minsaltlength, }
+\item[{int}]{p\+\_\+maxsaltlength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a819d80d2a1716d595f86606eff2c274a}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+initvector} & Vetor de Inicialização (deve conter 16 caracteres).\\
+\hline
+{\em p\+\_\+minsaltlength} & Tamanho mínimo do S\+A\+L\+T (entre 8 e 255).\\
+\hline
+{\em p\+\_\+maxsaltlength} & Tamanho máximo do S\+A\+L\+T (entre 8 e 255).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a7b6ba3b157d68fc1cba8e54473ee31d2}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{int}]{p\+\_\+keysize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a7b6ba3b157d68fc1cba8e54473ee31d2}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+keysize} & Tamanho da Chave (128, 192 ou 256).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a950f5a483790a9157aa41931563e84af}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{int}]{p\+\_\+keysize, }
+\item[{string}]{p\+\_\+initvector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a950f5a483790a9157aa41931563e84af}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+keysize} & Tamanho da Chave (128, 192 ou 256).\\
+\hline
+{\em p\+\_\+initvector} & Vetor de Inicialização (deve conter 16 caracteres).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a268451d8e02dcfc497dfbad8f9bc5991}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{int}]{p\+\_\+keysize, }
+\item[{int}]{p\+\_\+minsaltlength, }
+\item[{int}]{p\+\_\+maxsaltlength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a268451d8e02dcfc497dfbad8f9bc5991}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+keysize} & Tamanho da Chave (128, 192 ou 256).\\
+\hline
+{\em p\+\_\+minsaltlength} & Tamanho mínimo do S\+A\+L\+T (entre 8 e 256).\\
+\hline
+{\em p\+\_\+maxsaltlength} & Tamanho máximo do S\+A\+L\+T (entre 8 e 256).\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a769e71a85f005fd001df0823ef4bb783}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Cryptor@{Cryptor}}
+\index{Cryptor@{Cryptor}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Cryptor}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Cryptor.\+Cryptor (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+password, }
+\item[{int}]{p\+\_\+keysize, }
+\item[{string}]{p\+\_\+initvector, }
+\item[{int}]{p\+\_\+minsaltlength, }
+\item[{int}]{p\+\_\+maxsaltlength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a769e71a85f005fd001df0823ef4bb783}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Cryptor}{Spartacus.\+Net.\+Cryptor}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+password} & Senha da Criptografia.\\
+\hline
+{\em p\+\_\+keysize} & Tamanho da Chave (128,192 ou 256).\\
+\hline
+{\em p\+\_\+initvector} & Vetor de Inicialização (deve conter 16 caracteres).\\
+\hline
+{\em p\+\_\+minsaltlength} & Tamanho mínimo do S\+A\+L\+T (entre 8 e 256).\\
+\hline
+{\em p\+\_\+maxsaltlength} & Tamanho máximo do S\+A\+L\+T (entre 8 e 256).\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a726d070b8bd0acb36db75226dc6e0ed5}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Decrypt@{Decrypt}}
+\index{Decrypt@{Decrypt}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Decrypt}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Net.\+Cryptor.\+Decrypt (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+ciphertext}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a726d070b8bd0acb36db75226dc6e0ed5}
+
+
+Descriptografa uma string em outra string. 
+
+\begin{DoxyReturn}{Retorna}
+String descriptografada em texto puro.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+ciphertext} & String criptografada.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a5263cb77b7c998c411ff6d989becd883}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Decrypt@{Decrypt}}
+\index{Decrypt@{Decrypt}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Decrypt}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Net.\+Cryptor.\+Decrypt (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{p\+\_\+ciphertextbytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a5263cb77b7c998c411ff6d989becd883}
+
+
+Descriptografa um array de bytes em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+String descriptografada em texto puro.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+ciphertextbytes} & Array de bytes criptografado.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_ab5b04f4ae7e87ae36362f9d5ae991482}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Decrypt\+File@{Decrypt\+File}}
+\index{Decrypt\+File@{Decrypt\+File}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Decrypt\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Net.\+Cryptor.\+Decrypt\+File (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+inputfilename, }
+\item[{string}]{p\+\_\+outputfilename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_ab5b04f4ae7e87ae36362f9d5ae991482}
+
+
+Descriptografa um arquivo em outro arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+inputfilename} & Nome do arquivo de entrada.\\
+\hline
+{\em p\+\_\+outputfilename} & Nome do arquivo de saída.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a1e42806a2c32d77fee2cf6fd29fb49ef}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Decrypt\+To\+Bytes@{Decrypt\+To\+Bytes}}
+\index{Decrypt\+To\+Bytes@{Decrypt\+To\+Bytes}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Decrypt\+To\+Bytes}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} Spartacus.\+Net.\+Cryptor.\+Decrypt\+To\+Bytes (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+ciphertext}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a1e42806a2c32d77fee2cf6fd29fb49ef}
+
+
+Descriptografa uma string em um array de bytes. 
+
+\begin{DoxyReturn}{Retorna}
+Array de bytes descriptografado.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+ciphertext} & String criptografada.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a543578fac1b6611d94f29e61a83c44f6}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Decrypt\+To\+Bytes@{Decrypt\+To\+Bytes}}
+\index{Decrypt\+To\+Bytes@{Decrypt\+To\+Bytes}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Decrypt\+To\+Bytes}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} Spartacus.\+Net.\+Cryptor.\+Decrypt\+To\+Bytes (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{p\+\_\+ciphertextbytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a543578fac1b6611d94f29e61a83c44f6}
+
+
+Descriptografa um array de bytes em outro array de bytes. 
+
+\begin{DoxyReturn}{Retorna}
+Array de bytes descriptografado.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+ciphertextbytes} & Array de bytes criptografado.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a21fe44b9046d49fa0efc47b544f1c571}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt@{Encrypt}}
+\index{Encrypt@{Encrypt}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Net.\+Cryptor.\+Encrypt (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+plaintext}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a21fe44b9046d49fa0efc47b544f1c571}
+
+
+Criptografa uma string em outra string. 
+
+\begin{DoxyReturn}{Retorna}
+String criptografada.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+plaintext} & String em texto puro.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a6f1c6d8afb1c54433b25c61b9191369b}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt@{Encrypt}}
+\index{Encrypt@{Encrypt}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Net.\+Cryptor.\+Encrypt (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{p\+\_\+plaintextbytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a6f1c6d8afb1c54433b25c61b9191369b}
+
+
+Criptografa um array de bytes em uma string. 
+
+\begin{DoxyReturn}{Retorna}
+String criptografada.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+plaintextbytes} & Array de bytes.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a3bb69644aa1fdd89b7db8485611bb586}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt\+File@{Encrypt\+File}}
+\index{Encrypt\+File@{Encrypt\+File}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Net.\+Cryptor.\+Encrypt\+File (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+inputfilename, }
+\item[{string}]{p\+\_\+outputfilename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a3bb69644aa1fdd89b7db8485611bb586}
+
+
+Criptografa um arquivo em outro arquivo. O tamanho do bloco é 1 M\+B. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+inputfilename} & Nome do arquivo de entrada.\\
+\hline
+{\em p\+\_\+outputfilename} & Nome do arquivo de saída.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a145685027a2ccab140e2bb99fb9c0bf9}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt\+File@{Encrypt\+File}}
+\index{Encrypt\+File@{Encrypt\+File}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Net.\+Cryptor.\+Encrypt\+File (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+inputfilename, }
+\item[{string}]{p\+\_\+outputfilename, }
+\item[{int}]{p\+\_\+chunksize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a145685027a2ccab140e2bb99fb9c0bf9}
+
+
+Criptografa um arquivo em outro arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+inputfilename} & Nome do arquivo de entrada.\\
+\hline
+{\em p\+\_\+outputfilename} & Nome do arquivo de saída.\\
+\hline
+{\em p\+\_\+chunksize} & Tamanho do bloco em bytes.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_a6754cccd8952bbe30b24e6e25eb532f1}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt\+To\+Bytes@{Encrypt\+To\+Bytes}}
+\index{Encrypt\+To\+Bytes@{Encrypt\+To\+Bytes}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt\+To\+Bytes}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} Spartacus.\+Net.\+Cryptor.\+Encrypt\+To\+Bytes (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+plaintext}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_a6754cccd8952bbe30b24e6e25eb532f1}
+
+
+Criptografa uma string em um array de bytes. 
+
+\begin{DoxyReturn}{Retorna}
+Array de bytes criptografado.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+plaintext} & String em texto puro.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Net_1_1Cryptor_ae214f6b814e81b0e4b92b6e5794cf1b3}{\index{Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}!Encrypt\+To\+Bytes@{Encrypt\+To\+Bytes}}
+\index{Encrypt\+To\+Bytes@{Encrypt\+To\+Bytes}!Spartacus\+::\+Net\+::\+Cryptor@{Spartacus\+::\+Net\+::\+Cryptor}}
+\subsubsection[{Encrypt\+To\+Bytes}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} Spartacus.\+Net.\+Cryptor.\+Encrypt\+To\+Bytes (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{p\+\_\+plaintextbytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Cryptor_ae214f6b814e81b0e4b92b6e5794cf1b3}
+
+
+Criptografa um array de bytes em outro array de bytes. 
+
+\begin{DoxyReturn}{Retorna}
+Array de bytes criptografado.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+plaintextbytes} & Array de bytes.\\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Net.\+Cryptor.\+cs\end{DoxyCompactItemize}

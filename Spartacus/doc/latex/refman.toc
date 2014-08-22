@@ -11,235 +11,459 @@
 \contentsline {subsection}{\numberline {4.2.1}Enumera\IeC {\c c}\IeC {\~o}es}{8}{subsection.4.2.1}
 \contentsline {subsubsection}{\numberline {4.2.1.1}Locale}{8}{subsubsection.4.2.1.1}
 \contentsline {subsubsection}{\numberline {4.2.1.2}Type}{8}{subsubsection.4.2.1.2}
-\contentsline {section}{\numberline {4.3}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting}{8}{section.4.3}
-\contentsline {section}{\numberline {4.4}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils}{8}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Enumera\IeC {\c c}\IeC {\~o}es}{9}{subsection.4.4.1}
-\contentsline {subsubsection}{\numberline {4.4.1.1}Direction}{9}{subsubsection.4.4.1.1}
-\contentsline {subsubsection}{\numberline {4.4.1.2}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attributes}{9}{subsubsection.4.4.1.2}
-\contentsline {subsubsection}{\numberline {4.4.1.3}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{9}{subsubsection.4.4.1.3}
-\contentsline {subsubsection}{\numberline {4.4.1.4}Locality}{9}{subsubsection.4.4.1.4}
-\contentsline {subsubsection}{\numberline {4.4.1.5}Path\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Separator}{9}{subsubsection.4.4.1.5}
-\contentsline {subsubsection}{\numberline {4.4.1.6}Sync\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Action}{9}{subsubsection.4.4.1.6}
-\contentsline {subsubsection}{\numberline {4.4.1.7}Tree\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{9}{subsubsection.4.4.1.7}
-\contentsline {chapter}{\numberline {5}Estruturas}{11}{chapter.5}
-\contentsline {section}{\numberline {5.1}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Command}{11}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{12}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Construtores \& Destrutores}{12}{subsection.5.1.2}
-\contentsline {subsubsection}{\numberline {5.1.2.1}Command}{12}{subsubsection.5.1.2.1}
-\contentsline {subsection}{\numberline {5.1.3}M\IeC {\'e}todos}{12}{subsection.5.1.3}
-\contentsline {subsubsection}{\numberline {5.1.3.1}Add\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parameter}{12}{subsubsection.5.1.3.1}
-\contentsline {subsubsection}{\numberline {5.1.3.2}Clear}{12}{subsubsection.5.1.3.2}
-\contentsline {subsubsection}{\numberline {5.1.3.3}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{12}{subsubsection.5.1.3.3}
-\contentsline {subsubsection}{\numberline {5.1.3.4}Remove\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Unwanted\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Chars}{13}{subsubsection.5.1.3.4}
-\contentsline {subsubsection}{\numberline {5.1.3.5}Remove\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Unwanted\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Chars\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Execute}{13}{subsubsection.5.1.3.5}
-\contentsline {subsubsection}{\numberline {5.1.3.6}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Date\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Format}{13}{subsubsection.5.1.3.6}
-\contentsline {subsubsection}{\numberline {5.1.3.7}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Locale}{13}{subsubsection.5.1.3.7}
-\contentsline {subsubsection}{\numberline {5.1.3.8}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{14}{subsubsection.5.1.3.8}
-\contentsline {subsubsection}{\numberline {5.1.3.9}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{14}{subsubsection.5.1.3.9}
-\contentsline {subsubsection}{\numberline {5.1.3.10}Update\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Text}{14}{subsubsection.5.1.3.10}
+\contentsline {section}{\numberline {4.3}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Forms}{8}{section.4.3}
+\contentsline {section}{\numberline {4.4}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Net}{8}{section.4.4}
+\contentsline {section}{\numberline {4.5}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting}{8}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Enumera\IeC {\c c}\IeC {\~o}es}{9}{subsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.1.1}Field\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Alignment}{9}{subsubsection.4.5.1.1}
+\contentsline {subsubsection}{\numberline {4.5.1.2}Font\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Family}{9}{subsubsection.4.5.1.2}
+\contentsline {subsubsection}{\numberline {4.5.1.3}Object\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{9}{subsubsection.4.5.1.3}
+\contentsline {subsubsection}{\numberline {4.5.1.4}Page\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Layout}{9}{subsubsection.4.5.1.4}
+\contentsline {subsubsection}{\numberline {4.5.1.5}Page\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Margin}{9}{subsubsection.4.5.1.5}
+\contentsline {section}{\numberline {4.6}Pacote Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils}{10}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Enumera\IeC {\c c}\IeC {\~o}es}{10}{subsection.4.6.1}
+\contentsline {subsubsection}{\numberline {4.6.1.1}Direction}{10}{subsubsection.4.6.1.1}
+\contentsline {subsubsection}{\numberline {4.6.1.2}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attributes}{10}{subsubsection.4.6.1.2}
+\contentsline {subsubsection}{\numberline {4.6.1.3}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{10}{subsubsection.4.6.1.3}
+\contentsline {subsubsection}{\numberline {4.6.1.4}Locality}{10}{subsubsection.4.6.1.4}
+\contentsline {subsubsection}{\numberline {4.6.1.5}Path\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Separator}{11}{subsubsection.4.6.1.5}
+\contentsline {subsubsection}{\numberline {4.6.1.6}Sync\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Action}{11}{subsubsection.4.6.1.6}
+\contentsline {subsubsection}{\numberline {4.6.1.7}Tree\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{11}{subsubsection.4.6.1.7}
+\contentsline {chapter}{\numberline {5}Estruturas}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Block}{13}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{13}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Construtores \& Destrutores}{13}{subsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.2.1}Block}{13}{subsubsection.5.1.2.1}
+\contentsline {subsection}{\numberline {5.1.3}M\IeC {\'e}todos}{14}{subsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.3.1}Render}{14}{subsubsection.5.1.3.1}
+\contentsline {subsubsection}{\numberline {5.1.3.2}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Height}{14}{subsubsection.5.1.3.2}
+\contentsline {subsubsection}{\numberline {5.1.3.3}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Page\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Number}{14}{subsubsection.5.1.3.3}
+\contentsline {subsubsection}{\numberline {5.1.3.4}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Values}{14}{subsubsection.5.1.3.4}
 \contentsline {subsection}{\numberline {5.1.4}Campos}{14}{subsection.5.1.4}
-\contentsline {subsubsection}{\numberline {5.1.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}parameters}{14}{subsubsection.5.1.4.1}
-\contentsline {subsubsection}{\numberline {5.1.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}text}{14}{subsubsection.5.1.4.2}
-\contentsline {section}{\numberline {5.2}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{14}{section.5.2}
+\contentsline {subsubsection}{\numberline {5.1.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}height}{14}{subsubsection.5.1.4.1}
+\contentsline {subsubsection}{\numberline {5.1.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}objects}{14}{subsubsection.5.1.4.2}
+\contentsline {section}{\numberline {5.2}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Border}{15}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{15}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Construtores \& Destrutores}{15}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Exception}{15}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Exception}{15}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Exception}{15}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Exception}{16}{subsubsection.5.2.2.4}
-\contentsline {subsubsection}{\numberline {5.2.2.5}Exception}{16}{subsubsection.5.2.2.5}
-\contentsline {subsubsection}{\numberline {5.2.2.6}Exception}{16}{subsubsection.5.2.2.6}
-\contentsline {subsection}{\numberline {5.2.3}Campos}{16}{subsection.5.2.3}
-\contentsline {subsubsection}{\numberline {5.2.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{16}{subsubsection.5.2.3.1}
-\contentsline {section}{\numberline {5.3}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{16}{section.5.3}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Border}{15}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Border}{15}{subsubsection.5.2.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Campos}{15}{subsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}bottom}{15}{subsubsection.5.2.3.1}
+\contentsline {subsubsection}{\numberline {5.2.3.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}left}{15}{subsubsection.5.2.3.2}
+\contentsline {subsubsection}{\numberline {5.2.3.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}right}{16}{subsubsection.5.2.3.3}
+\contentsline {subsubsection}{\numberline {5.2.3.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}top}{16}{subsubsection.5.2.3.4}
+\contentsline {section}{\numberline {5.3}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Net.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Client}{16}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{17}{subsection.5.3.1}
 \contentsline {subsection}{\numberline {5.3.2}Construtores \& Destrutores}{17}{subsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.2.1}Exception}{17}{subsubsection.5.3.2.1}
-\contentsline {subsubsection}{\numberline {5.3.2.2}Exception}{17}{subsubsection.5.3.2.2}
-\contentsline {subsubsection}{\numberline {5.3.2.3}Exception}{17}{subsubsection.5.3.2.3}
-\contentsline {subsubsection}{\numberline {5.3.2.4}Exception}{18}{subsubsection.5.3.2.4}
-\contentsline {subsubsection}{\numberline {5.3.2.5}Exception}{18}{subsubsection.5.3.2.5}
-\contentsline {subsubsection}{\numberline {5.3.2.6}Exception}{18}{subsubsection.5.3.2.6}
-\contentsline {subsection}{\numberline {5.3.3}Campos}{18}{subsection.5.3.3}
-\contentsline {subsubsection}{\numberline {5.3.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{18}{subsubsection.5.3.3.1}
-\contentsline {section}{\numberline {5.4}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{18}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{19}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Construtores \& Destrutores}{19}{subsection.5.4.2}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Exception}{19}{subsubsection.5.4.2.1}
-\contentsline {subsubsection}{\numberline {5.4.2.2}Exception}{19}{subsubsection.5.4.2.2}
-\contentsline {subsubsection}{\numberline {5.4.2.3}Exception}{19}{subsubsection.5.4.2.3}
-\contentsline {subsubsection}{\numberline {5.4.2.4}Exception}{20}{subsubsection.5.4.2.4}
-\contentsline {subsubsection}{\numberline {5.4.2.5}Exception}{20}{subsubsection.5.4.2.5}
-\contentsline {subsubsection}{\numberline {5.4.2.6}Exception}{20}{subsubsection.5.4.2.6}
-\contentsline {subsection}{\numberline {5.4.3}Campos}{20}{subsection.5.4.3}
-\contentsline {subsubsection}{\numberline {5.4.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{20}{subsubsection.5.4.3.1}
-\contentsline {section}{\numberline {5.5}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{20}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{22}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Construtores \& Destrutores}{22}{subsection.5.5.2}
-\contentsline {subsubsection}{\numberline {5.5.2.1}File}{22}{subsubsection.5.5.2.1}
-\contentsline {subsubsection}{\numberline {5.5.2.2}File}{22}{subsubsection.5.5.2.2}
-\contentsline {subsubsection}{\numberline {5.5.2.3}File}{23}{subsubsection.5.5.2.3}
-\contentsline {subsubsection}{\numberline {5.5.2.4}File}{23}{subsubsection.5.5.2.4}
-\contentsline {subsubsection}{\numberline {5.5.2.5}File}{23}{subsubsection.5.5.2.5}
-\contentsline {subsubsection}{\numberline {5.5.2.6}File}{23}{subsubsection.5.5.2.6}
-\contentsline {subsubsection}{\numberline {5.5.2.7}File}{24}{subsubsection.5.5.2.7}
-\contentsline {subsubsection}{\numberline {5.5.2.8}File}{24}{subsubsection.5.5.2.8}
-\contentsline {subsubsection}{\numberline {5.5.2.9}File}{24}{subsubsection.5.5.2.9}
-\contentsline {subsubsection}{\numberline {5.5.2.10}File}{25}{subsubsection.5.5.2.10}
-\contentsline {subsubsection}{\numberline {5.5.2.11}File}{25}{subsubsection.5.5.2.11}
-\contentsline {subsubsection}{\numberline {5.5.2.12}File}{25}{subsubsection.5.5.2.12}
-\contentsline {subsection}{\numberline {5.5.3}M\IeC {\'e}todos}{26}{subsection.5.5.3}
-\contentsline {subsubsection}{\numberline {5.5.3.1}Complete\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Name}{26}{subsubsection.5.5.3.1}
-\contentsline {subsubsection}{\numberline {5.5.3.2}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Size}{26}{subsubsection.5.5.3.2}
-\contentsline {subsection}{\numberline {5.5.4}Campos}{26}{subsection.5.5.4}
-\contentsline {subsubsection}{\numberline {5.5.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}encoding}{26}{subsubsection.5.5.4.1}
-\contentsline {subsubsection}{\numberline {5.5.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}extension}{26}{subsubsection.5.5.4.2}
-\contentsline {subsubsection}{\numberline {5.5.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}filetype}{26}{subsubsection.5.5.4.3}
-\contentsline {subsubsection}{\numberline {5.5.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id}{26}{subsubsection.5.5.4.4}
-\contentsline {subsubsection}{\numberline {5.5.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}lastwritedate}{26}{subsubsection.5.5.4.5}
-\contentsline {subsubsection}{\numberline {5.5.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}name}{26}{subsubsection.5.5.4.6}
-\contentsline {subsubsection}{\numberline {5.5.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pagenumber}{26}{subsubsection.5.5.4.7}
-\contentsline {subsubsection}{\numberline {5.5.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}parentid}{27}{subsubsection.5.5.4.8}
-\contentsline {subsubsection}{\numberline {5.5.4.9}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}path}{27}{subsubsection.5.5.4.9}
-\contentsline {subsubsection}{\numberline {5.5.4.10}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pathseparator}{27}{subsubsection.5.5.4.10}
-\contentsline {subsubsection}{\numberline {5.5.4.11}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protected}{27}{subsubsection.5.5.4.11}
-\contentsline {subsubsection}{\numberline {5.5.4.12}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}size}{27}{subsubsection.5.5.4.12}
-\contentsline {section}{\numberline {5.6}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{27}{section.5.6}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Client}{17}{subsubsection.5.3.2.1}
+\contentsline {subsection}{\numberline {5.3.3}M\IeC {\'e}todos}{17}{subsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.3.1}Connect}{17}{subsubsection.5.3.3.1}
+\contentsline {subsection}{\numberline {5.3.4}Campos}{17}{subsection.5.3.4}
+\contentsline {subsubsection}{\numberline {5.3.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}serverip}{17}{subsubsection.5.3.4.1}
+\contentsline {subsubsection}{\numberline {5.3.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}serverport}{17}{subsubsection.5.3.4.2}
+\contentsline {section}{\numberline {5.4}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Command}{17}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{18}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Construtores \& Destrutores}{18}{subsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Command}{18}{subsubsection.5.4.2.1}
+\contentsline {subsection}{\numberline {5.4.3}M\IeC {\'e}todos}{19}{subsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.3.1}Add\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parameter}{19}{subsubsection.5.4.3.1}
+\contentsline {subsubsection}{\numberline {5.4.3.2}Clear}{20}{subsubsection.5.4.3.2}
+\contentsline {subsubsection}{\numberline {5.4.3.3}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{20}{subsubsection.5.4.3.3}
+\contentsline {subsubsection}{\numberline {5.4.3.4}Remove\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Unwanted\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Chars}{20}{subsubsection.5.4.3.4}
+\contentsline {subsubsection}{\numberline {5.4.3.5}Remove\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Unwanted\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Chars\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Execute}{20}{subsubsection.5.4.3.5}
+\contentsline {subsubsection}{\numberline {5.4.3.6}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Date\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Format}{21}{subsubsection.5.4.3.6}
+\contentsline {subsubsection}{\numberline {5.4.3.7}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Locale}{21}{subsubsection.5.4.3.7}
+\contentsline {subsubsection}{\numberline {5.4.3.8}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{21}{subsubsection.5.4.3.8}
+\contentsline {subsubsection}{\numberline {5.4.3.9}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Value}{21}{subsubsection.5.4.3.9}
+\contentsline {subsubsection}{\numberline {5.4.3.10}Update\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Text}{22}{subsubsection.5.4.3.10}
+\contentsline {subsection}{\numberline {5.4.4}Campos}{22}{subsection.5.4.4}
+\contentsline {subsubsection}{\numberline {5.4.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}parameters}{22}{subsubsection.5.4.4.1}
+\contentsline {subsubsection}{\numberline {5.4.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}text}{22}{subsubsection.5.4.4.2}
+\contentsline {section}{\numberline {5.5}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Net.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Cryptor}{22}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{23}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Construtores \& Destrutores}{23}{subsection.5.5.2}
+\contentsline {subsubsection}{\numberline {5.5.2.1}Cryptor}{23}{subsubsection.5.5.2.1}
+\contentsline {subsubsection}{\numberline {5.5.2.2}Cryptor}{23}{subsubsection.5.5.2.2}
+\contentsline {subsubsection}{\numberline {5.5.2.3}Cryptor}{23}{subsubsection.5.5.2.3}
+\contentsline {subsubsection}{\numberline {5.5.2.4}Cryptor}{24}{subsubsection.5.5.2.4}
+\contentsline {subsubsection}{\numberline {5.5.2.5}Cryptor}{24}{subsubsection.5.5.2.5}
+\contentsline {subsubsection}{\numberline {5.5.2.6}Cryptor}{24}{subsubsection.5.5.2.6}
+\contentsline {subsubsection}{\numberline {5.5.2.7}Cryptor}{24}{subsubsection.5.5.2.7}
+\contentsline {subsubsection}{\numberline {5.5.2.8}Cryptor}{24}{subsubsection.5.5.2.8}
+\contentsline {subsection}{\numberline {5.5.3}M\IeC {\'e}todos}{25}{subsection.5.5.3}
+\contentsline {subsubsection}{\numberline {5.5.3.1}Decrypt}{25}{subsubsection.5.5.3.1}
+\contentsline {subsubsection}{\numberline {5.5.3.2}Decrypt}{25}{subsubsection.5.5.3.2}
+\contentsline {subsubsection}{\numberline {5.5.3.3}Decrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{25}{subsubsection.5.5.3.3}
+\contentsline {subsubsection}{\numberline {5.5.3.4}Decrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}To\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Bytes}{25}{subsubsection.5.5.3.4}
+\contentsline {subsubsection}{\numberline {5.5.3.5}Decrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}To\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Bytes}{26}{subsubsection.5.5.3.5}
+\contentsline {subsubsection}{\numberline {5.5.3.6}Encrypt}{26}{subsubsection.5.5.3.6}
+\contentsline {subsubsection}{\numberline {5.5.3.7}Encrypt}{26}{subsubsection.5.5.3.7}
+\contentsline {subsubsection}{\numberline {5.5.3.8}Encrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{26}{subsubsection.5.5.3.8}
+\contentsline {subsubsection}{\numberline {5.5.3.9}Encrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{26}{subsubsection.5.5.3.9}
+\contentsline {subsubsection}{\numberline {5.5.3.10}Encrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}To\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Bytes}{27}{subsubsection.5.5.3.10}
+\contentsline {subsubsection}{\numberline {5.5.3.11}Encrypt\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}To\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Bytes}{27}{subsubsection.5.5.3.11}
+\contentsline {section}{\numberline {5.6}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Net.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Endpoint}{27}{section.5.6}
 \contentsline {subsection}{\numberline {5.6.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{28}{subsection.5.6.1}
 \contentsline {subsection}{\numberline {5.6.2}Construtores \& Destrutores}{28}{subsection.5.6.2}
-\contentsline {subsubsection}{\numberline {5.6.2.1}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{28}{subsubsection.5.6.2.1}
-\contentsline {subsubsection}{\numberline {5.6.2.2}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{29}{subsubsection.5.6.2.2}
-\contentsline {subsubsection}{\numberline {5.6.2.3}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{29}{subsubsection.5.6.2.3}
+\contentsline {subsubsection}{\numberline {5.6.2.1}Endpoint}{28}{subsubsection.5.6.2.1}
 \contentsline {subsection}{\numberline {5.6.3}M\IeC {\'e}todos}{29}{subsection.5.6.3}
-\contentsline {subsubsection}{\numberline {5.6.3.1}Compress\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Directory}{29}{subsubsection.5.6.3.1}
-\contentsline {subsubsection}{\numberline {5.6.3.2}Delete}{29}{subsubsection.5.6.3.2}
-\contentsline {subsubsection}{\numberline {5.6.3.3}Enter}{29}{subsubsection.5.6.3.3}
-\contentsline {subsubsection}{\numberline {5.6.3.4}Filter\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}All\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attributes}{30}{subsubsection.5.6.3.4}
-\contentsline {subsubsection}{\numberline {5.6.3.5}Filter\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}List}{30}{subsubsection.5.6.3.5}
-\contentsline {subsubsection}{\numberline {5.6.3.6}Get}{30}{subsubsection.5.6.3.6}
-\contentsline {subsubsection}{\numberline {5.6.3.7}List}{30}{subsubsection.5.6.3.7}
-\contentsline {subsubsection}{\numberline {5.6.3.8}Mkdir}{30}{subsubsection.5.6.3.8}
-\contentsline {subsubsection}{\numberline {5.6.3.9}Put}{31}{subsubsection.5.6.3.9}
-\contentsline {subsubsection}{\numberline {5.6.3.10}Return}{31}{subsubsection.5.6.3.10}
-\contentsline {subsubsection}{\numberline {5.6.3.11}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Root}{31}{subsubsection.5.6.3.11}
-\contentsline {subsubsection}{\numberline {5.6.3.12}Sort\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attribute}{31}{subsubsection.5.6.3.12}
-\contentsline {subsubsection}{\numberline {5.6.3.13}Split\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Into\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pages}{31}{subsubsection.5.6.3.13}
-\contentsline {subsection}{\numberline {5.6.4}Campos}{32}{subsection.5.6.4}
-\contentsline {subsubsection}{\numberline {5.6.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}current}{32}{subsubsection.5.6.4.1}
-\contentsline {subsubsection}{\numberline {5.6.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}currentlevel}{32}{subsubsection.5.6.4.2}
-\contentsline {subsubsection}{\numberline {5.6.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}files}{32}{subsubsection.5.6.4.3}
-\contentsline {subsubsection}{\numberline {5.6.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}filesorig}{32}{subsubsection.5.6.4.4}
-\contentsline {subsubsection}{\numberline {5.6.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}numfilesperpage}{32}{subsubsection.5.6.4.5}
-\contentsline {subsubsection}{\numberline {5.6.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}numpages}{32}{subsubsection.5.6.4.6}
-\contentsline {subsubsection}{\numberline {5.6.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pathseparator}{32}{subsubsection.5.6.4.7}
-\contentsline {subsubsection}{\numberline {5.6.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protectedminlevel}{32}{subsubsection.5.6.4.8}
-\contentsline {subsubsection}{\numberline {5.6.4.9}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protectpattern}{32}{subsubsection.5.6.4.9}
-\contentsline {subsubsection}{\numberline {5.6.4.10}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}root}{32}{subsubsection.5.6.4.10}
-\contentsline {subsubsection}{\numberline {5.6.4.11}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}showprotectpattern}{33}{subsubsection.5.6.4.11}
-\contentsline {section}{\numberline {5.7}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Firebird}{33}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{33}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Construtores \& Destrutores}{33}{subsection.5.7.2}
-\contentsline {subsubsection}{\numberline {5.7.2.1}Firebird}{33}{subsubsection.5.7.2.1}
-\contentsline {subsection}{\numberline {5.7.3}M\IeC {\'e}todos}{34}{subsection.5.7.3}
-\contentsline {subsubsection}{\numberline {5.7.3.1}Connect}{34}{subsubsection.5.7.3.1}
-\contentsline {subsubsection}{\numberline {5.7.3.2}Disconnect}{34}{subsubsection.5.7.3.2}
-\contentsline {subsubsection}{\numberline {5.7.3.3}Execute}{34}{subsubsection.5.7.3.3}
-\contentsline {subsubsection}{\numberline {5.7.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{34}{subsubsection.5.7.3.4}
-\contentsline {subsubsection}{\numberline {5.7.3.5}Query}{35}{subsubsection.5.7.3.5}
-\contentsline {subsubsection}{\numberline {5.7.3.6}Query}{35}{subsubsection.5.7.3.6}
-\contentsline {subsection}{\numberline {5.7.4}Campos}{35}{subsection.5.7.4}
-\contentsline {subsubsection}{\numberline {5.7.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{35}{subsubsection.5.7.4.1}
-\contentsline {section}{\numberline {5.8}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generic}{36}{section.5.8}
-\contentsline {subsection}{\numberline {5.8.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{37}{subsection.5.8.1}
-\contentsline {subsection}{\numberline {5.8.2}Construtores \& Destrutores}{37}{subsection.5.8.2}
-\contentsline {subsubsection}{\numberline {5.8.2.1}Generic}{37}{subsubsection.5.8.2.1}
-\contentsline {subsubsection}{\numberline {5.8.2.2}Generic}{37}{subsubsection.5.8.2.2}
-\contentsline {subsubsection}{\numberline {5.8.2.3}Generic}{37}{subsubsection.5.8.2.3}
-\contentsline {subsection}{\numberline {5.8.3}M\IeC {\'e}todos}{37}{subsection.5.8.3}
-\contentsline {subsubsection}{\numberline {5.8.3.1}Connect}{37}{subsubsection.5.8.3.1}
-\contentsline {subsubsection}{\numberline {5.8.3.2}Disconnect}{37}{subsubsection.5.8.3.2}
-\contentsline {subsubsection}{\numberline {5.8.3.3}Execute}{38}{subsubsection.5.8.3.3}
-\contentsline {subsubsection}{\numberline {5.8.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{38}{subsubsection.5.8.3.4}
-\contentsline {subsubsection}{\numberline {5.8.3.5}Query}{38}{subsubsection.5.8.3.5}
-\contentsline {subsubsection}{\numberline {5.8.3.6}Query}{38}{subsubsection.5.8.3.6}
-\contentsline {subsection}{\numberline {5.8.4}Campos}{38}{subsection.5.8.4}
-\contentsline {subsubsection}{\numberline {5.8.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dsn}{38}{subsubsection.5.8.4.1}
-\contentsline {subsubsection}{\numberline {5.8.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}file}{39}{subsubsection.5.8.4.2}
-\contentsline {subsubsection}{\numberline {5.8.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}host}{39}{subsubsection.5.8.4.3}
-\contentsline {subsubsection}{\numberline {5.8.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}password}{39}{subsubsection.5.8.4.4}
-\contentsline {subsubsection}{\numberline {5.8.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}port}{39}{subsubsection.5.8.4.5}
-\contentsline {subsubsection}{\numberline {5.8.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}service}{39}{subsubsection.5.8.4.6}
-\contentsline {subsubsection}{\numberline {5.8.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}user}{39}{subsubsection.5.8.4.7}
-\contentsline {section}{\numberline {5.9}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mysql}{39}{section.5.9}
-\contentsline {subsection}{\numberline {5.9.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{40}{subsection.5.9.1}
-\contentsline {subsection}{\numberline {5.9.2}Construtores \& Destrutores}{40}{subsection.5.9.2}
-\contentsline {subsubsection}{\numberline {5.9.2.1}Mysql}{40}{subsubsection.5.9.2.1}
-\contentsline {subsection}{\numberline {5.9.3}M\IeC {\'e}todos}{40}{subsection.5.9.3}
-\contentsline {subsubsection}{\numberline {5.9.3.1}Connect}{40}{subsubsection.5.9.3.1}
-\contentsline {subsubsection}{\numberline {5.9.3.2}Disconnect}{40}{subsubsection.5.9.3.2}
-\contentsline {subsubsection}{\numberline {5.9.3.3}Execute}{40}{subsubsection.5.9.3.3}
-\contentsline {subsubsection}{\numberline {5.9.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{41}{subsubsection.5.9.3.4}
-\contentsline {subsubsection}{\numberline {5.9.3.5}Query}{41}{subsubsection.5.9.3.5}
-\contentsline {subsubsection}{\numberline {5.9.3.6}Query}{41}{subsubsection.5.9.3.6}
-\contentsline {subsection}{\numberline {5.9.4}Campos}{42}{subsection.5.9.4}
-\contentsline {subsubsection}{\numberline {5.9.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{42}{subsubsection.5.9.4.1}
-\contentsline {section}{\numberline {5.10}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Odbc}{42}{section.5.10}
-\contentsline {subsection}{\numberline {5.10.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{43}{subsection.5.10.1}
-\contentsline {subsection}{\numberline {5.10.2}Construtores \& Destrutores}{43}{subsection.5.10.2}
-\contentsline {subsubsection}{\numberline {5.10.2.1}Odbc}{43}{subsubsection.5.10.2.1}
-\contentsline {subsection}{\numberline {5.10.3}M\IeC {\'e}todos}{43}{subsection.5.10.3}
-\contentsline {subsubsection}{\numberline {5.10.3.1}Connect}{43}{subsubsection.5.10.3.1}
-\contentsline {subsubsection}{\numberline {5.10.3.2}Disconnect}{43}{subsubsection.5.10.3.2}
-\contentsline {subsubsection}{\numberline {5.10.3.3}Execute}{43}{subsubsection.5.10.3.3}
-\contentsline {subsubsection}{\numberline {5.10.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{44}{subsubsection.5.10.3.4}
-\contentsline {subsubsection}{\numberline {5.10.3.5}Query}{44}{subsubsection.5.10.3.5}
-\contentsline {subsubsection}{\numberline {5.10.3.6}Query}{44}{subsubsection.5.10.3.6}
-\contentsline {subsection}{\numberline {5.10.4}Campos}{45}{subsection.5.10.4}
-\contentsline {subsubsection}{\numberline {5.10.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{45}{subsubsection.5.10.4.1}
-\contentsline {section}{\numberline {5.11}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Oledb}{45}{section.5.11}
-\contentsline {subsection}{\numberline {5.11.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{46}{subsection.5.11.1}
-\contentsline {subsection}{\numberline {5.11.2}Construtores \& Destrutores}{46}{subsection.5.11.2}
-\contentsline {subsubsection}{\numberline {5.11.2.1}Oledb}{46}{subsubsection.5.11.2.1}
-\contentsline {subsection}{\numberline {5.11.3}M\IeC {\'e}todos}{46}{subsection.5.11.3}
-\contentsline {subsubsection}{\numberline {5.11.3.1}Connect}{46}{subsubsection.5.11.3.1}
-\contentsline {subsubsection}{\numberline {5.11.3.2}Disconnect}{46}{subsubsection.5.11.3.2}
-\contentsline {subsubsection}{\numberline {5.11.3.3}Execute}{46}{subsubsection.5.11.3.3}
-\contentsline {subsubsection}{\numberline {5.11.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{47}{subsubsection.5.11.3.4}
-\contentsline {subsubsection}{\numberline {5.11.3.5}Query}{47}{subsubsection.5.11.3.5}
-\contentsline {subsubsection}{\numberline {5.11.3.6}Query}{47}{subsubsection.5.11.3.6}
-\contentsline {subsection}{\numberline {5.11.4}Campos}{48}{subsection.5.11.4}
-\contentsline {subsubsection}{\numberline {5.11.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{48}{subsubsection.5.11.4.1}
-\contentsline {section}{\numberline {5.12}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parameter}{48}{section.5.12}
-\contentsline {subsection}{\numberline {5.12.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{48}{subsection.5.12.1}
-\contentsline {subsection}{\numberline {5.12.2}Construtores \& Destrutores}{49}{subsection.5.12.2}
-\contentsline {subsubsection}{\numberline {5.12.2.1}Parameter}{49}{subsubsection.5.12.2.1}
-\contentsline {subsection}{\numberline {5.12.3}M\IeC {\'e}todos}{50}{subsection.5.12.3}
-\contentsline {subsubsection}{\numberline {5.12.3.1}Text}{50}{subsubsection.5.12.3.1}
-\contentsline {subsection}{\numberline {5.12.4}Campos}{50}{subsection.5.12.4}
-\contentsline {subsubsection}{\numberline {5.12.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dateformat}{50}{subsubsection.5.12.4.1}
-\contentsline {subsubsection}{\numberline {5.12.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}description}{50}{subsubsection.5.12.4.2}
-\contentsline {subsubsection}{\numberline {5.12.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}locale}{50}{subsubsection.5.12.4.3}
-\contentsline {subsubsection}{\numberline {5.12.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}name}{50}{subsubsection.5.12.4.4}
-\contentsline {subsubsection}{\numberline {5.12.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}null}{50}{subsubsection.5.12.4.5}
-\contentsline {subsubsection}{\numberline {5.12.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}type}{50}{subsubsection.5.12.4.6}
-\contentsline {subsubsection}{\numberline {5.12.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value}{50}{subsubsection.5.12.4.7}
-\contentsline {section}{\numberline {5.13}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Sqlite}{50}{section.5.13}
-\contentsline {subsection}{\numberline {5.13.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{51}{subsection.5.13.1}
-\contentsline {subsection}{\numberline {5.13.2}Construtores \& Destrutores}{51}{subsection.5.13.2}
-\contentsline {subsubsection}{\numberline {5.13.2.1}Sqlite}{51}{subsubsection.5.13.2.1}
-\contentsline {subsection}{\numberline {5.13.3}M\IeC {\'e}todos}{51}{subsection.5.13.3}
-\contentsline {subsubsection}{\numberline {5.13.3.1}Connect}{51}{subsubsection.5.13.3.1}
-\contentsline {subsubsection}{\numberline {5.13.3.2}Disconnect}{52}{subsubsection.5.13.3.2}
-\contentsline {subsubsection}{\numberline {5.13.3.3}Execute}{52}{subsubsection.5.13.3.3}
-\contentsline {subsubsection}{\numberline {5.13.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{52}{subsubsection.5.13.3.4}
-\contentsline {subsubsection}{\numberline {5.13.3.5}Query}{52}{subsubsection.5.13.3.5}
-\contentsline {subsubsection}{\numberline {5.13.3.6}Query}{53}{subsubsection.5.13.3.6}
-\contentsline {subsection}{\numberline {5.13.4}Campos}{53}{subsection.5.13.4}
-\contentsline {subsubsection}{\numberline {5.13.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{53}{subsubsection.5.13.4.1}
-\contentsline {section}{\numberline {5.14}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Synchronizer}{53}{section.5.14}
-\contentsline {subsection}{\numberline {5.14.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{54}{subsection.5.14.1}
-\contentsline {subsection}{\numberline {5.14.2}Construtores \& Destrutores}{54}{subsection.5.14.2}
-\contentsline {subsubsection}{\numberline {5.14.2.1}Synchronizer}{54}{subsubsection.5.14.2.1}
-\contentsline {subsection}{\numberline {5.14.3}M\IeC {\'e}todos}{54}{subsection.5.14.3}
-\contentsline {subsubsection}{\numberline {5.14.3.1}Execute}{54}{subsubsection.5.14.3.1}
-\contentsline {chapter}{\IeC {\'I}ndice}{55}{section*.36}
+\contentsline {subsubsection}{\numberline {5.6.3.1}Recv}{29}{subsubsection.5.6.3.1}
+\contentsline {subsubsection}{\numberline {5.6.3.2}Recv\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Data\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Table}{29}{subsubsection.5.6.3.2}
+\contentsline {subsubsection}{\numberline {5.6.3.3}Recv\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{29}{subsubsection.5.6.3.3}
+\contentsline {subsubsection}{\numberline {5.6.3.4}Recv\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}String}{29}{subsubsection.5.6.3.4}
+\contentsline {subsubsection}{\numberline {5.6.3.5}Send}{30}{subsubsection.5.6.3.5}
+\contentsline {subsubsection}{\numberline {5.6.3.6}Send\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Data\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Table}{30}{subsubsection.5.6.3.6}
+\contentsline {subsubsection}{\numberline {5.6.3.7}Send\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{30}{subsubsection.5.6.3.7}
+\contentsline {subsubsection}{\numberline {5.6.3.8}Send\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}String}{30}{subsubsection.5.6.3.8}
+\contentsline {subsubsection}{\numberline {5.6.3.9}Stop}{30}{subsubsection.5.6.3.9}
+\contentsline {subsection}{\numberline {5.6.4}Campos}{31}{subsection.5.6.4}
+\contentsline {subsubsection}{\numberline {5.6.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}buffersize}{31}{subsubsection.5.6.4.1}
+\contentsline {subsubsection}{\numberline {5.6.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}ip}{31}{subsubsection.5.6.4.2}
+\contentsline {subsubsection}{\numberline {5.6.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}port}{31}{subsubsection.5.6.4.3}
+\contentsline {subsubsection}{\numberline {5.6.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}recvbuffer}{31}{subsubsection.5.6.4.4}
+\contentsline {subsubsection}{\numberline {5.6.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}socket}{31}{subsubsection.5.6.4.5}
+\contentsline {subsubsection}{\numberline {5.6.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}stream}{31}{subsubsection.5.6.4.6}
+\contentsline {section}{\numberline {5.7}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{31}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{32}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Construtores \& Destrutores}{32}{subsection.5.7.2}
+\contentsline {subsubsection}{\numberline {5.7.2.1}Exception}{32}{subsubsection.5.7.2.1}
+\contentsline {subsubsection}{\numberline {5.7.2.2}Exception}{32}{subsubsection.5.7.2.2}
+\contentsline {subsubsection}{\numberline {5.7.2.3}Exception}{32}{subsubsection.5.7.2.3}
+\contentsline {subsubsection}{\numberline {5.7.2.4}Exception}{32}{subsubsection.5.7.2.4}
+\contentsline {subsubsection}{\numberline {5.7.2.5}Exception}{32}{subsubsection.5.7.2.5}
+\contentsline {subsubsection}{\numberline {5.7.2.6}Exception}{33}{subsubsection.5.7.2.6}
+\contentsline {subsection}{\numberline {5.7.3}Campos}{33}{subsection.5.7.3}
+\contentsline {subsubsection}{\numberline {5.7.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{33}{subsubsection.5.7.3.1}
+\contentsline {section}{\numberline {5.8}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Net.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{33}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{34}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}Construtores \& Destrutores}{34}{subsection.5.8.2}
+\contentsline {subsubsection}{\numberline {5.8.2.1}Exception}{34}{subsubsection.5.8.2.1}
+\contentsline {subsubsection}{\numberline {5.8.2.2}Exception}{34}{subsubsection.5.8.2.2}
+\contentsline {subsubsection}{\numberline {5.8.2.3}Exception}{34}{subsubsection.5.8.2.3}
+\contentsline {subsubsection}{\numberline {5.8.2.4}Exception}{34}{subsubsection.5.8.2.4}
+\contentsline {subsubsection}{\numberline {5.8.2.5}Exception}{34}{subsubsection.5.8.2.5}
+\contentsline {subsubsection}{\numberline {5.8.2.6}Exception}{35}{subsubsection.5.8.2.6}
+\contentsline {subsection}{\numberline {5.8.3}Campos}{35}{subsection.5.8.3}
+\contentsline {subsubsection}{\numberline {5.8.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{35}{subsubsection.5.8.3.1}
+\contentsline {section}{\numberline {5.9}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{35}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{36}{subsection.5.9.1}
+\contentsline {subsection}{\numberline {5.9.2}Construtores \& Destrutores}{36}{subsection.5.9.2}
+\contentsline {subsubsection}{\numberline {5.9.2.1}Exception}{36}{subsubsection.5.9.2.1}
+\contentsline {subsubsection}{\numberline {5.9.2.2}Exception}{36}{subsubsection.5.9.2.2}
+\contentsline {subsubsection}{\numberline {5.9.2.3}Exception}{36}{subsubsection.5.9.2.3}
+\contentsline {subsubsection}{\numberline {5.9.2.4}Exception}{36}{subsubsection.5.9.2.4}
+\contentsline {subsubsection}{\numberline {5.9.2.5}Exception}{36}{subsubsection.5.9.2.5}
+\contentsline {subsubsection}{\numberline {5.9.2.6}Exception}{37}{subsubsection.5.9.2.6}
+\contentsline {subsection}{\numberline {5.9.3}Campos}{37}{subsection.5.9.3}
+\contentsline {subsubsection}{\numberline {5.9.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{37}{subsubsection.5.9.3.1}
+\contentsline {section}{\numberline {5.10}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception}{37}{section.5.10}
+\contentsline {subsection}{\numberline {5.10.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{38}{subsection.5.10.1}
+\contentsline {subsection}{\numberline {5.10.2}Construtores \& Destrutores}{38}{subsection.5.10.2}
+\contentsline {subsubsection}{\numberline {5.10.2.1}Exception}{38}{subsubsection.5.10.2.1}
+\contentsline {subsubsection}{\numberline {5.10.2.2}Exception}{38}{subsubsection.5.10.2.2}
+\contentsline {subsubsection}{\numberline {5.10.2.3}Exception}{38}{subsubsection.5.10.2.3}
+\contentsline {subsubsection}{\numberline {5.10.2.4}Exception}{38}{subsubsection.5.10.2.4}
+\contentsline {subsubsection}{\numberline {5.10.2.5}Exception}{39}{subsubsection.5.10.2.5}
+\contentsline {subsubsection}{\numberline {5.10.2.6}Exception}{40}{subsubsection.5.10.2.6}
+\contentsline {subsection}{\numberline {5.10.3}Campos}{40}{subsection.5.10.3}
+\contentsline {subsubsection}{\numberline {5.10.3.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}message}{40}{subsubsection.5.10.3.1}
+\contentsline {section}{\numberline {5.11}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Field}{40}{section.5.11}
+\contentsline {subsection}{\numberline {5.11.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{41}{subsection.5.11.1}
+\contentsline {subsection}{\numberline {5.11.2}Construtores \& Destrutores}{41}{subsection.5.11.2}
+\contentsline {subsubsection}{\numberline {5.11.2.1}Field}{41}{subsubsection.5.11.2.1}
+\contentsline {subsection}{\numberline {5.11.3}M\IeC {\'e}todos}{41}{subsection.5.11.3}
+\contentsline {subsubsection}{\numberline {5.11.3.1}Format}{41}{subsubsection.5.11.3.1}
+\contentsline {subsubsection}{\numberline {5.11.3.2}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type}{41}{subsubsection.5.11.3.2}
+\contentsline {subsection}{\numberline {5.11.4}Campos}{41}{subsection.5.11.4}
+\contentsline {subsubsection}{\numberline {5.11.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}align}{41}{subsubsection.5.11.4.1}
+\contentsline {subsubsection}{\numberline {5.11.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}column}{41}{subsubsection.5.11.4.2}
+\contentsline {subsubsection}{\numberline {5.11.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}fill}{41}{subsubsection.5.11.4.3}
+\contentsline {subsubsection}{\numberline {5.11.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}title}{41}{subsubsection.5.11.4.4}
+\contentsline {subsubsection}{\numberline {5.11.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}type}{42}{subsubsection.5.11.4.5}
+\contentsline {section}{\numberline {5.12}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File}{42}{section.5.12}
+\contentsline {subsection}{\numberline {5.12.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{44}{subsection.5.12.1}
+\contentsline {subsection}{\numberline {5.12.2}Construtores \& Destrutores}{44}{subsection.5.12.2}
+\contentsline {subsubsection}{\numberline {5.12.2.1}File}{44}{subsubsection.5.12.2.1}
+\contentsline {subsubsection}{\numberline {5.12.2.2}File}{44}{subsubsection.5.12.2.2}
+\contentsline {subsubsection}{\numberline {5.12.2.3}File}{45}{subsubsection.5.12.2.3}
+\contentsline {subsubsection}{\numberline {5.12.2.4}File}{45}{subsubsection.5.12.2.4}
+\contentsline {subsubsection}{\numberline {5.12.2.5}File}{45}{subsubsection.5.12.2.5}
+\contentsline {subsubsection}{\numberline {5.12.2.6}File}{46}{subsubsection.5.12.2.6}
+\contentsline {subsubsection}{\numberline {5.12.2.7}File}{47}{subsubsection.5.12.2.7}
+\contentsline {subsubsection}{\numberline {5.12.2.8}File}{47}{subsubsection.5.12.2.8}
+\contentsline {subsubsection}{\numberline {5.12.2.9}File}{47}{subsubsection.5.12.2.9}
+\contentsline {subsubsection}{\numberline {5.12.2.10}File}{48}{subsubsection.5.12.2.10}
+\contentsline {subsubsection}{\numberline {5.12.2.11}File}{48}{subsubsection.5.12.2.11}
+\contentsline {subsubsection}{\numberline {5.12.2.12}File}{48}{subsubsection.5.12.2.12}
+\contentsline {subsubsection}{\numberline {5.12.2.13}File}{49}{subsubsection.5.12.2.13}
+\contentsline {subsubsection}{\numberline {5.12.2.14}File}{49}{subsubsection.5.12.2.14}
+\contentsline {subsubsection}{\numberline {5.12.2.15}File}{49}{subsubsection.5.12.2.15}
+\contentsline {subsubsection}{\numberline {5.12.2.16}File}{49}{subsubsection.5.12.2.16}
+\contentsline {subsubsection}{\numberline {5.12.2.17}File}{50}{subsubsection.5.12.2.17}
+\contentsline {subsubsection}{\numberline {5.12.2.18}File}{50}{subsubsection.5.12.2.18}
+\contentsline {subsubsection}{\numberline {5.12.2.19}File}{50}{subsubsection.5.12.2.19}
+\contentsline {subsubsection}{\numberline {5.12.2.20}File}{51}{subsubsection.5.12.2.20}
+\contentsline {subsubsection}{\numberline {5.12.2.21}File}{51}{subsubsection.5.12.2.21}
+\contentsline {subsubsection}{\numberline {5.12.2.22}File}{51}{subsubsection.5.12.2.22}
+\contentsline {subsubsection}{\numberline {5.12.2.23}File}{52}{subsubsection.5.12.2.23}
+\contentsline {subsubsection}{\numberline {5.12.2.24}File}{52}{subsubsection.5.12.2.24}
+\contentsline {subsection}{\numberline {5.12.3}M\IeC {\'e}todos}{52}{subsection.5.12.3}
+\contentsline {subsubsection}{\numberline {5.12.3.1}Complete\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Name}{53}{subsubsection.5.12.3.1}
+\contentsline {subsubsection}{\numberline {5.12.3.2}Complete\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Name}{53}{subsubsection.5.12.3.2}
+\contentsline {subsubsection}{\numberline {5.12.3.3}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Base\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Name\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}No\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Ext}{53}{subsubsection.5.12.3.3}
+\contentsline {subsubsection}{\numberline {5.12.3.4}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Size}{53}{subsubsection.5.12.3.4}
+\contentsline {subsection}{\numberline {5.12.4}Campos}{53}{subsection.5.12.4}
+\contentsline {subsubsection}{\numberline {5.12.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}encoding}{53}{subsubsection.5.12.4.1}
+\contentsline {subsubsection}{\numberline {5.12.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}extension}{53}{subsubsection.5.12.4.2}
+\contentsline {subsubsection}{\numberline {5.12.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}filetype}{53}{subsubsection.5.12.4.3}
+\contentsline {subsubsection}{\numberline {5.12.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}hidden}{54}{subsubsection.5.12.4.4}
+\contentsline {subsubsection}{\numberline {5.12.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id}{54}{subsubsection.5.12.4.5}
+\contentsline {subsubsection}{\numberline {5.12.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}lastwritedate}{54}{subsubsection.5.12.4.6}
+\contentsline {subsubsection}{\numberline {5.12.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}name}{54}{subsubsection.5.12.4.7}
+\contentsline {subsubsection}{\numberline {5.12.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pagenumber}{54}{subsubsection.5.12.4.8}
+\contentsline {subsubsection}{\numberline {5.12.4.9}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}parentid}{54}{subsubsection.5.12.4.9}
+\contentsline {subsubsection}{\numberline {5.12.4.10}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}path}{54}{subsubsection.5.12.4.10}
+\contentsline {subsubsection}{\numberline {5.12.4.11}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pathseparator}{54}{subsubsection.5.12.4.11}
+\contentsline {subsubsection}{\numberline {5.12.4.12}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protected}{54}{subsubsection.5.12.4.12}
+\contentsline {subsubsection}{\numberline {5.12.4.13}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}size}{54}{subsubsection.5.12.4.13}
+\contentsline {section}{\numberline {5.13}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{54}{section.5.13}
+\contentsline {subsection}{\numberline {5.13.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{56}{subsection.5.13.1}
+\contentsline {subsection}{\numberline {5.13.2}Construtores \& Destrutores}{56}{subsection.5.13.2}
+\contentsline {subsubsection}{\numberline {5.13.2.1}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{56}{subsubsection.5.13.2.1}
+\contentsline {subsubsection}{\numberline {5.13.2.2}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{56}{subsubsection.5.13.2.2}
+\contentsline {subsubsection}{\numberline {5.13.2.3}File\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Explorer}{56}{subsubsection.5.13.2.3}
+\contentsline {subsection}{\numberline {5.13.3}M\IeC {\'e}todos}{57}{subsection.5.13.3}
+\contentsline {subsubsection}{\numberline {5.13.3.1}Compress\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Directory}{57}{subsubsection.5.13.3.1}
+\contentsline {subsubsection}{\numberline {5.13.3.2}Delete}{57}{subsubsection.5.13.3.2}
+\contentsline {subsubsection}{\numberline {5.13.3.3}Enter}{57}{subsubsection.5.13.3.3}
+\contentsline {subsubsection}{\numberline {5.13.3.4}Filter\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}All\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attributes}{57}{subsubsection.5.13.3.4}
+\contentsline {subsubsection}{\numberline {5.13.3.5}Filter\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}List}{58}{subsubsection.5.13.3.5}
+\contentsline {subsubsection}{\numberline {5.13.3.6}Get}{58}{subsubsection.5.13.3.6}
+\contentsline {subsubsection}{\numberline {5.13.3.7}List}{58}{subsubsection.5.13.3.7}
+\contentsline {subsubsection}{\numberline {5.13.3.8}Mkdir}{58}{subsubsection.5.13.3.8}
+\contentsline {subsubsection}{\numberline {5.13.3.9}Put}{58}{subsubsection.5.13.3.9}
+\contentsline {subsubsection}{\numberline {5.13.3.10}Return}{59}{subsubsection.5.13.3.10}
+\contentsline {subsubsection}{\numberline {5.13.3.11}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Root}{59}{subsubsection.5.13.3.11}
+\contentsline {subsubsection}{\numberline {5.13.3.12}Sort\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Attribute}{59}{subsubsection.5.13.3.12}
+\contentsline {subsubsection}{\numberline {5.13.3.13}Split\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Into\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pages}{59}{subsubsection.5.13.3.13}
+\contentsline {subsection}{\numberline {5.13.4}Campos}{59}{subsection.5.13.4}
+\contentsline {subsubsection}{\numberline {5.13.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}current}{59}{subsubsection.5.13.4.1}
+\contentsline {subsubsection}{\numberline {5.13.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}currentlevel}{59}{subsubsection.5.13.4.2}
+\contentsline {subsubsection}{\numberline {5.13.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}files}{60}{subsubsection.5.13.4.3}
+\contentsline {subsubsection}{\numberline {5.13.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}filesorig}{60}{subsubsection.5.13.4.4}
+\contentsline {subsubsection}{\numberline {5.13.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}numfilesperpage}{60}{subsubsection.5.13.4.5}
+\contentsline {subsubsection}{\numberline {5.13.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}numpages}{60}{subsubsection.5.13.4.6}
+\contentsline {subsubsection}{\numberline {5.13.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}pathseparator}{60}{subsubsection.5.13.4.7}
+\contentsline {subsubsection}{\numberline {5.13.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protectedminlevel}{60}{subsubsection.5.13.4.8}
+\contentsline {subsubsection}{\numberline {5.13.4.9}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}protectpattern}{60}{subsubsection.5.13.4.9}
+\contentsline {subsubsection}{\numberline {5.13.4.10}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}root}{60}{subsubsection.5.13.4.10}
+\contentsline {subsubsection}{\numberline {5.13.4.11}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}showhiddenfiles}{60}{subsubsection.5.13.4.11}
+\contentsline {subsubsection}{\numberline {5.13.4.12}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}showprotectpattern}{60}{subsubsection.5.13.4.12}
+\contentsline {section}{\numberline {5.14}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Firebird}{60}{section.5.14}
+\contentsline {subsection}{\numberline {5.14.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{62}{subsection.5.14.1}
+\contentsline {subsection}{\numberline {5.14.2}Construtores \& Destrutores}{62}{subsection.5.14.2}
+\contentsline {subsubsection}{\numberline {5.14.2.1}Firebird}{62}{subsubsection.5.14.2.1}
+\contentsline {subsection}{\numberline {5.14.3}M\IeC {\'e}todos}{62}{subsection.5.14.3}
+\contentsline {subsubsection}{\numberline {5.14.3.1}Connect}{62}{subsubsection.5.14.3.1}
+\contentsline {subsubsection}{\numberline {5.14.3.2}Disconnect}{62}{subsubsection.5.14.3.2}
+\contentsline {subsubsection}{\numberline {5.14.3.3}Execute}{62}{subsubsection.5.14.3.3}
+\contentsline {subsubsection}{\numberline {5.14.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{63}{subsubsection.5.14.3.4}
+\contentsline {subsubsection}{\numberline {5.14.3.5}Query}{63}{subsubsection.5.14.3.5}
+\contentsline {subsubsection}{\numberline {5.14.3.6}Query}{63}{subsubsection.5.14.3.6}
+\contentsline {subsection}{\numberline {5.14.4}Campos}{64}{subsection.5.14.4}
+\contentsline {subsubsection}{\numberline {5.14.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{64}{subsubsection.5.14.4.1}
+\contentsline {section}{\numberline {5.15}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Font}{64}{section.5.15}
+\contentsline {subsection}{\numberline {5.15.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{65}{subsection.5.15.1}
+\contentsline {subsection}{\numberline {5.15.2}Construtores \& Destrutores}{65}{subsection.5.15.2}
+\contentsline {subsubsection}{\numberline {5.15.2.1}Font}{65}{subsubsection.5.15.2.1}
+\contentsline {subsection}{\numberline {5.15.3}M\IeC {\'e}todos}{65}{subsection.5.15.3}
+\contentsline {subsubsection}{\numberline {5.15.3.1}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Font}{65}{subsubsection.5.15.3.1}
+\contentsline {subsubsection}{\numberline {5.15.3.2}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Family}{65}{subsubsection.5.15.3.2}
+\contentsline {subsubsection}{\numberline {5.15.3.3}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Size}{65}{subsubsection.5.15.3.3}
+\contentsline {subsection}{\numberline {5.15.4}Campos}{65}{subsection.5.15.4}
+\contentsline {subsubsection}{\numberline {5.15.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}bold}{65}{subsubsection.5.15.4.1}
+\contentsline {subsubsection}{\numberline {5.15.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}family}{65}{subsubsection.5.15.4.2}
+\contentsline {subsubsection}{\numberline {5.15.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}italic}{65}{subsubsection.5.15.4.3}
+\contentsline {subsubsection}{\numberline {5.15.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}size}{66}{subsubsection.5.15.4.4}
+\contentsline {section}{\numberline {5.16}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generic}{66}{section.5.16}
+\contentsline {subsection}{\numberline {5.16.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{67}{subsection.5.16.1}
+\contentsline {subsection}{\numberline {5.16.2}Construtores \& Destrutores}{67}{subsection.5.16.2}
+\contentsline {subsubsection}{\numberline {5.16.2.1}Generic}{67}{subsubsection.5.16.2.1}
+\contentsline {subsubsection}{\numberline {5.16.2.2}Generic}{67}{subsubsection.5.16.2.2}
+\contentsline {subsubsection}{\numberline {5.16.2.3}Generic}{68}{subsubsection.5.16.2.3}
+\contentsline {subsection}{\numberline {5.16.3}M\IeC {\'e}todos}{68}{subsection.5.16.3}
+\contentsline {subsubsection}{\numberline {5.16.3.1}Connect}{68}{subsubsection.5.16.3.1}
+\contentsline {subsubsection}{\numberline {5.16.3.2}Disconnect}{68}{subsubsection.5.16.3.2}
+\contentsline {subsubsection}{\numberline {5.16.3.3}Execute}{68}{subsubsection.5.16.3.3}
+\contentsline {subsubsection}{\numberline {5.16.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{68}{subsubsection.5.16.3.4}
+\contentsline {subsubsection}{\numberline {5.16.3.5}Query}{69}{subsubsection.5.16.3.5}
+\contentsline {subsubsection}{\numberline {5.16.3.6}Query}{70}{subsubsection.5.16.3.6}
+\contentsline {subsection}{\numberline {5.16.4}Campos}{70}{subsection.5.16.4}
+\contentsline {subsubsection}{\numberline {5.16.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dsn}{70}{subsubsection.5.16.4.1}
+\contentsline {subsubsection}{\numberline {5.16.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}file}{70}{subsubsection.5.16.4.2}
+\contentsline {subsubsection}{\numberline {5.16.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}host}{70}{subsubsection.5.16.4.3}
+\contentsline {subsubsection}{\numberline {5.16.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}password}{70}{subsubsection.5.16.4.4}
+\contentsline {subsubsection}{\numberline {5.16.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}port}{70}{subsubsection.5.16.4.5}
+\contentsline {subsubsection}{\numberline {5.16.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}service}{70}{subsubsection.5.16.4.6}
+\contentsline {subsubsection}{\numberline {5.16.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}user}{70}{subsubsection.5.16.4.7}
+\contentsline {section}{\numberline {5.17}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Group}{71}{section.5.17}
+\contentsline {subsection}{\numberline {5.17.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{71}{subsection.5.17.1}
+\contentsline {subsection}{\numberline {5.17.2}Construtores \& Destrutores}{71}{subsection.5.17.2}
+\contentsline {subsubsection}{\numberline {5.17.2.1}Group}{71}{subsubsection.5.17.2.1}
+\contentsline {subsection}{\numberline {5.17.3}M\IeC {\'e}todos}{71}{subsection.5.17.3}
+\contentsline {subsubsection}{\numberline {5.17.3.1}Build}{71}{subsubsection.5.17.3.1}
+\contentsline {subsection}{\numberline {5.17.4}Campos}{72}{subsection.5.17.4}
+\contentsline {subsubsection}{\numberline {5.17.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}column}{72}{subsubsection.5.17.4.1}
+\contentsline {subsubsection}{\numberline {5.17.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}footerfields}{72}{subsubsection.5.17.4.2}
+\contentsline {subsubsection}{\numberline {5.17.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}headerfields}{72}{subsubsection.5.17.4.3}
+\contentsline {subsubsection}{\numberline {5.17.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}level}{72}{subsubsection.5.17.4.4}
+\contentsline {subsubsection}{\numberline {5.17.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}showfooter}{72}{subsubsection.5.17.4.5}
+\contentsline {subsubsection}{\numberline {5.17.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}showheader}{72}{subsubsection.5.17.4.6}
+\contentsline {subsubsection}{\numberline {5.17.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}sort}{72}{subsubsection.5.17.4.7}
+\contentsline {subsubsection}{\numberline {5.17.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}table}{72}{subsubsection.5.17.4.8}
+\contentsline {section}{\numberline {5.18}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mysql}{72}{section.5.18}
+\contentsline {subsection}{\numberline {5.18.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{74}{subsection.5.18.1}
+\contentsline {subsection}{\numberline {5.18.2}Construtores \& Destrutores}{74}{subsection.5.18.2}
+\contentsline {subsubsection}{\numberline {5.18.2.1}Mysql}{74}{subsubsection.5.18.2.1}
+\contentsline {subsection}{\numberline {5.18.3}M\IeC {\'e}todos}{74}{subsection.5.18.3}
+\contentsline {subsubsection}{\numberline {5.18.3.1}Connect}{74}{subsubsection.5.18.3.1}
+\contentsline {subsubsection}{\numberline {5.18.3.2}Disconnect}{74}{subsubsection.5.18.3.2}
+\contentsline {subsubsection}{\numberline {5.18.3.3}Execute}{74}{subsubsection.5.18.3.3}
+\contentsline {subsubsection}{\numberline {5.18.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{75}{subsubsection.5.18.3.4}
+\contentsline {subsubsection}{\numberline {5.18.3.5}Query}{75}{subsubsection.5.18.3.5}
+\contentsline {subsubsection}{\numberline {5.18.3.6}Query}{75}{subsubsection.5.18.3.6}
+\contentsline {subsection}{\numberline {5.18.4}Campos}{76}{subsection.5.18.4}
+\contentsline {subsubsection}{\numberline {5.18.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{76}{subsubsection.5.18.4.1}
+\contentsline {section}{\numberline {5.19}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Object}{76}{section.5.19}
+\contentsline {subsection}{\numberline {5.19.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{77}{subsection.5.19.1}
+\contentsline {subsection}{\numberline {5.19.2}Construtores \& Destrutores}{77}{subsection.5.19.2}
+\contentsline {subsubsection}{\numberline {5.19.2.1}Object}{77}{subsubsection.5.19.2.1}
+\contentsline {subsection}{\numberline {5.19.3}M\IeC {\'e}todos}{77}{subsection.5.19.3}
+\contentsline {subsubsection}{\numberline {5.19.3.1}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pos\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}X}{77}{subsubsection.5.19.3.1}
+\contentsline {subsubsection}{\numberline {5.19.3.2}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pos\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Y}{77}{subsubsection.5.19.3.2}
+\contentsline {subsection}{\numberline {5.19.4}Campos}{77}{subsection.5.19.4}
+\contentsline {subsubsection}{\numberline {5.19.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}align}{77}{subsubsection.5.19.4.1}
+\contentsline {subsubsection}{\numberline {5.19.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}column}{77}{subsubsection.5.19.4.2}
+\contentsline {subsubsection}{\numberline {5.19.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}posx}{77}{subsubsection.5.19.4.3}
+\contentsline {subsubsection}{\numberline {5.19.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}posy}{77}{subsubsection.5.19.4.4}
+\contentsline {subsubsection}{\numberline {5.19.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}type}{77}{subsubsection.5.19.4.5}
+\contentsline {subsubsection}{\numberline {5.19.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value}{78}{subsubsection.5.19.4.6}
+\contentsline {section}{\numberline {5.20}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Odbc}{78}{section.5.20}
+\contentsline {subsection}{\numberline {5.20.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{79}{subsection.5.20.1}
+\contentsline {subsection}{\numberline {5.20.2}Construtores \& Destrutores}{79}{subsection.5.20.2}
+\contentsline {subsubsection}{\numberline {5.20.2.1}Odbc}{79}{subsubsection.5.20.2.1}
+\contentsline {subsection}{\numberline {5.20.3}M\IeC {\'e}todos}{79}{subsection.5.20.3}
+\contentsline {subsubsection}{\numberline {5.20.3.1}Connect}{79}{subsubsection.5.20.3.1}
+\contentsline {subsubsection}{\numberline {5.20.3.2}Disconnect}{79}{subsubsection.5.20.3.2}
+\contentsline {subsubsection}{\numberline {5.20.3.3}Execute}{80}{subsubsection.5.20.3.3}
+\contentsline {subsubsection}{\numberline {5.20.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{80}{subsubsection.5.20.3.4}
+\contentsline {subsubsection}{\numberline {5.20.3.5}Query}{80}{subsubsection.5.20.3.5}
+\contentsline {subsubsection}{\numberline {5.20.3.6}Query}{81}{subsubsection.5.20.3.6}
+\contentsline {subsection}{\numberline {5.20.4}Campos}{82}{subsection.5.20.4}
+\contentsline {subsubsection}{\numberline {5.20.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{82}{subsubsection.5.20.4.1}
+\contentsline {section}{\numberline {5.21}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Oledb}{82}{section.5.21}
+\contentsline {subsection}{\numberline {5.21.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{83}{subsection.5.21.1}
+\contentsline {subsection}{\numberline {5.21.2}Construtores \& Destrutores}{83}{subsection.5.21.2}
+\contentsline {subsubsection}{\numberline {5.21.2.1}Oledb}{83}{subsubsection.5.21.2.1}
+\contentsline {subsection}{\numberline {5.21.3}M\IeC {\'e}todos}{84}{subsection.5.21.3}
+\contentsline {subsubsection}{\numberline {5.21.3.1}Connect}{84}{subsubsection.5.21.3.1}
+\contentsline {subsubsection}{\numberline {5.21.3.2}Disconnect}{84}{subsubsection.5.21.3.2}
+\contentsline {subsubsection}{\numberline {5.21.3.3}Execute}{84}{subsubsection.5.21.3.3}
+\contentsline {subsubsection}{\numberline {5.21.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{84}{subsubsection.5.21.3.4}
+\contentsline {subsubsection}{\numberline {5.21.3.5}Query}{85}{subsubsection.5.21.3.5}
+\contentsline {subsubsection}{\numberline {5.21.3.6}Query}{85}{subsubsection.5.21.3.6}
+\contentsline {subsection}{\numberline {5.21.4}Campos}{85}{subsection.5.21.4}
+\contentsline {subsubsection}{\numberline {5.21.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{85}{subsubsection.5.21.4.1}
+\contentsline {section}{\numberline {5.22}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parameter}{86}{section.5.22}
+\contentsline {subsection}{\numberline {5.22.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{86}{subsection.5.22.1}
+\contentsline {subsection}{\numberline {5.22.2}Construtores \& Destrutores}{86}{subsection.5.22.2}
+\contentsline {subsubsection}{\numberline {5.22.2.1}Parameter}{86}{subsubsection.5.22.2.1}
+\contentsline {subsection}{\numberline {5.22.3}M\IeC {\'e}todos}{87}{subsection.5.22.3}
+\contentsline {subsubsection}{\numberline {5.22.3.1}Text}{87}{subsubsection.5.22.3.1}
+\contentsline {subsection}{\numberline {5.22.4}Campos}{87}{subsection.5.22.4}
+\contentsline {subsubsection}{\numberline {5.22.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dateformat}{87}{subsubsection.5.22.4.1}
+\contentsline {subsubsection}{\numberline {5.22.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}description}{87}{subsubsection.5.22.4.2}
+\contentsline {subsubsection}{\numberline {5.22.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}locale}{87}{subsubsection.5.22.4.3}
+\contentsline {subsubsection}{\numberline {5.22.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}name}{87}{subsubsection.5.22.4.4}
+\contentsline {subsubsection}{\numberline {5.22.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}null}{87}{subsubsection.5.22.4.5}
+\contentsline {subsubsection}{\numberline {5.22.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}type}{87}{subsubsection.5.22.4.6}
+\contentsline {subsubsection}{\numberline {5.22.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value}{87}{subsubsection.5.22.4.7}
+\contentsline {section}{\numberline {5.23}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Postgresql}{87}{section.5.23}
+\contentsline {subsection}{\numberline {5.23.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{89}{subsection.5.23.1}
+\contentsline {subsection}{\numberline {5.23.2}Construtores \& Destrutores}{89}{subsection.5.23.2}
+\contentsline {subsubsection}{\numberline {5.23.2.1}Postgresql}{89}{subsubsection.5.23.2.1}
+\contentsline {subsection}{\numberline {5.23.3}M\IeC {\'e}todos}{89}{subsection.5.23.3}
+\contentsline {subsubsection}{\numberline {5.23.3.1}Connect}{89}{subsubsection.5.23.3.1}
+\contentsline {subsubsection}{\numberline {5.23.3.2}Disconnect}{89}{subsubsection.5.23.3.2}
+\contentsline {subsubsection}{\numberline {5.23.3.3}Execute}{89}{subsubsection.5.23.3.3}
+\contentsline {subsubsection}{\numberline {5.23.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{90}{subsubsection.5.23.3.4}
+\contentsline {subsubsection}{\numberline {5.23.3.5}Query}{90}{subsubsection.5.23.3.5}
+\contentsline {subsubsection}{\numberline {5.23.3.6}Query}{90}{subsubsection.5.23.3.6}
+\contentsline {subsection}{\numberline {5.23.4}Campos}{91}{subsection.5.23.4}
+\contentsline {subsubsection}{\numberline {5.23.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{91}{subsubsection.5.23.4.1}
+\contentsline {section}{\numberline {5.24}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Report}{91}{section.5.24}
+\contentsline {subsection}{\numberline {5.24.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{92}{subsection.5.24.1}
+\contentsline {subsection}{\numberline {5.24.2}Construtores \& Destrutores}{92}{subsection.5.24.2}
+\contentsline {subsubsection}{\numberline {5.24.2.1}Report}{92}{subsubsection.5.24.2.1}
+\contentsline {subsubsection}{\numberline {5.24.2.2}Report}{92}{subsubsection.5.24.2.2}
+\contentsline {subsubsection}{\numberline {5.24.2.3}Report}{93}{subsubsection.5.24.2.3}
+\contentsline {subsection}{\numberline {5.24.3}M\IeC {\'e}todos}{93}{subsection.5.24.3}
+\contentsline {subsubsection}{\numberline {5.24.3.1}Execute}{93}{subsubsection.5.24.3.1}
+\contentsline {subsubsection}{\numberline {5.24.3.2}Save\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}As\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}P\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}D\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}F}{93}{subsubsection.5.24.3.2}
+\contentsline {subsection}{\numberline {5.24.4}Campos}{93}{subsection.5.24.4}
+\contentsline {subsubsection}{\numberline {5.24.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}cmd}{93}{subsubsection.5.24.4.1}
+\contentsline {subsubsection}{\numberline {5.24.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}fields}{93}{subsubsection.5.24.4.2}
+\contentsline {subsubsection}{\numberline {5.24.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}footer}{93}{subsubsection.5.24.4.3}
+\contentsline {subsubsection}{\numberline {5.24.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groups}{93}{subsubsection.5.24.4.4}
+\contentsline {subsubsection}{\numberline {5.24.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}header}{93}{subsubsection.5.24.4.5}
+\contentsline {subsubsection}{\numberline {5.24.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}reportid}{94}{subsubsection.5.24.4.6}
+\contentsline {subsubsection}{\numberline {5.24.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}settings}{94}{subsubsection.5.24.4.7}
+\contentsline {subsubsection}{\numberline {5.24.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}table}{94}{subsubsection.5.24.4.8}
+\contentsline {section}{\numberline {5.25}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Reporting.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Settings}{94}{section.5.25}
+\contentsline {subsection}{\numberline {5.25.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{95}{subsection.5.25.1}
+\contentsline {subsection}{\numberline {5.25.2}Construtores \& Destrutores}{95}{subsection.5.25.2}
+\contentsline {subsubsection}{\numberline {5.25.2.1}Settings}{95}{subsubsection.5.25.2.1}
+\contentsline {subsection}{\numberline {5.25.3}M\IeC {\'e}todos}{96}{subsection.5.25.3}
+\contentsline {subsubsection}{\numberline {5.25.3.1}Get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Color}{96}{subsubsection.5.25.3.1}
+\contentsline {subsubsection}{\numberline {5.25.3.2}Set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Margin}{96}{subsubsection.5.25.3.2}
+\contentsline {subsection}{\numberline {5.25.4}Campos}{96}{subsection.5.25.4}
+\contentsline {subsubsection}{\numberline {5.25.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}bottommargin}{96}{subsubsection.5.25.4.1}
+\contentsline {subsubsection}{\numberline {5.25.4.2}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}datafieldborder}{96}{subsubsection.5.25.4.2}
+\contentsline {subsubsection}{\numberline {5.25.4.3}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}datafieldevencolor}{96}{subsubsection.5.25.4.3}
+\contentsline {subsubsection}{\numberline {5.25.4.4}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}datafieldfont}{96}{subsubsection.5.25.4.4}
+\contentsline {subsubsection}{\numberline {5.25.4.5}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}datafieldoddcolor}{96}{subsubsection.5.25.4.5}
+\contentsline {subsubsection}{\numberline {5.25.4.6}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dataheaderborder}{96}{subsubsection.5.25.4.6}
+\contentsline {subsubsection}{\numberline {5.25.4.7}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dataheadercolor}{96}{subsubsection.5.25.4.7}
+\contentsline {subsubsection}{\numberline {5.25.4.8}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}dataheaderfont}{97}{subsubsection.5.25.4.8}
+\contentsline {subsubsection}{\numberline {5.25.4.9}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupfooterborder}{97}{subsubsection.5.25.4.9}
+\contentsline {subsubsection}{\numberline {5.25.4.10}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupfootercolor}{97}{subsubsection.5.25.4.10}
+\contentsline {subsubsection}{\numberline {5.25.4.11}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupfooterfont}{97}{subsubsection.5.25.4.11}
+\contentsline {subsubsection}{\numberline {5.25.4.12}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupheaderborder}{97}{subsubsection.5.25.4.12}
+\contentsline {subsubsection}{\numberline {5.25.4.13}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupheadercolor}{97}{subsubsection.5.25.4.13}
+\contentsline {subsubsection}{\numberline {5.25.4.14}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}groupheaderfont}{97}{subsubsection.5.25.4.14}
+\contentsline {subsubsection}{\numberline {5.25.4.15}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}layout}{97}{subsubsection.5.25.4.15}
+\contentsline {subsubsection}{\numberline {5.25.4.16}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}leftmargin}{97}{subsubsection.5.25.4.16}
+\contentsline {subsubsection}{\numberline {5.25.4.17}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}reportfooterfont}{97}{subsubsection.5.25.4.17}
+\contentsline {subsubsection}{\numberline {5.25.4.18}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}reportheaderfont}{97}{subsubsection.5.25.4.18}
+\contentsline {subsubsection}{\numberline {5.25.4.19}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}rightmargin}{97}{subsubsection.5.25.4.19}
+\contentsline {subsubsection}{\numberline {5.25.4.20}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}topmargin}{98}{subsubsection.5.25.4.20}
+\contentsline {section}{\numberline {5.26}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Database.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Sqlite}{98}{section.5.26}
+\contentsline {subsection}{\numberline {5.26.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{99}{subsection.5.26.1}
+\contentsline {subsection}{\numberline {5.26.2}Construtores \& Destrutores}{99}{subsection.5.26.2}
+\contentsline {subsubsection}{\numberline {5.26.2.1}Sqlite}{99}{subsubsection.5.26.2.1}
+\contentsline {subsection}{\numberline {5.26.3}M\IeC {\'e}todos}{99}{subsection.5.26.3}
+\contentsline {subsubsection}{\numberline {5.26.3.1}Connect}{99}{subsubsection.5.26.3.1}
+\contentsline {subsubsection}{\numberline {5.26.3.2}Disconnect}{99}{subsubsection.5.26.3.2}
+\contentsline {subsubsection}{\numberline {5.26.3.3}Execute}{100}{subsubsection.5.26.3.3}
+\contentsline {subsubsection}{\numberline {5.26.3.4}Execute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Scalar}{101}{subsubsection.5.26.3.4}
+\contentsline {subsubsection}{\numberline {5.26.3.5}Query}{101}{subsubsection.5.26.3.5}
+\contentsline {subsubsection}{\numberline {5.26.3.6}Query}{101}{subsubsection.5.26.3.6}
+\contentsline {subsection}{\numberline {5.26.4}Campos}{102}{subsection.5.26.4}
+\contentsline {subsubsection}{\numberline {5.26.4.1}v\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}connectionstring}{102}{subsubsection.5.26.4.1}
+\contentsline {section}{\numberline {5.27}Refer\IeC {\^e}ncia da Classe Spartacus.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Synchronizer}{102}{section.5.27}
+\contentsline {subsection}{\numberline {5.27.1}Descri\IeC {\c c}\IeC {\~a}o Detalhada}{102}{subsection.5.27.1}
+\contentsline {subsection}{\numberline {5.27.2}Construtores \& Destrutores}{102}{subsection.5.27.2}
+\contentsline {subsubsection}{\numberline {5.27.2.1}Synchronizer}{102}{subsubsection.5.27.2.1}
+\contentsline {subsection}{\numberline {5.27.3}M\IeC {\'e}todos}{103}{subsection.5.27.3}
+\contentsline {subsubsection}{\numberline {5.27.3.1}Execute}{103}{subsubsection.5.27.3.1}
+\contentsline {chapter}{\IeC {\'I}ndice}{105}{section*.63}

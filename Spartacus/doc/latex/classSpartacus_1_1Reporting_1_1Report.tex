@@ -1,0 +1,215 @@
+\hypertarget{classSpartacus_1_1Reporting_1_1Report}{\section{Referência da Classe Spartacus.\+Reporting.\+Report}
+\label{classSpartacus_1_1Reporting_1_1Report}\index{Spartacus.\+Reporting.\+Report@{Spartacus.\+Reporting.\+Report}}
+}
+
+
+Classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Report}. Representa um relatório em P\+D\+F.  
+
+
+
+
+Diagrama de colaboração para Spartacus.\+Reporting.\+Report\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSpartacus_1_1Reporting_1_1Report__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Report_afd782e43c614cea90611b30b419d560c}{Report} (int p\+\_\+reportid, string p\+\_\+filename)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Report_a8681c7155a9260ed9a14e48ab9c23d4c}{Report} (int p\+\_\+reportid, string p\+\_\+filename, \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic} p\+\_\+database)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Report_ae51a138e5449202283c5f78c7cfba43a}{Report} (int p\+\_\+reportid, string p\+\_\+filename, System.\+Data.\+Data\+Table p\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Reporting_1_1Report_ad229668d54d0becc90678829f7357861}{Execute} ()
+\begin{DoxyCompactList}\small\item\em Executa o relatório. Se o relatório não possui tabela pré-\/definida, utiliza o comando S\+Q\+L do relatório para buscar os dados no banco. Em seguida gera tabelas auxiliares para todos os grupos. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Reporting_1_1Report_ab4c81908854b363a0a05c01b593f07fb}{Save\+As\+P\+D\+F} (string p\+\_\+filename)
+\begin{DoxyCompactList}\small\item\em Salva como P\+D\+F. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classSpartacus_1_1Reporting_1_1Report_a852ec5a1b9aaa894595e594cd33d5e09}{v\+\_\+reportid}
+\begin{DoxyCompactList}\small\item\em Código do Relatório. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Database_1_1Command}{Spartacus.\+Database.\+Command} \hyperlink{classSpartacus_1_1Reporting_1_1Report_a35359a3acb53db8d3265e3d6497124f2}{v\+\_\+cmd}
+\begin{DoxyCompactList}\small\item\em Comando S\+Q\+L que pode possuir parâmetros entre \#. \end{DoxyCompactList}\item 
+System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Reporting_1_1Report_a84089fdf49d60ce315a718f89a47c8b2}{v\+\_\+table}
+\begin{DoxyCompactList}\small\item\em Tabela com os dados do relatório. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Settings}{Spartacus.\+Reporting.\+Settings} \hyperlink{classSpartacus_1_1Reporting_1_1Report_a13e0785868400d716ccce1d34cd786f1}{v\+\_\+settings}
+\begin{DoxyCompactList}\small\item\em Configurações globais e de dados do relatório. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Block}{Spartacus.\+Reporting.\+Block} \hyperlink{classSpartacus_1_1Reporting_1_1Report_a714fe9a95697a7bb0aef46cd2be55719}{v\+\_\+header}
+\begin{DoxyCompactList}\small\item\em Cabeçalho do relatório, mostrado em todas as páginas. \end{DoxyCompactList}\item 
+\hyperlink{classSpartacus_1_1Reporting_1_1Block}{Spartacus.\+Reporting.\+Block} \hyperlink{classSpartacus_1_1Reporting_1_1Report_ac5b8fc2e637f71f965ef27fbdbdd9acf}{v\+\_\+footer}
+\begin{DoxyCompactList}\small\item\em Rodapé do relatório, mostrado em todas as páginas. \end{DoxyCompactList}\item 
+System.\+Collections.\+Array\+List \hyperlink{classSpartacus_1_1Reporting_1_1Report_ac73ca7687d2e6b5f5281a05a2131d0bf}{v\+\_\+fields}
+\begin{DoxyCompactList}\small\item\em Lista de campos do relatório. \end{DoxyCompactList}\item 
+System.\+Collections.\+Array\+List \hyperlink{classSpartacus_1_1Reporting_1_1Report_ac349db22d6c8d4e23b60f3f7bb249057}{v\+\_\+groups}
+\begin{DoxyCompactList}\small\item\em Lista de grupos do relatório. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Report}. Representa um relatório em P\+D\+F. 
+
+
+
+\subsection{Construtores \& Destrutores}
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_afd782e43c614cea90611b30b419d560c}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!Report@{Report}}
+\index{Report@{Report}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{Report}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Reporting.\+Report.\+Report (
+\begin{DoxyParamCaption}
+\item[{int}]{p\+\_\+reportid, }
+\item[{string}]{p\+\_\+filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Reporting_1_1Report_afd782e43c614cea90611b30b419d560c}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+reportid} & Código do Relatório.\\
+\hline
+{\em p\+\_\+filename} & Nome do arquivo X\+M\+L.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a8681c7155a9260ed9a14e48ab9c23d4c}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!Report@{Report}}
+\index{Report@{Report}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{Report}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Reporting.\+Report.\+Report (
+\begin{DoxyParamCaption}
+\item[{int}]{p\+\_\+reportid, }
+\item[{string}]{p\+\_\+filename, }
+\item[{{\bf Spartacus.\+Database.\+Generic}}]{p\+\_\+database}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Reporting_1_1Report_a8681c7155a9260ed9a14e48ab9c23d4c}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+reportid} & Código do Relatório.\\
+\hline
+{\em p\+\_\+filename} & Nome do arquivo X\+M\+L.\\
+\hline
+{\em p\+\_\+database} & Objeto para conexão com o banco de dados.\\
+\hline
+\end{DoxyParams}
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ae51a138e5449202283c5f78c7cfba43a}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!Report@{Report}}
+\index{Report@{Report}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{Report}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Reporting.\+Report.\+Report (
+\begin{DoxyParamCaption}
+\item[{int}]{p\+\_\+reportid, }
+\item[{string}]{p\+\_\+filename, }
+\item[{System.\+Data.\+Data\+Table}]{p\+\_\+table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Reporting_1_1Report_ae51a138e5449202283c5f78c7cfba43a}
+
+
+Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Reporting_1_1Report}{Spartacus.\+Reporting.\+Report}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+reportid} & Código do Relatório.\\
+\hline
+{\em p\+\_\+filename} & Nome do arquivo X\+M\+L.\\
+\hline
+{\em p\+\_\+table} & Tabela com os dados.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Métodos}
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ad229668d54d0becc90678829f7357861}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!Execute@{Execute}}
+\index{Execute@{Execute}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Reporting.\+Report.\+Execute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Reporting_1_1Report_ad229668d54d0becc90678829f7357861}
+
+
+Executa o relatório. Se o relatório não possui tabela pré-\/definida, utiliza o comando S\+Q\+L do relatório para buscar os dados no banco. Em seguida gera tabelas auxiliares para todos os grupos. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ab4c81908854b363a0a05c01b593f07fb}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!Save\+As\+P\+D\+F@{Save\+As\+P\+D\+F}}
+\index{Save\+As\+P\+D\+F@{Save\+As\+P\+D\+F}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{Save\+As\+P\+D\+F}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Reporting.\+Report.\+Save\+As\+P\+D\+F (
+\begin{DoxyParamCaption}
+\item[{string}]{p\+\_\+filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Reporting_1_1Report_ab4c81908854b363a0a05c01b593f07fb}
+
+
+Salva como P\+D\+F. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+filename} & Nome do arquivo P\+D\+F.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Campos}
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a35359a3acb53db8d3265e3d6497124f2}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+cmd@{v\+\_\+cmd}}
+\index{v\+\_\+cmd@{v\+\_\+cmd}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+cmd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Database.\+Command} Spartacus.\+Reporting.\+Report.\+v\+\_\+cmd}}\label{classSpartacus_1_1Reporting_1_1Report_a35359a3acb53db8d3265e3d6497124f2}
+
+
+Comando S\+Q\+L que pode possuir parâmetros entre \#. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ac73ca7687d2e6b5f5281a05a2131d0bf}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+fields@{v\+\_\+fields}}
+\index{v\+\_\+fields@{v\+\_\+fields}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+fields}]{\setlength{\rightskip}{0pt plus 5cm}System.\+Collections.\+Array\+List Spartacus.\+Reporting.\+Report.\+v\+\_\+fields}}\label{classSpartacus_1_1Reporting_1_1Report_ac73ca7687d2e6b5f5281a05a2131d0bf}
+
+
+Lista de campos do relatório. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ac5b8fc2e637f71f965ef27fbdbdd9acf}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+footer@{v\+\_\+footer}}
+\index{v\+\_\+footer@{v\+\_\+footer}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+footer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Reporting.\+Block} Spartacus.\+Reporting.\+Report.\+v\+\_\+footer}}\label{classSpartacus_1_1Reporting_1_1Report_ac5b8fc2e637f71f965ef27fbdbdd9acf}
+
+
+Rodapé do relatório, mostrado em todas as páginas. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_ac349db22d6c8d4e23b60f3f7bb249057}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+groups@{v\+\_\+groups}}
+\index{v\+\_\+groups@{v\+\_\+groups}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+groups}]{\setlength{\rightskip}{0pt plus 5cm}System.\+Collections.\+Array\+List Spartacus.\+Reporting.\+Report.\+v\+\_\+groups}}\label{classSpartacus_1_1Reporting_1_1Report_ac349db22d6c8d4e23b60f3f7bb249057}
+
+
+Lista de grupos do relatório. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a714fe9a95697a7bb0aef46cd2be55719}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+header@{v\+\_\+header}}
+\index{v\+\_\+header@{v\+\_\+header}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+header}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Reporting.\+Block} Spartacus.\+Reporting.\+Report.\+v\+\_\+header}}\label{classSpartacus_1_1Reporting_1_1Report_a714fe9a95697a7bb0aef46cd2be55719}
+
+
+Cabeçalho do relatório, mostrado em todas as páginas. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a852ec5a1b9aaa894595e594cd33d5e09}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+reportid@{v\+\_\+reportid}}
+\index{v\+\_\+reportid@{v\+\_\+reportid}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+reportid}]{\setlength{\rightskip}{0pt plus 5cm}int Spartacus.\+Reporting.\+Report.\+v\+\_\+reportid}}\label{classSpartacus_1_1Reporting_1_1Report_a852ec5a1b9aaa894595e594cd33d5e09}
+
+
+Código do Relatório. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a13e0785868400d716ccce1d34cd786f1}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+settings@{v\+\_\+settings}}
+\index{v\+\_\+settings@{v\+\_\+settings}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+settings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Reporting.\+Settings} Spartacus.\+Reporting.\+Report.\+v\+\_\+settings}}\label{classSpartacus_1_1Reporting_1_1Report_a13e0785868400d716ccce1d34cd786f1}
+
+
+Configurações globais e de dados do relatório. 
+
+\hypertarget{classSpartacus_1_1Reporting_1_1Report_a84089fdf49d60ce315a718f89a47c8b2}{\index{Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}!v\+\_\+table@{v\+\_\+table}}
+\index{v\+\_\+table@{v\+\_\+table}!Spartacus\+::\+Reporting\+::\+Report@{Spartacus\+::\+Reporting\+::\+Report}}
+\subsubsection[{v\+\_\+table}]{\setlength{\rightskip}{0pt plus 5cm}System.\+Data.\+Data\+Table Spartacus.\+Reporting.\+Report.\+v\+\_\+table}}\label{classSpartacus_1_1Reporting_1_1Report_a84089fdf49d60ce315a718f89a47c8b2}
+
+
+Tabela com os dados do relatório. 
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+Spartacus.\+Reporting.\+Report.\+cs\end{DoxyCompactItemize}
