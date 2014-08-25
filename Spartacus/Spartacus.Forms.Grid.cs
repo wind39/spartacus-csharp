@@ -35,10 +35,12 @@ namespace Spartacus.Forms
             this.v_title = p_title;
         }
 
-        public override void Resize(int p_newwidth, int p_newheight)
+        public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_panel.SuspendLayout();
             this.v_grid.SuspendLayout();
+
+            this.v_panel.Location = new System.Drawing.Point(p_newposx, p_newposy);
 
             this.v_width = p_newwidth;
             this.v_panel.Width = p_newwidth;
@@ -56,7 +58,12 @@ namespace Spartacus.Forms
             this.v_grid.DataSource = p_table;
             this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
         }
+
+        public override void AddButton(string p_text, System.EventHandler p_delegate)
+        {
+        }
     }
+
     public static class ExtensionMethods
     {
         public static void DoubleBuffered(this System.Windows.Forms.DataGridView p_grid, bool p_setting)

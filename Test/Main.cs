@@ -365,6 +365,7 @@ namespace Test
             Spartacus.Forms.Container v_window;
             Spartacus.Forms.Component v_textbox, v_textbox2;
             Spartacus.Forms.Component v_grid;
+            Spartacus.Forms.Component v_buttons;
             Spartacus.Database.Generic v_database;
             System.Data.DataTable v_table;
 
@@ -391,6 +392,10 @@ namespace Test
                 v_grid.Populate(v_table);
                 v_window.Add(v_grid);
 
+                v_buttons = new Spartacus.Forms.Buttons(v_window);
+                v_buttons.AddButton("Clique aqui", new System.EventHandler(OnClick));
+                v_window.Add(v_buttons);
+
                 System.Windows.Forms.Application.EnableVisualStyles();
                 System.Windows.Forms.Application.Run((System.Windows.Forms.Form)v_window.v_control);
             }
@@ -398,6 +403,11 @@ namespace Test
             {
                 System.Console.WriteLine(e.v_message);
             }
+        }
+
+        public static void OnClick(object sender, EventArgs e)
+        {
+            System.Console.WriteLine("Deu certo");
         }
 
         #endregion

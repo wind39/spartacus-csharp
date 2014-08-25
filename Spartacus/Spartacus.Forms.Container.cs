@@ -178,7 +178,7 @@ namespace Spartacus.Forms
         {
             Spartacus.Forms.Container v_container;
             Spartacus.Forms.Component v_component;
-            int k;
+            int k, posy;
 
             switch (this.v_type)
             {
@@ -202,14 +202,19 @@ namespace Spartacus.Forms
             }
 
             // redimensionando componentes
+            posy = 0;
             for (k = 0; k < this.v_components.Count; k++)
             {
                 v_component = (Spartacus.Forms.Component)this.v_components[k];
 
                 v_component.Resize(
                     (int) ((double) p_newwidth * (double) v_component.v_width / (double) this.v_width),
-                    (int) ((double) p_newheight * (double) v_component.v_height / (double) this.v_height)
+                    (int) ((double) p_newheight * (double) v_component.v_height / (double) this.v_height),
+                    0,
+                    posy
                 );
+
+                posy += v_component.v_height;
             }
 
             this.v_width = p_newwidth;

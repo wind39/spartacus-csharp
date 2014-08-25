@@ -58,10 +58,12 @@ namespace Spartacus.Forms
             this.v_label.Text = p_title;
         }
 
-        public override void Resize(int p_newwidth, int p_newheight)
+        public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_panel.SuspendLayout();
             this.v_textbox.SuspendLayout();
+
+            this.v_panel.Location = new System.Drawing.Point(p_newposx, p_newposy);
 
             this.v_width = p_newwidth;
             this.v_panel.Width = p_newwidth;
@@ -75,6 +77,10 @@ namespace Spartacus.Forms
         }
 
         public override void Populate(System.Data.DataTable p_table)
+        {
+        }
+
+        public override void AddButton(string p_text, System.EventHandler p_delegate)
         {
         }
     }

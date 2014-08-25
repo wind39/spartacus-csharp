@@ -23,8 +23,6 @@ namespace Spartacus.Forms
             this.v_parent = p_parent;
 
             this.v_panel = new System.Windows.Forms.Panel();
-            this.v_panel.AutoSize = true;
-            this.v_panel.Anchor = (System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom));
 
             this.v_title = "";
             this.v_showlabel = true;
@@ -56,8 +54,10 @@ namespace Spartacus.Forms
 
         public abstract void SetTitle(string p_title);
 
-        public abstract void Resize(int p_newwidth, int p_newheight);
+        public abstract void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy);
 
         public abstract void Populate(System.Data.DataTable p_table);
+
+        public abstract void AddButton(string p_text, System.EventHandler p_delegate);
     }
 }
