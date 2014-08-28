@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <report>
 
-    <!-- Definição de conexão com o banco -->
     <connection>
         <type>odbc</type>
         <provider></provider>
@@ -76,7 +75,8 @@
 
     <command>
         <sql>
-            select 'Importacoes de Empresas Vinculadas' as titulo,
+            select -- dados do relatorio
+                   'Importacoes de Empresas Vinculadas' as titulo,
                    'Por Produto - Analitico' as subtitulo,
                    'ARAG DO BRASIL' as empresa,
                    'Ano: 2013' as ano,
@@ -84,18 +84,34 @@
                    'Usuario: William Ivanski' as usuario,
                    'Sistema: Planner v0.7.0 - Modulo de Relatorios v1' as sistema,
                    'Emissao: ' || to_char(sysdate, 'dd/mm/yyyy hh24:mi:ss') as emissao,
-                   
-                   to_char(p.prid) as prid,
+                   -- total geral
+                   totalgeral.encustofob as geral_encustofob,
+                   totalgeral.enii as geral_enii,
+                   totalgeral.enfrete as geral_enfrete,
+                   totalgeral.enseguro as geral_enseguro,
+                   totalgeral.enaduaneiras as geral_enaduaneiras,
+                   totalgeral.encomplementares as geral_encomplementares,
+                   totalgeral.encustocif as geral_encustocif,
+                   -- total por produto
+                   p.prid,
                    'Produto: ' || to_char(p.prid) || ' - ' || p.prdescricao as produto,
-                   to_char(trim(cf.cfid)) as cfid,
-                   to_char(cf.cfrazao) as cfrazao,
-                   to_char(cf.cfpais) as cfpais,
-                   to_char(e.enserie) as enserie,
+                   totalproduto.encustofob as produto_encustofob,
+                   totalproduto.enii as produto_enii,
+                   totalproduto.enfrete as produto_enfrete,
+                   totalproduto.enseguro as produto_enseguro,
+                   totalproduto.enaduaneiras as produto_enaduaneiras,
+                   totalproduto.encomplementares as produto_encomplementares,
+                   totalproduto.encustocif as produto_encustocif,
+                   -- detalhe
+                   trim(cf.cfid) as cfid,
+                   cf.cfrazao as cfrazao,
+                   cf.cfpais as cfpais,
+                   trim(e.enserie) as enserie,
                    to_char(e.ennf) as ennf,
                    to_char(e.enentrada, 'dd/mm/yyyy') as enentrada,
                    to_char(e.ntid) as ntid,
                    to_char(e.enqtde) as enqtde,
-                   to_char(e.enun) as enun,
+                   trim(e.enun) as enun,
                    to_char(e.encustofob) as encustofob,
                    to_char(e.enii) as enii,
                    to_char(e.enfrete) as enfrete,
@@ -103,15 +119,81 @@
                    to_char(e.enaduaneiras) as enaduaneiras,
                    to_char(e.encomplementares) as encomplementares,
                    to_char((e.encustofob +
-                    e.enii +
-                    e.enfrete +
-                    e.enseguro +
-                    e.enaduaneiras +
-                    e.encomplementares)) as encustocif
+                            e.enii +
+                            e.enfrete +
+                            e.enseguro +
+                            e.enaduaneiras +
+                            e.encomplementares)) as encustocif
             from planning.entradas e,
                  planning.produtos p,
                  planning.cfop c,
-                 planning.clifor cf
+                 planning.clifor cf,
+            (
+            select p1.prid,
+                   to_char(sum(e1.encustofob)) as encustofob,
+                   to_char(sum(e1.enii)) as enii,
+                   to_char(sum(e1.enfrete)) as enfrete,
+                   to_char(sum(e1.enseguro)) as enseguro,
+                   to_char(sum(e1.enaduaneiras)) as enaduaneiras,
+                   to_char(sum(e1.encomplementares)) as encomplementares,
+                   to_char(sum(e1.encustofob +
+                               e1.enii +
+                               e1.enfrete +
+                               e1.enseguro +
+                               e1.enaduaneiras +
+                               e1.encomplementares)) as encustocif
+            from planning.entradas e1,
+                 planning.produtos p1,
+                 planning.cfop c1,
+                 planning.clifor cf1
+            where p1.emid = e1.emid
+              and p1.prano = e1.enano
+              and p1.prid = e1.prid
+              and c1.emid = e1.emid
+              and c1.ano = e1.enano
+              and c1.ntid = e1.ntid
+              and c1.nttrpm = 'S'
+              and cf1.emid = e1.emid
+              and cf1.cfano = e1.enano
+              and cf1.cfid = e1.cfid
+              and cf1.cftipo = e1.cftipo
+              and cf1.cfgrupo = 'SIM'
+              and e1.emid = #EMID#
+              and e1.enano = #ANO#
+            group by p1.prid
+            ) totalproduto,
+            (
+            select to_char(sum(e2.encustofob)) as encustofob,
+                   to_char(sum(e2.enii)) as enii,
+                   to_char(sum(e2.enfrete)) as enfrete,
+                   to_char(sum(e2.enseguro)) as enseguro,
+                   to_char(sum(e2.enaduaneiras)) as enaduaneiras,
+                   to_char(sum(e2.encomplementares)) as encomplementares,
+                   to_char(sum(e2.encustofob +
+                               e2.enii +
+                               e2.enfrete +
+                               e2.enseguro +
+                               e2.enaduaneiras +
+                               e2.encomplementares)) as encustocif
+            from planning.entradas e2,
+                 planning.produtos p2,
+                 planning.cfop c2,
+                 planning.clifor cf2
+            where p2.emid = e2.emid
+              and p2.prano = e2.enano
+              and p2.prid = e2.prid
+              and c2.emid = e2.emid
+              and c2.ano = e2.enano
+              and c2.ntid = e2.ntid
+              and c2.nttrpm = 'S'
+              and cf2.emid = e2.emid
+              and cf2.cfano = e2.enano
+              and cf2.cfid = e2.cfid
+              and cf2.cftipo = e2.cftipo
+              and cf2.cfgrupo = 'SIM'
+              and e2.emid = #EMID#
+              and e2.enano = #ANO#
+            ) totalgeral
             where p.emid = e.emid
               and p.prano = e.enano
               and p.prid = e.prid
@@ -124,6 +206,7 @@
               and cf.cfid = e.cfid
               and cf.cftipo = e.cftipo
               and cf.cfgrupo = 'SIM'
+              and totalproduto.prid = p.prid
               and e.emid = #EMID#
               and e.enano = #ANO#
         </sql>
@@ -327,7 +410,7 @@
 
     <groups>
         <group>
-            <level>1</level>
+            <level>0</level>
             <column>prid</column>
             <sort>enentrada asc, ennf asc</sort>
             
@@ -342,14 +425,131 @@
                 </headerfield>
             </headerfields>
             
-            <showfooter>FALSE</showfooter>
+            <showfooter>TRUE</showfooter>
             <footerfields>
                 <footerfield>
                     <title></title>
-                    <column>produto</column>
-                    <align>RIGHT</align>
-                    <fill>100</fill>
+                    <column></column>
+                    <align>LEFT</align>
+                    <fill>51</fill>
                     <type>STRING</type>
+                </footerfield>
+                <footerfield>
+                    <title>Custo FOB</title>
+                    <column>produto_encustofob</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>II</title>
+                    <column>produto_enii</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Frete</title>
+                    <column>produto_enfrete</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Seguro</title>
+                    <column>produto_enseguro</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Aduan.</title>
+                    <column>produto_enaduaneiras</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Compl.</title>
+                    <column>produto_encomplementares</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Custo CIF</title>
+                    <column>produto_encustocif</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+            </footerfields>
+        </group>
+        
+        <group>
+            <level>1</level>
+            <column>titulo</column>
+            <sort>titulo asc</sort>
+            
+            <showheader>FALSE</showheader>
+            
+            <showfooter>TRUE</showfooter>
+            <footerfields>
+                <footerfield>
+                    <title></title>
+                    <column></column>
+                    <align>LEFT</align>
+                    <fill>51</fill>
+                    <type>STRING</type>
+                </footerfield>
+                <footerfield>
+                    <title>Custo FOB</title>
+                    <column>geral_encustofob</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>II</title>
+                    <column>geral_enii</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Frete</title>
+                    <column>geral_enfrete</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Seguro</title>
+                    <column>geral_enseguro</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Aduan.</title>
+                    <column>geral_enaduaneiras</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Compl.</title>
+                    <column>geral_encomplementares</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Custo CIF</title>
+                    <column>geral_encustocif</column>
+                    <align>RIGHT</align>
+                    <fill>7</fill>
+                    <type>REAL</type>
                 </footerfield>
             </footerfields>
         </group>

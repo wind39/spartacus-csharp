@@ -10,24 +10,23 @@ namespace Spartacus.Forms
 
         public int v_proportion;
 
+        //public bool v_frozenlocation;
+
 
         public Textbox(Spartacus.Forms.Container p_parent)
             : base(p_parent)
         {
-            if (this.v_showlabel)
-            {
-                this.v_label = new System.Windows.Forms.Label();
-                this.v_label.Location = new System.Drawing.Point(10, 15);
-                this.v_label.AutoSize = true;
-                //this.v_label.Name = "label1";
-                this.v_label.Parent = this.v_panel;
-            }
+            //this.v_frozenlocation = true;
+
+            this.v_label = new System.Windows.Forms.Label();
+            this.v_label.Location = new System.Drawing.Point(10, 10);
+            this.v_label.AutoSize = true;
+            this.v_label.Parent = this.v_panel;
 
             this.v_proportion = 50;
 
             this.v_textbox = new System.Windows.Forms.TextBox();
-            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 10);
-            //this.v_textbox.Name = "";
+            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
             this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
             this.v_textbox.Parent = this.v_panel;
         }
@@ -35,27 +34,18 @@ namespace Spartacus.Forms
         public Textbox(Spartacus.Forms.Container p_parent, int p_proportion)
             : base(p_parent)
         {
-            if (this.v_showlabel)
-            {
-                this.v_label = new System.Windows.Forms.Label();
-                this.v_label.Location = new System.Drawing.Point(10, 15);
-                //this.v_label.Name = "label1";
-                this.v_label.Parent = this.v_panel;
-            }
+            //this.v_frozenlocation = true;
+
+            this.v_label = new System.Windows.Forms.Label();
+            this.v_label.Location = new System.Drawing.Point(10, 10);
+            this.v_label.Parent = this.v_panel;
 
             this.v_proportion = p_proportion;
 
             this.v_textbox = new System.Windows.Forms.TextBox();
-            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 10);
+            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
             this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
-            //this.v_textbox.Name = "";
             this.v_textbox.Parent = this.v_panel;
-        }
-
-        public override void SetTitle(string p_title)
-        {
-            this.v_title = p_title;
-            this.v_label.Text = p_title;
         }
 
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
@@ -68,20 +58,18 @@ namespace Spartacus.Forms
             this.v_width = p_newwidth;
             this.v_panel.Width = p_newwidth;
 
-            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 10);
-            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
+            //if (! this.v_frozenlocation)
+            //    this.v_textbox.Location = new System.Drawing.Point((int) (this.v_panel.Width * ((double) this.v_proportion / (double) 100)), 5);
+            this.v_textbox.Width = this.v_panel.Width - 10 - this.v_textbox.Location.X;
 
             this.v_textbox.ResumeLayout();
             this.v_panel.ResumeLayout();
             this.v_panel.Refresh();
         }
 
-        public override void Populate(System.Data.DataTable p_table)
+        public void SetLabel(string p_title)
         {
-        }
-
-        public override void AddButton(string p_text, System.EventHandler p_delegate)
-        {
+            this.v_label.Text = p_title;
         }
     }
 }

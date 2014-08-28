@@ -10,6 +10,10 @@ namespace Spartacus.Forms
         public Grid(Spartacus.Forms.Container p_parent)
             : base(p_parent)
         {
+            this.v_frozenheight = false;
+
+            this.v_panel.Width = this.v_width - 5;
+
             this.v_grid = new System.Windows.Forms.DataGridView();
             this.v_grid.RowHeadersVisible = false;
             this.v_grid.EnableHeadersVisualStyles = false;
@@ -30,11 +34,6 @@ namespace Spartacus.Forms
             this.v_grid.Parent = this.v_panel;
         }
 
-        public override void SetTitle(string p_title)
-        {
-            this.v_title = p_title;
-        }
-
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_panel.SuspendLayout();
@@ -43,7 +42,7 @@ namespace Spartacus.Forms
             this.v_panel.Location = new System.Drawing.Point(p_newposx, p_newposy);
 
             this.v_width = p_newwidth;
-            this.v_panel.Width = p_newwidth;
+            this.v_panel.Width = p_newwidth - 5;
 
             this.v_height = p_newheight;
             this.v_panel.Height = p_newheight;
@@ -53,14 +52,10 @@ namespace Spartacus.Forms
             this.v_panel.Refresh();
         }
 
-        public override void Populate(System.Data.DataTable p_table)
+        public void Populate(System.Data.DataTable p_table)
         {
             this.v_grid.DataSource = p_table;
             this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
-        }
-
-        public override void AddButton(string p_text, System.EventHandler p_delegate)
-        {
         }
     }
 

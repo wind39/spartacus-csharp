@@ -14,14 +14,7 @@ namespace Spartacus.Forms
         {
             this.v_list = new System.Collections.ArrayList();
 
-            this.v_offsetx = this.v_width - 15;
-
-            this.v_panel.BackColor = System.Drawing.Color.Blue;
-        }
-
-        public override void SetTitle(string p_title)
-        {
-            this.v_title = p_title;
+            this.v_offsetx = this.v_width - 10;
         }
 
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
@@ -49,11 +42,7 @@ namespace Spartacus.Forms
             this.v_panel.Refresh();
         }
 
-        public override void Populate(System.Data.DataTable p_table)
-        {
-        }
-
-        public override void AddButton(string p_text, System.EventHandler p_delegate)
+        public void AddButton(string p_text, System.EventHandler p_delegate)
         {
             System.Windows.Forms.Button v_button;
 
@@ -65,6 +54,8 @@ namespace Spartacus.Forms
             v_button.Parent = this.v_panel;
 
             this.v_list.Add(v_button);
+
+            this.v_offsetx = v_button.Location.X - 10;
         }
     }
 }

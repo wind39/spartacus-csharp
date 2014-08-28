@@ -44,7 +44,7 @@ namespace Spartacus.Database
         {
             this.v_connectionstring = "DSN=" + this.v_dsn + ";"
                 + "UID=" + this.v_user + ";"
-                    + "PWD=" + this.v_password + ";";
+                + "PWD=" + this.v_password + ";";
 
             this.v_odbccon = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
         }

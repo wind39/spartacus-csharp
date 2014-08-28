@@ -200,7 +200,7 @@ namespace Test
                 v_report.v_cmd.SetValue("EMID", "181");
                 v_report.v_cmd.SetValue("ANO", "2013");
                 v_report.Execute();
-                v_report.SaveAsPDF("output.pdf");
+                v_report.Save("output.pdf");
 
                 System.Console.WriteLine("Pronto!");
             }
@@ -363,9 +363,10 @@ namespace Test
         private static void FormsTest()
         {
             Spartacus.Forms.Container v_window;
-            Spartacus.Forms.Component v_textbox, v_textbox2;
-            Spartacus.Forms.Component v_grid;
-            Spartacus.Forms.Component v_buttons;
+            Spartacus.Forms.Textbox v_textbox;
+            Spartacus.Forms.Lookup v_lookup;
+            Spartacus.Forms.Grid v_grid;
+            Spartacus.Forms.Buttons v_buttons;
             Spartacus.Database.Generic v_database;
             System.Data.DataTable v_table;
 
@@ -378,22 +379,30 @@ namespace Test
 
                 v_window = new Spartacus.Forms.Container(Spartacus.Forms.ContainerType.FORM);
                 v_window.SetTitle("Formulario Teste");
+                v_window.SetWidth(500);
+                v_window.SetHeight(400);
 
                 v_textbox = new Spartacus.Forms.Textbox(v_window, 40);
-                v_textbox.SetTitle("Digite seu nome:");
+                v_textbox.SetLabel("Digite seu nome:");
                 v_window.Add(v_textbox);
 
-                v_textbox2 = new Spartacus.Forms.Textbox(v_window, 40);
-                v_textbox2.SetTitle("Digite sua idade:");
-                v_window.Add(v_textbox2);
+                //v_textbox2 = new Spartacus.Forms.Textbox(v_window, 40);
+                //v_textbox2.SetLabel("Digite sua idade:");
+                //v_window.Add(v_textbox2);
+
+                v_lookup = new Spartacus.Forms.Lookup(v_window);
+                v_lookup.SetLabel("Olha só!!");
+                v_lookup.Populate(v_table, "pais_st_codigo", "pais_st_nome", "70;180");
+                v_window.Add(v_lookup);
 
                 v_grid = new Spartacus.Forms.Grid(v_window);
-                v_grid.SetHeight(150);
+                v_grid.SetHeight(200);
                 v_grid.Populate(v_table);
                 v_window.Add(v_grid);
 
                 v_buttons = new Spartacus.Forms.Buttons(v_window);
                 v_buttons.AddButton("Clique aqui", new System.EventHandler(OnClick));
+                v_buttons.AddButton("Clique aqui 2", new System.EventHandler(OnClick2));
                 v_window.Add(v_buttons);
 
                 System.Windows.Forms.Application.EnableVisualStyles();
@@ -408,6 +417,11 @@ namespace Test
         public static void OnClick(object sender, EventArgs e)
         {
             System.Console.WriteLine("Deu certo");
+        }
+
+        public static void OnClick2(object sender, EventArgs e)
+        {
+            System.Console.WriteLine("Deu certo 2");
         }
 
         #endregion

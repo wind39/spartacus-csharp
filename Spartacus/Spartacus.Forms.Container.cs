@@ -25,6 +25,8 @@ namespace Spartacus.Forms
 
         public int v_offsety;
 
+        public int v_frozenheight;
+
 
         public Container(Spartacus.Forms.ContainerType p_type)
         {
@@ -50,6 +52,8 @@ namespace Spartacus.Forms
             this.v_components = new System.Collections.ArrayList();
 
             this.v_offsety = 0;
+
+            this.v_frozenheight = 0;
         }
 
         public Container(Spartacus.Forms.ContainerType p_type, Spartacus.Forms.Container p_parent)
@@ -76,6 +80,8 @@ namespace Spartacus.Forms
             this.v_components = new System.Collections.ArrayList();
 
             this.v_offsety = 0;
+
+            this.v_frozenheight = 0;
 
             //TODO: tratar posicao do container dentro do pai
         }
@@ -172,6 +178,9 @@ namespace Spartacus.Forms
             }
 
             this.v_offsety += p_component.v_height;
+
+            if (p_component.v_frozenheight)
+                this.v_frozenheight += p_component.v_height;
         }
 
         private void Resize(int p_newwidth, int p_newheight)
@@ -209,7 +218,7 @@ namespace Spartacus.Forms
 
                 v_component.Resize(
                     (int) ((double) p_newwidth * (double) v_component.v_width / (double) this.v_width),
-                    (int) ((double) p_newheight * (double) v_component.v_height / (double) this.v_height),
+                    (int) (((double) (p_newheight - this.v_frozenheight) * (double) v_component.v_height) / (double) (this.v_height - this.v_frozenheight)),
                     0,
                     posy
                 );

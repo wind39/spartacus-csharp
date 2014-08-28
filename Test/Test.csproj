@@ -64,7 +64,6 @@
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\teste.xlsx" />
     <None Include="bin\Release\teste.txt" />
-    <None Include="bin\Release\teste.db" />
     <None Include="bin\Release\Mono.Security.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="LICENSE.txt" />

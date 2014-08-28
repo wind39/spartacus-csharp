@@ -8,11 +8,10 @@ namespace Spartacus.Forms
 
         public System.Windows.Forms.Panel v_panel;
 
-        public string v_title;
-        public bool v_showlabel;
-
         public int v_width;
         public int v_height;
+
+        public bool v_frozenheight;
 
         public int v_posx;
         public int v_posy;
@@ -24,11 +23,10 @@ namespace Spartacus.Forms
 
             this.v_panel = new System.Windows.Forms.Panel();
 
-            this.v_title = "";
-            this.v_showlabel = true;
-
             this.SetWidth(p_parent.v_width);
-            this.SetHeight(45);
+            this.SetHeight(40);
+
+            this.v_frozenheight = true;
 
             this.SetLocation(0, p_parent.v_offsety);
         }
@@ -52,12 +50,6 @@ namespace Spartacus.Forms
             this.v_panel.Location = new System.Drawing.Point(p_posx, p_posy);
         }
 
-        public abstract void SetTitle(string p_title);
-
         public abstract void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy);
-
-        public abstract void Populate(System.Data.DataTable p_table);
-
-        public abstract void AddButton(string p_text, System.EventHandler p_delegate);
     }
 }

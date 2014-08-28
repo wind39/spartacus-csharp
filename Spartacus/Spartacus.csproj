@@ -101,6 +101,8 @@
     <Compile Include="Spartacus.Forms.Textbox.cs" />
     <Compile Include="Spartacus.Forms.Grid.cs" />
     <Compile Include="Spartacus.Forms.Buttons.cs" />
+    <Compile Include="Spartacus.Forms.MultiColumnComboBox.cs" />
+    <Compile Include="Spartacus.Forms.Lookup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -420,6 +422,7 @@
     <None Include="doc\latex\refman.pdf" />
     <None Include="doc\latex\refman.tex" />
     <None Include="doc\latex\refman.toc" />
+    <None Include="doc\Spartacus Report Engine.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
