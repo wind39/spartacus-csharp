@@ -2,263 +2,153 @@ using System;
 
 namespace Spartacus.Forms
 {
-    public enum ContainerType
+    /// <summary>
+    /// Classe Container.
+    /// Representa um formulário (janela), painel, ou outro componente que contenha outros componentes.
+    /// </summary>
+    public abstract class Container
     {
-        FORM,
-        PANEL
-    }
-
-    public class Container
-    {
+        /// <summary>
+        /// Container pai do Container atual.
+        /// </summary>
         public Spartacus.Forms.Container v_parent;
 
-        public Spartacus.Forms.ContainerType v_type;
-
+        /// <summary>
+        /// Controle nativo do Container atual.
+        /// </summary>
         public System.Windows.Forms.Control v_control;
 
-        public string v_title;
+        /// <summary>
+        /// Largura do Container atual.
+        /// </summary>
         public int v_width;
+
+        /// <summary>
+        /// Altura do Container atual.
+        /// </summary>
         public int v_height;
 
-        public System.Collections.ArrayList v_containers;
-        public System.Collections.ArrayList v_components;
+        /// <summary>
+        /// Posição X do Container dentro do Container pai.
+        /// </summary>
+        public int v_posx;
 
+        /// <summary>
+        /// Posição Y do Container dentro do Container pai.
+        /// </summary>
+        public int v_posy;
+
+        /// <summary>
+        /// Lista de Containers filhos do Container atual.
+        /// </summary>
+        public System.Collections.ArrayList v_containers;
+
+        /// <summary>
+        /// Deslocamento do eixo Y.
+        /// Armazena a primeira posição Y livre para serem inseridos novos Containers.
+        /// </summary>
         public int v_offsety;
 
+        /// <summary>
+        /// Soma das alturas dos Containers filhos que possuem altura fixa.
+        /// </summary>
         public int v_frozenheight;
 
+        /// <summary>
+        /// Se o Container atual possui dimensões fixas dentro do Container pai.
+        /// </summary>
+        public bool v_isfrozen;
 
-        public Container(Spartacus.Forms.ContainerType p_type)
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Container"/>.
+        /// </summary>
+        public Container()
         {
             this.v_parent = null;
-            this.v_type = p_type;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    v_control = new System.Windows.Forms.Form();
-                    ((System.Windows.Forms.Form)this.v_control).Resize += new System.EventHandler(this.OnResize);
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    v_control = new System.Windows.Forms.Panel();
-                    ((System.Windows.Forms.Panel)this.v_control).Resize += new System.EventHandler(this.OnResize);
-                    break;
-            }
-
-            this.SetWidth(300);
-            this.SetHeight(300);
 
             this.v_containers = new System.Collections.ArrayList();
-            this.v_components = new System.Collections.ArrayList();
 
             this.v_offsety = 0;
 
             this.v_frozenheight = 0;
+
+            this.v_isfrozen = true;
         }
 
-        public Container(Spartacus.Forms.ContainerType p_type, Spartacus.Forms.Container p_parent)
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Container"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai do Container atual.</param>
+        public Container(Spartacus.Forms.Container p_parent)
         {
             this.v_parent = p_parent;
-            this.v_type = p_type;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    v_control = new System.Windows.Forms.Form();
-                    ((System.Windows.Forms.Form)this.v_control).Resize += new System.EventHandler(this.OnResize);
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    v_control = new System.Windows.Forms.Panel();
-                    ((System.Windows.Forms.Panel)this.v_control).Resize += new System.EventHandler(this.OnResize);
-                    break;
-            }
-
-            this.SetWidth(300);
-            this.SetHeight(300);
 
             this.v_containers = new System.Collections.ArrayList();
-            this.v_components = new System.Collections.ArrayList();
 
             this.v_offsety = 0;
 
             this.v_frozenheight = 0;
 
-            //TODO: tratar posicao do container dentro do pai
+            this.v_isfrozen = true;
         }
 
+        /// <summary>
+        /// Configura a largura do Container.
+        /// </summary>
+        /// <param name="p_width">Largura do Container.</param>
         public void SetWidth(int p_width)
         {
             this.v_width = p_width;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    ((System.Windows.Forms.Form)this.v_control).Width = p_width;
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    ((System.Windows.Forms.Panel)this.v_control).Width = p_width;
-                    break;
-            }
+            this.v_control.Width = p_width;
         }
 
+        /// <summary>
+        /// Configura a altura do Container.
+        /// </summary>
+        /// <param name="p_height">Altura do Container.</param>
         public void SetHeight(int p_height)
         {
             this.v_height = p_height;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    ((System.Windows.Forms.Form)this.v_control).Height = p_height;
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    ((System.Windows.Forms.Panel)this.v_control).Height = p_height;
-                    break;
-            }
+            this.v_control.Height = p_height;
         }
 
-        public void SetTitle(string p_title)
+        /// <summary>
+        /// Configura a localização do Container atual dentro do Container pai.
+        /// </summary>
+        /// <param name="p_posx">Posição X.</param>
+        /// <param name="p_posy">Posição Y.</param>
+        public void SetLocation(int p_posx, int p_posy)
         {
-            this.v_title = p_title;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    ((System.Windows.Forms.Form)this.v_control).Text = p_title;
-                    break;
-                default:
-                    break;
-            }
+            this.v_posx = p_posx;
+            this.v_posy = p_posy;
+            this.v_control.Location = new System.Drawing.Point(p_posx, p_posy);
         }
 
+        /// <summary>
+        /// Adiciona um Container ao Container atual.
+        /// </summary>
+        /// <param name="p_container">Container a ser adicionado.</param>
         public void Add(Spartacus.Forms.Container p_container)
         {
             this.v_containers.Add(p_container);
 
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    switch (p_container.v_type)
-                    {
-                        case Spartacus.Forms.ContainerType.FORM:
-                            // nao tem como incluir um form dentro de outro container
-                            break;
-                        case Spartacus.Forms.ContainerType.PANEL:
-                            ((System.Windows.Forms.Panel)p_container.v_control).Parent = ((System.Windows.Forms.Form)this.v_control);
-                            break;
-                    }
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    switch (p_container.v_type)
-                    {
-                        case Spartacus.Forms.ContainerType.FORM:
-                            // nao tem como incluir um form dentro de outro container
-                            break;
-                        case Spartacus.Forms.ContainerType.PANEL:
-                            ((System.Windows.Forms.Panel)p_container.v_control).Parent = ((System.Windows.Forms.Panel)this.v_control);
-                            break;
-                    }
-                    break;
-            }
+            p_container.v_control.Parent = this.v_control;
 
-            //TODO: tratar como fica o offsety
+            this.v_offsety += p_container.v_height;
+
+            if (p_container.v_isfrozen)
+                this.v_frozenheight += p_container.v_height;
         }
 
-        public void Add(Spartacus.Forms.Component p_component)
-        {
-            this.v_components.Add(p_component);
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    p_component.v_panel.Parent = ((System.Windows.Forms.Form)this.v_control);
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    p_component.v_panel.Parent = ((System.Windows.Forms.Panel)this.v_control);
-                    break;
-            }
-
-            this.v_offsety += p_component.v_height;
-
-            if (p_component.v_frozenheight)
-                this.v_frozenheight += p_component.v_height;
-        }
-
-        private void Resize(int p_newwidth, int p_newheight)
-        {
-            Spartacus.Forms.Container v_container;
-            Spartacus.Forms.Component v_component;
-            int k, posy;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    ((System.Windows.Forms.Form)this.v_control).SuspendLayout();
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    ((System.Windows.Forms.Panel)this.v_control).SuspendLayout();
-                    break;
-            }
-
-            // redimensionando containers
-            for (k = 0; k < this.v_containers.Count; k++)
-            {
-                v_container = (Spartacus.Forms.Container)this.v_containers[k];
-            
-                v_container.Resize(
-                    (int) ((double) p_newwidth * (double) v_container.v_width / (double) this.v_width),
-                    (int) ((double) p_newheight * (double) v_container.v_height / (double) this.v_height)
-                );
-            }
-
-            // redimensionando componentes
-            posy = 0;
-            for (k = 0; k < this.v_components.Count; k++)
-            {
-                v_component = (Spartacus.Forms.Component)this.v_components[k];
-
-                v_component.Resize(
-                    (int) ((double) p_newwidth * (double) v_component.v_width / (double) this.v_width),
-                    (int) (((double) (p_newheight - this.v_frozenheight) * (double) v_component.v_height) / (double) (this.v_height - this.v_frozenheight)),
-                    0,
-                    posy
-                );
-
-                posy += v_component.v_height;
-            }
-
-            this.v_width = p_newwidth;
-            this.v_height = p_newheight;
-
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    ((System.Windows.Forms.Form)this.v_control).ResumeLayout();
-                    ((System.Windows.Forms.Form)this.v_control).Refresh();
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    ((System.Windows.Forms.Panel)this.v_control).ResumeLayout();
-                    ((System.Windows.Forms.Panel)this.v_control).Refresh();
-                    break;
-            }
-        }
-
-        private void OnResize(object sender, System.EventArgs e)
-        {
-            switch (this.v_type)
-            {
-                case Spartacus.Forms.ContainerType.FORM:
-                    this.Resize(
-                        ((System.Windows.Forms.Form)sender).Width,
-                        ((System.Windows.Forms.Form)sender).Height
-                    );
-                    break;
-                case Spartacus.Forms.ContainerType.PANEL:
-                    this.Resize(
-                        ((System.Windows.Forms.Panel)sender).Width,
-                        ((System.Windows.Forms.Panel)sender).Height
-                    );
-                    break;
-            }
-        }
+        /// <summary>
+        /// Redimensiona o Componente atual.
+        /// Também reposiciona dentro do Container pai, se for necessário.
+        /// </summary>
+        /// <param name="p_newwidth">Nova largura.</param>
+        /// <param name="p_newheight">Nova altura.</param>
+        /// <param name="p_newposx">Nova posição X.</param>
+        /// <param name="p_newposy">Nova posição Y.</param>
+        public abstract void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy);
     }
 }

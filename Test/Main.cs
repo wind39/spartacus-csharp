@@ -362,8 +362,10 @@ namespace Test
 
         private static void FormsTest()
         {
-            Spartacus.Forms.Container v_window;
-            Spartacus.Forms.Textbox v_textbox;
+            Spartacus.Forms.Window v_window;
+            Spartacus.Forms.Menu v_menu;
+            System.Windows.Forms.ToolStripMenuItem v_menugroup;
+            Spartacus.Forms.Textbox v_textbox, v_textbox2;
             Spartacus.Forms.Lookup v_lookup;
             Spartacus.Forms.Grid v_grid;
             Spartacus.Forms.Buttons v_buttons;
@@ -377,26 +379,28 @@ namespace Test
 
                 v_table = v_database.Query("select pais_st_codigo, pais_st_nome from paises", "PAISES");
 
-                v_window = new Spartacus.Forms.Container(Spartacus.Forms.ContainerType.FORM);
-                v_window.SetTitle("Formulario Teste");
-                v_window.SetWidth(500);
-                v_window.SetHeight(400);
+                v_window = new Spartacus.Forms.Window("Formulario Teste", 500, 400);
 
-                v_textbox = new Spartacus.Forms.Textbox(v_window, 40);
-                v_textbox.SetLabel("Digite seu nome:");
+                v_menu = new Spartacus.Forms.Menu(v_window);
+                v_menugroup = v_menu.AddGroup("Cadastro", null);
+                v_menu.AddItem(v_menugroup, "Clientes", new System.EventHandler(OnClick2));
+                v_menu.AddItem(v_menugroup, "Usuários", new System.EventHandler(OnClick2));
+                v_menu.AddItem(v_menugroup, "Licenças", new System.EventHandler(OnClick2));
+                v_menugroup = v_menu.AddGroup("Ajuda", null);
+                v_menu.AddItem(v_menugroup, "Sobre", new System.EventHandler(OnClick));
+                v_window.Add(v_menu);
+
+                v_textbox = new Spartacus.Forms.Textbox(v_window, "Digite seu nome:", 40);
                 v_window.Add(v_textbox);
 
-                //v_textbox2 = new Spartacus.Forms.Textbox(v_window, 40);
-                //v_textbox2.SetLabel("Digite sua idade:");
-                //v_window.Add(v_textbox2);
+                v_textbox2 = new Spartacus.Forms.Textbox(v_window, "Digite sua idade:", 40);
+                v_window.Add(v_textbox2);
 
-                v_lookup = new Spartacus.Forms.Lookup(v_window);
-                v_lookup.SetLabel("Olha só!!");
+                v_lookup = new Spartacus.Forms.Lookup(v_window, "Olha só!!");
                 v_lookup.Populate(v_table, "pais_st_codigo", "pais_st_nome", "70;180");
                 v_window.Add(v_lookup);
 
-                v_grid = new Spartacus.Forms.Grid(v_window);
-                v_grid.SetHeight(200);
+                v_grid = new Spartacus.Forms.Grid(v_window, v_window.v_width, 100);
                 v_grid.Populate(v_table);
                 v_window.Add(v_grid);
 

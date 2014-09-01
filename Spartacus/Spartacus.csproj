@@ -97,12 +97,13 @@
     <Compile Include="Spartacus.Database.Postgresql.cs" />
     <Compile Include="Spartacus.Utils.FileArray.cs" />
     <Compile Include="Spartacus.Forms.Container.cs" />
-    <Compile Include="Spartacus.Forms.Component.cs" />
     <Compile Include="Spartacus.Forms.Textbox.cs" />
     <Compile Include="Spartacus.Forms.Grid.cs" />
     <Compile Include="Spartacus.Forms.Buttons.cs" />
     <Compile Include="Spartacus.Forms.MultiColumnComboBox.cs" />
     <Compile Include="Spartacus.Forms.Lookup.cs" />
+    <Compile Include="Spartacus.Forms.Menu.cs" />
+    <Compile Include="Spartacus.Forms.Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

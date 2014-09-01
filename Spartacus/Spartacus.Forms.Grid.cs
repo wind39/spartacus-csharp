@@ -2,17 +2,23 @@ using System;
 
 namespace Spartacus.Forms
 {
-    public class Grid : Spartacus.Forms.Component
+    public class Grid : Spartacus.Forms.Container
     {
         public System.Windows.Forms.DataGridView v_grid;
 
 
-        public Grid(Spartacus.Forms.Container p_parent)
+        public Grid(Spartacus.Forms.Container p_parent, int p_width, int p_height)
             : base(p_parent)
         {
-            this.v_frozenheight = false;
+            this.v_control = new System.Windows.Forms.Panel();
 
-            this.v_panel.Width = this.v_width - 5;
+            this.v_isfrozen = false;
+
+            this.v_width = p_width;
+            this.v_control.Width = p_width - 5;
+
+            this.SetHeight(p_height);
+            this.SetLocation(0, p_parent.v_offsety);
 
             this.v_grid = new System.Windows.Forms.DataGridView();
             this.v_grid.RowHeadersVisible = false;
@@ -31,25 +37,23 @@ namespace Spartacus.Forms
             this.v_grid.AllowUserToOrderColumns = true;
             this.v_grid.AllowUserToResizeColumns = true;
             this.v_grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v_grid.Parent = this.v_panel;
+            this.v_grid.Parent = this.v_control;
         }
 
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
-            this.v_panel.SuspendLayout();
+            this.v_control.SuspendLayout();
             this.v_grid.SuspendLayout();
 
-            this.v_panel.Location = new System.Drawing.Point(p_newposx, p_newposy);
-
             this.v_width = p_newwidth;
-            this.v_panel.Width = p_newwidth - 5;
+            this.v_control.Width = p_newwidth - 5;
 
-            this.v_height = p_newheight;
-            this.v_panel.Height = p_newheight;
+            this.SetHeight(p_newheight);
+            this.SetLocation(p_newposx, p_newposy);
 
             this.v_grid.ResumeLayout();
-            this.v_panel.ResumeLayout();
-            this.v_panel.Refresh();
+            this.v_control.ResumeLayout();
+            this.v_control.Refresh();
         }
 
         public void Populate(System.Data.DataTable p_table)
@@ -73,4 +77,3 @@ namespace Spartacus.Forms
         }
     }
 }
-
