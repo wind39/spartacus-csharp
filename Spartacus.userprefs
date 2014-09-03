@@ -1,23 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Forms.Panel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Forms.Buttons.cs">
     <Files>
-      <File FileName="Test/Main.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Container.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Window.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Panel.cs" Line="42" Column="52" />
-      <File FileName="Spartacus/Spartacus.Forms.Buttons.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Menu.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Grid.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Lookup.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Forms.Textbox.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Forms.Window.cs" Line="13" Column="23" />
+      <File FileName="Spartacus/Spartacus.Forms.Grid.cs" Line="63" Column="10" />
+      <File FileName="Spartacus/Spartacus.Forms.Buttons.cs" Line="53" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
           <Node name="Spartacus" expanded="True">
-            <Node name="Spartacus.Forms.Panel.cs" selected="True" />
+            <Node name="Spartacus.Forms.Buttons.cs" selected="True" />
           </Node>
           <Node name="Test" expanded="True" />
         </State>

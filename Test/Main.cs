@@ -10,7 +10,7 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            FormsTest();
+            FileTest();
         }
 
         #region DATABASE
@@ -44,9 +44,12 @@ namespace Test
             Spartacus.Utils.FileExplorer v_explorer;
             string v_line;
             char[] v_separator;
-            bool listar = true;
+            int k;
 
-            v_explorer = new Spartacus.Utils.FileExplorer("/home/william");
+            v_explorer = new Spartacus.Utils.FileExplorer("/mnt/customers/ARAG");
+            v_explorer.v_protectedminlevel = 1;
+            v_explorer.v_protectpattern = "RESULTADOS FINAIS";
+            v_explorer.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWONLYPATTERN;
 
             try
             {
@@ -92,7 +95,10 @@ namespace Test
                     case "r":
                         try
                         {
-                            v_explorer.Return();
+                            if (v_line.Split(v_separator).Length > 1)
+                                v_explorer.Return(System.Convert.ToInt32(v_line.Split(v_separator)[1]));
+                            else
+                                v_explorer.Return();
                         }
                         catch (Spartacus.Utils.Exception e)
                         {
@@ -157,11 +163,16 @@ namespace Test
 
                 try
                 {
-                    System.Console.WriteLine(v_explorer.v_current.CompleteFileName());
+                    //System.Console.WriteLine(v_explorer.v_current.CompleteFileName());
+                    //System.Console.WriteLine();
+
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("Histórico:");
+                    for (k = 0; k < v_explorer.v_returnhistory.Count; k++)
+                        System.Console.WriteLine("{0} - {1}", k, v_explorer.v_returnhistory[k].ToString());
                     System.Console.WriteLine();
 
-                    if (listar)
-                        v_explorer.List();
+                    v_explorer.List();
 
                     foreach (Spartacus.Utils.File v_file in v_explorer.v_files)
                     {
@@ -180,8 +191,6 @@ namespace Test
                 }
 
                 v_line = System.Console.ReadLine();
-
-                listar = true;
             }
         }
 

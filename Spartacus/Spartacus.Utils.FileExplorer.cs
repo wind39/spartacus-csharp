@@ -17,6 +17,16 @@ namespace Spartacus.Utils
     }
 
     /// <summary>
+    /// Enumera as possibilidades de exibição de arquivos baseado no padrão.
+    /// </summary>
+    public enum ShowPatternType
+    {
+        SHOWALL, // mostra todos os arquivos
+        SHOWALLEXCEPTPATTERN, // mostra todos os arquivos menos o padrão
+        SHOWONLYPATTERN // mostra apenas o padrão
+    }
+
+    /// <summary>
     /// Classe FileExplorer.
     /// Representa um explorador de arquivos genérico, que pode ser usado em qualquer interface (prompt de comando, desktop ou web).
     /// </summary>
@@ -68,9 +78,10 @@ namespace Spartacus.Utils
         public string v_protectpattern;
 
         /// <summary>
-        /// Informa se a pasta com padrão de proteção deve ser mostrada ou não.
+        /// Informa o tipo de exibição de arquivos baseado no padrão de proteção.
         /// </summary>
-        public bool v_showprotectpattern;
+        //public bool v_showprotectpattern;
+        public Spartacus.Utils.ShowPatternType v_showpatterntype;
 
         /// <summary>
         /// Nível mínimo de proteção de escrita dentro da estrutura de diretórios.
@@ -83,6 +94,12 @@ namespace Spartacus.Utils
         public bool v_showhiddenfiles;
 
         /// <summary>
+        /// Armazena um vetor com o histórico de pastas pai.
+        /// </summary>
+        public System.Collections.ArrayList v_returnhistory;
+
+
+        /// <summary>
         /// Initializa uma nova instância da classe <see cref="Spartacus.Utils.FileExplorer"/>.
         /// </summary>
         public FileExplorer()
@@ -91,11 +108,14 @@ namespace Spartacus.Utils
             this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
-            this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+
+            this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
+
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_files = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.ArrayList();
         }
 
         /// <summary>
@@ -111,13 +131,18 @@ namespace Spartacus.Utils
             this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
-            this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+
+            this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
+
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
             this.v_files = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.ArrayList();
+
+            this.v_returnhistory.Add(p_root);
         }
 
         /// <summary>
@@ -136,13 +161,18 @@ namespace Spartacus.Utils
             this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
-            this.v_showprotectpattern = true; // padrão é mostrar pastas protegidas
+
+            this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
+
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
             this.v_files = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.ArrayList();
+
+            this.v_returnhistory.Add(p_root);
         }
 
         /// <summary>
@@ -158,6 +188,8 @@ namespace Spartacus.Utils
             this.v_currentlevel = 0;
 
             this.v_current.v_protected = true; // raiz sempre é protegida
+
+            this.v_returnhistory.Add(p_root);
         }
 
         /// <summary>
@@ -179,8 +211,85 @@ namespace Spartacus.Utils
 
                 foreach (string v_item in System.IO.Directory.GetDirectories(this.v_current.CompleteFileName()))
                 {
+                    switch (this.v_showpatterntype)
+                    {
+                        case Spartacus.Utils.ShowPatternType.SHOWALL:
+                            v_directoryinfo = new System.IO.DirectoryInfo(v_item);
+
+                            v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
+
+                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                                v_directory.v_protected = true;
+
+                            if (v_directory.v_hidden)
+                            {
+                                if (this.v_showhiddenfiles)
+                                {
+                                    this.v_files.Add(v_directory);
+                                    k++;
+                                }
+                            }
+                            else
+                            {
+                                this.v_files.Add(v_directory);
+                                k++;
+                            }
+                            break;
+                        case Spartacus.Utils.ShowPatternType.SHOWALLEXCEPTPATTERN:
+                            if (! v_item.Contains(this.v_protectpattern)) // só vai mostrar se não contiver o padrão
+                            {
+                                v_directoryinfo = new System.IO.DirectoryInfo(v_item);
+
+                                v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
+
+                                if (this.v_currentlevel < this.v_protectedminlevel)
+                                    v_directory.v_protected = true;
+
+                                if (v_directory.v_hidden)
+                                {
+                                    if (this.v_showhiddenfiles)
+                                    {
+                                        this.v_files.Add(v_directory);
+                                        k++;
+                                    }
+                                }
+                                else
+                                {
+                                    this.v_files.Add(v_directory);
+                                    k++;
+                                }
+                            }
+                            break;
+                        case Spartacus.Utils.ShowPatternType.SHOWONLYPATTERN:
+                            // só vai mostrar se contiver o padrão ou se o nivel atual for menor que o nivel minimo protegido
+                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                            {
+                                v_directoryinfo = new System.IO.DirectoryInfo(v_item);
+
+                                v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
+
+                                if (this.v_currentlevel < this.v_protectedminlevel)
+                                    v_directory.v_protected = true;
+
+                                if (v_directory.v_hidden)
+                                {
+                                    if (this.v_showhiddenfiles)
+                                    {
+                                        this.v_files.Add(v_directory);
+                                        k++;
+                                    }
+                                }
+                                else
+                                {
+                                    this.v_files.Add(v_directory);
+                                    k++;
+                                }
+                            }
+                            break;
+                    }
+
                     // se pode mostrar o padrão protegido, então mostra
-                    if (this.v_showprotectpattern)
+                    /*if (this.v_showprotectpattern)
                     {
                         v_directoryinfo = new System.IO.DirectoryInfo(v_item);
 
@@ -228,7 +337,7 @@ namespace Spartacus.Utils
                                 k++;
                             }
                         }
-                    }
+                    }*/
                 }
 
                 foreach (string v_item in System.IO.Directory.GetFiles(this.v_current.CompleteFileName()))
@@ -309,6 +418,8 @@ namespace Spartacus.Utils
                     this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, v_file.CompleteFileName());
                     this.v_current.v_protected = v_file.v_protected;
                     this.v_currentlevel++;
+
+                    this.v_returnhistory.Add(this.v_current.CompleteFileName());
                 }
             }
             catch (System.Exception e)
@@ -341,6 +452,39 @@ namespace Spartacus.Utils
 
                 if (v_parent.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel)
                     this.v_current.v_protected = true;
+
+                this.v_returnhistory.RemoveAt(this.v_returnhistory.Count-1);
+            }
+        }
+
+        /// <summary>
+        /// Retorna para um diretório anterior qualquer no histórico.
+        /// </summary>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.</exception>
+        public void Return(int p_history)
+        {
+            string v_context;
+            string v_parent;
+
+            if (this.v_current.CompleteFileName() == this.v_root)
+            {
+                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                throw new Spartacus.Utils.Exception(v_context, "Já está no diretório raiz.");
+            }
+            else
+            {
+                v_parent = this.v_current.v_path;
+                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, v_parent);
+
+                this.v_currentlevel--;
+
+                if (v_parent.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel)
+                    this.v_current.v_protected = true;
+
+                this.v_returnhistory.RemoveAt(this.v_returnhistory.Count-1);
+
+                if (p_history < this.v_returnhistory.Count - 1)
+                    this.Return(p_history - 1);
             }
         }
 
