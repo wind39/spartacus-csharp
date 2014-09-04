@@ -17,16 +17,6 @@ namespace Spartacus.Database
         public string v_connectionstring;
 
         /// <summary>
-        /// PostgreSQL Connection.
-        /// </summary>
-        Npgsql.NpgsqlConnection v_pgcon;
-
-        /// <summary>
-        /// PostgreSQL Command.
-        /// </summary>
-        Npgsql.NpgsqlCommand v_pgcmd;
-
-        /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Postgresql"/>.
         /// </summary>
         /// <param name='p_server'>
@@ -52,50 +42,6 @@ namespace Spartacus.Database
                     + "Database=" + p_database + ";"
                     + "User ID=" + p_user + ";"
                     + "Password=" + p_password;
-
-            this.v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring);
-        }
-
-        /// <summary>
-        /// Conectar ao banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se conectar ao banco de dados.</exception>
-        public override void Connect ()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_pgcon.Open();
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
-            }
-        }
-
-        /// <summary>
-        /// Desconectar do banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se desconectar do banco de dados.</exception>
-        public override void Disconnect()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_pgcon.Close();
-                this.v_pgcon.Dispose();
-                this.v_pgcon = null;
-                this.v_pgcmd.Dispose();
-                this.v_pgcmd = null;
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
-            }
         }
 
         /// <summary>
@@ -113,23 +59,26 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             Npgsql.NpgsqlDataAdapter v_pgadp;
+            Npgsql.NpgsqlCommand v_pgcmd;
             string v_context;
 
-            try
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
-                this.v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, this.v_pgcon);
-                v_pgadp = new Npgsql.NpgsqlDataAdapter(this.v_pgcmd);
+                try
+                {
+                    v_pgcon.Open();
 
-                v_table = new System.Data.DataTable(p_tablename);
-                v_pgadp.Fill(v_table);
+                    v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, v_pgcon);
+                    v_pgadp = new Npgsql.NpgsqlDataAdapter(v_pgcmd);
 
-                v_pgadp.Dispose();
-                v_pgadp = null;
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                    v_table = new System.Data.DataTable(p_tablename);
+                    v_pgadp.Fill(v_table);
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_table;
@@ -153,42 +102,45 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null, v_tabletmp = null;
             Npgsql.NpgsqlDataAdapter v_pgadp;
+            Npgsql.NpgsqlCommand v_pgcmd;
             System.Data.DataRow v_row;
             string v_context;
             int k;
 
-            try
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
-                this.v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, this.v_pgcon);
-                v_pgadp = new Npgsql.NpgsqlDataAdapter(this.v_pgcmd);
-                v_tabletmp = new System.Data.DataTable(p_tablename);
-                v_pgadp.Fill(v_tabletmp);
-
-                v_pgadp.Dispose();
-                v_pgadp = null;
-
-                v_table = v_tabletmp.Clone();
-
-                for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                try
                 {
-                    v_table.Columns[k].ColumnName = p_table.Columns[k].ColumnName;
-                    v_table.Columns[k].DataType = p_table.Columns[k].DataType;
-                }
+                    v_pgcon.Open();
 
-                foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, v_pgcon);
+                    v_pgadp = new Npgsql.NpgsqlDataAdapter(v_pgcmd);
+                    v_tabletmp = new System.Data.DataTable(p_tablename);
+                    v_pgadp.Fill(v_tabletmp);
+
+                    v_table = v_tabletmp.Clone();
+
+                    for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                    {
+                        v_table.Columns [k].ColumnName = p_table.Columns [k].ColumnName;
+                        v_table.Columns [k].DataType = p_table.Columns [k].DataType;
+                    }
+
+                    foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    {
+                        v_row = v_table.NewRow();
+
+                        for (k = 0; k < v_table.Columns.Count; k++)
+                            v_row [k] = r [k];
+
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+                catch (Npgsql.NpgsqlException e)
                 {
-                    v_row = v_table.NewRow();
-
-                    for (k = 0; k < v_table.Columns.Count; k++)
-                        v_row[k] = r[k];
-
-                    v_table.Rows.Add(v_row);
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
                 }
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
             }
 
             return v_table;
@@ -203,17 +155,23 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override void Execute(string p_sql)
         {
+            Npgsql.NpgsqlCommand v_pgcmd;
             string v_context;
 
-            try
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
-                this.v_pgcmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_pgcon);
-                this.v_pgcmd.ExecuteNonQuery();
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                try
+                {
+                    v_pgcon.Open();
+
+                    v_pgcmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_pgcon);
+                    v_pgcmd.ExecuteNonQuery();
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                }
             }
         }
 
@@ -229,18 +187,24 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override string ExecuteScalar(string p_sql)
         {
+            Npgsql.NpgsqlCommand v_pgcmd;
             string v_context;
             string v_ret;
 
-            try
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
-                this.v_pgcmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_pgcon);
-                v_ret = this.v_pgcmd.ExecuteScalar().ToString();
-            }
-            catch (Npgsql.NpgsqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                try
+                {
+                    v_pgcon.Open();
+
+                    v_pgcmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_pgcon);
+                    v_ret = v_pgcmd.ExecuteScalar().ToString();
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                }
             }
 
             return v_ret;

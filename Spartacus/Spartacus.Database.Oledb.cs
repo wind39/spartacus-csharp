@@ -17,16 +17,6 @@ namespace Spartacus.Database
         public string v_connectionstring;
 
         /// <summary>
-        /// OLE DB Connection.
-        /// </summary>
-        System.Data.OleDb.OleDbConnection v_olecon;
-
-        /// <summary>
-        /// OLE DB Command.
-        /// </summary>
-        System.Data.OleDb.OleDbCommand v_olecmd;
-
-        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oledb"/>.
         /// Cria a string de conexão ao banco.
         /// </summary>
@@ -70,50 +60,6 @@ namespace Spartacus.Database
                         + this.v_user + ";Password="
                         + this.v_password;
             }
-
-            this.v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
-        }
-
-        /// <summary>
-        /// Conectar ao banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se conectar ao banco de dados.</exception>
-        public override void Connect ()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_olecon.Open();
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
-            }
-        }
-
-        /// <summary>
-        /// Desconectar do banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se desconectar do banco de dados.</exception>
-        public override void Disconnect()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_olecon.Close();
-                this.v_olecon.Dispose();
-                this.v_olecon = null;
-                this.v_olecmd.Dispose();
-                this.v_olecmd = null;
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
-            }
         }
 
         /// <summary>
@@ -131,22 +77,25 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             System.Data.OleDb.OleDbDataAdapter v_oleadp;
+            System.Data.OleDb.OleDbCommand v_olecmd;
             string v_context;
 
-            try
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
             {
-                this.v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, this.v_olecon);
-                v_oleadp = new System.Data.OleDb.OleDbDataAdapter(this.v_olecmd);
-                v_table = new System.Data.DataTable(p_tablename);
-                v_oleadp.Fill(v_table);
+                try
+                {
+                    v_olecon.Open();
 
-                v_oleadp.Dispose();
-                v_oleadp = null;
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
+                    v_oleadp = new System.Data.OleDb.OleDbDataAdapter(v_olecmd);
+                    v_table = new System.Data.DataTable(p_tablename);
+                    v_oleadp.Fill(v_table);
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_table;
@@ -170,42 +119,45 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null, v_tabletmp = null;
             System.Data.OleDb.OleDbDataAdapter v_oleadp;
+            System.Data.OleDb.OleDbCommand v_olecmd;
             System.Data.DataRow v_row;
             string v_context;
             int k;
 
-            try
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
             {
-                this.v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, this.v_olecon);
-                v_oleadp = new System.Data.OleDb.OleDbDataAdapter(this.v_olecmd);
-                v_tabletmp = new System.Data.DataTable(p_tablename);
-                v_oleadp.Fill(v_tabletmp);
-
-                v_oleadp.Dispose();
-                v_oleadp = null;
-
-                v_table = v_tabletmp.Clone();
-
-                for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                try
                 {
-                    v_table.Columns[k].ColumnName = p_table.Columns[k].ColumnName;
-                    v_table.Columns[k].DataType = p_table.Columns[k].DataType;
-                }
+                    v_olecon.Open();
 
-                foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
+                    v_oleadp = new System.Data.OleDb.OleDbDataAdapter(v_olecmd);
+                    v_tabletmp = new System.Data.DataTable(p_tablename);
+                    v_oleadp.Fill(v_tabletmp);
+
+                    v_table = v_tabletmp.Clone();
+
+                    for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                    {
+                        v_table.Columns [k].ColumnName = p_table.Columns [k].ColumnName;
+                        v_table.Columns [k].DataType = p_table.Columns [k].DataType;
+                    }
+
+                    foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    {
+                        v_row = v_table.NewRow();
+
+                        for (k = 0; k < v_table.Columns.Count; k++)
+                            v_row [k] = r [k];
+
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+                catch (System.Data.OleDb.OleDbException e)
                 {
-                    v_row = v_table.NewRow();
-
-                    for (k = 0; k < v_table.Columns.Count; k++)
-                        v_row[k] = r[k];
-
-                    v_table.Rows.Add(v_row);
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
                 }
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
             }
 
             return v_table;
@@ -220,17 +172,23 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override void Execute(string p_sql)
         {
+            System.Data.OleDb.OleDbCommand v_olecmd;
             string v_context;
 
-            try
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
             {
-                this.v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_olecon);
-                this.v_olecmd.ExecuteNonQuery();
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                try
+                {
+                    v_olecon.Open();
+
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_olecon);
+                    v_olecmd.ExecuteNonQuery();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
         }
 
@@ -246,22 +204,27 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override string ExecuteScalar(string p_sql)
         {
+            System.Data.OleDb.OleDbCommand v_olecmd;
             string v_context;
             string v_ret;
 
-            try
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
             {
-                this.v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_olecon);
-                v_ret = this.v_olecmd.ExecuteScalar().ToString();
-            }
-            catch (System.Data.OleDb.OleDbException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                try
+                {
+                    v_olecon.Open();
+
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_olecon);
+                    v_ret = v_olecmd.ExecuteScalar().ToString();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_ret;
         }
     }
 }
-

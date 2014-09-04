@@ -106,16 +106,6 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Conectar ao banco de dados.
-        /// </summary>
-        public abstract void Connect();
-
-        /// <summary>
-        /// Desconectar do banco de dados.
-        /// </summary>
-        public abstract void Disconnect();
-
-        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
         /// </summary>
         /// <param name='p_sql'>

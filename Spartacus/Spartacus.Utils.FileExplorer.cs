@@ -268,7 +268,7 @@ namespace Spartacus.Utils
 
                                 v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
 
-                                if (this.v_currentlevel < this.v_protectedminlevel)
+                                if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
                                     v_directory.v_protected = true;
 
                                 if (v_directory.v_hidden)

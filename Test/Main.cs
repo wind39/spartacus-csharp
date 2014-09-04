@@ -5,37 +5,24 @@ namespace Test
 {
     class MainClass
     {
-        // objeto de conexao com bancos de dados
-        static Spartacus.Database.Generic v_database;
-
         public static void Main(string[] args)
         {
             FormsTest();
         }
 
-        #region DATABASE
-
-        private static void DatabaseTest()
-        {
+        //#region DATABASE
+        //
+        //private static void DatabaseTest()
+        //{
             //v_database = new Spartacus.Database.Odbc("tpprodu", "planning", "password");
             //v_database = new Spartacus.Database.Firebird("localhost", "3050", "/work/clientes/escriba/sanmod.gdb", "SYSDBA", "masterkey");
             //v_database = new Spartacus.Database.Mysql("localhost", "3306", "wassina3_00555", "root", "password");
             //v_database = new Spartacus.Database.Oledb("Oracle", "127.0.0.1", "1521", "XE", "pscore", "password");
             //v_database = new Spartacus.Database.Sqlite("teste.db");
-            v_database = new Spartacus.Database.Postgresql("localhost", "5432", "test", "postgres", "password");
-
-            try
-            {
-                v_database.Connect();
-                System.Console.WriteLine("Conseguiu se conectar!");
-            }
-            catch (Spartacus.Database.Exception e)
-            {
-                System.Console.WriteLine(e.v_message);
-            }
-        }
-
-        #endregion
+            //v_database = new Spartacus.Database.Postgresql("localhost", "5432", "test", "postgres", "password");
+        //}
+        //
+        //#endregion
 
         #region FILE EXPLORER
 
@@ -384,7 +371,6 @@ namespace Test
             try
             {
                 v_database = new Spartacus.Database.Sqlite("sc_register.db");
-                v_database.Connect();
 
                 v_table = v_database.Query("select pais_st_codigo, pais_st_nome from paises", "PAISES");
 

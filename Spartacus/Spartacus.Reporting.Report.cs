@@ -219,7 +219,6 @@ namespace Spartacus.Reporting
             string v_service = null;
             string v_user = null;
             string v_password = null;
-            string v_context;
 
             while (p_reader.Read())
             {
@@ -313,16 +312,6 @@ namespace Spartacus.Reporting
                     break;
                 default:
                     break;
-            }
-
-            try
-            {
-                this.v_database.Connect();
-            }
-            catch (Spartacus.Database.Exception e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Reporting.Exception(v_context, "Não pode conectar-se ao banco de dados definido pelo relatório.", e);
             }
         }
 

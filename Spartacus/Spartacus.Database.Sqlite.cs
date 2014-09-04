@@ -17,16 +17,6 @@ namespace Spartacus.Database
         public string v_connectionstring;
 
         /// <summary>
-        /// Sqlite Connection.
-        /// </summary>
-        Mono.Data.Sqlite.SqliteConnection v_sqlcon;
-
-        /// <summary>
-        /// Sqlite Command.
-        /// </summary>
-        Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
-
-        /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlite"/>.
         /// </summary>
         /// <param name='p_file'>
@@ -36,50 +26,6 @@ namespace Spartacus.Database
             : base(p_file)
         {
             this.v_connectionstring = "URI=file:" + p_file;
-
-            this.v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
-        }
-
-        /// <summary>
-        /// Conectar ao banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se conectar ao banco de dados.</exception>
-        public override void Connect ()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_sqlcon.Open();
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
-            }
-        }
-
-        /// <summary>
-        /// Desconectar do banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se desconectar do banco de dados.</exception>
-        public override void Disconnect()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_sqlcon.Close();
-                this.v_sqlcon.Dispose();
-                this.v_sqlcon = null;
-                this.v_sqlcmd.Dispose();
-                this.v_sqlcmd = null;
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
-            }
         }
 
         /// <summary>
@@ -97,22 +43,25 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             Mono.Data.Sqlite.SqliteDataAdapter v_sqladp;
+            Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
             string v_context;
 
-            try
+            using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
-                this.v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(p_sql, this.v_sqlcon);
-                v_sqladp = new Mono.Data.Sqlite.SqliteDataAdapter(this.v_sqlcmd);
-                v_table = new System.Data.DataTable(p_tablename);
-                v_sqladp.Fill(v_table);
+                try
+                {
+                    v_sqlcon.Open();
 
-                v_sqladp.Dispose();
-                v_sqladp = null;
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                    v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(p_sql, v_sqlcon);
+                    v_sqladp = new Mono.Data.Sqlite.SqliteDataAdapter(v_sqlcmd);
+                    v_table = new System.Data.DataTable(p_tablename);
+                    v_sqladp.Fill(v_table);
+                }
+                catch (Mono.Data.Sqlite.SqliteException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_table;
@@ -136,42 +85,45 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null, v_tabletmp = null;
             Mono.Data.Sqlite.SqliteDataAdapter v_sqladp;
+            Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
             System.Data.DataRow v_row;
             string v_context;
             int k;
 
-            try
+            using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
-                this.v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(p_sql, this.v_sqlcon);
-                v_sqladp = new Mono.Data.Sqlite.SqliteDataAdapter(this.v_sqlcmd);
-                v_tabletmp = new System.Data.DataTable(p_tablename);
-                v_sqladp.Fill(v_tabletmp);
-
-                v_sqladp.Dispose();
-                v_sqladp = null;
-
-                v_table = v_tabletmp.Clone();
-
-                for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                try
                 {
-                    v_table.Columns[k].ColumnName = p_table.Columns[k].ColumnName;
-                    v_table.Columns[k].DataType = p_table.Columns[k].DataType;
-                }
+                    v_sqlcon.Open();
 
-                foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(p_sql, v_sqlcon);
+                    v_sqladp = new Mono.Data.Sqlite.SqliteDataAdapter(v_sqlcmd);
+                    v_tabletmp = new System.Data.DataTable(p_tablename);
+                    v_sqladp.Fill(v_tabletmp);
+
+                    v_table = v_tabletmp.Clone();
+
+                    for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                    {
+                        v_table.Columns [k].ColumnName = p_table.Columns [k].ColumnName;
+                        v_table.Columns [k].DataType = p_table.Columns [k].DataType;
+                    }
+
+                    foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    {
+                        v_row = v_table.NewRow();
+
+                        for (k = 0; k < v_table.Columns.Count; k++)
+                            v_row [k] = r [k];
+
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+                catch (Mono.Data.Sqlite.SqliteException e)
                 {
-                    v_row = v_table.NewRow();
-
-                    for (k = 0; k < v_table.Columns.Count; k++)
-                        v_row[k] = r[k];
-
-                    v_table.Rows.Add(v_row);
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
                 }
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
             }
 
             return v_table;
@@ -186,17 +138,23 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override void Execute(string p_sql)
         {
+            Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
             string v_context;
 
-            try
+            using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
-                this.v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_sqlcon);
-                this.v_sqlcmd.ExecuteNonQuery();
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                try
+                {
+                    v_sqlcon.Open();
+
+                    v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_sqlcon);
+                    v_sqlcmd.ExecuteNonQuery();
+                }
+                catch (Mono.Data.Sqlite.SqliteException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
         }
 
@@ -212,18 +170,24 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override string ExecuteScalar(string p_sql)
         {
+            Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
             string v_context;
             string v_ret;
 
-            try
+            using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
-                this.v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_sqlcon);
-                v_ret = this.v_sqlcmd.ExecuteScalar().ToString();
-            }
-            catch (Mono.Data.Sqlite.SqliteException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                try
+                {
+                    v_sqlcon.Open();
+
+                    v_sqlcmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_sqlcon);
+                    v_ret = v_sqlcmd.ExecuteScalar().ToString();
+                }
+                catch (Mono.Data.Sqlite.SqliteException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_ret;

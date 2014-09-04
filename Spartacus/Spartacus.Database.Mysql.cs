@@ -17,16 +17,6 @@ namespace Spartacus.Database
         public string v_connectionstring;
 
         /// <summary>
-        /// MySQL Connection.
-        /// </summary>
-        MySql.Data.MySqlClient.MySqlConnection v_mycon;
-
-        /// <summary>
-        /// MySQL Command.
-        /// </summary>
-        MySql.Data.MySqlClient.MySqlCommand v_mycmd;
-
-        /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mysql"/>.
         /// </summary>
         /// <param name='p_server'>
@@ -53,50 +43,6 @@ namespace Spartacus.Database
                 + "Database=" + p_database + ";"
                 + "Uid=" + p_user + ";"
                 + "Pwd=" + p_password;
-
-            this.v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
-        }
-
-        /// <summary>
-        /// Conectar ao banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se conectar ao banco de dados.</exception>
-        public override void Connect ()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_mycon.Open();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
-            }
-        }
-
-        /// <summary>
-        /// Desconectar do banco de dados.
-        /// </summary>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível se desconectar do banco de dados.</exception>
-        public override void Disconnect()
-        {
-            string v_context;
-
-            try
-            {
-                this.v_mycon.Close();
-                this.v_mycon.Dispose();
-                this.v_mycon = null;
-                this.v_mycmd.Dispose();
-                this.v_mycmd = null;
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
-            }
         }
 
         /// <summary>
@@ -114,22 +60,25 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             MySql.Data.MySqlClient.MySqlDataAdapter v_myadp;
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
             string v_context;
 
-            try
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
             {
-                this.v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_mycon);
-                v_myadp = new MySql.Data.MySqlClient.MySqlDataAdapter(this.v_mycmd);
-                v_table = new System.Data.DataTable(p_tablename);
-                v_myadp.Fill(v_table);
+                try
+                {
+                    v_mycon.Open();
 
-                v_myadp.Dispose();
-                v_myadp = null;
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, v_mycon);
+                    v_myadp = new MySql.Data.MySqlClient.MySqlDataAdapter(v_mycmd);
+                    v_table = new System.Data.DataTable(p_tablename);
+                    v_myadp.Fill(v_table);
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
             }
 
             return v_table;
@@ -153,42 +102,45 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null, v_tabletmp = null;
             MySql.Data.MySqlClient.MySqlDataAdapter v_myadp;
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
             System.Data.DataRow v_row;
             string v_context;
             int k;
 
-            try
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
             {
-                this.v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_mycon);
-                v_myadp = new MySql.Data.MySqlClient.MySqlDataAdapter(this.v_mycmd);
-                v_tabletmp = new System.Data.DataTable(p_tablename);
-                v_myadp.Fill(v_tabletmp);
-
-                v_myadp.Dispose();
-                v_myadp = null;
-
-                v_table = v_tabletmp.Clone();
-
-                for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                try
                 {
-                    v_table.Columns[k].ColumnName = p_table.Columns[k].ColumnName;
-                    v_table.Columns[k].DataType = p_table.Columns[k].DataType;
-                }
+                    v_mycon.Open();
 
-                foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, v_mycon);
+                    v_myadp = new MySql.Data.MySqlClient.MySqlDataAdapter(v_mycmd);
+                    v_tabletmp = new System.Data.DataTable(p_tablename);
+                    v_myadp.Fill(v_tabletmp);
+
+                    v_table = v_tabletmp.Clone();
+
+                    for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                    {
+                        v_table.Columns [k].ColumnName = p_table.Columns [k].ColumnName;
+                        v_table.Columns [k].DataType = p_table.Columns [k].DataType;
+                    }
+
+                    foreach (System.Data.DataRow r in v_tabletmp.Rows)
+                    {
+                        v_row = v_table.NewRow();
+
+                        for (k = 0; k < v_table.Columns.Count; k++)
+                            v_row [k] = r [k];
+
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
-                    v_row = v_table.NewRow();
-
-                    for (k = 0; k < v_table.Columns.Count; k++)
-                        v_row[k] = r[k];
-
-                    v_table.Rows.Add(v_row);
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
                 }
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, e);
             }
 
             return v_table;
@@ -203,17 +155,23 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override void Execute(string p_sql)
         {
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
             string v_context;
 
-            try
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
             {
-                this.v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_mycon);
-                this.v_mycmd.ExecuteNonQuery();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                try
+                {
+                    v_mycon.Open();
+
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_mycon);
+                    v_mycmd.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                }
             }
         }
 
@@ -229,18 +187,24 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override string ExecuteScalar(string p_sql)
         {
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
             string v_context;
             string v_ret;
 
-            try
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
             {
-                this.v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_mycon);
-                v_ret = this.v_mycmd.ExecuteScalar().ToString();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException e)
-            {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                try
+                {
+                    v_mycon.Open();
+
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_mycon);
+                    v_ret = v_mycmd.ExecuteScalar().ToString();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                }
             }
 
             return v_ret;
