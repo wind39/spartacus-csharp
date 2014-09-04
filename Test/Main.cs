@@ -10,7 +10,7 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            FileTest();
+            FormsTest();
         }
 
         #region DATABASE
@@ -392,11 +392,11 @@ namespace Test
 
                 v_menu = new Spartacus.Forms.Menu(v_window);
                 v_menugroup = v_menu.AddGroup("Cadastro", null);
-                v_menu.AddItem(v_menugroup, "Clientes", new System.EventHandler(OnClick2));
-                v_menu.AddItem(v_menugroup, "Usuários", new System.EventHandler(OnClick2));
-                v_menu.AddItem(v_menugroup, "Licenças", new System.EventHandler(OnClick2));
+                v_menu.AddItem(v_menugroup, "Clientes", new System.EventHandler(OnClickMenu));
+                v_menu.AddItem(v_menugroup, "Usuários", new System.EventHandler(OnClickMenu));
+                v_menu.AddItem(v_menugroup, "Licenças", new System.EventHandler(OnClickMenu));
                 v_menugroup = v_menu.AddGroup("Ajuda", null);
-                v_menu.AddItem(v_menugroup, "Sobre", new System.EventHandler(OnClick));
+                v_menu.AddItem(v_menugroup, "Sobre", new System.EventHandler(OnClickMenu));
                 v_window.Add(v_menu);
 
                 v_textbox = new Spartacus.Forms.Textbox(v_window, "Digite seu nome:", 40);
@@ -427,14 +427,19 @@ namespace Test
             }
         }
 
-        public static void OnClick(object sender, EventArgs e)
+        public static void OnClick(object sender, System.EventArgs e)
         {
             System.Console.WriteLine("Deu certo");
         }
 
-        public static void OnClick2(object sender, EventArgs e)
+        public static void OnClick2(object sender, System.EventArgs e)
         {
             System.Console.WriteLine("Deu certo 2");
+        }
+
+        public static void OnClickMenu(object sender, System.EventArgs e)
+        {
+            System.Console.WriteLine("Deu certo menu");
         }
 
         #endregion

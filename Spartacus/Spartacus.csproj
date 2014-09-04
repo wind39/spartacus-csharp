@@ -104,6 +104,7 @@
     <Compile Include="Spartacus.Forms.Lookup.cs" />
     <Compile Include="Spartacus.Forms.Menu.cs" />
     <Compile Include="Spartacus.Forms.Window.cs" />
+    <Compile Include="Spartacus.Forms.Exception.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -27,6 +27,7 @@ namespace Spartacus.Forms
             this.v_grid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.v_grid.AutoGenerateColumns = true;
             this.v_grid.ReadOnly = true;
+            this.v_grid.MultiSelect = false;
             this.v_grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.v_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.v_grid.DoubleBuffered(true);
@@ -60,6 +61,22 @@ namespace Spartacus.Forms
         {
             this.v_grid.DataSource = p_table;
             this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
+
+            if (p_table != null && ((System.Data.DataTable)this.v_grid.DataSource).Rows.Count > 0)
+                this.v_grid.Rows[0].Selected = true;
+        }
+
+        public System.Data.DataRow CurrentRow()
+        {
+            if (this.v_grid.CurrentRow.Index >= 0 &&
+                this.v_grid.CurrentRow.Index < this.v_grid.Rows.Count)
+            {
+                return ((System.Data.DataTable) this.v_grid.DataSource).Rows[this.v_grid.CurrentRow.Index];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

@@ -26,7 +26,7 @@ namespace Spartacus.Forms
             this.v_label.AutoSize = true;
             this.v_label.Parent = this.v_control;
 
-            this.v_proportion = 50;
+            this.v_proportion = 40;
 
             this.v_textbox = new System.Windows.Forms.TextBox();
             this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);

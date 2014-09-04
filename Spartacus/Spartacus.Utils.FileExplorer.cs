@@ -460,6 +460,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Retorna para um diretório anterior qualquer no histórico.
         /// </summary>
+        /// <param name="p_history">Índice do histórico.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.</exception>
         public void Return(int p_history)
         {
