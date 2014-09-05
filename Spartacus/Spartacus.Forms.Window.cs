@@ -14,8 +14,8 @@ namespace Spartacus.Forms
         public Window(string p_text, int p_width, int p_height)
             :base()
         {
-            this.v_control = new System.Windows.Forms.Form();
-            this.v_control.Resize += new System.EventHandler(this.OnResize);
+            this.v_control = new Spartacus.Forms.Form();
+            ((Spartacus.Forms.Form) this.v_control).Resize += new System.EventHandler(this.OnResize);
 
             this.v_control.Text = p_text;
 
@@ -28,7 +28,7 @@ namespace Spartacus.Forms
         /// </summary>
         public void OnResize(object sender, System.EventArgs e)
         {
-            this.Resize(this.v_control.Width, this.v_control.Height, 0, 0);
+            this.Resize(((Spartacus.Forms.Form) this.v_control).Width, ((Spartacus.Forms.Form) this.v_control).Height, 0, 0);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Spartacus.Forms
             Spartacus.Forms.Container v_container;
             int k, posy;
 
-            this.v_control.SuspendLayout();
+            ((Spartacus.Forms.Form) this.v_control).SuspendLayout();
 
             // redimensionando containers filhos
             posy = 0;
@@ -65,8 +65,56 @@ namespace Spartacus.Forms
             this.v_width = p_newwidth;
             this.v_height = p_newheight;
 
-            this.v_control.ResumeLayout();
-            this.v_control.Refresh();
+            ((Spartacus.Forms.Form) this.v_control).ResumeLayout();
+            ((Spartacus.Forms.Form) this.v_control).Refresh();
+        }
+
+        public override void Enable()
+        {
+            Spartacus.Forms.Container v_container;
+            int k;
+
+            for (k = 0; k < this.v_containers.Count; k++)
+            {
+                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container.Enable();
+            }
+        }
+
+        public override void Disable()
+        {
+            Spartacus.Forms.Container v_container;
+            int k;
+
+            for (k = 0; k < this.v_containers.Count; k++)
+            {
+                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container.Disable();
+            }
+        }
+
+        public override void Clear()
+        {
+            Spartacus.Forms.Container v_container;
+            int k;
+
+            for (k = 0; k < this.v_containers.Count; k++)
+            {
+                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container.Clear();
+            }
+        }
+
+        public void Show()
+        {
+            ((Spartacus.Forms.Form) this.v_control).v_showing = true;
+            ((Spartacus.Forms.Form) this.v_control).Show();
+        }
+
+        public void Hide()
+        {
+            ((Spartacus.Forms.Form) this.v_control).v_showing = false;
+            ((Spartacus.Forms.Form) this.v_control).Hide();
         }
     }
 }

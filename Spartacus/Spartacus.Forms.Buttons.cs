@@ -46,6 +46,22 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        public override void Enable()
+        {
+            foreach (System.Windows.Forms.Button v_button in this.v_list)
+                v_button.Enabled = true;
+        }
+
+        public override void Disable()
+        {
+            foreach (System.Windows.Forms.Button v_button in this.v_list)
+                v_button.Enabled = false;
+        }
+
+        public override void Clear()
+        {
+        }
+
         public void AddButton(string p_text, System.EventHandler p_delegate)
         {
             System.Windows.Forms.Button v_button;

@@ -34,6 +34,20 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        public override void Enable()
+        {
+            this.v_menustrip.Enabled = true;
+        }
+
+        public override void Disable()
+        {
+            this.v_menustrip.Enabled = false;
+        }
+
+        public override void Clear()
+        {
+        }
+
         public System.Windows.Forms.ToolStripMenuItem AddGroup(string p_text, System.EventHandler p_delegate)
         {
             System.Windows.Forms.ToolStripMenuItem v_menugroup;

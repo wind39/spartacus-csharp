@@ -57,6 +57,20 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        public override void Enable()
+        {
+            this.v_grid.Enabled = true;
+        }
+
+        public override void Disable()
+        {
+            this.v_grid.Enabled = false;
+        }
+
+        public override void Clear()
+        {
+        }
+
         public void Populate(System.Data.DataTable p_table)
         {
             this.v_grid.DataSource = p_table;

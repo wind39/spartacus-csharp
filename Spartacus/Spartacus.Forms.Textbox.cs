@@ -70,5 +70,30 @@ namespace Spartacus.Forms
             this.v_control.ResumeLayout();
             this.v_control.Refresh();
         }
+
+        public override void Enable()
+        {
+            this.v_textbox.Enabled = true;
+        }
+
+        public override void Disable()
+        {
+            this.v_textbox.Enabled = false;
+        }
+
+        public override void Clear()
+        {
+            this.v_textbox.Text = "";
+        }
+
+        public void SetValue(string p_text)
+        {
+            this.v_textbox.Text = p_text;
+        }
+
+        public string GetValue()
+        {
+            return this.v_textbox.Text;
+        }
     }
 }

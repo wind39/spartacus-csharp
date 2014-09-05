@@ -150,5 +150,11 @@ namespace Spartacus.Forms
         /// <param name="p_newposx">Nova posição X.</param>
         /// <param name="p_newposy">Nova posição Y.</param>
         public abstract void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy);
+
+        public abstract void Enable();
+
+        public abstract void Disable();
+
+        public abstract void Clear();
     }
 }

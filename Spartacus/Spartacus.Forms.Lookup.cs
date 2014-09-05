@@ -110,6 +110,57 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        public override void Enable()
+        {
+            this.v_lookup.Enabled = true;
+        }
+
+        public override void Disable()
+        {
+            this.v_lookup.Enabled = false;
+        }
+
+        public override void Clear()
+        {
+            this.v_lookup.Text = "";
+            this.v_textbox.Text = "";
+        }
+
+        public void SetValue(string p_text)
+        {
+            System.Data.DataRow v_row;
+            bool v_achou;
+            int k;
+
+            k = 0;
+            v_achou = false;
+            while (k < ((System.Data.DataTable)this.v_lookup.DataSource).Rows.Count && ! v_achou)
+            {
+                v_row = ((System.Data.DataTable) this.v_lookup.DataSource).Rows[k];
+
+                if (v_row[this.v_lookup.DisplayMember].ToString() == p_text)
+                {
+                    this.v_lookup.Text = p_text;
+                    this.v_lookup.SelectedIndex = k;
+
+                    v_achou = true;
+                }
+            }
+        }
+
+        public string GetValue()
+        {
+            if (this.v_lookup.SelectedIndex >= 0 &&
+                this.v_lookup.SelectedIndex < ((System.Data.DataTable)this.v_lookup.DataSource).Rows.Count)
+            {
+                return ((System.Data.DataTable)this.v_lookup.DataSource).Rows [this.v_lookup.SelectedIndex] [this.v_lookup.DisplayMember].ToString();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void Populate(System.Data.DataTable p_table, string p_columnvalue, string p_columndisplay, string p_columnwidths)
         {
             string v_columnnames;
