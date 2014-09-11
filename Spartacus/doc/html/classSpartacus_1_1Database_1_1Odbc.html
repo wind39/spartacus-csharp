@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Spartacus
-   &#160;<span id="projectnumber">0.25.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -77,12 +77,6 @@ Métodos Públicos</h2></td></tr>
 <tr class="memitem:a2ea31921d3a0d8e25b73a05e89784bdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a2ea31921d3a0d8e25b73a05e89784bdc">Odbc</a> (string p_dsn, string p_user, string p_password)</td></tr>
 <tr class="memdesc:a2ea31921d3a0d8e25b73a05e89784bdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa uma nova instância da classe <a class="el" href="classSpartacus_1_1Database_1_1Odbc.html" title="Classe Spartacus.Database.Odbc. Herda da classe Spartacus.Database.Generic. Utiliza a implementação O...">Spartacus.Database.Odbc</a>. Cria a string de conexão ao banco.  <a href="#a2ea31921d3a0d8e25b73a05e89784bdc">Mais...</a><br /></td></tr>
 <tr class="separator:a2ea31921d3a0d8e25b73a05e89784bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a306058e9deb3a18bfdb228488a5d7641"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a306058e9deb3a18bfdb228488a5d7641">Connect</a> ()</td></tr>
-<tr class="memdesc:a306058e9deb3a18bfdb228488a5d7641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conectar ao banco de dados.  <a href="#a306058e9deb3a18bfdb228488a5d7641">Mais...</a><br /></td></tr>
-<tr class="separator:a306058e9deb3a18bfdb228488a5d7641"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b2a59398269853f6ad7f3af308afadf"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a7b2a59398269853f6ad7f3af308afadf">Disconnect</a> ()</td></tr>
-<tr class="memdesc:a7b2a59398269853f6ad7f3af308afadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desconectar do banco de dados.  <a href="#a7b2a59398269853f6ad7f3af308afadf">Mais...</a><br /></td></tr>
-<tr class="separator:a7b2a59398269853f6ad7f3af308afadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2332e648d04783ce92a9680f6cd69411"><td class="memItemLeft" align="right" valign="top">override System.Data.DataTable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a2332e648d04783ce92a9680f6cd69411">Query</a> (string p_sql, string p_tablename)</td></tr>
 <tr class="memdesc:a2332e648d04783ce92a9680f6cd69411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.Data.DataTable.  <a href="#a2332e648d04783ce92a9680f6cd69411">Mais...</a><br /></td></tr>
 <tr class="separator:a2332e648d04783ce92a9680f6cd69411"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,72 +182,6 @@ Campos de Dados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Métodos</h2>
-<a class="anchor" id="a306058e9deb3a18bfdb228488a5d7641"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Spartacus.Database.Odbc.Connect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Conectar ao banco de dados. </p>
-<dl class="exception"><dt>Exceções</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classSpartacus_1_1Database_1_1Exception.html" title="Classe Spartacus.Database.Exception. Herda da classe System.Exception. ">Spartacus.Database.Exception</a></td><td>Exceção acontece quando não for possível se conectar ao banco de dados.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implementa <a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a0f3940aeabde41676f15366e83eff166">Spartacus.Database.Generic</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b2a59398269853f6ad7f3af308afadf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Spartacus.Database.Odbc.Disconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Desconectar do banco de dados. </p>
-<dl class="exception"><dt>Exceções</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classSpartacus_1_1Database_1_1Exception.html" title="Classe Spartacus.Database.Exception. Herda da classe System.Exception. ">Spartacus.Database.Exception</a></td><td>Exceção acontece quando não for possível se desconectar do banco de dados.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implementa <a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a765dda5d5d8a768885fabd9799a0a180">Spartacus.Database.Generic</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a37ff1148e0cb0c03941189bf21d9b8ed"></a>
 <div class="memitem">
 <div class="memproto">
@@ -467,7 +395,7 @@ Campos de Dados</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 22 de Agosto de 2014 17:03:34 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quinta, 11 de Setembro de 2014 11:45:50 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

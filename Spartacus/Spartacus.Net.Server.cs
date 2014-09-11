@@ -3,11 +3,23 @@ using System.Net;
 
 namespace Spartacus.Net
 {
+    /// <summary>
+    /// Classe Server.
+    /// Herda da classe <see cref="Spartacus.Net.Endpoint"/>.
+    /// </summary>
     public class Server : Spartacus.Net.Endpoint
     {
+        /// <summary>
+        /// Listener usado para recebe conexões de clientes.
+        /// </summary>
         private System.Net.Sockets.TcpListener v_listener;
 
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Server"/>.
+        /// </summary>
+        /// <param name="p_ip">IP do Servidor.</param>
+        /// <param name="p_port">Porta do Servidor.</param>
         public Server(string p_ip, int p_port)
             : base(p_ip, p_port)
         {
@@ -18,6 +30,9 @@ namespace Spartacus.Net
             this.v_listener.Start();
         }
 
+        /// <summary>
+        /// Escuta por conexões de clientes e as aceita.
+        /// </summary>
         public void Accept()
         {
             string v_context;
@@ -34,6 +49,9 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Encerra o Servidor.
+        /// </summary>
         public void StopServer()
         {
             string v_context;

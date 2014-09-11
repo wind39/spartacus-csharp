@@ -2,6 +2,9 @@ using System;
 
 namespace Spartacus.Net
 {
+    /// <summary>
+    /// Tipo do Pacote.
+    /// </summary>
     public enum PacketType
     {
         DATA,
@@ -12,21 +15,47 @@ namespace Spartacus.Net
         FILE
     }
 
+    /// <summary>
+    /// Classe Packet.
+    /// Representa um pacote de dados enviado de um Endpoint a outro.
+    /// </summary>
     public class Packet
     {
+        /// <summary>
+        /// Tipo do Pacote.
+        /// </summary>
         public Spartacus.Net.PacketType v_type;
 
+        /// <summary>
+        /// Sequência atual do Pacote dentro da Mensagem.
+        /// </summary>
         public int v_sequence;
 
+        /// <summary>
+        /// Número total de pacotes da Mensagem.
+        /// </summary>
         public int v_numpackets;
 
+        /// <summary>
+        /// Dados do Pacote.
+        /// </summary>
         public byte[] v_data;
 
+        /// <summary>
+        /// Buffer que contém o pacote inteiro em bytes.
+        /// </summary>
         public byte[] v_buffer;
 
+        /// <summary>
+        /// Codificação usada para converter de string para bytes e de bytes para string.
+        /// </summary>
         private System.Text.ASCIIEncoding v_encoding;
 
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// </summary>
+        /// <param name="p_type">Tipo do Pacote.</param>
         public Packet(Spartacus.Net.PacketType p_type)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -39,6 +68,11 @@ namespace Spartacus.Net
             this.BuildBuffer();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// </summary>
+        /// <param name="p_type">Tipo do Pacote.</param>
+        /// <param name="p_data">Dados do Pacote.</param>
         public Packet(Spartacus.Net.PacketType p_type, byte[] p_data)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -51,6 +85,11 @@ namespace Spartacus.Net
             this.BuildBuffer();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// </summary>
+        /// <param name="p_type">Tipo do Pacote.</param>
+        /// <param name="p_data">Dados do Pacote.</param>
         public Packet(Spartacus.Net.PacketType p_type, string p_data)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -63,6 +102,13 @@ namespace Spartacus.Net
             this.BuildBuffer();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// </summary>
+        /// <param name="p_type">Tipo do Pacote.</param>
+        /// <param name="p_sequence">Sequência atual do Pacote dentro da Mensagem.</param>
+        /// <param name="p_numpackets">Número total de pacotes da Mensagem.</param>
+        /// <param name="p_data">Dados do Pacote.</param>
         public Packet(Spartacus.Net.PacketType p_type, int p_sequence, int p_numpackets, byte[] p_data)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -75,6 +121,13 @@ namespace Spartacus.Net
             this.BuildBuffer();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// </summary>
+        /// <param name="p_type">Tipo do Pacote.</param>
+        /// <param name="p_sequence">Sequência atual do Pacote dentro da Mensagem.</param>
+        /// <param name="p_numpackets">Número total de pacotes da Mensagem.</param>
+        /// <param name="p_data">Dados do Pacote.</param>
         public Packet(Spartacus.Net.PacketType p_type, int p_sequence, int p_numpackets, string p_data)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -87,6 +140,11 @@ namespace Spartacus.Net
             this.BuildBuffer();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Packet"/>.
+        /// Esse construtor é usado para extrair um Pacote dos dados recebidos.
+        /// </summary>
+        /// <param name="p_buffer">Buffer que contém o pacote inteiro em bytes.</param>
         public Packet(byte[] p_buffer)
         {
             this.v_encoding = new System.Text.ASCIIEncoding();
@@ -96,6 +154,10 @@ namespace Spartacus.Net
             this.ParseBuffer();
         }
 
+        /// <summary>
+        /// Constrói o buffer de envio a partir dos dados do Pacote.
+        /// Usado para enviar um Pacote.
+        /// </summary>
         private void BuildBuffer()
         {
             byte[] v_tmpbuffer;
@@ -108,9 +170,6 @@ namespace Spartacus.Net
             // tipo do pacote
             switch (this.v_type)
             {
-                //case Spartacus.Net.PacketType.QUERY:
-                //    v_tmpbuffer = this.v_encoding.GetBytes("QUERY");
-                //    break;
                 case Spartacus.Net.PacketType.DATA:
                     v_tmpbuffer = this.v_encoding.GetBytes("DATA ");
                     break;
@@ -148,6 +207,10 @@ namespace Spartacus.Net
                 System.Array.Copy(this.v_data, 0, this.v_buffer, 25, this.v_data.Length);
         }
 
+        /// <summary>
+        /// Constrói um Pacote a partir dos dados recebidos.
+        /// Usado para receber um Pacote.
+        /// </summary>
         private void ParseBuffer()
         {
             byte[] v_tmpbuffer;
@@ -209,6 +272,10 @@ namespace Spartacus.Net
                 this.v_data = null;
         }
 
+        /// <summary>
+        /// Retorna os dados do Pacote convertidos para string.
+        /// </summary>
+        /// <returns>Dados convertidos para string.</returns>
         public string GetString()
         {
             return this.v_encoding.GetString(this.v_data);

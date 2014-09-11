@@ -8,8 +8,7 @@ Classe \hyperlink{classSpartacus_1_1Database_1_1Oledb}{Spartacus.\+Database.\+Ol
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Database.\+Oledb\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Database.\+Oledb\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,8 +17,7 @@ Diagrama de Hierarquia para Spartacus.\+Database.\+Oledb\+:
 \end{figure}
 
 
-Diagrama de colaboração para Spartacus.\+Database.\+Oledb\+:
-\nopagebreak
+Diagrama de colaboração para Spartacus.\+Database.\+Oledb\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,10 +29,6 @@ Diagrama de colaboração para Spartacus.\+Database.\+Oledb\+:
 \item 
 \hyperlink{classSpartacus_1_1Database_1_1Oledb_a151e92500d1aa88e96169201d3138b0a}{Oledb} (string p\+\_\+provider, string p\+\_\+host, string p\+\_\+port, string p\+\_\+service, string p\+\_\+user, string p\+\_\+password)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Oledb}{Spartacus.\+Database.\+Oledb}. Cria a string de conexão ao banco. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Oledb_aef894ba4132ad7cd504680e5e33e9e9a}{Connect} ()
-\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Oledb_a79d7dfb5d9aa1849f371056093996c9e}{Disconnect} ()
-\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Oledb_a6f914652553778f6e0a683ac92ab1f87}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
 \begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Oledb_ab5f3ae20ac53dcc95182c0845a04d460}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
@@ -90,46 +84,6 @@ Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1
 
 
 \subsection{Métodos}
-\hypertarget{classSpartacus_1_1Database_1_1Oledb_aef894ba4132ad7cd504680e5e33e9e9a}{\index{Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}!Connect@{Connect}}
-\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}}
-\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Oledb.\+Connect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Oledb_aef894ba4132ad7cd504680e5e33e9e9a}
-
-
-Conectar ao banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
-
-\hypertarget{classSpartacus_1_1Database_1_1Oledb_a79d7dfb5d9aa1849f371056093996c9e}{\index{Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}!Disconnect@{Disconnect}}
-\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}}
-\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Oledb.\+Disconnect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Oledb_a79d7dfb5d9aa1849f371056093996c9e}
-
-
-Desconectar do banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
-
 \hypertarget{classSpartacus_1_1Database_1_1Oledb_acfe60cb51ca949f93a1197c3cdf88231}{\index{Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}!Execute@{Execute}}
 \index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Oledb@{Spartacus\+::\+Database\+::\+Oledb}}
 \subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Oledb.\+Execute (

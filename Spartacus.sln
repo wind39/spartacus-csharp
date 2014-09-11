@@ -5,34 +5,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spartacus", "Spartacus\Spar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{EDDD86EB-9185-4434-8B6C-75AAADB4AE15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartacusCryptor", "..\..\..\..\..\work\projects\Repositories\Spartacus\SpartacusCryptor\SpartacusCryptor.csproj", "{4EE0C8C1-7DE3-451D-9AC5-C0A1278FA9FA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartacusDataServer", "..\..\..\..\..\work\projects\Repositories\Spartacus\SpartacusDataServer\SpartacusDataServer.csproj", "{EA1611F4-8D12-4A43-AFAE-2C4C185C181D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartacusDataClient", "..\..\..\..\..\work\projects\Repositories\Spartacus\SpartacusDataClient\SpartacusDataClient.csproj", "{CADFC2EE-9E78-4224-86CA-F35C702BC14D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EE0C8C1-7DE3-451D-9AC5-C0A1278FA9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EE0C8C1-7DE3-451D-9AC5-C0A1278FA9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EE0C8C1-7DE3-451D-9AC5-C0A1278FA9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EE0C8C1-7DE3-451D-9AC5-C0A1278FA9FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CADFC2EE-9E78-4224-86CA-F35C702BC14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CADFC2EE-9E78-4224-86CA-F35C702BC14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CADFC2EE-9E78-4224-86CA-F35C702BC14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CADFC2EE-9E78-4224-86CA-F35C702BC14D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA1611F4-8D12-4A43-AFAE-2C4C185C181D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA1611F4-8D12-4A43-AFAE-2C4C185C181D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA1611F4-8D12-4A43-AFAE-2C4C185C181D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA1611F4-8D12-4A43-AFAE-2C4C185C181D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDDD86EB-9185-4434-8B6C-75AAADB4AE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDDD86EB-9185-4434-8B6C-75AAADB4AE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDDD86EB-9185-4434-8B6C-75AAADB4AE15}.Release|Any CPU.ActiveCfg = Release|Any CPU

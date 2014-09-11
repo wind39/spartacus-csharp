@@ -8,8 +8,7 @@ Classe abstrata \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Da
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Database.\+Generic\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Database.\+Generic\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,10 +24,6 @@ Diagrama de Hierarquia para Spartacus.\+Database.\+Generic\+:
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
 \hyperlink{classSpartacus_1_1Database_1_1Generic_a135fa36ed3379d3e7360a44935d3507e}{Generic} (string p\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Generic}{Spartacus.\+Database.\+Generic}. Armazena informações de conexão que são genéricas a qualquer S\+G\+B\+D. \end{DoxyCompactList}\item 
-abstract void \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Connect} ()
-\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
-abstract void \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Disconnect} ()
-\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
 abstract System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Generic_a23dc0eb8f4722d1adb1935044bc878ff}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
 \begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um . \end{DoxyCompactList}\item 
 abstract System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Generic_a434ce0b27dfa73d909bc79c0b8471e54}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
@@ -131,36 +126,6 @@ Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1
 
 
 \subsection{Métodos}
-\hypertarget{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Connect@{Connect}}
-\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
-\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Connect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}
-
-
-Conectar ao banco de dados. 
-
-
-
-Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_aef894ba4132ad7cd504680e5e33e9e9a}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Postgresql_a5472d5419eedb90b314ae10f933c6ca8}{Spartacus.\+Database.\+Postgresql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a306058e9deb3a18bfdb228488a5d7641}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a7bbbff1d7f1b76d0545cc6fd7ce03c32}{Spartacus.\+Database.\+Sqlite}.
-
-\hypertarget{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Disconnect@{Disconnect}}
-\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
-\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Disconnect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}
-
-
-Desconectar do banco de dados. 
-
-
-
-Implementado por \hyperlink{classSpartacus_1_1Database_1_1Oledb_a79d7dfb5d9aa1849f371056093996c9e}{Spartacus.\+Database.\+Oledb}, \hyperlink{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{Spartacus.\+Database.\+Firebird}, \hyperlink{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{Spartacus.\+Database.\+Mysql}, \hyperlink{classSpartacus_1_1Database_1_1Postgresql_a6d1e4775329c28979da558ad4c4c99d5}{Spartacus.\+Database.\+Postgresql}, \hyperlink{classSpartacus_1_1Database_1_1Odbc_a7b2a59398269853f6ad7f3af308afadf}{Spartacus.\+Database.\+Odbc} e \hyperlink{classSpartacus_1_1Database_1_1Sqlite_a1ecb802399c8b374d23edaf4237ce667}{Spartacus.\+Database.\+Sqlite}.
-
 \hypertarget{classSpartacus_1_1Database_1_1Generic_a28f1c8821906653eb4ff1484de893d16}{\index{Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}!Execute@{Execute}}
 \index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Generic@{Spartacus\+::\+Database\+::\+Generic}}
 \subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Spartacus.\+Database.\+Generic.\+Execute (

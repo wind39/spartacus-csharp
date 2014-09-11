@@ -8,8 +8,7 @@ Classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+My
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Database.\+Mysql\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Database.\+Mysql\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,8 +17,7 @@ Diagrama de Hierarquia para Spartacus.\+Database.\+Mysql\+:
 \end{figure}
 
 
-Diagrama de colaboração para Spartacus.\+Database.\+Mysql\+:
-\nopagebreak
+Diagrama de colaboração para Spartacus.\+Database.\+Mysql\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,10 +29,6 @@ Diagrama de colaboração para Spartacus.\+Database.\+Mysql\+:
 \item 
 \hyperlink{classSpartacus_1_1Database_1_1Mysql_aa1a7b4639cb22e84da677a4186efa060}{Mysql} (string p\+\_\+server, string p\+\_\+port, string p\+\_\+database, string p\+\_\+user, string p\+\_\+password)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Mysql}{Spartacus.\+Database.\+Mysql}. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{Connect} ()
-\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{Disconnect} ()
-\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Mysql_a3546716a22fd53251603f2ab36d34410}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
 \begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Mysql_a2b7f2096a3ee819670c49ed41cf04f75}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
@@ -87,46 +81,6 @@ Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_
 
 
 \subsection{Métodos}
-\hypertarget{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Connect@{Connect}}
-\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
-\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Connect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_a5169783f95c51db388b841b4bd9207f5}
-
-
-Conectar ao banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
-
-\hypertarget{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Disconnect@{Disconnect}}
-\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
-\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Disconnect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Mysql_ab7000e1b5ceedaaeaf3c824e22ec1b14}
-
-
-Desconectar do banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
-
 \hypertarget{classSpartacus_1_1Database_1_1Mysql_afdef08fb8a30287e8c550798aa6b6742}{\index{Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}!Execute@{Execute}}
 \index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Mysql@{Spartacus\+::\+Database\+::\+Mysql}}
 \subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Mysql.\+Execute (

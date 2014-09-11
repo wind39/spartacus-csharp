@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Spartacus
-   &#160;<span id="projectnumber">0.25.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -76,12 +76,6 @@ Métodos Públicos</h2></td></tr>
 <tr class="memitem:a135fa36ed3379d3e7360a44935d3507e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a135fa36ed3379d3e7360a44935d3507e">Generic</a> (string p_file)</td></tr>
 <tr class="memdesc:a135fa36ed3379d3e7360a44935d3507e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa uma nova instância da classe <a class="el" href="classSpartacus_1_1Database_1_1Generic.html" title="Classe abstrata Spartacus.Database.Generic. Armazena informações de conexão que são genéricas a qualq...">Spartacus.Database.Generic</a>. Armazena informações de conexão que são genéricas a qualquer SGBD.  <a href="#a135fa36ed3379d3e7360a44935d3507e">Mais...</a><br /></td></tr>
 <tr class="separator:a135fa36ed3379d3e7360a44935d3507e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f3940aeabde41676f15366e83eff166"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a0f3940aeabde41676f15366e83eff166">Connect</a> ()</td></tr>
-<tr class="memdesc:a0f3940aeabde41676f15366e83eff166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conectar ao banco de dados.  <a href="#a0f3940aeabde41676f15366e83eff166">Mais...</a><br /></td></tr>
-<tr class="separator:a0f3940aeabde41676f15366e83eff166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a765dda5d5d8a768885fabd9799a0a180"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a765dda5d5d8a768885fabd9799a0a180">Disconnect</a> ()</td></tr>
-<tr class="memdesc:a765dda5d5d8a768885fabd9799a0a180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desconectar do banco de dados.  <a href="#a765dda5d5d8a768885fabd9799a0a180">Mais...</a><br /></td></tr>
-<tr class="separator:a765dda5d5d8a768885fabd9799a0a180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23dc0eb8f4722d1adb1935044bc878ff"><td class="memItemLeft" align="right" valign="top">abstract System.Data.DataTable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a23dc0eb8f4722d1adb1935044bc878ff">Query</a> (string p_sql, string p_tablename)</td></tr>
 <tr class="memdesc:a23dc0eb8f4722d1adb1935044bc878ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza uma consulta no banco de dados, armazenando os dados de retorno em um .  <a href="#a23dc0eb8f4722d1adb1935044bc878ff">Mais...</a><br /></td></tr>
 <tr class="separator:a23dc0eb8f4722d1adb1935044bc878ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,60 +263,6 @@ Campos de Dados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Métodos</h2>
-<a class="anchor" id="a0f3940aeabde41676f15366e83eff166"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract void Spartacus.Database.Generic.Connect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Conectar ao banco de dados. </p>
-
-<p>Implementado por <a class="el" href="classSpartacus_1_1Database_1_1Oledb.html#aef894ba4132ad7cd504680e5e33e9e9a">Spartacus.Database.Oledb</a>, <a class="el" href="classSpartacus_1_1Database_1_1Firebird.html#a9d3d6ee076fcae78c7f035667bd9539d">Spartacus.Database.Firebird</a>, <a class="el" href="classSpartacus_1_1Database_1_1Mysql.html#a5169783f95c51db388b841b4bd9207f5">Spartacus.Database.Mysql</a>, <a class="el" href="classSpartacus_1_1Database_1_1Postgresql.html#a5472d5419eedb90b314ae10f933c6ca8">Spartacus.Database.Postgresql</a>, <a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a306058e9deb3a18bfdb228488a5d7641">Spartacus.Database.Odbc</a> e <a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#a7bbbff1d7f1b76d0545cc6fd7ce03c32">Spartacus.Database.Sqlite</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a765dda5d5d8a768885fabd9799a0a180"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract void Spartacus.Database.Generic.Disconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Desconectar do banco de dados. </p>
-
-<p>Implementado por <a class="el" href="classSpartacus_1_1Database_1_1Oledb.html#a79d7dfb5d9aa1849f371056093996c9e">Spartacus.Database.Oledb</a>, <a class="el" href="classSpartacus_1_1Database_1_1Firebird.html#a0b0b56b3a71ef80ea8662547e24acb47">Spartacus.Database.Firebird</a>, <a class="el" href="classSpartacus_1_1Database_1_1Mysql.html#ab7000e1b5ceedaaeaf3c824e22ec1b14">Spartacus.Database.Mysql</a>, <a class="el" href="classSpartacus_1_1Database_1_1Postgresql.html#a6d1e4775329c28979da558ad4c4c99d5">Spartacus.Database.Postgresql</a>, <a class="el" href="classSpartacus_1_1Database_1_1Odbc.html#a7b2a59398269853f6ad7f3af308afadf">Spartacus.Database.Odbc</a> e <a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#a1ecb802399c8b374d23edaf4237ce667">Spartacus.Database.Sqlite</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a28f1c8821906653eb4ff1484de893d16"></a>
 <div class="memitem">
 <div class="memproto">
@@ -594,7 +534,7 @@ Campos de Dados</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 22 de Agosto de 2014 17:03:34 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quinta, 11 de Setembro de 2014 11:45:50 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

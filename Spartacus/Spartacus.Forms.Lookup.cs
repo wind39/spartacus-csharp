@@ -2,19 +2,44 @@ using System;
 
 namespace Spartacus.Forms
 {
+    /// <summary>
+    /// Classe Lookup.
+    /// Representa um componente Lookup.
+    /// Herda da classe <see cref="Spartacus.Forms.Container"/>.
+    /// </summary>
     public class Lookup : Spartacus.Forms.Container
     {
+        /// <summary>
+        /// Rótulo do Lookup.
+        /// </summary>
         public System.Windows.Forms.Label v_label;
 
+        /// <summary>
+        /// Componente Lookup.
+        /// </summary>
         public Spartacus.Forms.MultiColumnComboBox v_lookup;
 
+        /// <summary>
+        /// Textbox não editável, atualizado pelo componente Lookup.
+        /// </summary>
         public System.Windows.Forms.TextBox v_textbox;
 
+        /// <summary>
+        /// Proporção entre o Label e o componente Lookup.
+        /// </summary>
         public int v_proportion1;
 
+        /// <summary>
+        /// Proporção entre o componente Lookup e o Textbox.
+        /// </summary>
         public int v_proportion2;
 
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Lookup"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_label">Rótulo do componente.</param>
         public Lookup(Spartacus.Forms.Container p_parent, string p_label)
             : base(p_parent)
         {
@@ -54,6 +79,13 @@ namespace Spartacus.Forms
             this.v_lookup.Parent = this.v_control;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Lookup"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_label">Rótulo do componente.</param>
+        /// <param name="p_proportion1">Proporção entre o Label e o componente Lookup.</param>
+        /// <param name="p_proportion2">Proporção entre o componente Lookup e o Textbox.</param>
         public Lookup(Spartacus.Forms.Container p_parent, string p_label, int p_proportion1, int p_proportion2)
             : base(p_parent)
         {
@@ -92,6 +124,14 @@ namespace Spartacus.Forms
             this.v_lookup.Parent = this.v_control;
         }
 
+        /// <summary>
+        /// Redimensiona o Componente atual.
+        /// Também reposiciona dentro do Container pai, se for necessário.
+        /// </summary>
+        /// <param name="p_newwidth">Nova largura.</param>
+        /// <param name="p_newheight">Nova altura.</param>
+        /// <param name="p_newposx">Nova posição X.</param>
+        /// <param name="p_newposy">Nova posição Y.</param>
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_control.SuspendLayout();
@@ -110,22 +150,34 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        /// <summary>
+        /// Habilita o Container atual.
+        /// </summary>
         public override void Enable()
         {
             this.v_lookup.Enabled = true;
         }
 
+        /// <summary>
+        /// Desabilita o Container atual.
+        /// </summary>
         public override void Disable()
         {
             this.v_lookup.Enabled = false;
         }
 
+        /// <summary>
+        /// Limpa os dados do Container atual.
+        /// </summary>
         public override void Clear()
         {
-            this.v_lookup.Text = "";
-            this.v_textbox.Text = "";
         }
 
+        /// <summary>
+        /// Informa o valor do componente Lookup.
+        /// Usado para mostrar um formulário já preenchido ao usuário.
+        /// </summary>
+        /// <param name="p_text">Valor do componente (não do textbox).</param>
         public void SetValue(string p_text)
         {
             System.Data.DataRow v_row;
@@ -138,16 +190,21 @@ namespace Spartacus.Forms
             {
                 v_row = ((System.Data.DataTable) this.v_lookup.DataSource).Rows[k];
 
-                if (v_row[this.v_lookup.DisplayMember].ToString() == p_text)
+                if (v_row [this.v_lookup.DisplayMember].ToString() == p_text)
                 {
-                    this.v_lookup.Text = p_text;
                     this.v_lookup.SelectedIndex = k;
 
                     v_achou = true;
                 }
+                else
+                    k++;
             }
         }
 
+        /// <summary>
+        /// Retorna o valor atual do componente.
+        /// </summary>
+        /// <returns>Valor atual do componente.</returns>
         public string GetValue()
         {
             if (this.v_lookup.SelectedIndex >= 0 &&
@@ -161,6 +218,13 @@ namespace Spartacus.Forms
             }
         }
 
+        /// <summary>
+        /// Popula o componente Lookup com uma <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="p_table">Tabela com os dados para popular o Lookup.</param>
+        /// <param name="p_columnvalue">Coluna de valor.</param>
+        /// <param name="p_columndisplay">Coluna para mostrar no Textbox.</param>
+        /// <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param>
         public void Populate(System.Data.DataTable p_table, string p_columnvalue, string p_columndisplay, string p_columnwidths)
         {
             string v_columnnames;

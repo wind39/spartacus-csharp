@@ -70,5 +70,17 @@
     <None Include="bin\Release\sc_register.db" />
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="bin\Release\sqlite3.dll" />
+    <None Include="bin\Debug\EPPlus.dll" />
+    <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Debug\Mono.Security.dll" />
+    <None Include="bin\Debug\MySql.Data.dll" />
+    <None Include="bin\Debug\Npgsql.dll" />
+    <None Include="bin\Debug\PDFjet.dll" />
+    <None Include="bin\Debug\Spartacus.dll" />
+    <None Include="bin\Debug\Spartacus.dll.mdb" />
+    <None Include="bin\Debug\Test.exe" />
+    <None Include="bin\Debug\Test.exe.mdb" />
   </ItemGroup>
 </Project>

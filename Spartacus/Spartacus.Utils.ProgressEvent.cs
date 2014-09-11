@@ -2,41 +2,101 @@ using System;
 
 namespace Spartacus.Utils
 {
+    /// <summary>
+    /// Classe ProgressEventArgs.
+    /// Representa os argumentos do evento de Progresso.
+    /// Herda da classe <see cref="System.EventArgs"/>.
+    /// </summary>
     public class ProgressEventArgs : System.EventArgs
     {
+        /// <summary>
+        /// Nome do processo.
+        /// </summary>
         public string v_process;
+
+        /// <summary>
+        /// Nome do subprocesso, método ou rotina.
+        /// </summary>
         public string v_subprocess;
+
+        /// <summary>
+        /// Percentual de execução do processo.
+        /// </summary>
         public double v_percentage;
+
+        /// <summary>
+        /// Mensagem atual do processo.
+        /// </summary>
         public string v_message;
+
+        /// <summary>
+        /// Informa se o processo deve mostrar suas mensagens ao usuário ou não.
+        /// </summary>
         public bool v_verbose;
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
+        /// </summary>
         public ProgressEventArgs()
         {
             this.v_verbose = false;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
         public ProgressEventArgs(bool p_verbose)
         {
             this.v_verbose = p_verbose;
         }
     }
 
+    /// <summary>
+    /// Classe ProgressEventClass.
+    /// Representa um evento de Progresso.
+    /// </summary>
     public class ProgressEventClass
     {
+        /// <summary>
+        /// Delegate para gerenciar o evento de Progresso.
+        /// </summary>
         public delegate void ProgressEventHandler(Spartacus.Utils.ProgressEventClass obj, Spartacus.Utils.ProgressEventArgs e);
+
+        /// <summary>
+        /// Evento de Progresso propriamente dito.
+        /// </summary>
         public event ProgressEventHandler ProgressEvent;
+
+        /// <summary>
+        /// Argumentos do evento de Progresso.
+        /// </summary>
         public Spartacus.Utils.ProgressEventArgs ProgressEventArgs = null;
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventClass"/>.
+        /// </summary>
         public ProgressEventClass()
         {
             this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs();
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventClass"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
         public ProgressEventClass(bool p_verbose)
         {
             this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs(p_verbose);
         }
 
+        /// <summary>
+        /// Dispara o evento de Progresso.
+        /// </summary>
+        /// <param name="p_process">Nome do processo.</param>
+        /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
+        /// <param name="p_percentage">Percentual de execução do processo.</param>
+        /// <param name="p_message">Mensagem atual do processo.</param>
         public void FireEvent(string p_process, string p_subprocess, double p_percentage, string p_message)
         {
             if (this.ProgressEvent != null)

@@ -1,17 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Forms.Container.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Forms.Lookup.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Forms.Container.cs" Line="124" Column="34" />
-      <File FileName="Spartacus/Spartacus.Forms.Textbox.cs" Line="81" Column="44" />
-      <File FileName="Spartacus/Spartacus.Forms.Window.cs" Line="71" Column="9" />
+      <File FileName="Spartacus/Spartacus.Forms.Lookup.cs" Line="40" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
           <Node name="Spartacus" expanded="True">
-            <Node name="Spartacus.Forms.Container.cs" selected="True" />
+            <Node name="Spartacus.Forms.Lookup.cs" selected="True" />
           </Node>
           <Node name="Test" expanded="True" />
         </State>

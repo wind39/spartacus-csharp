@@ -2,15 +2,33 @@ using System;
 
 namespace Spartacus.Forms
 {
+    /// <summary>
+    /// Classe Textbox.
+    /// Representa um componente em que o usuário pode digitar texto em uma única linha.
+    /// </summary>
     public class Textbox : Spartacus.Forms.Container
     {
+        /// <summary>
+        /// Rótulo do Textbox.
+        /// </summary>
         public System.Windows.Forms.Label v_label;
 
+        /// <summary>
+        /// Controle nativo que representa o Textbox.
+        /// </summary>
         public System.Windows.Forms.TextBox v_textbox;
 
+        /// <summary>
+        /// Proporção entre o Label e o Textbox.
+        /// </summary>
         public int v_proportion;
 
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Textbox"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_label">Texto exibido no rótulo.</param>
         public Textbox(Spartacus.Forms.Container p_parent, string p_label)
             : base(p_parent)
         {
@@ -34,6 +52,12 @@ namespace Spartacus.Forms
             this.v_textbox.Parent = this.v_control;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Textbox"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_label">Texto exibido no rótulo.</param>
+        /// <param name="p_proportion">Proporção entre o Label e o Textbox.</param>
         public Textbox(Spartacus.Forms.Container p_parent, string p_label, int p_proportion)
             : base(p_parent)
         {
@@ -56,6 +80,14 @@ namespace Spartacus.Forms
             this.v_textbox.Parent = this.v_control;
         }
 
+        /// <summary>
+        /// Redimensiona o Componente atual.
+        /// Também reposiciona dentro do Container pai, se for necessário.
+        /// </summary>
+        /// <param name="p_newwidth">Nova largura.</param>
+        /// <param name="p_newheight">Nova altura.</param>
+        /// <param name="p_newposx">Nova posição X.</param>
+        /// <param name="p_newposy">Nova posição Y.</param>
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_control.SuspendLayout();
@@ -71,26 +103,44 @@ namespace Spartacus.Forms
             this.v_control.Refresh();
         }
 
+        /// <summary>
+        /// Habilita o Container atual.
+        /// </summary>
         public override void Enable()
         {
             this.v_textbox.Enabled = true;
         }
 
+        /// <summary>
+        /// Desabilita o Container atual.
+        /// </summary>
         public override void Disable()
         {
             this.v_textbox.Enabled = false;
         }
 
+        /// <summary>
+        /// Limpa os dados do Container atual.
+        /// </summary>
         public override void Clear()
         {
             this.v_textbox.Text = "";
         }
 
+        /// <summary>
+        /// Informa o texto ou valor a ser mostrado no Textbox.
+        /// Usado para mostrar ao usuário um formulário já preenchido.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Textbox.</param>
         public void SetValue(string p_text)
         {
             this.v_textbox.Text = p_text;
         }
 
+        /// <summary>
+        /// Retorna o texto ou valor atual do Textbox.
+        /// </summary>
+        /// <returns>Texto ou valor atual do Textbox.</returns>
         public string GetValue()
         {
             return this.v_textbox.Text;

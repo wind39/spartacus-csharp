@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Spartacus
-   &#160;<span id="projectnumber">0.25.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -77,12 +77,6 @@ Métodos Públicos</h2></td></tr>
 <tr class="memitem:ac093bc658547c155306908a97e7e725d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#ac093bc658547c155306908a97e7e725d">Sqlite</a> (string p_file)</td></tr>
 <tr class="memdesc:ac093bc658547c155306908a97e7e725d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa uma nova instancia da classe <a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html" title="Classe Spartacus.Database.Sqlite. Herda da classe Spartacus.Database.Generic. Utiliza o Mono...">Spartacus.Database.Sqlite</a>.  <a href="#ac093bc658547c155306908a97e7e725d">Mais...</a><br /></td></tr>
 <tr class="separator:ac093bc658547c155306908a97e7e725d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bbbff1d7f1b76d0545cc6fd7ce03c32"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#a7bbbff1d7f1b76d0545cc6fd7ce03c32">Connect</a> ()</td></tr>
-<tr class="memdesc:a7bbbff1d7f1b76d0545cc6fd7ce03c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conectar ao banco de dados.  <a href="#a7bbbff1d7f1b76d0545cc6fd7ce03c32">Mais...</a><br /></td></tr>
-<tr class="separator:a7bbbff1d7f1b76d0545cc6fd7ce03c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ecb802399c8b374d23edaf4237ce667"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#a1ecb802399c8b374d23edaf4237ce667">Disconnect</a> ()</td></tr>
-<tr class="memdesc:a1ecb802399c8b374d23edaf4237ce667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desconectar do banco de dados.  <a href="#a1ecb802399c8b374d23edaf4237ce667">Mais...</a><br /></td></tr>
-<tr class="separator:a1ecb802399c8b374d23edaf4237ce667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b452dd40baf4fb82f3cf1dc2b5adef2"><td class="memItemLeft" align="right" valign="top">override System.Data.DataTable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpartacus_1_1Database_1_1Sqlite.html#a6b452dd40baf4fb82f3cf1dc2b5adef2">Query</a> (string p_sql, string p_tablename)</td></tr>
 <tr class="memdesc:a6b452dd40baf4fb82f3cf1dc2b5adef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.Data.DataTable.  <a href="#a6b452dd40baf4fb82f3cf1dc2b5adef2">Mais...</a><br /></td></tr>
 <tr class="separator:a6b452dd40baf4fb82f3cf1dc2b5adef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,72 +164,6 @@ Campos de Dados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Métodos</h2>
-<a class="anchor" id="a7bbbff1d7f1b76d0545cc6fd7ce03c32"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Spartacus.Database.Sqlite.Connect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Conectar ao banco de dados. </p>
-<dl class="exception"><dt>Exceções</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classSpartacus_1_1Database_1_1Exception.html" title="Classe Spartacus.Database.Exception. Herda da classe System.Exception. ">Spartacus.Database.Exception</a></td><td>Exceção acontece quando não for possível se conectar ao banco de dados.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implementa <a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a0f3940aeabde41676f15366e83eff166">Spartacus.Database.Generic</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1ecb802399c8b374d23edaf4237ce667"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Spartacus.Database.Sqlite.Disconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Desconectar do banco de dados. </p>
-<dl class="exception"><dt>Exceções</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classSpartacus_1_1Database_1_1Exception.html" title="Classe Spartacus.Database.Exception. Herda da classe System.Exception. ">Spartacus.Database.Exception</a></td><td>Exceção acontece quando não for possível se desconectar do banco de dados.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implementa <a class="el" href="classSpartacus_1_1Database_1_1Generic.html#a765dda5d5d8a768885fabd9799a0a180">Spartacus.Database.Generic</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="adb68d4ddb00d814f9741ec87e88d788a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -449,7 +377,7 @@ Campos de Dados</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 22 de Agosto de 2014 17:03:34 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quinta, 11 de Setembro de 2014 11:45:50 para Spartacus por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

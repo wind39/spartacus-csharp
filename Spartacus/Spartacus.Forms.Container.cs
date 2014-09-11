@@ -151,10 +151,19 @@ namespace Spartacus.Forms
         /// <param name="p_newposy">Nova posição Y.</param>
         public abstract void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy);
 
+        /// <summary>
+        /// Habilita o Container atual.
+        /// </summary>
         public abstract void Enable();
 
+        /// <summary>
+        /// Desabilita o Container atual.
+        /// </summary>
         public abstract void Disable();
 
+        /// <summary>
+        /// Limpa os dados do Container atual.
+        /// </summary>
         public abstract void Clear();
     }
 }

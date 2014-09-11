@@ -377,11 +377,11 @@ namespace Test
                 v_window = new Spartacus.Forms.Window("Formulario Teste", 500, 400);
 
                 v_menu = new Spartacus.Forms.Menu(v_window);
-                v_menugroup = v_menu.AddGroup("Cadastro", null);
+                v_menugroup = v_menu.AddGroup("Cadastro");
                 v_menu.AddItem(v_menugroup, "Clientes", new System.EventHandler(OnClickMenu));
                 v_menu.AddItem(v_menugroup, "Usuários", new System.EventHandler(OnClickMenu));
                 v_menu.AddItem(v_menugroup, "Licenças", new System.EventHandler(OnClickMenu));
-                v_menugroup = v_menu.AddGroup("Ajuda", null);
+                v_menugroup = v_menu.AddGroup("Ajuda");
                 v_menu.AddItem(v_menugroup, "Sobre", new System.EventHandler(OnClickMenu));
                 v_window.Add(v_menu);
 

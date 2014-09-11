@@ -8,8 +8,7 @@ Classe \hyperlink{classSpartacus_1_1Database_1_1Odbc}{Spartacus.\+Database.\+Odb
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Database.\+Odbc\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Database.\+Odbc\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,8 +17,7 @@ Diagrama de Hierarquia para Spartacus.\+Database.\+Odbc\+:
 \end{figure}
 
 
-Diagrama de colaboração para Spartacus.\+Database.\+Odbc\+:
-\nopagebreak
+Diagrama de colaboração para Spartacus.\+Database.\+Odbc\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,10 +29,6 @@ Diagrama de colaboração para Spartacus.\+Database.\+Odbc\+:
 \item 
 \hyperlink{classSpartacus_1_1Database_1_1Odbc_a2ea31921d3a0d8e25b73a05e89784bdc}{Odbc} (string p\+\_\+dsn, string p\+\_\+user, string p\+\_\+password)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1_1Odbc}{Spartacus.\+Database.\+Odbc}. Cria a string de conexão ao banco. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Odbc_a306058e9deb3a18bfdb228488a5d7641}{Connect} ()
-\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Odbc_a7b2a59398269853f6ad7f3af308afadf}{Disconnect} ()
-\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Odbc_a2332e648d04783ce92a9680f6cd69411}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
 \begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Odbc_a7b6d07dad45f3124d081976d2b51ed4b}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
@@ -81,46 +75,6 @@ Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Database_1
 
 
 \subsection{Métodos}
-\hypertarget{classSpartacus_1_1Database_1_1Odbc_a306058e9deb3a18bfdb228488a5d7641}{\index{Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}!Connect@{Connect}}
-\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}}
-\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Odbc.\+Connect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Odbc_a306058e9deb3a18bfdb228488a5d7641}
-
-
-Conectar ao banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
-
-\hypertarget{classSpartacus_1_1Database_1_1Odbc_a7b2a59398269853f6ad7f3af308afadf}{\index{Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}!Disconnect@{Disconnect}}
-\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}}
-\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Odbc.\+Disconnect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Odbc_a7b2a59398269853f6ad7f3af308afadf}
-
-
-Desconectar do banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
-
 \hypertarget{classSpartacus_1_1Database_1_1Odbc_a37ff1148e0cb0c03941189bf21d9b8ed}{\index{Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}!Execute@{Execute}}
 \index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Odbc@{Spartacus\+::\+Database\+::\+Odbc}}
 \subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Odbc.\+Execute (

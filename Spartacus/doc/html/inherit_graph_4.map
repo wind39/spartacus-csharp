@@ -1,3 +1,9 @@
 <map id="Gráfico de Hierarquia de Classes" name="Gráfico de Hierarquia de Classes">
-<area shape="rect" id="node1" href="$classSpartacus_1_1Net_1_1Cryptor.html" title="Classe Cryptor. Objeto genérico que pode criptografar e descriptografar strings e arquivos..." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node1" href="$classSpartacus_1_1Forms_1_1Container.html" title="Classe Container. Representa um formulário (janela), painel, ou outro componente que contenha outros ..." alt="" coords="5,132,188,159"/>
+<area shape="rect" id="node2" href="$classSpartacus_1_1Forms_1_1Buttons.html" title="Classe Buttons. Herda da classe Spartacus.Forms.Container Representa um componente com um ou mais bot..." alt="" coords="237,5,408,32"/>
+<area shape="rect" id="node3" href="$classSpartacus_1_1Forms_1_1Grid.html" title="Classe Grid. Representa um componente Grid. Herda da classe Spartacus.Forms.Container. " alt="" coords="247,56,398,83"/>
+<area shape="rect" id="node4" href="$classSpartacus_1_1Forms_1_1Lookup.html" title="Classe Lookup. Representa um componente Lookup. Herda da classe Spartacus.Forms.Container. " alt="" coords="239,107,407,133"/>
+<area shape="rect" id="node5" href="$classSpartacus_1_1Forms_1_1Menu.html" title="Classe Menu. Representa um componente Menu, que normalmente fica no topo de uma Janela. " alt="" coords="243,157,402,184"/>
+<area shape="rect" id="node6" href="$classSpartacus_1_1Forms_1_1Textbox.html" title="Classe Textbox. Representa um componente em que o usuário pode digitar texto em uma única linha..." alt="" coords="236,208,409,235"/>
+<area shape="rect" id="node7" href="$classSpartacus_1_1Forms_1_1Window.html" title="Classe Window. Representa uma Janela. " alt="" coords="236,259,409,285"/>
 </map>

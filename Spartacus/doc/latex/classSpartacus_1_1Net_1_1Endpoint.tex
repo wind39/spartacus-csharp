@@ -8,12 +8,11 @@ Classe \hyperlink{classSpartacus_1_1Net_1_1Endpoint}{Endpoint}. Representa um po
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Net.\+Endpoint\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Net.\+Endpoint\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=201pt]{classSpartacus_1_1Net_1_1Endpoint__inherit__graph}
+\includegraphics[width=318pt]{classSpartacus_1_1Net_1_1Endpoint__inherit__graph}
 \end{center}
 \end{figure}
 \subsection*{Métodos Públicos}
@@ -21,7 +20,7 @@ Diagrama de Hierarquia para Spartacus.\+Net.\+Endpoint\+:
 \item 
 \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a8edbe7e16bf35d86dc1f8d23a0f968ab}{Endpoint} (string p\+\_\+ip, int p\+\_\+port)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1Endpoint}{Spartacus.\+Net.\+Endpoint}. \end{DoxyCompactList}\item 
-Spartacus.\+Net.\+Packet \hyperlink{classSpartacus_1_1Net_1_1Endpoint_ac53736c6dd5f18b73409ff5a1df2bdb8}{Recv} ()
+\hyperlink{classSpartacus_1_1Net_1_1Packet}{Spartacus.\+Net.\+Packet} \hyperlink{classSpartacus_1_1Net_1_1Endpoint_ac53736c6dd5f18b73409ff5a1df2bdb8}{Recv} ()
 \begin{DoxyCompactList}\small\item\em Recebe um pacote. \end{DoxyCompactList}\item 
 string \hyperlink{classSpartacus_1_1Net_1_1Endpoint_ab4b631ddbd930e4ee77e5840fd3ce14e}{Recv\+String} ()
 \begin{DoxyCompactList}\small\item\em Recebe uma string. Pode ser necessário vários pacotes para montar essa string. \end{DoxyCompactList}\item 
@@ -29,7 +28,7 @@ System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a77b733
 \begin{DoxyCompactList}\small\item\em Recebe uma System.\+Data.\+Data\+Table. Recebe um pacote por linha da System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
 string \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a6da241dad3b4cdfc193188b03089b8ed}{Recv\+File} ()
 \begin{DoxyCompactList}\small\item\em Recebe um arquivo. \end{DoxyCompactList}\item 
-void \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a4f29f6186c156ad87017d6138e2e386d}{Send} (Spartacus.\+Net.\+Packet p\+\_\+packet)
+void \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a4f29f6186c156ad87017d6138e2e386d}{Send} (\hyperlink{classSpartacus_1_1Net_1_1Packet}{Spartacus.\+Net.\+Packet} p\+\_\+packet)
 \begin{DoxyCompactList}\small\item\em Envia um pacote. \end{DoxyCompactList}\item 
 void \hyperlink{classSpartacus_1_1Net_1_1Endpoint_a17c745276c7becd11fd2b5a20727c1b0}{Send\+String} (string p\+\_\+text)
 \begin{DoxyCompactList}\small\item\em Envia uma string. Pode ser necessário quebrar essa string em vários pacotes. \end{DoxyCompactList}\item 
@@ -86,7 +85,7 @@ Inicializa uma nova instância da classe \hyperlink{classSpartacus_1_1Net_1_1End
 \subsection{Métodos}
 \hypertarget{classSpartacus_1_1Net_1_1Endpoint_ac53736c6dd5f18b73409ff5a1df2bdb8}{\index{Spartacus\+::\+Net\+::\+Endpoint@{Spartacus\+::\+Net\+::\+Endpoint}!Recv@{Recv}}
 \index{Recv@{Recv}!Spartacus\+::\+Net\+::\+Endpoint@{Spartacus\+::\+Net\+::\+Endpoint}}
-\subsubsection[{Recv}]{\setlength{\rightskip}{0pt plus 5cm}Spartacus.\+Net.\+Packet Spartacus.\+Net.\+Endpoint.\+Recv (
+\subsubsection[{Recv}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Net.\+Packet} Spartacus.\+Net.\+Endpoint.\+Recv (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -164,7 +163,7 @@ String.
 \index{Send@{Send}!Spartacus\+::\+Net\+::\+Endpoint@{Spartacus\+::\+Net\+::\+Endpoint}}
 \subsubsection[{Send}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Net.\+Endpoint.\+Send (
 \begin{DoxyParamCaption}
-\item[{Spartacus.\+Net.\+Packet}]{p\+\_\+packet}
+\item[{{\bf Spartacus.\+Net.\+Packet}}]{p\+\_\+packet}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Net_1_1Endpoint_a4f29f6186c156ad87017d6138e2e386d}
 

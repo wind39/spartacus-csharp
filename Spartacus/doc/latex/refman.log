@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.7.29)  22 AUG 2014 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.8.27)  11 SEP 2014 11:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1125,23 +1125,31 @@ Package babel Info: Redefining portuges shorthand "|
  [12]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 431.
- [13])
+ [13]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 471.
+ [14]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 511.
+ [15]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 551.
+ [16]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 591.
+ [17]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 631.
+ [18])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
-
-Underfull \vbox (badness 1968) has occurred while \output is active []
-
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 138.
- [14]
+ [19]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 138.
-
-[15]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 138.
- [16
+ [20
 
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line 140.
@@ -1187,19 +1195,16 @@ Package babel Info: Redefining portuges shorthand "|
 (./hierarchy.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1.
-)
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+ [3])
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 147.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 147.
- [3]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 147.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 147.
- [4
-
-]
+ [4]
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 147.
@@ -1210,12 +1215,26 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 20.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 20.
- [5])
+ [5
+
+]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 43.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 43.
+ [6])
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 149.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 149.
- [6]
+ [7]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 149.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 149.
+ [8
+
+]
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 149.
@@ -1253,9 +1272,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 26.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 26.
- [7
-
-]
+ [9]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 36.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
@@ -1267,19 +1284,32 @@ Package babel Info: Redefining portuges shorthand "|
 ) (./namespaceSpartacus_1_1Forms.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-)
-(./namespaceSpartacus_1_1Net.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 29.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 29.
+
+[10]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 32.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+) (./namespaceSpartacus_1_1Net.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 26.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 29.
 ) (./namespaceSpartacus_1_1Reporting.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 12.
+(babel)             in language  on input line 14.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 12.
+(babel)             in language  on input line 14.
 
-[8]
+[11]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
 Package babel Info: Redefining portuges shorthand "|
@@ -1299,41 +1329,36 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 4.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 4.
- [9]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 34.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 37.
+ [12]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 44.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 51.
+(babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 54.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 65.
+(babel)             in language  on input line 61.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 65.
- [10]
+(babel)             in language  on input line 61.
+ [13]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 65.
+(babel)             in language  on input line 61.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 72.
+(babel)             in language  on input line 68.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 79.
+(babel)             in language  on input line 75.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 82.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 89.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 96.
 )
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 156.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 156.
- [11]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 156.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 156.
- [12
-
-]
+ [14]
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 156.
@@ -1359,7 +1384,9 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
-[13]
+[15
+
+]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 50.
 LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <10> not available
@@ -1395,7 +1422,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 9.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 9.
- [14]
+ [16]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 29.
 Package babel Info: Redefining portuges shorthand "|
@@ -1416,64 +1443,124 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
- [15]
+ [17]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 88.
 )
-(./classSpartacus_1_1Net_1_1Client.tex
+(./classSpartacus_1_1Forms_1_1Buttons.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Net_1_1Client__inherit__graph.pdf, id=2805, 207.77625pt x 15
+<classSpartacus_1_1Forms_1_1Buttons__inherit__graph.pdf, id=3954, 223.83624pt x
+ 156.585pt>
+File: classSpartacus_1_1Forms_1_1Buttons__inherit__graph.pdf Graphic file (type
+ pdf)
+ <use classSpartacus_1_1Forms_1_1Buttons__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Buttons__inherit__graph.pdf
+ used on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+<classSpartacus_1_1Forms_1_1Buttons__coll__graph.pdf, id=3955, 223.83624pt x 15
+6.585pt>
+File: classSpartacus_1_1Forms_1_1Buttons__coll__graph.pdf Graphic file (type pd
+f)
+ <use classSpartacus_1_1Forms_1_1Buttons__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Buttons__coll__graph.pdf us
+ed on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+ [18 <./classSpartacus_1_1Forms_1_1Buttons__inherit__graph.pdf> <./classSpartac
+us_1_1Forms_1_1Buttons__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Buttons__coll__grap
+h.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 51.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 56.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 63.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 75.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 83.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 101.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 116.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 131.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 138.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 138.
+ [19]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 149.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 171.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 174.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 181.
+) (./classSpartacus_1_1Net_1_1Client.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Net_1_1Client__inherit__graph.pdf, id=4018, 207.77625pt x 15
 6.585pt>
 File: classSpartacus_1_1Net_1_1Client__inherit__graph.pdf Graphic file (type pd
 f)
  <use classSpartacus_1_1Net_1_1Client__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Net_1_1Client__inherit__graph.pdf us
-ed on input line 16.
+ed on input line 15.
 (pdftex.def)             Requested size: 207.0pt x 156.0064pt.
 
-<classSpartacus_1_1Net_1_1Client__coll__graph.pdf, id=2806, 207.77625pt x 156.5
+<classSpartacus_1_1Net_1_1Client__coll__graph.pdf, id=4019, 207.77625pt x 156.5
 85pt>
 File: classSpartacus_1_1Net_1_1Client__coll__graph.pdf Graphic file (type pdf)
  <use classSpartacus_1_1Net_1_1Client__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Net_1_1Client__coll__graph.pdf used 
-on input line 26.
+on input line 24.
 (pdftex.def)             Requested size: 207.0pt x 156.0064pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 36.
+(babel)             in language  on input line 27.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 36.
- [16 <./classSpartacus_1_1Net_1_1Client__inherit__graph.pdf> <./classSpartacus_
-1_1Net_1_1Client__coll__graph.pdf
-
-pdfTeX warning: pdflatex (file ./classSpartacus_1_1Net_1_1Client__coll__graph.p
-df): PDF inclusion: multiple pdfs with page group included in a single page
->]
+(babel)             in language  on input line 27.
+ [20 <./classSpartacus_1_1Net_1_1Client__inherit__graph.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 45.
+(babel)             in language  on input line 43.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 48.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 60.
+(babel)             in language  on input line 58.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
+(babel)             in language  on input line 76.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 83.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 97.
+(babel)             in language  on input line 89.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 100.
+(babel)             in language  on input line 89.
+ [21 <./classSpartacus_1_1Net_1_1Client__coll__graph.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 95.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 98.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 105.
 ) (./classSpartacus_1_1Database_1_1Command.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 13.
+(babel)             in language  on input line 41.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 13.
- [17]
+(babel)             in language  on input line 41.
+ [22]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 46.
 Package babel Info: Redefining portuges shorthand "|
@@ -1485,16 +1572,6 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 73.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 79.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 79.
- [18]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 79.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 79.
- [19]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 91.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
@@ -1505,7 +1582,11 @@ Underfull \hbox (badness 10000) detected at line 107
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 126.
-
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 131.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 131.
+[23]
 Underfull \hbox (badness 10000) detected at line 131
 [][][]
  []
@@ -1518,23 +1599,18 @@ Underfull \hbox (badness 10000) detected at line 150
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 154.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 154.
-[20]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 165.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 189.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 202.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 202.
+[24]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 213.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 237.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 245.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 245.
- [21]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 260.
 Package babel Info: Redefining portuges shorthand "|
@@ -1543,14 +1619,101 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 270.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 277.
+) (./classSpartacus_1_1Forms_1_1Container.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Forms_1_1Container__inherit__graph.pdf, id=4116, 384.43625pt
+ x 291.0875pt>
+File: classSpartacus_1_1Forms_1_1Container__inherit__graph.pdf Graphic file (ty
+pe pdf)
+ <use classSpartacus_1_1Forms_1_1Container__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Container__inherit__graph.p
+df used on input line 15.
+(pdftex.def)             Requested size: 350.0pt x 265.03215pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+
+[25]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+ [26 <./classSpartacus_1_1Forms_1_1Container__inherit__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 66.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 71.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 78.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 89.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 101.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 108.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 124.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 139.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 139.
+ [27]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 139.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 154.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 172.
+
+Underfull \hbox (badness 2165) in paragraph at lines 190--191
+[]\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Forms.[]Lookup[][], [][]Spart
+acus.[]Forms.[]Textbox[][], [][]Spartacus.[]Forms.[]Grid[][], [][]Spartacus.[]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 198.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 215.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 233.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 245.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 248.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 255.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 255.
+[28]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 255.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 262.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 269.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 276.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 283.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 290.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 297.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 304.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 311.
 ) (./classSpartacus_1_1Net_1_1Cryptor.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 33.
+(babel)             in language  on input line 13.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 33.
- [22]
+(babel)             in language  on input line 13.
+ [29]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
@@ -1558,14 +1721,14 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 64.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+ [30]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 81.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 101.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
- [23]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 124.
 Package babel Info: Redefining portuges shorthand "|
@@ -1573,14 +1736,14 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 167.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 175.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 175.
+ [31]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 190.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 216.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
- [24]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 236.
 Package babel Info: Redefining portuges shorthand "|
@@ -1598,6 +1761,11 @@ Underfull \hbox (badness 10000) detected at line 267
  []
 
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 271.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 271.
+[32]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 282.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 300.
@@ -1606,11 +1774,6 @@ Underfull \hbox (badness 10000) detected at line 305
 [][][]
  []
 
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 309.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 309.
-[25]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 319.
 
@@ -1627,7 +1790,11 @@ Underfull \hbox (badness 10000) detected at line 343
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 357.
-
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 362.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 362.
+[33]
 Underfull \hbox (badness 10000) detected at line 362
 [][][]
  []
@@ -1636,11 +1803,6 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 377.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 397.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 403.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 403.
-[26]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 417.
 
@@ -1655,106 +1817,105 @@ Underfull \hbox (badness 10000) detected at line 441
 [][][]
  []
 
-) (./classSpartacus_1_1Net_1_1Endpoint.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 445.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 445.
+[34]) (./classSpartacus_1_1Net_1_1Endpoint.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf, id=2987, 201.75375pt x 
-156.585pt>
+<classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf, id=4371, 319.1925pt x 1
+56.585pt>
 File: classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf Graphic file (type 
 pdf)
  <use classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf 
-used on input line 16.
-(pdftex.def)             Requested size: 201.0pt x 156.00162pt.
+used on input line 15.
+(pdftex.def)             Requested size: 318.0pt x 156.00162pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
+(babel)             in language  on input line 45.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
- [27 <./classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf>]
+(babel)             in language  on input line 45.
+ [35 <./classSpartacus_1_1Net_1_1Endpoint__inherit__graph.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 59.
+(babel)             in language  on input line 58.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 64.
+(babel)             in language  on input line 63.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 72.
+(babel)             in language  on input line 71.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
+(babel)             in language  on input line 85.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
- [28]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 86.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 93.
+(babel)             in language  on input line 92.
 
-Underfull \hbox (badness 10000) detected at line 98
+Underfull \hbox (badness 10000) detected at line 97
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 112.
+(babel)             in language  on input line 111.
 
-Underfull \hbox (badness 10000) detected at line 117
+Underfull \hbox (badness 10000) detected at line 116
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 131.
+(babel)             in language  on input line 120.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 120.
+[36]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 130.
 
-Underfull \hbox (badness 10000) detected at line 136
+Underfull \hbox (badness 10000) detected at line 135
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 149.
 
-Underfull \hbox (badness 10000) detected at line 155
+Underfull \hbox (badness 10000) detected at line 154
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 168.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 159.
-[29]
+(babel)             in language  on input line 189.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 169.
+(babel)             in language  on input line 210.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 190.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 211.
+(babel)             in language  on input line 216.
+[37]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 232.
+(babel)             in language  on input line 231.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 253.
+(babel)             in language  on input line 252.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 260.
+(babel)             in language  on input line 259.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 262.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 263.
- [30]
+(babel)             in language  on input line 269.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 270.
+(babel)             in language  on input line 283.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 277.
+(babel)             in language  on input line 290.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 284.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 291.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 298.
+(babel)             in language  on input line 297.
 ) (./classSpartacus_1_1Utils_1_1Exception.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
+(babel)             in language  on input line 3.
+ [38]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
- [31]
+(babel)             in language  on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
 
@@ -1771,16 +1932,16 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+[39]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 85.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 105.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-[32]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
@@ -1792,14 +1953,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
-) (./classSpartacus_1_1Net_1_1Exception.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+[40]) (./classSpartacus_1_1Database_1_1Exception.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
- [33]
+
 Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
@@ -1813,16 +1974,16 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+[41]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 85.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 105.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-[34]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
@@ -1834,14 +1995,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
-) (./classSpartacus_1_1Database_1_1Exception.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 180.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 180.
+[42]) (./classSpartacus_1_1Forms_1_1Exception.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
- [35]
+
 Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
@@ -1855,16 +2016,16 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+[43]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 85.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 105.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-[36]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
@@ -1876,14 +2037,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
-) (./classSpartacus_1_1Reporting_1_1Exception.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+[44]) (./classSpartacus_1_1Net_1_1Exception.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
- [37]
+
 Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
@@ -1897,21 +2058,16 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+[45]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 85.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 105.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-[38]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
- [39]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
@@ -1923,14 +2079,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
-) (./classSpartacus_1_1Reporting_1_1Field.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 182.
+[46]) (./classSpartacus_1_1Reporting_1_1Exception.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 28.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 28.
- [40]
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 66.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+[47]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 85.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 105.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 127.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 150.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 168.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 171.
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--177
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 180.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 180.
+[48]) (./classSpartacus_1_1Reporting_1_1Field.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 33.
 Package babel Info: Redefining portuges shorthand "|
@@ -1941,6 +2138,11 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+ [49]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 75.
 Package babel Info: Redefining portuges shorthand "|
@@ -1955,15 +2157,15 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 111.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 118.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 125.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 125.
- [41])
+)
 (./classSpartacus_1_1Utils_1_1File.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
-
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+ [50]
 Underfull \hbox (badness 2799) in paragraph at lines 36--37
 [][][]\T1/phv/m/n/10 File[][] (int p[]_[]id, int p[]_[]parentid, [][]Spartacus.
 []Utils.[]File[]Type[][] p[]_[]type, string p[]_[]completename, bool p[]_[]
@@ -1975,11 +2177,7 @@ Underfull \hbox (badness 2799) in paragraph at lines 38--39
 []Utils.[]File[]Type[][] p[]_[]type, string p[]_[]completename, bool p[]_[]
  []
 
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
-[42]
+
 Underfull \hbox (badness 2799) in paragraph at lines 40--41
 [][][]\T1/phv/m/n/10 File[][] (int p[]_[]id, int p[]_[]parentid, [][]Spartacus.
 []Utils.[]File[]Type[][] p[]_[]type, string p[]_[]completename, bool p[]_[]
@@ -2021,7 +2219,11 @@ Underfull \hbox (badness 2799) in paragraph at lines 52--53
 []Utils.[]File[]Type[][] p[]_[]type, string p[]_[]completename, bool p[]_[]
  []
 
-
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
+[51]
 Underfull \hbox (badness 2799) in paragraph at lines 54--55
 [][][]\T1/phv/m/n/10 File[][] (int p[]_[]id, int p[]_[]parentid, [][]Spartacus.
 []Utils.[]File[]Type[][] p[]_[]type, string p[]_[]completename, bool p[]_[]
@@ -2040,10 +2242,10 @@ Underfull \hbox (badness 2799) in paragraph at lines 58--59
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
+(babel)             in language  on input line 99.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
-[43]
+(babel)             in language  on input line 99.
+[52]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 99.
 Package babel Info: Redefining portuges shorthand "|
@@ -2053,98 +2255,89 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 140.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 146.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 146.
- [44]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 168.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 197.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 203.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 203.
+ [53]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 228.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 260.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
- [45]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
- [46]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 292.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 306.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 306.
+ [54]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 321.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 352.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 366.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 366.
- [47]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 384.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 418.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 424.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 424.
+ [55]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 453.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 471.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 471.
- [48]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 487.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 516.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 524.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 524.
+ [56]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 547.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 579.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 585.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 585.
- [49]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 613.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 623.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 623.
+ [57]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 648.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 683.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 689.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 689.
- [50]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 715.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 723.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 723.
+ [58]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 749.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 784.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 790.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 790.
- [51]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 821.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 827.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 827.
+ [59]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 859.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 887.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 894.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 899.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 899.
- [52]
+
 Underfull \hbox (badness 10000) detected at line 899
 [][][]
  []
@@ -2156,6 +2349,11 @@ Underfull \hbox (badness 10000) detected at line 913
 [][][]
  []
 
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 917.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 917.
+[60]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 927.
 
@@ -2183,16 +2381,16 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 982.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 982.
-[53]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 982.
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 989.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 996.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1003.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1010.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1010.
+[61]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 1010.
 Package babel Info: Redefining portuges shorthand "|
@@ -2207,165 +2405,169 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf, id=3481, 219.82124pt
+<classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf, id=4897, 219.82124pt
  x 167.62625pt>
 File: classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf Graphic file (ty
 pe pdf)
  <use classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.p
-df used on input line 16.
+df used on input line 15.
 (pdftex.def)             Requested size: 219.0pt x 167.00427pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 22.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 22.
 
-[54]
+[62 <./classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 73.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
- [55 <./classSpartacus_1_1Utils_1_1FileExplorer__coll__graph.pdf>]
+(babel)             in language  on input line 73.
+ [63]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 83.
+(babel)             in language  on input line 86.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 88.
+(babel)             in language  on input line 91.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 95.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 106.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 123.
+(babel)             in language  on input line 126.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 129.
+(babel)             in language  on input line 140.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 129.
- [56]
+(babel)             in language  on input line 148.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 137.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 145.
-
-Underfull \hbox (badness 10000) detected at line 150
+(babel)             in language  on input line 153.
+ [64]
+Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 169.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 187.
+(babel)             in language  on input line 190.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 208.
+(babel)             in language  on input line 211.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 225.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 230.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 230.
-[57]
-Underfull \hbox (badness 10000) detected at line 230
+(babel)             in language  on input line 228.
+
+Underfull \hbox (badness 10000) detected at line 233
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 246.
+(babel)             in language  on input line 237.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 237.
+[65]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 249.
 
-Underfull \hbox (badness 10000) detected at line 251
+Underfull \hbox (badness 10000) detected at line 254
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 265.
+(babel)             in language  on input line 268.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 281.
+(babel)             in language  on input line 284.
 
-Underfull \hbox (badness 10000) detected at line 286
+Underfull \hbox (badness 10000) detected at line 289
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 305.
+(babel)             in language  on input line 308.
 
-Underfull \hbox (badness 10000) detected at line 310
+Underfull \hbox (badness 10000) detected at line 313
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 314.
+(babel)             in language  on input line 322.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 314.
-[58]
+(babel)             in language  on input line 322.
+[66]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 329.
+(babel)             in language  on input line 332.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 345.
+(babel)             in language  on input line 348.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 362.
+(babel)             in language  on input line 369.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 380.
+(babel)             in language  on input line 386.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 392.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 395.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 402.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 404.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 416.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 416.
- [59]
+(babel)             in language  on input line 419.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 416.
+(babel)             in language  on input line 426.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 423.
+(babel)             in language  on input line 426.
+ [67]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 430.
+(babel)             in language  on input line 426.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 437.
+(babel)             in language  on input line 433.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 444.
+(babel)             in language  on input line 440.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 451.
+(babel)             in language  on input line 447.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 458.
+(babel)             in language  on input line 454.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 461.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 472.
-) (./classSpartacus_1_1Database_1_1Firebird.tex
+(babel)             in language  on input line 468.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 475.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 482.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 489.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 496.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 503.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 510.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 510.
+ [68]) (./classSpartacus_1_1Database_1_1Firebird.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf, id=3595, 221.82875
+<classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf, id=5021, 221.82875
 pt x 167.62625pt>
 File: classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf Graphic file (
 type pdf)
 
 <use classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Firebird__inherit__graph
-.pdf used on input line 16.
+.pdf used on input line 15.
 (pdftex.def)             Requested size: 221.0pt x 166.99916pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
- [60]
-<classSpartacus_1_1Database_1_1Firebird__coll__graph.pdf, id=3600, 221.82875pt 
+
+<classSpartacus_1_1Database_1_1Firebird__coll__graph.pdf, id=5022, 221.82875pt 
 x 167.62625pt>
 File: classSpartacus_1_1Database_1_1Firebird__coll__graph.pdf Graphic file (typ
 e pdf)
  <use classSpartacus_1_1Database_1_1Firebird__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Firebird__coll__graph.pd
-f used on input line 26.
+f used on input line 24.
 (pdftex.def)             Requested size: 221.0pt x 166.99916pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 36.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 36.
 
-[61 <./classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf> <./classSpar
+[69 <./classSpartacus_1_1Database_1_1Firebird__inherit__graph.pdf> <./classSpar
 tacus_1_1Database_1_1Firebird__coll__graph.pdf
 
 pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Firebird__coll__
@@ -2373,63 +2575,54 @@ graph.pdf): PDF inclusion: multiple pdfs with page group included in a single p
 age
 >]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
+(babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 69.
+(babel)             in language  on input line 63.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 89.
+(babel)             in language  on input line 83.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 90.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 116.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 136.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
- [62]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 161.
+(babel)             in language  on input line 115.
 
-Underfull \hbox (badness 10000) detected at line 166
+Underfull \hbox (badness 10000) detected at line 120
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 190.
+(babel)             in language  on input line 124.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 124.
+[70]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 144.
 
-Underfull \hbox (badness 10000) detected at line 202
+Underfull \hbox (badness 10000) detected at line 156
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-[63]
-Underfull \hbox (badness 10000) detected at line 236
+(babel)             in language  on input line 176.
+
+Underfull \hbox (badness 10000) detected at line 190
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 253.
-) (./classSpartacus_1_1Reporting_1_1Font.tex
+(babel)             in language  on input line 207.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 216.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 216.
+[71]) (./classSpartacus_1_1Reporting_1_1Font.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 33.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 38.
- [64]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 38.
 Package babel Info: Redefining portuges shorthand "|
@@ -2444,6 +2637,11 @@ Underfull \hbox (badness 10000) detected at line 64
  []
 
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 68.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 68.
+[72]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 78.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 94.
@@ -2457,47 +2655,77 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 123.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 130.
+) (./classSpartacus_1_1Forms_1_1Form.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 137.
+(babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 137.
-[65]) (./classSpartacus_1_1Database_1_1Generic.tex
+(babel)             in language  on input line 19.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 19.
+ [73]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 36.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 48.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 59.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 71.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 78.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 90.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 100.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 107.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 107.
+ [74]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 107.
+)
+(./classSpartacus_1_1Database_1_1Generic.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf, id=3707, 415.5525pt
+<classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf, id=5146, 415.5525pt
  x 291.0875pt>
 File: classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf Graphic file (t
 ype pdf)
  <use classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Generic__inherit__graph.
-pdf used on input line 16.
+pdf used on input line 15.
 (pdftex.def)             Requested size: 350.0pt x 245.17807pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 37.
+(babel)             in language  on input line 29.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 37.
+(babel)             in language  on input line 29.
 
-[66 <./classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf>]
+[75 <./classSpartacus_1_1Database_1_1Generic__inherit__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 54.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 59.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 64.
+(babel)             in language  on input line 70.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 75.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 101.
+(babel)             in language  on input line 102.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 102.
+ [76]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
- [67]
+(babel)             in language  on input line 116.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 121.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 140.
+(babel)             in language  on input line 135.
 
 Underfull \hbox (badness 10000) in paragraph at lines 147--148
 []\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
@@ -2507,83 +2735,140 @@ rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 155.
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
-[]\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
-rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
-[]\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
-rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 190.
-
-Underfull \hbox (badness 10000) detected at line 195
+Underfull \hbox (badness 10000) detected at line 160
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 []\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
 rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 214.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 220.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 220.
-[68]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 220.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 220.
- [69]
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
+(babel)             in language  on input line 179.
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 []\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
 rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 238.
-
-Underfull \hbox (badness 10000) in paragraph at lines 254--255
+(babel)             in language  on input line 203.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 209.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 209.
+[77]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 209.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 209.
+ [78]
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
 []\T1/phv/m/n/10 Implementado por [][]Spartacus.[]Database.[]Oledb[][], [][]Spa
 rtacus.[]Database.[]Firebird[][], [][]Spartacus.[]Database.[]Mysql[][],
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 258.
+(babel)             in language  on input line 223.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 226.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 233.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 240.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 247.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 254.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 261.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 268.
+) (./classSpartacus_1_1Forms_1_1Grid.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 275.
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Forms_1_1Grid__inherit__graph.pdf, id=5246, 223.83624pt x 15
+6.585pt>
+File: classSpartacus_1_1Forms_1_1Grid__inherit__graph.pdf Graphic file (type pd
+f)
+ <use classSpartacus_1_1Forms_1_1Grid__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Grid__inherit__graph.pdf us
+ed on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 282.
+(babel)             in language  on input line 18.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 289.
+(babel)             in language  on input line 18.
+ [79]
+<classSpartacus_1_1Forms_1_1Grid__coll__graph.pdf, id=5256, 223.83624pt x 156.5
+85pt>
+File: classSpartacus_1_1Forms_1_1Grid__coll__graph.pdf Graphic file (type pdf)
+ <use classSpartacus_1_1Forms_1_1Grid__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Grid__coll__graph.pdf used 
+on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 296.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 303.
+(babel)             in language  on input line 51.
+ [80 <./classSpartacus_1_1Forms_1_1Grid__inherit__graph.pdf> <./classSpartacus_
+1_1Forms_1_1Grid__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Grid__coll__graph.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 51.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 56.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 81.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 88.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 103.
+
+Underfull \hbox (badness 10000) detected at line 108
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 117.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 132.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 147.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 166.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 172.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 172.
+[81]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 172.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 172.
+ [82]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 188.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 191.
 ) (./classSpartacus_1_1Reporting_1_1Group.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
- [70]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 37.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 42.
+ [83]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 42.
 Package babel Info: Redefining portuges shorthand "|
@@ -2592,11 +2877,6 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 56.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 63.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 69.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 69.
- [71]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 75.
 Package babel Info: Redefining portuges shorthand "|
@@ -2615,38 +2895,210 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 120.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-)
-(./classSpartacus_1_1Database_1_1Mysql.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 134.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 134.
+ [84])
+(./classSpartacus_1_1Forms_1_1Lookup.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf, id=3870, 215.80624pt 
+<classSpartacus_1_1Forms_1_1Lookup__inherit__graph.pdf, id=5357, 223.83624pt x 
+156.585pt>
+File: classSpartacus_1_1Forms_1_1Lookup__inherit__graph.pdf Graphic file (type 
+pdf)
+ <use classSpartacus_1_1Forms_1_1Lookup__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Lookup__inherit__graph.pdf 
+used on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+<classSpartacus_1_1Forms_1_1Lookup__coll__graph.pdf, id=5358, 223.83624pt x 156
+.585pt>
+File: classSpartacus_1_1Forms_1_1Lookup__coll__graph.pdf Graphic file (type pdf
+)
+ <use classSpartacus_1_1Forms_1_1Lookup__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Lookup__coll__graph.pdf use
+d on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 39.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 39.
+ [85 <./classSpartacus_1_1Forms_1_1Lookup__inherit__graph.pdf> <./classSpartacu
+s_1_1Forms_1_1Lookup__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Lookup__coll__graph
+.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 63.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 68.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 97.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 103.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 103.
+ [86]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 115.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 122.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 137.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 152.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 167.
+
+Underfull \hbox (badness 10000) detected at line 172
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 209.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 215.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 215.
+[87]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 235.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 247.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 250.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 257.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 264.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 271.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 278.
+) (./classSpartacus_1_1Forms_1_1Menu.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Forms_1_1Menu__inherit__graph.pdf, id=5458, 223.83624pt x 15
+6.585pt>
+File: classSpartacus_1_1Forms_1_1Menu__inherit__graph.pdf Graphic file (type pd
+f)
+ <use classSpartacus_1_1Forms_1_1Menu__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Menu__inherit__graph.pdf us
+ed on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+Underfull \vbox (badness 1005) has occurred while \output is active []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+ [88]
+<classSpartacus_1_1Forms_1_1Menu__coll__graph.pdf, id=5463, 223.83624pt x 156.5
+85pt>
+File: classSpartacus_1_1Forms_1_1Menu__coll__graph.pdf Graphic file (type pdf)
+ <use classSpartacus_1_1Forms_1_1Menu__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Menu__coll__graph.pdf used 
+on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+Underfull \hbox (badness 2351) in paragraph at lines 42--43
+[]\T1/phv/m/n/10 System.[]Windows.[]Forms.[]Tool[]Strip[]Menu[]Item [][]Add[]Gr
+oup[][] (System.[]Windows.[]Forms.[]Tool[]Strip[]Menu[]Item p[]_[]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 50.
+[89 <./classSpartacus_1_1Forms_1_1Menu__inherit__graph.pdf> <./classSpartacus_1
+_1Forms_1_1Menu__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Menu__coll__graph.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 77.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 84.
+
+Underfull \hbox (badness 10000) detected at line 89
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 104.
+
+Underfull \hbox (badness 10000) detected at line 109
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 127.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 133.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 133.
+[90]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 147.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 162.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 177.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 195.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 217.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 220.
+) (./classSpartacus_1_1Database_1_1Mysql.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf, id=5526, 215.80624pt 
 x 167.62625pt>
 File: classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf Graphic file (typ
 e pdf)
  <use classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Mysql__inherit__graph.pd
-f used on input line 16.
+f used on input line 15.
 (pdftex.def)             Requested size: 215.0pt x 167.00427pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 18.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 18.
 
-[72]
-<classSpartacus_1_1Database_1_1Mysql__coll__graph.pdf, id=3875, 215.80624pt x 1
+[91]
+<classSpartacus_1_1Database_1_1Mysql__coll__graph.pdf, id=5531, 215.80624pt x 1
 67.62625pt>
 File: classSpartacus_1_1Database_1_1Mysql__coll__graph.pdf Graphic file (type p
 df)
  <use classSpartacus_1_1Database_1_1Mysql__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Mysql__coll__graph.pdf u
-sed on input line 26.
+sed on input line 24.
 (pdftex.def)             Requested size: 215.0pt x 167.00427pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
- [73 <./classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf> <./classSparta
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+ [92 <./classSpartacus_1_1Database_1_1Mysql__inherit__graph.pdf> <./classSparta
 cus_1_1Database_1_1Mysql__coll__graph.pdf
 
 pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Mysql__coll__gra
@@ -2654,63 +3106,57 @@ ph.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
 >]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
+(babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 63.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 69.
+(babel)             in language  on input line 83.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 89.
+(babel)             in language  on input line 90.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 96.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 116.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 136.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
- [74]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 161.
+(babel)             in language  on input line 115.
 
-Underfull \hbox (badness 10000) detected at line 166
+Underfull \hbox (badness 10000) detected at line 120
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 190.
-
-Underfull \hbox (badness 10000) detected at line 202
+(babel)             in language  on input line 144.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 150.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 150.
+[93]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 150.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 150.
+ [94]
+Underfull \hbox (badness 10000) detected at line 156
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-[75]
-Underfull \hbox (badness 10000) detected at line 236
+(babel)             in language  on input line 176.
+
+Underfull \hbox (badness 10000) detected at line 190
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 253.
+(babel)             in language  on input line 207.
 ) (./classSpartacus_1_1Reporting_1_1Object.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+ [95]
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 35.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 40.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 40.
- [76]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 40.
 Package babel Info: Redefining portuges shorthand "|
@@ -2728,6 +3174,11 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 99.
 Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 99.
+ [96]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 99.
+Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 106.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 113.
@@ -2735,180 +3186,227 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 120.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 127.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 134.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 134.
- [77])
+)
 (./classSpartacus_1_1Database_1_1Odbc.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf, id=3974, 212.795pt x 1
+<classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf, id=5622, 212.795pt x 1
 67.62625pt>
 File: classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf Graphic file (type
  pdf)
  <use classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf
- used on input line 16.
+ used on input line 15.
 (pdftex.def)             Requested size: 212.0pt x 167.0094pt.
 
-<classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf, id=3975, 212.795pt x 167.
+<classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf, id=5623, 212.795pt x 167.
 62625pt>
 File: classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf Graphic file (type pd
 f)
  <use classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf us
-ed on input line 26.
+ed on input line 24.
 (pdftex.def)             Requested size: 212.0pt x 167.0094pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
- [78 <./classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf> <./classSpartac
-us_1_1Database_1_1Odbc__coll__graph.pdf
 
-pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Odbc__coll__grap
-h.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 67.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 83.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 90.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 110.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 116.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 116.
- [79]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 130.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 155.
+Underfull \vbox (badness 3009) has occurred while \output is active []
 
-Underfull \hbox (badness 10000) detected at line 160
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 27.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 27.
+ [97 <./classSpartacus_1_1Database_1_1Odbc__inherit__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 61.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 69.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 69.
+ [98 <./classSpartacus_1_1Database_1_1Odbc__coll__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 77.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 84.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 109.
+
+Underfull \hbox (badness 10000) detected at line 114
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 184.
+(babel)             in language  on input line 138.
 
-Underfull \hbox (badness 10000) detected at line 196
+Underfull \hbox (badness 10000) detected at line 150
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 216.
+(babel)             in language  on input line 154.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 154.
+[99]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-[80]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
- [81]
-Underfull \hbox (badness 10000) detected at line 230
+(babel)             in language  on input line 170.
+
+Underfull \hbox (badness 10000) detected at line 184
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 244.
+(babel)             in language  on input line 198.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 247.
+(babel)             in language  on input line 201.
 ) (./classSpartacus_1_1Database_1_1Oledb.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf, id=4041, 214.8025pt x
+<classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf, id=5676, 214.8025pt x
  167.62625pt>
 File: classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf Graphic file (typ
 e pdf)
  <use classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Oledb__inherit__graph.pd
-f used on input line 16.
-(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
-
-<classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf, id=4042, 214.8025pt x 16
-7.62625pt>
-File: classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf Graphic file (type p
-df)
- <use classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf>
-Package pdftex.def Info: classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf u
-sed on input line 26.
+f used on input line 15.
 (pdftex.def)             Requested size: 214.0pt x 167.00172pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 29.
+(babel)             in language  on input line 18.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 29.
- [82 <./classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf>]
+(babel)             in language  on input line 18.
+ [100]
+<classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf, id=5683, 214.8025pt x 16
+7.62625pt>
+File: classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf Graphic file (type p
+df)
+ <use classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf u
+sed on input line 24.
+(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+ [101 <./classSpartacus_1_1Database_1_1Oledb__inherit__graph.pdf> <./classSpart
+acus_1_1Database_1_1Oledb__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Oledb__coll__gra
+ph.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 64.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 86.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 93.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 118.
+
+Underfull \hbox (badness 10000) detected at line 123
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 147.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
+[102]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
+ [103]
+Underfull \hbox (badness 10000) detected at line 159
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 179.
+
+Underfull \hbox (badness 10000) detected at line 193
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 207.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 210.
+) (./classSpartacus_1_1Net_1_1Packet.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 17.
+ [104]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 46.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 53.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 70.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 76.
+(babel)             in language  on input line 78.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 76.
- [83 <./classSpartacus_1_1Database_1_1Oledb__coll__graph.pdf>]
+(babel)             in language  on input line 78.
+ [105]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 92.
+(babel)             in language  on input line 89.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 99.
+(babel)             in language  on input line 110.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 119.
+(babel)             in language  on input line 135.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
+(babel)             in language  on input line 157.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 169.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 176.
 
-Underfull \hbox (badness 10000) detected at line 169
+Underfull \hbox (badness 10000) detected at line 181
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 186.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
-[84]
+(babel)             in language  on input line 189.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 193.
-
-Underfull \hbox (badness 10000) detected at line 205
-[][][]
- []
-
+(babel)             in language  on input line 189.
+[106]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 225.
-
-Underfull \hbox (badness 10000) detected at line 239
-[][][]
- []
-
+(babel)             in language  on input line 189.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 253.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 256.
+(babel)             in language  on input line 203.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 265.
+(babel)             in language  on input line 210.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 265.
-[85]) (./classSpartacus_1_1Database_1_1Parameter.tex
+(babel)             in language  on input line 217.
+) (./classSpartacus_1_1Database_1_1Parameter.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 30.
+ [107]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 35.
 Package babel Info: Redefining portuges shorthand "|
@@ -2919,11 +3417,6 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 62.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 69.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 76.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 76.
- [86]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 76.
 Package babel Info: Redefining portuges shorthand "|
@@ -2940,333 +3433,455 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 114.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 121.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 121.
+ [108]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 121.
 )
 (./classSpartacus_1_1Database_1_1Postgresql.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
-<classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf, id=4145, 235.881
+<classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf, id=5840, 235.881
 26pt x 167.62625pt>
 File: classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf Graphic file
  (type pdf)
 
 <use classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Postgresql__inherit__gra
-ph.pdf used on input line 16.
+ph.pdf used on input line 15.
 (pdftex.def)             Requested size: 235.0pt x 167.00172pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 19.
- [87]
-<classSpartacus_1_1Database_1_1Postgresql__coll__graph.pdf, id=4152, 235.88126p
+
+<classSpartacus_1_1Database_1_1Postgresql__coll__graph.pdf, id=5841, 235.88126p
 t x 167.62625pt>
 File: classSpartacus_1_1Database_1_1Postgresql__coll__graph.pdf Graphic file (t
 ype pdf)
 
 <use classSpartacus_1_1Database_1_1Postgresql__coll__graph.pdf>
 Package pdftex.def Info: classSpartacus_1_1Database_1_1Postgresql__coll__graph.
-pdf used on input line 26.
+pdf used on input line 24.
 (pdftex.def)             Requested size: 235.0pt x 167.00172pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
+(babel)             in language  on input line 31.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 50.
- [88 <./classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf> <./classS
-partacus_1_1Database_1_1Postgresql__coll__graph.pdf
+(babel)             in language  on input line 31.
+ [109 <./classSpartacus_1_1Database_1_1Postgresql__inherit__graph.pdf> <./class
+Spartacus_1_1Database_1_1Postgresql__coll__graph.pdf
 
 pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Postgresql__coll
 __graph.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
 >]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
+(babel)             in language  on input line 47.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 69.
+(babel)             in language  on input line 63.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 89.
+(babel)             in language  on input line 83.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 90.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 116.
+(babel)             in language  on input line 115.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 136.
+(babel)             in language  on input line 120.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
- [89]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 161.
-
-Underfull \hbox (badness 10000) detected at line 166
+(babel)             in language  on input line 120.
+ [110]
+Underfull \hbox (badness 10000) detected at line 120
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 190.
+(babel)             in language  on input line 144.
 
-Underfull \hbox (badness 10000) detected at line 202
+Underfull \hbox (badness 10000) detected at line 156
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 222.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 228.
-[90]
-Underfull \hbox (badness 10000) detected at line 236
-[][][]
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 253.
-) (./classSpartacus_1_1Reporting_1_1Report.tex
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
-
-<classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf, id=4211, 450.68375pt x
- 301.125pt>
-File: classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf Graphic file (type
- pdf)
- <use classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf>
-Package pdftex.def Info: classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf
- used on input line 16.
-(pdftex.def)             Requested size: 350.0pt x 233.86569pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 23.
-
-[91 <./classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 66.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 86.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 92.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 92.
- [92]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 108.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 124.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 131.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 154.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 157.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 171.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 178.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 192.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 192.
- [93]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 192.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 199.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 206.
-)
-(./classSpartacus_1_1Reporting_1_1Settings.tex
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
-
-<classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf, id=4274, 382.42876pt
- x 222.8325pt>
-File: classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf Graphic file (ty
-pe pdf)
- <use classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf>
-Package pdftex.def Info: classSpartacus_1_1Reporting_1_1Settings__coll__graph.p
-df used on input line 16.
-(pdftex.def)             Requested size: 350.0pt x 203.94754pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 34.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 34.
-
-[94 <./classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf>]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 73.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 78.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 85.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 92.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 99.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 104.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 104.
- [95]
-Underfull \hbox (badness 10000) detected at line 104
-[][][]
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 119.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 133.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 136.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 143.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 150.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 157.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 164.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 171.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 178.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-[96]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 192.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 199.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 206.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 213.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 220.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 227.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 234.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 241.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 248.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 255.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 262.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 269.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 276.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 276.
- [97]) (./classSpartacus_1_1Database_1_1Sqlite.tex
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 3.
-
-<classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf, id=4364, 214.8025pt 
-x 167.62625pt>
-File: classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf Graphic file (ty
-pe pdf)
- <use classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf>
-Package pdftex.def Info: classSpartacus_1_1Database_1_1Sqlite__inherit__graph.p
-df used on input line 16.
-(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
-
-<classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf, id=4365, 214.8025pt x 1
-67.62625pt>
-File: classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf Graphic file (type 
-pdf)
- <use classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf>
-Package pdftex.def Info: classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf 
-used on input line 26.
-(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 39.
-
-[98 <./classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf> <./classSparta
-cus_1_1Database_1_1Sqlite__coll__graph.pdf
-
-pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Sqlite__coll__gr
-aph.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
-e
->]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 53.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 65.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 77.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 84.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 104.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 124.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 130.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 130.
- [99]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 130.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 130.
- [100]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
-
-Underfull \hbox (badness 10000) detected at line 154
-[][][]
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 178.
+(babel)             in language  on input line 176.
 
 Underfull \hbox (badness 10000) detected at line 190
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 210.
+(babel)             in language  on input line 194.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 216.
+(babel)             in language  on input line 194.
+[111]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 216.
-[101]
-Underfull \hbox (badness 10000) detected at line 224
+(babel)             in language  on input line 204.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 207.
+) (./classSpartacus_1_1Utils_1_1ProgressEventArgs.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 40.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+ [112]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 73.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 80.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 87.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 94.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 101.
+)
+(./classSpartacus_1_1Utils_1_1ProgressEventClass.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Utils_1_1ProgressEventClass__coll__graph.pdf, id=5919, 231.8
+6626pt x 189.70876pt>
+File: classSpartacus_1_1Utils_1_1ProgressEventClass__coll__graph.pdf Graphic fi
+le (type pdf)
+
+<use classSpartacus_1_1Utils_1_1ProgressEventClass__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Utils_1_1ProgressEventClass__coll__g
+raph.pdf used on input line 15.
+(pdftex.def)             Requested size: 231.0pt x 189.00485pt.
+
+Underfull \vbox (badness 1902) has occurred while \output is active []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+ [113]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 46.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 64.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+
+[114 <./classSpartacus_1_1Utils_1_1ProgressEventClass__coll__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+
+[115]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 86.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 109.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 116.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 119.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 126.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 129.
+) (./classSpartacus_1_1Reporting_1_1Report.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf, id=5965, 450.68375pt x
+ 301.125pt>
+File: classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf Graphic file (type
+ pdf)
+ <use classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf
+ used on input line 15.
+(pdftex.def)             Requested size: 350.0pt x 233.86569pt.
+
+Underfull \vbox (badness 7851) has occurred while \output is active []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+ [116]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+
+[117 <./classSpartacus_1_1Reporting_1_1Report__coll__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 57.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 85.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 107.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 123.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 130.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 141.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 147.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 147.
+ [118]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 153.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 156.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 163.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 170.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 177.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 191.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 198.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 205.
+)
+(./classSpartacus_1_1Net_1_1Server.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Net_1_1Server__inherit__graph.pdf, id=6027, 207.77625pt x 15
+6.585pt>
+File: classSpartacus_1_1Net_1_1Server__inherit__graph.pdf Graphic file (type pd
+f)
+ <use classSpartacus_1_1Net_1_1Server__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Net_1_1Server__inherit__graph.pdf us
+ed on input line 15.
+(pdftex.def)             Requested size: 207.0pt x 156.0064pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 18.
+ [119]
+<classSpartacus_1_1Net_1_1Server__coll__graph.pdf, id=6033, 207.77625pt x 156.5
+85pt>
+File: classSpartacus_1_1Net_1_1Server__coll__graph.pdf Graphic file (type pdf)
+ <use classSpartacus_1_1Net_1_1Server__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Net_1_1Server__coll__graph.pdf used 
+on input line 24.
+(pdftex.def)             Requested size: 207.0pt x 156.0064pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 39.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 44.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 58.
+ [120 <./classSpartacus_1_1Net_1_1Server__inherit__graph.pdf> <./classSpartacus
+_1_1Net_1_1Server__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Net_1_1Server__coll__graph.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 66.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 73.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 84.
+) (./classSpartacus_1_1Reporting_1_1Settings.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf, id=6062, 382.42876pt
+ x 222.8325pt>
+File: classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf Graphic file (ty
+pe pdf)
+ <use classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Reporting_1_1Settings__coll__graph.p
+df used on input line 15.
+(pdftex.def)             Requested size: 350.0pt x 203.94754pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 31.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 31.
+
+[121 <./classSpartacus_1_1Reporting_1_1Settings__coll__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 72.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 77.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 84.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 91.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 98.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 98.
+ [122]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 98.
+
+Underfull \hbox (badness 10000) detected at line 103
 [][][]
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 238.
+(babel)             in language  on input line 118.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 241.
-) (./classSpartacus_1_1Utils_1_1Synchronizer.tex
+(babel)             in language  on input line 132.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 135.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 142.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 149.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 156.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 163.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 170.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 177.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 184.
+[123]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 191.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 198.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 205.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 212.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 219.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 226.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 233.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 240.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 247.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 254.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 261.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 268.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 275.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 275.
+ [124]) (./classSpartacus_1_1Database_1_1Sqlite.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf, id=6153, 214.8025pt 
+x 167.62625pt>
+File: classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf Graphic file (ty
+pe pdf)
+ <use classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Database_1_1Sqlite__inherit__graph.p
+df used on input line 15.
+(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
+
+<classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf, id=6154, 214.8025pt x 1
+67.62625pt>
+File: classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf Graphic file (type 
+pdf)
+ <use classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Database_1_1Sqlite__coll__graph.pdf 
+used on input line 24.
+(pdftex.def)             Requested size: 214.0pt x 167.00172pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 36.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 36.
+
+[125 <./classSpartacus_1_1Database_1_1Sqlite__inherit__graph.pdf> <./classSpart
+acus_1_1Database_1_1Sqlite__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Database_1_1Sqlite__coll__gr
+aph.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
+e
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 59.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 71.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 78.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 103.
+
+Underfull \hbox (badness 10000) detected at line 108
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 112.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 112.
+[126]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 132.
+
+Underfull \hbox (badness 10000) detected at line 144
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 164.
+
+Underfull \hbox (badness 10000) detected at line 178
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 192.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 195.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 204.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 204.
+[127]) (./classSpartacus_1_1Utils_1_1Synchronizer.tex
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 
@@ -3293,52 +3908,269 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 52.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+[128]) (./classSpartacus_1_1Forms_1_1Textbox.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Forms_1_1Textbox__inherit__graph.pdf, id=6227, 223.83624pt x
+ 156.585pt>
+File: classSpartacus_1_1Forms_1_1Textbox__inherit__graph.pdf Graphic file (type
+ pdf)
+ <use classSpartacus_1_1Forms_1_1Textbox__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Textbox__inherit__graph.pdf
+ used on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+<classSpartacus_1_1Forms_1_1Textbox__coll__graph.pdf, id=6228, 223.83624pt x 15
+6.585pt>
+File: classSpartacus_1_1Forms_1_1Textbox__coll__graph.pdf Graphic file (type pd
+f)
+ <use classSpartacus_1_1Forms_1_1Textbox__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Textbox__coll__graph.pdf us
+ed on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 35.
+ [129 <./classSpartacus_1_1Forms_1_1Textbox__inherit__graph.pdf> <./classSparta
+cus_1_1Forms_1_1Textbox__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Textbox__coll__grap
+h.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 57.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 62.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 70.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 90.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 106.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 113.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 128.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 128.
+ [130]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 128.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 143.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 158.
+
+Underfull \hbox (badness 10000) detected at line 163
+[][][]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 175.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 201.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 213.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 216.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 223.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 230.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 230.
+[131]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 230.
+) (./classSpartacus_1_1Utils_1_1WarningEventArgs.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 33.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 38.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 45.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 56.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 62.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 62.
+ [132]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 68.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 71.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 78.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 85.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 92.
+)
+(./classSpartacus_1_1Utils_1_1WarningEventClass.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Utils_1_1WarningEventClass__coll__graph.pdf, id=6334, 250.93
+75pt x 178.6675pt>
+File: classSpartacus_1_1Utils_1_1WarningEventClass__coll__graph.pdf Graphic fil
+e (type pdf)
+
+<use classSpartacus_1_1Utils_1_1WarningEventClass__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Utils_1_1WarningEventClass__coll__gr
+aph.pdf used on input line 15.
+(pdftex.def)             Requested size: 250.0pt x 178.01003pt.
+
+Underfull \hbox (badness 808) in paragraph at lines 21--22
+[]\T1/phv/m/n/10 delegate void [][]Warning[]Event[]Handler[][] ([][]Spartacus.[
+]Utils.[]Warning[]Event[]Class[][] obj, [][]Spartacus.[]Utils.[]Warning[]
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 24.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 24.
+[133 <./classSpartacus_1_1Utils_1_1WarningEventClass__coll__graph.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 41.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 46.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 64.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 76.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 85.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 106.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 113.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 113.
+
+[134]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 113.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 116.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 123.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 126.
+) (./classSpartacus_1_1Forms_1_1Window.tex
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 3.
+
+<classSpartacus_1_1Forms_1_1Window__inherit__graph.pdf, id=6375, 223.83624pt x 
+156.585pt>
+File: classSpartacus_1_1Forms_1_1Window__inherit__graph.pdf Graphic file (type 
+pdf)
+ <use classSpartacus_1_1Forms_1_1Window__inherit__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Window__inherit__graph.pdf 
+used on input line 15.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+
+<classSpartacus_1_1Forms_1_1Window__coll__graph.pdf, id=6376, 223.83624pt x 156
+.585pt>
+File: classSpartacus_1_1Forms_1_1Window__coll__graph.pdf Graphic file (type pdf
+)
+ <use classSpartacus_1_1Forms_1_1Window__coll__graph.pdf>
+Package pdftex.def Info: classSpartacus_1_1Forms_1_1Window__coll__graph.pdf use
+d on input line 24.
+(pdftex.def)             Requested size: 223.0pt x 156.004pt.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 31.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 31.
+ [135 <./classSpartacus_1_1Forms_1_1Window__inherit__graph.pdf> <./classSpartac
+us_1_1Forms_1_1Window__coll__graph.pdf
+
+pdfTeX warning: pdflatex (file ./classSpartacus_1_1Forms_1_1Window__coll__graph
+.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 53.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 58.
-[102]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
+(babel)             in language  on input line 67.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 58.
- [103])
+(babel)             in language  on input line 90.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 187.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 187.
- [104]
+(babel)             in language  on input line 96.
+ [136]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 108.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 115.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 130.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 145.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 160.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 171.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 183.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 197.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 223.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 230.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 230.
+ [137])
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 202.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 202.
+ [138]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 204.
  (./refman.ind
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 5.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 5.
- [105
+ [139
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 192.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 192.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 192.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 207.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 207.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: BA84E34E0F25187C712582CA5B2756D0;83916.
+(rerunfilecheck)             Checksum: 8DCC08AD08C34ECF007DE1D7E7D995A9;120159.
+
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 192.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 207.
  ) 
 Here is how much of TeX's memory you used:
- 14974 strings out of 494997
- 253716 string characters out of 6180509
- 301445 words of memory out of 5000000
- 16876 multiletter control sequences out of 15000+600000
+ 15872 strings out of 494997
+ 287456 string characters out of 6180509
+ 315185 words of memory out of 5000000
+ 17320 multiletter control sequences out of 15000+600000
  92015 words of font info for 128 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 48i,17n,43p,1257b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,17n,43p,1257b,711s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
@@ -3347,10 +4179,10 @@ urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
 /uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (121 pages, 442858 bytes).
+Output written on refman.pdf (159 pages, 585026 bytes).
 PDF statistics:
- 4704 PDF objects out of 5155 (max. 8388607)
- 4490 compressed objects within 45 object streams
- 991 named destinations out of 1000 (max. 500000)
- 3840 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6771 PDF objects out of 7423 (max. 8388607)
+ 6465 compressed objects within 65 object streams
+ 1398 named destinations out of 1440 (max. 500000)
+ 5509 words of extra memory for PDF output out of 10000 (max. 10000000)
 

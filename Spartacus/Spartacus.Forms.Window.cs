@@ -11,10 +11,32 @@ namespace Spartacus.Forms
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Window"/>.
         /// </summary>
+        /// <param name="p_text">Título da Janela.</param>
+        /// <param name="p_width">Largura da Janela.</param>
+        /// <param name="p_height">Altura da Janela.</param>
         public Window(string p_text, int p_width, int p_height)
             :base()
         {
             this.v_control = new Spartacus.Forms.Form();
+            ((Spartacus.Forms.Form) this.v_control).Resize += new System.EventHandler(this.OnResize);
+
+            this.v_control.Text = p_text;
+
+            this.SetWidth(p_width);
+            this.SetHeight(p_height);
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Window"/>.
+        /// </summary>
+        /// <param name="p_text">Título da Janela.</param>
+        /// <param name="p_width">Largura da Janela.</param>
+        /// <param name="p_height">Altura da Janela.</param>
+        /// <param name="p_parent">Janela pai.</param>
+        public Window(string p_text, int p_width, int p_height, Spartacus.Forms.Window p_parent)
+            :base()
+        {
+            this.v_control = new Spartacus.Forms.Form(p_parent);
             ((Spartacus.Forms.Form) this.v_control).Resize += new System.EventHandler(this.OnResize);
 
             this.v_control.Text = p_text;
@@ -69,6 +91,9 @@ namespace Spartacus.Forms
             ((Spartacus.Forms.Form) this.v_control).Refresh();
         }
 
+        /// <summary>
+        /// Habilita o Container atual.
+        /// </summary>
         public override void Enable()
         {
             Spartacus.Forms.Container v_container;
@@ -81,6 +106,9 @@ namespace Spartacus.Forms
             }
         }
 
+        /// <summary>
+        /// Desabilita o Container atual.
+        /// </summary>
         public override void Disable()
         {
             Spartacus.Forms.Container v_container;
@@ -93,6 +121,9 @@ namespace Spartacus.Forms
             }
         }
 
+        /// <summary>
+        /// Limpa os dados do Container atual.
+        /// </summary>
         public override void Clear()
         {
             Spartacus.Forms.Container v_container;
@@ -105,15 +136,30 @@ namespace Spartacus.Forms
             }
         }
 
+        /// <summary>
+        /// Mostra a Janela atual.
+        /// </summary>
         public void Show()
         {
-            ((Spartacus.Forms.Form) this.v_control).v_showing = true;
             ((Spartacus.Forms.Form) this.v_control).Show();
         }
 
+        /// <summary>
+        /// Esconde a Janela atual.
+        /// </summary>
         public void Hide()
         {
-            ((Spartacus.Forms.Form) this.v_control).v_showing = false;
+            ((Spartacus.Forms.Form) this.v_control).Hide();
+        }
+
+        /// <summary>
+        /// Carrega a Janela atual para a memória.
+        /// Deve ser chamada após a instanciação da Janela.
+        /// Na prática, apenas mostra e em seguida esconde a Janela.
+        /// </summary>
+        public void Load()
+        {
+            ((Spartacus.Forms.Form) this.v_control).Show();
             ((Spartacus.Forms.Form) this.v_control).Hide();
         }
     }

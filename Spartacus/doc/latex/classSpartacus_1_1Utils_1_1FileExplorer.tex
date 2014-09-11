@@ -8,8 +8,7 @@ Classe \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer}{File\+Explorer}. Repr
 
 
 
-Diagrama de colaboração para Spartacus.\+Utils.\+File\+Explorer\+:
-\nopagebreak
+Diagrama de colaboração para Spartacus.\+Utils.\+File\+Explorer\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +34,8 @@ void \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_ac9273b0e7cd1365d67c60b9
 \begin{DoxyCompactList}\small\item\em Entra no diretório especificado. \end{DoxyCompactList}\item 
 void \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a79d43d93289567d3d0544d9c7b61949e}{Return} ()
 \begin{DoxyCompactList}\small\item\em Retorna para o diretório anterior, ou seja, o diretório pai do diretório atual. \end{DoxyCompactList}\item 
+void \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a8c597465a98c123bf84b83126d06e6b0}{Return} (int p\+\_\+history)
+\begin{DoxyCompactList}\small\item\em Retorna para um diretório anterior qualquer no histórico. \end{DoxyCompactList}\item 
 \hyperlink{classSpartacus_1_1Utils_1_1File}{Spartacus.\+Utils.\+File} \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a75222d9146d14fb15e5fe46b0fa1f3c9}{Get} (int p\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Retorna o arquivo ou diretório solicitado de acordo com seu código dentro da lista de arquivos e diretórios. \end{DoxyCompactList}\item 
 string \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_ad6f65e809b0c424f639dde8d6fd5d85f}{Put} (string p\+\_\+file)
@@ -72,12 +73,14 @@ int \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a8017af938b655e57eb51eb83
 \begin{DoxyCompactList}\small\item\em Número de páginas. \end{DoxyCompactList}\item 
 string \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a1e0f31dd0c66b2a6d5003a0ace555eab}{v\+\_\+protectpattern}
 \begin{DoxyCompactList}\small\item\em Padrão de nome de arquivo ou diretório que deve ser protegido contra escrita (fictício e não permissões reais do arquivo). \end{DoxyCompactList}\item 
-bool \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_adba2289bce9aadfdbb353f811fa0411c}{v\+\_\+showprotectpattern}
-\begin{DoxyCompactList}\small\item\em Informa se a pasta com padrão de proteção deve ser mostrada ou não. \end{DoxyCompactList}\item 
+\hyperlink{namespaceSpartacus_1_1Utils_a39dc52f76b36470069f38f3e8b1cd73e}{Spartacus.\+Utils.\+Show\+Pattern\+Type} \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_af5b66d2bdb32bac1793c470e913546b6}{v\+\_\+showpatterntype}
+\begin{DoxyCompactList}\small\item\em Informa o tipo de exibição de arquivos baseado no padrão de proteção. \end{DoxyCompactList}\item 
 int \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a471c35d5854d9f4dbf605da187f262b1}{v\+\_\+protectedminlevel}
 \begin{DoxyCompactList}\small\item\em Nível mínimo de proteção de escrita dentro da estrutura de diretórios. \end{DoxyCompactList}\item 
 bool \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_ac0811882d93d76fb122f8aad7ec7b15d}{v\+\_\+showhiddenfiles}
-\begin{DoxyCompactList}\small\item\em Informa se arquivos e diretórios ocultos devem ou não ser mostrados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Informa se arquivos e diretórios ocultos devem ou não ser mostrados. \end{DoxyCompactList}\item 
+System.\+Collections.\+Array\+List \hyperlink{classSpartacus_1_1Utils_1_1FileExplorer_a0b1ce7d97438abd5824a0b6b9b99bc34}{v\+\_\+returnhistory}
+\begin{DoxyCompactList}\small\item\em Armazena um vetor com o histórico de pastas pai. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Descrição Detalhada}
@@ -336,6 +339,27 @@ Retorna para o diretório anterior, ou seja, o diretório pai do diretório atua
 {\em \hyperlink{classSpartacus_1_1Utils_1_1Exception}{Spartacus.\+Utils.\+Exception}} & Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.\\
 \hline
 \end{DoxyExceptions}
+\hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_a8c597465a98c123bf84b83126d06e6b0}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!Return@{Return}}
+\index{Return@{Return}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
+\subsubsection[{Return}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Utils.\+File\+Explorer.\+Return (
+\begin{DoxyParamCaption}
+\item[{int}]{p\+\_\+history}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSpartacus_1_1Utils_1_1FileExplorer_a8c597465a98c123bf84b83126d06e6b0}
+
+
+Retorna para um diretório anterior qualquer no histórico. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em p\+\_\+history} & Índice do histórico.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceções}
+{\em \hyperlink{classSpartacus_1_1Utils_1_1Exception}{Spartacus.\+Utils.\+Exception}} & Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.\\
+\hline
+\end{DoxyExceptions}
 \hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_a0b21899a7ac47d7a84d0558df390f388}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!Set\+Root@{Set\+Root}}
 \index{Set\+Root@{Set\+Root}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
 \subsubsection[{Set\+Root}]{\setlength{\rightskip}{0pt plus 5cm}void Spartacus.\+Utils.\+File\+Explorer.\+Set\+Root (
@@ -453,6 +477,13 @@ Nível mínimo de proteção de escrita dentro da estrutura de diretórios.
 
 Padrão de nome de arquivo ou diretório que deve ser protegido contra escrita (fictício e não permissões reais do arquivo). 
 
+\hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_a0b1ce7d97438abd5824a0b6b9b99bc34}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!v\+\_\+returnhistory@{v\+\_\+returnhistory}}
+\index{v\+\_\+returnhistory@{v\+\_\+returnhistory}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
+\subsubsection[{v\+\_\+returnhistory}]{\setlength{\rightskip}{0pt plus 5cm}System.\+Collections.\+Array\+List Spartacus.\+Utils.\+File\+Explorer.\+v\+\_\+returnhistory}}\label{classSpartacus_1_1Utils_1_1FileExplorer_a0b1ce7d97438abd5824a0b6b9b99bc34}
+
+
+Armazena um vetor com o histórico de pastas pai. 
+
 \hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_a398279cbdbce816d3c0d40b3dc02eb50}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!v\+\_\+root@{v\+\_\+root}}
 \index{v\+\_\+root@{v\+\_\+root}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
 \subsubsection[{v\+\_\+root}]{\setlength{\rightskip}{0pt plus 5cm}string Spartacus.\+Utils.\+File\+Explorer.\+v\+\_\+root}}\label{classSpartacus_1_1Utils_1_1FileExplorer_a398279cbdbce816d3c0d40b3dc02eb50}
@@ -467,12 +498,12 @@ Pasta raiz do explorador de arquivos.
 
 Informa se arquivos e diretórios ocultos devem ou não ser mostrados. 
 
-\hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_adba2289bce9aadfdbb353f811fa0411c}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!v\+\_\+showprotectpattern@{v\+\_\+showprotectpattern}}
-\index{v\+\_\+showprotectpattern@{v\+\_\+showprotectpattern}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
-\subsubsection[{v\+\_\+showprotectpattern}]{\setlength{\rightskip}{0pt plus 5cm}bool Spartacus.\+Utils.\+File\+Explorer.\+v\+\_\+showprotectpattern}}\label{classSpartacus_1_1Utils_1_1FileExplorer_adba2289bce9aadfdbb353f811fa0411c}
+\hypertarget{classSpartacus_1_1Utils_1_1FileExplorer_af5b66d2bdb32bac1793c470e913546b6}{\index{Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}!v\+\_\+showpatterntype@{v\+\_\+showpatterntype}}
+\index{v\+\_\+showpatterntype@{v\+\_\+showpatterntype}!Spartacus\+::\+Utils\+::\+File\+Explorer@{Spartacus\+::\+Utils\+::\+File\+Explorer}}
+\subsubsection[{v\+\_\+showpatterntype}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spartacus.\+Utils.\+Show\+Pattern\+Type} Spartacus.\+Utils.\+File\+Explorer.\+v\+\_\+showpatterntype}}\label{classSpartacus_1_1Utils_1_1FileExplorer_af5b66d2bdb32bac1793c470e913546b6}
 
 
-Informa se a pasta com padrão de proteção deve ser mostrada ou não. 
+Informa o tipo de exibição de arquivos baseado no padrão de proteção. 
 
 
 

@@ -8,8 +8,7 @@ Classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\
 
 
 
-Diagrama de Hierarquia para Spartacus.\+Database.\+Firebird\+:
-\nopagebreak
+Diagrama de Hierarquia para Spartacus.\+Database.\+Firebird\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,8 +17,7 @@ Diagrama de Hierarquia para Spartacus.\+Database.\+Firebird\+:
 \end{figure}
 
 
-Diagrama de colaboração para Spartacus.\+Database.\+Firebird\+:
-\nopagebreak
+Diagrama de colaboração para Spartacus.\+Database.\+Firebird\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,10 +29,6 @@ Diagrama de colaboração para Spartacus.\+Database.\+Firebird\+:
 \item 
 \hyperlink{classSpartacus_1_1Database_1_1Firebird_ad561c2ad372a44fc785238e72dbc10b4}{Firebird} (string p\+\_\+source, string p\+\_\+port, string p\+\_\+file, string p\+\_\+user, string p\+\_\+password)
 \begin{DoxyCompactList}\small\item\em Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_1Firebird}{Spartacus.\+Database.\+Firebird}. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{Connect} ()
-\begin{DoxyCompactList}\small\item\em Conectar ao banco de dados. \end{DoxyCompactList}\item 
-override void \hyperlink{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{Disconnect} ()
-\begin{DoxyCompactList}\small\item\em Desconectar do banco de dados. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Firebird_a10235140b612dd5b178169461962d2df}{Query} (string p\+\_\+sql, string p\+\_\+tablename)
 \begin{DoxyCompactList}\small\item\em Realiza uma consulta no banco de dados, armazenando os dados de retorno em um System.\+Data.\+Data\+Table. \end{DoxyCompactList}\item 
 override System.\+Data.\+Data\+Table \hyperlink{classSpartacus_1_1Database_1_1Firebird_a6243d18345e2b5f44ddcda032f6b2b9e}{Query} (string p\+\_\+sql, string p\+\_\+tablename, System.\+Data.\+Data\+Table p\+\_\+table)
@@ -87,46 +81,6 @@ Inicializa uma nova instancia da classe \hyperlink{classSpartacus_1_1Database_1_
 
 
 \subsection{Métodos}
-\hypertarget{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Connect@{Connect}}
-\index{Connect@{Connect}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
-\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Connect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a9d3d6ee076fcae78c7f035667bd9539d}
-
-
-Conectar ao banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se conectar ao banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a0f3940aeabde41676f15366e83eff166}{Spartacus.\+Database.\+Generic}.
-
-\hypertarget{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Disconnect@{Disconnect}}
-\index{Disconnect@{Disconnect}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
-\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Disconnect (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classSpartacus_1_1Database_1_1Firebird_a0b0b56b3a71ef80ea8662547e24acb47}
-
-
-Desconectar do banco de dados. 
-
-
-\begin{DoxyExceptions}{Exceções}
-{\em \hyperlink{classSpartacus_1_1Database_1_1Exception}{Spartacus.\+Database.\+Exception}} & Exceção acontece quando não for possível se desconectar do banco de dados.\\
-\hline
-\end{DoxyExceptions}
-
-
-Implementa \hyperlink{classSpartacus_1_1Database_1_1Generic_a765dda5d5d8a768885fabd9799a0a180}{Spartacus.\+Database.\+Generic}.
-
 \hypertarget{classSpartacus_1_1Database_1_1Firebird_a1844a94a27db40450a91a1d415a9d456}{\index{Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}!Execute@{Execute}}
 \index{Execute@{Execute}!Spartacus\+::\+Database\+::\+Firebird@{Spartacus\+::\+Database\+::\+Firebird}}
 \subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}override void Spartacus.\+Database.\+Firebird.\+Execute (
