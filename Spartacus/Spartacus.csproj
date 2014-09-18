@@ -438,9 +438,11 @@
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\sqlite3.dll" />
     <None Include="doc\Spartacus-0.30.0.pdf" />
+    <None Include="dist\Spartacus-0.30.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="doc\" />
+    <Folder Include="dist\" />
   </ItemGroup>
 </Project>

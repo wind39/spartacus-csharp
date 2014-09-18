@@ -7,7 +7,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            FormsTest();
+            FileTest();
         }
 
         //#region DATABASE

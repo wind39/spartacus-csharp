@@ -485,7 +485,7 @@ namespace Spartacus.Utils
                 this.v_returnhistory.RemoveAt(this.v_returnhistory.Count-1);
 
                 if (p_history < this.v_returnhistory.Count - 1)
-                    this.Return(p_history - 1);
+                    this.Return(p_history);
             }
         }
 
