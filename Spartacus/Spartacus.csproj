@@ -433,6 +433,7 @@
     <None Include="bin\Debug\sqlite3.dll" />
     <None Include="doc\Spartacus-0.30.0.pdf" />
     <None Include="dist\Spartacus-0.30.0.zip" />
+    <None Include="CHANGELOG.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
