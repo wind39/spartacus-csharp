@@ -1310,7 +1310,7 @@ namespace Spartacus.Utils
         /// </param>
         private string GetPath(string p_completename)
         {
-            if (p_completename == ".")
+            if (p_completename == "." || p_completename == this.v_name)
                 return p_completename;
             else
                 return p_completename.Substring(0, p_completename.Length - this.v_name.Length - 1);
