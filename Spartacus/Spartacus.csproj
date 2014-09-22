@@ -48,9 +48,6 @@
       <HintPath>lib\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="Mono.Security">
-      <HintPath>lib\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
@@ -121,9 +118,7 @@
     <None Include="doc\Doxyfile" />
     <None Include="lib\EPPlus.dll" />
     <None Include="bin\Release\EPPlus.dll" />
-    <None Include="lib\Mono.Security.dll" />
     <None Include="lib\Npgsql.dll" />
-    <None Include="bin\Release\Mono.Security.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="LICENSE.txt" />
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
@@ -430,7 +425,6 @@
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
     <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
-    <None Include="bin\Debug\Mono.Security.dll" />
     <None Include="bin\Debug\MySql.Data.dll" />
     <None Include="bin\Debug\Npgsql.dll" />
     <None Include="bin\Debug\PDFjet.dll" />

@@ -10,7 +10,6 @@ Spartacus links this libraries:
   - EPPlus (http://epplus.codeplex.com/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - SharpZipLib (http://icsharpcode.github.io/SharpZipLib/)
-  - Mono.Security (http://www.mono-project.com/Cryptography)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - Npgsql (http://npgsql.projects.pgfoundry.org/)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
