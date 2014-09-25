@@ -148,5 +148,13 @@ namespace Spartacus.Database
         /// Código SQL a ser consultado no banco de dados.
         /// </param>
         public abstract string ExecuteScalar(string p_sql);
+
+        /// <summary>
+        /// Insere uma massa de dados.
+        /// <paramref name="p_table"/> precisa ter o nome igual ao nome da tabela onde será inserido.
+        /// Os nomes das colunas também precisam ser os mesmos.
+        /// </summary>
+        /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
+        public abstract void BulkInsert(System.Data.DataTable p_table);
     }
 }

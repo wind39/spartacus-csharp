@@ -209,5 +209,48 @@ namespace Spartacus.Database
 
             return v_ret;
         }
+
+        /// <summary>
+        /// Insere uma massa de dados.
+        /// <paramref name="p_table"/> precisa ter o nome igual ao nome da tabela onde será inserido.
+        /// Os nomes das colunas também precisam ser os mesmos.
+        /// </summary>
+        /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
+        public override void BulkInsert(System.Data.DataTable p_table)
+        {
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
+            string v_context;
+            string v_sqlheader, v_sql;
+            int k;
+
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_mycon.Open();
+
+                    v_sqlheader = "insert into " + p_table.TableName + " (" + p_table.Columns[0].ColumnName + ", ";
+                    for (k = 1; k < p_table.Columns.Count; k++)
+                        v_sqlheader += ", " + p_table.Columns[k].ColumnName;
+                    v_sqlheader += ") values (";
+
+                    foreach (System.Data.DataRow r in p_table.Rows)
+                    {
+                        v_sql = v_sqlheader + r[0].ToString() + ", ";
+                        for (k = 1; k < p_table.Columns.Count; k++)
+                            v_sql += ", " + r[k].ToString();
+                        v_sql += ")";
+
+                        v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_sql), v_mycon);
+                        v_mycmd.ExecuteNonQuery();
+                    }
+                }
+                catch (System.Data.Odbc.OdbcException e)
+                {
+                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                    throw new Spartacus.Database.Exception(v_context, e);
+                }
+            }
+        }
     }
 }
