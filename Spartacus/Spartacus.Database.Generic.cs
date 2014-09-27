@@ -36,16 +36,6 @@ namespace Spartacus.Database
         public string v_password;
 
         /// <summary>
-        /// DSN (Data Source Name)
-        /// </summary>
-        public string v_dsn;
-
-        /// <summary>
-        /// Arquivo do banco de dados.
-        /// </summary>
-        public string v_file;
-
-        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
         /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
@@ -88,7 +78,7 @@ namespace Spartacus.Database
         /// </param>
         public Generic(string p_dsn, string p_user, string p_password)
         {
-            this.v_dsn = p_dsn;
+            this.v_service = p_dsn;
             this.v_user = p_user;
             this.v_password = p_password;
         }
@@ -102,7 +92,7 @@ namespace Spartacus.Database
         /// </param>
         public Generic(string p_file)
         {
-            this.v_file = p_file;
+            this.v_service = p_file;
         }
 
         /// <summary>

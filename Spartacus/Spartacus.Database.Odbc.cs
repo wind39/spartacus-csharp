@@ -32,7 +32,7 @@ namespace Spartacus.Database
         public Odbc (string p_dsn, string p_user, string p_password)
             : base(p_dsn, p_user, p_password)
         {
-            this.v_connectionstring = "DSN=" + this.v_dsn + ";"
+            this.v_connectionstring = "DSN=" + this.v_service + ";"
                 + "UID=" + this.v_user + ";"
                 + "PWD=" + this.v_password + ";";
         }

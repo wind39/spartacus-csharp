@@ -103,6 +103,7 @@
     <Compile Include="Spartacus.Forms.Window.cs" />
     <Compile Include="Spartacus.Forms.Exception.cs" />
     <Compile Include="Spartacus.Forms.Form.cs" />
+    <Compile Include="Spartacus.Database.Configuration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -41,24 +41,34 @@ namespace Spartacus.Database
         public Oledb (string p_provider, string p_host, string p_port, string p_service, string p_user, string p_password)
             : base(p_host, p_port, p_service, p_user, p_password)
         {
-            if (p_provider == "Oracle")
+            Spartacus.Utils.File v_file;
+
+            switch (p_provider)
             {
-                this.v_connectionstring = "Provider=OraOLEDB.Oracle;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST="
-                    + this.v_host + ")(PORT="
+                case "Oracle":
+                    this.v_connectionstring = "Provider=OraOLEDB.Oracle;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST="
+                        + this.v_host + ")(PORT="
                         + this.v_port + ")))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME="
                         + this.v_service + ")));User Id="
                         + this.v_user + ";Password="
                         + this.v_password;
-            }
-            else
-            {
-                this.v_connectionstring = "Provider="
-                    + p_provider + ";Addr="
+                    break;
+                case "Access":
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, v_service);
+                    if (v_file.v_extension.ToLower() == "accdb")
+                        this.v_connectionstring = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + this.v_service + ";Persist Security Info=False;";
+                    else
+                        this.v_connectionstring = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + this.v_service + ";User Id=admin;Password=;";
+                    break;
+                default:
+                    this.v_connectionstring = "Provider="
+                        + p_provider + ";Addr="
                         + this.v_host + ";Port="
                         + this.v_port + ";Database="
                         + this.v_service + ";User Id="
                         + this.v_user + ";Password="
                         + this.v_password;
+                    break;
             }
         }
 

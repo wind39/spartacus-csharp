@@ -1,3 +1,4 @@
+0.31.1: Implementada classe Spartacus.Database.Configuration
 0.31.0: Implementada funcionalidade BulkInsert para Spartacus.Database
 
 0.30.3: Corrigido bug no Spartacus.Utils.File, método GetPath

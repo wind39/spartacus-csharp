@@ -1,20 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Sqlite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Generic.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="13" Column="9" />
       <File FileName="Spartacus/Spartacus.Database.Odbc.cs" Line="1" Column="1" />
       <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="1" Column="1" />
       <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="1" Column="1" />
       <File FileName="Spartacus/Spartacus.Database.Oledb.cs" Line="1" Column="1" />
       <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="211" Column="20" />
+      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Spartacus" expanded="True">
-            <Node name="Spartacus.Database.Sqlite.cs" selected="True" />
+            <Node name="Spartacus.Database.Generic.cs" selected="True" />
           </Node>
           <Node name="Test" expanded="True" />
         </State>
