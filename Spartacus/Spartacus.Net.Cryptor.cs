@@ -471,32 +471,41 @@ namespace Spartacus.Net
             int v_saltlength;
             System.IO.MemoryStream v_memory;
             System.Security.Cryptography.CryptoStream v_crypto;
+            string v_context;
 
-            this.Initialize();
-
-            v_memory = new System.IO.MemoryStream(p_ciphertextbytes);
-
-            v_decryptedbytes = new byte[p_ciphertextbytes.Length];
-
-            lock (this)
+            try
             {
-                v_crypto = new System.Security.Cryptography.CryptoStream(v_memory, this.v_decryptor, System.Security.Cryptography.CryptoStreamMode.Read);
-                v_decryptedbytecount = v_crypto.Read(v_decryptedbytes, 0, v_decryptedbytes.Length);
+                this.Initialize();
 
-                v_memory.Close();
-                v_crypto.Close();
+                v_memory = new System.IO.MemoryStream(p_ciphertextbytes);
+
+                v_decryptedbytes = new byte[p_ciphertextbytes.Length];
+
+                lock (this)
+                {
+                    v_crypto = new System.Security.Cryptography.CryptoStream(v_memory, this.v_decryptor, System.Security.Cryptography.CryptoStreamMode.Read);
+                    v_decryptedbytecount = v_crypto.Read(v_decryptedbytes, 0, v_decryptedbytes.Length);
+
+                    v_memory.Close();
+                    v_crypto.Close();
+                }
+
+                v_saltlength = (v_decryptedbytes[0] & 0x03) |
+                               (v_decryptedbytes[1] & 0x0c) |
+                               (v_decryptedbytes[2] & 0x30) |
+                               (v_decryptedbytes[3] & 0xc0);
+
+                v_plaintextbytes = new byte[v_decryptedbytecount - v_saltlength];
+
+                System.Array.Copy(v_decryptedbytes, v_saltlength, v_plaintextbytes, 0, v_decryptedbytecount - v_saltlength);
+
+                return v_plaintextbytes;
             }
-
-            v_saltlength = (v_decryptedbytes[0] & 0x03) |
-                           (v_decryptedbytes[1] & 0x0c) |
-                           (v_decryptedbytes[2] & 0x30) |
-                           (v_decryptedbytes[3] & 0xc0);
-
-            v_plaintextbytes = new byte[v_decryptedbytecount - v_saltlength];
-
-            System.Array.Copy(v_decryptedbytes, v_saltlength, v_plaintextbytes, 0, v_decryptedbytecount - v_saltlength);
-
-            return v_plaintextbytes;
+            catch (System.Security.Cryptography.CryptographicException e)
+            {
+                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
+                throw new Spartacus.Net.Exception(v_context, e);
+            }
         }
 
         /// <summary>

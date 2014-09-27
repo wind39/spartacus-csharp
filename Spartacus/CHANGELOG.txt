@@ -1,3 +1,4 @@
+0.31.2: Corrigido bug no Spartacus.Net.Cryptor, ao tentar descriptografar uma string vazia
 0.31.1: Implementada classe Spartacus.Database.Configuration
 0.31.0: Implementada funcionalidade BulkInsert para Spartacus.Database
 
