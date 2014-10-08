@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 
 namespace Spartacus.Utils
@@ -49,7 +73,6 @@ namespace Spartacus.Utils
             string[] v_line;
             System.Data.DataRow v_row;
             int i, j, k;
-            string v_context;
 
             // colocando nome na tabela
             v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
@@ -57,8 +80,7 @@ namespace Spartacus.Utils
 
             if (this.v_table.Columns.Count == 0)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, "Objeto CSV não contém nenhuma coluna.");
+                throw new Spartacus.Utils.Exception("Objeto CSV não contém nenhuma coluna.");
             }
 
             try
@@ -67,8 +89,7 @@ namespace Spartacus.Utils
             }
             catch (System.IO.IOException e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
 
             if (p_header)
@@ -83,8 +104,7 @@ namespace Spartacus.Utils
 
                 if (v_line.Length != this.v_table.Columns.Count)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Utils.Exception(v_context, "Objeto CSV contém um número de colunas diferente do arquivo CSV.");
+                    throw new Spartacus.Utils.Exception("Objeto CSV contém um número de colunas diferente do arquivo CSV.");
                 }
 
                 for (j = 0; j < this.v_table.Columns.Count; j++)
@@ -115,13 +135,11 @@ namespace Spartacus.Utils
         public void Export(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding)
         {
             string v_text = "";
-            string v_context;
             int i;
 
             if (this.v_table.Columns.Count == 0)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, "Objeto CSV não contém nenhuma coluna.");
+                throw new Spartacus.Utils.Exception("Objeto CSV não contém nenhuma coluna.");
             }
 
             if (p_header)
@@ -144,10 +162,9 @@ namespace Spartacus.Utils
             {
                 System.IO.File.WriteAllText(p_filename, v_text, p_encoding);
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, exc);
+                throw new Spartacus.Utils.Exception(e);
             }
 
             return;

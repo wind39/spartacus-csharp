@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 using ICSharpCode.SharpZipLib;
 
@@ -201,7 +225,6 @@ namespace Spartacus.Utils
             Spartacus.Utils.File v_file, v_directory;
             System.IO.DirectoryInfo v_directoryinfo;
             System.IO.FileInfo v_fileinfo;
-            string v_context;
             int k;
 
             try
@@ -287,57 +310,6 @@ namespace Spartacus.Utils
                             }
                             break;
                     }
-
-                    // se pode mostrar o padrão protegido, então mostra
-                    /*if (this.v_showprotectpattern)
-                    {
-                        v_directoryinfo = new System.IO.DirectoryInfo(v_item);
-
-                        v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
-
-                        if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
-                            v_directory.v_protected = true;
-
-                        if (v_directory.v_hidden)
-                        {
-                            if (this.v_showhiddenfiles)
-                            {
-                                this.v_files.Add(v_directory);
-                                k++;
-                            }
-                        }
-                        else
-                        {
-                            this.v_files.Add(v_directory);
-                            k++;
-                        }
-                    }
-                    else // se não pode mostrar o padrão protegido...
-                    {
-                        if (! v_item.Contains(this.v_protectpattern)) // só vai mostrar se não contiver o padrão.
-                        {
-                            v_directoryinfo = new System.IO.DirectoryInfo(v_item);
-
-                            v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
-
-                            if (this.v_currentlevel < this.v_protectedminlevel)
-                                v_directory.v_protected = true;
-
-                            if (v_directory.v_hidden)
-                            {
-                                if (this.v_showhiddenfiles)
-                                {
-                                    this.v_files.Add(v_directory);
-                                    k++;
-                                }
-                            }
-                            else
-                            {
-                                this.v_files.Add(v_directory);
-                                k++;
-                            }
-                        }
-                    }*/
                 }
 
                 foreach (string v_item in System.IO.Directory.GetFiles(this.v_current.CompleteFileName()))
@@ -366,8 +338,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -402,7 +373,6 @@ namespace Spartacus.Utils
         public void Enter(int p_id)
         {
             Spartacus.Utils.File v_file;
-            string v_context;
 
             try
             {
@@ -410,8 +380,7 @@ namespace Spartacus.Utils
 
                 if (v_file.v_filetype != Spartacus.Utils.FileType.DIRECTORY)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Utils.Exception(v_context, "{0} não é um diretório.", v_file.CompleteFileName());
+                    throw new Spartacus.Utils.Exception("{0} não é um diretório.", v_file.CompleteFileName());
                 }
                 else
                 {
@@ -424,8 +393,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -435,13 +403,11 @@ namespace Spartacus.Utils
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.</exception>
         public void Return()
         {
-            string v_context;
             string v_parent;
 
             if (this.v_current.CompleteFileName() == this.v_root)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, "Já está no diretório raiz.");
+                throw new Spartacus.Utils.Exception("Já está no diretório raiz.");
             }
             else
             {
@@ -464,13 +430,11 @@ namespace Spartacus.Utils
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.</exception>
         public void Return(int p_history)
         {
-            string v_context;
             string v_parent;
 
             if (this.v_current.CompleteFileName() == this.v_root)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, "Já está no diretório raiz.");
+                throw new Spartacus.Utils.Exception("Já está no diretório raiz.");
             }
             else
             {
@@ -500,16 +464,13 @@ namespace Spartacus.Utils
         /// </param>
         public Spartacus.Utils.File Get(int p_id)
         {
-            string v_context;
-
             try
             {
                 return (Spartacus.Utils.File)this.v_files[p_id-1];
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -525,7 +486,6 @@ namespace Spartacus.Utils
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível criar o arquivo.</exception>
         public string Put(string p_file)
         {
-            string v_context;
             string v_separator;
             string v_completename;
 
@@ -545,8 +505,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -562,7 +521,6 @@ namespace Spartacus.Utils
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível criar o diretório.</exception>
         public string Mkdir(string p_directory)
         {
-            string v_context;
             string v_separator;
             string v_completename;
 
@@ -581,8 +539,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -596,7 +553,6 @@ namespace Spartacus.Utils
         public void Delete(int p_id)
         {
             Spartacus.Utils.File v_file;
-            string v_context;
 
             try
             {
@@ -609,8 +565,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -996,7 +951,6 @@ namespace Spartacus.Utils
             ICSharpCode.SharpZipLib.Zip.FastZip v_fastzip;
             Spartacus.Utils.File v_zipfiletmp, v_zipfile;
             System.IO.FileInfo v_fileinfo;
-            string v_context;
 
             if (p_directory.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
                 v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
@@ -1015,8 +969,7 @@ namespace Spartacus.Utils
             }
             catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Utils.Exception(v_context, e);
+                throw new Spartacus.Utils.Exception(e);
             }
 
             return v_zipfile;

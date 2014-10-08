@@ -27,11 +27,11 @@ using System;
 namespace Spartacus.Utils
 {
     /// <summary>
-    /// Classe ProgressEventArgs.
-    /// Representa os argumentos do evento de Progresso.
+    /// Classe ErrorEventArgs.
+    /// Representa os argumentos do evento de Erro.
     /// Herda da classe <see cref="System.EventArgs"/>.
     /// </summary>
-    public class ProgressEventArgs : System.EventArgs
+    public class ErrorEventArgs : System.EventArgs
     {
         /// <summary>
         /// Nome do processo.
@@ -44,11 +44,6 @@ namespace Spartacus.Utils
         public string v_subprocess;
 
         /// <summary>
-        /// Percentual de execução do processo.
-        /// </summary>
-        public double v_percentage;
-
-        /// <summary>
         /// Mensagem atual do processo.
         /// </summary>
         public string v_message;
@@ -58,79 +53,78 @@ namespace Spartacus.Utils
         /// </summary>
         public bool v_verbose;
 
+
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventArgs"/>.
         /// </summary>
-        public ProgressEventArgs()
+        public ErrorEventArgs()
         {
             this.v_verbose = false;
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventArgs"/>.
         /// </summary>
         /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
-        public ProgressEventArgs(bool p_verbose)
+        public ErrorEventArgs(bool p_verbose)
         {
             this.v_verbose = p_verbose;
         }
     }
 
     /// <summary>
-    /// Classe ProgressEventClass.
-    /// Representa um evento de Progresso.
+    /// Classe ErrorEventClass.
+    /// Representa um evento de Erro.
     /// </summary>
-    public class ProgressEventClass
+    public class ErrorEventClass
     {
         /// <summary>
-        /// Delegate para gerenciar o evento de Progresso.
+        /// Delegate para gerenciar o evento de Erro.
         /// </summary>
-        public delegate void ProgressEventHandler(Spartacus.Utils.ProgressEventClass obj, Spartacus.Utils.ProgressEventArgs e);
+        public delegate void ErrorEventHandler(Spartacus.Utils.ErrorEventClass obj, Spartacus.Utils.ErrorEventArgs e);
 
         /// <summary>
-        /// Evento de Progresso propriamente dito.
+        /// Evento de Erro propriamente dito.
         /// </summary>
-        public event ProgressEventHandler ProgressEvent;
+        public event ErrorEventHandler ErrorEvent;
 
         /// <summary>
-        /// Argumentos do evento de Progresso.
+        /// Argumentos do evento de Erro.
         /// </summary>
-        public Spartacus.Utils.ProgressEventArgs ProgressEventArgs = null;
+        public Spartacus.Utils.ErrorEventArgs ErrorEventArgs = null;
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventClass"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventClass"/>.
         /// </summary>
-        public ProgressEventClass()
+        public ErrorEventClass()
         {
-            this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs();
+            this.ErrorEventArgs = new Spartacus.Utils.ErrorEventArgs();
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventClass"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventClass"/>.
         /// </summary>
         /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
-        public ProgressEventClass(bool p_verbose)
+        public ErrorEventClass(bool p_verbose)
         {
-            this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs(p_verbose);
+            this.ErrorEventArgs = new Spartacus.Utils.ErrorEventArgs(p_verbose);
         }
 
         /// <summary>
-        /// Dispara o evento de Progresso.
+        /// Dispara o evento de Erro.
         /// </summary>
         /// <param name="p_process">Nome do processo.</param>
         /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
-        /// <param name="p_percentage">Percentual de execução do processo.</param>
         /// <param name="p_message">Mensagem atual do processo.</param>
-        public void FireEvent(string p_process, string p_subprocess, double p_percentage, string p_message)
+        public void FireEvent(string p_process, string p_subprocess, string p_message)
         {
-            if (this.ProgressEvent != null)
+            if (this.ErrorEvent != null)
             {
-                this.ProgressEventArgs.v_process = p_process;
-                this.ProgressEventArgs.v_subprocess = p_subprocess;
-                this.ProgressEventArgs.v_percentage = p_percentage;
-                this.ProgressEventArgs.v_message = p_message;
+                this.ErrorEventArgs.v_process = p_process;
+                this.ErrorEventArgs.v_subprocess = p_subprocess;
+                this.ErrorEventArgs.v_message = p_message;
 
-                this.ProgressEvent(this, this.ProgressEventArgs);
+                this.ErrorEvent(this, this.ErrorEventArgs);
             }
         }
     }

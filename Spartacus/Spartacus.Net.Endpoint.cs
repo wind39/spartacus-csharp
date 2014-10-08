@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 
 namespace Spartacus.Net
@@ -68,7 +92,6 @@ namespace Spartacus.Net
         {
             byte[] v_tmpbuffer;
             int v_numbytesrecv;
-            string v_context;
 
             try
             {
@@ -79,14 +102,13 @@ namespace Spartacus.Net
 
                 return new Packet(v_tmpbuffer);
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -101,7 +123,6 @@ namespace Spartacus.Net
             string v_text;
             Spartacus.Net.Packet v_packetrecv, v_packetsend;
             int v_numpackets, v_sequence;
-            string v_context;
 
             try
             {
@@ -143,14 +164,13 @@ namespace Spartacus.Net
 
                 return v_text;
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -168,7 +188,6 @@ namespace Spartacus.Net
             int v_numpackets, v_sequence;
             string[] v_fields;
             int k;
-            string v_context;
 
             try
             {
@@ -209,8 +228,7 @@ namespace Spartacus.Net
                      
                     if (v_fields.Length != v_table.Columns.Count)
                     {
-                        v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                        throw new Spartacus.Net.Exception(v_context, "Numero de colunas diferente na linha " + v_sequence.ToString() + ". " + v_table.Columns.Count.ToString() + " x " + v_fields.Length.ToString() + ".");
+                        throw new Spartacus.Net.Exception("Numero de colunas diferente na linha " + v_sequence.ToString() + ". " + v_table.Columns.Count.ToString() + " x " + v_fields.Length.ToString() + ".");
                     }
 
                     for (k = 0; k < v_table.Columns.Count; k++)
@@ -227,14 +245,13 @@ namespace Spartacus.Net
 
                 return v_table;
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -249,7 +266,6 @@ namespace Spartacus.Net
             System.IO.BinaryWriter v_writer;
             Spartacus.Net.Packet v_packetrecv, v_packetsend;
             int v_numpackets, v_sequence;
-            string v_context;
 
             try
             {
@@ -309,14 +325,13 @@ namespace Spartacus.Net
 
                 return v_file.Name;
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -331,20 +346,17 @@ namespace Spartacus.Net
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
         public void Send(Spartacus.Net.Packet p_packet)
         {
-            string v_context;
-
             try
             {
                 this.v_stream.Write(p_packet.v_buffer, 0, p_packet.v_buffer.Length);
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -360,7 +372,6 @@ namespace Spartacus.Net
             int v_chunksize;
             int v_numpackets, v_sequence;
             int k;
-            string v_context;
             bool v_ack;
 
             try
@@ -397,14 +408,13 @@ namespace Spartacus.Net
                     v_sequence++;
                 }
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -421,7 +431,6 @@ namespace Spartacus.Net
             string v_text;
             int i, j;
             bool v_ack;
-            string v_context;
 
             try
             {
@@ -480,14 +489,13 @@ namespace Spartacus.Net
                     v_sequence++;
                 }
             }
-            catch (Spartacus.Net.Exception exc_net)
+            catch (Spartacus.Net.Exception e)
             {
-                throw exc_net;
+                throw e;
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -505,7 +513,6 @@ namespace Spartacus.Net
             byte[] v_chunk;
             int v_numpackets, v_sequence;
             int k;
-            string v_context;
             bool v_ack;
 
             try
@@ -567,15 +574,13 @@ namespace Spartacus.Net
 
                 v_reader.Close();
             }
-            catch (System.IO.IOException exc_io)
+            catch (System.IO.IOException e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc_io);
+                throw new Spartacus.Net.Exception(e);
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -586,17 +591,14 @@ namespace Spartacus.Net
         /// </summary>
         public void Stop()
         {
-            string v_context;
-
             try
             {
                 this.v_stream.Close();
                 this.v_socket.Close();
             }
-            catch (System.Exception exc)
+            catch (System.Exception e)
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Net.Exception(v_context, exc);
+                throw new Spartacus.Net.Exception(e);
             }
         }
     }

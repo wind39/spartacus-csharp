@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 using System.Data;
 using Npgsql;
@@ -60,7 +84,6 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             Npgsql.NpgsqlDataAdapter v_pgadp;
             Npgsql.NpgsqlCommand v_pgcmd;
-            string v_context;
 
             using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
@@ -76,8 +99,7 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 
@@ -104,7 +126,6 @@ namespace Spartacus.Database
             Npgsql.NpgsqlDataAdapter v_pgadp;
             Npgsql.NpgsqlCommand v_pgcmd;
             System.Data.DataRow v_row;
-            string v_context;
             int k;
 
             using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
@@ -138,8 +159,7 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 
@@ -156,7 +176,6 @@ namespace Spartacus.Database
         public override void Execute(string p_sql)
         {
             Npgsql.NpgsqlCommand v_pgcmd;
-            string v_context;
 
             using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
             {
@@ -169,8 +188,7 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
                 }
             }
         }
@@ -188,7 +206,6 @@ namespace Spartacus.Database
         public override string ExecuteScalar(string p_sql)
         {
             Npgsql.NpgsqlCommand v_pgcmd;
-            string v_context;
             string v_ret;
 
             using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
@@ -202,8 +219,7 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, "Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
                 }
             }
 
@@ -219,7 +235,6 @@ namespace Spartacus.Database
         public override void BulkInsert(System.Data.DataTable p_table)
         {
             Npgsql.NpgsqlCommand v_pgcmd;
-            string v_context;
             string v_sqlheader, v_sql;
             int k;
 
@@ -247,8 +262,7 @@ namespace Spartacus.Database
                 }
                 catch (System.Data.Odbc.OdbcException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
         }

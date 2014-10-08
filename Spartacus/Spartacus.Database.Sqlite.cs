@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 using System.Data;
 using Mono.Data.Sqlite;
@@ -44,7 +68,6 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             Mono.Data.Sqlite.SqliteDataAdapter v_sqladp;
             Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
-            string v_context;
 
             using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
@@ -59,8 +82,7 @@ namespace Spartacus.Database
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 
@@ -87,7 +109,6 @@ namespace Spartacus.Database
             Mono.Data.Sqlite.SqliteDataAdapter v_sqladp;
             Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
             System.Data.DataRow v_row;
-            string v_context;
             int k;
 
             using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
@@ -121,8 +142,7 @@ namespace Spartacus.Database
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 
@@ -139,7 +159,6 @@ namespace Spartacus.Database
         public override void Execute(string p_sql)
         {
             Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
-            string v_context;
 
             using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
             {
@@ -152,8 +171,7 @@ namespace Spartacus.Database
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
         }
@@ -171,7 +189,6 @@ namespace Spartacus.Database
         public override string ExecuteScalar(string p_sql)
         {
             Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
-            string v_context;
             string v_ret;
 
             using (Mono.Data.Sqlite.SqliteConnection v_sqlcon = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring))
@@ -185,8 +202,7 @@ namespace Spartacus.Database
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 
@@ -202,7 +218,6 @@ namespace Spartacus.Database
         public override void BulkInsert(System.Data.DataTable p_table)
         {
             Mono.Data.Sqlite.SqliteCommand v_sqlcmd;
-            string v_context;
             string v_sqlheader, v_sql;
             int k;
 
@@ -230,8 +245,7 @@ namespace Spartacus.Database
                 }
                 catch (System.Data.Odbc.OdbcException e)
                 {
-                    v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                    throw new Spartacus.Database.Exception(v_context, e);
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
         }

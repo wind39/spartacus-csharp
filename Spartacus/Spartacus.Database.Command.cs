@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2014 William Ivanski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 using System;
 
 namespace Spartacus.Database
@@ -449,7 +473,6 @@ namespace Spartacus.Database
         {
             int k;
             bool achou;
-            string v_context;
 
             k = 0;
             achou = false;
@@ -476,8 +499,7 @@ namespace Spartacus.Database
             }
             else
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
 
@@ -495,7 +517,6 @@ namespace Spartacus.Database
         {
             int k;
             bool achou;
-            string v_context;
 
             k = 0;
             achou = false;
@@ -515,8 +536,7 @@ namespace Spartacus.Database
             }
             else
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
 
@@ -534,7 +554,6 @@ namespace Spartacus.Database
         {
             int k;
             bool achou;
-            string v_context;
 
             k = 0;
             achou = false;
@@ -550,8 +569,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_dateformat = p_dateformat;
             else
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
 
@@ -569,7 +587,6 @@ namespace Spartacus.Database
         {
             int k;
             bool achou;
-            string v_context;
 
             k = 0;
             achou = false;
@@ -585,8 +602,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_locale = p_locale;
             else
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
 
@@ -604,7 +620,6 @@ namespace Spartacus.Database
         {
             int k;
             bool achou;
-            string v_context;
 
             k = 0;
             achou = false;
@@ -620,8 +635,7 @@ namespace Spartacus.Database
                 return ((Spartacus.Database.Parameter)this.v_parameters [k]).v_value;
             else
             {
-                v_context = this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name;
-                throw new Spartacus.Database.Exception(v_context, "Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
     }

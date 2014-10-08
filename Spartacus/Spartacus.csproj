@@ -104,6 +104,7 @@
     <Compile Include="Spartacus.Forms.Exception.cs" />
     <Compile Include="Spartacus.Forms.Form.cs" />
     <Compile Include="Spartacus.Database.Configuration.cs" />
+    <Compile Include="Spartacus.Utils.ErrorEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

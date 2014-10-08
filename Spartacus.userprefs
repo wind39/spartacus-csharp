@@ -1,23 +1,27 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Cryptor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.ProgressEvent.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Configuration.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/CHANGELOG.txt" Line="2" Column="1" />
-      <File FileName="Spartacus/Spartacus.Net.Cryptor.cs" Line="507" Column="65" />
+      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="19" Column="23" />
+      <File FileName="Spartacus/Spartacus.Utils.WarningEvent.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.ErrorEvent.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/CHANGELOG.txt" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.File.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Spartacus" expanded="True">
-            <Node name="Spartacus.Net.Cryptor.cs" selected="True" />
+            <Node name="Spartacus.Utils.ProgressEvent.cs" selected="True" />
           </Node>
           <Node name="Test" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
       <Pad Id="ConnectionManagerPad">
         <State selected="True" />
