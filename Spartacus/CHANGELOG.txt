@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.31.5: Permitindo caracteres <, >, [ e ] na RemoveUnwantedChars
 0.31.4: Exceções padronizadas e agora mostram stacktrace
 0.31.3: Adicionada classe ErrorEvent
 0.31.2: Corrigido bug no Spartacus.Net.Cryptor, ao tentar descriptografar uma string vazia
