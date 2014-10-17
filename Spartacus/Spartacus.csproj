@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -40,9 +40,6 @@
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>lib\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>lib\EPPlus.dll</HintPath>
@@ -105,15 +102,14 @@
     <Compile Include="Spartacus.Forms.Form.cs" />
     <Compile Include="Spartacus.Database.Configuration.cs" />
     <Compile Include="Spartacus.Utils.ErrorEvent.cs" />
+    <Compile Include="Spartacus.Utils.ZipStorer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="lib\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="lib\MySql.Data.dll" />
-    <None Include="lib\ICSharpCode.SharpZipLib.dll" />
     <None Include="lib\PDFjet.dll" />
     <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
     <None Include="bin\Release\MySql.Data.dll" />
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
@@ -425,7 +421,6 @@
     <None Include="doc\Spartacus Report Engine.xlsx" />
     <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
     <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
     <None Include="bin\Debug\MySql.Data.dll" />
     <None Include="bin\Debug\Npgsql.dll" />

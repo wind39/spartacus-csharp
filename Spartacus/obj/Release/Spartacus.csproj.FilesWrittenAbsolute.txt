@@ -1,0 +1,3 @@
+/work/projects/Repositories/Spartacus/Spartacus/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/work/projects/Repositories/Spartacus/Spartacus/bin/Release/Spartacus.dll
+/work/projects/Repositories/Spartacus/Spartacus/obj/Release/Spartacus.dll

@@ -104,8 +104,6 @@ namespace Spartacus.Utils
 
                 foreach (string v_filename in v_filenames)
                 {
-                    System.Console.WriteLine("Entrou " + v_directoryname + " " + v_filename);
-
                     v_file = new Spartacus.Utils.File(k, 1, Spartacus.Utils.FileType.FILE, v_filename);
 
                     this.v_files.Add(v_file);

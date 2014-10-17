@@ -1,25 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Spartacus" expanded="True">
-            <Node name="bin" expanded="True" />
-          </Node>
-          <Node name="Test" expanded="True" />
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-      <Pad Id="ConnectionManagerPad">
-        <State selected="True" />
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.FileExplorer.cs">
+    <Files>
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.Excel.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Test/Main.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.CSVTable.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.ZipStorer.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.FileExplorer.cs" Line="991" Column="40" />
+      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="1" Column="1" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

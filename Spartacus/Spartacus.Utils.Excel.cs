@@ -82,6 +82,9 @@ namespace Spartacus.Utils
                 throw new Spartacus.Utils.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
             }
 
+            System.Console.WriteLine("Vai começar a ler o arquivo {0}", p_filename);
+            System.DateTime t = System.DateTime.Now;
+
             try
             {
                 using (v_package = new OfficeOpenXml.ExcelPackage(v_fileinfo))
@@ -92,7 +95,7 @@ namespace Spartacus.Utils
                         foreach (OfficeOpenXml.ExcelWorksheet v_worksheet in v_package.Workbook.Worksheets)
                         {
                             if (v_worksheet != null)
-                                this.v_set.Tables.Add(this.WorksheetToDataTable(v_worksheet));
+                                this.v_set.Tables.Add(this.WorksheetToDataTable(v_worksheet, t));
                         }
                     }
                 }
@@ -108,7 +111,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Tabela com os dados da planilha.</returns>
         /// <param name="p_worksheet">Planilha do arquivo Excel.</param>
-        private System.Data.DataTable WorksheetToDataTable(OfficeOpenXml.ExcelWorksheet p_worksheet)
+        private System.Data.DataTable WorksheetToDataTable(OfficeOpenXml.ExcelWorksheet p_worksheet, System.DateTime t)
         {
             System.Data.DataTable v_table;
             System.Data.DataRow v_row;
@@ -117,8 +120,16 @@ namespace Spartacus.Utils
 
             v_table = new System.Data.DataTable(p_worksheet.Name);
 
+            System.DateTime t0 = System.DateTime.Now;
+            System.Console.WriteLine("Leu a planilha em {0} segundos", (t0-t).TotalSeconds);
+            System.Console.WriteLine("Vai começar a pegar as dimensões da planilha {0}", p_worksheet.Name);
+
             // pegando limites dos dados
             v_dimension = this.GetWorksheetDimension(p_worksheet);
+
+            System.DateTime t1 = System.DateTime.Now;
+            System.Console.WriteLine("Pegou dimensões posx = {0}, posy = {1}, numcols = {2}, numrows = {3}", v_dimension.v_posx, v_dimension.v_posy, v_dimension.v_totalcols, v_dimension.v_totalrows);
+            System.Console.WriteLine("Tempo decorrido: {0} segundos", (t1-t0).TotalSeconds);
 
             // lendo nomes de colunas
             for (j = v_dimension.v_posx; j <= v_dimension.v_totalcols; j++)
@@ -139,6 +150,10 @@ namespace Spartacus.Utils
 
                 v_table.Rows.Add(v_row);
             }
+
+            System.DateTime t2 = System.DateTime.Now;
+            System.Console.WriteLine("Carregou todos os dados da planilha.");
+            System.Console.WriteLine("Tempo decorrido: {0} segundos", (t2-t1).TotalSeconds);
 
             return v_table;
         }

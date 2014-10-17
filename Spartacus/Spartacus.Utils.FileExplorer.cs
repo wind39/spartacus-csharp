@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 using System;
-using ICSharpCode.SharpZipLib;
 
 namespace Spartacus.Utils
 {
@@ -948,7 +947,7 @@ namespace Spartacus.Utils
         /// <param name="p_directory">Diretório a ser compactado.</param>
         public Spartacus.Utils.File CompressDirectory(string p_zipfilename, Spartacus.Utils.File p_directory)
         {
-            ICSharpCode.SharpZipLib.Zip.FastZip v_fastzip;
+            /*ICSharpCode.SharpZipLib.Zip.FastZip v_fastzip;
             Spartacus.Utils.File v_zipfiletmp, v_zipfile;
             System.IO.FileInfo v_fileinfo;
 
@@ -962,6 +961,35 @@ namespace Spartacus.Utils
                 v_fastzip = new ICSharpCode.SharpZipLib.Zip.FastZip();
                 v_fastzip.CreateEmptyDirectories = true;
                 v_fastzip.CreateZip(v_zipfiletmp.CompleteFileName(), p_directory.CompleteFileName(), true, null);
+
+                v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
+
+                v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, v_zipfiletmp.CompleteFileName(), v_fileinfo.LastWriteTime, v_fileinfo.Length);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception(e);
+            }*/
+
+            System.IO.Compression.ZipStorer v_zipstorer;
+            Spartacus.Utils.File v_zipfiletmp, v_zipfile;
+            Spartacus.Utils.FileArray v_filearray;
+            System.IO.FileInfo v_fileinfo;
+
+            if (p_directory.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
+            else
+                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "\\" + p_zipfilename);
+
+            try
+            {
+                v_zipstorer = System.IO.Compression.ZipStorer.Create(v_zipfiletmp.CompleteFileName(), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
+                v_zipstorer.EncodeUTF8 = true;
+                
+                v_filearray = new Spartacus.Utils.FileArray(p_directory.CompleteFileName(), "*", System.IO.SearchOption.AllDirectories);
+                foreach (Spartacus.Utils.File v_file in v_filearray.v_files)
+                    v_zipstorer.AddFile(System.IO.Compression.ZipStorer.Compression.Deflate, v_file.CompleteFileName(), v_file.CompleteFileName().Replace(p_directory.v_path, ""), "");
+                v_zipstorer.Close();
 
                 v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
 
