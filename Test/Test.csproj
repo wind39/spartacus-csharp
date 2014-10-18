@@ -59,9 +59,7 @@
     <None Include="bin\Release\output_semlinhas.pdf" />
     <None Include="bin\Release\output_comlinhas.pdf" />
     <None Include="bin\Release\logoarag.png" />
-    <None Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
     <None Include="bin\Release\logoarag_bkp.png" />
-    <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\teste.xlsx" />
     <None Include="bin\Release\teste.txt" />
     <None Include="bin\Release\Mono.Security.dll" />
@@ -70,9 +68,7 @@
     <None Include="bin\Release\sc_register.db" />
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="bin\Release\sqlite3.dll" />
-    <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
     <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
     <None Include="bin\Debug\Mono.Security.dll" />
     <None Include="bin\Debug\MySql.Data.dll" />
