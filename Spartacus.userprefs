@@ -1,14 +1,30 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.FileExplorer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.ThirdyParty.ZipStorer.cs">
     <Files>
       <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.Excel.cs" Line="1" Column="1" />
-      <File FileName="../../../../../work/projects/Repositories/Spartacus/Test/Main.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Test/Main.cs" Line="12" Column="9" />
       <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.CSVTable.cs" Line="1" Column="1" />
-      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.ZipStorer.cs" Line="1" Column="1" />
-      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Utils.FileExplorer.cs" Line="991" Column="40" />
-      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="1" Column="1" />
+      <File FileName="Test/Main.cs" Line="10" Column="17" />
+      <File FileName="Spartacus/Spartacus.Utils.CSVTable.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.ThirdyParty.SejExcel.cs" Line="6" Column="19" />
+      <File FileName="Spartacus/Spartacus.ThirdyParty.ZipStorer.cs" Line="55" Column="2" />
+      <File FileName="Spartacus/Spartacus.ThirdyParty.MultiColumnComboBox.cs" Line="36" Column="28" />
+      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="974" Column="35" />
     </Files>
+    <Pads>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="Spartacus" expanded="True">
+            <Node name="Spartacus" expanded="True">
+              <Node name="ThirdyParty" expanded="True">
+                <Node name="SejExcel" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

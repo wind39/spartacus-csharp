@@ -41,7 +41,7 @@ namespace Spartacus.Forms
         /// <summary>
         /// Componente Lookup.
         /// </summary>
-        public Spartacus.Forms.MultiColumnComboBox v_lookup;
+        public Spartacus.ThirdyParty.MultiColumnComboBox v_lookup;
 
         /// <summary>
         /// Textbox não editável, atualizado pelo componente Lookup.
@@ -88,7 +88,7 @@ namespace Spartacus.Forms
             this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
             this.v_textbox.Parent = this.v_control;
 
-            this.v_lookup = new Spartacus.Forms.MultiColumnComboBox();
+            this.v_lookup = new Spartacus.ThirdyParty.MultiColumnComboBox();
             this.v_lookup.AutoComplete = false;
             this.v_lookup.AutoDropdown = true;
             this.v_lookup.BackColorEven = System.Drawing.Color.White;
@@ -133,7 +133,7 @@ namespace Spartacus.Forms
             this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
             this.v_textbox.Parent = this.v_control;
 
-            this.v_lookup = new Spartacus.Forms.MultiColumnComboBox();
+            this.v_lookup = new Spartacus.ThirdyParty.MultiColumnComboBox();
             this.v_lookup.AutoComplete = false;
             this.v_lookup.AutoDropdown = true;
             this.v_lookup.BackColorEven = System.Drawing.Color.White;

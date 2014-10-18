@@ -1,42 +1,15 @@
-/*
-The MIT License (MIT)
-
-Copyright (c) 2014 William Ivanski
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
 using System;
-using OfficeOpenXml;
+
+//TODO: Mesclar classe CSVTable na classe Excel.
 
 namespace Spartacus.Utils
 {
+    /// <summary>
+    /// Classe Excel.
+    /// Manipulação de arquivos CSV e XLSX.s
+    /// </summary>
     public class Excel
     {
-        struct Dimension
-        {
-            public int v_posx;
-            public int v_posy;
-            public int v_totalcols;
-            public int v_totalrows;
-        }
-
         /// <summary>
         /// Conjunto de tabelas do arquivo Excel.
         /// </summary>
@@ -70,10 +43,11 @@ namespace Spartacus.Utils
         /// Importa todas as planilhas de um arquivo Excel para várias <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/>.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX a ser importado.</param>
-        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na EPPlus.</exception>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
         public void Import(string p_filename)
         {
-            OfficeOpenXml.ExcelPackage v_package;
+            Spartacus.ThirdyParty.SejExcel.OoXml v_package;
+            Spartacus.ThirdyParty.SejExcel.gSheet v_sheet;
             System.IO.FileInfo v_fileinfo;
 
             v_fileinfo = new System.IO.FileInfo(p_filename);
@@ -82,21 +56,17 @@ namespace Spartacus.Utils
                 throw new Spartacus.Utils.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
             }
 
-            System.Console.WriteLine("Vai começar a ler o arquivo {0}", p_filename);
-            System.DateTime t = System.DateTime.Now;
-
             try
             {
-                using (v_package = new OfficeOpenXml.ExcelPackage(v_fileinfo))
+                v_package = new Spartacus.ThirdyParty.SejExcel.OoXml(p_filename);
+                
+                if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
                 {
-                    // se o arquivo tem dados
-                    if (v_package.Workbook != null && v_package.Workbook.Worksheets.Count > 0)
+                    foreach (string v_key in v_package.sheets.Keys)
                     {
-                        foreach (OfficeOpenXml.ExcelWorksheet v_worksheet in v_package.Workbook.Worksheets)
-                        {
-                            if (v_worksheet != null)
-                                this.v_set.Tables.Add(this.WorksheetToDataTable(v_worksheet, t));
-                        }
+                        v_sheet = v_package.sheets[v_key];
+                        if (v_sheet != null)
+                            this.v_set.Tables.Add(this.SheetToDataTable(v_package, v_sheet));
                     }
                 }
             }
@@ -106,96 +76,91 @@ namespace Spartacus.Utils
             }
         }
 
-        /// <summary>
-        /// Lê uma planilha do arquivo Excel e alimenta uma <see cref="System.Data.DataTable"/>.
-        /// </summary>
-        /// <returns>Tabela com os dados da planilha.</returns>
-        /// <param name="p_worksheet">Planilha do arquivo Excel.</param>
-        private System.Data.DataTable WorksheetToDataTable(OfficeOpenXml.ExcelWorksheet p_worksheet, System.DateTime t)
+        private System.Data.DataTable SheetToDataTable(Spartacus.ThirdyParty.SejExcel.OoXml p_package, Spartacus.ThirdyParty.SejExcel.gSheet p_sheet)
         {
             System.Data.DataTable v_table;
-            System.Data.DataRow v_row;
-            Spartacus.Utils.Excel.Dimension v_dimension;
-            int i, j;
+            System.Data.DataRow v_row = null;
+            bool v_firstrow = true;
+            bool v_datanode = false;
+            bool v_istext = false;
+            string v_cellcontent;
+            int v_col = -1;
 
-            v_table = new System.Data.DataTable(p_worksheet.Name);
+            v_table = new System.Data.DataTable(p_sheet.Name);
 
-            System.DateTime t0 = System.DateTime.Now;
-            System.Console.WriteLine("Leu a planilha em {0} segundos", (t0-t).TotalSeconds);
-            System.Console.WriteLine("Vai começar a pegar as dimensões da planilha {0}", p_worksheet.Name);
-
-            // pegando limites dos dados
-            v_dimension = this.GetWorksheetDimension(p_worksheet);
-
-            System.DateTime t1 = System.DateTime.Now;
-            System.Console.WriteLine("Pegou dimensões posx = {0}, posy = {1}, numcols = {2}, numrows = {3}", v_dimension.v_posx, v_dimension.v_posy, v_dimension.v_totalcols, v_dimension.v_totalrows);
-            System.Console.WriteLine("Tempo decorrido: {0} segundos", (t1-t0).TotalSeconds);
-
-            // lendo nomes de colunas
-            for (j = v_dimension.v_posx; j <= v_dimension.v_totalcols; j++)
-                v_table.Columns.Add(p_worksheet.Cells [v_dimension.v_posy, j].Value.ToString());
-
-            // lendo dados
-            for (i = v_dimension.v_posy+1; i <= v_dimension.v_totalrows; i++)
+            using (System.Xml.XmlReader v_reader = System.Xml.XmlReader.Create(p_sheet.GetStream()))
             {
-                v_row = v_table.NewRow();
-
-                for (j = v_dimension.v_posx; j <= v_dimension.v_totalcols; j++)
+                while (v_reader.Read())
                 {
-                    if (p_worksheet.Cells [i, j].Value != null)
-                        v_row [j - v_dimension.v_posx] = p_worksheet.Cells [i, j].Value.ToString();
-                    else
-                        v_row [j - v_dimension.v_posx] = "";
-                }
-
-                v_table.Rows.Add(v_row);
-            }
-
-            System.DateTime t2 = System.DateTime.Now;
-            System.Console.WriteLine("Carregou todos os dados da planilha.");
-            System.Console.WriteLine("Tempo decorrido: {0} segundos", (t2-t1).TotalSeconds);
-
-            return v_table;
-        }
-
-        /// <summary>
-        /// Verifica dimensões dos dados dentro da planilha.
-        /// Considera que os dados iniciam na célula A1 da planilha.
-        /// </summary>
-        /// <returns>Dimensões dos dados.</returns>
-        /// <param name="p_worksheet">Planilha do arquivo Excel.</param>
-        private Spartacus.Utils.Excel.Dimension GetWorksheetDimension(OfficeOpenXml.ExcelWorksheet p_worksheet)
-        {
-            Spartacus.Utils.Excel.Dimension v_dimension;
-            int i, j;
-
-            v_dimension = new Spartacus.Utils.Excel.Dimension();
-
-            v_dimension.v_posy = 1;
-            v_dimension.v_posx = 1;
-            v_dimension.v_totalcols = 0;
-            v_dimension.v_totalrows = 0;
-
-            for (i = v_dimension.v_posy; i <= 1024 * 1024; i++)
-            {
-                if (p_worksheet.Cells [i, 1].Value == null)
-                    break;
-                else
-                    v_dimension.v_totalrows++;
-
-                if (i == 1)
-                {
-                    for (j = v_dimension.v_posx; j <= 1024 * 1024; j++)
+                    switch (v_reader.NodeType)
                     {
-                        if (p_worksheet.Cells [1, j].Value == null)
+                        case System.Xml.XmlNodeType.Element:
+                            v_datanode = false;
+                            switch (v_reader.Name)
+                            {
+                                case "row":
+                                    if (! v_firstrow)
+                                    {
+                                        v_row = v_table.NewRow();
+                                        v_col = -1;
+                                    }
+                                    break;
+                                case "c":
+                                    v_istext = false;
+                                    while (v_reader.MoveToNextAttribute())
+                                    {
+                                        if (v_reader.Name == "t")
+                                        {
+                                            if (v_reader.Value == "s")
+                                                v_istext = true;
+                                        }
+                                        else
+                                        {
+                                            if (v_reader.Name == "r")
+                                            {
+                                                if (v_reader.Value.Length > 1)
+                                                    v_col++;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case "v":
+                                    v_datanode = true;
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
-                        else
-                            v_dimension.v_totalcols++;
+                        case System.Xml.XmlNodeType.EndElement:
+                            v_datanode = false;
+                            if (v_reader.Name == "row")
+                            {
+                                if (v_firstrow)
+                                    v_firstrow = false;
+                                else
+                                    v_table.Rows.Add(v_row);
+                            }
+                            break;
+                        case System.Xml.XmlNodeType.Text:
+                            if (v_datanode)
+                            {
+                                if (v_istext)
+                                    v_cellcontent = p_package.words [System.Int32.Parse(v_reader.Value)];
+                                else
+                                    v_cellcontent = v_reader.Value;
+                                if (v_firstrow)
+                                    v_table.Columns.Add(v_cellcontent);
+                                else
+                                    v_row [v_col] = v_cellcontent;
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
 
-            return v_dimension;
+            return v_table;
         }
     }
 }

@@ -45,14 +45,18 @@ A "contributor" is any person that distributes its contribution under this licen
 */
 
 
+using System;
+using System.IO;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Text;
 
-namespace System.IO.Compression
+namespace Spartacus.ThirdyParty
 {
 
     public delegate uint OnProgress(ZipStorer.ZipFileEntry fz, uint iter, uint done);
-    public class ZipStorer : IDisposable
+
+    public class ZipStorer : System.IDisposable
     {
         /// <summary>
         /// Compression method enumeration

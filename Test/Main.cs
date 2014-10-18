@@ -7,7 +7,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            FileTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -238,7 +238,6 @@ namespace Test
             v_excel = new Spartacus.Utils.Excel();
             v_excel.Import("TYCO2014 Faturas Layout Excel.xlsx");
 
-            /*
             foreach (System.Data.DataTable v_table in v_excel.v_set.Tables)
             {
                 System.Console.WriteLine("Planilha [{0}]:", v_table.TableName);
@@ -254,7 +253,6 @@ namespace Test
                     System.Console.WriteLine("");
                 }
             }
-            */
         }
 
         #endregion

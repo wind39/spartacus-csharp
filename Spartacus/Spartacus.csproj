@@ -41,9 +41,6 @@
     <Reference Include="MySql.Data">
       <HintPath>lib\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>lib\EPPlus.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
@@ -53,6 +50,8 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Spartacus.Reporting.Block.cs" />
     <Compile Include="Spartacus.Reporting.Object.cs" />
     <Compile Include="Spartacus.Database.Sqlite.cs" />
-    <Compile Include="Spartacus.Utils.Excel.cs" />
     <Compile Include="Spartacus.Net.Cryptor.cs" />
     <Compile Include="Spartacus.Net.Server.cs" />
     <Compile Include="Spartacus.Net.Client.cs" />
@@ -94,7 +92,6 @@
     <Compile Include="Spartacus.Forms.Textbox.cs" />
     <Compile Include="Spartacus.Forms.Grid.cs" />
     <Compile Include="Spartacus.Forms.Buttons.cs" />
-    <Compile Include="Spartacus.Forms.MultiColumnComboBox.cs" />
     <Compile Include="Spartacus.Forms.Lookup.cs" />
     <Compile Include="Spartacus.Forms.Menu.cs" />
     <Compile Include="Spartacus.Forms.Window.cs" />
@@ -102,7 +99,10 @@
     <Compile Include="Spartacus.Forms.Form.cs" />
     <Compile Include="Spartacus.Database.Configuration.cs" />
     <Compile Include="Spartacus.Utils.ErrorEvent.cs" />
-    <Compile Include="Spartacus.Utils.ZipStorer.cs" />
+    <Compile Include="Spartacus.ThirdyParty.MultiColumnComboBox.cs" />
+    <Compile Include="Spartacus.ThirdyParty.ZipStorer.cs" />
+    <Compile Include="Spartacus.ThirdyParty.SejExcel.cs" />
+    <Compile Include="Spartacus.Utils.Excel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -114,8 +114,6 @@
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="doc\Doxyfile" />
-    <None Include="lib\EPPlus.dll" />
-    <None Include="bin\Release\EPPlus.dll" />
     <None Include="lib\Npgsql.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="LICENSE.txt" />
@@ -419,7 +417,6 @@
     <None Include="doc\latex\refman.tex" />
     <None Include="doc\latex\refman.toc" />
     <None Include="doc\Spartacus Report Engine.xlsx" />
-    <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
     <None Include="bin\Debug\MySql.Data.dll" />

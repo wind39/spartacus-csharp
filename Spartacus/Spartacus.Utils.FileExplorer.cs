@@ -971,7 +971,7 @@ namespace Spartacus.Utils
                 throw new Spartacus.Utils.Exception(e);
             }*/
 
-            System.IO.Compression.ZipStorer v_zipstorer;
+            Spartacus.ThirdyParty.ZipStorer v_zipstorer;
             Spartacus.Utils.File v_zipfiletmp, v_zipfile;
             Spartacus.Utils.FileArray v_filearray;
             System.IO.FileInfo v_fileinfo;
@@ -983,12 +983,12 @@ namespace Spartacus.Utils
 
             try
             {
-                v_zipstorer = System.IO.Compression.ZipStorer.Create(v_zipfiletmp.CompleteFileName(), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
+                v_zipstorer = Spartacus.ThirdyParty.ZipStorer.Create(v_zipfiletmp.CompleteFileName(), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                 v_zipstorer.EncodeUTF8 = true;
                 
                 v_filearray = new Spartacus.Utils.FileArray(p_directory.CompleteFileName(), "*", System.IO.SearchOption.AllDirectories);
                 foreach (Spartacus.Utils.File v_file in v_filearray.v_files)
-                    v_zipstorer.AddFile(System.IO.Compression.ZipStorer.Compression.Deflate, v_file.CompleteFileName(), v_file.CompleteFileName().Replace(p_directory.v_path, ""), "");
+                    v_zipstorer.AddFile(Spartacus.ThirdyParty.ZipStorer.Compression.Deflate, v_file.CompleteFileName(), v_file.CompleteFileName().Replace(p_directory.v_path, ""), "");
                 v_zipstorer.Close();
 
                 v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
