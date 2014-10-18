@@ -8,7 +8,6 @@ Spartacus is a multi-purpose library written in C#, focused on:
 
 Spartacus links this libraries:
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
-  - EPPlus (http://epplus.codeplex.com/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - Npgsql (http://npgsql.projects.pgfoundry.org/)
