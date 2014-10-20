@@ -84,6 +84,7 @@ namespace Spartacus.Utils
             bool v_datanode = false;
             bool v_istext = false;
             string v_cellcontent;
+            double v_value;
             int v_col = -1;
 
             v_table = new System.Data.DataTable(p_sheet.Name);
@@ -151,7 +152,12 @@ namespace Spartacus.Utils
                                 if (v_firstrow)
                                     v_table.Columns.Add(v_cellcontent);
                                 else
-                                    v_row [v_col] = v_cellcontent;
+                                {
+                                    if (double.TryParse(v_cellcontent, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out v_value))
+                                        v_row [v_col] = System.Math.Round(v_value, 8).ToString();
+                                    else
+                                        v_row [v_col] = v_cellcontent;
+                                }
                             }
                             break;
                         default:

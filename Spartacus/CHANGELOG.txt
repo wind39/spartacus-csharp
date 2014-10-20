@@ -21,16 +21,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-0.31.8: Acrescentando variável stacktrace no WarningEvent e ErrorEvent.
-0.31.7: Removendo necessidade de EPPlus, agora está utilizando SejExcel, muito mais rápido
-0.31.6: Removendo necessidade de ICSharpCode.SharpZipLib, utilizando ZipStorer
-0.31.5: Permitindo caracteres <, >, [ e ] na RemoveUnwantedChars
-0.31.4: Exceções padronizadas e agora mostram stacktrace
-0.31.3: Adicionada classe ErrorEvent
-0.31.2: Corrigido bug no Spartacus.Net.Cryptor, ao tentar descriptografar uma string vazia
-0.31.1: Implementada classe Spartacus.Database.Configuration
-0.31.0: Implementada funcionalidade BulkInsert para Spartacus.Database
+0.31.10: Arredondando valores numéricos do Excel para apenas 8 casas decimais
+0.31.9:  Convertendo notação científica para notação de normal, em células numéricas do Excel
+0.31.8:  Acrescentando variável stacktrace no WarningEvent e ErrorEvent.
+0.31.7:  Removendo necessidade de EPPlus, agora está utilizando SejExcel, muito mais rápido
+0.31.6:  Removendo necessidade de ICSharpCode.SharpZipLib, utilizando ZipStorer
+0.31.5:  Permitindo caracteres <, >, [ e ] na RemoveUnwantedChars
+0.31.4:  Exceções padronizadas e agora mostram stacktrace
+0.31.3:  Adicionada classe ErrorEvent
+0.31.2:  Corrigido bug no Spartacus.Net.Cryptor, ao tentar descriptografar uma string vazia
+0.31.1:  Implementada classe Spartacus.Database.Configuration
+0.31.0:  Implementada funcionalidade BulkInsert para Spartacus.Database
 
-0.30.3: Corrigido bug no Spartacus.Utils.File, método GetPath
-0.30.2: Removida dependência para Mono.Security.dll, que causava problemas ao usar WebClient
-0.30.1: Corrigido bug no Return do Spartacus.Utils.FileExplorer
+0.30.3:  Corrigido bug no Spartacus.Utils.File, método GetPath
+0.30.2:  Removida dependência para Mono.Security.dll, que causava problemas ao usar WebClient
+0.30.1:  Corrigido bug no Return do Spartacus.Utils.FileExplorer
