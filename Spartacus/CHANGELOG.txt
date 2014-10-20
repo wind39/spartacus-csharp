@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.31.8: Acrescentando variável stacktrace no WarningEvent e ErrorEvent.
 0.31.7: Removendo necessidade de EPPlus, agora está utilizando SejExcel, muito mais rápido
 0.31.6: Removendo necessidade de ICSharpCode.SharpZipLib, utilizando ZipStorer
 0.31.5: Permitindo caracteres <, >, [ e ] na RemoveUnwantedChars

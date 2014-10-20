@@ -49,6 +49,11 @@ namespace Spartacus.Utils
         public string v_message;
 
         /// <summary>
+        /// Stacktrace atual do processo (se aplicável).
+        /// </summary>
+        public string v_stacktrace;
+
+        /// <summary>
         /// Informa se o processo deve mostrar suas mensagens ao usuário ou não.
         /// </summary>
         public bool v_verbose;
@@ -123,6 +128,27 @@ namespace Spartacus.Utils
                 this.WarningEventArgs.v_process = p_process;
                 this.WarningEventArgs.v_subprocess = p_subprocess;
                 this.WarningEventArgs.v_message = p_message;
+                this.WarningEventArgs.v_stacktrace = "";
+
+                this.WarningEvent(this, this.WarningEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Aviso.
+        /// </summary>
+        /// <param name="p_process">Nome do processo.</param>
+        /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        /// <param name="p_stacktrace">Stacktrace atual do processo.</param>
+        public void FireEvent(string p_process, string p_subprocess, string p_message, string p_stacktrace)
+        {
+            if (this.WarningEvent != null)
+            {
+                this.WarningEventArgs.v_process = p_process;
+                this.WarningEventArgs.v_subprocess = p_subprocess;
+                this.WarningEventArgs.v_message = p_message;
+                this.WarningEventArgs.v_stacktrace = p_stacktrace;
 
                 this.WarningEvent(this, this.WarningEventArgs);
             }
