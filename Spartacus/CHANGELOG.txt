@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.31.12: Mesclada classe Spartacus.Utils.CSVTable dentro da classe Spartacus.Utils.Excel.
 0.31.11: Tratando células vazias na importação de arquivos Excel.
 0.31.10: Arredondando valores numéricos do Excel para apenas 8 casas decimais
 0.31.9:  Convertendo notação científica para notação de normal, em células numéricas do Excel

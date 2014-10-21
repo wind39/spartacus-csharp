@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Spartacus.Utils.CSVTable.cs" />
     <Compile Include="Spartacus.Utils.Exception.cs" />
     <Compile Include="Spartacus.Utils.File.cs" />
     <Compile Include="Spartacus.Utils.FileExplorer.cs" />
