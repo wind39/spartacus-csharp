@@ -174,7 +174,7 @@ namespace Spartacus.Utils
         /// <param name="p_filename">Nome do arquivo XLSX.</param>
         private void ImportXLSX(string p_filename)
         {
-            Spartacus.ThirdParty.SejExcel.OoXml v_package;
+            Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
             Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
 
             try
@@ -198,6 +198,14 @@ namespace Spartacus.Utils
             catch (System.Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                if (v_package != null)
+                {
+                    v_package.Close();
+                    v_package = null;
+                }
             }
         }
 
