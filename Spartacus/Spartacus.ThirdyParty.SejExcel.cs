@@ -12,7 +12,7 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 
-namespace Spartacus.ThirdyParty.SejExcel
+namespace Spartacus.ThirdParty.SejExcel
 {
     public class OoXmlStringsStream:MemoryStream
     {

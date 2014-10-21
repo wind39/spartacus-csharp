@@ -11,7 +11,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 
-namespace Spartacus.ThirdyParty
+namespace Spartacus.ThirdParty
 {
     public class MultiColumnComboBox : ComboBox
     {

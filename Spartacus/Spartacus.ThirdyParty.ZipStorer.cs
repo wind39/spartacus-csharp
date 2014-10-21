@@ -51,7 +51,7 @@ using System.IO.Compression;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Spartacus.ThirdyParty
+namespace Spartacus.ThirdParty
 {
 
     public delegate uint OnProgress(ZipStorer.ZipFileEntry fz, uint iter, uint done);

@@ -64,8 +64,8 @@ namespace Spartacus.Utils
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
         public void Import(string p_filename)
         {
-            Spartacus.ThirdyParty.SejExcel.OoXml v_package;
-            Spartacus.ThirdyParty.SejExcel.gSheet v_sheet;
+            Spartacus.ThirdParty.SejExcel.OoXml v_package;
+            Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
             System.IO.FileInfo v_fileinfo;
 
             v_fileinfo = new System.IO.FileInfo(p_filename);
@@ -76,7 +76,7 @@ namespace Spartacus.Utils
 
             try
             {
-                v_package = new Spartacus.ThirdyParty.SejExcel.OoXml(p_filename);
+                v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_filename);
                 
                 if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
                 {
@@ -108,7 +108,7 @@ namespace Spartacus.Utils
         /// A primeira linha é considerada como nomes de colunas, e todas as células dessa linha devem estar preenchidas.
         /// Não pode haver linhas em branco acima, ou colunas em branco à esquerda dos dados a serem convertidos.
         /// </remarks>
-        private System.Data.DataTable SheetToDataTable(Spartacus.ThirdyParty.SejExcel.OoXml p_package, Spartacus.ThirdyParty.SejExcel.gSheet p_sheet)
+        private System.Data.DataTable SheetToDataTable(Spartacus.ThirdParty.SejExcel.OoXml p_package, Spartacus.ThirdParty.SejExcel.gSheet p_sheet)
         {
             System.Data.DataTable v_table;
             System.Data.DataRow v_row = null;
