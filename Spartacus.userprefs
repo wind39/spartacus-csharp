@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.Excel.cs">
     <Files>
       <File FileName="Spartacus/CHANGELOG.txt" Line="22" Column="1" />
-      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="158" Column="41" />
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="26" Column="33" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="69" Column="43" />
+      <File FileName="Spartacus/AssemblyInfo.cs" Line="35" Column="41" />
+      <File FileName="Test/Main.cs" Line="235" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ClassPad">

@@ -99,10 +99,10 @@
     <Compile Include="Spartacus.Forms.Form.cs" />
     <Compile Include="Spartacus.Database.Configuration.cs" />
     <Compile Include="Spartacus.Utils.ErrorEvent.cs" />
-    <Compile Include="Spartacus.ThirdyParty.MultiColumnComboBox.cs" />
-    <Compile Include="Spartacus.ThirdyParty.ZipStorer.cs" />
-    <Compile Include="Spartacus.ThirdyParty.SejExcel.cs" />
     <Compile Include="Spartacus.Utils.Excel.cs" />
+    <Compile Include="Spartacus.ThirdParty.MultiColumnComboBox.cs" />
+    <Compile Include="Spartacus.ThirdParty.SejExcel.cs" />
+    <Compile Include="Spartacus.ThirdParty.ZipStorer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
