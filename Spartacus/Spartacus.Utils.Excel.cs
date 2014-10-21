@@ -251,8 +251,6 @@ namespace Spartacus.Utils
                     i++;
                 }
 
-                v_reader.Close();
-
                 this.v_set.Tables.Add(v_table);
             }
             catch (Spartacus.Utils.Exception e)
@@ -587,7 +585,6 @@ namespace Spartacus.Utils
                 }
 
                 v_writer.Flush();
-                v_writer.Close();
             }
             catch (System.Exception e)
             {
