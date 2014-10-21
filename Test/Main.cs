@@ -236,7 +236,7 @@ namespace Test
             Spartacus.Utils.Excel v_excel;
 
             v_excel = new Spartacus.Utils.Excel();
-            v_excel.Import("TYCO2014 Faturas Layout Excel.xlsx");
+            v_excel.Import("teste.xlsx");
 
             foreach (System.Data.DataTable v_table in v_excel.v_set.Tables)
             {
