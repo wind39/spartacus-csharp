@@ -6,6 +6,8 @@ Spartacus is a multi-purpose library written in C#, focused on:
   - Compress and uncompress zip files;
   - Render reports from a unique XML markup to PDF, using own database objects.
 
+Please note that Spartacus is not API ready yet, something may change until it becomes stable.
+
 Spartacus links this libraries:
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
@@ -18,4 +20,7 @@ Spartacus reuse code from this projects:
   - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
   - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
 
-Please note that Spartacus is not API ready yet, something may change until it becomes stable.
+I also would like to thank the following people and companies for help testing and suggesting improvements:
+  - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
+  - Planning Service Transfer Pricing (http://www.planningservice.com.br)
+  - Adsistem Sistemas Administrativos (http://www.adsistem.com.br)
