@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.31.14: Substituindo ponto por vírgula ao exibir números reais na Spartacus.Reporting
 0.31.13: Adicionada opção para considerar ou não a primeira linha como cabeçalho no Excel.
 0.31.12: Mesclada classe Spartacus.Utils.CSVTable dentro da classe Spartacus.Utils.Excel.
 0.31.11: Tratando células vazias na importação de arquivos Excel.

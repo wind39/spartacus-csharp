@@ -114,7 +114,7 @@ namespace Spartacus.Reporting
         public string Format(string p_text)
         {
             if (this.v_type == Spartacus.Database.Type.REAL)
-                return string.Format("{0:###,###,###,###,##0.00}", double.Parse(p_text));
+                return string.Format("{0:###,###,###,###,##0.00}", double.Parse(p_text.Replace('.', ',')));
             else
                 return p_text;
         }
