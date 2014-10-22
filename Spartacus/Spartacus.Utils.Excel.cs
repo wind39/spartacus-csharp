@@ -82,7 +82,7 @@ namespace Spartacus.Utils
                             this.ImportXLSX(p_filename);
                             break;
                         case "csv":
-                            this.ImportCSV(p_filename, ';', System.Text.Encoding.Default);
+                            this.ImportCSV(p_filename, ';', false, System.Text.Encoding.Default);
                             break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensão {0} desconhecida.", v_file.v_extension.ToLower());
@@ -104,9 +104,10 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
         /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        public void Import(string p_filename, char p_separator, System.Text.Encoding p_encoding)
+        public void Import(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding)
         {
             System.IO.FileInfo v_fileinfo;
             Spartacus.Utils.File v_file;
@@ -129,7 +130,7 @@ namespace Spartacus.Utils
                             this.ImportXLSX(p_filename);
                             break;
                         case "csv":
-                            this.ImportCSV(p_filename, p_separator, p_encoding);
+                            this.ImportCSV(p_filename, p_separator, p_header, p_encoding);
                             break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensão {0} desconhecida.", v_file.v_extension.ToLower());
@@ -214,8 +215,9 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_filename">Nome do arquivo CSV.</param>
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
         /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
-        private void ImportCSV(string p_filename, char p_separator, System.Text.Encoding p_encoding)
+        private void ImportCSV(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding)
         {
             Spartacus.Utils.File v_file;
             System.IO.StreamReader v_reader = null;
@@ -238,8 +240,21 @@ namespace Spartacus.Utils
 
                     if (i == 0)
                     {
-                        for (j = 0; j < v_line.Length; j++)
-                            v_table.Columns.Add(v_line [j]);
+                        if (p_header)
+                        {
+                            for (j = 0; j < v_line.Length; j++)
+                                v_table.Columns.Add(v_line [j]);
+                        }
+                        else
+                        {
+                            for (j = 0; j < v_line.Length; j++)
+                                v_table.Columns.Add("col" + j.ToString());
+
+                            v_row = v_table.NewRow();
+                            for (j = 0; j < v_table.Columns.Count; j++)
+                                v_row[j] = v_line[j];
+                            v_table.Rows.Add(v_row);
+                        }
                     }
                     else
                     {
