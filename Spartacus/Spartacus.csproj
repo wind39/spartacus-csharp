@@ -434,6 +434,8 @@
     <None Include="thirdparties\Npgsql-2.2.1-net45.7z" />
     <None Include="thirdparties\PDFjet-Open-Source.7z" />
     <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
+    <None Include="doc\Spartacus-0.32.0.pdf" />
+    <None Include="dist\Spartacus-0.32.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
