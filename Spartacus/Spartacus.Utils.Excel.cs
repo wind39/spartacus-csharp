@@ -588,7 +588,13 @@ namespace Spartacus.Utils
         {
             System.IO.StreamWriter v_writer = null;
             string v_text;
+            char v_notseparator;
             int i;
+
+            if (p_separator == ',')
+                v_notseparator = '.';
+            else
+                v_notseparator = ',';
 
             try
             {
@@ -603,7 +609,7 @@ namespace Spartacus.Utils
                 {
                     v_text = r[0].ToString();
                     for (i = 1; i < this.v_set.Tables[0].Columns.Count; i++)
-                        v_text += p_separator + r[i].ToString().Replace(';', ',');
+                        v_text += p_separator + r[i].ToString().Replace(p_separator, v_notseparator);
                     v_writer.WriteLine(v_text);
                 }
 
