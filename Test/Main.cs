@@ -1,5 +1,4 @@
 using System;
-using Spartacus;
 
 namespace Test
 {
