@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            CryptoTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -232,7 +232,7 @@ namespace Test
 
         private static void ExcelTest()
         {
-            Spartacus.Utils.Excel v_excel;
+            /*Spartacus.Utils.Excel v_excel;
 
             v_excel = new Spartacus.Utils.Excel();
             v_excel.Import("teste.xlsx");
@@ -251,6 +251,71 @@ namespace Test
                         System.Console.Write("[{0}]\t", v_row[v_column]);
                     System.Console.WriteLine("");
                 }
+            }*/
+
+            Spartacus.Database.Generic v_database;
+            Spartacus.Utils.Excel v_excel;
+            System.Data.DataTable v_table;
+            string v_sql;
+
+            try
+            {
+                v_database = new Spartacus.Database.Odbc("tpmp563", "planning", "plaserv");
+                v_excel = new Spartacus.Utils.Excel();
+
+                v_sql = "select to_char(prtiporeg) as prtiporeg,\n" +
+                    "       to_char(emidpr) as emidpr,\n" + 
+                    "       to_char(prid) as prid,\n" + 
+                    "       to_char(pralternativo) as pralternativo,\n" + 
+                    "       to_char(prdescricao) as prdescricao,\n" + 
+                    "       to_char(prun) as prun,\n" + 
+                    "       to_char(prun2) as prun2,\n" + 
+                    "       to_char(prfator2) as prfator2,\n" + 
+                    "       to_char(prun3) as prun3,\n" + 
+                    "       to_char(prfator3) as prfator3,\n" + 
+                    "       to_char(prncm) as prncm,\n" + 
+                    "       to_char(prano) as prano,\n" + 
+                    "       to_char(prncm_antigo) as prncm_antigo,\n" + 
+                    "       to_char(emid) as emid,\n" + 
+                    "       to_char(ano) as ano\n" + 
+                    "from planning.produtos\n" + 
+                    "where emid = 181\n" + 
+                    "  and prano = 2014";
+                v_table = v_database.Query(v_sql, "PRODUTOS");
+                v_excel.v_set.Tables.Add(v_table);
+
+                v_sql = "select to_char(intiporeg) as intiporeg,\n" +
+                    "       to_char(emidpr) as emidpr,\n" + 
+                    "       to_char(emidfl) as emidfl,\n" + 
+                    "       to_char(flid) as flid,\n" + 
+                    "       to_char(prid) as prid,\n" + 
+                    "       to_char(inanobase) as inanobase,\n" + 
+                    "       to_char(inid) as inid,\n" + 
+                    "       to_char(inentrada) as inentrada,\n" + 
+                    "       to_char(inqtde) as inqtde,\n" + 
+                    "       to_char(inun) as inun,\n" + 
+                    "       to_char(incustofob) as incustofob,\n" + 
+                    "       to_char(incustototal) as incustototal,\n" + 
+                    "       to_char(incustonovo) as incustonovo,\n" + 
+                    "       to_char(prid_ant) as prid_ant,\n" + 
+                    "       to_char(identificador) as identificador,\n" + 
+                    "       to_char(emid) as emid,\n" + 
+                    "       to_char(ano) as ano\n" + 
+                    "from planning.inventario\n" + 
+                    "where emid = 181\n" + 
+                    "  and inanobase = 2014";
+                v_table = v_database.Query(v_sql, "INVENTARIO");
+                v_excel.v_set.Tables.Add(v_table);
+
+                v_excel.Export("relatorio.xlsx");
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                System.Console.WriteLine(e.v_message);
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine(e.Message);
             }
         }
 

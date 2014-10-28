@@ -73,7 +73,8 @@ namespace Spartacus.ThirdParty.SejExcel
 
         public   Dictionary<string, gSheet> sheets = new Dictionary<string, gSheet>();                                          // The Sheets with data
         public   List<string> words = new List<string>();                                                                       // The XLSX dictionary
-        public   OoXml(string template_filename)                                                                                // Constructor from a file name
+
+        public OoXml(string template_filename)                                                                                  // Constructor from a file name
         {
             zip = ZipStorer.Open(template_filename, FileAccess.Read);                                                           // Open the template
             foreach (ZipStorer.ZipFileEntry l in zip.ReadCentralDir()) streams.Add(new gStream(this, zip, l));                  // Get the streams that make up the template and add them
@@ -208,11 +209,11 @@ namespace Spartacus.ThirdParty.SejExcel
             Stream = s;
         }
 
-
         public Stream GetStream()
         {
             return Stream.Document.zip.GetStream(Stream.zfe);
         }
+
         // If a sheet is loaded in memory, then it is read and parsed, created as a whole XML document
         internal Dictionary<int, XmlNode> rows = null;
 
@@ -340,7 +341,6 @@ namespace Spartacus.ThirdParty.SejExcel
             if (b == null) return ""; else return b.Value;
         }
     }
-
 
     public delegate void OnNewRow(gSheet sheet);
 
@@ -494,8 +494,5 @@ namespace Spartacus.ThirdParty.SejExcel
             nbytes = nbytes + WriteBytes(w, nbuffer, nbytes);
             nbytes = nbytes + WriteBytes(c.part3, nbuffer, nbytes);
         }
-
-
     }
 }
-
