@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.33.0:  Implementada funcionalidade de exportar planilhas do Excel a partir de um DataTable e um XLSX template existente.
+
 0.32.0:  Atualizando dependências e migrando para Framework 4.5 (2.0 e 4.0 serão descontinuados no Mono).
 
 0.31.14: Substituindo ponto por vírgula ao exibir números reais na Spartacus.Reporting

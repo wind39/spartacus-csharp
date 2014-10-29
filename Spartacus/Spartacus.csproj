@@ -442,5 +442,6 @@
     <Folder Include="bin\Release\" />
     <Folder Include="doc\" />
     <Folder Include="dist\" />
+    <Folder Include="resources\" />
   </ItemGroup>
 </Project>

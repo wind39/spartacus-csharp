@@ -307,7 +307,7 @@ namespace Test
                 v_table = v_database.Query(v_sql, "INVENTARIO");
                 v_excel.v_set.Tables.Add(v_table);
 
-                v_excel.Export("relatorio.xlsx");
+                v_excel.Export("relatorio.xlsx", "modelo.xlsx");
             }
             catch (Spartacus.Utils.Exception e)
             {

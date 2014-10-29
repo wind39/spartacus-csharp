@@ -27,24 +27,49 @@ namespace Spartacus.Utils
         }
 
         /// <summary>
+        /// Estrutura usada para armazenar as informações da planilha.
+        /// </summary>
+        public class Sheet
+        {
+            public string v_name;
+
+            /// <summary>
+            /// Utilizado para criar planilhas Excel utilizando SejExcel.
+            /// </summary>
+            public System.Data.DataTable v_data;
+
+            /// <summary>
+            /// Linha atual da planilha atual, utilizando SejExcel.
+            /// </summary>
+            public int v_currentrow;
+
+            /// <summary>
+            /// Número de linhas fixas no template.
+            /// </summary>
+            public int v_fixedrows;
+
+            /// <summary>
+            /// Dicionário usado para fazer mapeamentos de colunas de uma DataTable para o modelo em XLSX.
+            /// </summary>
+            public System.Collections.Generic.Dictionary<int, string> v_mapping;
+
+            /// <summary>
+            /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Excel+Sheet"/>.
+            /// </summary>
+            public Sheet()
+            {
+            }
+        }
+
+        /// <summary>
         /// Conjunto de tabelas do arquivo Excel.
         /// </summary>
         public System.Data.DataSet v_set;
 
         /// <summary>
-        /// Utilizado para criar planilhas Excel utilizando SejExcel.
+        /// Lista de informações sobre planilhas usadas pela SejExcel para salvar arquivos XLSX.
         /// </summary>
-        private System.Data.DataTable v_data;
-
-        /// <summary>
-        /// Linha atual da planilha atual, utilizando SejExcel.
-        /// </summary>
-        private int v_currentrow;
-
-        /// <summary>
-        /// Dicionário usado para fazer mapeamentos de colunas de uma DataTable para o modelo em XLSX.
-        /// </summary>
-        System.Collections.Generic.Dictionary<int, string> v_mapping;
+        public System.Collections.ArrayList v_sheets;
 
 
         /// <summary>
@@ -53,6 +78,7 @@ namespace Spartacus.Utils
         public Excel()
         {
             this.v_set = new System.Data.DataSet();
+            this.v_sheets = new System.Collections.ArrayList();
         }
 
         /// <summary>
@@ -521,7 +547,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
+        /// <remarks>No caso de arquivo CSV ou XLSX com template padrão, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename)
         {
             Spartacus.Utils.File v_file;
@@ -533,7 +559,44 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        this.ExportXLSX(p_filename);
+                        this.ExportXLSX(p_filename, "template.xlsx");
+                        break;
+                    case "csv":
+                        this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    default:
+                        throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+        /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
+        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
+        public void Export(string p_filename, string p_templatename)
+        {
+            Spartacus.Utils.File v_file;
+
+            v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+            try
+            {
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "xlsx":
+                        this.ExportXLSX(p_filename, p_templatename);
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
@@ -571,7 +634,7 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        this.ExportXLSX(p_filename);
+                        this.ExportXLSX(p_filename, "template.xlsx");
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, p_separator, p_encoding);
@@ -641,43 +704,33 @@ namespace Spartacus.Utils
 
         /// <summary>
         /// Exporta todas as <see cref="System.Data.DataTable"/> de um <see cref="System.Data.DataSet"/> para um arquivo XLSX.
-        /// Precisa existir um arquivo XLSX a ser considerado como modelo.
+        /// Utiliza como modelo um arquivo XLSX passado como parâmetro.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
-        private void ExportXLSX(string p_filename)
+        private void ExportXLSX(string p_filename, string p_templatename)
         {
             Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
             Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
-            string v_templatename, v_reportname;
 
             try
             {
-                foreach (System.Data.DataTable v_table in this.v_set.Tables)
+                v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_templatename);
+
+                if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
                 {
-                    v_templatename = "template_" + v_table.TableName.ToLower() + ".xlsx";
-                    v_reportname = p_filename.ToLower().Replace(".xlsx", "") + "_" + v_table.TableName.ToLower() + ".xlsx";
-
-                    v_package = new Spartacus.ThirdParty.SejExcel.OoXml(v_templatename);
-
-                    if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
+                    foreach (string v_key in v_package.sheets.Keys)
                     {
-                        v_sheet = v_package.sheets.Values.First<Spartacus.ThirdParty.SejExcel.gSheet>();
+                        v_sheet = v_package.sheets[v_key];
                         if (v_sheet != null)
-                        {
-                            //TODO: tentar implementar preenchimento de vários templates no mesmo arquivo
-                            //verificar valor do p_sheet.Index
-
-                            this.FillSheetWithDataTable(v_sheet, v_table);
-                            v_package.Save(v_reportname);
-                        }
+                            this.FillSheetWithDataTable(v_sheet, this.v_set.Tables[v_sheet.Name]);
                         else
-                            throw new Spartacus.Utils.Exception("Arquivo {0} contem uma planilha invalida.", v_templatename);
+                            throw new Spartacus.Utils.Exception("Arquivo {0} contem uma planilha invalida.", p_templatename);
                     }
-                    else
-                        throw new Spartacus.Utils.Exception("Arquivo {0} nao pode ser aberto, ou nao contem planilhas com dados.", v_templatename);
                 }
+                else
+                    throw new Spartacus.Utils.Exception("Arquivo {0} nao pode ser aberto, ou nao contem planilhas com dados.", p_templatename);
 
-                //v_package.Save(p_filename);
+                v_package.Save(p_filename);
             }
             catch (Spartacus.Utils.Exception e)
             {
@@ -697,17 +750,25 @@ namespace Spartacus.Utils
             }
         }
 
+        /// <summary>
+        /// Preenche a planilha do template com os dados de uma <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="p_sheet">Planilha do template.</param>
+        /// <param name="p_table">Dados a serem preenchidos.</param>
         private void FillSheetWithDataTable(Spartacus.ThirdParty.SejExcel.gSheet p_sheet, System.Data.DataTable p_table)
         {
-            int v_fixedrows;
+            Spartacus.Utils.Excel.Sheet v_info;
             string[] v_cells;
             string v_value;
             int k;
 
-            this.v_mapping = new System.Collections.Generic.Dictionary<int, string>();
+            v_info = new Spartacus.Utils.Excel.Sheet();
+            v_info.v_name = p_sheet.Name;
+            v_info.v_data = p_table;
+            v_info.v_fixedrows = 0;
 
+            v_info.v_mapping = new System.Collections.Generic.Dictionary<int, string>();
             k = 0;
-            v_fixedrows = 0;
             do
             {
                 v_cells = p_sheet.Row(k);
@@ -715,65 +776,69 @@ namespace Spartacus.Utils
                 {
                     for (int i = 0; i < v_cells.Length; i++)
                     {
-                        if (! string.IsNullOrEmpty(v_cells[i]) && v_cells[i].Length > 1)
-                            v_value = v_cells[i].Substring(0, 1);
+                        if (! string.IsNullOrEmpty(v_cells [i]) && v_cells [i].Length > 1)
+                            v_value = v_cells [i].Substring(0, 1);
                         else
-                            v_value = v_cells[i];
+                            v_value = v_cells [i];
                         if (v_value == "*")
-                            this.v_mapping[i] = v_cells[i].Replace("*", "");
+                            v_info.v_mapping [i] = v_cells [i].Replace("*", "");
                     }
-                    if (this.v_mapping.Count > 0)
-                        v_fixedrows = k;
+                    if (v_info.v_mapping.Count > 0)
+                        v_info.v_fixedrows = k;
                 }
                 k++;
             }
-            while (v_cells != null && v_mapping.Count == 0);
+            while (v_cells != null && v_info.v_mapping.Count == 0);
 
-            this.v_data = p_table;
-            this.v_currentrow = v_fixedrows + 1;
-            p_sheet.SetSource(OnDataRow, v_fixedrows);
+            v_info.v_currentrow = v_info.v_fixedrows + 1;
+
+            this.v_sheets.Add(v_info);
+
+            p_sheet.SetSource(OnDataRow, v_info.v_fixedrows);
         }
 
         private void OnDataRow(Spartacus.ThirdParty.SejExcel.gSheet p_sheet)
         {
+            Spartacus.Utils.Excel.Sheet v_info;
             System.Data.DataRow v_row;
             string[] v_tmp;
             int v_in_value;
             double v_re_value;
             string v_tail;
 
-            if (this.v_currentrow < this.v_data.Rows.Count)
-            {
-                p_sheet.BeginRow(this.v_currentrow);
-                foreach (System.Collections.Generic.KeyValuePair<int,string> v_pair in this.v_mapping)
-                {
-                    v_row = this.v_data.Rows [this.v_currentrow];
+            v_info = (Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index-1];
 
+            if ((v_info.v_currentrow - v_info.v_fixedrows - 1) < v_info.v_data.Rows.Count)
+            {
+                p_sheet.BeginRow(v_info.v_currentrow);
+                v_row = v_info.v_data.Rows [v_info.v_currentrow - v_info.v_fixedrows - 1];
+                foreach (System.Collections.Generic.KeyValuePair<int,string> v_pair in v_info.v_mapping)
+                {
                     v_tmp = v_pair.Value.Split('_');
                     v_tail = v_pair.Value.Replace(v_tmp [0] + "_", "");
 
                     switch (v_tmp [0])
                     {
                         case "in":
-                            if (int.TryParse(v_row[v_tail].ToString(), out v_in_value))
+                            if (int.TryParse(v_row [v_tail].ToString(), out v_in_value))
                                 p_sheet.WriteCell(v_pair.Key, v_in_value);
                             else
-                                p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
+                                p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
                             break;
                         case "re":
-                            if (double.TryParse(v_row[v_tail].ToString().Replace(",", "."), out v_re_value))
+                            if (double.TryParse(v_row [v_tail].ToString().Replace(",", "."), out v_re_value))
                                 p_sheet.WriteCell(v_pair.Key, v_re_value);
                             else
-                                p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
+                                p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
                             break;
                         default:
-                            p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
+                            p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
                             break;
                     }
                 }
                 p_sheet.EndRow();
 
-                this.v_currentrow++;
+                ((Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index - 1]).v_currentrow++;
             }
         }
     }
