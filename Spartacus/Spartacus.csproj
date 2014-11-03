@@ -104,6 +104,8 @@
     <Compile Include="Spartacus.ThirdParty.MultiColumnComboBox.cs" />
     <Compile Include="Spartacus.ThirdParty.SejExcel.cs" />
     <Compile Include="Spartacus.ThirdParty.ZipStorer.cs" />
+    <Compile Include="Spartacus.Forms.Passwordbox.cs" />
+    <Compile Include="Spartacus.Forms.Memobox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

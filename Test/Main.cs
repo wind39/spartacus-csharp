@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ExcelTest();
+            FormsTest();
         }
 
         //#region DATABASE
@@ -326,11 +326,11 @@ namespace Test
         private static void CryptoTest()
         {
             Spartacus.Net.Cryptor v_cryptor;
-            string v_plaintext;
-            string v_encryptedtext, v_decryptedtext;
-            int k;
-            System.IO.StreamWriter v_fw;
-            System.IO.StreamReader v_fr;
+            //string v_plaintext;
+            //string v_encryptedtext, v_decryptedtext;
+            //int k;
+            //System.IO.StreamWriter v_fw;
+            //System.IO.StreamReader v_fr;
             string v_senha;
 
             v_senha = "spartacus";
@@ -341,7 +341,7 @@ namespace Test
 
             //v_plaintext = "/home/william/Público/planning/Transfer/LEGISLAÇÃO/Preços de Transferência/Preços de Transferência - Legislação/comentarios a mp 478/";
 
-            v_plaintext = "/home/william/tmp/arag/produtos.txt";
+            /*v_plaintext = "/home/william/tmp/arag/produtos.txt";
 
             System.Console.WriteLine("Texto puro: [{0}]\n", v_plaintext);
 
@@ -381,7 +381,9 @@ namespace Test
 
                 k++;
             }
-            v_fr.Close();
+            v_fr.Close();*/
+
+            System.Console.WriteLine(v_cryptor.Encrypt("senha"));
         }
 
         private static void CryptoFileTest(string p_mode, string p_input, string p_output)
@@ -429,6 +431,8 @@ namespace Test
             Spartacus.Forms.Lookup v_lookup;
             Spartacus.Forms.Grid v_grid;
             Spartacus.Forms.Buttons v_buttons;
+            Spartacus.Forms.Passwordbox v_passwordbox;
+            Spartacus.Forms.Memobox v_memobox;
             Spartacus.Database.Generic v_database;
             System.Data.DataTable v_table;
 
@@ -452,16 +456,22 @@ namespace Test
                 v_textbox = new Spartacus.Forms.Textbox(v_window, "Digite seu nome:", 40);
                 v_window.Add(v_textbox);
 
-                v_textbox2 = new Spartacus.Forms.Textbox(v_window, "Digite sua idade:", 40);
-                v_window.Add(v_textbox2);
+                //v_textbox2 = new Spartacus.Forms.Textbox(v_window, "Digite sua idade:", 40);
+                //v_window.Add(v_textbox2);
+
+                v_passwordbox = new Spartacus.Forms.Passwordbox(v_window, "Senha:", 40);
+                v_window.Add(v_passwordbox);
 
                 v_lookup = new Spartacus.Forms.Lookup(v_window, "Olha só!!");
                 v_lookup.Populate(v_table, "pais_st_codigo", "pais_st_nome", "70;180");
                 v_window.Add(v_lookup);
 
-                v_grid = new Spartacus.Forms.Grid(v_window, v_window.v_width, 100);
-                v_grid.Populate(v_table);
-                v_window.Add(v_grid);
+                //v_grid = new Spartacus.Forms.Grid(v_window, v_window.v_width, 100);
+                //v_grid.Populate(v_table);
+                //v_window.Add(v_grid);
+
+                v_memobox = new Spartacus.Forms.Memobox(v_window, "Teste de memorando", v_window.v_width, 100);
+                v_window.Add(v_memobox);
 
                 v_buttons = new Spartacus.Forms.Buttons(v_window);
                 v_buttons.AddButton("Clique aqui", new System.EventHandler(OnClick));

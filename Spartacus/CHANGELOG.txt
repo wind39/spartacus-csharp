@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.33.1:  Implementados componentes Passwordbox e Memobox para Spartacus.Forms.
 0.33.0:  Implementada funcionalidade de exportar planilhas do Excel a partir de um DataTable e um XLSX template existente.
 
 0.32.0:  Atualizando dependências e migrando para Framework 4.5 (2.0 e 4.0 serão descontinuados no Mono).
