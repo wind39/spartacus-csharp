@@ -27,33 +27,34 @@ using System;
 namespace Spartacus.Forms
 {
     /// <summary>
-    /// Classe Passwordbox.
-    /// Representa um componente em que o usuário pode digitar texto em uma única linha, porém o texto é omitido.
+    /// Classe DateTimepicker.
+    /// Representa um componente em que o usuário pode selecionar uma data e hora.
     /// </summary>
-    public class Passwordbox : Spartacus.Forms.Container
+    public class Datetimepicker : Spartacus.Forms.Container
     {
         /// <summary>
-        /// Rótulo do Passwordbox.
+        /// Rótulo do Datetimepicker.
         /// </summary>
         public System.Windows.Forms.Label v_label;
 
         /// <summary>
-        /// Controle nativo que representa o Passwordbox.
+        /// Controle nativo que representa o Datetimepicker.
         /// </summary>
-        public System.Windows.Forms.TextBox v_textbox;
+        public System.Windows.Forms.DateTimePicker v_datetimepicker;
 
         /// <summary>
-        /// Proporção entre o Label e o Textbox.
+        /// Proporção entre o Label e o Datetimepicker.
         /// </summary>
         public int v_proportion;
 
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Passwordbox"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Datetimepicker"/>.
         /// </summary>
         /// <param name="p_parent">Container pai.</param>
         /// <param name="p_label">Texto exibido no rótulo.</param>
-        public Passwordbox(Spartacus.Forms.Container p_parent, string p_label)
+        /// <param name="p_format">Formato a ser exibido no DateTimePicker.</param>
+        public Datetimepicker(Spartacus.Forms.Container p_parent, string p_label, string p_format)
             : base(p_parent)
         {
             this.v_control = new System.Windows.Forms.Panel();
@@ -70,20 +71,22 @@ namespace Spartacus.Forms
 
             this.v_proportion = 40;
 
-            this.v_textbox = new System.Windows.Forms.TextBox();
-            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
-            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
-            this.v_textbox.UseSystemPasswordChar = true;
-            this.v_textbox.Parent = this.v_control;
+            this.v_datetimepicker = new System.Windows.Forms.DateTimePicker();
+            this.v_datetimepicker.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
+            this.v_datetimepicker.Width = this.v_width - 10 - this.v_datetimepicker.Location.X;
+            this.v_datetimepicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v_datetimepicker.CustomFormat = p_format;
+            this.v_datetimepicker.Parent = this.v_control;
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Passwordbox"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Datetimepicker"/>.
         /// </summary>
         /// <param name="p_parent">Container pai.</param>
         /// <param name="p_label">Texto exibido no rótulo.</param>
-        /// <param name="p_proportion">Proporção entre o Label e o Textbox.</param>
-        public Passwordbox(Spartacus.Forms.Container p_parent, string p_label, int p_proportion)
+        /// <param name="p_format">Formato a ser exibido no DateTimePicker.</param>
+        /// <param name="p_proportion">Proporção entre o Label e o DateTimePicker.</param>
+        public Datetimepicker(Spartacus.Forms.Container p_parent, string p_label, string p_format, int p_proportion)
             : base(p_parent)
         {
             this.v_control = new System.Windows.Forms.Panel();
@@ -99,11 +102,12 @@ namespace Spartacus.Forms
 
             this.v_proportion = p_proportion;
 
-            this.v_textbox = new System.Windows.Forms.TextBox();
-            this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
-            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
-            this.v_textbox.UseSystemPasswordChar = true;
-            this.v_textbox.Parent = this.v_control;
+            this.v_datetimepicker = new System.Windows.Forms.DateTimePicker();
+            this.v_datetimepicker.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
+            this.v_datetimepicker.Width = this.v_width - 10 - this.v_datetimepicker.Location.X;
+            this.v_datetimepicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v_datetimepicker.CustomFormat = p_format;
+            this.v_datetimepicker.Parent = this.v_control;
         }
 
         /// <summary>
@@ -117,14 +121,14 @@ namespace Spartacus.Forms
         public override void Resize(int p_newwidth, int p_newheight, int p_newposx, int p_newposy)
         {
             this.v_control.SuspendLayout();
-            this.v_textbox.SuspendLayout();
+            this.v_datetimepicker.SuspendLayout();
 
             this.SetWidth(p_newwidth);
             this.SetLocation(p_newposx, p_newposy);
 
-            this.v_textbox.Width = this.v_control.Width - 10 - this.v_textbox.Location.X;
+            this.v_datetimepicker.Width = this.v_control.Width - 10 - this.v_datetimepicker.Location.X;
 
-            this.v_textbox.ResumeLayout();
+            this.v_datetimepicker.ResumeLayout();
             this.v_control.ResumeLayout();
             this.v_control.Refresh();
         }
@@ -134,7 +138,7 @@ namespace Spartacus.Forms
         /// </summary>
         public override void Enable()
         {
-            this.v_textbox.Enabled = true;
+            this.v_datetimepicker.Enabled = true;
         }
 
         /// <summary>
@@ -142,7 +146,7 @@ namespace Spartacus.Forms
         /// </summary>
         public override void Disable()
         {
-            this.v_textbox.Enabled = false;
+            this.v_datetimepicker.Enabled = false;
         }
 
         /// <summary>
@@ -150,7 +154,7 @@ namespace Spartacus.Forms
         /// </summary>
         public override void Clear()
         {
-            this.v_textbox.Text = "";
+            this.v_datetimepicker.Text = "";
         }
 
         /// <summary>
@@ -160,7 +164,7 @@ namespace Spartacus.Forms
         /// <param name="p_text">Texto a ser mostrado no Textbox.</param>
         public void SetValue(string p_text)
         {
-            this.v_textbox.Text = p_text;
+            this.v_datetimepicker.Text = p_text;
         }
 
         /// <summary>
@@ -169,7 +173,7 @@ namespace Spartacus.Forms
         /// <returns>Texto ou valor atual do Textbox.</returns>
         public string GetValue()
         {
-            return this.v_textbox.Text;
+            return this.v_datetimepicker.Text;
         }
     }
 }

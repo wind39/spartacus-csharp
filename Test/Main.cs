@@ -433,6 +433,8 @@ namespace Test
             Spartacus.Forms.Buttons v_buttons;
             Spartacus.Forms.Passwordbox v_passwordbox;
             Spartacus.Forms.Memobox v_memobox;
+            Spartacus.Forms.Datetimepicker v_datetimepicker;
+            Spartacus.Forms.Filepicker v_filepicker;
             Spartacus.Database.Generic v_database;
             System.Data.DataTable v_table;
 
@@ -459,8 +461,14 @@ namespace Test
                 //v_textbox2 = new Spartacus.Forms.Textbox(v_window, "Digite sua idade:", 40);
                 //v_window.Add(v_textbox2);
 
-                v_passwordbox = new Spartacus.Forms.Passwordbox(v_window, "Senha:", 40);
-                v_window.Add(v_passwordbox);
+                //v_passwordbox = new Spartacus.Forms.Passwordbox(v_window, "Senha:", 40);
+                //v_window.Add(v_passwordbox);
+
+                //v_datetimepicker = new Spartacus.Forms.Datetimepicker(v_window, "Senha:", "dd/MM/yyyy", 40);
+                //v_window.Add(v_datetimepicker);
+
+                v_filepicker = new Spartacus.Forms.Filepicker(v_window, Spartacus.Forms.Filepicker.Type.SAVE, "Escolher arquivo: ", "Todos os arquivos|*", 40);
+                v_window.Add(v_filepicker);
 
                 v_lookup = new Spartacus.Forms.Lookup(v_window, "Olha só!!");
                 v_lookup.Populate(v_table, "pais_st_codigo", "pais_st_nome", "70;180");

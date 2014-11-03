@@ -106,6 +106,8 @@
     <Compile Include="Spartacus.ThirdParty.ZipStorer.cs" />
     <Compile Include="Spartacus.Forms.Passwordbox.cs" />
     <Compile Include="Spartacus.Forms.Memobox.cs" />
+    <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
+    <Compile Include="Spartacus.Forms.Filepicker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

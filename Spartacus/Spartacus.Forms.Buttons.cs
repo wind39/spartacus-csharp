@@ -85,7 +85,7 @@ namespace Spartacus.Forms
             foreach (System.Windows.Forms.Button v_button in this.v_list)
             {
                 v_button.SuspendLayout();
-                v_button.Location = new System.Drawing.Point(v_button.Location.X + v_dif, 10);
+                v_button.Location = new System.Drawing.Point(v_button.Location.X + v_dif, 5);
                 v_button.ResumeLayout();
                 v_button.Refresh();
             }
@@ -131,7 +131,7 @@ namespace Spartacus.Forms
             v_button = new System.Windows.Forms.Button();
             v_button.Text = p_text;
             v_button.Width = 100;
-            v_button.Location = new System.Drawing.Point(this.v_offsetx - v_button.Width, 10);
+            v_button.Location = new System.Drawing.Point(this.v_offsetx - v_button.Width, 5);
             v_button.Click += p_delegate;
             v_button.Parent = this.v_control;
 

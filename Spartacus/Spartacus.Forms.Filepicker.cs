@@ -27,20 +27,44 @@ using System;
 namespace Spartacus.Forms
 {
     /// <summary>
-    /// Classe Passwordbox.
-    /// Representa um componente em que o usuário pode digitar texto em uma única linha, porém o texto é omitido.
+    /// Classe Filepicker.
+    /// Representa um componente em que o usuário pode selecionar um arquivo.
     /// </summary>
-    public class Passwordbox : Spartacus.Forms.Container
+    public class Filepicker : Spartacus.Forms.Container
     {
         /// <summary>
-        /// Rótulo do Passwordbox.
+        /// Tipo do diálogo do Filepicker.
+        /// </summary>
+        public enum Type
+        {
+            OPEN,
+            SAVE
+        }
+
+        /// <summary>
+        /// Rótulo do Filepicker.
         /// </summary>
         public System.Windows.Forms.Label v_label;
 
         /// <summary>
-        /// Controle nativo que representa o Passwordbox.
+        /// Tipo do diálogo do Filepicker.
+        /// </summary>
+        public Spartacus.Forms.Filepicker.Type v_type;
+
+        /// <summary>
+        /// Controle nativo que armazena o nome do arquivo.
         /// </summary>
         public System.Windows.Forms.TextBox v_textbox;
+
+        /// <summary>
+        /// Botão que mostra o diálogo do Filepicker.
+        /// </summary>
+        public System.Windows.Forms.Button v_button;
+
+        /// <summary>
+        /// Controle nativo que representa o diálogo do Filepicker.
+        /// </summary>
+        public System.Windows.Forms.FileDialog v_filedialog;
 
         /// <summary>
         /// Proporção entre o Label e o Textbox.
@@ -49,11 +73,13 @@ namespace Spartacus.Forms
 
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Passwordbox"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Filepicker"/>.
         /// </summary>
         /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_type">Tipo do diálogo do Filepicker.</param>
         /// <param name="p_label">Texto exibido no rótulo.</param>
-        public Passwordbox(Spartacus.Forms.Container p_parent, string p_label)
+        /// <param name="p_filter">Filtro de arquivos a serem exibidos no diálogo do Filepicker.</param>
+        public Filepicker(Spartacus.Forms.Container p_parent, Spartacus.Forms.Filepicker.Type p_type, string p_label, string p_filter)
             : base(p_parent)
         {
             this.v_control = new System.Windows.Forms.Panel();
@@ -68,22 +94,38 @@ namespace Spartacus.Forms
             this.v_label.AutoSize = true;
             this.v_label.Parent = this.v_control;
 
+            this.v_button = new System.Windows.Forms.Button();
+            this.v_button.Text = "...";
+            this.v_button.Width = 30;
+            this.v_button.Location = new System.Drawing.Point(this.v_width - 10 - this.v_button.Width, 5);
+            this.v_button.Click += new System.EventHandler(this.OnClick);
+            this.v_button.Parent = this.v_control;
+
             this.v_proportion = 40;
 
             this.v_textbox = new System.Windows.Forms.TextBox();
             this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
-            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
-            this.v_textbox.UseSystemPasswordChar = true;
+            this.v_textbox.Width = this.v_width - 10 - this.v_button.Width - this.v_textbox.Location.X;
             this.v_textbox.Parent = this.v_control;
+
+            this.v_type = p_type;
+            if (this.v_type == Spartacus.Forms.Filepicker.Type.OPEN)
+                this.v_filedialog = new System.Windows.Forms.OpenFileDialog();
+            else
+                this.v_filedialog = new System.Windows.Forms.SaveFileDialog();
+            this.v_filedialog.Title = p_label;
+            this.v_filedialog.Filter = p_filter;
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Passwordbox"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Filepicker"/>.
         /// </summary>
         /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_type">Tipo do diálogo do Filepicker.</param>
         /// <param name="p_label">Texto exibido no rótulo.</param>
+        /// <param name="p_filter">Filtro de arquivos a serem exibidos no diálogo do Filepicker.</param>
         /// <param name="p_proportion">Proporção entre o Label e o Textbox.</param>
-        public Passwordbox(Spartacus.Forms.Container p_parent, string p_label, int p_proportion)
+        public Filepicker(Spartacus.Forms.Container p_parent, Spartacus.Forms.Filepicker.Type p_type, string p_label, string p_filter, int p_proportion)
             : base(p_parent)
         {
             this.v_control = new System.Windows.Forms.Panel();
@@ -95,15 +137,30 @@ namespace Spartacus.Forms
             this.v_label = new System.Windows.Forms.Label();
             this.v_label.Text = p_label;
             this.v_label.Location = new System.Drawing.Point(10, 10);
+            this.v_label.AutoSize = true;
             this.v_label.Parent = this.v_control;
+
+            this.v_button = new System.Windows.Forms.Button();
+            this.v_button.Text = "...";
+            this.v_button.Width = 30;
+            this.v_button.Location = new System.Drawing.Point(this.v_width - 10 - this.v_button.Width, 5);
+            this.v_button.Click += new System.EventHandler(this.OnClick);
+            this.v_button.Parent = this.v_control;
 
             this.v_proportion = p_proportion;
 
             this.v_textbox = new System.Windows.Forms.TextBox();
             this.v_textbox.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion / (double) 100)), 5);
-            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
-            this.v_textbox.UseSystemPasswordChar = true;
+            this.v_textbox.Width = this.v_width - 10 - this.v_button.Width - this.v_textbox.Location.X;
             this.v_textbox.Parent = this.v_control;
+
+            this.v_type = p_type;
+            if (this.v_type == Spartacus.Forms.Filepicker.Type.OPEN)
+                this.v_filedialog = new System.Windows.Forms.OpenFileDialog();
+            else
+                this.v_filedialog = new System.Windows.Forms.SaveFileDialog();
+            this.v_filedialog.Title = p_label;
+            this.v_filedialog.Filter = p_filter;
         }
 
         /// <summary>
@@ -118,12 +175,15 @@ namespace Spartacus.Forms
         {
             this.v_control.SuspendLayout();
             this.v_textbox.SuspendLayout();
+            this.v_button.SuspendLayout();
 
             this.SetWidth(p_newwidth);
             this.SetLocation(p_newposx, p_newposy);
 
-            this.v_textbox.Width = this.v_control.Width - 10 - this.v_textbox.Location.X;
+            this.v_textbox.Width = this.v_width - 10 - this.v_button.Width - this.v_textbox.Location.X;
+            this.v_button.Location = new System.Drawing.Point(this.v_width - 10 - this.v_button.Width, 5);
 
+            this.v_button.ResumeLayout();
             this.v_textbox.ResumeLayout();
             this.v_control.ResumeLayout();
             this.v_control.Refresh();
@@ -135,6 +195,7 @@ namespace Spartacus.Forms
         public override void Enable()
         {
             this.v_textbox.Enabled = true;
+            this.v_button.Enabled = true;
         }
 
         /// <summary>
@@ -143,6 +204,7 @@ namespace Spartacus.Forms
         public override void Disable()
         {
             this.v_textbox.Enabled = false;
+            this.v_button.Enabled = false;
         }
 
         /// <summary>
@@ -170,6 +232,17 @@ namespace Spartacus.Forms
         public string GetValue()
         {
             return this.v_textbox.Text;
+        }
+
+        /// <summary>
+        /// Evento executado quando o botão de selecionar arquivo é clicado.
+        /// </summary>
+        private void OnClick(object sender, System.EventArgs e)
+        {
+            if (this.v_filedialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.v_textbox.Text = this.v_filedialog.FileName;
+            }
         }
     }
 }
