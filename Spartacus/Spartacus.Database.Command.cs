@@ -66,6 +66,23 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Atualiza o código SQL, mas sem alterar o SQL original.
+        /// Substitui os nomes de parâmetro com tag de início e fim #, com o valor de cada parâmetro já formatado.
+        /// </summary>
+        /// <returns>Código SQL tratado, pronto para execução no banco de dados.</returns>
+        public string GetUpdatedText()
+        {
+            string v_localtext;
+            int k;
+
+            v_localtext = this.v_text;
+            for (k = 0; k < this.v_parameters.Count; k++)
+                v_localtext = v_localtext.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+
+            return v_localtext;
+        }
+
+        /// <summary>
         /// Apaga o texto e a lista de parâmetros da classe <see cref="Spartacus.Database.Command"/>.
         /// Dessa forma, a instância pode ser reaproveitada com um código SQL diferente.
         /// </summary>
