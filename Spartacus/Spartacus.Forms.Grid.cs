@@ -142,7 +142,8 @@ namespace Spartacus.Forms
         /// <returns>Linha selecionada.</returns>
         public System.Data.DataRow CurrentRow()
         {
-            if (this.v_grid.CurrentRow.Index >= 0 &&
+            if (this.v_grid.Rows.Count > 0 &&
+                this.v_grid.CurrentRow.Index >= 0 &&
                 this.v_grid.CurrentRow.Index < this.v_grid.Rows.Count)
             {
                 return ((System.Data.DataTable) this.v_grid.DataSource).Rows[this.v_grid.CurrentRow.Index];
