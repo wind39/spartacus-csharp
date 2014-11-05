@@ -83,6 +83,8 @@ namespace Spartacus.Forms
             if (this.v_type == Spartacus.Forms.FormType.CHILD &&
                 this.v_parent != null)
             {
+                this.v_parent.Refresh();
+
                 if (this.Visible)
                     this.v_parent.Disable();
                 else
