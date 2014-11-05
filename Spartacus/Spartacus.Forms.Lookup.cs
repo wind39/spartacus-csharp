@@ -111,6 +111,9 @@ namespace Spartacus.Forms
             this.v_lookup.Location = new System.Drawing.Point((int) (this.v_width * ((double) this.v_proportion1 / (double) 100)), 5);
             this.v_lookup.Width = this.v_textbox.Location.X - this.v_lookup.Location.X - 5;
             this.v_lookup.Parent = this.v_control;
+
+            this.v_database = null;
+            this.v_sql = null;
         }
 
         /// <summary>
@@ -297,7 +300,8 @@ namespace Spartacus.Forms
         /// </summary>
         public void Populate()
         {
-            this.v_lookup.DataSource = this.v_database.Query(this.v_sql, "LOOKUP");
+            if (this.v_database != null)
+                this.v_lookup.DataSource = this.v_database.Query(this.v_sql, "LOOKUP");
         }
     }
 }

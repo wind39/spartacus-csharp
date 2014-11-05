@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.33.7:  Funcionalidade Spartacus.Forms.Form: ao fechar formulário filho, atualiza o formulário pai.
 0.33.6:  Implementada função Refresh para o Spartacus.Forms.Container.
 0.33.5:  Implementadas funções GetEncryptedValue e SetEncryptedValue no Spartacus.Forms.Passwordbox.
 0.33.4:  Implementada função GetUpdatedText no Spartacus.Database.Command.

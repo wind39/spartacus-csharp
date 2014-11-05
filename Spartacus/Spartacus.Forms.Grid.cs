@@ -87,6 +87,9 @@ namespace Spartacus.Forms
             this.v_grid.AllowUserToResizeColumns = true;
             this.v_grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.v_grid.Parent = this.v_control;
+
+            this.v_database = null;
+            this.v_sql = null;
         }
 
         /// <summary>
@@ -163,8 +166,11 @@ namespace Spartacus.Forms
         /// </summary>
         public void Populate()
         {
-            this.v_grid.DataSource = this.v_database.Query(this.v_sql, "GRID");
-            this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
+            if (this.v_database != null)
+            {
+                this.v_grid.DataSource = this.v_database.Query(this.v_sql, "GRID");
+                this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
+            }
         }
 
         /// <summary>
