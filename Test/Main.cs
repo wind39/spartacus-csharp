@@ -436,13 +436,13 @@ namespace Test
             Spartacus.Forms.Datetimepicker v_datetimepicker;
             Spartacus.Forms.Filepicker v_filepicker;
             Spartacus.Database.Generic v_database;
-            System.Data.DataTable v_table;
+            //System.Data.DataTable v_table;
 
             try
             {
                 v_database = new Spartacus.Database.Sqlite("sc_register.db");
 
-                v_table = v_database.Query("select pais_st_codigo, pais_st_nome from paises", "PAISES");
+                //v_table = v_database.Query("select pais_st_codigo, pais_st_nome from paises", "PAISES");
 
                 v_window = new Spartacus.Forms.Window("Formulario Teste", 500, 400);
 
@@ -471,7 +471,7 @@ namespace Test
                 v_window.Add(v_filepicker);
 
                 v_lookup = new Spartacus.Forms.Lookup(v_window, "Olha só!!");
-                v_lookup.Populate(v_table, "pais_st_codigo", "pais_st_nome", "70;180");
+                v_lookup.Populate(v_database, "select pais_st_codigo, pais_st_nome from paises", "pais_st_codigo", "pais_st_nome", "70;180");
                 v_window.Add(v_lookup);
 
                 //v_grid = new Spartacus.Forms.Grid(v_window, v_window.v_width, 100);

@@ -38,6 +38,16 @@ namespace Spartacus.Forms
         /// </summary>
         public System.Windows.Forms.DataGridView v_grid;
 
+        /// <summary>
+        /// Objeto de conexão com o banco de dados.
+        /// </summary>
+        public Spartacus.Database.Generic v_database;
+
+        /// <summary>
+        /// Consulta SQL para alimentar o Grid.
+        /// </summary>
+        public string v_sql;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Grid"/>.
@@ -127,12 +137,33 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
-        /// Popula o Grid atual com os dados de uma <see cref="System.Data.DataTable"/>.
+        /// Atualiza os dados do Container atual.
         /// </summary>
-        /// <param name="p_table">Tabela para popular o Grid.</param>
-        public void Populate(System.Data.DataTable p_table)
+        public override void Refresh()
         {
-            this.v_grid.DataSource = p_table;
+            this.Populate();
+        }
+
+        /// <summary>
+        /// Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+        /// </summary>
+        /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public void Populate(Spartacus.Database.Generic p_database, string p_sql)
+        {
+            this.v_database = p_database;
+            this.v_sql = p_sql;
+
+            this.v_grid.DataSource = this.v_database.Query(this.v_sql, "GRID");
+            this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+        /// <summary>
+        /// Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+        /// </summary>
+        public void Populate()
+        {
+            this.v_grid.DataSource = this.v_database.Query(this.v_sql, "GRID");
             this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
         }
 

@@ -189,5 +189,10 @@ namespace Spartacus.Forms
         /// Limpa os dados do Container atual.
         /// </summary>
         public abstract void Clear();
+
+        /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public abstract void Refresh();
     }
 }

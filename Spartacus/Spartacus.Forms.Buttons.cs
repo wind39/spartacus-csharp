@@ -120,6 +120,13 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public override void Refresh()
+        {
+        }
+
+        /// <summary>
         /// Adiciona um botão à lista de botões.
         /// </summary>
         /// <param name="p_text">Texto do botão.</param>

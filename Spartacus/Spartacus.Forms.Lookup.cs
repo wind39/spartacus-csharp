@@ -58,6 +58,16 @@ namespace Spartacus.Forms
         /// </summary>
         public int v_proportion2;
 
+        /// <summary>
+        /// Objeto de conexão com o banco de dados.
+        /// </summary>
+        public Spartacus.Database.Generic v_database;
+
+        /// <summary>
+        /// Consulta SQL para alimentar o Lookup.
+        /// </summary>
+        public string v_sql;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Lookup"/>.
@@ -198,6 +208,14 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public override void Refresh()
+        {
+            this.Populate();
+        }
+
+        /// <summary>
         /// Informa o valor do componente Lookup.
         /// Usado para mostrar um formulário já preenchido ao usuário.
         /// </summary>
@@ -243,29 +261,43 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
-        /// Popula o componente Lookup com uma <see cref="System.Data.DataTable"/>.
+        /// Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
         /// </summary>
-        /// <param name="p_table">Tabela com os dados para popular o Lookup.</param>
+        /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
         /// <param name="p_columnvalue">Coluna de valor.</param>
         /// <param name="p_columndisplay">Coluna para mostrar no Textbox.</param>
         /// <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param>
-        public void Populate(System.Data.DataTable p_table, string p_columnvalue, string p_columndisplay, string p_columnwidths)
+        public void Populate(Spartacus.Database.Generic p_database, string p_sql, string p_columnvalue, string p_columndisplay, string p_columnwidths)
         {
+            System.Data.DataTable v_table;
             string v_columnnames;
             int k;
 
-            v_columnnames = p_table.Columns[0].ColumnName;
-            for (k = 1; k < p_table.Columns.Count; k++)
-                v_columnnames += ";" + p_table.Columns[k].ColumnName;
+            this.v_database = p_database;
+            this.v_sql = p_sql;
+
+            v_table = this.v_database.Query(this.v_sql, "LOOKUP");
+
+            v_columnnames = v_table.Columns[0].ColumnName;
+            for (k = 1; k < v_table.Columns.Count; k++)
+                v_columnnames += ";" + v_table.Columns[k].ColumnName;
 
             this.v_lookup.ColumnNames = v_columnnames;
             this.v_lookup.ColumnWidths = p_columnwidths;
 
-            this.v_lookup.DataSource = p_table;
+            this.v_lookup.DataSource = v_table;
             this.v_lookup.DisplayMember = p_columnvalue;
             this.v_lookup.ValueMember = p_columndisplay;
             this.v_lookup.SelectedIndex = -1;
             this.v_lookup.Text = "";
+        }
+
+        /// <summary>
+        /// Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+        /// </summary>
+        public void Populate()
+        {
+            this.v_lookup.DataSource = this.v_database.Query(this.v_sql, "LOOKUP");
         }
     }
 }

@@ -101,6 +101,13 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public override void Refresh()
+        {
+        }
+
+        /// <summary>
         /// Adiciona um grupo ao Menu.
         /// </summary>
         /// <returns>Retorna o grupo, para poder adicionar outros grupos ou itens a ele.</returns>

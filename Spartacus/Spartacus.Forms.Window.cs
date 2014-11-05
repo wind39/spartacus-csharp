@@ -161,6 +161,21 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public override void Refresh()
+        {
+            Spartacus.Forms.Container v_container;
+            int k;
+
+            for (k = 0; k < this.v_containers.Count; k++)
+            {
+                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container.Refresh();
+            }
+        }
+
+        /// <summary>
         /// Mostra a Janela atual.
         /// </summary>
         public void Show()

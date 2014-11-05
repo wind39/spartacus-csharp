@@ -127,6 +127,13 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Atualiza os dados do Container atual.
+        /// </summary>
+        public override void Refresh()
+        {
+        }
+
+        /// <summary>
         /// Informa o texto ou valor a ser mostrado no Textbox.
         /// Usado para mostrar ao usuário um formulário já preenchido.
         /// </summary>
