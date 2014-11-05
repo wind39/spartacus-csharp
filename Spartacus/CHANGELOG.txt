@@ -21,7 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-0.33.4:  Implementada função GetUpdatedSQL no Spartacus.Database.Command.
+0.33.5:  Implementadas funções GetEncryptedValue e SetEncryptedValue no Spartacus.Forms.Passwordbox.
+0.33.4:  Implementada função GetUpdatedText no Spartacus.Database.Command.
 0.33.3:  Corrigindo bug na função CurrentRow do Spartacus.Forms.Grid.
 0.33.2:  Implementados componentes Datetimepicker e Filepicker para Spartacus.Forms.
 0.33.1:  Implementados componentes Passwordbox e Memobox para Spartacus.Forms.

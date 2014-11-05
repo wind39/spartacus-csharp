@@ -164,12 +164,70 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Informa o texto ou valor a ser mostrado no Textbox.
+        /// Usado para mostrar ao usuário um formulário já preenchido.
+        /// O texto é passado criptografado, e é descriptografado para ser exibido ao usuário.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Textbox.</param>
+        /// <param name="p_decryptpassword">Senha para descriptografar.</param>
+        public void SetEncryptedValue(string p_text, string p_decryptpassword)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_decrypted;
+
+            v_cryptor = new Spartacus.Net.Cryptor(p_decryptpassword);
+
+            try
+            {
+                v_decrypted = v_cryptor.Decrypt(p_text);
+            }
+            catch (Spartacus.Net.Exception)
+            {
+                v_decrypted = p_text;
+            }
+            catch (System.Exception)
+            {
+                v_decrypted = p_text;
+            }
+
+            this.v_textbox.Text = v_decrypted;
+        }
+
+        /// <summary>
         /// Retorna o texto ou valor atual do Textbox.
         /// </summary>
         /// <returns>Texto ou valor atual do Textbox.</returns>
         public string GetValue()
         {
             return this.v_textbox.Text;
+        }
+
+        /// <summary>
+        /// Retorna o texto ou valor atual do Textbox, porém criptografado.
+        /// </summary>
+        /// <returns>Texto ou valor atual do Textbox, porém criptografado.</returns>
+        /// <param name="p_encryptpassword">Senha para criptografar.</param>
+        public string GetEncryptedValue(string p_encryptpassword)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_encrypted;
+
+            v_cryptor = new Spartacus.Net.Cryptor(p_encryptpassword);
+
+            try
+            {
+                v_encrypted = v_cryptor.Encrypt(this.v_textbox.Text);
+            }
+            catch (Spartacus.Net.Exception)
+            {
+                v_encrypted = this.v_textbox.Text;
+            }
+            catch (System.Exception)
+            {
+                v_encrypted = this.v_textbox.Text;
+            }
+
+            return v_encrypted;
         }
     }
 }

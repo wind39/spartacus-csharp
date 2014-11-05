@@ -3,10 +3,12 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../work/projects/Repositories/Spartacus/Spartacus/CHANGELOG.txt">
     <Files>
       <File FileName="../../../../../work/projects/Repositories/Spartacus/Test/Main.cs" Line="1" Column="1" />
-      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/CHANGELOG.txt" Line="78" Column="78" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/AssemblyInfo.cs" Line="35" Column="35" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/CHANGELOG.txt" Line="22" Column="22" />
       <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Forms.Textbox.cs" Line="1" Column="1" />
       <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Forms.Filepicker.cs" Line="1" Column="1" />
-      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Forms.Grid.cs" Line="17" Column="17" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Forms.Grid.cs" Line="1" Column="1" />
+      <File FileName="../../../../../work/projects/Repositories/Spartacus/Spartacus/Spartacus.Database.Command.cs" Line="19" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
