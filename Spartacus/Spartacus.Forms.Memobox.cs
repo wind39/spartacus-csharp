@@ -55,6 +55,8 @@ namespace Spartacus.Forms
         {
             this.v_control = new System.Windows.Forms.Panel();
 
+            this.v_isfrozen = false;
+
             this.v_width = p_width;
             this.v_control.Width = p_width - 5;
 

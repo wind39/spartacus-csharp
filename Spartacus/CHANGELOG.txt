@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.33.9:  Corrigindo bug do redimensionamento de Memobox.
 0.33.8:  Implementado tipo de parâmetro de banco de dados QUOTEDSTRING.
 0.33.7:  Funcionalidade Spartacus.Forms.Form: ao fechar formulário filho, atualiza o formulário pai.
 0.33.6:  Implementada função Refresh para o Spartacus.Forms.Container.
