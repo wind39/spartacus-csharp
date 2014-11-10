@@ -36,7 +36,8 @@ namespace Spartacus.Database
         BOOLEAN,
         CHAR,
         DATE,
-        STRING
+        STRING,
+        QUOTEDSTRING
     }
 
     /// <summary>
@@ -140,7 +141,7 @@ namespace Spartacus.Database
                         case Spartacus.Database.Type.DATE:
                             return "to_date('" + this.v_value.Trim() + "', '" + this.v_dateformat.Trim() + "')";
                         case Spartacus.Database.Type.STRING:
-                            return "'" + this.v_value.Trim().Replace("'", ".") + "'";
+                            return "'" + this.v_value.Trim() + "'";
                         default:
                             return "null";
                     }
