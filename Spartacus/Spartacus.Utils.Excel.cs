@@ -90,10 +90,9 @@ namespace Spartacus.Utils
             {
                 v_table.Clear();
                 v_table.Columns.Clear();
-
-                this.v_set.Tables.Remove(v_table);
             }
 
+            this.v_set.Tables.Clear();
             this.v_set.Clear();
         }
 
