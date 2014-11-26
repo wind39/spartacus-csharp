@@ -74,5 +74,8 @@
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\Test.exe" />
     <None Include="bin\Debug\Test.exe.mdb" />
+    <None Include="bin\Release\logops.png" />
+    <None Include="bin\Release\usuarios.xml" />
+    <None Include="bin\Release\usuarios.pdf" />
   </ItemGroup>
 </Project>

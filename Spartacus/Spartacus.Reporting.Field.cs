@@ -118,5 +118,34 @@ namespace Spartacus.Reporting
             else
                 return p_text;
         }
+
+        /// <summary>
+        /// Corta o texto para caber dentro da célula.
+        /// </summary>
+        /// <param name="p_text">Texto.</param>
+        /// <param name="p_graphics">Objeto auxiliar para renderização de texto.</param>
+        /// <param name="p_font">Fonte nativa.</param>
+        /// <param name="p_maxsize">Tamanho da célula.</param>
+        public static string Crop(string p_text, System.Drawing.Graphics p_graphics, System.Drawing.Font p_font, double p_maxsize)
+        {
+            double v_maxsize;
+            int v_numchars;
+            double v_renderedsize;
+
+            if (!string.IsNullOrEmpty(p_text))
+            {
+                v_maxsize = p_maxsize * 1.25;
+                v_numchars = p_text.Length;
+
+                v_renderedsize = p_graphics.MeasureString(p_text, p_font).Width;
+
+                if (v_renderedsize > v_maxsize)
+                    return p_text.Substring(0, (int)(((double)(v_maxsize * v_numchars)) / v_renderedsize));
+                else
+                    return p_text;
+            }
+            else
+                return "";
+        }
     }
 }

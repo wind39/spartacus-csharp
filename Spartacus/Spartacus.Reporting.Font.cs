@@ -63,6 +63,11 @@ namespace Spartacus.Reporting
         public double v_size;
 
         /// <summary>
+        /// Fonte nativa.
+        /// </summary>
+        public System.Drawing.Font v_nativefont;
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Font"/>.
         /// </summary>
         public Font()
@@ -120,33 +125,69 @@ namespace Spartacus.Reporting
             {
                 case Spartacus.Reporting.FontFamily.COURIER:
                     if (this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.COURIER_BOLD_OBLIQUE);
-                    if (this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Courier New", (float) this.v_size, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic);
+                    }
+                    if (this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.COURIER_BOLD);
-                    if (! this.v_bold && this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Courier New", (float) this.v_size, System.Drawing.FontStyle.Bold);
+                    }
+                    if (!this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.COURIER_OBLIQUE);
-                    if (! this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Courier New", (float) this.v_size, System.Drawing.FontStyle.Italic);
+                    }
+                    if (!this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.COURIER);
+                        this.v_nativefont = new System.Drawing.Font("Courier New", (float) this.v_size, System.Drawing.FontStyle.Regular);
+                    }
                     break;
                 case Spartacus.Reporting.FontFamily.HELVETICA:
                     if (this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.HELVETICA_BOLD_OBLIQUE);
-                    if (this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Helvetica", (float) this.v_size, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic);
+                    }
+                    if (this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.HELVETICA_BOLD);
-                    if (! this.v_bold && this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Helvetica", (float) this.v_size, System.Drawing.FontStyle.Bold);
+                    }
+                    if (!this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.HELVETICA_OBLIQUE);
-                    if (! this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Helvetica", (float) this.v_size, System.Drawing.FontStyle.Italic);
+                    }
+                    if (!this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.HELVETICA);
+                        this.v_nativefont = new System.Drawing.Font("Helvetica", (float) this.v_size, System.Drawing.FontStyle.Regular);
+                    }
                     break;
                 case Spartacus.Reporting.FontFamily.TIMES:
                     if (this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.TIMES_BOLD_ITALIC);
-                    if (this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Times New Roman", (float) this.v_size, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic);
+                    }
+                    if (this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.TIMES_BOLD);
-                    if (! this.v_bold && this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Times New Roman", (float) this.v_size, System.Drawing.FontStyle.Bold);
+                    }
+                    if (!this.v_bold && this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.TIMES_ITALIC);
-                    if (! this.v_bold && ! this.v_italic)
+                        this.v_nativefont = new System.Drawing.Font("Times New Roman", (float) this.v_size, System.Drawing.FontStyle.Italic);
+                    }
+                    if (!this.v_bold && !this.v_italic)
+                    {
                         v_font = new PDFjet.NET.Font(p_pdf, PDFjet.NET.CoreFont.TIMES_ROMAN);
+                        this.v_nativefont = new System.Drawing.Font("Times New Roman", (float) this.v_size, System.Drawing.FontStyle.Regular);
+                    }
                     break;
                 default:
                     break;

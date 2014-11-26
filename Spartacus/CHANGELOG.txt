@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.33.11: Corrigindo bug no Spartacus.Reporting, texto maior do que a coluna "encavalava" em outras colunas.
 0.33.10: Corrigindo bug na função Spartacus.Utils.Excel.Clear.
 0.33.9:  Corrigindo bug do redimensionamento de Memobox.
 0.33.8:  Implementado tipo de parâmetro de banco de dados QUOTEDSTRING.

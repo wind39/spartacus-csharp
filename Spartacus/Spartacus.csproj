@@ -37,9 +37,6 @@
     <Reference Include="FirebirdSql.Data.FirebirdClient">
       <HintPath>lib\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
-    <Reference Include="PDFjet">
-      <HintPath>lib\PDFjet.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>lib\MySql.Data.dll</HintPath>
     </Reference>
@@ -54,6 +51,9 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="PDFjet">
+      <HintPath>lib\PDFjet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
