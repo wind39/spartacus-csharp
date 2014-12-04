@@ -814,9 +814,10 @@ namespace Spartacus.Utils
                 foreach (System.Collections.Generic.KeyValuePair<int,string> v_pair in v_info.v_mapping)
                 {
                     v_tmp = v_pair.Value.Split('_');
-                    v_tail = v_pair.Value.Replace(v_tmp [0] + "_", "");
+                    //v_tail = v_pair.Value.Replace(v_tmp [0] + "_", "");
+                    v_tail = v_pair.Value.Substring(3);
 
-                    switch (v_tmp [0])
+                    switch (v_tmp [0].ToLower())
                     {
                         case "in":
                             if (int.TryParse(v_row [v_tail].ToString(), out v_in_value))

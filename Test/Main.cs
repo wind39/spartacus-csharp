@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ReportTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -264,54 +264,14 @@ namespace Test
 
             try
             {
-                v_database = new Spartacus.Database.Odbc("tpmp563", "planning", "plaserv");
+                v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
                 v_excel = new Spartacus.Utils.Excel();
 
-                v_sql = "select to_char(prtiporeg) as prtiporeg,\n" +
-                    "       to_char(emidpr) as emidpr,\n" + 
-                    "       to_char(prid) as prid,\n" + 
-                    "       to_char(pralternativo) as pralternativo,\n" + 
-                    "       to_char(prdescricao) as prdescricao,\n" + 
-                    "       to_char(prun) as prun,\n" + 
-                    "       to_char(prun2) as prun2,\n" + 
-                    "       to_char(prfator2) as prfator2,\n" + 
-                    "       to_char(prun3) as prun3,\n" + 
-                    "       to_char(prfator3) as prfator3,\n" + 
-                    "       to_char(prncm) as prncm,\n" + 
-                    "       to_char(prano) as prano,\n" + 
-                    "       to_char(prncm_antigo) as prncm_antigo,\n" + 
-                    "       to_char(emid) as emid,\n" + 
-                    "       to_char(ano) as ano\n" + 
-                    "from planning.produtos\n" + 
-                    "where emid = 181\n" + 
-                    "  and prano = 2014";
-                v_table = v_database.Query(v_sql, "PRODUTOS");
+                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(3, 12, 25) from dual");
+                v_table = v_database.Query(v_sql, "Entradas Geral");
                 v_excel.v_set.Tables.Add(v_table);
 
-                v_sql = "select to_char(intiporeg) as intiporeg,\n" +
-                    "       to_char(emidpr) as emidpr,\n" + 
-                    "       to_char(emidfl) as emidfl,\n" + 
-                    "       to_char(flid) as flid,\n" + 
-                    "       to_char(prid) as prid,\n" + 
-                    "       to_char(inanobase) as inanobase,\n" + 
-                    "       to_char(inid) as inid,\n" + 
-                    "       to_char(inentrada) as inentrada,\n" + 
-                    "       to_char(inqtde) as inqtde,\n" + 
-                    "       to_char(inun) as inun,\n" + 
-                    "       to_char(incustofob) as incustofob,\n" + 
-                    "       to_char(incustototal) as incustototal,\n" + 
-                    "       to_char(incustonovo) as incustonovo,\n" + 
-                    "       to_char(prid_ant) as prid_ant,\n" + 
-                    "       to_char(identificador) as identificador,\n" + 
-                    "       to_char(emid) as emid,\n" + 
-                    "       to_char(ano) as ano\n" + 
-                    "from planning.inventario\n" + 
-                    "where emid = 181\n" + 
-                    "  and inanobase = 2014";
-                v_table = v_database.Query(v_sql, "INVENTARIO");
-                v_excel.v_set.Tables.Add(v_table);
-
-                v_excel.Export("relatorio.xlsx", "modelo.xlsx");
+                v_excel.Export("ARAG2014 Entradas Geral.xlsx", "template_00003.xlsx");
             }
             catch (Spartacus.Utils.Exception e)
             {

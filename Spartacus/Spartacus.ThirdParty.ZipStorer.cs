@@ -693,7 +693,6 @@ namespace Spartacus.ThirdParty
                 this.ZipFileStream.Position = posStart;
                 this.ZipFileStream.SetLength(posStart);
                 _source.Position = sourceStart;
-                Console.WriteLine("-------------------------AGAIN");
 
                 this.Store(ref _zfe, _source);
             }
