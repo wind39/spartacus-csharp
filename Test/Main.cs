@@ -267,11 +267,11 @@ namespace Test
                 v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
                 v_excel = new Spartacus.Utils.Excel();
 
-                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(3, 12, 25) from dual");
+                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(3, 13, 25) from dual");
                 v_table = v_database.Query(v_sql, "Entradas Geral");
                 v_excel.v_set.Tables.Add(v_table);
 
-                v_excel.Export("ARAG2014 Entradas Geral.xlsx", "template_00003.xlsx");
+                v_excel.Export("TYCO2014 Entradas Geral.xlsx", "template_00003.xlsx", true);
             }
             catch (Spartacus.Utils.Exception e)
             {

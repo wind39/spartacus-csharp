@@ -14,6 +14,10 @@ Spartacus links this libraries:
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - Npgsql (http://npgsql.projects.pgfoundry.org/)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
+  - EPPlus (http://epplus.codeplex.com/)
+  - Windows Presentation Foundation (http://wpf.codeplex.com/)
+ 
+Please note that WPF is required because EPPlus needs PresentationCore.dll from WPF to be able to insert images at Excel files.
   
 Spartacus reuse code from this projects:
   - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)

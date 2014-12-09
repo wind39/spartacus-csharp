@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.34.0:  Implementado tratamento de cabeçalhos de arquivos XLSX usando EPPlus
+
 0.33.12: Permitindo nomes de colunas mais flexíveis na Spartacus.Utils.Excel
 0.33.11: Corrigindo bug no Spartacus.Reporting, texto maior do que a coluna "encavalava" em outras colunas.
 0.33.10: Corrigindo bug na função Spartacus.Utils.Excel.Clear.
