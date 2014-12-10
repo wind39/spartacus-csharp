@@ -123,6 +123,7 @@
     <Compile Include="Spartacus.Forms.Memobox.cs" />
     <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
     <Compile Include="Spartacus.Forms.Filepicker.cs" />
+    <Compile Include="Spartacus.Forms.Messagebox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

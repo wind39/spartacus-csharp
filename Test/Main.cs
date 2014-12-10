@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ExcelTest();
+            FileTest();
         }
 
         //#region DATABASE
@@ -32,10 +32,10 @@ namespace Test
             char[] v_separator;
             int k;
 
-            v_explorer = new Spartacus.Utils.FileExplorer("/mnt/customers/ARAG");
-            v_explorer.v_protectedminlevel = 1;
-            v_explorer.v_protectpattern = "RESULTADOS FINAIS";
-            v_explorer.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWONLYPATTERN;
+            v_explorer = new Spartacus.Utils.FileExplorer("/mnt/planning");
+            //v_explorer.v_protectedminlevel = 1;
+            //v_explorer.v_protectpattern = "RESULTADOS FINAIS";
+            //v_explorer.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL;
 
             try
             {
@@ -149,13 +149,21 @@ namespace Test
 
                 try
                 {
-                    //System.Console.WriteLine(v_explorer.v_current.CompleteFileName());
-                    //System.Console.WriteLine();
+                    bool v_overflow;
+                    int v_start;
+                    System.Collections.ArrayList v_returnhistory;
+
+                    v_returnhistory = v_explorer.GetReturnHistory(out v_overflow, out v_start);
 
                     System.Console.WriteLine();
                     System.Console.WriteLine("Histórico:");
-                    for (k = 0; k < v_explorer.v_returnhistory.Count; k++)
-                        System.Console.WriteLine("{0} - {1}", k, v_explorer.v_returnhistory[k].ToString());
+                    for (k = 0; k < v_returnhistory.Count; k++)
+                    {
+                        if (k > 1 && v_overflow)
+                            System.Console.WriteLine("{0} - {1}", k + v_start, v_returnhistory[k].ToString());
+                        else
+                            System.Console.WriteLine("{0} - {1}", k, v_returnhistory[k].ToString());
+                    }
                     System.Console.WriteLine();
 
                     v_explorer.List();

@@ -121,6 +121,36 @@ namespace Spartacus.Utils
         /// </summary>
         public System.Collections.ArrayList v_returnhistory;
 
+        /// <summary>
+        /// Fonte usada para renderizar o histórico de pastas pai no aplicativo cliente.
+        /// </summary>
+        public System.Drawing.Font v_returnhistory_font;
+
+        /// <summary>
+        /// Texto a ser exibido como pasta raiz ao renderizar o histórico de pastas pai.
+        /// </summary>
+        public string v_returnhistory_root;
+
+        /// <summary>
+        /// String usada para separar pastas no histórico de pastas pai.
+        /// </summary>
+        public string v_returnhistory_sep;
+
+        /// <summary>
+        /// String usada como agregação, para quando o texto renderizado do histórico de pastas pai estourou o limite de tamanho.
+        /// </summary>
+        public string v_returnhistory_first;
+
+        /// <summary>
+        /// Largura máxima para mostrar o texto renderizado do histórico de pastas pai.
+        /// </summary>
+        public double v_returnhistory_maxwidth;
+
+        /// <summary>
+        /// Objeto usado para auxiliar renderização de texto.
+        /// </summary>
+        private System.Drawing.Graphics v_graphics;
+
 
         /// <summary>
         /// Initializa uma nova instância da classe <see cref="Spartacus.Utils.FileExplorer"/>.
@@ -133,12 +163,18 @@ namespace Spartacus.Utils
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
 
             this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
-
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_files = new System.Collections.ArrayList();
+
             this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_root = "Diretorio Raiz";
+            this.v_returnhistory_sep = " > ";
+            this.v_returnhistory_first = "...";
+            this.v_returnhistory_maxwidth = 800.0;
         }
 
         /// <summary>
@@ -156,14 +192,20 @@ namespace Spartacus.Utils
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
 
             this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
-
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
             this.v_files = new System.Collections.ArrayList();
+
             this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_root = "Diretorio Raiz";
+            this.v_returnhistory_sep = " > ";
+            this.v_returnhistory_first = "...";
+            this.v_returnhistory_maxwidth = 800.0;
 
             this.v_returnhistory.Add(p_root);
         }
@@ -186,14 +228,20 @@ namespace Spartacus.Utils
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
 
             this.v_showpatterntype = Spartacus.Utils.ShowPatternType.SHOWALL; // padrão é mostrar todos os arquivos
-
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
             this.v_files = new System.Collections.ArrayList();
+
             this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_root = "Diretorio Raiz";
+            this.v_returnhistory_sep = " > ";
+            this.v_returnhistory_first = "...";
+            this.v_returnhistory_maxwidth = 800.0;
 
             this.v_returnhistory.Add(p_root);
         }
@@ -450,6 +498,82 @@ namespace Spartacus.Utils
                 if (p_history < this.v_returnhistory.Count - 1)
                     this.Return(p_history);
             }
+        }
+
+        /// <summary>
+        /// Configura as variáveis necessárias para tratar a renderização do texto do histórico de pastas pai no aplicativo cliente.
+        /// </summary>
+        /// <param name="p_font">Nome da fonte.</param>
+        /// <param name="p_size">Tamanho da fonte.</param>
+        /// <param name="p_bold">Se a fonte deve ser renderizada com estilo negrito ou não.</param>
+        /// <param name="p_italic">Se a fonte deve ser renderizada com estilo itálico ou não.</param>
+        /// <param name="p_fakeroot">Nome falso da raiz.</param>
+        /// <param name="p_sep">Texto separador entre pastas.</param>
+        /// <param name="p_first">Texto do primeiro nível, caso o texto total do histórico de pastas pai estoure o limite.</param>
+        /// <param name="p_maxwidth">Largura máxima do texto a ser renderizado.</param>
+        public void SetupReturnHistory(string p_font, float p_size, bool p_bold, bool p_italic, string p_fakeroot, string p_sep, string p_first, int p_maxwidth)
+        {
+            if (p_bold && p_italic)
+                this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic);
+            else
+            {
+                if (p_bold)
+                    this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Bold);
+                else
+                {
+                    if (p_italic)
+                        this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Italic);
+                    else
+                        this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Regular);
+                }
+            }
+
+            this.v_returnhistory_root = p_fakeroot;
+            this.v_returnhistory_sep = p_sep;
+            this.v_returnhistory_first = p_first;
+            this.v_returnhistory_maxwidth = p_maxwidth;
+        }
+
+        /// <summary>
+        /// Trata o histórico de retorno para pastas pai, conforme fonte e tamanho máximo do texto a ser renderizado.
+        /// </summary>
+        /// <returns>Vetor de histórico de retorno.</returns>
+        /// <param name="p_overflow">.</param>
+        public System.Collections.ArrayList GetReturnHistory(out bool p_overflow, out int p_start)
+        {
+            System.Collections.ArrayList v_handledhistory;
+            Spartacus.Utils.File v_directory;
+            string v_text;
+            int k;
+
+            v_handledhistory = new System.Collections.ArrayList();
+
+            p_overflow = false;
+            k = this.v_returnhistory.Count - 1;
+            v_text = "";
+
+            while (k > 0 && !p_overflow)
+            {
+                v_directory = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.DIRECTORY, (string)this.v_returnhistory [k]);
+
+                v_text += this.v_returnhistory_sep + (v_directory.v_name);
+
+                if (this.v_graphics.MeasureString(this.v_returnhistory_root + v_text, this.v_returnhistory_font).Width > this.v_returnhistory_maxwidth)
+                {
+                    v_handledhistory.Insert(0, this.v_returnhistory_first);
+                    p_overflow = true;
+                }
+                else
+                {
+                    v_handledhistory.Insert(0, v_directory.v_name);
+                    k--;
+                }
+            }
+            
+            v_handledhistory.Insert(0, this.v_returnhistory_root);
+            p_start = k - 1;
+
+            return v_handledhistory;
         }
 
         /// <summary>
@@ -947,30 +1071,6 @@ namespace Spartacus.Utils
         /// <param name="p_directory">Diretório a ser compactado.</param>
         public Spartacus.Utils.File CompressDirectory(string p_zipfilename, Spartacus.Utils.File p_directory)
         {
-            /*ICSharpCode.SharpZipLib.Zip.FastZip v_fastzip;
-            Spartacus.Utils.File v_zipfiletmp, v_zipfile;
-            System.IO.FileInfo v_fileinfo;
-
-            if (p_directory.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
-                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
-            else
-                v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "\\" + p_zipfilename);
-
-            try
-            {
-                v_fastzip = new ICSharpCode.SharpZipLib.Zip.FastZip();
-                v_fastzip.CreateEmptyDirectories = true;
-                v_fastzip.CreateZip(v_zipfiletmp.CompleteFileName(), p_directory.CompleteFileName(), true, null);
-
-                v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
-
-                v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, v_zipfiletmp.CompleteFileName(), v_fileinfo.LastWriteTime, v_fileinfo.Length);
-            }
-            catch (System.Exception e)
-            {
-                throw new Spartacus.Utils.Exception(e);
-            }*/
-
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Utils.File v_zipfiletmp, v_zipfile;
             Spartacus.Utils.FileArray v_filearray;

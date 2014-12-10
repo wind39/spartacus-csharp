@@ -938,18 +938,18 @@ namespace Spartacus.Utils
                         //ST;ano;E2:J2;
                         //ST;empresa;E4:J4;
                         //IM;imagem;0:0;80
-                        //TO;;L9;L11
-                        //TO;;M9;M11
-                        //TO;;N9;N11
-                        //TO;;O9;O11
-                        //TO;;P9;P11
-                        //TO;;Q9;Q11
-                        //TO;;R9;R11
-                        //TO;;S9;S11
-                        //TO;;T9;T11
-                        //TO;;U9;U11
-                        //TO;;V9;V11
-                        //TO;;W9;W11
+                        //TO;SUM(#);L9;L11
+                        //TO;SUM(#);M9;M11
+                        //TO;SUM(#);N9;N11
+                        //TO;SUM(#);O9;O11
+                        //TO;SUM(#);P9;P11
+                        //TO;SUM(#);Q9;Q11
+                        //TO;SUM(#);R9;R11
+                        //TO;SUM(#);S9;S11
+                        //TO;SUM(#);T9;T11
+                        //TO;SUM(#);U9;U11
+                        //TO;SUM(#);V9;V11
+                        //TO;SUM(#);W9;W11
 
                         v_worksheet.Cells ["A1"].Value = "";
 
@@ -994,7 +994,10 @@ namespace Spartacus.Utils
                                         v_worksheet.Cells [v_options[2]].Value = "";
                                         v_row = v_worksheet.Cells[v_options[3]].Start.Row;
                                         v_col = v_worksheet.Cells[v_options[3]].Start.Column;
-                                        v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                        if (v_options[1] != "")
+                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                        else
+                                            v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                         break;
                                     default:
                                         break;

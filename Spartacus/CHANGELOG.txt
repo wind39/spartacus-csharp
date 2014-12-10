@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.34.1:  Adicionada classe Spartacus.Forms.Messagebox e corrigido bug na Spartacus.Forms.Buttons
 0.34.0:  Implementado tratamento de cabeçalhos de arquivos XLSX usando EPPlus
 
 0.33.12: Permitindo nomes de colunas mais flexíveis na Spartacus.Utils.Excel
