@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Release\teste3.xml" />
-    <None Include="bin\Release\output.pdf" />
     <None Include="bin\Release\PDFjet.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="bin\Release\MySql.Data.dll" />
@@ -89,5 +88,7 @@
     <None Include="bin\Release\template_00003.xlsx" />
     <None Include="bin\Release\WindowsBase.dll" />
     <None Include="bin\Release\WindowsFormsIntegration.dll" />
+    <None Include="bin\Release\teste4.xml" />
+    <None Include="bin\Release\output2.pdf" />
   </ItemGroup>
 </Project>

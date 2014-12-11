@@ -134,27 +134,39 @@ namespace Spartacus.Reporting
             PDFjet.NET.Image v_image;
             char[] v_ch;
             string[] v_temp;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_path;
 
             v_ch = new char[1];
             v_ch[0] = '.';
 
-            v_temp = p_object.v_value.Split(v_ch);
+            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+            try
+            {
+                v_path = v_cryptor.Decrypt(p_object.v_value);
+            }
+            catch (System.Exception)
+            {
+                v_path = p_object.v_value;
+            }
+
+            v_temp = v_path.Split(v_ch);
             switch (v_temp[v_temp.Length - 1].ToUpper())
             {
                 case "BMP":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(p_object.v_value, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
+                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
                     break;
                 case "JPG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(p_object.v_value, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
                     break;
                 case "JPEG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(p_object.v_value, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
                     break;
                 case "PDF":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(p_object.v_value, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
+                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
                     break;
                 case "PNG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(p_object.v_value, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
+                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
                     break;
                 default:
                     v_image = null;

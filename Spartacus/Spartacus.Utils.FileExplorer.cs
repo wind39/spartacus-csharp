@@ -44,9 +44,10 @@ namespace Spartacus.Utils
     /// </summary>
     public enum ShowPatternType
     {
-        SHOWALL, // mostra todos os arquivos
+        SHOWALL,              // mostra todos os arquivos
         SHOWALLEXCEPTPATTERN, // mostra todos os arquivos menos o padrão
-        SHOWONLYPATTERN // mostra apenas o padrão
+        SHOWONLYPATTERN,      // mostra apenas o padrão
+        SHOWALLPROTECTED      // mostra todos os arquivos, mas tudo é read-only
     }
 
     /// <summary>
@@ -288,7 +289,7 @@ namespace Spartacus.Utils
 
                             v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
 
-                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel)
                                 v_directory.v_protected = true;
 
                             if (v_directory.v_hidden)
@@ -312,7 +313,7 @@ namespace Spartacus.Utils
 
                                 v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
 
-                                if (this.v_currentlevel < this.v_protectedminlevel)
+                                if (this.v_currentlevel <= this.v_protectedminlevel)
                                     v_directory.v_protected = true;
 
                                 if (v_directory.v_hidden)
@@ -332,13 +333,13 @@ namespace Spartacus.Utils
                             break;
                         case Spartacus.Utils.ShowPatternType.SHOWONLYPATTERN:
                             // só vai mostrar se contiver o padrão ou se o nivel atual for menor que o nivel minimo protegido
-                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel)
                             {
                                 v_directoryinfo = new System.IO.DirectoryInfo(v_item);
 
                                 v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
 
-                                if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                                if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel)
                                     v_directory.v_protected = true;
 
                                 if (v_directory.v_hidden)
@@ -356,6 +357,27 @@ namespace Spartacus.Utils
                                 }
                             }
                             break;
+                        case Spartacus.Utils.ShowPatternType.SHOWALLPROTECTED:
+                            // mostra todos os arquivos, mas todos estao protegidos
+                            v_directoryinfo = new System.IO.DirectoryInfo(v_item);
+
+                            v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
+                            v_directory.v_protected = true;
+
+                            if (v_directory.v_hidden)
+                            {
+                                if (this.v_showhiddenfiles)
+                                {
+                                    this.v_files.Add(v_directory);
+                                    k++;
+                                }
+                            }
+                            else
+                            {
+                                this.v_files.Add(v_directory);
+                                k++;
+                            }
+                            break;
                     }
                 }
 
@@ -365,7 +387,7 @@ namespace Spartacus.Utils
 
                     v_file = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.FILE, v_item, this.v_pathseparator, v_fileinfo.LastWriteTime, v_fileinfo.Length);
 
-                    if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                    if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel <= this.v_protectedminlevel || this.v_showpatterntype == ShowPatternType.SHOWALLPROTECTED)
                         v_file.v_protected = true;
 
                     if (v_file.v_hidden)

@@ -125,5 +125,88 @@ namespace Spartacus.Reporting
             // filtrando dados distintos pela lista de colunas, e armazenando em tabela
             this.v_table = p_table.DefaultView.ToTable(true, v_allcolumns);
         }
+
+        /// <summary>
+        /// Constrói dados do grupo.
+        /// Percorre tabela de dados do relatório, filtrando e distinguindo os dados pela coluna do grupo.
+        /// Também calcula os valores de cada grupo, totalizando-os.
+        /// </summary>
+        /// <param name="p_table">Tabela de dados do relatório.</param>
+        public void BuildCalculate(System.Data.DataTable p_table)
+        {
+            System.Collections.ArrayList v_allcolumns_temp;
+            string[] v_allcolumns;
+            int i, j, k;
+
+            // PASSO 1: PEGANDO COLUNAS E DADOS DO GRUPO
+
+            // alocando lista de colunas
+            v_allcolumns_temp = new System.Collections.ArrayList();
+
+            // adicionando coluna do grupo
+            v_allcolumns_temp.Add(this.v_column);
+
+            // adicionando todas as colunas do cabeçalho do grupo (exceto as colunas de valor)
+            for (k = 0; k < this.v_headerfields.Count; k++)
+            {
+                if (((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "" &&
+                    !((Spartacus.Reporting.Field)this.v_headerfields [k]).v_groupedvalue &&
+                    !v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column))
+                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
+            }
+
+            // adicionando todas as colunas do rodapé do grupo (exceto as colunas de valor)
+            for (k = 0; k < this.v_footerfields.Count; k++)
+            {
+                if (((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column != "" &&
+                    !((Spartacus.Reporting.Field)this.v_footerfields [k]).v_groupedvalue &&
+                    !v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column))
+                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column);
+            }
+
+            // alocando vetor de string
+            v_allcolumns = new string[v_allcolumns_temp.Count];
+
+            // copiando nomes de colunas para o vetor de string
+            for (k = 0; k < v_allcolumns_temp.Count; k++)
+                v_allcolumns [k] = (string)v_allcolumns_temp [k];
+
+            // filtrando dados distintos pela lista de colunas, e armazenando em tabela
+            this.v_table = p_table.DefaultView.ToTable(true, v_allcolumns);
+
+            // PASSO 2: PREENCHENDO VALORES
+
+            // limpando array temporario
+            v_allcolumns_temp.Clear();
+
+            // adicionando todas as colunas do cabeçalho do grupo (somente as colunas de valor)
+            for (k = 0; k < this.v_headerfields.Count; k++)
+            {
+                if (((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "" &&
+                    ((Spartacus.Reporting.Field)this.v_headerfields [k]).v_groupedvalue &&
+                    ! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column))
+                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
+            }
+
+            // adicionando todas as colunas do rodapé do grupo (somente as colunas de valor)
+            for (k = 0; k < this.v_footerfields.Count; k++)
+            {
+                if (((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column != "" &&
+                    ((Spartacus.Reporting.Field)this.v_footerfields [k]).v_groupedvalue &&
+                    ! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column))
+                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column);
+            }
+
+            // criando colunas de valor na tabela do grupo
+            for (k = 0; k < v_allcolumns_temp.Count; k++)
+                this.v_table.Columns.Add((string)v_allcolumns_temp [k]);
+
+            // preenchendo valores sumarizados
+            for (i = 0; i < this.v_table.Rows.Count; i++)
+            {
+                for (j = 0; j < v_allcolumns_temp.Count; j++)
+                    this.v_table.Rows [i] [(string)v_allcolumns_temp [j]] = p_table.Compute("Sum(" + ((string)v_allcolumns_temp [j]) + ")", this.v_column + " = '" + this.v_table.Rows [i] [this.v_column].ToString() + "'").ToString();
+            }
+        }
     }
 }

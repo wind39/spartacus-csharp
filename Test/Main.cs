@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            FileTest();
+            ReportTest();
         }
 
         //#region DATABASE
@@ -199,15 +199,15 @@ namespace Test
 
             try
             {
-                //v_report = new Spartacus.Reporting.Report(1, "teste3.xml");
-                //v_report.v_cmd.SetValue("EMID", "181");
-                //v_report.v_cmd.SetValue("ANO", "2013");
-                //v_report.Execute();
-                //v_report.Save("output.pdf");
-
-                v_report = new Spartacus.Reporting.Report(1, "usuarios.xml");
+                v_report = new Spartacus.Reporting.Report(1, "teste3.xml", false);
+                v_report.v_cmd.SetValue("EMID", "181");
+                v_report.v_cmd.SetValue("ANO", "2013");
                 v_report.Execute();
-                v_report.Save("usuarios.pdf");
+                v_report.Save("output.pdf");
+
+                //v_report = new Spartacus.Reporting.Report(1, "usuarios.xml");
+                //v_report.Execute();
+                //v_report.Save("usuarios.pdf");
 
                 System.Console.WriteLine("Pronto!");
             }

@@ -68,11 +68,17 @@ namespace Spartacus.Reporting
         public Spartacus.Database.Type v_type;
 
         /// <summary>
+        /// Se o campo é um valor totalizado dentro de um grupo.
+        /// </summary>
+        public bool v_groupedvalue;
+
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
         /// </summary>
         public Field()
         {
-
+            this.v_groupedvalue = false;
         }
 
         /// <summary>

@@ -49,7 +49,12 @@ namespace Spartacus.Reporting
         public Spartacus.Database.Command v_cmd;
 
         /// <summary>
-        /// Tabela com os dados do relatório.
+        /// Tabela com os dados temporários do relatório.
+        /// </summary>
+        public System.Data.DataTable v_tabletemp;
+
+        /// <summary>
+        /// Tabela com os dados do relatório, após tratar tipos de colunas.
         /// </summary>
         public System.Data.DataTable v_table;
 
@@ -84,6 +89,12 @@ namespace Spartacus.Reporting
         private System.Drawing.Graphics v_graphics;
 
         /// <summary>
+        /// Se o gerador de relatórios deve calcular os valores agrupados.
+        /// </summary>
+        private bool v_calculate_groups;
+
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
         /// </summary>
         /// <param name="p_reportid">Código do Relatório.</param>
@@ -99,7 +110,10 @@ namespace Spartacus.Reporting
             this.v_groups = new System.Collections.ArrayList();
 
             this.v_database = null;
+            this.v_tabletemp = null;
             this.v_table = null;
+
+            this.v_calculate_groups = false;
 
             try
             {
@@ -126,7 +140,10 @@ namespace Spartacus.Reporting
             this.v_groups = new System.Collections.ArrayList();
 
             this.v_database = p_database;
+            this.v_tabletemp = null;
             this.v_table = null;
+
+            this.v_calculate_groups = false;
 
             try
             {
@@ -153,7 +170,104 @@ namespace Spartacus.Reporting
             this.v_groups = new System.Collections.ArrayList();
 
             this.v_database = null;
+            this.v_tabletemp = null;
             this.v_table = p_table;
+
+            this.v_calculate_groups = false;
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(int p_reportid, string p_filename, bool p_calculate_groups)
+        {
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.ArrayList();
+            this.v_groups = new System.Collections.ArrayList();
+
+            this.v_database = null;
+            this.v_tabletemp = null;
+            this.v_table = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(int p_reportid, string p_filename, Spartacus.Database.Generic p_database, bool p_calculate_groups)
+        {
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.ArrayList();
+            this.v_groups = new System.Collections.ArrayList();
+
+            this.v_database = p_database;
+            this.v_tabletemp = null;
+            this.v_table = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_table">Tabela com os dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(int p_reportid, string p_filename, System.Data.DataTable p_table, bool p_calculate_groups)
+        {
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.ArrayList();
+            this.v_groups = new System.Collections.ArrayList();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+
+            this.v_calculate_groups = p_calculate_groups;
 
             try
             {
@@ -990,6 +1104,12 @@ namespace Spartacus.Reporting
                         case "type":
                             v_field.SetType(p_reader.ReadString());
                             break;
+                        case "groupedvalue":
+                            if (p_reader.ReadString() == "FALSE")
+                                v_field.v_groupedvalue = false;
+                            else
+                                v_field.v_groupedvalue = true;
+                            break;
                         default:
                             break;
                     }
@@ -1064,6 +1184,12 @@ namespace Spartacus.Reporting
                         case "type":
                             v_field.SetType(p_reader.ReadString());
                             break;
+                        case "groupedvalue":
+                            if (p_reader.ReadString() == "FALSE")
+                                v_field.v_groupedvalue = false;
+                            else
+                                v_field.v_groupedvalue = true;
+                            break;
                         default:
                             break;
                     }
@@ -1082,20 +1208,54 @@ namespace Spartacus.Reporting
         {
             int k;
 
-            if (this.v_database != null && this.v_table == null)
+            if (this.v_database != null && this.v_tabletemp == null)
             {
                 this.v_cmd.UpdateText();
 
                 try
                 {
                     // buscando dados do banco
-                    this.v_table = this.v_database.Query(this.v_cmd.v_text, "RESULTS");
+                    this.v_tabletemp = this.v_database.Query(this.v_cmd.v_text, "RESULTS");
 
-                    // gerando tabelas auxiliares para todos os grupos
-                    if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                    // SE O GERADOR DE RELATORIOS DEVE CALCULAR OS VALORES DOS GRUPOS
+                    if (this.v_calculate_groups)
                     {
-                        for (k = 0; k < this.v_groups.Count; k++)
-                            ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                        // tratando colunas de valor
+                        this.v_table = this.v_tabletemp.Clone();
+                        for (k = 0; k < this.v_fields.Count; k++)
+                        {
+                            switch (((Spartacus.Reporting.Field)this.v_fields[k]).v_type)
+                            {
+                                case Spartacus.Database.Type.REAL:
+                                    this.v_table.Columns[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].DataType = typeof(double);
+                                    break;
+                                case Spartacus.Database.Type.INTEGER:
+                                    this.v_table.Columns[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].DataType = typeof(int);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        foreach (System.Data.DataRow v_row in this.v_tabletemp.Rows)
+                            this.v_table.ImportRow(v_row);
+
+                        // gerando tabelas auxiliares para todos os grupos
+                        if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                        {
+                            for (k = 0; k < this.v_groups.Count; k++)
+                                ((Spartacus.Reporting.Group)this.v_groups [k]).BuildCalculate(this.v_table);
+                        }
+                    }
+                    else
+                    {
+                        this.v_table = this.v_tabletemp;
+
+                        // gerando tabelas auxiliares para todos os grupos
+                        if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                        {
+                            for (k = 0; k < this.v_groups.Count; k++)
+                                ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                        }
                     }
                 }
                 catch (Spartacus.Database.Exception e)
@@ -1105,11 +1265,45 @@ namespace Spartacus.Reporting
             }
             else
             {
-                // gerando tabelas auxiliares para todos os grupos
-                if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                // SE O GERADOR DE RELATORIOS DEVE CALCULAR OS VALORES DOS GRUPOS
+                if (this.v_calculate_groups)
                 {
-                    for (k = 0; k < this.v_groups.Count; k++)
-                        ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                    // tratando colunas de valor
+                    this.v_table = this.v_tabletemp.Clone();
+                    for (k = 0; k < this.v_fields.Count; k++)
+                    {
+                        switch (((Spartacus.Reporting.Field)this.v_fields[k]).v_type)
+                        {
+                            case Spartacus.Database.Type.REAL:
+                                this.v_table.Columns[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].DataType = typeof(double);
+                                break;
+                            case Spartacus.Database.Type.INTEGER:
+                                this.v_table.Columns[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].DataType = typeof(int);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    foreach (System.Data.DataRow v_row in this.v_tabletemp.Rows)
+                        this.v_table.ImportRow(v_row);
+
+                    // gerando tabelas auxiliares para todos os grupos
+                    if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                    {
+                        for (k = 0; k < this.v_groups.Count; k++)
+                            ((Spartacus.Reporting.Group)this.v_groups [k]).BuildCalculate(this.v_table);
+                    }
+                }
+                else
+                {
+                    this.v_table = this.v_tabletemp;
+
+                    // gerando tabelas auxiliares para todos os grupos
+                    if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
+                    {
+                        for (k = 0; k < this.v_groups.Count; k++)
+                            ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                    }
                 }
             }
         }
