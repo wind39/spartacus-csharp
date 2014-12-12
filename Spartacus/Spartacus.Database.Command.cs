@@ -708,10 +708,18 @@ namespace Spartacus.Database
                 }
                 else
                 {
-                    if (((Spartacus.Database.Parameter)this.v_parameters[k]).v_type == Spartacus.Database.Type.QUOTEDSTRING)
-                        ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedCharsQuoted(p_value);
-                    else
-                        ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedChars(p_value);
+                    switch (((Spartacus.Database.Parameter)this.v_parameters [k]).v_type)
+                    {
+                        case Spartacus.Database.Type.QUOTEDSTRING:
+                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedCharsQuoted(p_value);
+                            break;
+                        case Spartacus.Database.Type.UNDEFINED:
+                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = p_value;
+                            break;
+                        default:
+                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedChars(p_value);
+                            break;
+                    }
                     ((Spartacus.Database.Parameter)this.v_parameters[k]).v_null = false;
                 }
             }

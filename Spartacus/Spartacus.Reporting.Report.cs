@@ -133,6 +133,8 @@ namespace Spartacus.Reporting
         /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
         public Report(int p_reportid, string p_filename, Spartacus.Database.Generic p_database)
         {
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -163,6 +165,8 @@ namespace Spartacus.Reporting
         /// <param name="p_table">Tabela com os dados.</param>
         public Report(int p_reportid, string p_filename, System.Data.DataTable p_table)
         {
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -226,6 +230,8 @@ namespace Spartacus.Reporting
         /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
         public Report(int p_reportid, string p_filename, Spartacus.Database.Generic p_database, bool p_calculate_groups)
         {
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -257,6 +263,8 @@ namespace Spartacus.Reporting
         /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
         public Report(int p_reportid, string p_filename, System.Data.DataTable p_table, bool p_calculate_groups)
         {
+            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -672,6 +680,9 @@ namespace Spartacus.Reporting
                                     break;
                                 case "STRING":
                                     v_type = Spartacus.Database.Type.STRING;
+                                    break;
+                                case "UNDEFINED":
+                                    v_type = Spartacus.Database.Type.UNDEFINED;
                                     break;
                                 default:
                                     break;

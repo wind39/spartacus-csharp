@@ -90,5 +90,6 @@
     <None Include="bin\Release\WindowsFormsIntegration.dll" />
     <None Include="bin\Release\teste4.xml" />
     <None Include="bin\Release\output2.pdf" />
+    <None Include="bin\Release\template_00003.xml" />
   </ItemGroup>
 </Project>

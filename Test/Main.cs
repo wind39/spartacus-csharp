@@ -194,20 +194,29 @@ namespace Test
 
         private static void ReportTest()
         {
-            // REPORT TEST
             Spartacus.Reporting.Report v_report;
+            Spartacus.Database.Generic v_database;
+            System.Data.DataTable v_table;
 
             try
             {
-                v_report = new Spartacus.Reporting.Report(1, "teste3.xml", false);
-                v_report.v_cmd.SetValue("EMID", "181");
-                v_report.v_cmd.SetValue("ANO", "2013");
-                v_report.Execute();
-                v_report.Save("output.pdf");
-
-                //v_report = new Spartacus.Reporting.Report(1, "usuarios.xml");
+                //v_report = new Spartacus.Reporting.Report(1, "teste3.xml", false);
+                //v_report.v_cmd.SetValue("EMID", "181");
+                //v_report.v_cmd.SetValue("ANO", "2013");
                 //v_report.Execute();
-                //v_report.Save("usuarios.pdf");
+                //v_report.Save("output.pdf");
+
+                v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
+
+                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 12, 1) as cabecalho, " +
+                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 12, 1) as filtro " +
+                                           "from dual", null);
+
+                v_report = new Spartacus.Reporting.Report(3, "template_00003.xml", v_database);
+                v_report.v_cmd.SetValue("CABECALHO", v_table.Rows[0]["cabecalho"].ToString());
+                v_report.v_cmd.SetValue("FILTRO", v_table.Rows[0]["filtro"].ToString());
+                v_report.Execute();
+                v_report.Save("Entradas Geral.pdf");
 
                 System.Console.WriteLine("Pronto!");
             }

@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.34.3:  Implementado tipo de parâmetro UNDEFINED na Spartacus.Database.Parameter.
 0.34.2:  Implementada funcionalidade opcional para calcular os totalizadores de grupos na Spartacus.Reporting.Report.
          Caminho da imagem do Spartacus.Reporting.Report pode estar opcionalmente criptografado com a senha "spartacus".
          Implementado ShowPatternType.SHOWALLPROTECTED no Spartacus.Utils.Explorer, para mostrar todos os arquivos e diretórios, mas somente leitura.
