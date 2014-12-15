@@ -73,6 +73,12 @@ namespace Spartacus.Reporting
         public Spartacus.Reporting.FieldAlignment v_align;
 
         /// <summary>
+        /// Objeto PDF nativo já configurado dentro do Bloco.
+        /// </summary>
+        public object v_pdfobject;
+
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Object"/>.
         /// </summary>
         public Object()
@@ -83,6 +89,7 @@ namespace Spartacus.Reporting
             this.v_posx = 0.0;
             this.v_posy = 0.0;
             this.v_align = Spartacus.Reporting.FieldAlignment.LEFT;
+            this.v_pdfobject = null;
         }
 
         /// <summary>

@@ -112,10 +112,20 @@ namespace Spartacus.Reporting
 
             for (k = 0; k < this.v_objects.Count; k++)
             {
-                if (((Spartacus.Reporting.Object)this.v_objects[k]).v_type == Spartacus.Reporting.ObjectType.IMAGE)
-                    this.RenderImage((Spartacus.Reporting.Object)this.v_objects[k], p_posx, p_posy, p_rightmargin, p_pdf, p_page);
-                else
-                    this.RenderText((Spartacus.Reporting.Object)this.v_objects[k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                switch (((Spartacus.Reporting.Object)this.v_objects [k]).v_type)
+                {
+                    case Spartacus.Reporting.ObjectType.IMAGE:
+                        this.RenderImage((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_pdf, p_page);
+                        break;
+                    case Spartacus.Reporting.ObjectType.PAGENUMBER:
+                        this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                        break;
+                    case Spartacus.Reporting.ObjectType.TEXT:
+                        this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -137,50 +147,56 @@ namespace Spartacus.Reporting
             Spartacus.Net.Cryptor v_cryptor;
             string v_path;
 
-            v_ch = new char[1];
-            v_ch[0] = '.';
+            if (p_object.v_pdfobject == null)
+            {
+                v_ch = new char[1];
+                v_ch [0] = '.';
 
-            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
-            try
-            {
-                v_path = v_cryptor.Decrypt(p_object.v_value);
-            }
-            catch (System.Exception)
-            {
-                v_path = p_object.v_value;
-            }
+                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                try
+                {
+                    v_path = v_cryptor.Decrypt(p_object.v_value);
+                } catch (System.Exception)
+                {
+                    v_path = p_object.v_value;
+                }
 
-            v_temp = v_path.Split(v_ch);
-            switch (v_temp[v_temp.Length - 1].ToUpper())
-            {
-                case "BMP":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
-                    break;
-                case "JPG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
-                    break;
-                case "JPEG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
-                    break;
-                case "PDF":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
-                    break;
-                case "PNG":
-                    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
-                    break;
-                default:
-                    v_image = null;
-                    break;
-            }
+                v_temp = v_path.Split(v_ch);
+                switch (v_temp [v_temp.Length - 1].ToUpper())
+                {
+                    case "BMP":
+                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
+                        break;
+                    case "JPG":
+                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                        break;
+                    case "JPEG":
+                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                        break;
+                    case "PDF":
+                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
+                        break;
+                    case "PNG":
+                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
+                        break;
+                    default:
+                        v_image = null;
+                        break;
+                }
 
-            if (v_image != null)
-            {
-                if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
-                    v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
-                else
-                    v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
-                v_image.DrawOn(p_page);
+                if (v_image != null)
+                {
+                    if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
+                        v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                    else
+                        v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
+                    v_image.DrawOn(p_page);
+
+                    p_object.v_pdfobject = v_image;
+                }
             }
+            else
+                ((PDFjet.NET.Image)p_object.v_pdfobject).DrawOn(p_page);
         }
 
         /// <summary>
@@ -197,15 +213,57 @@ namespace Spartacus.Reporting
         {
             PDFjet.NET.TextLine v_text;
 
-            v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
+            if (p_object.v_pdfobject == null)
+            {
+                v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
 
-            v_text.SetText(p_object.v_value);
-            if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
-                v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                v_text.SetText(p_object.v_value);
+                if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
+                    v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                else
+                    v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
+
+                v_text.DrawOn(p_page);
+
+                p_object.v_pdfobject = v_text;
+            }
             else
-                v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
+                ((PDFjet.NET.TextLine) p_object.v_pdfobject).DrawOn(p_page);
+        }
 
-            v_text.DrawOn(p_page);
+        /// <summary>
+        /// Renderiza um rótulo de número de página no Bloco.
+        /// </summary>
+        /// <param name="p_object">Objeto a ser renderizado.</param>
+        /// <param name="p_posx">Posição X.</param>
+        /// <param name="p_posy">Posição Y.</param>
+        /// <param name="p_rightmargin">Margem direita.</param>
+        /// <param name="p_font">Fonte.</param>
+        /// <param name="p_pdf">Objeto PDF.</param>
+        /// <param name="p_page">Página onde será renderizado.</param>
+        private void RenderPageNumber(Spartacus.Reporting.Object p_object, double p_posx, double p_posy, double p_rightmargin, Spartacus.Reporting.Font p_font, PDFjet.NET.PDF p_pdf, PDFjet.NET.Page p_page)
+        {
+            PDFjet.NET.TextLine v_text;
+
+            if (p_object.v_pdfobject == null)
+            {
+                v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
+
+                v_text.SetText(p_object.v_value);
+                if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
+                    v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                else
+                    v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
+
+                v_text.DrawOn(p_page);
+
+                p_object.v_pdfobject = v_text;
+            }
+            else
+            {
+                ((PDFjet.NET.TextLine)p_object.v_pdfobject).SetText(p_object.v_value);
+                ((PDFjet.NET.TextLine)p_object.v_pdfobject).DrawOn(p_page);
+            }
         }
     }
 }

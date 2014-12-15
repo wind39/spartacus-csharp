@@ -1,15 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/Main.cs">
     <Files>
-      <File FileName="Test/Main.cs" Line="81" Column="81" />
-      <File FileName="Spartacus/Spartacus.Reporting.Group.cs" Line="14" Column="14" />
-      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="45" Column="45" />
-      <File FileName="Test/bin/Release/teste4.xml" Line="48" Column="48" />
-      <File FileName="Test/bin/Release/teste3.xml" Line="50" Column="50" />
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="35" Column="35" />
-      <File FileName="Spartacus/CHANGELOG.txt" Line="75" Column="75" />
-      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="35" Column="35" />
+      <File FileName="Test/Main.cs" Line="17" Column="17" />
+      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="23" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

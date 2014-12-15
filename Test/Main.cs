@@ -206,19 +206,27 @@ namespace Test
                 //v_report.Execute();
                 //v_report.Save("output.pdf");
 
+                Console.WriteLine("{0} - Vou começar a buscar os parâmetros", System.DateTime.Now);
+
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
 
-                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 12, 1) as cabecalho, " +
-                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 12, 1) as filtro " +
+                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 13, 1) as cabecalho, " +
+                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 13, 1) as filtro " +
                                            "from dual", null);
 
                 v_report = new Spartacus.Reporting.Report(3, "template_00003.xml", v_database);
                 v_report.v_cmd.SetValue("CABECALHO", v_table.Rows[0]["cabecalho"].ToString());
                 v_report.v_cmd.SetValue("FILTRO", v_table.Rows[0]["filtro"].ToString());
+
+                Console.WriteLine("{0} - Parâmetros buscados, vou começar a interpretar o relatório", System.DateTime.Now);
+
                 v_report.Execute();
+
+                Console.WriteLine("{0} - Relatório interpretado, vou começar a salvar em arquivo", System.DateTime.Now);
+
                 v_report.Save("Entradas Geral.pdf");
 
-                System.Console.WriteLine("Pronto!");
+                Console.WriteLine("{0} - Relatório salvo em arquivo", System.DateTime.Now);
             }
             catch (Spartacus.Reporting.Exception e)
             {
