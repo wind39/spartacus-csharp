@@ -467,6 +467,92 @@ namespace Spartacus.Utils
         }
 
         /// <summary>
+        /// Entra no diretório especificado.
+        /// </summary>
+        /// <param name='p_completename'>
+        /// Caminho completo do diretório.
+        /// </param>
+        /// <param name='p_protected'>
+        /// Se o diretório é protegido ou não.
+        /// </param>
+        public void Enter(string p_completename, bool p_protected)
+        {
+            string[] v_path;
+            string v_tmp;
+            char v_ch;
+
+            try
+            {
+                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, p_completename, Spartacus.Utils.PathSeparator.SLASH);
+                this.v_current.v_protected = p_protected;
+
+                v_ch = '/';
+
+                v_path = p_completename.Split(v_ch);
+
+                v_tmp = v_path[0];
+                this.v_returnhistory.Add(v_tmp);
+                for (int k = 1; k < v_path.Length; k++)
+                {
+                    v_tmp += v_ch + v_path[k];
+                    this.v_returnhistory.Add(v_tmp);
+                }
+
+                this.v_currentlevel = v_path.Length - 1;
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Entra no diretório especificado.
+        /// </summary>
+        /// <param name='p_completename'>
+        /// Caminho completo do diretório.
+        /// </param>
+        /// <param name='p_protected'>
+        /// Se o diretório é protegido ou não.
+        /// </param>
+        /// <param name="p_pathseparator">
+        /// Separador de diretórios.
+        /// </param>
+        public void Enter(string p_completename, bool p_protected, Spartacus.Utils.PathSeparator p_pathseparator)
+        {
+            string[] v_path;
+            string v_tmp;
+            char v_ch;
+
+            try
+            {
+                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, p_completename, p_pathseparator);
+                this.v_current.v_protected = p_protected;
+
+                if (p_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+                    v_ch = '/';
+                else
+                    v_ch = '\\';
+
+                v_path = p_completename.Split(v_ch);
+
+                v_tmp = v_path[0];
+                this.v_returnhistory.Add(v_tmp);
+                for (int k = 1; k < v_path.Length; k++)
+                {
+                    v_tmp += v_ch + v_path[k];
+                    this.v_returnhistory.Add(v_tmp);
+                }
+
+                this.v_currentlevel = v_path.Length - 1;
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception(e);
+            }
+        }
+
+        /// <summary>
         /// Retorna para o diretório anterior, ou seja, o diretório pai do diretório atual.
         /// </summary>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando o diretório atual também é a raiz do explorador de arquivos.</exception>
