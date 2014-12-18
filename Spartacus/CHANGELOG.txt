@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.34.6:  Corrigido bug na função Spartacus.Utils.FileExplorer.Enter
 0.34.5:  Implementada sobrecarga da função Spartacus.Utils.FileExplorer.Enter, para permitir entrar em qualquer pasta pelo seu caminho completo, dentro da raiz.
 0.34.4:  Otimizando tempo de renderização do Spartacus.Reporting.Report, ao renderizar imagens e textos apenas na primeira página, replicando nas demais.
 0.34.3:  Implementado tipo de parâmetro UNDEFINED na Spartacus.Database.Parameter.

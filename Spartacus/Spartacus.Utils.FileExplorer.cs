@@ -488,7 +488,9 @@ namespace Spartacus.Utils
 
                 v_ch = '/';
 
-                v_path = p_completename.Split(v_ch);
+                v_path = p_completename.Replace(this.v_root, this.v_returnhistory_root).Split(v_ch);
+
+                this.v_returnhistory.Clear();
 
                 v_tmp = v_path[0];
                 this.v_returnhistory.Add(v_tmp);
@@ -534,7 +536,9 @@ namespace Spartacus.Utils
                 else
                     v_ch = '\\';
 
-                v_path = p_completename.Split(v_ch);
+                v_path = p_completename.Replace(this.v_root, this.v_returnhistory_root).Split(v_ch);
+
+                this.v_returnhistory.Clear();
 
                 v_tmp = v_path[0];
                 this.v_returnhistory.Add(v_tmp);
