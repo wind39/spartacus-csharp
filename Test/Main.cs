@@ -210,11 +210,11 @@ namespace Test
 
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
 
-                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 13, 1) as cabecalho, " +
-                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 13, 1) as filtro " +
+                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 12, 1) as cabecalho, " +
+                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 12, 1) as filtro " +
                                            "from dual", null);
 
-                v_report = new Spartacus.Reporting.Report(3, "template_00003.xml", v_database);
+                v_report = new Spartacus.Reporting.Report(3, "template_00001.xml", v_database);
                 v_report.v_cmd.SetValue("CABECALHO", v_table.Rows[0]["cabecalho"].ToString());
                 v_report.v_cmd.SetValue("FILTRO", v_table.Rows[0]["filtro"].ToString());
 

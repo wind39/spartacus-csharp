@@ -67,6 +67,7 @@
             select to_char(t.inst_in_codigo) as inst_in_codigo,
                    to_char(t.agente) as agente,
                    to_char(t.agn_st_nome) as agn_st_nome,
+                   to_char(t.pais_st_nome) as pais_st_nome,
                    to_char(t.nota) as nota,
                    to_char(t.ent_st_serie) as ent_st_serie,
                    to_char(t.data, 'dd/mm/yyyy') as data,
@@ -108,7 +109,7 @@
                    #CABECALHO#
             from tab00003 t,
             (
-            select produto,
+            select produto as produto_id,
                    sum(ent_re_custofob) as produto_custofob,
                    sum(ent_re_ii) as produto_ii,
                    sum(ent_re_frete) as produto_frete,
@@ -133,7 +134,7 @@
             where 1 = 1
               #FILTRO#
             ) gg
-            where t.produto = gp.produto
+            where t.produto = gp.produto_id
               #FILTRO#
         </sql>
         <parameters>
@@ -231,16 +232,16 @@
             <title>Fornecedor</title>
             <column>agn_st_nome</column>
             <align>LEFT</align>
-            <fill>19</fill>
+            <fill>11</fill>
             <type>STRING</type>
         </field>
-     <!--   <field>
+        <field>
             <title>País</title>
-            <column>cfpais</column>
+            <column>pais_st_nome</column>
             <align>LEFT</align>
             <fill>8</fill>
             <type>STRING</type>
-        </field>-->
+        </field>
         <field>
             <title>Ser</title>
             <column>ent_st_serie</column>

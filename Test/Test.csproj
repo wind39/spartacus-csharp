@@ -75,7 +75,6 @@
     <None Include="bin\Debug\Test.exe.mdb" />
     <None Include="bin\Release\logops.png" />
     <None Include="bin\Release\usuarios.xml" />
-    <None Include="bin\Release\usuarios.pdf" />
     <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\PresentationCore.dll" />
     <None Include="bin\Debug\PresentationFramework.dll" />
@@ -85,11 +84,10 @@
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\PresentationCore.dll" />
     <None Include="bin\Release\PresentationFramework.dll" />
-    <None Include="bin\Release\template_00003.xlsx" />
     <None Include="bin\Release\WindowsBase.dll" />
     <None Include="bin\Release\WindowsFormsIntegration.dll" />
     <None Include="bin\Release\teste4.xml" />
-    <None Include="bin\Release\output2.pdf" />
-    <None Include="bin\Release\template_00003.xml" />
+    <None Include="bin\Release\template_00001.xlsx" />
+    <None Include="bin\Release\template_00001.xml" />
   </ItemGroup>
 </Project>
