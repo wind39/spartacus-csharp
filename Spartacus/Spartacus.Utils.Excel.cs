@@ -995,13 +995,19 @@ namespace Spartacus.Utils
                                         }
                                         if (v_imagefilename != "")
                                         {
-                                            v_image = new System.Drawing.Bitmap(v_imagefilename);
-                                            v_picture = null;
-                                            if (v_image != null)
+                                            try
                                             {
-                                                v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
-                                                v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
-                                                v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+                                                v_image = new System.Drawing.Bitmap(v_imagefilename);
+                                                v_picture = null;
+                                                if (v_image != null)
+                                                {
+                                                    v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
+                                                    v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
+                                                    v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+                                                }
+                                            }
+                                            catch (System.Exception)
+                                            {
                                             }
                                         }
                                         break;

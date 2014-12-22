@@ -107,7 +107,7 @@
                    to_char(gg.geral_complementares) as geral_complementares,
                    to_char(gg.geral_custocif) as geral_custocif,
                    #CABECALHO#
-            from tab00003 t,
+            from tab00001 t,
             (
             select produto as produto_id,
                    sum(ent_re_custofob) as produto_custofob,
@@ -117,7 +117,7 @@
                    sum(ent_re_aduaneiras) as produto_aduaneiras,
                    sum(ent_re_complementares) as produto_complementares,
                    sum(ent_re_custocif) as produto_custocif
-            from tab00003
+            from tab00001
             where 1 = 1
               #FILTRO#
             group by produto
@@ -130,7 +130,7 @@
                    sum(ent_re_aduaneiras) as geral_aduaneiras,
                    sum(ent_re_complementares) as geral_complementares,
                    sum(ent_re_custocif) as geral_custocif
-            from tab00003
+            from tab00001
             where 1 = 1
               #FILTRO#
             ) gg

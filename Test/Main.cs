@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ReportTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -210,8 +210,8 @@ namespace Test
 
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
 
-                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(3, 12, 1) as cabecalho, " +
-                                           "       pscore.pck_parametros.fnc_resolve_filtro(3, 12, 1) as filtro " +
+                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(1, 12, 1) as cabecalho, " +
+                                           "       pscore.pck_parametros.fnc_resolve_filtro(1, 12, 1) as filtro " +
                                            "from dual", null);
 
                 v_report = new Spartacus.Reporting.Report(3, "template_00001.xml", v_database);
@@ -292,11 +292,11 @@ namespace Test
                 v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
                 v_excel = new Spartacus.Utils.Excel();
 
-                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(3, 13, 25) from dual");
+                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(1, 12, 1) from dual");
                 v_table = v_database.Query(v_sql, "Entradas Geral");
                 v_excel.v_set.Tables.Add(v_table);
 
-                v_excel.Export("TYCO2014 Entradas Geral.xlsx", "template_00003.xlsx", true);
+                v_excel.Export("Entradas Geral.xlsx", "template_00001.xlsx", true);
             }
             catch (Spartacus.Utils.Exception e)
             {
