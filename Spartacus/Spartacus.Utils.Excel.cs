@@ -932,24 +932,39 @@ namespace Spartacus.Utils
 
                     using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet.Cells ["A1"].Value.ToString()))
                     {
-                        // EXEMPLO DE CONFIGURACAO DE MARKUP:
-                        //TIPO;CAMPO;POSICAO;OPCIONAL
-                        //ST;titulo;A6;
-                        //ST;ano;E2:J2;
-                        //ST;empresa;E4:J4;
-                        //IM;imagem;0:0;80
-                        //TO;SUM(#);L9;L11
-                        //TO;SUM(#);M9;M11
-                        //TO;SUM(#);N9;N11
-                        //TO;SUM(#);O9;O11
-                        //TO;SUM(#);P9;P11
-                        //TO;SUM(#);Q9;Q11
-                        //TO;SUM(#);R9;R11
-                        //TO;SUM(#);S9;S11
-                        //TO;SUM(#);T9;T11
-                        //TO;SUM(#);U9;U11
-                        //TO;SUM(#);V9;V11
-                        //TO;SUM(#);W9;W11
+                        /* EXEMPLO DE CONFIGURACAO DE MARKUP:
+                         * 
+                            TIPO|CAMPO|POSICAO|OPCIONAL
+                            ST|titulo|A6|
+                            ST|filtro|A8|
+                            ST|ano|E2:J2|
+                            ST|empresa|E4:J4|
+                            IM|imagem|0:0|80
+                            TO|SUM(#)|M8|M11
+                            TO|SUM(#)|N8|N11
+                            TO|SUM(#)|O8|O11
+                            TO|SUM(#)|P8|P11
+                            TO|SUM(#)|Q8|Q11
+                            TO|SUM(#)|R8|R11
+                            TO|SUM(#)|S8|S11
+                            TO|SUM(#)|T8|T11
+                            TO|SUM(#)|U8|U11
+                            TO|SUM(#)|V8|V11
+                            TO|SUM(#)|W8|W11
+                            TO|SUM(#)|X8|X11
+                            TO|SUBTOTAL(9;#)|M9|M11
+                            TO|SUBTOTAL(9;#)|N9|N11
+                            TO|SUBTOTAL(9;#)|O9|O11
+                            TO|SUBTOTAL(9;#)|P9|P11
+                            TO|SUBTOTAL(9;#)|Q9|Q11
+                            TO|SUBTOTAL(9;#)|R9|R11
+                            TO|SUBTOTAL(9;#)|S9|S11
+                            TO|SUBTOTAL(9;#)|T9|T11
+                            TO|SUBTOTAL(9;#)|U9|U11
+                            TO|SUBTOTAL(9;#)|V9|V11
+                            TO|SUBTOTAL(9;#)|W9|W11
+                            TO|SUBTOTAL(9;#)|X9|X11
+                         */
 
                         v_worksheet.Cells ["A1"].Value = "";
 
@@ -962,7 +977,7 @@ namespace Spartacus.Utils
 
                             if (v_line != null && k > 0)
                             {
-                                v_options = v_line.Split(';');
+                                v_options = v_line.Split('|');
 
                                 switch (v_options[0])
                                 {
