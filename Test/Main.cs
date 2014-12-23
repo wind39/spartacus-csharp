@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ExcelTest();
+            ReportTest();
         }
 
         //#region DATABASE

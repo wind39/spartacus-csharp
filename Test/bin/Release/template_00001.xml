@@ -11,7 +11,7 @@
         <dataheaderborder>TOP,BOTTOM</dataheaderborder>
         <datafieldborder>NONE</datafieldborder>
         <groupheaderborder>NONE</groupheaderborder>
-        <groupfooterborder>NONE</groupfooterborder>
+        <groupfooterborder>BOTTOM</groupfooterborder>
         
         <dataheadercolor>WHITE</dataheadercolor>
         <datafieldevencolor>WHITE</datafieldevencolor>

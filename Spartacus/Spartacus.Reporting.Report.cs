@@ -1585,7 +1585,7 @@ namespace Spartacus.Reporting
             System.Collections.Generic.List<PDFjet.NET.Cell> v_row;
             PDFjet.NET.Cell v_cell;
             string v_text;
-            int k;
+            int k, r;
 
             v_group = (Spartacus.Reporting.Group)this.v_groups [p_level];
 
@@ -1632,6 +1632,7 @@ namespace Spartacus.Reporting
                 if (v_group.v_level == 0)
                 {
                     // renderizando dados do grupo
+                    r = 0;
                     foreach (System.Data.DataRow rb in this.v_table.Select(v_group.v_column + " = '" + rg[v_group.v_column] + "'", v_group.v_sort))
                     {
                         v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
@@ -1658,7 +1659,7 @@ namespace Spartacus.Reporting
                                 default:
                                     break;
                             }
-                            if (k % 2 == 0)
+                            if (r % 2 == 0)
                                 v_cell.SetBgColor(this.v_settings.v_datafieldevencolor);
                             else
                                 v_cell.SetBgColor(this.v_settings.v_datafieldoddcolor);
@@ -1669,6 +1670,7 @@ namespace Spartacus.Reporting
                             v_row.Add(v_cell);
                         }
                         p_data.Add(v_row);
+                        r++;
                     }
                 }
                 else

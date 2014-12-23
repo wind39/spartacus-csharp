@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.34.10: Corrigido bug na Spartacus.Reporting.Report.RenderGroup
 0.34.9:  Implementada tratativa para exportar números com vírgula na Spartacus.Utils.Excel.OnDataRow e na Spartacus.ThirdParty.SejExcel.WriteCell
 0.34.8:  Corrigido bug na função Spartacus.Utils.Excel.ReplaceMarkup
 0.34.7:  Corrigido bug na função Spartacus.Utils.FileExplorer.List

@@ -11,7 +11,7 @@
         <dataheaderborder>TOP,BOTTOM</dataheaderborder>
         <datafieldborder>NONE</datafieldborder>
         <groupheaderborder>NONE</groupheaderborder>
-        <groupfooterborder>NONE</groupfooterborder>
+        <groupfooterborder>BOTTOM</groupfooterborder>
         
         <dataheadercolor>WHITE</dataheadercolor>
         <datafieldevencolor>WHITE</datafieldevencolor>
@@ -69,68 +69,79 @@
                    to_char(t.agn_st_nome) as agn_st_nome,
                    to_char(t.pais_st_nome) as pais_st_nome,
                    to_char(t.nota) as nota,
-                   to_char(t.ent_st_serie) as ent_st_serie,
+                   to_char(t.sai_st_serie) as sai_st_serie,
                    to_char(t.data, 'dd/mm/yyyy') as data,
                    to_char(t.cfop) as cfop,
-                   to_char(t.ent_st_di) as ent_st_di,
+                   to_char(t.sai_st_de) as sai_st_de,
                    to_char(t.produto) as produto,
                    'Produto: ' || to_char(t.produto) || ' - ' || to_char(t.pro_st_descricao) as pro_st_descricao,
                    to_char(t.pro_st_unidade) as pro_st_unidade,
                    to_char(t.pro_st_ncm) as pro_st_ncm,
-                   to_char(t.ent_re_quantidade) as ent_re_quantidade,
-                   to_char(t.ent_re_custofob) as ent_re_custofob,
-                   to_char(t.ent_re_ii) as ent_re_ii,
-                   to_char(t.ent_re_frete) as ent_re_frete,
-                   to_char(t.ent_re_seguro) as ent_re_seguro,
-                   to_char(t.ent_re_aduaneiras) as ent_re_aduaneiras,
-                   to_char(t.ent_re_complementares) as ent_re_complementares,
-                   to_char(t.ent_re_custocif) as ent_re_custocif,
-                   to_char(t.ent_re_pis) as ent_re_pis,
-                   to_char(t.ent_re_cofins) as ent_re_cofins,
-                   to_char(t.ent_re_icms) as ent_re_icms,
-                   to_char(t.ent_re_ipi) as ent_re_ipi,
+                   to_char(t.sai_re_quantidade) as sai_re_quantidade,
+                   to_char(t.sai_re_valor) as sai_re_valor,
+                   to_char(t.sai_re_desconto) as sai_re_desconto,
+                   to_char(t.sai_re_comissoes) as sai_re_comissoes,
+                   to_char(t.sai_re_juros) as sai_re_juros,
+                   to_char(t.sai_re_ipi) as sai_re_ipi,
+                   to_char(t.sai_re_pis) as sai_re_pis,
+                   to_char(t.sai_re_cofins) as sai_re_cofins,
+                   to_char(t.sai_re_icms) as sai_re_icms,
+                   to_char(t.sai_re_icmsst) as sai_re_icmsst,
+                   to_char(t.sai_re_valorliquido) as sai_re_valorliquido,
                    to_char(t.grupo) as grupo,
                    to_char(t.paraisofiscal) as paraisofiscal,
                    to_char(t.cfop_bo_calculo) as cfop_bo_calculo,
-                   to_char(gp.produto_custofob) as produto_custofob,
-                   to_char(gp.produto_ii) as produto_ii,
-                   to_char(gp.produto_frete) as produto_frete,
-                   to_char(gp.produto_seguro) as produto_seguro,
-                   to_char(gp.produto_aduaneiras) as produto_aduaneiras,
-                   to_char(gp.produto_complementares) as produto_complementares,
-                   to_char(gp.produto_custocif) as produto_custocif,
-                   to_char(gg.geral_custofob) as geral_custofob,
-                   to_char(gg.geral_ii) as geral_ii,
-                   to_char(gg.geral_frete) as geral_frete,
-                   to_char(gg.geral_seguro) as geral_seguro,
-                   to_char(gg.geral_aduaneiras) as geral_aduaneiras,
-                   to_char(gg.geral_complementares) as geral_complementares,
-                   to_char(gg.geral_custocif) as geral_custocif,
+                   to_char(gp.produto_valor) as produto_valor,
+                   to_char(gp.produto_desconto) as produto_desconto,
+                   to_char(gp.produto_comissoes) as produto_comissoes,
+                   to_char(gp.produto_juros) as produto_juros,
+                   to_char(gp.produto_ipi) as produto_ipi,
+                   to_char(gp.produto_pis) as produto_pis,
+                   to_char(gp.produto_cofins) as produto_cofins,
+                   to_char(gp.produto_icms) as produto_icms,
+                   to_char(gp.produto_icmsst) as produto_icmsst,
+                   to_char(gp.produto_liquido) as produto_liquido,
+                   to_char(gg.geral_valor) as geral_valor,
+                   to_char(gg.geral_desconto) as geral_desconto,
+                   to_char(gg.geral_comissoes) as geral_comissoes,
+                   to_char(gg.geral_juros) as geral_juros,
+                   to_char(gg.geral_ipi) as geral_ipi,
+                   to_char(gg.geral_pis) as geral_pis,
+                   to_char(gg.geral_cofins) as geral_cofins,
+                   to_char(gg.geral_icms) as geral_icms,
+                   to_char(gg.geral_icmsst) as geral_icmsst,
+                   to_char(gg.geral_liquido) as geral_liquido,
                    #CABECALHO#
-            from tab00001 t,
+            from tab00002 t,
             (
             select produto as produto_id,
-                   sum(ent_re_custofob) as produto_custofob,
-                   sum(ent_re_ii) as produto_ii,
-                   sum(ent_re_frete) as produto_frete,
-                   sum(ent_re_seguro) as produto_seguro,
-                   sum(ent_re_aduaneiras) as produto_aduaneiras,
-                   sum(ent_re_complementares) as produto_complementares,
-                   sum(ent_re_custocif) as produto_custocif
-            from tab00001
+                   sum(sai_re_valor) as produto_valor,
+                   sum(sai_re_desconto) as produto_desconto,
+                   sum(sai_re_comissoes) as produto_comissoes,
+                   sum(sai_re_juros) as produto_juros,
+                   sum(sai_re_ipi) as produto_ipi,
+                   sum(sai_re_pis) as produto_pis,
+                   sum(sai_re_cofins) as produto_cofins,
+                   sum(sai_re_icms) as produto_icms,
+                   sum(sai_re_icmsst) as produto_icmsst,
+                   sum(sai_re_valorliquido) as produto_liquido
+            from tab00002
             where 1 = 1
               #FILTRO#
             group by produto
             ) gp,
             (
-            select sum(ent_re_custofob) as geral_custofob,
-                   sum(ent_re_ii) as geral_ii,
-                   sum(ent_re_frete) as geral_frete,
-                   sum(ent_re_seguro) as geral_seguro,
-                   sum(ent_re_aduaneiras) as geral_aduaneiras,
-                   sum(ent_re_complementares) as geral_complementares,
-                   sum(ent_re_custocif) as geral_custocif
-            from tab00001
+            select sum(sai_re_valor) as geral_valor,
+                   sum(sai_re_desconto) as geral_desconto,
+                   sum(sai_re_comissoes) as geral_comissoes,
+                   sum(sai_re_juros) as geral_juros,
+                   sum(sai_re_ipi) as geral_ipi,
+                   sum(sai_re_pis) as geral_pis,
+                   sum(sai_re_cofins) as geral_cofins,
+                   sum(sai_re_icms) as geral_icms,
+                   sum(sai_re_icmsst) as geral_icmsst,
+                   sum(sai_re_valorliquido) as geral_liquido
+            from tab00002
             where 1 = 1
               #FILTRO#
             ) gg
@@ -225,26 +236,26 @@
             <title>Código</title>
             <column>agente</column>
             <align>LEFT</align>
-            <fill>7</fill>
+            <fill>5</fill>
             <type>STRING</type>
         </field>
         <field>
-            <title>Fornecedor</title>
+            <title>Cliente</title>
             <column>agn_st_nome</column>
             <align>LEFT</align>
-            <fill>11</fill>
+            <fill>6</fill>
             <type>STRING</type>
         </field>
         <field>
             <title>País</title>
             <column>pais_st_nome</column>
             <align>LEFT</align>
-            <fill>8</fill>
+            <fill>5</fill>
             <type>STRING</type>
         </field>
         <field>
             <title>Ser</title>
-            <column>ent_st_serie</column>
+            <column>sai_st_serie</column>
             <align>CENTER</align>
             <fill>3</fill>
             <type>STRING</type>
@@ -257,7 +268,7 @@
             <type>STRING</type>
         </field>
         <field>
-            <title>Entrada</title>
+            <title>Emissao</title>
             <column>data</column>
             <align>CENTER</align>
             <fill>5</fill>
@@ -272,9 +283,9 @@
         </field>
         <field>
             <title>Qtde</title>
-            <column>ent_re_quantidade</column>
+            <column>sai_re_quantidade</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
@@ -285,52 +296,73 @@
             <type>STRING</type>
         </field>
         <field>
-            <title>Custo FOB</title>
-            <column>ent_re_custofob</column>
+            <title>Valor</title>
+            <column>sai_re_valor</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>II</title>
-            <column>ent_re_ii</column>
+            <title>Desconto</title>
+            <column>sai_re_desconto</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>Frete</title>
-            <column>ent_re_frete</column>
+            <title>Comissoes</title>
+            <column>sai_re_comissoes</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>Seguro</title>
-            <column>ent_re_seguro</column>
+            <title>Juros</title>
+            <column>sai_re_juros</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>Aduan.</title>
-            <column>ent_re_aduaneiras</column>
+            <title>IPI</title>
+            <column>sai_re_ipi</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>Compl.</title>
-            <column>ent_re_complementares</column>
+            <title>PIS</title>
+            <column>sai_re_pis</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
         <field>
-            <title>Custo CIF</title>
-            <column>ent_re_custocif</column>
+            <title>COFINS</title>
+            <column>sai_re_cofins</column>
             <align>RIGHT</align>
-            <fill>7</fill>
+            <fill>6</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>ICMS</title>
+            <column>sai_re_icms</column>
+            <align>RIGHT</align>
+            <fill>6</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>ICMS ST</title>
+            <column>sai_re_icmsst</column>
+            <align>RIGHT</align>
+            <fill>6</fill>
+            <type>REAL</type>
+        </field>
+        <field>
+            <title>Liquido</title>
+            <column>sai_re_valorliquido</column>
+            <align>RIGHT</align>
+            <fill>6</fill>
             <type>REAL</type>
         </field>
     </fields>
@@ -358,56 +390,77 @@
                     <title></title>
                     <column></column>
                     <align>LEFT</align>
-                    <fill>51</fill>
+                    <fill>40</fill>
                     <type>STRING</type>
                 </footerfield>
                 <footerfield>
-                    <title>Custo FOB</title>
-                    <column>produto_custofob</column>
+                    <title>Valor</title>
+                    <column>produto_valor</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>II</title>
-                    <column>produto_ii</column>
+                    <title>Desconto</title>
+                    <column>produto_desconto</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Frete</title>
-                    <column>produto_frete</column>
+                    <title>Comissoes</title>
+                    <column>produto_comissoes</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Seguro</title>
-                    <column>produto_seguro</column>
+                    <title>Juros</title>
+                    <column>produto_juros</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Aduan.</title>
-                    <column>produto_aduaneiras</column>
+                    <title>IPI</title>
+                    <column>produto_ipi</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Compl.</title>
-                    <column>produto_complementares</column>
+                    <title>PIS</title>
+                    <column>produto_pis</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Custo CIF</title>
-                    <column>produto_custocif</column>
+                    <title>COFINS</title>
+                    <column>produto_cofins</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>ICMS</title>
+                    <column>produto_icms</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>ICMS ST</title>
+                    <column>produto_icmsst</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Liquido</title>
+                    <column>produto_liquido</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
             </footerfields>
@@ -426,56 +479,77 @@
                     <title></title>
                     <column></column>
                     <align>LEFT</align>
-                    <fill>51</fill>
+                    <fill>40</fill>
                     <type>STRING</type>
                 </footerfield>
                 <footerfield>
-                    <title>Custo FOB</title>
-                    <column>geral_custofob</column>
+                    <title>Valor</title>
+                    <column>geral_valor</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>II</title>
-                    <column>geral_ii</column>
+                    <title>Desconto</title>
+                    <column>geral_desconto</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Frete</title>
-                    <column>geral_frete</column>
+                    <title>Comissoes</title>
+                    <column>geral_comissoes</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Seguro</title>
-                    <column>geral_seguro</column>
+                    <title>Juros</title>
+                    <column>geral_juros</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Aduan.</title>
-                    <column>geral_aduaneiras</column>
+                    <title>IPI</title>
+                    <column>geral_ipi</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Compl.</title>
-                    <column>geral_complementares</column>
+                    <title>PIS</title>
+                    <column>geral_pis</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
                 <footerfield>
-                    <title>Custo CIF</title>
-                    <column>geral_custocif</column>
+                    <title>COFINS</title>
+                    <column>geral_cofins</column>
                     <align>RIGHT</align>
-                    <fill>7</fill>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>ICMS</title>
+                    <column>geral_icms</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>ICMS ST</title>
+                    <column>geral_icmsst</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
+                    <type>REAL</type>
+                </footerfield>
+                <footerfield>
+                    <title>Liquido</title>
+                    <column>geral_liquido</column>
+                    <align>RIGHT</align>
+                    <fill>6</fill>
                     <type>REAL</type>
                 </footerfield>
             </footerfields>
