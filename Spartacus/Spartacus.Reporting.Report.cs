@@ -1502,7 +1502,7 @@ namespace Spartacus.Reporting
             System.Collections.Generic.List<PDFjet.NET.Cell> v_row;
             PDFjet.NET.Cell v_cell;
             string v_text;
-            int k;
+            int k, r;
 
             v_data = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
 
@@ -1523,6 +1523,7 @@ namespace Spartacus.Reporting
             {
                 foreach (System.Data.DataRow rb in this.v_table.Rows)
                 {
+                    r = 0;
                     v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
                     for (k = 0; k < this.v_fields.Count; k++)
                     {
@@ -1544,7 +1545,7 @@ namespace Spartacus.Reporting
                             default:
                                 break;
                         }
-                        if (k % 2 == 0)
+                        if (r % 2 == 0)
                             v_cell.SetBgColor(this.v_settings.v_datafieldevencolor);
                         else
                             v_cell.SetBgColor(this.v_settings.v_datafieldoddcolor);
@@ -1555,6 +1556,7 @@ namespace Spartacus.Reporting
                         v_row.Add(v_cell);
                     }
                     v_data.Add(v_row);
+                    r++;
                 }
             }
 
