@@ -446,8 +446,6 @@
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\sqlite3.dll" />
-    <None Include="doc\Spartacus-0.30.0.pdf" />
-    <None Include="dist\Spartacus-0.30.0.zip" />
     <None Include="CHANGELOG.txt" />
     <None Include="thirdparties\FirebirdSql.Data.FirebirdClient-4.5.1.0-MONO_LINUX.7z" />
     <None Include="thirdparties\Mono.Data.Sqlite.7z" />
@@ -456,20 +454,12 @@
     <None Include="thirdparties\PDFjet-Open-Source.7z" />
     <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
     <None Include="doc\Spartacus-0.32.0.pdf" />
-    <None Include="dist\Spartacus-0.32.0.zip" />
     <None Include="lib\EPPlus.dll" />
     <None Include="thirdparties\EPPlus 4.0.1.zip" />
     <None Include="lib\PresentationCore.dll" />
     <None Include="lib\PresentationFramework.dll" />
     <None Include="lib\WindowsBase.dll" />
     <None Include="lib\WindowsFormsIntegration.dll" />
-    <None Include="dist\Spartacus-0.32.0\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="dist\Spartacus-0.32.0\Mono.Data.Sqlite.dll" />
-    <None Include="dist\Spartacus-0.32.0\MySql.Data.dll" />
-    <None Include="dist\Spartacus-0.32.0\Npgsql.dll" />
-    <None Include="dist\Spartacus-0.32.0\PDFjet.dll" />
-    <None Include="dist\Spartacus-0.32.0\Spartacus.dll" />
-    <None Include="dist\Spartacus-0.32.0\sqlite3.dll" />
     <None Include="dist\Spartacus-0.34.0\EPPlus.dll" />
     <None Include="dist\Spartacus-0.34.0\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="dist\Spartacus-0.34.0\Mono.Data.Sqlite.dll" />
@@ -484,6 +474,21 @@
     <None Include="dist\Spartacus-0.34.0\WindowsBase.dll" />
     <None Include="dist\Spartacus-0.34.0\WindowsFormsIntegration.dll" />
     <None Include="dist\Spartacus-0.34.0.zip" />
+    <None Include="dist\Spartacus-0.34.10\EPPlus.dll" />
+    <None Include="dist\Spartacus-0.34.10\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="dist\Spartacus-0.34.10\Mono.Data.Sqlite.dll" />
+    <None Include="dist\Spartacus-0.34.10\MySql.Data.dll" />
+    <None Include="dist\Spartacus-0.34.10\Npgsql.dll" />
+    <None Include="dist\Spartacus-0.34.10\PDFjet.dll" />
+    <None Include="dist\Spartacus-0.34.10\PresentationCore.dll" />
+    <None Include="dist\Spartacus-0.34.10\PresentationFramework.dll" />
+    <None Include="dist\Spartacus-0.34.10\Spartacus.dll" />
+    <None Include="dist\Spartacus-0.34.10\sqlite3.dll" />
+    <None Include="dist\Spartacus-0.34.10\WindowsBase.dll" />
+    <None Include="dist\Spartacus-0.34.10\WindowsFormsIntegration.dll" />
+    <None Include="dist\Spartacus-0.34.10.zip" />
+    <None Include="doc\doxygen_sqlite3.db" />
+    <None Include="doc\Spartacus-0.34.10.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
