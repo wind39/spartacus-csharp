@@ -210,11 +210,11 @@ namespace Test
 
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
 
-                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(1, 12, 1) as cabecalho, " +
-                                           "       pscore.pck_parametros.fnc_resolve_filtro(1, 12, 1) as filtro " +
+                v_table = v_database.Query("select pscore.pck_parametros.fnc_resolve_cabecalho(2, 12, 1) as cabecalho, " +
+                                           "       pscore.pck_parametros.fnc_resolve_filtro(2, 12, 1) as filtro " +
                                            "from dual", null);
 
-                v_report = new Spartacus.Reporting.Report(3, "template_00001.xml", v_database);
+                v_report = new Spartacus.Reporting.Report(3, "template_00002.xml", v_database);
                 v_report.v_cmd.SetValue("CABECALHO", v_table.Rows[0]["cabecalho"].ToString());
                 v_report.v_cmd.SetValue("FILTRO", v_table.Rows[0]["filtro"].ToString());
 
@@ -224,7 +224,7 @@ namespace Test
 
                 Console.WriteLine("{0} - Relatório interpretado, vou começar a salvar em arquivo", System.DateTime.Now);
 
-                v_report.Save("Entradas Geral.pdf");
+                v_report.Save("Saidas Geral.pdf");
 
                 Console.WriteLine("{0} - Relatório salvo em arquivo", System.DateTime.Now);
             }
@@ -292,11 +292,11 @@ namespace Test
                 v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
                 v_excel = new Spartacus.Utils.Excel();
 
-                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(1, 12, 1) from dual");
-                v_table = v_database.Query(v_sql, "Entradas Geral");
+                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(2, 12, 1) from dual");
+                v_table = v_database.Query(v_sql, "Saidas Geral");
                 v_excel.v_set.Tables.Add(v_table);
 
-                v_excel.Export("Entradas Geral.xlsx", "template_00001.xlsx", true);
+                v_excel.Export("Saidas Geral.xlsx", "template_00002.xlsx", true);
             }
             catch (Spartacus.Utils.Exception e)
             {

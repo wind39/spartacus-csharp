@@ -89,5 +89,7 @@
     <None Include="bin\Release\teste4.xml" />
     <None Include="bin\Release\template_00001.xlsx" />
     <None Include="bin\Release\template_00001.xml" />
+    <None Include="bin\Release\template_00002.xlsx" />
+    <None Include="bin\Release\template_00002.xml" />
   </ItemGroup>
 </Project>

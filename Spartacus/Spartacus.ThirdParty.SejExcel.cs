@@ -490,7 +490,7 @@ namespace Spartacus.ThirdParty.SejExcel
             nbytes = nbytes + WriteBytes(c.part1, nbuffer, nbytes);
             nbytes = nbytes + WriteBytes(thisrow, nbuffer, nbytes);
             nbytes = nbytes + WriteBytes(c.part2, nbuffer, nbytes);
-            byte[] w = ASCIIEncoding.ASCII.GetBytes(value.ToString());
+            byte[] w = ASCIIEncoding.ASCII.GetBytes(value.ToString().Replace(",", "."));
             nbytes = nbytes + WriteBytes(w, nbuffer, nbytes);
             nbytes = nbytes + WriteBytes(c.part3, nbuffer, nbytes);
         }

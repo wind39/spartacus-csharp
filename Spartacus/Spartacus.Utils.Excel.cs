@@ -882,7 +882,7 @@ namespace Spartacus.Utils
                                 p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
                             break;
                         case "re":
-                            if (double.TryParse(v_row [v_tail].ToString().Replace(",", "."), out v_re_value))
+                            if (double.TryParse(v_row[v_tail].ToString().Replace(",", "."), System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("en-US"), out v_re_value))
                                 p_sheet.WriteCell(v_pair.Key, v_re_value);
                             else
                                 p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
