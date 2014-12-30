@@ -663,6 +663,47 @@ namespace Spartacus.Utils
 
         /// <summary>
         /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
+        /// O markup do cabeçalho sempre é substituído.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+        /// <param name="p_templatenames">Nome do arquivo XLSX a ser usado como template.</param>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
+        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
+        public void Export(string p_filename, System.Collections.ArrayList p_templatenames)
+        {
+            Spartacus.Utils.File v_file;
+            string v_markup;
+
+            v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+            try
+            {
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "xlsx":
+                        v_markup = this.ReplaceMarkup(p_templatenames, p_filename);
+                        this.ExportXLSX(p_filename, v_markup);
+                        (new System.IO.FileInfo(v_markup)).Delete();
+                        break;
+                    case "csv":
+                        this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    default:
+                        throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
@@ -905,9 +946,9 @@ namespace Spartacus.Utils
         /// <param name="p_templatename">Nome do arquivo XLSX usado como template.</param>
         private string ReplaceMarkup(string p_templatename)
         {
+            Spartacus.Net.Cryptor v_cryptor;
             Spartacus.Utils.File v_file;
             System.IO.FileInfo v_src;
-            Spartacus.Net.Cryptor v_cryptor;
             System.IO.FileInfo v_dst;
             string v_dstname;
             System.Data.DataTable v_table;
@@ -1035,6 +1076,201 @@ namespace Spartacus.Utils
                 v_dst = new System.IO.FileInfo(v_dstname);
 
                 v_package.SaveAs(v_dst);
+            }
+
+            return v_dstname;
+        }
+
+        /// <summary>
+        /// Substitui valores de células conforme configuração do cabeçalho, que deve estar na célula A1 e seguir formato específico.
+        /// Cada planilha a princípio está em um arquivo diferente, e o arquivo resultante contém todas as planilhas de todos os arquivos.
+        /// </summary>
+        /// <returns>Nome do arquivo XLSX com cabeçalho aplicado em todas as planilhas.</returns>
+        /// <param name="p_templatenames">Nome dos arquivo XLSX usados como templates.</param>
+        /// <param name="p_reportname">Nome do relatório, que será usado para criar o arquivo temporário com nome criptografado.</param>
+        private string ReplaceMarkup(System.Collections.ArrayList p_templatenames, string p_reportname)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            System.IO.FileInfo v_src;
+            System.IO.FileInfo v_dst;
+            string v_dstname;
+            System.Data.DataTable v_table;
+            string v_imagefilename;
+            string v_line;
+            string[] v_options;
+            int k;
+            System.Drawing.Bitmap v_image;
+            OfficeOpenXml.Drawing.ExcelPicture v_picture;
+            int v_col, v_row;
+
+            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
+            v_dstname = v_cryptor.Encrypt(p_reportname).Replace("/", "").Replace("=", "").Replace("+", "") + ".xlsx";
+            v_dst = new System.IO.FileInfo(v_dstname);
+
+            using (OfficeOpenXml.ExcelPackage v_package_dst = new OfficeOpenXml.ExcelPackage(v_dst))
+            {
+                for (int t = 0; t < p_templatenames.Count; t++)
+                {
+                    v_src = new System.IO.FileInfo((string)p_templatenames[t]);
+
+                    using (OfficeOpenXml.ExcelPackage v_package_src = new OfficeOpenXml.ExcelPackage(v_src))
+                    {
+                        foreach (OfficeOpenXml.ExcelWorksheet v_worksheet_src in v_package_src.Workbook.Worksheets)
+                        {
+                            OfficeOpenXml.ExcelWorksheet v_worksheet = v_package_dst.Workbook.Worksheets.Add(v_worksheet_src.Name);
+                            v_package_dst.Workbook.Styles.UpdateXml();
+
+                            v_worksheet.View.ShowGridLines = v_worksheet_src.View.ShowGridLines;
+
+                            foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells["A1:AD12"])
+                            {
+                                v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
+
+                                v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
+                                v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
+
+                                v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
+                                v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
+                                v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
+                                v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
+
+                                v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
+
+                                v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
+                                v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
+                                v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
+                                v_worksheet.Cells[v_cell.Address].Style.Font.Family = v_worksheet_src.Cells[v_cell.Address].Style.Font.Family;
+                                if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
+                                    v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
+
+                                v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
+                            }
+
+                            v_table = this.v_set.Tables[v_worksheet.Name];
+
+                            using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet_src.Cells["A1"].Value.ToString()))
+                            {
+                                /* EXEMPLO DE CONFIGURACAO DE MARKUP:
+                                    TIPO|CAMPO|POSICAO|OPCIONAL
+                                    ST|titulo|A6|
+                                    ST|filtro|A8|
+                                    ST|ano|E2:J2|
+                                    ST|empresa|E4:J4|
+                                    IM|imagem|0:0|80
+                                    TO|SUM(#)|M9|M12
+                                    TO|SUM(#)|N9|N12
+                                    TO|SUM(#)|O9|O12
+                                    TO|SUM(#)|P9|P12
+                                    TO|SUM(#)|Q9|Q12
+                                    TO|SUM(#)|R9|R12
+                                    TO|SUM(#)|S9|S12
+                                    TO|SUM(#)|T9|T12
+                                    TO|SUM(#)|U9|U12
+                                    TO|SUM(#)|V9|V12
+                                    TO|SUM(#)|W9|W12
+                                    TO|SUM(#)|X9|X12
+                                    TO|SUM(#)|Y9|Y12
+                                    TO|SUBTOTAL(9,#)|M10|M12
+                                    TO|SUBTOTAL(9,#)|N10|N12
+                                    TO|SUBTOTAL(9,#)|O10|O12
+                                    TO|SUBTOTAL(9,#)|P10|P12
+                                    TO|SUBTOTAL(9,#)|Q10|Q12
+                                    TO|SUBTOTAL(9,#)|R10|R12
+                                    TO|SUBTOTAL(9,#)|S10|S12
+                                    TO|SUBTOTAL(9,#)|T10|T12
+                                    TO|SUBTOTAL(9,#)|U10|U12
+                                    TO|SUBTOTAL(9,#)|V10|V12
+                                    TO|SUBTOTAL(9,#)|W10|W12
+                                    TO|SUBTOTAL(9,#)|X10|X12
+                                    TO|SUBTOTAL(9,#)|Y10|Y12
+                                    CF|#DBE5F1|A11:AD11|
+                                    TA|A:AD|11|30
+                                 */
+
+                                v_worksheet.Cells["A1"].Value = "";
+
+                                v_line = string.Empty;
+                                k = 0;
+
+                                do
+                                {
+                                    v_line = v_reader.ReadLine();
+
+                                    if (v_line != null && k > 0)
+                                    {
+                                        v_options = v_line.Split('|');
+
+                                        switch (v_options[0])
+                                        {
+                                            case "ST":
+                                                v_worksheet.Cells[v_options[2]].Value = v_table.Rows[0][v_options[1]].ToString();
+                                                if (v_options[2].Contains(':'))
+                                                    v_worksheet.Cells[v_options[2]].Merge = true;
+                                                break;
+                                            case "IM":
+                                                try
+                                                {
+                                                    v_imagefilename = v_cryptor.Decrypt(v_table.Rows[0][v_options[1]].ToString());
+                                                }
+                                                catch (Spartacus.Net.Exception)
+                                                {
+                                                    v_imagefilename = "";
+                                                }
+                                                if (v_imagefilename != "")
+                                                {
+                                                    try
+                                                    {
+                                                        v_image = new System.Drawing.Bitmap(v_imagefilename);
+                                                        v_picture = null;
+                                                        if (v_image != null)
+                                                        {
+                                                            v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
+                                                            v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
+                                                            v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+                                                        }
+                                                    }
+                                                    catch (System.Exception)
+                                                    {
+                                                    }
+                                                }
+                                                break;
+                                            case "TO":
+                                                v_worksheet.Cells[v_options[2]].Value = "";
+                                                v_row = v_worksheet.Cells[v_options[3]].Start.Row;
+                                                v_col = v_worksheet.Cells[v_options[3]].Start.Column;
+                                                if (v_options[1] != "")
+                                                    v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                else
+                                                    v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                break;
+                                            case "CF":
+                                                v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
+                                                break;
+                                            case "TA":
+                                                v_row = int.Parse(v_options[2]);
+                                                v_col = int.Parse(v_options[3]);
+                                                for (int i = 1; i <= v_col; i++)
+                                                    v_worksheet.Column(i).Width = v_worksheet_src.Column(i).Width;
+                                                v_worksheet.View.FreezePanes(v_row + 1, 1);
+                                                v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
+                                                v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
+                                                v_worksheet.Tables[0].ShowFilter = true;
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+
+                                    k++;
+                                }
+                                while (v_line != null);
+                            }
+                        }
+                    }
+                }
+
+                v_package_dst.Save();
             }
 
             return v_dstname;

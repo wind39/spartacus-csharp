@@ -489,6 +489,16 @@
     <None Include="dist\Spartacus-0.34.10.zip" />
     <None Include="doc\doxygen_sqlite3.db" />
     <None Include="doc\Spartacus-0.34.10.pdf" />
+    <None Include="bin\Release\EPPlus.dll" />
+    <None Include="bin\Release\PresentationCore.dll" />
+    <None Include="bin\Release\PresentationFramework.dll" />
+    <None Include="bin\Release\WindowsBase.dll" />
+    <None Include="bin\Release\WindowsFormsIntegration.dll" />
+    <None Include="bin\Debug\EPPlus.dll" />
+    <None Include="bin\Debug\PresentationCore.dll" />
+    <None Include="bin\Debug\PresentationFramework.dll" />
+    <None Include="bin\Debug\WindowsBase.dll" />
+    <None Include="bin\Debug\WindowsFormsIntegration.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

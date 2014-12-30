@@ -87,5 +87,10 @@
     <None Include="bin\Release\WindowsBase.dll" />
     <None Include="bin\Release\WindowsFormsIntegration.dll" />
     <None Include="bin\Release\teste4.xml" />
+    <None Include="bin\Release\template_00001.xlsx" />
+    <None Include="bin\Release\template_00001.xml" />
+    <None Include="bin\Release\template_00002.xlsx" />
+    <None Include="bin\Release\template_00002.xml" />
+    <None Include="bin\Release\template_00003.xlsx" />
   </ItemGroup>
 </Project>

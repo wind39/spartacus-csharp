@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ReportTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -261,7 +261,8 @@ namespace Test
 
         private static void ExcelTest()
         {
-            /*Spartacus.Utils.Excel v_excel;
+            /* IMPORTACAO
+            Spartacus.Utils.Excel v_excel;
 
             v_excel = new Spartacus.Utils.Excel();
             v_excel.Import("teste.xlsx");
@@ -282,30 +283,52 @@ namespace Test
                 }
             }*/
 
+            // EXPORTACAO
+            /*
             Spartacus.Database.Generic v_database;
             Spartacus.Utils.Excel v_excel;
             System.Data.DataTable v_table;
             string v_sql;
 
-            try
-            {
-                v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
-                v_excel = new Spartacus.Utils.Excel();
+            v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
+            v_excel = new Spartacus.Utils.Excel();
 
-                v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(2, 12, 1) from dual");
-                v_table = v_database.Query(v_sql, "Saidas Geral");
+            v_sql = v_database.ExecuteScalar("select pck_parametros.fnc_resolve_consulta(2, 12, 1) from dual");
+            v_table = v_database.Query(v_sql, "Saidas Geral");
+            v_excel.v_set.Tables.Add(v_table);
+
+            v_excel.Export("Saidas Geral.xlsx", "template_00002.xlsx", true);
+            */
+
+            Spartacus.Database.Generic v_database;
+            Spartacus.Utils.Excel v_excel;
+            System.Data.DataTable v_tablerel, v_table;
+            System.Collections.ArrayList v_templatenames;
+
+            v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
+            v_excel = new Spartacus.Utils.Excel();
+            v_templatenames = new System.Collections.ArrayList();
+
+            v_tablerel = v_database.Query(
+                "select e.est_st_nome," +
+                "       r.rel_in_codigo, " +
+                "       r.rel_st_nome, " + 
+                "       r.rel_st_modeloxlsx, " + 
+                "       pck_parametros.fnc_resolve_consulta(r.rel_in_codigo, 12, 1) as consulta " + 
+                "from psrel00001.relatorios r," +
+                "     psrel00001.estrutura e " + 
+                "where r.est_in_codigo = e.est_in_codigo" +
+                "  and e.est_in_codigo = 8 " + 
+                "order by r.rel_in_codigo", "RELATORIOS");
+
+            foreach (System.Data.DataRow v_row in v_tablerel.Rows)
+            {
+                v_table = v_database.Query(v_row["consulta"].ToString(), v_row["rel_st_nome"].ToString());
                 v_excel.v_set.Tables.Add(v_table);
+                v_templatenames.Add(v_row["rel_st_modeloxlsx"].ToString());
+            }
 
-                v_excel.Export("Saidas Geral.xlsx", "template_00002.xlsx", true);
-            }
-            catch (Spartacus.Utils.Exception e)
-            {
-                System.Console.WriteLine(e.v_message);
-            }
-            catch (System.Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-            }
+            v_excel.Export(v_tablerel.Rows[0]["est_st_nome"].ToString() + ".xlsx", v_templatenames);
         }
 
         #endregion
