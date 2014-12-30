@@ -22,6 +22,7 @@ SOFTWARE.
 
 
 
+0.34.12: Permitindo que o range de células do cabeçalho possa ser configurado na célula A1
 0.34.11: Implementado pacote de relatórios Excel (um relatório em cada planilha, no mesmo arquivo XLSX).
 0.34.10: Corrigido bug na Spartacus.Reporting.Report.RenderGroup
 0.34.9:  Implementada tratativa para exportar números com vírgula na Spartacus.Utils.Excel.OnDataRow e na Spartacus.ThirdParty.SejExcel.WriteCell

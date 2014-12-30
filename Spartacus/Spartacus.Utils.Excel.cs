@@ -1123,36 +1123,13 @@ namespace Spartacus.Utils
 
                             v_worksheet.View.ShowGridLines = v_worksheet_src.View.ShowGridLines;
 
-                            foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells["A1:AD12"])
-                            {
-                                v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
-
-                                v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
-                                v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
-
-                                v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
-                                v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
-                                v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
-                                v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
-
-                                v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
-
-                                v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
-                                v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
-                                v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
-                                v_worksheet.Cells[v_cell.Address].Style.Font.Family = v_worksheet_src.Cells[v_cell.Address].Style.Font.Family;
-                                if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
-                                    v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
-
-                                v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
-                            }
-
                             v_table = this.v_set.Tables[v_worksheet.Name];
 
                             using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet_src.Cells["A1"].Value.ToString()))
                             {
                                 /* EXEMPLO DE CONFIGURACAO DE MARKUP:
                                     TIPO|CAMPO|POSICAO|OPCIONAL
+                                    CA||A1:AD12|
                                     ST|titulo|A6|
                                     ST|filtro|A8|
                                     ST|ano|E2:J2|
@@ -1203,6 +1180,31 @@ namespace Spartacus.Utils
 
                                         switch (v_options[0])
                                         {
+                                            case "CA":
+                                                foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells[v_options[2]])
+                                                {
+                                                    v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
+
+                                                    v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
+                                                    v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
+
+                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
+
+                                                    v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
+
+                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
+                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Family = v_worksheet_src.Cells[v_cell.Address].Style.Font.Family;
+                                                    if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
+                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
+
+                                                    v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
+                                                }
+                                                break;
                                             case "ST":
                                                 v_worksheet.Cells[v_options[2]].Value = v_table.Rows[0][v_options[1]].ToString();
                                                 if (v_options[2].Contains(':'))
