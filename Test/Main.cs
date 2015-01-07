@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ExcelTest();
+            ReportTest();
         }
 
         //#region DATABASE
@@ -194,18 +194,22 @@ namespace Test
 
         private static void ReportTest()
         {
+            Spartacus.Reporting.Package v_package;
             Spartacus.Reporting.Report v_report;
             Spartacus.Database.Generic v_database;
             System.Data.DataTable v_table;
 
             try
             {
+                // Teste
                 //v_report = new Spartacus.Reporting.Report(1, "teste3.xml", false);
                 //v_report.v_cmd.SetValue("EMID", "181");
                 //v_report.v_cmd.SetValue("ANO", "2013");
                 //v_report.Execute();
                 //v_report.Save("output.pdf");
 
+                // Relatório Sistema Planner
+                /*
                 Console.WriteLine("{0} - Vou começar a buscar os parâmetros", System.DateTime.Now);
 
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
@@ -227,6 +231,39 @@ namespace Test
                 v_report.Save("Saidas Geral.pdf");
 
                 Console.WriteLine("{0} - Relatório salvo em arquivo", System.DateTime.Now);
+                */
+
+                // Pacote Sistema Planner
+
+                v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
+
+                v_package = new Spartacus.Reporting.Package();
+
+                v_table = v_database.Query(
+                    "select e.est_st_nome," +
+                    "       r.rel_in_codigo, " +
+                    "       r.rel_st_nome, " + 
+                    "       r.rel_st_modelopdf, " + 
+                    "       pscore.pck_parametros.fnc_resolve_cabecalho(r.rel_in_codigo, 12, 1) as cabecalho, " +
+                    "       pscore.pck_parametros.fnc_resolve_filtro(r.rel_in_codigo, 12, 1) as filtro " +
+                    "from psrel00001.relatorios r," +
+                    "     psrel00001.estrutura e " + 
+                    "where r.est_in_codigo = e.est_in_codigo" +
+                    "  and e.est_in_codigo = 3 " + 
+                    "order by r.rel_in_codigo", "RELATORIOS");
+
+                foreach (System.Data.DataRow v_row in v_table.Rows)
+                {
+                    v_report = new Spartacus.Reporting.Report(int.Parse(v_row["rel_in_codigo"].ToString()), v_row["rel_st_modelopdf"].ToString(), v_database);
+                    v_report.v_cmd.SetValue("CABECALHO", v_row["cabecalho"].ToString());
+                    v_report.v_cmd.SetValue("FILTRO", v_row["filtro"].ToString());
+                    v_package.Add(v_report, v_row["rel_st_nome"].ToString() + ".pdf");
+                }
+
+                v_package.Execute();
+
+                //v_package.SaveMerged(v_table.Rows[0]["est_st_nome"].ToString() + ".pdf");
+                v_package.SaveSplitted(true, v_table.Rows[0]["est_st_nome"].ToString() + ".zip");
             }
             catch (Spartacus.Reporting.Exception e)
             {
