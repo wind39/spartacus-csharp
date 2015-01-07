@@ -124,6 +124,7 @@
     <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
     <Compile Include="Spartacus.Forms.Filepicker.cs" />
     <Compile Include="Spartacus.Forms.Messagebox.cs" />
+    <Compile Include="Spartacus.Reporting.Package.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1334,6 +1334,10 @@ namespace Spartacus.Reporting
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
 
+            // se o relatório não tiver dados, não faz nada
+            if (this.v_table.Rows.Count == 0)
+                return;
+
             try
             {
                 f = new System.IO.FileStream(p_filename, System.IO.FileMode.Create);
@@ -1425,6 +1429,110 @@ namespace Spartacus.Reporting
             catch (System.Exception e)
             {
                 throw new Spartacus.Reporting.Exception("Erro ao gerar o arquivo PDF de saída.", e);
+            }
+        }
+
+        /// <summary>
+        /// Salva como PDF parcialmente.
+        /// Usado para renderização de pacotes de arquivos PDF.
+        /// </summary>
+        /// <param name="p_pdf">Objeto PDF aberto.</param>
+        public void SavePartial(PDFjet.NET.PDF p_pdf)
+        {
+            PDFjet.NET.Table v_dataheadertable, v_datatable;
+            float[] v_layout;
+            PDFjet.NET.Page v_page;
+            System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
+            int v_numpages, v_currentpage;
+
+            // se o relatório não tiver dados, não faz nada
+            //TODO: salvar página em branco com a informação de que o relatório não tem dados?
+            if (this.v_table.Rows.Count == 0)
+                return;
+
+            try
+            {
+                if (this.v_settings.v_layout == Spartacus.Reporting.PageLayout.LANDSCAPE)
+                    v_layout = PDFjet.NET.A4.LANDSCAPE;
+                else
+                    v_layout = PDFjet.NET.A4.PORTRAIT;
+
+                v_page = new PDFjet.NET.Page(p_pdf, v_layout);
+
+                // tabela de cabecalho de dados
+
+                v_dataheadertable = new PDFjet.NET.Table();
+                v_dataheadertable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
+
+                v_rendered = this.RenderDataHeader(
+                    v_page.GetHeight(),
+                    v_page.GetWidth(),
+                    this.v_settings.v_dataheaderfont.GetFont(p_pdf)
+                );
+
+                v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
+                v_dataheadertable.SetCellBordersWidth(0.8f);
+
+                // tabela de dados
+
+                v_datatable = new PDFjet.NET.Table();
+                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + 20);
+                v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
+
+                v_rendered = this.RenderData(
+                    v_page.GetHeight(),
+                    v_page.GetWidth(),
+                    this.v_settings.v_datafieldfont.GetFont(p_pdf),
+                    this.v_settings.v_groupheaderfont.GetFont(p_pdf),
+                    this.v_settings.v_groupfooterfont.GetFont(p_pdf)
+                );
+
+                v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
+                v_datatable.SetCellBordersWidth(0.8f);
+
+                this.v_header.SetValues(this.v_table);
+                this.v_footer.SetValues(this.v_table);
+
+                v_numpages = v_datatable.GetNumberOfPages(v_page);
+                v_currentpage = 1;
+                while (v_datatable.HasMoreData())
+                {
+                    this.v_header.SetPageNumber(v_currentpage, v_numpages);
+                    this.v_footer.SetPageNumber(v_currentpage, v_numpages);
+
+                    this.v_header.Render(
+                        this.v_settings.v_reportheaderfont,
+                        this.v_settings.v_leftmargin,
+                        this.v_settings.v_topmargin,
+                        this.v_settings.v_rightmargin,
+                        p_pdf,
+                        v_page
+                    );
+
+                    v_dataheadertable.DrawOn(v_page);
+                    v_datatable.DrawOn(v_page);
+
+                    this.v_footer.Render(
+                        this.v_settings.v_reportfooterfont,
+                        this.v_settings.v_leftmargin,
+                        v_page.GetHeight() - v_settings.v_bottommargin - v_footer.v_height,
+                        this.v_settings.v_rightmargin,
+                        p_pdf,
+                        v_page
+                    );
+
+                    if (v_datatable.HasMoreData())
+                    {
+                        v_dataheadertable.ResetRenderedPagesCount();
+
+                        v_page = new PDFjet.NET.Page(p_pdf, v_layout);
+                        v_currentpage++;
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Reporting.Exception("Erro ao gerar o arquivo PDF parcial de saída.", e);
             }
         }
 
