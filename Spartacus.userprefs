@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Reporting.Package.cs">
     <Files>
-      <File FileName="Test/Main.cs" Line="36" Column="36" />
+      <File FileName="Test/Main.cs" Line="1" Column="1" />
       <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="21" Column="21" />
-      <File FileName="Spartacus/Spartacus.Reporting.Package.cs" Line="10" Column="10" />
+      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Reporting.Package.cs" Line="21" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

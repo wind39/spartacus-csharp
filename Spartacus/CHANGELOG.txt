@@ -22,6 +22,7 @@ SOFTWARE.
 
 
 
+0.34.14: Criptografando nomes de arquivos intermediários ao criar zip na Spartacus.Reporting.Package
 0.34.13: Implementada classe Spartacus.Reporting.Package para salvar relatórios PDF no mesmo arquivo e em arquivos separados.
 0.34.12: Permitindo que o range de células do cabeçalho possa ser configurado na célula A1
 0.34.11: Implementado pacote de relatórios Excel (um relatório em cada planilha, no mesmo arquivo XLSX).

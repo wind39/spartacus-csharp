@@ -150,21 +150,27 @@ namespace Spartacus.Reporting
         public void SaveSplitted(bool p_compress)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_encrypted;
 
             try
             {
                 if (p_compress)
                 {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)this.v_filenames[k]);
+                        v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+
+                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
                         if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, (string)this.v_filenames[k], (string)this.v_filenames[k], "");
-                            (new System.IO.FileInfo((string)this.v_filenames[k])).Delete();
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
+                            (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
                     }
 
@@ -194,21 +200,27 @@ namespace Spartacus.Reporting
         public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_encrypted;
 
             try
             {
                 if (p_compress)
                 {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)p_filenames[k]);
+                        v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+
+                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
                         if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, (string)p_filenames[k], (string)p_filenames[k], "");
-                            (new System.IO.FileInfo((string)p_filenames[k])).Delete();
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
+                            (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
                     }
 
@@ -239,21 +251,27 @@ namespace Spartacus.Reporting
         public void SaveSplitted(bool p_compress, string p_outfilename)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_encrypted;
 
             try
             {
                 if (p_compress)
                 {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)this.v_filenames[k]);
+                        v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+
+                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
                         if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, (string)this.v_filenames[k], (string)this.v_filenames[k], "");
-                            (new System.IO.FileInfo((string)this.v_filenames[k])).Delete();
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
+                            (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
                     }
 
@@ -284,21 +302,27 @@ namespace Spartacus.Reporting
         public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress, string p_outfilename)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_encrypted;
 
             try
             {
                 if (p_compress)
                 {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)p_filenames[k]);
+                        v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+
+                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
                         if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, (string)p_filenames[k], (string)p_filenames[k], "");
-                            (new System.IO.FileInfo((string)p_filenames[k])).Delete();
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
+                            (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
                     }
 

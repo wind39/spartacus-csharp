@@ -263,6 +263,7 @@ namespace Test
                 v_package.Execute();
 
                 //v_package.SaveMerged(v_table.Rows[0]["est_st_nome"].ToString() + ".pdf");
+                //v_package.SaveSplitted();
                 v_package.SaveSplitted(true, v_table.Rows[0]["est_st_nome"].ToString() + ".zip");
             }
             catch (Spartacus.Reporting.Exception e)
