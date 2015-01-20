@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-
+0.34.16: Permitindo caracteres " e \ no Spartacus.Database.Command.RemoveUnwantedCharsExecute
 0.34.15: Permitindo caractere % no Spartacus.Database.Command.RemoveUnwantedCharsExecute
 0.34.14: Criptografando nomes de arquivos intermediários ao criar zip na Spartacus.Reporting.Package
 0.34.13: Implementada classe Spartacus.Reporting.Package para salvar relatórios PDF no mesmo arquivo e em arquivos separados.
