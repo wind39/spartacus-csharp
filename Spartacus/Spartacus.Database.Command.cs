@@ -654,7 +654,7 @@ namespace Spartacus.Database
             v_allowed[84] = '[';
             v_allowed[85] = ']';
             v_allowed[86] = '%';
-            v_allowed[87] = '"';
+            v_allowed[87] = '\"';
             v_allowed[88] = '\\';
 
             v_newarray = v_newstring.ToCharArray();
