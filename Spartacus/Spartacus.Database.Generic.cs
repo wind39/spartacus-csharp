@@ -153,6 +153,17 @@ namespace Spartacus.Database
         public abstract void Execute(string p_sql);
 
         /// <summary>
+        /// Executa uma instrução SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        public abstract void Execute(string p_sql, bool p_verbose);
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -162,6 +173,20 @@ namespace Spartacus.Database
         /// Código SQL a ser consultado no banco de dados.
         /// </param>
         public abstract string ExecuteScalar(string p_sql);
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        public abstract string ExecuteScalar(string p_sql, bool p_verbose);
 
         /// <summary>
         /// Insere uma massa de dados.

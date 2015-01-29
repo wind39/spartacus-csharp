@@ -221,6 +221,46 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Executa um código SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override void Execute(string p_sql, bool p_verbose)
+        {
+            System.Data.OleDb.OleDbCommand v_olecmd;
+            string v_sql;
+
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_olecon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(v_sql, v_olecon);
+                    v_olecmd.ExecuteNonQuery();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -242,6 +282,51 @@ namespace Spartacus.Database
                     v_olecon.Open();
 
                     v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_olecon);
+                    v_ret = v_olecmd.ExecuteScalar().ToString();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_ret;
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override string ExecuteScalar(string p_sql, bool p_verbose)
+        {
+            System.Data.OleDb.OleDbCommand v_olecmd;
+            string v_sql, v_ret;
+
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_olecon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(v_sql, v_olecon);
                     v_ret = v_olecmd.ExecuteScalar().ToString();
                 }
                 catch (System.Data.OleDb.OleDbException e)

@@ -186,6 +186,46 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Executa um código SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override void Execute(string p_sql, bool p_verbose)
+        {
+            System.Data.Odbc.OdbcCommand v_odbccmd;
+            string v_sql;
+
+            using (System.Data.Odbc.OdbcConnection v_odbccon = new System.Data.Odbc.OdbcConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_odbccon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Odbc.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_odbccmd = new System.Data.Odbc.OdbcCommand(v_sql, v_odbccon);
+                    v_odbccmd.ExecuteNonQuery();
+                }
+                catch (System.Data.Odbc.OdbcException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -207,6 +247,51 @@ namespace Spartacus.Database
                     v_odbccon.Open();
 
                     v_odbccmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_odbccon);
+                    v_ret = v_odbccmd.ExecuteScalar().ToString();
+                }
+                catch (System.Data.Odbc.OdbcException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_ret;
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override string ExecuteScalar(string p_sql, bool p_verbose)
+        {
+            System.Data.Odbc.OdbcCommand v_odbccmd;
+            string v_sql, v_ret;
+
+            using (System.Data.Odbc.OdbcConnection v_odbccon = new System.Data.Odbc.OdbcConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_odbccon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Odbc.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_odbccmd = new System.Data.Odbc.OdbcCommand(v_sql, v_odbccon);
                     v_ret = v_odbccmd.ExecuteScalar().ToString();
                 }
                 catch (System.Data.Odbc.OdbcException e)

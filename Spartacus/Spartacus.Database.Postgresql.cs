@@ -188,7 +188,47 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Executa um código SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override void Execute(string p_sql, bool p_verbose)
+        {
+            Npgsql.NpgsqlCommand v_pgcmd;
+            string v_sql;
+
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_pgcon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Postgresql.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_pgcmd = new Npgsql.NpgsqlCommand(v_sql, v_pgcon);
+                    v_pgcmd.ExecuteNonQuery();
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
         }
@@ -219,7 +259,52 @@ namespace Spartacus.Database
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
-                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_ret;
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override string ExecuteScalar(string p_sql, bool p_verbose)
+        {
+            Npgsql.NpgsqlCommand v_pgcmd;
+            string v_sql, v_ret;
+
+            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_pgcon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Postgresql.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_pgcmd = new Npgsql.NpgsqlCommand(v_sql, v_pgcon);
+                    v_ret = v_pgcmd.ExecuteScalar().ToString();
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 

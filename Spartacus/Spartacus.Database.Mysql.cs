@@ -188,7 +188,47 @@ namespace Spartacus.Database
                 }
                 catch (MySql.Data.MySqlClient.MySqlException e)
                 {
-                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Executa um código SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override void Execute(string p_sql, bool p_verbose)
+        {
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
+            string v_sql;
+
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_mycon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Mysql.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(v_sql, v_mycon);
+                    v_mycmd.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
         }
@@ -219,7 +259,52 @@ namespace Spartacus.Database
                 }
                 catch (MySql.Data.MySqlClient.MySqlException e)
                 {
-                    throw new Spartacus.Database.Exception("Não conseguiu se conectar a {0}/{1}@{2}:{3}/{4}.", e, this.v_user, this.v_password, this.v_host, this.v_port, this.v_service);
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_ret;
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override string ExecuteScalar(string p_sql, bool p_verbose)
+        {
+            MySql.Data.MySqlClient.MySqlCommand v_mycmd;
+            string v_sql, v_ret;
+
+            using (MySql.Data.MySqlClient.MySqlConnection v_mycon = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_mycon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Mysql.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_mycmd = new MySql.Data.MySqlClient.MySqlCommand(v_sql, v_mycon);
+                    v_ret = v_mycmd.ExecuteScalar().ToString();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
                 }
             }
 

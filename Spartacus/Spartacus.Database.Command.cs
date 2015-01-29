@@ -119,7 +119,7 @@ namespace Spartacus.Database
 		{
 			string v_newstring;
 			int i, j, k;
-			char[][] v_handler = new char[58][];
+			char[][] v_handler = new char[56][];
 			char[] v_allowed = new char[85];
 			bool v_achou;
 			char[] v_newarray;
@@ -179,9 +179,7 @@ namespace Spartacus.Database
 			v_handler[52] = new char[] { 'ý', 'y' };
 			v_handler[53] = new char[] { 'ÿ', 'y' };
 			v_handler[54] = new char[] { 'ž', 'z' };
-			v_handler[55] = new char[] { '\'', '.' };
-			v_handler[56] = new char[] { '"', '.' };
-			v_handler[57] = new char[] { '&', 'e' };
+			v_handler[55] = new char[] { '&', 'e' };
 
 			v_newstring = p_string;
 			for (k = 0; k < v_handler.Length; k++) 
@@ -309,7 +307,7 @@ namespace Spartacus.Database
         {
             string v_newstring;
             int i, j, k;
-            char[][] v_handler = new char[57][];
+            char[][] v_handler = new char[56][];
             char[] v_allowed = new char[86];
             bool v_achou;
             char[] v_newarray;
@@ -369,8 +367,7 @@ namespace Spartacus.Database
             v_handler[52] = new char[] { 'ý', 'y' };
             v_handler[53] = new char[] { 'ÿ', 'y' };
             v_handler[54] = new char[] { 'ž', 'z' };
-            v_handler[55] = new char[] { '"', '.' };
-            v_handler[56] = new char[] { '&', 'e' };
+            v_handler[55] = new char[] { '&', 'e' };
 
             v_newstring = p_string;
             for (k = 0; k < v_handler.Length; k++) 
@@ -499,7 +496,7 @@ namespace Spartacus.Database
         {
             string v_newstring;
             int i, j, k;
-            char[][] v_handler = new char[57][];
+            char[][] v_handler = new char[56][];
             char[] v_allowed = new char[89];
             bool v_achou;
             char[] v_newarray;
@@ -559,8 +556,7 @@ namespace Spartacus.Database
             v_handler[52] = new char[] { 'ý', 'y' };
             v_handler[53] = new char[] { 'ÿ', 'y' };
             v_handler[54] = new char[] { 'ž', 'z' };
-            v_handler[55] = new char[] { '"', '.' };
-            v_handler[56] = new char[] { '&', 'e' };
+            v_handler[55] = new char[] { '&', 'e' };
 
             v_newstring = p_string;
             for (k = 0; k < v_handler.Length; k++) 
@@ -654,7 +650,7 @@ namespace Spartacus.Database
             v_allowed[84] = '[';
             v_allowed[85] = ']';
             v_allowed[86] = '%';
-            v_allowed[87] = '\"';
+            v_allowed[87] = '"';
             v_allowed[88] = '\\';
 
             v_newarray = v_newstring.ToCharArray();

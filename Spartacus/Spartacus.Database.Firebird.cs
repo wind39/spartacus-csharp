@@ -194,6 +194,46 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Executa um código SQL no banco de dados.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser executado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override void Execute(string p_sql, bool p_verbose)
+        {
+            FirebirdSql.Data.FirebirdClient.FbCommand v_fbcmd;
+            string v_sql;
+
+            using (FirebirdSql.Data.FirebirdClient.FbConnection v_fbcon = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_fbcon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Firebird.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(v_sql, v_fbcon);
+                    v_fbcmd.ExecuteNonQuery();
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -215,6 +255,51 @@ namespace Spartacus.Database
                     v_fbcon.Open();
 
                     v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_fbcon);
+                    v_ret = v_fbcmd.ExecuteScalar().ToString();
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_ret;
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+        /// </summary>
+        /// <returns>
+        /// string com o dado de retorno.
+        /// </returns>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_verbose'>
+        /// Se deve ser mostrado o código SQL no console.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
+        public override string ExecuteScalar(string p_sql, bool p_verbose)
+        {
+            FirebirdSql.Data.FirebirdClient.FbCommand v_fbcmd;
+            string v_sql, v_ret;
+
+            using (FirebirdSql.Data.FirebirdClient.FbConnection v_fbcon = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_fbcon.Open();
+
+                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+
+                    if (p_verbose)
+                    {
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Firebird.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine(v_sql);
+                        System.Console.WriteLine("--------------------------------------------------");
+                    }
+
+                    v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(v_sql, v_fbcon);
                     v_ret = v_fbcmd.ExecuteScalar().ToString();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
