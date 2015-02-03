@@ -551,6 +551,7 @@ namespace Spartacus.Utils
         public void Export(string p_filename)
         {
             Spartacus.Utils.File v_file;
+            string v_markup;
 
             v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
 
@@ -559,7 +560,9 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        this.ExportXLSX(p_filename, "template.xlsx");
+                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""));
+                        this.ExportXLSX(p_filename, v_markup);
+                        (new System.IO.FileInfo(v_markup)).Delete();
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
@@ -1273,6 +1276,63 @@ namespace Spartacus.Utils
                 }
 
                 v_package_dst.Save();
+            }
+
+            return v_dstname;
+        }
+
+        /// <summary>
+        /// Baseado em um DataTable preenchido, cria um XLSX para ser usado como template.
+        /// </summary>
+        /// <returns>Nome do arquivo a ser usado como template.</returns>
+        /// <param name="p_reportname">Nome do relatório.</param>
+        private string CreateTemplate(string p_reportname)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            System.IO.FileInfo v_dst;
+            string v_dstname;
+            string v_column;
+            string v_prefix;
+
+            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+
+            v_dstname = v_cryptor.Encrypt(p_reportname).Replace("/", "").Replace("=", "").Replace("+", "") + ".xlsx";
+            v_dst = new System.IO.FileInfo(v_dstname);
+
+            using (OfficeOpenXml.ExcelPackage v_package = new OfficeOpenXml.ExcelPackage(v_dst))
+            {
+                foreach (System.Data.DataTable v_table in this.v_set.Tables)
+                {
+                    OfficeOpenXml.ExcelWorksheet v_worksheet = v_package.Workbook.Worksheets.Add(v_table.TableName);
+                    v_package.Workbook.Styles.UpdateXml();
+
+                    v_worksheet.View.ShowGridLines = true;
+
+                    for (int k = 1; k <= v_table.Columns.Count; k++)
+                    {
+                        v_column = v_table.Columns[k-1].ColumnName.ToUpper();
+
+                        if (v_column.Contains("_RE_"))
+                            v_prefix = "*RE_";
+                        else
+                        {
+                            if (v_column.Contains("_IN_"))
+                                v_prefix = "*IN_";
+                            else
+                                v_prefix = "*ST_";
+                        }
+
+                        v_worksheet.Cells[1, k].Value = v_column;
+                        v_worksheet.Cells[2, k].Value = v_prefix + v_column;
+                    }
+
+                    v_worksheet.View.FreezePanes(2, 1);
+                    v_worksheet.Tables.Add(v_worksheet.Cells["A1:" + OfficeOpenXml.ExcelCellBase.GetAddress(v_table.Rows.Count + 1, v_table.Columns.Count)], v_table.TableName);
+                    v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
+                    v_worksheet.Tables[0].ShowFilter = true;
+                }
+
+                v_package.Save();
             }
 
             return v_dstname;

@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ReportTest();
+            ExcelTest();
         }
 
         //#region DATABASE
@@ -338,6 +338,8 @@ namespace Test
             v_excel.Export("Saidas Geral.xlsx", "template_00002.xlsx", true);
             */
 
+            // PACOTE EXCEL
+            /*
             Spartacus.Database.Generic v_database;
             Spartacus.Utils.Excel v_excel;
             System.Data.DataTable v_tablerel, v_table;
@@ -367,6 +369,19 @@ namespace Test
             }
 
             v_excel.Export(v_tablerel.Rows[0]["est_st_nome"].ToString() + ".xlsx", v_templatenames);
+            */
+
+            Spartacus.Database.Generic v_database;
+            Spartacus.Utils.Excel v_excel;
+            System.Data.DataTable v_table;
+
+            v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
+            v_excel = new Spartacus.Utils.Excel();
+
+            v_table = v_database.Query("select * from psinfo.empresas", "EMPRESAS");
+            v_excel.v_set.Tables.Add(v_table);
+
+            v_excel.Export("output.xlsx");
         }
 
         #endregion
