@@ -377,11 +377,24 @@ namespace Test
 
             v_database = new Spartacus.Database.Odbc("xerafa", "pscore", "plaservcore");
             v_excel = new Spartacus.Utils.Excel();
+            v_excel.v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(Excel_ProgressEvent);
 
             v_table = v_database.Query("select * from psinfo.empresas", "EMPRESAS");
             v_excel.v_set.Tables.Add(v_table);
 
+            v_table = v_database.Query("select * from psinfo.usuarios", "USUARIOS");
+            v_excel.v_set.Tables.Add(v_table);
+
             v_excel.Export("output.xlsx");
+        }
+
+        private static void Excel_ProgressEvent(Spartacus.Utils.ProgressEventClass obj, Spartacus.Utils.ProgressEventArgs e)
+        {
+            double v_percent;
+
+            v_percent = System.Math.Round(e.v_percentage, 2);
+
+            System.Console.WriteLine("{0}.{1} - {2}% - {3}", e.v_process, e.v_subprocess, v_percent, e.v_message);
         }
 
         #endregion

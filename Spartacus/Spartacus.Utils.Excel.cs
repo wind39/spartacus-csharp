@@ -72,6 +72,31 @@ namespace Spartacus.Utils
         /// </summary>
         public System.Collections.ArrayList v_sheets;
 
+        /// <summary>
+        /// Objeto que gerencia eventos de progresso do processamento.
+        /// </summary>
+        public Spartacus.Utils.ProgressEventClass v_progress;
+
+        /// <summary>
+        /// Percentual global de progresso do processo.
+        /// </summary>
+        private double v_perc;
+
+        /// <summary>
+        /// Incremento global de percentual do processo.
+        /// </summary>
+        private double v_inc;
+
+        /// <summary>
+        /// Linha atual no processo.
+        /// </summary>
+        private int v_currentrow;
+
+        /// <summary>
+        /// Número total de linhas do processo.
+        /// </summary>
+        private int v_numtotalrows;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Excel"/>.
@@ -80,6 +105,7 @@ namespace Spartacus.Utils
         {
             this.v_set = new System.Data.DataSet();
             this.v_sheets = new System.Collections.ArrayList();
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
         }
 
         /// <summary>
@@ -754,7 +780,7 @@ namespace Spartacus.Utils
             System.IO.StreamWriter v_writer = null;
             string v_text;
             char v_notseparator;
-            int i;
+            int i, k;
 
             if (p_separator == ',')
                 v_notseparator = '.';
@@ -765,20 +791,31 @@ namespace Spartacus.Utils
             {
                 v_writer = new System.IO.StreamWriter(new System.IO.FileStream(p_filename, System.IO.FileMode.Create), p_encoding);
 
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportCSV", 0.0, "Salvando arquivo " + p_filename);
+
                 v_text = this.v_set.Tables[0].Columns[0].ColumnName;
                 for (i = 1; i < this.v_set.Tables[0].Columns.Count; i++)
                     v_text += p_separator + this.v_set.Tables[0].Columns[i].ColumnName;
                 v_writer.WriteLine(v_text);
 
+                this.v_inc = 100.0 / (double) this.v_set.Tables[0].Rows.Count;
+                this.v_perc = 0.0;
+                k = 0;
                 foreach (System.Data.DataRow r in this.v_set.Tables[0].Rows)
                 {
                     v_text = r[0].ToString();
                     for (i = 1; i < this.v_set.Tables[0].Columns.Count; i++)
                         v_text += p_separator + r[i].ToString().Replace(p_separator, v_notseparator);
                     v_writer.WriteLine(v_text);
+
+                    this.v_perc += this.v_inc;
+                    k++;
+                    this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportCSV", this.v_perc, "Planilha " + this.v_set.Tables[0].TableName + ": linha " + k.ToString() + " de " + this.v_set.Tables[0].Rows.Count.ToString());
                 }
 
                 v_writer.Flush();
+
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportCSV", 100.0, "Arquivo " + p_filename + " salvo.");
             }
             catch (System.Exception e)
             {
@@ -811,6 +848,14 @@ namespace Spartacus.Utils
 
                 if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
                 {
+                    this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", 0.0, "Salvando arquivo " + p_filename);
+
+                    this.v_numtotalrows = 0;
+                    foreach (System.Data.DataTable v_table in this.v_set.Tables)
+                        this.v_numtotalrows += v_table.Rows.Count;
+                    this.v_inc = 100.0 / (double) this.v_numtotalrows;
+
+                    this.v_perc = 0.0;
                     foreach (string v_key in v_package.sheets.Keys)
                     {
                         v_sheet = v_package.sheets[v_key];
@@ -823,10 +868,9 @@ namespace Spartacus.Utils
                 else
                     throw new Spartacus.Utils.Exception("Arquivo {0} nao pode ser aberto, ou nao contem planilhas com dados.", p_templatename);
 
-                System.DateTime v_mid = System.DateTime.Now;
                 v_package.Save(p_filename);
 
-                System.DateTime v_fin = System.DateTime.Now;
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", 100.0, "Arquivo " + p_filename + " salvo.");
             }
             catch (Spartacus.Utils.Exception e)
             {
@@ -939,6 +983,10 @@ namespace Spartacus.Utils
                 p_sheet.EndRow();
 
                 ((Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index - 1]).v_currentrow++;
+
+                this.v_perc += this.v_inc;
+                this.v_currentrow++;
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", this.v_perc, "Planilha " + ((Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index - 1]).v_name + ": linha " + this.v_currentrow.ToString() + " de " + this.v_numtotalrows.ToString());
             }
         }
 
