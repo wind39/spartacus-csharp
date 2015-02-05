@@ -142,6 +142,7 @@ namespace Spartacus.Reporting
         private void RenderImage(Spartacus.Reporting.Object p_object, double p_posx, double p_posy, double p_rightmargin, PDFjet.NET.PDF p_pdf, PDFjet.NET.Page p_page)
         {
             PDFjet.NET.Image v_image;
+            System.IO.FileInfo v_info;
             char[] v_ch;
             string[] v_temp;
             Spartacus.Net.Cryptor v_cryptor;
@@ -156,43 +157,48 @@ namespace Spartacus.Reporting
                 try
                 {
                     v_path = v_cryptor.Decrypt(p_object.v_value);
-                } catch (System.Exception)
+                }
+                catch (System.Exception)
                 {
                     v_path = p_object.v_value;
                 }
 
-                v_temp = v_path.Split(v_ch);
-                switch (v_temp [v_temp.Length - 1].ToUpper())
+                v_info = new System.IO.FileInfo(v_path);
+                if (v_info.Exists)
                 {
-                    case "BMP":
-                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
-                        break;
-                    case "JPG":
-                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
-                        break;
-                    case "JPEG":
-                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
-                        break;
-                    case "PDF":
-                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
-                        break;
-                    case "PNG":
-                        v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
-                        break;
-                    default:
-                        v_image = null;
-                        break;
-                }
+                    v_temp = v_path.Split(v_ch);
+                    switch (v_temp[v_temp.Length - 1].ToUpper())
+                    {
+                        case "BMP":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.BMP);
+                            break;
+                        case "JPG":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                            break;
+                        case "JPEG":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
+                            break;
+                        case "PDF":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
+                            break;
+                        case "PNG":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
+                            break;
+                        default:
+                            v_image = null;
+                            break;
+                    }
 
-                if (v_image != null)
-                {
-                    if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
-                        v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
-                    else
-                        v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
-                    v_image.DrawOn(p_page);
+                    if (v_image != null)
+                    {
+                        if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
+                            v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                        else
+                            v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
+                        v_image.DrawOn(p_page);
 
-                    p_object.v_pdfobject = v_image;
+                        p_object.v_pdfobject = v_image;
+                    }
                 }
             }
             else

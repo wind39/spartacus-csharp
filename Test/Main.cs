@@ -6,7 +6,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            ExcelTest();
+            ReportTest();
         }
 
         //#region DATABASE
@@ -236,7 +236,6 @@ namespace Test
                 // Pacote Sistema Planner
 
                 v_database = new Spartacus.Database.Odbc("xerafa", "psrel00001", "plaservrel");
-
                 v_package = new Spartacus.Reporting.Package();
 
                 v_table = v_database.Query(
@@ -245,16 +244,19 @@ namespace Test
                     "       r.rel_st_nome, " + 
                     "       r.rel_st_modelopdf, " + 
                     "       pscore.pck_parametros.fnc_resolve_cabecalho(r.rel_in_codigo, 12, 1) as cabecalho, " +
-                    "       pscore.pck_parametros.fnc_resolve_filtro(r.rel_in_codigo, 12, 1) as filtro " +
+                    "       pscore.pck_parametros.fnc_resolve_filtro(r.rel_in_codigo, 0, 12, 1) as filtro " +
                     "from psrel00001.relatorios r," +
+                    "     psrel00001.relatorios_estruturas re, " +
                     "     psrel00001.estrutura e " + 
-                    "where r.est_in_codigo = e.est_in_codigo" +
-                    "  and e.est_in_codigo = 3 " + 
+                    "where re.rel_in_codigo = r.rel_in_codigo " +
+                    "  and re.est_in_codigo = e.est_in_codigo " +
+                    "  and e.est_in_codigo = 102 " + 
                     "order by r.rel_in_codigo", "RELATORIOS");
 
                 foreach (System.Data.DataRow v_row in v_table.Rows)
                 {
                     v_report = new Spartacus.Reporting.Report(int.Parse(v_row["rel_in_codigo"].ToString()), v_row["rel_st_modelopdf"].ToString(), v_database);
+                    v_report.v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(PDF_ProgressEvent);
                     v_report.v_cmd.SetValue("CABECALHO", v_row["cabecalho"].ToString());
                     v_report.v_cmd.SetValue("FILTRO", v_row["filtro"].ToString());
                     v_package.Add(v_report, v_row["rel_st_nome"].ToString() + ".pdf");
@@ -270,6 +272,15 @@ namespace Test
             {
                 System.Console.WriteLine(e.v_message);
             }
+        }
+
+        private static void PDF_ProgressEvent(Spartacus.Utils.ProgressEventClass obj, Spartacus.Utils.ProgressEventArgs e)
+        {
+            double v_percent;
+
+            v_percent = System.Math.Round(e.v_percentage, 2);
+
+            System.Console.WriteLine("{0}.{1} - {2}% - {3}", e.v_process, e.v_subprocess, v_percent, e.v_message);
         }
 
         #endregion

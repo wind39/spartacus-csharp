@@ -93,6 +93,28 @@ namespace Spartacus.Reporting
         /// </summary>
         private bool v_calculate_groups;
 
+        /// <summary>
+        /// Objeto que gerencia eventos de progresso do processamento.
+        /// </summary>
+        public Spartacus.Utils.ProgressEventClass v_progress;
+
+        /// <summary>
+        /// Percentual de progresso do processamento.
+        /// </summary>
+        public double v_perc;
+
+        /// <summary>
+        /// Faixa de percentual de progresso do processamento usada pelo relatório atual.
+        /// Se não for pacote de relatórios, é igual a 100.
+        /// </summary>
+        public double v_percstep;
+
+        /// <summary>
+        /// Valor do percentual a ser atualizado após renderizar a última página.
+        /// Se não for pacote de relatórios, é igual a 100.
+        /// </summary>
+        public double v_lastperc;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
@@ -101,6 +123,8 @@ namespace Spartacus.Reporting
         /// <param name="p_filename">Nome do arquivo XML.</param>
         public Report(int p_reportid, string p_filename)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -114,6 +138,9 @@ namespace Spartacus.Reporting
             this.v_table = null;
 
             this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -133,6 +160,8 @@ namespace Spartacus.Reporting
         /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
         public Report(int p_reportid, string p_filename, Spartacus.Database.Generic p_database)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -146,6 +175,9 @@ namespace Spartacus.Reporting
             this.v_table = null;
 
             this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -165,6 +197,8 @@ namespace Spartacus.Reporting
         /// <param name="p_table">Tabela com os dados.</param>
         public Report(int p_reportid, string p_filename, System.Data.DataTable p_table)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -178,6 +212,9 @@ namespace Spartacus.Reporting
             this.v_table = p_table;
 
             this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -197,6 +234,8 @@ namespace Spartacus.Reporting
         /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
         public Report(int p_reportid, string p_filename, bool p_calculate_groups)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -210,6 +249,9 @@ namespace Spartacus.Reporting
             this.v_table = null;
 
             this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -230,6 +272,8 @@ namespace Spartacus.Reporting
         /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
         public Report(int p_reportid, string p_filename, Spartacus.Database.Generic p_database, bool p_calculate_groups)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -243,6 +287,9 @@ namespace Spartacus.Reporting
             this.v_table = null;
 
             this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -263,6 +310,8 @@ namespace Spartacus.Reporting
         /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
         public Report(int p_reportid, string p_filename, System.Data.DataTable p_table, bool p_calculate_groups)
         {
+            this.v_reportid = p_reportid;
+
             this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
@@ -276,6 +325,9 @@ namespace Spartacus.Reporting
             this.v_table = null;
 
             this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
 
             try
             {
@@ -1219,6 +1271,11 @@ namespace Spartacus.Reporting
         {
             int k;
 
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Executando relatorio " + this.v_reportid.ToString());
+            this.v_perc = 0;
+            this.v_percstep = 100.0;
+            this.v_lastperc = 100.0;
+
             if (this.v_database != null && this.v_tabletemp == null)
             {
                 this.v_cmd.UpdateText();
@@ -1333,6 +1390,7 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
+            double v_inc;
 
             // se o relatório não tiver dados, não faz nada
             if (this.v_table.Rows.Count == 0)
@@ -1340,6 +1398,8 @@ namespace Spartacus.Reporting
 
             try
             {
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Renderizando relatorio " + this.v_reportid.ToString() + " no arquivo " + p_filename);
+
                 f = new System.IO.FileStream(p_filename, System.IO.FileMode.Create);
                 v_buffer = new System.IO.BufferedStream(f);
 
@@ -1388,6 +1448,7 @@ namespace Spartacus.Reporting
 
                 v_numpages = v_datatable.GetNumberOfPages(v_page);
                 v_currentpage = 1;
+                v_inc = this.v_percstep / (double) v_numpages;
                 while (v_datatable.HasMoreData())
                 {
                     this.v_header.SetPageNumber(v_currentpage, v_numpages);
@@ -1414,6 +1475,9 @@ namespace Spartacus.Reporting
                         v_page
                     );
 
+                    this.v_perc += v_inc;
+                    this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": pagina " + v_currentpage.ToString() + " de " + v_numpages.ToString());
+
                     if (v_datatable.HasMoreData())
                     {
                         v_dataheadertable.ResetRenderedPagesCount();
@@ -1425,6 +1489,9 @@ namespace Spartacus.Reporting
 
                 v_pdf.Flush();
                 v_buffer.Close();
+
+                this.v_perc = this.v_lastperc;
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado no arquivo " + p_filename);
             }
             catch (System.Exception e)
             {
@@ -1444,14 +1511,16 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
+            double v_inc;
 
             // se o relatório não tiver dados, não faz nada
-            //TODO: salvar página em branco com a informação de que o relatório não tem dados?
             if (this.v_table.Rows.Count == 0)
                 return;
 
             try
             {
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Renderizando parcialmente o relatorio " + this.v_reportid.ToString());
+
                 if (this.v_settings.v_layout == Spartacus.Reporting.PageLayout.LANDSCAPE)
                     v_layout = PDFjet.NET.A4.LANDSCAPE;
                 else
@@ -1495,6 +1564,7 @@ namespace Spartacus.Reporting
 
                 v_numpages = v_datatable.GetNumberOfPages(v_page);
                 v_currentpage = 1;
+                v_inc = this.v_percstep / (double) v_numpages;
                 while (v_datatable.HasMoreData())
                 {
                     this.v_header.SetPageNumber(v_currentpage, v_numpages);
@@ -1521,6 +1591,9 @@ namespace Spartacus.Reporting
                         v_page
                     );
 
+                    this.v_perc += v_inc;
+                    this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": pagina " + v_currentpage.ToString() + " de " + v_numpages.ToString());
+
                     if (v_datatable.HasMoreData())
                     {
                         v_dataheadertable.ResetRenderedPagesCount();
@@ -1529,6 +1602,9 @@ namespace Spartacus.Reporting
                         v_currentpage++;
                     }
                 }
+
+                this.v_perc = this.v_lastperc;
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado parcialmente");
             }
             catch (System.Exception e)
             {

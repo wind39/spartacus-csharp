@@ -78,22 +78,22 @@ namespace Spartacus.Utils
         public Spartacus.Utils.ProgressEventClass v_progress;
 
         /// <summary>
-        /// Percentual global de progresso do processo.
+        /// Percentual global de progresso do processamento.
         /// </summary>
         private double v_perc;
 
         /// <summary>
-        /// Incremento global de percentual do processo.
+        /// Incremento global de percentual do processamento.
         /// </summary>
         private double v_inc;
 
         /// <summary>
-        /// Linha atual no processo.
+        /// Linha atual no processamento.
         /// </summary>
         private int v_currentrow;
 
         /// <summary>
-        /// Número total de linhas do processo.
+        /// Número total de linhas do processamento.
         /// </summary>
         private int v_numtotalrows;
 

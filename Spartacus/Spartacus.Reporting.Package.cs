@@ -106,10 +106,28 @@ namespace Spartacus.Reporting
         /// </summary>
         public void SaveSplitted()
         {
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
+
             try
             {
+                v_perc = 0.0;
+                v_percstep = 100.0 / (double) this.v_reports.Count;
+                v_lastperc = v_percstep;
+
                 for (int k = 0; k < this.v_reports.Count; k++)
-                    ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)this.v_filenames[k]);
+                {
+                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                    v_report.v_perc = v_perc;
+                    v_report.v_percstep = v_percstep;
+                    v_report.v_lastperc = v_lastperc;
+
+                    v_report.Save((string)this.v_filenames[k]);
+
+                    v_perc = v_lastperc;
+                    v_lastperc += v_percstep;
+                }
             }
             catch (Spartacus.Reporting.Exception e)
             {
@@ -127,10 +145,28 @@ namespace Spartacus.Reporting
         /// <param name="p_filenames">Lista de nomes de arquivos, que deve possuir o mesmo número de elementos.</param>
         public void SaveSplitted(System.Collections.ArrayList p_filenames)
         {
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
+
             try
             {
+                v_perc = 0.0;
+                v_percstep = 100.0 / (double) this.v_reports.Count;
+                v_lastperc = v_percstep;
+
                 for (int k = 0; k < this.v_reports.Count; k++)
-                    ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)p_filenames[k]);
+                {
+                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                    v_report.v_perc = v_perc;
+                    v_report.v_percstep = v_percstep;
+                    v_report.v_lastperc = v_lastperc;
+
+                    v_report.Save((string)p_filenames[k]);
+
+                    v_perc = v_lastperc;
+                    v_lastperc += v_percstep;
+                }
             }
             catch (Spartacus.Reporting.Exception e)
             {
@@ -152,6 +188,8 @@ namespace Spartacus.Reporting
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Net.Cryptor v_cryptor;
             string v_encrypted;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -162,24 +200,52 @@ namespace Spartacus.Reporting
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
                         v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
 
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
-                        if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save(v_encrypted);
+                        if (v_report.v_table.Rows.Count > 0)
                         {
                             v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
                     }
 
                     v_zipstorer.Close();
                 }
                 else
                 {
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)this.v_filenames[k]);
+                    {
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save((string)this.v_filenames[k]);
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
+                    }
                 }
             }
             catch (Spartacus.Reporting.Exception e)
@@ -202,6 +268,8 @@ namespace Spartacus.Reporting
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Net.Cryptor v_cryptor;
             string v_encrypted;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -212,24 +280,52 @@ namespace Spartacus.Reporting
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
                         v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
 
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
-                        if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save(v_encrypted);
+                        if (v_report.v_table.Rows.Count > 0)
                         {
                             v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
                     }
 
                     v_zipstorer.Close();
                 }
                 else
                 {
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)p_filenames[k]);
+                    {
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save((string)p_filenames[k]);
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
+                    }
                 }
             }
             catch (Spartacus.Reporting.Exception e)
@@ -253,6 +349,8 @@ namespace Spartacus.Reporting
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Net.Cryptor v_cryptor;
             string v_encrypted;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -263,24 +361,52 @@ namespace Spartacus.Reporting
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
                         v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
 
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
-                        if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save(v_encrypted);
+                        if (v_report.v_table.Rows.Count > 0)
                         {
                             v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
                     }
 
                     v_zipstorer.Close();
                 }
                 else
                 {
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)this.v_filenames[k]);
+                    {
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save((string)this.v_filenames[k]);
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
+                    }
                 }
             }
             catch (Spartacus.Reporting.Exception e)
@@ -304,6 +430,8 @@ namespace Spartacus.Reporting
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Net.Cryptor v_cryptor;
             string v_encrypted;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -314,24 +442,52 @@ namespace Spartacus.Reporting
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
 
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
                         v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
 
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save(v_encrypted);
-                        if (((Spartacus.Reporting.Report)this.v_reports[k]).v_table.Rows.Count > 0)
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save(v_encrypted);
+                        if (v_report.v_table.Rows.Count > 0)
                         {
                             v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
                     }
 
                     v_zipstorer.Close();
                 }
                 else
                 {
+                    v_perc = 0.0;
+                    v_percstep = 100.0 / (double) this.v_reports.Count;
+                    v_lastperc = v_percstep;
+
                     for (int k = 0; k < this.v_reports.Count; k++)
-                        ((Spartacus.Reporting.Report)this.v_reports[k]).Save((string)p_filenames[k]);
+                    {
+                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                        v_report.v_perc = v_perc;
+                        v_report.v_percstep = v_percstep;
+                        v_report.v_lastperc = v_lastperc;
+
+                        v_report.Save((string)p_filenames[k]);
+
+                        v_perc = v_lastperc;
+                        v_lastperc += v_percstep;
+                    }
                 }
             }
             catch (Spartacus.Reporting.Exception e)
@@ -352,6 +508,8 @@ namespace Spartacus.Reporting
             PDFjet.NET.PDF v_pdf;
             System.IO.BufferedStream v_buffer;
             System.IO.FileStream f;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -360,8 +518,23 @@ namespace Spartacus.Reporting
 
                 v_pdf = new PDFjet.NET.PDF(v_buffer);
 
+                v_perc = 0.0;
+                v_percstep = 100.0 / (double) this.v_reports.Count;
+                v_lastperc = v_percstep;
+
                 for (int k = 0; k < this.v_reports.Count; k++)
-                    ((Spartacus.Reporting.Report)this.v_reports[k]).SavePartial(v_pdf);
+                {
+                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                    v_report.v_perc = v_perc;
+                    v_report.v_percstep = v_percstep;
+                    v_report.v_lastperc = v_lastperc;
+
+                    v_report.SavePartial(v_pdf);
+
+                    v_perc = v_lastperc;
+                    v_lastperc += v_percstep;
+                }
 
                 v_pdf.Flush();
                 v_buffer.Close();
@@ -385,6 +558,8 @@ namespace Spartacus.Reporting
             PDFjet.NET.PDF v_pdf;
             System.IO.BufferedStream v_buffer;
             System.IO.FileStream f;
+            Spartacus.Reporting.Report v_report;
+            double v_perc, v_percstep, v_lastperc;
 
             try
             {
@@ -393,8 +568,23 @@ namespace Spartacus.Reporting
 
                 v_pdf = new PDFjet.NET.PDF(v_buffer);
 
+                v_perc = 0.0;
+                v_percstep = 100.0 / (double) this.v_reports.Count;
+                v_lastperc = v_percstep;
+
                 for (int k = 0; k < this.v_reports.Count; k++)
-                    ((Spartacus.Reporting.Report)this.v_reports[k]).SavePartial(v_pdf);
+                {
+                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+
+                    v_report.v_perc = v_perc;
+                    v_report.v_percstep = v_percstep;
+                    v_report.v_lastperc = v_lastperc;
+
+                    v_report.SavePartial(v_pdf);
+
+                    v_perc = v_lastperc;
+                    v_lastperc += v_percstep;
+                }
 
                 v_pdf.Flush();
                 v_buffer.Close();
