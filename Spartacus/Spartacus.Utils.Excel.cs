@@ -597,7 +597,6 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV ou XLSX com template padrão, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename)
         {
             Spartacus.Utils.File v_file;
@@ -610,7 +609,47 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""));
+                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""), false, false);
+                        this.ExportXLSX(p_filename, v_markup);
+                        (new System.IO.FileInfo(v_markup)).Delete();
+                        break;
+                    case "csv":
+                        this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    default:
+                        throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+        /// <param name="p_freezeheader">Se deve congelar ou não a primeira linha da planilha.</param>
+        /// <param name="p_showfilter">Se deve mostrar ou não o filtro na primeira linha da planilha.</param>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
+        public void Export(string p_filename, bool p_freezeheader, bool p_showfilter)
+        {
+            Spartacus.Utils.File v_file;
+            string v_markup;
+
+            v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+            try
+            {
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "xlsx":
+                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""), p_freezeheader, p_showfilter);
                         this.ExportXLSX(p_filename, v_markup);
                         (new System.IO.FileInfo(v_markup)).Delete();
                         break;
@@ -637,7 +676,6 @@ namespace Spartacus.Utils
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename, string p_templatename)
         {
             Spartacus.Utils.File v_file;
@@ -675,7 +713,6 @@ namespace Spartacus.Utils
         /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
         /// <param name="p_markupname">Se deve substituir o markup do cabeçalho ou não.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename, string p_templatename, bool p_replacemarkup)
         {
             Spartacus.Utils.File v_file;
@@ -721,7 +758,6 @@ namespace Spartacus.Utils
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <param name="p_templatenames">Nome do arquivo XLSX a ser usado como template.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename, System.Collections.ArrayList p_templatenames)
         {
             Spartacus.Utils.File v_file;
@@ -762,7 +798,6 @@ namespace Spartacus.Utils
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
         /// <param name="p_encoding">Codificação de escrita do arquivo CSV.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        /// <remarks>No caso de arquivo CSV, apenas a primeira tabela do DataSet será salva.</remarks>
         public void Export(string p_filename, char p_separator, System.Text.Encoding p_encoding)
         {
             Spartacus.Utils.File v_file;
@@ -1358,7 +1393,9 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Nome do arquivo a ser usado como template.</returns>
         /// <param name="p_reportname">Nome do relatório.</param>
-        private string CreateTemplate(string p_reportname)
+        /// <param name="p_freezeheader">Se deve congelar ou não a primeira linha da planilha.</param>
+        /// <param name="p_showfilter">Se deve mostrar ou não o filtro na primeira linha da planilha.</param>
+        private string CreateTemplate(string p_reportname, bool p_freezeheader, bool p_showfilter)
         {
             Spartacus.Net.Cryptor v_cryptor;
             System.IO.FileInfo v_dst;
@@ -1398,10 +1435,15 @@ namespace Spartacus.Utils
                         v_worksheet.Cells[2, k].Value = v_prefix + v_column;
                     }
 
-                    v_worksheet.View.FreezePanes(2, 1);
-                    v_worksheet.Tables.Add(v_worksheet.Cells["A1:" + OfficeOpenXml.ExcelCellBase.GetAddress(v_table.Rows.Count + 1, v_table.Columns.Count)], v_table.TableName);
-                    v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
-                    v_worksheet.Tables[0].ShowFilter = true;
+                    if (p_freezeheader)
+                        v_worksheet.View.FreezePanes(2, 1);
+
+                    if (p_showfilter)
+                    {
+                        v_worksheet.Tables.Add(v_worksheet.Cells["A1:" + OfficeOpenXml.ExcelCellBase.GetAddress(v_table.Rows.Count + 1, v_table.Columns.Count)], v_table.TableName);
+                        v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
+                        v_worksheet.Tables[0].ShowFilter = true;
+                    }
                 }
 
                 v_package.Save();

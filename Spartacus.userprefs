@@ -1,13 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Exception.cs">
-    <Files>
-      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="27" Column="27" />
-      <File FileName="Spartacus/Spartacus.Utils.File.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Net.Server.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Net.Exception.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
