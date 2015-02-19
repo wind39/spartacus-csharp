@@ -2,7 +2,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = Spartacus
-PROJECT_NUMBER         = 0.34.10
+PROJECT_NUMBER         = 0.35.2
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = Brazilian
