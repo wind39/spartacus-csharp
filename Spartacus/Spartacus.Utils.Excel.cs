@@ -1413,7 +1413,7 @@ namespace Spartacus.Utils
                 foreach (System.Data.DataTable v_table in this.v_set.Tables)
                 {
                     OfficeOpenXml.ExcelWorksheet v_worksheet = v_package.Workbook.Worksheets.Add(v_table.TableName);
-                    v_package.Workbook.Styles.UpdateXml();
+                    //v_package.Workbook.Styles.UpdateXml();
 
                     v_worksheet.View.ShowGridLines = true;
 
