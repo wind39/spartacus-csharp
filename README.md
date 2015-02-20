@@ -12,7 +12,7 @@ Spartacus links this libraries:
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
-  - Npgsql (http://npgsql.projects.pgfoundry.org/)
+  - Npgsql (https://github.com/npgsql/npgsql)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
   - Windows Presentation Foundation (http://wpf.codeplex.com/)
