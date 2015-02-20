@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.35.5:  Alterado progresso de renderização de relatórios em PDF para progredir na construção da matriz de renderização ao invés da escrita no arquivo de saída
 0.35.4:  Removida tentativa de atualizar estilo da planilha, ao gerar XLSX sem template
 0.35.3:  Implementadas opções para congelar e inserir filtro na primeira linha de XLSX gerados sem template
 0.35.2:  Spartacus.Reporting.Report agora fornece informação de percentual de exportação para XLSX em um evento de progresso

@@ -115,6 +115,16 @@ namespace Spartacus.Reporting
         /// </summary>
         public double v_lastperc;
 
+        /// <summary>
+        /// Incremento de percentual;
+        /// </summary>
+        private double v_inc;
+
+        /// <summary>
+        /// Número de linhas renderizadas até o momento.
+        /// </summary>
+        private int v_renderedrows;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
@@ -1390,7 +1400,6 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
-            double v_inc;
 
             // se o relatório não tiver dados, não faz nada
             if (this.v_table.Rows.Count == 0)
@@ -1399,6 +1408,8 @@ namespace Spartacus.Reporting
             try
             {
                 this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Renderizando relatorio " + this.v_reportid.ToString() + " no arquivo " + p_filename);
+                this.v_inc = this.v_percstep / (double) this.v_table.Rows.Count;
+                this.v_renderedrows = 0;
 
                 f = new System.IO.FileStream(p_filename, System.IO.FileMode.Create);
                 v_buffer = new System.IO.BufferedStream(f);
@@ -1448,7 +1459,6 @@ namespace Spartacus.Reporting
 
                 v_numpages = v_datatable.GetNumberOfPages(v_page);
                 v_currentpage = 1;
-                v_inc = this.v_percstep / (double) v_numpages;
                 while (v_datatable.HasMoreData())
                 {
                     this.v_header.SetPageNumber(v_currentpage, v_numpages);
@@ -1474,9 +1484,6 @@ namespace Spartacus.Reporting
                         v_pdf,
                         v_page
                     );
-
-                    this.v_perc += v_inc;
-                    this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": pagina " + v_currentpage.ToString() + " de " + v_numpages.ToString());
 
                     if (v_datatable.HasMoreData())
                     {
@@ -1511,7 +1518,6 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
-            double v_inc;
 
             // se o relatório não tiver dados, não faz nada
             if (this.v_table.Rows.Count == 0)
@@ -1519,7 +1525,9 @@ namespace Spartacus.Reporting
 
             try
             {
-                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Renderizando parcialmente o relatorio " + this.v_reportid.ToString());
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Renderizando o relatorio " + this.v_reportid.ToString());
+                this.v_inc = this.v_percstep / (double) this.v_table.Rows.Count;
+                this.v_renderedrows = 0;
 
                 if (this.v_settings.v_layout == Spartacus.Reporting.PageLayout.LANDSCAPE)
                     v_layout = PDFjet.NET.A4.LANDSCAPE;
@@ -1564,7 +1572,6 @@ namespace Spartacus.Reporting
 
                 v_numpages = v_datatable.GetNumberOfPages(v_page);
                 v_currentpage = 1;
-                v_inc = this.v_percstep / (double) v_numpages;
                 while (v_datatable.HasMoreData())
                 {
                     this.v_header.SetPageNumber(v_currentpage, v_numpages);
@@ -1591,9 +1598,6 @@ namespace Spartacus.Reporting
                         v_page
                     );
 
-                    this.v_perc += v_inc;
-                    this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": pagina " + v_currentpage.ToString() + " de " + v_numpages.ToString());
-
                     if (v_datatable.HasMoreData())
                     {
                         v_dataheadertable.ResetRenderedPagesCount();
@@ -1604,11 +1608,11 @@ namespace Spartacus.Reporting
                 }
 
                 this.v_perc = this.v_lastperc;
-                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado parcialmente");
+                this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado.");
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.Reporting.Exception("Erro ao gerar o arquivo PDF parcial de saída.", e);
+                throw new Spartacus.Reporting.Exception("Erro ao gerar o arquivo PDF de saída.", e);
             }
         }
 
@@ -1741,6 +1745,10 @@ namespace Spartacus.Reporting
                     }
                     v_data.Add(v_row);
                     r++;
+
+                    this.v_perc += v_inc;
+                    this.v_renderedrows++;
+                    this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": linha " + this.v_renderedrows.ToString() + " de " + this.v_table.Rows.Count.ToString());
                 }
             }
 
@@ -1857,6 +1865,10 @@ namespace Spartacus.Reporting
                         }
                         p_data.Add(v_row);
                         r++;
+
+                        this.v_perc += v_inc;
+                        this.v_renderedrows++;
+                        this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": linha " + this.v_renderedrows.ToString() + " de " + this.v_table.Rows.Count.ToString());
                     }
                 }
                 else
