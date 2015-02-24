@@ -6,6 +6,9 @@ Spartacus is a multi-purpose library written in C#, focused on:
   - Compress and uncompress zip files;
   - Render reports from a unique XML markup to PDF, using own database objects.
 
+Examples of how to use Spartacus are here: http://williamivanski.com.br/artigos.html
+Source of the examples: https://github.com/wind39/exemplos-spartacus
+
 Please note that Spartacus is not API ready yet, something may change until it becomes stable.
 
 Spartacus links this libraries:
