@@ -1374,6 +1374,9 @@ namespace Spartacus.Utils
                                                 v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
                                                 v_worksheet.Tables[0].ShowFilter = true;
                                                 break;
+                                            case "TD":
+                                                v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
+                                                break;
                                             default:
                                                 break;
                                         }
@@ -1472,6 +1475,7 @@ namespace Spartacus.Utils
 
             // criando tabela dinamica
             v_pivot = p_table.DefaultView.ToTable(true, p_textcolumn);
+            v_pivot.TableName = p_table.TableName + "_PIVOT";
 
             // adicionando colunas de valor
             for (int k = 0; k < v_valuecolumns.Length; k++)
