@@ -1468,14 +1468,21 @@ namespace Spartacus.Utils
         /// <param name="p_valuecolumns">Lista de nomes de colunas de valor, separados por vírgula.</param>
         private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_textcolumn, string p_valuecolumns)
         {
-            System.Data.DataTable v_pivot;
+            System.Data.DataTable v_pivot, v_table;
             string[] v_valuecolumns;
 
             v_valuecolumns = p_valuecolumns.Split(',');
 
+            // tratando colunas de valor
+            v_table = p_table.Clone();
+            for (int k = 0; k < v_valuecolumns.Length; k++)
+                v_table.Columns[v_valuecolumns[k]].DataType = typeof(double);
+            foreach (System.Data.DataRow v_row in p_table.Rows)
+                v_table.ImportRow(v_row);
+
             // criando tabela dinamica
             v_pivot = p_table.DefaultView.ToTable(true, p_textcolumn);
-            v_pivot.TableName = p_table.TableName + "_PIVOT";
+            v_pivot.TableName = v_table.TableName + "_PIVOT";
 
             // adicionando colunas de valor
             for (int k = 0; k < v_valuecolumns.Length; k++)
@@ -1485,7 +1492,7 @@ namespace Spartacus.Utils
             for (int i = 0; i < v_pivot.Rows.Count; i++)
             {
                 for (int j = 0; j < v_valuecolumns.Length; j++)
-                    v_pivot.Rows[i][v_valuecolumns [j]] = p_table.Compute("Sum(" + v_valuecolumns[j] + ")", p_textcolumn + " = '" + v_pivot.Rows[i][p_textcolumn].ToString() + "'").ToString();
+                    v_pivot.Rows[i][v_valuecolumns[j]] = v_table.Compute("Sum(" + v_valuecolumns[j] + ")", p_textcolumn + " = '" + v_pivot.Rows[i][p_textcolumn].ToString() + "'").ToString();
             }
 
             return v_pivot;

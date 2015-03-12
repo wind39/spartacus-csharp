@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.35.7:  Corrigido bug no somatório da tabela dinâmica da Spartacus.Utils.Excel
 0.35.6:  Implementada opção para renderizar uma tabela dinâmica na mesma planilha, na Spartacus.Utils.Excel
 0.35.5:  Alterado progresso de renderização de relatórios em PDF para progredir na construção da matriz de renderização ao invés da escrita no arquivo de saída
 0.35.4:  Removida tentativa de atualizar estilo da planilha, ao gerar XLSX sem template
