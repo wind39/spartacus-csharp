@@ -1115,6 +1115,7 @@ namespace Spartacus.Utils
                             TO|SUBTOTAL(9;#)|V9|V11
                             TO|SUBTOTAL(9;#)|W9|W11
                             TO|SUBTOTAL(9;#)|X9|X11
+                            TD|metodo|qtdetotal,custototal,ajustetotal|F6
                          */
 
                         v_worksheet.Cells ["A1"].Value = "";
@@ -1170,6 +1171,9 @@ namespace Spartacus.Utils
                                             v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
                                         else
                                             v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                        break;
+                                    case "TD":
+                                        v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                         break;
                                     default:
                                         break;
@@ -1273,6 +1277,7 @@ namespace Spartacus.Utils
                                     TO|SUBTOTAL(9,#)|Y10|Y12
                                     CF|#DBE5F1|A11:AD11|
                                     TA|A:AD|11|30
+                                    TD|metodo|qtdetotal,custototal,ajustetotal|F6
                                  */
 
                                 v_worksheet.Cells["A1"].Value = "";
@@ -1449,6 +1454,37 @@ namespace Spartacus.Utils
             }
 
             return v_dstname;
+        }
+
+        /// <summary>
+        /// Cria uma tabela dinâmica.
+        /// </summary>
+        /// <returns>Tabela dinâmica</returns>
+        /// <param name="p_table">Tabela original</param>
+        /// <param name="p_textcolumn">Nome da coluna de texto</param>
+        /// <param name="p_valuecolumns">Lista de nomes de colunas de valor, separados por vírgula.</param>
+        private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_textcolumn, string p_valuecolumns)
+        {
+            System.Data.DataTable v_pivot;
+            string[] v_valuecolumns;
+
+            v_valuecolumns = p_valuecolumns.Split(',');
+
+            // criando tabela dinamica
+            v_pivot = p_table.DefaultView.ToTable(true, p_textcolumn);
+
+            // adicionando colunas de valor
+            for (int k = 0; k < v_valuecolumns.Length; k++)
+                v_pivot.Columns.Add(v_valuecolumns[k]);
+
+            // calculando valores sumarizados
+            for (int i = 0; i < v_pivot.Rows.Count; i++)
+            {
+                for (int j = 0; j < v_valuecolumns.Length; j++)
+                    v_pivot.Rows[i][v_valuecolumns [j]] = p_table.Compute("Sum(" + v_valuecolumns[j] + ")", p_textcolumn + " = '" + v_pivot.Rows[i][p_textcolumn].ToString() + "'").ToString();
+            }
+
+            return v_pivot;
         }
     }
 }
