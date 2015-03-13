@@ -328,7 +328,7 @@ namespace Spartacus.Database
                         v_sqlcmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (Mono.Data.Sqlite.SqliteException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

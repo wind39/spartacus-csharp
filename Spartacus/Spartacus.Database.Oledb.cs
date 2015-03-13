@@ -29,7 +29,7 @@ using System.Data.OleDb;
 namespace Spartacus.Database
 {
     /// <summary>
-    /// Classe Spartacus.Database.Oledb;
+    /// Classe Spartacus.Database.Oledb.
     /// Herda da classe <see cref="Spartacus.Database.Generic"/>.
     /// Utiliza a implementação OLE DB para acessar qualquer SGBD.
     /// </summary>
@@ -372,7 +372,7 @@ namespace Spartacus.Database
                         v_olecmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.OleDb.OleDbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

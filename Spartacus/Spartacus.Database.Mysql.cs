@@ -345,7 +345,7 @@ namespace Spartacus.Database
                         v_mycmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

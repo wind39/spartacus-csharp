@@ -1,0 +1,6 @@
+/work/projects/Repositories/Spartacus/Spartacus/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/Spartacus.dll.mdb
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/Spartacus.dll
+/work/projects/Repositories/Spartacus/Spartacus/obj/Debug/Spartacus.dll
+/work/projects/Repositories/Spartacus/Spartacus/obj/Debug/Spartacus.dll.mdb
+/work/projects/Repositories/Spartacus/Spartacus/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs

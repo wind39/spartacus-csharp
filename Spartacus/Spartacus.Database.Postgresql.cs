@@ -345,7 +345,7 @@ namespace Spartacus.Database
                         v_pgcmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (Npgsql.NpgsqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

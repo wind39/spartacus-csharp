@@ -345,7 +345,7 @@ namespace Spartacus.Database
                         v_fbcmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
