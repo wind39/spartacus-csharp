@@ -72,6 +72,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public bool v_groupedvalue;
 
+        /// <summary>
+        /// Em qual linha dentro do detalhe o campo aparece.
+        /// </summary>
+        public int v_row;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
@@ -79,6 +84,7 @@ namespace Spartacus.Reporting
         public Field()
         {
             this.v_groupedvalue = false;
+            this.v_row = 0;
         }
 
         /// <summary>

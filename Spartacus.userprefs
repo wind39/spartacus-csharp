@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.Excel.cs">
     <Files>
       <File FileName="Spartacus/Spartacus.Database.Oracle.cs" Line="1" Column="1" />
       <File FileName="Spartacus/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/CHANGELOG.txt" Line="57" Column="57" />
+      <File FileName="Spartacus/CHANGELOG.txt" Line="31" Column="31" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="63" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

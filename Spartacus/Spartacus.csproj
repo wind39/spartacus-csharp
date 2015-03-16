@@ -51,9 +51,6 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="PDFjet">
-      <HintPath>lib\PDFjet.dll</HintPath>
-    </Reference>
     <Reference Include="EPPlus">
       <HintPath>lib\EPPlus.dll</HintPath>
     </Reference>
@@ -71,6 +68,9 @@
     </Reference>
     <Reference Include="System.Data.OracleClient">
       <HintPath>lib\System.Data.OracleClient.dll</HintPath>
+    </Reference>
+    <Reference Include="PDFjet">
+      <HintPath>lib\PDFjet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -455,7 +455,6 @@
     <None Include="thirdparties\Mono.Data.Sqlite.7z" />
     <None Include="thirdparties\mysql-connector-net-6.8.3-noinstall.7z" />
     <None Include="thirdparties\Npgsql-2.2.1-net45.7z" />
-    <None Include="thirdparties\PDFjet-Open-Source.7z" />
     <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
     <None Include="doc\Spartacus-0.32.0.pdf" />
     <None Include="lib\EPPlus.dll" />
@@ -510,6 +509,9 @@
     <None Include="instantclient\macos_x86.7z" />
     <None Include="instantclient\windows_x64.7z" />
     <None Include="instantclient\windows_x86.7z" />
+    <None Include="thirdparties\PDFjet-Open-Source-5.28.zip" />
+    <None Include="bin\Debug\System.Data.OracleClient.dll" />
+    <None Include="bin\Release\System.Data.OracleClient.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

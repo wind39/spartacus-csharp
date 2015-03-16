@@ -73,6 +73,17 @@ namespace Spartacus.Reporting
         public System.Data.DataTable v_table;
 
         /// <summary>
+        /// Número de linhas dentro do cabeçalho do grupo.
+        /// </summary>
+        public int v_numrowsheader;
+
+        /// <summary>
+        /// Número de linhas dentro do rodapé do grupo.
+        /// </summary>
+        public int v_numrowsfooter;
+
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Group"/>.
         /// </summary>
         public Group()
