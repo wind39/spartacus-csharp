@@ -1115,7 +1115,7 @@ namespace Spartacus.Utils
                             TO|SUBTOTAL(9;#)|V9|V11
                             TO|SUBTOTAL(9;#)|W9|W11
                             TO|SUBTOTAL(9;#)|X9|X11
-                            TD|metodo|qtdetotal,custototal,ajustetotal|F6
+                            TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
                          */
 
                         v_worksheet.Cells ["A1"].Value = "";
@@ -1174,6 +1174,7 @@ namespace Spartacus.Utils
                                         break;
                                     case "TD":
                                         v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
+                                        v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
                                         break;
                                     default:
                                         break;
@@ -1277,7 +1278,7 @@ namespace Spartacus.Utils
                                     TO|SUBTOTAL(9,#)|Y10|Y12
                                     CF|#DBE5F1|A11:AD11|
                                     TA|A:AD|11|30
-                                    TD|metodo|qtdetotal,custototal,ajustetotal|F6
+                                    TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
                                  */
 
                                 v_worksheet.Cells["A1"].Value = "";
@@ -1366,9 +1367,11 @@ namespace Spartacus.Utils
                                                 break;
                                             case "TA":
                                                 v_row = int.Parse(v_options[2]);
+                                                for (int i = 1; i <= v_row; i++)
+                                                    v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
                                                 v_col = int.Parse(v_options[3]);
-                                                for (int i = 1; i <= v_col; i++)
-                                                    v_worksheet.Column(i).Width = v_worksheet_src.Column(i).Width;
+                                                for (int j = 1; j <= v_col; j++)
+                                                    v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
                                                 v_worksheet.View.FreezePanes(v_row + 1, 1);
                                                 v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
                                                 v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
@@ -1376,6 +1379,7 @@ namespace Spartacus.Utils
                                                 break;
                                             case "TD":
                                                 v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
+                                                v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
                                                 break;
                                             default:
                                                 break;
@@ -1462,38 +1466,44 @@ namespace Spartacus.Utils
         /// <summary>
         /// Cria uma tabela dinâmica.
         /// </summary>
-        /// <returns>Tabela dinâmica</returns>
-        /// <param name="p_table">Tabela original</param>
-        /// <param name="p_textcolumn">Nome da coluna de texto</param>
-        /// <param name="p_valuecolumns">Lista de nomes de colunas de valor, separados por vírgula.</param>
-        private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_textcolumn, string p_valuecolumns)
+        /// <returns>Tabela dinâmica.</returns>
+        /// <param name="p_table">Tabela original.</param>
+        /// <param name="p_textcolumn">Nomes originais das colunas, separados por vírgula. A primeira coluna é a coluna de texto, as demais são de valor.</param>
+        /// <param name="p_valuecolumns">Nomes fantasia das colunas, separados por vírgula.</param>
+        private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_origcolumns, string p_fakecolumns)
         {
             System.Data.DataTable v_pivot, v_table;
-            string[] v_valuecolumns;
+            string[] v_origcolumns;
+            string[] v_fakecolumns;
 
-            v_valuecolumns = p_valuecolumns.Split(',');
+            v_origcolumns = p_origcolumns.Split(',');
+            v_fakecolumns = p_fakecolumns.Split(',');
 
             // tratando colunas de valor
             v_table = p_table.Clone();
-            for (int k = 0; k < v_valuecolumns.Length; k++)
-                v_table.Columns[v_valuecolumns[k]].DataType = typeof(double);
+            for (int k = 1; k < v_origcolumns.Length; k++)
+                v_table.Columns[v_origcolumns[k]].DataType = typeof(double);
             foreach (System.Data.DataRow v_row in p_table.Rows)
                 v_table.ImportRow(v_row);
 
             // criando tabela dinamica
-            v_pivot = p_table.DefaultView.ToTable(true, p_textcolumn);
-            v_pivot.TableName = v_table.TableName + "_PIVOT";
+            v_pivot = p_table.DefaultView.ToTable(true, v_origcolumns[0]);
+            v_pivot.TableName = v_table.TableName.Replace(' ', '_') + "_PIVOT";
 
             // adicionando colunas de valor
-            for (int k = 0; k < v_valuecolumns.Length; k++)
-                v_pivot.Columns.Add(v_valuecolumns[k]);
+            for (int k = 1; k < v_origcolumns.Length; k++)
+                v_pivot.Columns.Add(v_origcolumns[k]);
 
             // calculando valores sumarizados
             for (int i = 0; i < v_pivot.Rows.Count; i++)
             {
-                for (int j = 0; j < v_valuecolumns.Length; j++)
-                    v_pivot.Rows[i][v_valuecolumns[j]] = v_table.Compute("Sum(" + v_valuecolumns[j] + ")", p_textcolumn + " = '" + v_pivot.Rows[i][p_textcolumn].ToString() + "'").ToString();
+                for (int j = 1; j < v_origcolumns.Length; j++)
+                    v_pivot.Rows[i][v_origcolumns[j]] = (double) v_table.Compute("Sum(" + v_origcolumns[j] + ")", v_origcolumns[0] + " = '" + v_pivot.Rows[i][v_origcolumns[0]].ToString() + "'");
             }
+
+            // renomeando colunas
+            for (int k = 0; k < v_fakecolumns.Length; k++)
+                v_pivot.Columns[k].ColumnName = v_fakecolumns[k];
 
             return v_pivot;
         }
