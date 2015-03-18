@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.0:  Otimizações na Spartacus.Utils.Excel e formato numérico para tabela dinâmica
+
 0.35.10: Spartacus.Utils.Excel: Melhorias na tabela dinâmica e cópia da altura das linhas do cabeçalho do template
 0.35.9:  Suporte a N linhas em cada seção do relatório na Spartacus.Reporting
 0.35.8:  Implementado Spartacus.Database.Oracle

@@ -966,28 +966,30 @@ namespace Spartacus.Utils
             v_info.v_data = p_table;
             v_info.v_fixedrows = 0;
 
-            v_info.v_mapping = new System.Collections.Generic.Dictionary<int, string>();
-            k = 0;
-            do
-            {
+            v_cells = p_sheet.Row(0);
+            if (int.TryParse(v_cells[0], out k))
                 v_cells = p_sheet.Row(k);
-                if (v_cells != null)
-                {
-                    for (int i = 0; i < v_cells.Length; i++)
-                    {
-                        if (! string.IsNullOrEmpty(v_cells [i]) && v_cells [i].Length > 1)
-                            v_value = v_cells [i].Substring(0, 1);
-                        else
-                            v_value = v_cells [i];
-                        if (v_value == "*")
-                            v_info.v_mapping [i] = v_cells [i].Replace("*", "");
-                    }
-                    if (v_info.v_mapping.Count > 0)
-                        v_info.v_fixedrows = k;
-                }
-                k++;
+            else
+            {
+                k = 1;
+                v_cells = p_sheet.Row(k);
             }
-            while (v_cells != null && v_info.v_mapping.Count == 0);
+
+            v_info.v_mapping = new System.Collections.Generic.Dictionary<int, string>();
+            if (v_cells != null)
+            {
+                for (int i = 0; i < v_cells.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(v_cells[i]) && v_cells[i].Length > 1)
+                        v_value = v_cells[i].Substring(0, 1);
+                    else
+                        v_value = v_cells[i];
+                    if (v_value == "*")
+                        v_info.v_mapping[i] = v_cells[i].Replace("*", "");
+                }
+                if (v_info.v_mapping.Count > 0)
+                    v_info.v_fixedrows = k;
+            }
 
             v_info.v_currentrow = v_info.v_fixedrows + 1;
 
@@ -1090,7 +1092,6 @@ namespace Spartacus.Utils
                             ST|filtro|A8|
                             ST|ano|E2:J2|
                             ST|empresa|E4:J4|
-                            IM|imagem|0:0|80
                             TO|SUM(#)|M8|M11
                             TO|SUM(#)|N8|N11
                             TO|SUM(#)|O8|O11
@@ -1115,6 +1116,8 @@ namespace Spartacus.Utils
                             TO|SUBTOTAL(9;#)|V9|V11
                             TO|SUBTOTAL(9;#)|W9|W11
                             TO|SUBTOTAL(9;#)|X9|X11
+                            TA|A:AD|11|30
+                            IM|imagem|0:0|80
                             TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
                          */
 
@@ -1175,6 +1178,13 @@ namespace Spartacus.Utils
                                     case "TD":
                                         v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                         v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
+                                        //v_style = v_package.Workbook.Styles.CreateNamedStyle("SpartacusNumeric");
+                                        //v_style.Style.Numberformat.Format = "_-* #.##0,00_-;-* #.##0,00_-;_-* \"-\"??_-;_-@_-";
+                                        for (int j = 1; j < v_options[1].Split(',').Length; j++)
+                                        //{
+                                            //v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].DataCellStyleName = "SpartacusNumeric";
+                                            v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                        //}
                                         break;
                                     default:
                                         break;
@@ -1217,6 +1227,7 @@ namespace Spartacus.Utils
             System.Drawing.Bitmap v_image;
             OfficeOpenXml.Drawing.ExcelPicture v_picture;
             int v_col, v_row;
+            //OfficeOpenXml.Style.XmlAccess.ExcelNamedStyleXml v_style;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1249,7 +1260,6 @@ namespace Spartacus.Utils
                                     ST|filtro|A8|
                                     ST|ano|E2:J2|
                                     ST|empresa|E4:J4|
-                                    IM|imagem|0:0|80
                                     TO|SUM(#)|M9|M12
                                     TO|SUM(#)|N9|N12
                                     TO|SUM(#)|O9|O12
@@ -1278,10 +1288,11 @@ namespace Spartacus.Utils
                                     TO|SUBTOTAL(9,#)|Y10|Y12
                                     CF|#DBE5F1|A11:AD11|
                                     TA|A:AD|11|30
+                                    IM|imagem|0:0|80
                                     TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
                                  */
 
-                                v_worksheet.Cells["A1"].Value = "";
+                                //v_worksheet.Cells["A1"].Value = "";
 
                                 v_line = string.Empty;
                                 k = 0;
@@ -1376,10 +1387,19 @@ namespace Spartacus.Utils
                                                 v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
                                                 v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
                                                 v_worksheet.Tables[0].ShowFilter = true;
+                                                // passando informação para SejExcel
+                                                v_worksheet.Cells["A1"].Value = v_options[2];
                                                 break;
                                             case "TD":
                                                 v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                                 v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
+                                                //v_style = v_package_dst.Workbook.Styles.CreateNamedStyle("SpartacusNumeric");
+                                                //v_style.Style.Numberformat.Format = "_-* #.##0,00_-;-* #.##0,00_-;_-* \"-\"??_-;_-@_-";
+                                                for (int j = 1; j < v_options[1].Split(',').Length; j++)
+                                                //{
+                                                    //v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].DataCellStyleName = "SpartacusNumeric";
+                                                    v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                                //}
                                                 break;
                                             default:
                                                 break;
@@ -1492,7 +1512,8 @@ namespace Spartacus.Utils
 
             // adicionando colunas de valor
             for (int k = 1; k < v_origcolumns.Length; k++)
-                v_pivot.Columns.Add(v_origcolumns[k]);
+                //v_pivot.Columns.Add(v_origcolumns[k]);
+                v_pivot.Columns.Add(v_origcolumns[k], typeof(double));
 
             // calculando valores sumarizados
             for (int i = 0; i < v_pivot.Rows.Count; i++)

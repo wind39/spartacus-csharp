@@ -1,11 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Reporting.Block.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.Excel.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Reporting.Field.cs" Line="28" Column="28" />
-      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="17" Column="17" />
-      <File FileName="Spartacus/Spartacus.Reporting.Group.cs" Line="14" Column="14" />
-      <File FileName="Spartacus/Spartacus.Reporting.Block.cs" Line="35" Column="35" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="10" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
