@@ -85,7 +85,6 @@
     <Compile Include="Spartacus.Database.Generic.cs" />
     <Compile Include="Spartacus.Database.Odbc.cs" />
     <Compile Include="Spartacus.Database.Parameter.cs" />
-    <Compile Include="Spartacus.Utils.Synchronizer.cs" />
     <Compile Include="Spartacus.Database.Firebird.cs" />
     <Compile Include="Spartacus.Database.Mysql.cs" />
     <Compile Include="Spartacus.Database.Oledb.cs" />
@@ -142,7 +141,6 @@
     <None Include="doc\Doxyfile" />
     <None Include="lib\Npgsql.dll" />
     <None Include="bin\Release\Npgsql.dll" />
-    <None Include="LICENSE.txt" />
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="lib\Mono.Data.Sqlite.dll" />
     <None Include="bin\Release\sqlite3.dll" />
@@ -451,33 +449,17 @@
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\sqlite3.dll" />
-    <None Include="CHANGELOG.txt" />
     <None Include="thirdparties\Mono.Data.Sqlite.7z" />
     <None Include="thirdparties\mysql-connector-net-6.8.3-noinstall.7z" />
     <None Include="thirdparties\Npgsql-2.2.1-net45.7z" />
     <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
-    <None Include="doc\Spartacus-0.32.0.pdf" />
     <None Include="lib\EPPlus.dll" />
     <None Include="thirdparties\EPPlus 4.0.1.zip" />
     <None Include="lib\PresentationCore.dll" />
     <None Include="lib\PresentationFramework.dll" />
     <None Include="lib\WindowsBase.dll" />
     <None Include="lib\WindowsFormsIntegration.dll" />
-    <None Include="dist\Spartacus-0.34.10\EPPlus.dll" />
-    <None Include="dist\Spartacus-0.34.10\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="dist\Spartacus-0.34.10\Mono.Data.Sqlite.dll" />
-    <None Include="dist\Spartacus-0.34.10\MySql.Data.dll" />
-    <None Include="dist\Spartacus-0.34.10\Npgsql.dll" />
-    <None Include="dist\Spartacus-0.34.10\PDFjet.dll" />
-    <None Include="dist\Spartacus-0.34.10\PresentationCore.dll" />
-    <None Include="dist\Spartacus-0.34.10\PresentationFramework.dll" />
-    <None Include="dist\Spartacus-0.34.10\Spartacus.dll" />
-    <None Include="dist\Spartacus-0.34.10\sqlite3.dll" />
-    <None Include="dist\Spartacus-0.34.10\WindowsBase.dll" />
-    <None Include="dist\Spartacus-0.34.10\WindowsFormsIntegration.dll" />
-    <None Include="dist\Spartacus-0.34.10.zip" />
     <None Include="doc\doxygen_sqlite3.db" />
-    <None Include="doc\Spartacus-0.34.10.pdf" />
     <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\PresentationCore.dll" />
     <None Include="bin\Release\PresentationFramework.dll" />
@@ -512,10 +494,29 @@
     <None Include="thirdparties\PDFjet-Open-Source-5.28.zip" />
     <None Include="bin\Debug\System.Data.OracleClient.dll" />
     <None Include="bin\Release\System.Data.OracleClient.dll" />
+    <None Include="dist\Spartacus-0.36.0\CHANGELOG.txt" />
+    <None Include="dist\Spartacus-0.36.0\LICENSE.txt" />
+    <None Include="dist\Spartacus-0.36.0\bin\EPPlus.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\Mono.Data.Sqlite.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\MySql.Data.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\Npgsql.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\PDFjet.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\PresentationCore.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\PresentationFramework.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\Spartacus.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\sqlite3.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\System.Data.OracleClient.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\WindowsBase.dll" />
+    <None Include="dist\Spartacus-0.36.0\bin\WindowsFormsIntegration.dll" />
+    <None Include="dist\Spartacus-0.36.0\doc\Spartacus-0.36.0.pdf" />
+    <None Include="dist\Spartacus-0.36.0\THIRDPARTIES.txt" />
+    <None Include="dist\Spartacus-0.36.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="doc\" />
     <Folder Include="dist\" />
+    <Folder Include="dist\Spartacus-0.36.0\" />
   </ItemGroup>
 </Project>

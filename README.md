@@ -19,6 +19,7 @@ Spartacus links this libraries:
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
   - Windows Presentation Foundation (http://wpf.codeplex.com/)
+  - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
  
 Please note that WPF is required because EPPlus needs PresentationCore.dll from WPF to be able to insert images at Excel files.
   
