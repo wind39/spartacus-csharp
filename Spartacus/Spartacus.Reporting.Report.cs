@@ -1936,7 +1936,7 @@ namespace Spartacus.Reporting
                 // renderizando campos do rodape
                 if (v_group.v_showfooter)
                 {
-                    for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsheader; v_sectionrow++)
+                    for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsfooter; v_sectionrow++)
                     {
                         v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
                         for (k = 0; k < v_group.v_footerfields.Count; k++)
