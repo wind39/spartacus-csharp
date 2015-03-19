@@ -1578,7 +1578,7 @@ namespace Spartacus.Reporting
                 // tabela de dados
 
                 v_datatable = new PDFjet.NET.Table();
-                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + 20);
+                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + (20 * this.v_numrowsdetail));
                 v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
 
                 v_rendered = this.RenderData(
