@@ -125,10 +125,36 @@ namespace Spartacus.Reporting
         /// <param name="p_text">Texto representando o valor do campo.</param>
         public string Format(string p_text)
         {
-            if (this.v_type == Spartacus.Database.Type.REAL)
-                return string.Format("{0:###,###,###,###,##0.00}", double.Parse(p_text.Replace('.', ',')));
-            else
-                return p_text;
+            string v_ret;
+            double v_tmpdouble;
+            int v_tmpint;
+
+            switch (this.v_type)
+            {
+                case Spartacus.Database.Type.INTEGER:
+                    if (int.TryParse(p_text, out v_tmpint))
+                        v_ret = p_text;
+                    else
+                        v_ret = "0";
+                    break;
+                case Spartacus.Database.Type.REAL:
+                    if (double.TryParse(p_text.Replace('.', ','), out v_tmpdouble))
+                        v_ret = string.Format("{0:###,###,###,###,##0.00}", v_tmpdouble);
+                    else
+                        v_ret = "0,00";
+                    break;
+                case Spartacus.Database.Type.DATE:
+                    if (p_text.Length >= 8 && int.TryParse(p_text, out v_tmpint))
+                        v_ret = string.Format("{0}/{1}/{2}", p_text.Substring(6, 2), p_text.Substring(4, 2), p_text.Substring(0, 4));
+                    else
+                        v_ret = "01/01/1900";
+                    break;
+                default:
+                    v_ret = p_text;
+                    break;
+            }
+
+            return v_ret;
         }
 
         /// <summary>

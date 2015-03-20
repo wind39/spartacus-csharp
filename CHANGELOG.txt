@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.1:  Melhorando formatação de campos na Spartacus.Reporting, tratando casos de double, int e date
 0.36.0:  Otimizações na Spartacus.Utils.Excel e formato numérico para tabela dinâmica
 
 0.35.10: Spartacus.Utils.Excel: Melhorias na tabela dinâmica e cópia da altura das linhas do cabeçalho do template
