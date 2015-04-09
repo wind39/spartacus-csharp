@@ -175,7 +175,7 @@ namespace Spartacus.Utils
                             this.ImportXLSX(p_filename);
                             break;
                         case "csv":
-                            this.ImportCSV(p_filename, ';', false, System.Text.Encoding.Default);
+                            this.ImportCSV(p_filename, ';', true, System.Text.Encoding.Default);
                             break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
