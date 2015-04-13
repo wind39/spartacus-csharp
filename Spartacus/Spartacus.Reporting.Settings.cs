@@ -99,6 +99,16 @@ namespace Spartacus.Reporting
         public Spartacus.Reporting.Border v_groupfooterborder;
 
         /// <summary>
+        /// Borda do cabeçalho do relatório.
+        /// </summary>
+        public Spartacus.Reporting.Border v_reportheaderborder;
+
+        /// <summary>
+        /// Borda do rodapé do relatório.
+        /// </summary>
+        public Spartacus.Reporting.Border v_reportfooterborder;
+
+        /// <summary>
         /// Fonte do cabeçalho do relatório.
         /// </summary>
         public Spartacus.Reporting.Font v_reportheaderfont;

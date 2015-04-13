@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.4:  Spartacus.Reporting: Implementada opção para bordas no cabeçalho e rodapé do relatório, e também centralizar objetos de texto
 0.36.3:  Spartacus.Utils.Excel: Mudando padrão para com cabeçalho ao importar e exportar CSV.
 0.36.2:  Spartacus.Reporting.Report: Posicionamento do datatable considera que dataheader pode ter tamanho variável de fonte e múltiplas linhas
 0.36.1:  Melhorando formatação de campos na Spartacus.Reporting, tratando casos de double, int e date

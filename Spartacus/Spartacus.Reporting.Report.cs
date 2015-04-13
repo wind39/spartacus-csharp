@@ -580,6 +580,12 @@ namespace Spartacus.Reporting
                         case "groupfooterborder":
                             this.v_settings.v_groupfooterborder = new Spartacus.Reporting.Border(p_reader.ReadString());
                             break;
+                        case "reportheaderborder":
+                            this.v_settings.v_reportheaderborder = new Spartacus.Reporting.Border(p_reader.ReadString());
+                            break;
+                        case "reportfooterborder":
+                            this.v_settings.v_reportfooterborder = new Spartacus.Reporting.Border(p_reader.ReadString());
+                            break;
                         case "dataheadercolor":
                             this.v_settings.v_dataheadercolor = this.v_settings.GetColor(p_reader.ReadString());
                             break;
@@ -812,6 +818,8 @@ namespace Spartacus.Reporting
                     }
                 }
             }
+
+            this.v_header.v_border = this.v_settings.v_reportheaderborder;
         }
 
         /// <summary>
@@ -864,6 +872,9 @@ namespace Spartacus.Reporting
                                 case "RIGHT":
                                     v_object.v_align = Spartacus.Reporting.FieldAlignment.RIGHT;
                                     break;
+                                case "CENTER":
+                                    v_object.v_align = Spartacus.Reporting.FieldAlignment.CENTER;
+                                    break;
                                 default:
                                     break;
                             }
@@ -904,6 +915,8 @@ namespace Spartacus.Reporting
                     }
                 }
             }
+
+            this.v_footer.v_border = this.v_settings.v_reportfooterborder;
         }
 
         /// <summary>
@@ -955,6 +968,9 @@ namespace Spartacus.Reporting
                                     break;
                                 case "RIGHT":
                                     v_object.v_align = Spartacus.Reporting.FieldAlignment.RIGHT;
+                                    break;
+                                case "CENTER":
+                                    v_object.v_align = Spartacus.Reporting.FieldAlignment.CENTER;
                                     break;
                                 default:
                                     break;
@@ -1465,7 +1481,7 @@ namespace Spartacus.Reporting
                 // tabela de dados
 
                 v_datatable = new PDFjet.NET.Table();
-                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 2 * this.v_numrowsdetail));
+                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdetail));
                 v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
 
                 v_rendered = this.RenderData(
@@ -1578,7 +1594,7 @@ namespace Spartacus.Reporting
                 // tabela de dados
 
                 v_datatable = new PDFjet.NET.Table();
-                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 2 * this.v_numrowsdetail));
+                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdetail));
                 v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
 
                 v_rendered = this.RenderData(

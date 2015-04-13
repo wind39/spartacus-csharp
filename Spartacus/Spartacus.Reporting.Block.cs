@@ -45,6 +45,11 @@ namespace Spartacus.Reporting
         public System.Collections.ArrayList v_objects;
 
         /// <summary>
+        /// Bordas do Bloco.
+        /// </summary>
+        public Spartacus.Reporting.Border v_border;
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Block"/>.
         /// </summary>
         public Block()
@@ -108,8 +113,10 @@ namespace Spartacus.Reporting
         /// <param name="p_page">Página onde o Bloco será renderizado.</param>
         public void Render(Spartacus.Reporting.Font p_font, double p_posx, double p_posy, double p_rightmargin, PDFjet.NET.PDF p_pdf, PDFjet.NET.Page p_page)
         {
+            PDFjet.NET.Line v_line;
             int k;
 
+            // renderizando objetos do bloco
             for (k = 0; k < this.v_objects.Count; k++)
             {
                 switch (((Spartacus.Reporting.Object)this.v_objects [k]).v_type)
@@ -126,6 +133,34 @@ namespace Spartacus.Reporting
                     default:
                         break;
                 }
+            }
+
+            // borda superior
+            if (this.v_border.v_top)
+            {
+                v_line = new PDFjet.NET.Line(p_posx, p_posy, p_page.GetWidth() - p_rightmargin, p_posy);
+                v_line.DrawOn(p_page);
+            }
+
+            // borda inferior
+            if (this.v_border.v_bottom)
+            {
+                v_line = new PDFjet.NET.Line(p_posx, p_posy + this.v_height, p_page.GetWidth() - p_rightmargin, p_posy + this.v_height);
+                v_line.DrawOn(p_page);
+            }
+
+            // borda esquerda
+            if (this.v_border.v_left)
+            {
+                v_line = new PDFjet.NET.Line(p_posx, p_posy, p_posx, p_posy + this.v_height);
+                v_line.DrawOn(p_page);
+            }
+
+            // borda direita
+            if (this.v_border.v_right)
+            {
+                v_line = new PDFjet.NET.Line(p_page.GetWidth() - p_rightmargin, p_posy, p_page.GetWidth() - p_rightmargin, p_posy + this.v_height);
+                v_line.DrawOn(p_page);
             }
         }
 
@@ -178,9 +213,6 @@ namespace Spartacus.Reporting
                         case "JPEG":
                             v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JPG);
                             break;
-                        //case "PDF":
-                        //    v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PDF);
-                        //    break;
                         case "PNG":
                             v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
                             break;
@@ -191,10 +223,20 @@ namespace Spartacus.Reporting
 
                     if (v_image != null)
                     {
-                        if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
-                            v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
-                        else
-                            v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
+                        switch (p_object.v_align)
+                        {
+                            case Spartacus.Reporting.FieldAlignment.LEFT:
+                                v_image.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                                break;
+                            case Spartacus.Reporting.FieldAlignment.RIGHT:
+                                v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
+                                break;
+                            case Spartacus.Reporting.FieldAlignment.CENTER:
+                                v_image.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_image.GetWidth() / 2), p_posy + p_object.v_posy);
+                                break;
+                            default:
+                                break;
+                        }
                         v_image.DrawOn(p_page);
 
                         p_object.v_pdfobject = v_image;
@@ -224,10 +266,20 @@ namespace Spartacus.Reporting
                 v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
 
                 v_text.SetText(p_object.v_value);
-                if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
-                    v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
-                else
-                    v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
+                switch (p_object.v_align)
+                {
+                    case Spartacus.Reporting.FieldAlignment.LEFT:
+                        v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
+                        break;
+                    case Spartacus.Reporting.FieldAlignment.RIGHT:
+                        v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
+                        break;
+                    case Spartacus.Reporting.FieldAlignment.CENTER:
+                        v_text.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
+                        break;
+                    default:
+                        break;
+                }
 
                 v_text.DrawOn(p_page);
 
@@ -251,25 +303,28 @@ namespace Spartacus.Reporting
         {
             PDFjet.NET.TextLine v_text;
 
-            if (p_object.v_pdfobject == null)
-            {
-                v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
+            v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
 
-                v_text.SetText(p_object.v_value);
-                if (p_object.v_align == Spartacus.Reporting.FieldAlignment.LEFT)
+            v_text.SetText(p_object.v_value);
+
+            switch (p_object.v_align)
+            {
+                case Spartacus.Reporting.FieldAlignment.LEFT:
                     v_text.SetPosition(p_posx + p_object.v_posx, p_posy + p_object.v_posy);
-                else
+                    break;
+                case Spartacus.Reporting.FieldAlignment.RIGHT:
                     v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
-
-                v_text.DrawOn(p_page);
-
-                p_object.v_pdfobject = v_text;
+                    break;
+                case Spartacus.Reporting.FieldAlignment.CENTER:
+                    v_text.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                ((PDFjet.NET.TextLine)p_object.v_pdfobject).SetText(p_object.v_value);
-                ((PDFjet.NET.TextLine)p_object.v_pdfobject).DrawOn(p_page);
-            }
+
+            v_text.DrawOn(p_page);
+
+            p_object.v_pdfobject = v_text;
         }
     }
 }
