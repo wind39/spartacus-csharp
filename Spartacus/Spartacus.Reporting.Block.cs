@@ -232,7 +232,7 @@ namespace Spartacus.Reporting
                                 v_image.SetPosition(p_page.GetWidth() - p_rightmargin - v_image.GetWidth(), p_posy + p_object.v_posy);
                                 break;
                             case Spartacus.Reporting.FieldAlignment.CENTER:
-                                v_image.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_image.GetWidth() / 2), p_posy + p_object.v_posy);
+                                v_image.SetPosition(p_posx + ((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_image.GetWidth() / 2), p_posy + p_object.v_posy);
                                 break;
                             default:
                                 break;
@@ -275,7 +275,7 @@ namespace Spartacus.Reporting
                         v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
                         break;
                     case Spartacus.Reporting.FieldAlignment.CENTER:
-                        v_text.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
+                        v_text.SetPosition(p_posx + ((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
                         break;
                     default:
                         break;
@@ -316,7 +316,7 @@ namespace Spartacus.Reporting
                     v_text.SetPosition(p_page.GetWidth() - p_rightmargin - v_text.GetWidth(), p_posy + p_object.v_posy);
                     break;
                 case Spartacus.Reporting.FieldAlignment.CENTER:
-                    v_text.SetPosition(((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
+                    v_text.SetPosition(p_posx + ((p_page.GetWidth() - p_rightmargin - p_posx) / 2) - (v_text.GetWidth() / 2), p_posy + p_object.v_posy);
                     break;
                 default:
                     break;
