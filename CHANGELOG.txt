@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.7:  Para corrigir definitivamente o problema de uso excessivo de memória da Spartacus.Reporting.Report, foi incorporado o código da PDFjet 5.28, e alterados os arquivos Table.cs e Cell.cs
+         Suporte a imagem do tipo JET ao renderizar relatórios em PDF.
+0.36.6:  Permitindo renderização de caracteres acentuados HTML encoded em PDF e XLSX, usando HTML decoding.
 0.36.5:  Spartacus.Reporting: Otimizada renderização através da utilização de modelos; reduziu quase pela metade o uso de memória
 0.36.4:  Spartacus.Reporting: Implementada opção para bordas no cabeçalho e rodapé do relatório, e também centralizar objetos de texto
 0.36.3:  Spartacus.Utils.Excel: Mudando padrão para com cabeçalho ao importar e exportar CSV.

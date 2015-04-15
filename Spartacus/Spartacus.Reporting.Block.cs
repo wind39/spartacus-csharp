@@ -98,7 +98,7 @@ namespace Spartacus.Reporting
             for (k = 0; k < this.v_objects.Count; k++)
             {
                 if (((Spartacus.Reporting.Object)this.v_objects [k]).v_type == Spartacus.Reporting.ObjectType.PAGENUMBER)
-                    ((Spartacus.Reporting.Object)this.v_objects [k]).v_value = string.Format("Pagina: {0} de {1}", p_current, p_total);
+                    ((Spartacus.Reporting.Object)this.v_objects [k]).v_value = string.Format("Página: {0} de {1}", p_current, p_total);
             }
         }
 
@@ -216,6 +216,9 @@ namespace Spartacus.Reporting
                         case "PNG":
                             v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.PNG);
                             break;
+                        case "JET":
+                            v_image = new PDFjet.NET.Image(p_pdf, new System.IO.FileStream(v_path, System.IO.FileMode.Open, System.IO.FileAccess.Read), PDFjet.NET.ImageType.JET);
+                            break;
                         default:
                             v_image = null;
                             break;
@@ -265,7 +268,7 @@ namespace Spartacus.Reporting
             {
                 v_text = new PDFjet.NET.TextLine(p_font.GetFont(p_pdf));
 
-                v_text.SetText(p_object.v_value);
+                v_text.SetText(System.Net.WebUtility.HtmlDecode(p_object.v_value));
                 switch (p_object.v_align)
                 {
                     case Spartacus.Reporting.FieldAlignment.LEFT:
