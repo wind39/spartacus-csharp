@@ -82,6 +82,16 @@ namespace Spartacus.Reporting
         /// </summary>
         public int v_numrowsfooter;
 
+        /// <summary>
+        /// Modelo de renderização do cabeçalho do grupo.
+        /// </summary>
+        public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_headertemplate;
+
+        /// <summary>
+        /// Modelo de renderização do rodapé do grupo.
+        /// </summary>
+        public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_footertemplate;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Group"/>.
