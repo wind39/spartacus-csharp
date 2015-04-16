@@ -164,7 +164,7 @@ namespace Spartacus.Reporting
         /// <param name="p_graphics">Objeto auxiliar para renderização de texto.</param>
         /// <param name="p_font">Fonte nativa.</param>
         /// <param name="p_maxsize">Tamanho da célula.</param>
-        public static string Crop(string p_text, System.Drawing.Graphics p_graphics, System.Drawing.Font p_font, double p_maxsize)
+        /*public static string Crop(string p_text, System.Drawing.Graphics p_graphics, System.Drawing.Font p_font, double p_maxsize)
         {
             double v_maxsize;
             int v_numchars;
@@ -184,6 +184,6 @@ namespace Spartacus.Reporting
             }
             else
                 return "";
-        }
+        }*/
     }
 }

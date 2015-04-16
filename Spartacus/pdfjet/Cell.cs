@@ -764,6 +764,14 @@ public class Cell {
             float cell_w,
             string p_text) {
 
+        // verificando se precisa cortar o texto para caber dentro da célula
+        string v_text;
+        float v_renderedsize = font.StringWidth(p_text);
+        if (v_renderedsize > cell_w)
+            v_text = p_text.Substring(0, (int)(((float)(cell_w * p_text.Length)) / v_renderedsize));
+        else
+            v_text = p_text;
+
         float x_text;
         float y_text = y + font.ascent + this.top_padding;
 
@@ -772,19 +780,19 @@ public class Cell {
 
         if (GetTextAlignment() == Align.RIGHT) {
             if (compositeTextLine == null) {
-                x_text = (x + cell_w) - (font.StringWidth(p_text) + this.right_padding);
+                x_text = (x + cell_w) - (v_renderedsize + this.right_padding);
                 page.AddBMC(StructElem.SPAN, Single.space, Single.space);
-                page.DrawString(font, fallbackFont, p_text, x_text, y_text);
+                page.DrawString(font, fallbackFont, v_text, x_text, y_text);
                 page.AddEMC();
                 if (GetUnderline()) {
-                    UnderlineText(page, font, p_text, x_text, y_text);
+                    UnderlineText(page, font, v_text, x_text, y_text);
                 }
                 if (GetStrikeout()) {
-                    StrikeoutText(page, font, p_text, x_text, y_text);
+                    StrikeoutText(page, font, v_text, x_text, y_text);
                 }
             }
             else {
-                x_text = (x + cell_w) - (compositeTextLine.GetWidth() + this.right_padding);
+                x_text = (x + cell_w) - (v_renderedsize + this.right_padding);
                 compositeTextLine.SetPosition(x_text, y_text);
                 page.AddBMC(StructElem.SPAN, Single.space, Single.space);
                 compositeTextLine.DrawOn(page);
@@ -794,20 +802,20 @@ public class Cell {
         else if (GetTextAlignment() == Align.CENTER) {
             if (compositeTextLine == null) {
                 x_text = x + this.left_padding +
-                        (((cell_w - (left_padding + right_padding)) - font.StringWidth(p_text)) / 2);
+                        (((cell_w - (left_padding + right_padding)) - v_renderedsize) / 2);
                 page.AddBMC(StructElem.SPAN, Single.space, Single.space);
-                page.DrawString(font, fallbackFont, p_text, x_text, y_text);
+                page.DrawString(font, fallbackFont, v_text, x_text, y_text);
                 page.AddEMC();
                 if (GetUnderline()) {
-                    UnderlineText(page, font, p_text, x_text, y_text);
+                    UnderlineText(page, font, v_text, x_text, y_text);
                 }
                 if (GetStrikeout()) {
-                    StrikeoutText(page, font, p_text, x_text, y_text);
+                    StrikeoutText(page, font, v_text, x_text, y_text);
                 }
             }
             else {
                 x_text = x + this.left_padding +
-                        (((cell_w - (left_padding + right_padding)) - compositeTextLine.GetWidth()) / 2);
+                        (((cell_w - (left_padding + right_padding)) - v_renderedsize) / 2);
                 compositeTextLine.SetPosition(x_text, y_text);
                 page.AddBMC(StructElem.SPAN, Single.space, Single.space);
                 compositeTextLine.DrawOn(page);
@@ -818,13 +826,13 @@ public class Cell {
             x_text = x + this.left_padding;
             if (compositeTextLine == null) {
                 page.AddBMC(StructElem.SPAN, Single.space, Single.space);
-                page.DrawString(font, fallbackFont, p_text, x_text, y_text);
+                page.DrawString(font, fallbackFont, v_text, x_text, y_text);
                 page.AddEMC();
                 if (GetUnderline()) {
-                    UnderlineText(page, font, p_text, x_text, y_text);
+                    UnderlineText(page, font, v_text, x_text, y_text);
                 }
                 if (GetStrikeout()) {
-                    StrikeoutText(page, font, p_text, x_text, y_text);
+                    StrikeoutText(page, font, v_text, x_text, y_text);
                 }
             }
             else {
@@ -840,7 +848,7 @@ public class Cell {
 
         if (uri != null) {
             float w = (compositeTextLine != null) ?
-                    compositeTextLine.GetWidth() : font.StringWidth(p_text);
+                    compositeTextLine.GetWidth() : v_renderedsize;
             // Please note: The font descent is a negative number.
             page.AddAnnotation(new Annotation(
                     uri,

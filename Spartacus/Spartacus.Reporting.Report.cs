@@ -87,7 +87,7 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Objeto usado para auxiliar renderização de texto.
         /// </summary>
-        private System.Drawing.Graphics v_graphics;
+        //private System.Drawing.Graphics v_graphics;
 
         /// <summary>
         /// Se o gerador de relatórios deve calcular os valores agrupados.
@@ -132,9 +132,14 @@ namespace Spartacus.Reporting
         private int v_numrowsdetail;
 
         /// <summary>
-        /// Modelo de renderização do detalhe do relatório.
+        /// Modelo de renderização do detalhe ímpar do relatório.
         /// </summary>
-        public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_detailtemplate;
+        public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_detailoddtemplate;
+
+        /// <summary>
+        /// Modelo de renderização do detalhe par do relatório.
+        /// </summary>
+        public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_detaileventemplate;
 
         /// <summary>
         /// Lista de strings para renderização do relatório.
@@ -151,7 +156,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -188,7 +193,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -225,7 +230,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -262,7 +267,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -300,7 +305,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -338,7 +343,7 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
+            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -1764,9 +1769,9 @@ namespace Spartacus.Reporting
             Spartacus.Reporting.Group v_group;
             int k, v_sectionrow, v_level;
 
-            // modelo do detalhe
+            // modelo do detalhe ímpar
 
-            this.v_detailtemplate = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
+            this.v_detailoddtemplate = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
 
             for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
             {
@@ -1799,7 +1804,45 @@ namespace Spartacus.Reporting
                         v_row.Add(v_cell);
                     }
                 }
-                this.v_detailtemplate.Add(v_row);
+                this.v_detailoddtemplate.Add(v_row);
+            }
+
+            // modelo do detalhe par
+
+            this.v_detaileventemplate = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
+
+            for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
+            {
+                v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
+                for (k = 0; k < this.v_fields.Count; k++)
+                {
+                    if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
+                    {
+                        v_cell = new PDFjet.NET.Cell(p_datafieldfont);
+                        v_cell.SetWidth(((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100);
+                        switch (((Spartacus.Reporting.Field)this.v_fields[k]).v_align)
+                        {
+                            case Spartacus.Reporting.FieldAlignment.LEFT:
+                                v_cell.SetTextAlignment(PDFjet.NET.Align.LEFT);
+                                break;
+                            case Spartacus.Reporting.FieldAlignment.RIGHT:
+                                v_cell.SetTextAlignment(PDFjet.NET.Align.RIGHT);
+                                break;
+                            case Spartacus.Reporting.FieldAlignment.CENTER:
+                                v_cell.SetTextAlignment(PDFjet.NET.Align.CENTER);
+                                break;
+                            default:
+                                break;
+                        }
+                        v_cell.SetBgColor(this.v_settings.v_datafieldevencolor);
+                        v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_datafieldborder.v_top);
+                        v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_datafieldborder.v_bottom);
+                        v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_datafieldborder.v_left);
+                        v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_datafieldborder.v_right);
+                        v_row.Add(v_cell);
+                    }
+                }
+                this.v_detaileventemplate.Add(v_row);
             }
 
             for (v_level = 0; v_level < this.v_groups.Count; v_level++)
@@ -1943,19 +1986,19 @@ namespace Spartacus.Reporting
                             {
                                 v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
 
-                                //TODO: criar templates diferentes para par e impar
-                                //if (r % 2 == 0)
-                                //    this.v_detailtemplate[v_sectionrow][k].SetBgColor(this.v_settings.v_datafieldevencolor);
-
-                                v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
+                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
+                                v_textrow.Add(v_text);
                             }
                         }
 
                         this.v_textlist.Add(v_textrow);
                     }
-                    r++;
 
-                    v_data.AddRange(this.v_detailtemplate);
+                    if (r % 2 == 0)
+                        v_data.AddRange(this.v_detaileventemplate);
+                    else
+                        v_data.AddRange(this.v_detailoddtemplate);
+                    r++;
 
                     this.v_perc += v_inc;
                     this.v_renderedrows++;
@@ -2012,7 +2055,8 @@ namespace Spartacus.Reporting
                                 else
                                     v_text = "";
 
-                                v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupheaderfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_fill) / 100));
+                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupheaderfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_fill) / 100));
+                                v_textrow.Add(v_text);
                             }
                         }
 
@@ -2038,18 +2082,23 @@ namespace Spartacus.Reporting
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
 
-                                    v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
+                                    //TODO: criar templates diferentes para par e impar
+                                    //if (r % 2 == 0)
+                                    //    this.v_detailtemplate[v_sectionrow][k].SetBgColor(this.v_settings.v_datafieldevencolor);
 
-                                    if (r % 2 == 0)
-                                        this.v_detailtemplate[v_sectionrow][k].SetBgColor(this.v_settings.v_datafieldevencolor);
+                                    //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
+                                    v_textrow.Add(v_text);
                                 }
                             }
 
                             this.v_textlist.Add(v_textrow);
                         }
-                        r++;
 
-                        p_data.AddRange(this.v_detailtemplate);
+                        if (r % 2 == 0)
+                            p_data.AddRange(this.v_detaileventemplate);
+                        else
+                            p_data.AddRange(this.v_detailoddtemplate);
+                        r++;
 
                         this.v_perc += v_inc;
                         this.v_renderedrows++;
@@ -2085,7 +2134,8 @@ namespace Spartacus.Reporting
                                 else
                                     v_text = "";
 
-                                v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupfooterfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_fill) / 100));
+                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupfooterfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_fill) / 100));
+                                v_textrow.Add(v_text);
                             }
                         }
 
