@@ -1092,6 +1092,7 @@ namespace Spartacus.Utils
                             ST|filtro|A8|
                             ST|ano|E2:J2|
                             ST|empresa|E4:J4|
+                            FO|U10/S10|V7|
                             TO|SUM(#)|M8|M11
                             TO|SUM(#)|N8|N11
                             TO|SUM(#)|O8|O11
@@ -1138,6 +1139,9 @@ namespace Spartacus.Utils
                                 {
                                     case "ST":
                                         v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                        break;
+                                    case "FO":
+                                        v_worksheet.Cells [v_options[2]].Formula = v_options[1];
                                         break;
                                     case "IM":
                                         try
@@ -1254,6 +1258,7 @@ namespace Spartacus.Utils
                                     ST|filtro|A8|
                                     ST|ano|E2:J2|
                                     ST|empresa|E4:J4|
+                                    FO|U10/S10|V7|
                                     TO|SUM(#)|M9|M12
                                     TO|SUM(#)|N9|N12
                                     TO|SUM(#)|O9|O12
@@ -1328,6 +1333,9 @@ namespace Spartacus.Utils
                                                 v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                                 if (v_options[2].Contains(':'))
                                                     v_worksheet.Cells[v_options[2]].Merge = true;
+                                                break;
+                                            case "FO":
+                                                v_worksheet.Cells [v_options[2]].Formula = v_options[1];
                                                 break;
                                             case "IM":
                                                 try
