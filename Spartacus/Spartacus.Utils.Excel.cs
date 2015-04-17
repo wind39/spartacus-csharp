@@ -1310,18 +1310,23 @@ namespace Spartacus.Utils
                                             case "CA":
                                                 foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells[v_options[2]])
                                                 {
+                                                    // valor
                                                     v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
 
+                                                    // alinhamento
                                                     v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
                                                     v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
 
+                                                    // bordas
                                                     v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
                                                     v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
                                                     v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
                                                     v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
 
+                                                    // padrão de cor de fundo
                                                     v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
 
+                                                    // fonte
                                                     v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
                                                     v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
                                                     v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
@@ -1329,7 +1334,15 @@ namespace Spartacus.Utils
                                                     if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
                                                         v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
 
+                                                    // formato numérico
                                                     v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
+
+                                                    // quebrar texto automaticamente
+                                                    v_worksheet.Cells[v_cell.Address].Style.WrapText = v_worksheet_src.Cells[v_cell.Address].Style.WrapText;
+
+                                                    // comentários
+                                                    if (v_worksheet_src.Cells[v_cell.Address].Comment != null)
+                                                        v_worksheet.Cells[v_cell.Address].AddComment(v_worksheet_src.Cells[v_cell.Address].Comment.Text, v_worksheet_src.Cells[v_cell.Address].Comment.Author);
                                                 }
                                                 break;
                                             case "ST":
@@ -1487,7 +1500,10 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Tabela dinâmica.</returns>
         /// <param name="p_table">Tabela original.</param>
-        /// <param name="p_textcolumn">Nomes originais das colunas, separados por vírgula. A primeira coluna é a coluna de texto, as demais são de valor.</param>
+        /// <param name="p_textcolumn">
+        ///   Nomes originais das colunas, separados por vírgula.
+        ///   Nomes de colunas de texto vem à esquerda, separadas dos nomes de colunas de valor por um ponto-e-vírgula.
+        /// </param>
         /// <param name="p_valuecolumns">Nomes fantasia das colunas, separados por vírgula.</param>
         private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_origcolumns, string p_fakecolumns)
         {
