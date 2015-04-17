@@ -1119,7 +1119,7 @@ namespace Spartacus.Utils
                             TO|SUBTOTAL(9;#)|X9|X11
                             TA|A:AD|11|30
                             IM|imagem|0:0|80
-                            TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
+                            TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                          */
 
                         v_worksheet.Cells ["A1"].Value = "";
@@ -1288,7 +1288,7 @@ namespace Spartacus.Utils
                                     CF|#DBE5F1|A11:AD11|
                                     TA|A:AD|11|30
                                     IM|imagem|0:0|80
-                                    TD|metodo,qtdetotal,custototal,ajustetotal|Método,Qtde Total,Custo Total,Ajuste Total|F6
+                                    TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                                  */
 
                                 v_line = string.Empty;
@@ -1488,32 +1488,39 @@ namespace Spartacus.Utils
         private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_origcolumns, string p_fakecolumns)
         {
             System.Data.DataTable v_pivot, v_table;
-            string[] v_origcolumns;
+            string[] v_origtextcolumns;
+            string[] v_origdatacolumns;
             string[] v_fakecolumns;
+            string v_where;
 
-            v_origcolumns = p_origcolumns.Split(',');
+            v_origtextcolumns = p_origcolumns.Split(';')[0].Split(',');
+            v_origdatacolumns = p_origcolumns.Split(';')[1].Split(',');
             v_fakecolumns = p_fakecolumns.Split(',');
 
             // tratando colunas de valor
             v_table = p_table.Clone();
-            for (int k = 1; k < v_origcolumns.Length; k++)
-                v_table.Columns[v_origcolumns[k]].DataType = typeof(double);
+            for (int k = 0; k < v_origdatacolumns.Length; k++)
+                v_table.Columns[v_origdatacolumns[k]].DataType = typeof(double);
             foreach (System.Data.DataRow v_row in p_table.Rows)
                 v_table.ImportRow(v_row);
 
             // criando tabela dinamica
-            v_pivot = p_table.DefaultView.ToTable(true, v_origcolumns[0]);
+            v_pivot = p_table.DefaultView.ToTable(true, v_origtextcolumns);
             v_pivot.TableName = v_table.TableName.Replace(' ', '_') + "_PIVOT";
 
             // adicionando colunas de valor
-            for (int k = 1; k < v_origcolumns.Length; k++)
-                v_pivot.Columns.Add(v_origcolumns[k], typeof(double));
+            for (int k = 0; k < v_origdatacolumns.Length; k++)
+                v_pivot.Columns.Add(v_origdatacolumns[k], typeof(double));
 
             // calculando valores sumarizados
             for (int i = 0; i < v_pivot.Rows.Count; i++)
             {
-                for (int j = 1; j < v_origcolumns.Length; j++)
-                    v_pivot.Rows[i][v_origcolumns[j]] = (double) v_table.Compute("Sum(" + v_origcolumns[j] + ")", v_origcolumns[0] + " = '" + v_pivot.Rows[i][v_origcolumns[0]].ToString() + "'");
+                v_where = "1 = 1";
+                for (int k = 0; k < v_origtextcolumns.Length; k++)
+                    v_where += " AND " + v_origtextcolumns[k] + " = '" + v_pivot.Rows[i][v_origtextcolumns[k]].ToString() + "'";
+
+                for (int j = 0; j < v_origdatacolumns.Length; j++)
+                    v_pivot.Rows[i][v_origdatacolumns[j]] = (double) v_table.Compute("Sum(" + v_origdatacolumns[j] + ")", v_where);
             }
 
             // renomeando colunas

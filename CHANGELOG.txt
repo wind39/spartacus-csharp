@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.10: Extendido Spartacus.Utils.Excel.CreatePivotTable para criar tabelas dinâmicas com mais de uma coluna pivot.
 0.36.9:  Implementada opção para fórmulas simples (sem totalizador) na Spartacus.Utils.Excel
 0.36.8:  Substituída Spartacus.Reporting.Field.Crop por uma implementação direto na PDFjet, e corrigido bug na renderização do detalhe listrado
 0.36.7:  Para corrigir definitivamente o problema de uso excessivo de memória da Spartacus.Reporting.Report, foi incorporado o código da PDFjet 5.28, e alterados os arquivos Table.cs e Cell.cs
