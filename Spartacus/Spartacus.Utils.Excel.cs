@@ -1071,6 +1071,7 @@ namespace Spartacus.Utils
             System.Drawing.Bitmap v_image;
             OfficeOpenXml.Drawing.ExcelPicture v_picture;
             int v_col, v_row;
+            int v_offset;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1182,8 +1183,9 @@ namespace Spartacus.Utils
                                     case "TD":
                                         v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                         v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
-                                        for (int j = 1; j < v_options[1].Split(',').Length; j++)
-                                            v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                        v_offset = v_options[1].Split(';')[0].Split(',').Length;
+                                        for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
+                                            v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j+v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
                                         break;
                                     default:
                                         break;
@@ -1226,6 +1228,7 @@ namespace Spartacus.Utils
             System.Drawing.Bitmap v_image;
             OfficeOpenXml.Drawing.ExcelPicture v_picture;
             int v_col, v_row;
+            int v_offset;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1393,8 +1396,9 @@ namespace Spartacus.Utils
                                             case "TD":
                                                 v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                                 v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
-                                                for (int j = 1; j < v_options[1].Split(',').Length; j++)
-                                                    v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                                v_offset = v_options[1].Split(';')[0].Split(',').Length;
+                                                for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
+                                                    v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j+v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
                                                 break;
                                             default:
                                                 break;
