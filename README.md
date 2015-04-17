@@ -16,7 +16,6 @@ Spartacus links this libraries:
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - Npgsql (https://github.com/npgsql/npgsql)
-  - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
   - Windows Presentation Foundation (http://wpf.codeplex.com/)
   - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
@@ -24,6 +23,7 @@ Spartacus links this libraries:
 Please note that WPF is required because EPPlus needs PresentationCore.dll from WPF to be able to insert images at Excel files.
   
 Spartacus reuse code from this projects:
+  - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
   - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
   - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
