@@ -50,7 +50,6 @@
       <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="EPPlus">
       <HintPath>lib\EPPlus.dll</HintPath>
     </Reference>

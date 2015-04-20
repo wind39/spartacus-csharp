@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 using System;
-using System.Linq;
 using PDFjet;
 
 namespace Spartacus.Reporting
@@ -2033,8 +2032,21 @@ namespace Spartacus.Reporting
             System.Collections.Generic.List<string> v_textrow;
             string v_text;
             int k, r, v_sectionrow;
+            System.Data.DataRow rb;
+            System.Data.DataView v_view;
+            System.Data.DataTable v_rendertable;
 
             v_group = (Spartacus.Reporting.Group)this.v_groups [p_level];
+
+            // ordenando campos da tabela original para otimizar a renderização
+            if (v_group.v_level == 0)
+            {
+                v_view = new System.Data.DataView(this.v_table);
+                v_view.Sort = v_group.v_column + ", " + v_group.v_sort;
+                v_rendertable = v_view.ToTable();
+            }
+            else
+                v_rendertable = this.v_table;
 
             // para cada elemento do grupo
             foreach (System.Data.DataRow rg in v_group.v_table.Rows)
@@ -2070,7 +2082,11 @@ namespace Spartacus.Reporting
                 {
                     // renderizando dados do grupo
                     r = 0;
-                    foreach (System.Data.DataRow rb in this.v_table.Select(v_group.v_column + " = '" + rg[v_group.v_column] + "'", v_group.v_sort))
+                    //if (this.v_renderedrows < v_rendertable.Rows.Count)
+                    //{
+                    rb = v_rendertable.Rows[this.v_renderedrows];
+                    while (this.v_renderedrows < v_rendertable.Rows.Count && rb[v_group.v_column].ToString() == rg[v_group.v_column].ToString())
+                    //foreach (System.Data.DataRow rb in this.v_table.Select(v_group.v_column + " = '" + rg[v_group.v_column] + "'", v_group.v_sort))
                     {
                         for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                         {
@@ -2081,10 +2097,6 @@ namespace Spartacus.Reporting
                                 if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-
-                                    //TODO: criar templates diferentes para par e impar
-                                    //if (r % 2 == 0)
-                                    //    this.v_detailtemplate[v_sectionrow][k].SetBgColor(this.v_settings.v_datafieldevencolor);
 
                                     //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
                                     v_textrow.Add(v_text);
@@ -2103,7 +2115,13 @@ namespace Spartacus.Reporting
                         this.v_perc += v_inc;
                         this.v_renderedrows++;
                         this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": linha " + this.v_renderedrows.ToString() + " de " + this.v_table.Rows.Count.ToString());
+
+                        if (this.v_renderedrows < v_rendertable.Rows.Count)
+                            rb = v_rendertable.Rows[this.v_renderedrows];
                     }
+                    //}
+
+                    //this.v_renderedrows--;
                 }
                 else
                 {
