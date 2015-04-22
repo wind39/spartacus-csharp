@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.36.13: Corrigido bug na implementação de cortar o texto se for maior do que a célula na PDFjet.
 0.36.12: Reduzido tempo de execução da Spartacus.Reporting em 75%
 0.36.11: Implementado suporte a WrapText e Comment nos templates da Spartacus.Utils.Excel.
 0.36.10: Extendido Spartacus.Utils.Excel.CreatePivotTable para criar tabelas dinâmicas com mais de uma coluna pivot.

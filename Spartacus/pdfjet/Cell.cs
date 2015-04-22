@@ -768,7 +768,10 @@ public class Cell {
         string v_text;
         float v_renderedsize = font.StringWidth(p_text);
         if (v_renderedsize > cell_w)
+        {
             v_text = p_text.Substring(0, (int)(((float)(cell_w * p_text.Length)) / v_renderedsize));
+            v_renderedsize = font.StringWidth(v_text);
+        }
         else
             v_text = p_text;
 

@@ -1984,8 +1984,6 @@ namespace Spartacus.Reporting
                             if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                             {
                                 v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-
-                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
                                 v_textrow.Add(v_text);
                             }
                         }
@@ -2066,8 +2064,6 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-
-                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupheaderfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_fill) / 100));
                                 v_textrow.Add(v_text);
                             }
                         }
@@ -2082,11 +2078,8 @@ namespace Spartacus.Reporting
                 {
                     // renderizando dados do grupo
                     r = 0;
-                    //if (this.v_renderedrows < v_rendertable.Rows.Count)
-                    //{
                     rb = v_rendertable.Rows[this.v_renderedrows];
                     while (this.v_renderedrows < v_rendertable.Rows.Count && rb[v_group.v_column].ToString() == rg[v_group.v_column].ToString())
-                    //foreach (System.Data.DataRow rb in this.v_table.Select(v_group.v_column + " = '" + rg[v_group.v_column] + "'", v_group.v_sort))
                     {
                         for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                         {
@@ -2097,8 +2090,6 @@ namespace Spartacus.Reporting
                                 if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-
-                                    //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_datafieldfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)this.v_fields[k]).v_fill) / 100));
                                     v_textrow.Add(v_text);
                                 }
                             }
@@ -2119,9 +2110,6 @@ namespace Spartacus.Reporting
                         if (this.v_renderedrows < v_rendertable.Rows.Count)
                             rb = v_rendertable.Rows[this.v_renderedrows];
                     }
-                    //}
-
-                    //this.v_renderedrows--;
                 }
                 else
                 {
@@ -2151,8 +2139,6 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-
-                                //v_textrow.Add(Spartacus.Reporting.Field.Crop(v_text, this.v_graphics, this.v_settings.v_groupfooterfont.v_nativefont, ((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_fill) / 100));
                                 v_textrow.Add(v_text);
                             }
                         }
