@@ -1342,7 +1342,10 @@ namespace Spartacus.Utils
 
                                                     // comentários
                                                     if (v_worksheet_src.Cells[v_cell.Address].Comment != null)
+                                                    {
                                                         v_worksheet.Cells[v_cell.Address].AddComment(v_worksheet_src.Cells[v_cell.Address].Comment.Text, v_worksheet_src.Cells[v_cell.Address].Comment.Author);
+                                                        v_worksheet.Cells[v_cell.Address].Comment.AutoFit = true;
+                                                    }
                                                 }
                                                 break;
                                             case "ST":

@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.37.0:  Incorporado código da EPPlus 4.0.4 para poder corrigir o problema de NullReferenceException para ExcelRangeBase
+
 0.36.14: Reduzido consumo de memória através da utilização de um arquivo de dados para o relatório PDF.
 0.36.13: Corrigido bug na implementação de cortar o texto se for maior do que a célula na PDFjet.
 0.36.12: Reduzido tempo de execução da Spartacus.Reporting em 75%
