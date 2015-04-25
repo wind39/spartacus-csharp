@@ -84,11 +84,6 @@ namespace Spartacus.Reporting
         public System.Collections.ArrayList v_groups;
 
         /// <summary>
-        /// Objeto usado para auxiliar renderização de texto.
-        /// </summary>
-        //private System.Drawing.Graphics v_graphics;
-
-        /// <summary>
         /// Se o gerador de relatórios deve calcular os valores agrupados.
         /// </summary>
         private bool v_calculate_groups;
@@ -143,7 +138,12 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Lista de strings para renderização do relatório.
         /// </summary>
-        public System.Collections.Generic.List<System.Collections.Generic.List<string>> v_textlist;
+        //public System.Collections.Generic.List<System.Collections.Generic.List<string>> v_textlist;
+
+        /// <summary>
+        /// Arquivo de texto contendo a matriz de renderização.
+        /// </summary>
+        public System.IO.FileStream v_datafile;
 
 
         /// <summary>
@@ -154,8 +154,6 @@ namespace Spartacus.Reporting
         public Report(int p_reportid, string p_filename)
         {
             this.v_reportid = p_reportid;
-
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -192,8 +190,6 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -229,8 +225,6 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -265,8 +259,6 @@ namespace Spartacus.Reporting
         public Report(int p_reportid, string p_filename, bool p_calculate_groups)
         {
             this.v_reportid = p_reportid;
-
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -304,8 +296,6 @@ namespace Spartacus.Reporting
         {
             this.v_reportid = p_reportid;
 
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
 
@@ -341,8 +331,6 @@ namespace Spartacus.Reporting
         public Report(int p_reportid, string p_filename, System.Data.DataTable p_table, bool p_calculate_groups)
         {
             this.v_reportid = p_reportid;
-
-            //this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
 
             this.v_header = new Spartacus.Reporting.Block();
             this.v_footer = new Spartacus.Reporting.Block();
@@ -1456,6 +1444,9 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_datafilename;
+            System.IO.StreamReader v_reader;
 
             // se o relatório não tiver dados, não faz nada
             if (this.v_table.Rows.Count == 0)
@@ -1507,6 +1498,14 @@ namespace Spartacus.Reporting
                     this.v_settings.v_groupfooterfont.GetFont(v_pdf)
                 );
 
+                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_datafilename = v_cryptor.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "") + ".tmp";
+                this.v_datafile = System.IO.File.Open(
+                    v_datafilename,
+                    System.IO.FileMode.Create,
+                    System.IO.FileAccess.ReadWrite
+                );
+
                 v_rendered = this.RenderData(
                     v_page.GetHeight(),
                     v_page.GetWidth(),
@@ -1517,6 +1516,11 @@ namespace Spartacus.Reporting
 
                 v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
                 v_datatable.SetCellBordersWidth(0.8f);
+
+                this.v_datafile.Seek(0, System.IO.SeekOrigin.Begin);
+                v_reader = new System.IO.StreamReader(this.v_datafile);
+
+                // salvando PDF
 
                 this.v_header.SetValues(this.v_table);
                 this.v_footer.SetValues(this.v_table);
@@ -1538,7 +1542,7 @@ namespace Spartacus.Reporting
                     );
 
                     v_dataheadertable.DrawOn(v_page);
-                    v_datatable.ImprovedDrawOn(v_page, this.v_textlist);
+                    v_datatable.ImprovedDrawOn(v_page, v_reader);
 
                     this.v_footer.Render(
                         this.v_settings.v_reportfooterfont,
@@ -1561,6 +1565,10 @@ namespace Spartacus.Reporting
                 v_pdf.Flush();
                 v_buffer.Close();
 
+                v_reader.Close();
+                this.v_datafile.Close();
+                (new System.IO.FileInfo(v_datafilename)).Delete();
+
                 this.v_perc = this.v_lastperc;
                 this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado no arquivo " + p_filename);
             }
@@ -1582,6 +1590,9 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_datafilename;
+            System.IO.StreamReader v_reader;
 
             // se o relatório não tiver dados, não faz nada
             if (this.v_table.Rows.Count == 0)
@@ -1628,6 +1639,14 @@ namespace Spartacus.Reporting
                     this.v_settings.v_groupfooterfont.GetFont(p_pdf)
                 );
 
+                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_datafilename = v_cryptor.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "") + ".tmp";
+                this.v_datafile = System.IO.File.Open(
+                    v_datafilename,
+                    System.IO.FileMode.Create,
+                    System.IO.FileAccess.ReadWrite
+                );
+
                 v_rendered = this.RenderData(
                     v_page.GetHeight(),
                     v_page.GetWidth(),
@@ -1638,6 +1657,11 @@ namespace Spartacus.Reporting
 
                 v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
                 v_datatable.SetCellBordersWidth(0.8f);
+
+                this.v_datafile.Seek(0, System.IO.SeekOrigin.Begin);
+                v_reader = new System.IO.StreamReader(this.v_datafile);
+
+                // salvando PDF
 
                 this.v_header.SetValues(this.v_table);
                 this.v_footer.SetValues(this.v_table);
@@ -1659,7 +1683,7 @@ namespace Spartacus.Reporting
                     );
 
                     v_dataheadertable.DrawOn(v_page);
-                    v_datatable.ImprovedDrawOn(v_page, this.v_textlist);
+                    v_datatable.ImprovedDrawOn(v_page, v_reader);
 
                     this.v_footer.Render(
                         this.v_settings.v_reportfooterfont,
@@ -1678,6 +1702,10 @@ namespace Spartacus.Reporting
                         v_currentpage++;
                     }
                 }
+
+                v_reader.Close();
+                this.v_datafile.Close();
+                (new System.IO.FileInfo(v_datafilename)).Delete();
 
                 this.v_perc = this.v_lastperc;
                 this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + " renderizado.");
@@ -1950,12 +1978,15 @@ namespace Spartacus.Reporting
         )
         {
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_data;
-            System.Collections.Generic.List<string> v_textrow;
+            //System.Collections.Generic.List<string> v_textrow;
+            string v_textrow;
+            System.IO.StreamWriter v_writer;
             string v_text;
             int k, r, v_sectionrow;
 
             v_data = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
-            this.v_textlist = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+            //this.v_textlist = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+            v_writer = new System.IO.StreamWriter(this.v_datafile);
 
             // se o relatorio possui grupos
             if (this.v_groups.Count > 0)
@@ -1967,7 +1998,8 @@ namespace Spartacus.Reporting
                     p_pagewidth,
                     p_datafieldfont,
                     p_groupheaderfont,
-                    p_groupfooterfont
+                    p_groupfooterfont,
+                    v_writer
                 );
             }
             else // se o relatorio nao possui grupos
@@ -1977,18 +2009,19 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                     {
-                        v_textrow = new System.Collections.Generic.List<string>();
-
+                        //v_textrow = new System.Collections.Generic.List<string>();
+                        v_textrow = "";
                         for (k = 0; k < this.v_fields.Count; k++)
                         {
                             if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                             {
                                 v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-                                v_textrow.Add(v_text);
+                                //v_textrow.Add(v_text);
+                                v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-
-                        this.v_textlist.Add(v_textrow);
+                        //this.v_textlist.Add(v_textrow);
+                        v_writer.WriteLine(v_textrow);
                     }
 
                     if (r % 2 == 0)
@@ -2002,6 +2035,8 @@ namespace Spartacus.Reporting
                     this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": linha " + this.v_renderedrows.ToString() + " de " + this.v_table.Rows.Count.ToString());
                 }
             }
+
+            v_writer.Flush();
 
             return v_data;
         }
@@ -2023,11 +2058,13 @@ namespace Spartacus.Reporting
             float p_pagewidth,
             PDFjet.NET.Font p_datafieldfont,
             PDFjet.NET.Font p_groupheaderfont,
-            PDFjet.NET.Font p_groupfooterfont
+            PDFjet.NET.Font p_groupfooterfont,
+            System.IO.StreamWriter p_writer
         )
         {
             Spartacus.Reporting.Group v_group;
-            System.Collections.Generic.List<string> v_textrow;
+            //System.Collections.Generic.List<string> v_textrow;
+            string v_textrow;
             string v_text;
             int k, r, v_sectionrow;
             System.Data.DataRow rb;
@@ -2054,8 +2091,8 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsheader; v_sectionrow++)
                     {
-                        v_textrow = new System.Collections.Generic.List<string>();
-
+                        //v_textrow = new System.Collections.Generic.List<string>();
+                        v_textrow = "";
                         for (k = 0; k < v_group.v_headerfields.Count; k++)
                         {
                             if (((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_row == v_sectionrow)
@@ -2064,11 +2101,12 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                v_textrow.Add(v_text);
+                                //v_textrow.Add(v_text);
+                                v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-
-                        this.v_textlist.Add(v_textrow);
+                        //this.v_textlist.Add(v_textrow);
+                        p_writer.WriteLine(v_textrow);
                     }
 
                     p_data.AddRange(v_group.v_headertemplate);
@@ -2083,18 +2121,19 @@ namespace Spartacus.Reporting
                     {
                         for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                         {
-                            v_textrow = new System.Collections.Generic.List<string>();
-
+                            //v_textrow = new System.Collections.Generic.List<string>();
+                            v_textrow = "";
                             for (k = 0; k < this.v_fields.Count; k++)
                             {
                                 if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-                                    v_textrow.Add(v_text);
+                                    //v_textrow.Add(v_text);
+                                    v_textrow += v_text.Replace(';', ',') + ";";
                                 }
                             }
-
-                            this.v_textlist.Add(v_textrow);
+                            //this.v_textlist.Add(v_textrow);
+                            p_writer.WriteLine(v_textrow);
                         }
 
                         if (r % 2 == 0)
@@ -2120,7 +2159,8 @@ namespace Spartacus.Reporting
                         p_pagewidth,
                         p_datafieldfont,
                         p_groupheaderfont,
-                        p_groupfooterfont
+                        p_groupfooterfont,
+                        p_writer
                     );
                 }
 
@@ -2129,8 +2169,8 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsfooter; v_sectionrow++)
                     {
-                        v_textrow = new System.Collections.Generic.List<string>();
-
+                        //v_textrow = new System.Collections.Generic.List<string>();
+                        v_textrow = "";
                         for (k = 0; k < v_group.v_footerfields.Count; k++)
                         {
                             if (((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_row == v_sectionrow)
@@ -2139,11 +2179,12 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                v_textrow.Add(v_text);
+                                //v_textrow.Add(v_text);
+                                v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-
-                        this.v_textlist.Add(v_textrow);
+                        //this.v_textlist.Add(v_textrow);
+                        p_writer.WriteLine(v_textrow);
                     }
 
                     p_data.AddRange(v_group.v_footertemplate);

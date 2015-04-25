@@ -454,11 +454,26 @@ public class Table {
      *
      *  @param page the page to draw this table on.
      *  @param draw if false - do not draw the table. Use to only find out where the table ends.
+     *  @param p_textlist Lista de listas de strings a serem renderizadas.
      *
      *  @return Point the point on the page where to draw the next component.
      */
     public Point ImprovedDrawOn(Page page, List<List<string>> p_textlist) {
         return ImprovedDrawOn(page, true, p_textlist);
+    }
+
+
+    /**
+     *  Draws this table on the specified page.
+     *
+     *  @param page the page to draw this table on.
+     *  @param draw if false - do not draw the table. Use to only find out where the table ends.
+     *  @param p_file Arquivo de onde ler as strings a serem renderizadas.
+     *
+     *  @return Point the point on the page where to draw the next component.
+     */
+    public Point ImprovedDrawOn(Page page, System.IO.StreamReader p_file) {
+        return ImprovedDrawOn(page, true, p_file);
     }
     
     
@@ -480,6 +495,7 @@ public class Table {
      *
      *  @param page the page to draw this table on.
      *  @param draw
+     *  @param p_textlist Lista de listas de strings a serem renderizadas.
      *
      *  @return Point the point on the page where to draw the next component.
      */
@@ -487,6 +503,20 @@ public class Table {
         return ImprovedDrawTableRows(page, draw, DrawHeaderRows(page, draw), p_textlist);
     }
     
+
+    /**
+     *  Draws this table on the specified page.
+     *
+     *  @param page the page to draw this table on.
+     *  @param draw
+     *  @param p_file Arquivo de onde ler as strings a serem renderizadas.
+     *
+     *  @return Point the point on the page where to draw the next component.
+     */
+    private Point ImprovedDrawOn(Page page, bool draw, System.IO.StreamReader p_file) {
+        return ImprovedDrawTableRows(page, draw, DrawHeaderRows(page, draw), p_file);
+    }
+
 
     private float[] DrawHeaderRows(Page page, bool draw) {
         float x = x1;
@@ -643,6 +673,69 @@ public class Table {
         return new Point(x, y);
     }
     
+
+    private Point ImprovedDrawTableRows(Page page, bool draw, float[] parameter, System.IO.StreamReader p_file) {
+        float x = parameter[0];
+        float y = parameter[1];
+        float cell_w = parameter[2];
+        float cell_h = parameter[3];
+        string[] v_line;
+
+        for (int i = rendered; i < tableData.Count; i++) {
+            List<Cell> dataRow = tableData[i];
+            cell_h = GetMaxCellHeight(dataRow);
+            
+            v_line = p_file.ReadLine().Split(';');
+
+            for (int j = 0; j < dataRow.Count; j++) {
+                Cell cell = dataRow[j];
+                float cellHeight = cell.GetHeight();
+                if (cellHeight > cell_h) {
+                    cell_h = cellHeight;
+                }
+                cell_w = cell.GetWidth();
+                for (int k = 1; k < cell.GetColSpan(); k++) {
+                    cell_w += dataRow[++j].GetWidth();
+                }
+
+                if (draw) {
+                    page.SetBrushColor(cell.GetBrushColor());
+                    cell.ImprovedPaint(page, x, y, cell_w, cell_h, v_line[j]);
+                }
+
+                x += cell_w;
+            }
+            x = x1;
+            y += cell_h;
+
+            // Consider the height of the next row when checking if we must go to a new page
+            if (i < (tableData.Count - 1)) {
+                List<Cell> nextRow = tableData[i + 1];
+                for (int j = 0; j < nextRow.Count; j++) {
+                    Cell cell = nextRow[j];
+                    float cellHeight = cell.GetHeight();
+                    if (cellHeight > cell_h) {
+                        cell_h = cellHeight;
+                    }
+                }
+            }
+
+            if ((y + cell_h) > (page.height - bottom_margin)) {
+                if (i == tableData.Count - 1) {
+                    rendered = -1;
+                }
+                else {
+                    rendered = i + 1;
+                    numOfPages++;
+                }
+                return new Point(x, y);
+            }
+        }
+        rendered = -1;
+
+        return new Point(x, y);
+    }
+
 
     private float GetMaxCellHeight(List<Cell> row) {
         float max_cell_height = 0f;
