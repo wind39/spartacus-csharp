@@ -1230,12 +1230,10 @@
     <None Include="lib\PresentationCore.dll" />
     <None Include="lib\WindowsBase.dll" />
     <None Include="doc\doxygen_sqlite3.db" />
-    <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\PresentationCore.dll" />
     <None Include="bin\Release\PresentationFramework.dll" />
     <None Include="bin\Release\WindowsBase.dll" />
     <None Include="bin\Release\WindowsFormsIntegration.dll" />
-    <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\PresentationCore.dll" />
     <None Include="bin\Debug\PresentationFramework.dll" />
     <None Include="bin\Debug\WindowsBase.dll" />

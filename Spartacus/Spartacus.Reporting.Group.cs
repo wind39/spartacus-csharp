@@ -125,7 +125,7 @@ namespace Spartacus.Reporting
             // adicionando todas as colunas do cabeçalho do grupo
             for (k = 0; k < this.v_headerfields.Count; k++)
             {
-                if (((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "")
+                if (! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column) && ((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "")
                     v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
             }
 

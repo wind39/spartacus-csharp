@@ -46,7 +46,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Release\EPPlus.dll" />
     <None Include="bin\Release\Exemplo02.exe" />
     <None Include="bin\Release\Exemplo02.exe.mdb" />
     <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
@@ -54,13 +53,10 @@
     <None Include="bin\Release\MySql.Data.dll" />
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="bin\Release\PresentationCore.dll" />
-    <None Include="bin\Release\PresentationFramework.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="bin\Release\System.Data.OracleClient.dll" />
     <None Include="bin\Release\WindowsBase.dll" />
-    <None Include="bin\Release\WindowsFormsIntegration.dll" />
     <None Include="bin\Release\basecadastro.mdb" />
-    <None Include="bin\Debug\EPPlus.dll" />
     <None Include="bin\Debug\Exemplo02.exe" />
     <None Include="bin\Debug\Exemplo02.exe.mdb" />
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
@@ -68,11 +64,9 @@
     <None Include="bin\Debug\MySql.Data.dll" />
     <None Include="bin\Debug\Npgsql.dll" />
     <None Include="bin\Debug\PresentationCore.dll" />
-    <None Include="bin\Debug\PresentationFramework.dll" />
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\System.Data.OracleClient.dll" />
     <None Include="bin\Debug\WindowsBase.dll" />
-    <None Include="bin\Debug\WindowsFormsIntegration.dll" />
   </ItemGroup>
 </Project>

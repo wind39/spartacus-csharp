@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.37.1:  Corrigido bug na renderização de cabeçalhos de grupo na Spartacus.Reporting
 0.37.0:  Incorporado código da EPPlus 4.0.4 para poder corrigir o problema de NullReferenceException para ExcelRangeBase
 
 0.36.14: Reduzido consumo de memória através da utilização de um arquivo de dados para o relatório PDF.
