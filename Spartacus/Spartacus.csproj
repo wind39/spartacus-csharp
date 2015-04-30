@@ -1231,13 +1231,9 @@
     <None Include="lib\WindowsBase.dll" />
     <None Include="doc\doxygen_sqlite3.db" />
     <None Include="bin\Release\PresentationCore.dll" />
-    <None Include="bin\Release\PresentationFramework.dll" />
     <None Include="bin\Release\WindowsBase.dll" />
-    <None Include="bin\Release\WindowsFormsIntegration.dll" />
     <None Include="bin\Debug\PresentationCore.dll" />
-    <None Include="bin\Debug\PresentationFramework.dll" />
     <None Include="bin\Debug\WindowsBase.dll" />
-    <None Include="bin\Debug\WindowsFormsIntegration.dll" />
     <None Include="dist\Spartacus-0.35.2\EPPlus.dll" />
     <None Include="dist\Spartacus-0.35.2\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="dist\Spartacus-0.35.2\Mono.Data.Sqlite.dll" />
