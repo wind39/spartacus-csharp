@@ -48,7 +48,7 @@ namespace OfficeOpenXml.Style.XmlAccess
             _size = 0;
             _family = int.MinValue;
             _scheme = "";
-            _color = _color = new ExcelColorXml(NameSpaceManager);
+            _color = new ExcelColorXml(NameSpaceManager);
             _bold = false;
             _italic = false;
             _strike = false;

@@ -132,6 +132,7 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
+        /// Utiliza um DataReader para buscar em blocos.
         /// </summary>
         /// <param name='p_sql'>
         /// Código SQL a ser consultado no banco de dados.
@@ -139,10 +140,13 @@ namespace Spartacus.Database
         /// <param name='p_tablename'>
         /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
         /// </param>
-        /// <param name='p_table'>
-        /// Tabela que contém definições de nomes e tipos de colunas.
+        /// <param name='p_numrows'>
+        /// Número da linha inicial.
         /// </param>
-        public abstract System.Data.DataTable Query(string p_sql, string p_tablename, System.Data.DataTable p_table);
+        /// <param name='p_endrow'>
+        /// Número da linha final.
+        /// </param>
+        public abstract System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow);
 
         /// <summary>
         /// Executa uma instrução SQL no banco de dados.
@@ -195,5 +199,29 @@ namespace Spartacus.Database
         /// </summary>
         /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
         public abstract void BulkInsert(System.Data.DataTable p_table);
+
+        /// <summary>
+        /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
+        /// </summary>
+        /// <returns>Nome da coluna corrigido.</returns>
+        /// <param name="p_input">Nome da coluna com problema.</param>
+        public string FixColumnName(string p_input)
+        {
+            string v_output;
+            char[] v_array;
+            int k;
+
+            v_array = p_input.ToCharArray();
+
+            v_output = "";
+            k = 0;
+            while (((uint)v_array[k]) != 0)
+            {
+                v_output += v_array[k];
+                k++;
+            }
+
+            return v_output;
+        }
     }
 }

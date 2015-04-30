@@ -110,6 +110,45 @@ namespace Spartacus.Database
         public override System.Data.DataTable Query(string p_sql, string p_tablename)
         {
             System.Data.DataTable v_table = null;
+            System.Data.OleDb.OleDbDataReader v_reader;
+            System.Data.OleDb.OleDbCommand v_olecmd;
+            System.Data.DataRow v_row;
+
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_olecon.Open();
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
+                    v_reader = v_olecmd.ExecuteReader();
+
+                    while (v_reader.Read())
+                    {
+                        if (v_table == null)
+                        {
+                            v_table = new System.Data.DataTable(p_tablename);
+                            for (int i = 0; i < v_reader.FieldCount; i++)
+                                v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+                        }
+
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            v_row[i] = v_reader.GetString(i);
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    v_reader.Close();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_table;
+
+            /*
+            System.Data.DataTable v_table = null;
             System.Data.OleDb.OleDbDataAdapter v_oleadp;
             System.Data.OleDb.OleDbCommand v_olecmd;
 
@@ -131,10 +170,12 @@ namespace Spartacus.Database
             }
 
             return v_table;
+            */
         }
 
         /// <summary>
-        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="System.Data.DataTable"/>.
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
+        /// Utiliza um DataReader para buscar em blocos.
         /// </summary>
         /// <param name='p_sql'>
         /// Código SQL a ser consultado no banco de dados.
@@ -142,47 +183,50 @@ namespace Spartacus.Database
         /// <param name='p_tablename'>
         /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
         /// </param>
-        /// <param name='p_table'>
-        /// Tabela que contém definições de nomes e tipos de colunas.
+        /// <param name='p_startrow'>
+        /// Número da linha inicial.
         /// </param>
-        /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception>
-        public override System.Data.DataTable Query(string p_sql, string p_tablename, System.Data.DataTable p_table)
+        /// <param name='p_endrow'>
+        /// Número da linha final.
+        /// </param>
+        public override System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow)
         {
-            System.Data.DataTable v_table = null, v_tabletmp = null;
-            System.Data.OleDb.OleDbDataAdapter v_oleadp;
+            System.Data.DataTable v_table = null;
+            System.Data.OleDb.OleDbDataReader v_reader;
             System.Data.OleDb.OleDbCommand v_olecmd;
             System.Data.DataRow v_row;
-            int k;
+            uint v_currentrow;
 
             using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
             {
                 try
                 {
                     v_olecon.Open();
-
                     v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
-                    v_oleadp = new System.Data.OleDb.OleDbDataAdapter(v_olecmd);
-                    v_tabletmp = new System.Data.DataTable(p_tablename);
-                    v_oleadp.Fill(v_tabletmp);
+                    v_reader = v_olecmd.ExecuteReader();
 
-                    v_table = v_tabletmp.Clone();
-
-                    for (k = 0; k < v_table.Columns.Count && k < p_table.Columns.Count; k++)
+                    v_currentrow = 0;
+                    while (v_reader.Read())
                     {
-                        v_table.Columns [k].ColumnName = p_table.Columns [k].ColumnName;
-                        v_table.Columns [k].DataType = p_table.Columns [k].DataType;
+                        if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
+                        {
+                            if (v_table == null)
+                            {
+                                v_table = new System.Data.DataTable(p_tablename);
+                                for (int i = 0; i < v_reader.FieldCount; i++)
+                                    v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+                            }
+
+                            v_row = v_table.NewRow();
+                            for (int i = 0; i < v_reader.FieldCount; i++)
+                                v_row[i] = v_reader.GetString(i);
+                            v_table.Rows.Add(v_row);
+                        }
+
+                        v_currentrow++;
                     }
 
-                    foreach (System.Data.DataRow r in v_tabletmp.Rows)
-                    {
-                        v_row = v_table.NewRow();
-
-                        for (k = 0; k < v_table.Columns.Count; k++)
-                            v_row [k] = r [k];
-
-                        v_table.Rows.Add(v_row);
-                    }
+                    v_reader.Close();
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {

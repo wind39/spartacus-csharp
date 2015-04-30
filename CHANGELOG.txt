@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.37.3:  Fix temporário para bug nos nomes de colunas do DataTable no Mono 4.0. Implementada sobrecarga para Query que faz busca em blocos.
 0.37.2:  Implementado suporte a formatação condicional de linhas na Spartacus.Utils
 0.37.1:  Corrigido bug na renderização de cabeçalhos de grupo na Spartacus.Reporting
 0.37.0:  Incorporado código da EPPlus 4.0.4 para poder corrigir o problema de NullReferenceException para ExcelRangeBase

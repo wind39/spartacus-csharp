@@ -158,7 +158,6 @@ namespace Spartacus.Reporting
             System.Collections.ArrayList v_allcolumns_temp;
             string[] v_allcolumns;
             int i, j, k;
-            System.Data.DataView v_view;
 
             // PASSO 1: PEGANDO COLUNAS E DADOS DO GRUPO
 
