@@ -1072,6 +1072,7 @@ namespace Spartacus.Utils
             OfficeOpenXml.Drawing.ExcelPicture v_picture;
             int v_col, v_row;
             int v_offset;
+            int v_datastart = 1;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1087,41 +1088,45 @@ namespace Spartacus.Utils
                     using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet.Cells ["A1"].Value.ToString()))
                     {
                         /* EXEMPLO DE CONFIGURACAO DE MARKUP:
-                         * 
                             TIPO|CAMPO|POSICAO|OPCIONAL
+                            CA||A1:AD12|
                             ST|titulo|A6|
                             ST|filtro|A8|
                             ST|ano|E2:J2|
                             ST|empresa|E4:J4|
                             FO|U10/S10|V7|
-                            TO|SUM(#)|M8|M11
-                            TO|SUM(#)|N8|N11
-                            TO|SUM(#)|O8|O11
-                            TO|SUM(#)|P8|P11
-                            TO|SUM(#)|Q8|Q11
-                            TO|SUM(#)|R8|R11
-                            TO|SUM(#)|S8|S11
-                            TO|SUM(#)|T8|T11
-                            TO|SUM(#)|U8|U11
-                            TO|SUM(#)|V8|V11
-                            TO|SUM(#)|W8|W11
-                            TO|SUM(#)|X8|X11
-                            TO|SUBTOTAL(9;#)|M9|M11
-                            TO|SUBTOTAL(9;#)|N9|N11
-                            TO|SUBTOTAL(9;#)|O9|O11
-                            TO|SUBTOTAL(9;#)|P9|P11
-                            TO|SUBTOTAL(9;#)|Q9|Q11
-                            TO|SUBTOTAL(9;#)|R9|R11
-                            TO|SUBTOTAL(9;#)|S9|S11
-                            TO|SUBTOTAL(9;#)|T9|T11
-                            TO|SUBTOTAL(9;#)|U9|U11
-                            TO|SUBTOTAL(9;#)|V9|V11
-                            TO|SUBTOTAL(9;#)|W9|W11
-                            TO|SUBTOTAL(9;#)|X9|X11
+                            TO|SUM(#)|M9|M12
+                            TO|SUM(#)|N9|N12
+                            TO|SUM(#)|O9|O12
+                            TO|SUM(#)|P9|P12
+                            TO|SUM(#)|Q9|Q12
+                            TO|SUM(#)|R9|R12
+                            TO|SUM(#)|S9|S12
+                            TO|SUM(#)|T9|T12
+                            TO|SUM(#)|U9|U12
+                            TO|SUM(#)|V9|V12
+                            TO|SUM(#)|W9|W12
+                            TO|SUM(#)|X9|X12
+                            TO|SUM(#)|Y9|Y12
+                            TO|SUBTOTAL(9,#)|M10|M12
+                            TO|SUBTOTAL(9,#)|N10|N12
+                            TO|SUBTOTAL(9,#)|O10|O12
+                            TO|SUBTOTAL(9,#)|P10|P12
+                            TO|SUBTOTAL(9,#)|Q10|Q12
+                            TO|SUBTOTAL(9,#)|R10|R12
+                            TO|SUBTOTAL(9,#)|S10|S12
+                            TO|SUBTOTAL(9,#)|T10|T12
+                            TO|SUBTOTAL(9,#)|U10|U12
+                            TO|SUBTOTAL(9,#)|V10|V12
+                            TO|SUBTOTAL(9,#)|W10|W12
+                            TO|SUBTOTAL(9,#)|X10|X12
+                            TO|SUBTOTAL(9,#)|Y10|Y12
+                            CF|#DBE5F1|A11:AD11|
                             TA|A:AD|11|30
                             IM|imagem|0:0|80
                             TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
-                         */
+                            FC|$W2=2|#D3D3D3|A:AD
+                        */
 
                         v_worksheet.Cells ["A1"].Value = "";
 
@@ -1180,12 +1185,29 @@ namespace Spartacus.Utils
                                         else
                                             v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                         break;
+                                    case "TA":
+                                        v_row = int.Parse(v_options[2]);
+                                        v_worksheet.View.FreezePanes(v_row + 1, 1);
+                                        v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_table.TableName);
+                                        v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
+                                        v_worksheet.Tables[0].ShowFilter = true;
+                                        // passando informação para demais configurações
+                                        v_datastart = int.Parse(v_options[2]);
+                                        // passando informação para SejExcel
+                                        v_worksheet.Cells["A1"].Value = v_options[2];
+                                        break;
                                     case "TD":
                                         v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
                                         v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
                                         v_offset = v_options[1].Split(';')[0].Split(',').Length;
                                         for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
                                             v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j+v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                        break;
+                                    case "FC":
+                                        var v_rule = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart+1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
+                                        v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                        v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
+                                        v_rule.Formula = v_options[1];
                                         break;
                                     default:
                                         break;
@@ -1229,6 +1251,7 @@ namespace Spartacus.Utils
             OfficeOpenXml.Drawing.ExcelPicture v_picture;
             int v_col, v_row;
             int v_offset;
+            int v_datastart = 1;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1292,6 +1315,7 @@ namespace Spartacus.Utils
                                     TA|A:AD|11|30
                                     IM|imagem|0:0|80
                                     TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
+                                    FC|$W2=2|#D3D3D3|A:AD
                                  */
 
                                 v_line = string.Empty;
@@ -1406,6 +1430,8 @@ namespace Spartacus.Utils
                                                 v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
                                                 v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
                                                 v_worksheet.Tables[0].ShowFilter = true;
+                                                // passando informação para demais configurações
+                                                v_datastart = int.Parse(v_options[2]);
                                                 // passando informação para SejExcel
                                                 v_worksheet.Cells["A1"].Value = v_options[2];
                                                 break;
@@ -1415,6 +1441,12 @@ namespace Spartacus.Utils
                                                 v_offset = v_options[1].Split(';')[0].Split(',').Length;
                                                 for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
                                                     v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j+v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                                break;
+                                            case "FC":
+                                                var v_rule = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart+1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
+                                                v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                                v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
+                                                v_rule.Formula = v_options[1];
                                                 break;
                                             default:
                                                 break;

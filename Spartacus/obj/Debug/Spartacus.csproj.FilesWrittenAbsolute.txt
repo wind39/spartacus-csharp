@@ -4,3 +4,10 @@
 /work/projects/Repositories/Spartacus/Spartacus/obj/Debug/Spartacus.dll
 /work/projects/Repositories/Spartacus/Spartacus/obj/Debug/Spartacus.dll.mdb
 /work/projects/Repositories/Spartacus/Spartacus/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/FirebirdSql.Data.FirebirdClient.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/MySql.Data.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/Npgsql.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/Mono.Data.Sqlite.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/System.Data.OracleClient.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/PresentationCore.dll
+/work/projects/Repositories/Spartacus/Spartacus/bin/Debug/WindowsBase.dll
