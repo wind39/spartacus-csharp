@@ -1,16 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Odbc.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="132" Column="9" />
-      <File FileName="Spartacus/Spartacus.Database.Odbc.cs" Line="103" Column="22" />
-      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="111" Column="22" />
-      <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="111" Column="22" />
-      <File FileName="Spartacus/Spartacus.Database.Oledb.cs" Line="220" Column="66" />
-      <File FileName="Spartacus/Spartacus.Database.Oracle.cs" Line="173" Column="31" />
-      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="198" Column="22" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="41" Column="42" />
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="44" Column="35" />
+      <File FileName="Spartacus/Spartacus.Database.Odbc.cs" Line="94" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

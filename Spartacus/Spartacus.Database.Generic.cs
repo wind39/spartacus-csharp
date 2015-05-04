@@ -215,7 +215,7 @@ namespace Spartacus.Database
 
             v_output = "";
             k = 0;
-            while (((uint)v_array[k]) != 0)
+            while (k < v_array.Length && ((uint)v_array[k]) != 0)
             {
                 v_output += v_array[k];
                 k++;
