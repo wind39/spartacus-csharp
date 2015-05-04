@@ -99,15 +99,12 @@ namespace Spartacus.Database
                     v_oracmd = new System.Data.OracleClient.OracleCommand(p_sql, v_oracon);
                     v_reader = v_oracmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     while (v_reader.Read())
                     {
-                        if (v_table == null)
-                        {
-                            v_table = new System.Data.DataTable(p_tablename);
-                            for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                        }
-
                         v_row = v_table.NewRow();
                         for (int i = 0; i < v_reader.FieldCount; i++)
                             v_row[i] = v_reader.GetString(i);
@@ -123,31 +120,6 @@ namespace Spartacus.Database
             }
 
             return v_table;
-
-            /*
-            System.Data.DataTable v_table = null;
-            System.Data.OracleClient.OracleDataAdapter v_oraadp;
-            System.Data.OracleClient.OracleCommand v_oracmd;
-
-            using (System.Data.OracleClient.OracleConnection v_oracon = new System.Data.OracleClient.OracleConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_oracon.Open();
-
-                    v_oracmd = new System.Data.OracleClient.OracleCommand(p_sql, v_oracon);
-                    v_oraadp = new System.Data.OracleClient.OracleDataAdapter(v_oracmd);
-                    v_table = new System.Data.DataTable(p_tablename);
-                    v_oraadp.Fill(v_table);
-                }
-                catch (System.Data.OracleClient.OracleException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-
-            return v_table;
-            */
         }
 
         /// <summary>
@@ -182,18 +154,15 @@ namespace Spartacus.Database
                     v_oracmd = new System.Data.OracleClient.OracleCommand(p_sql, v_oracon);
                     v_reader = v_oracmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     v_currentrow = 0;
                     while (v_reader.Read())
                     {
                         if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
                         {
-                            if (v_table == null)
-                            {
-                                v_table = new System.Data.DataTable(p_tablename);
-                                for (int i = 0; i < v_reader.FieldCount; i++)
-                                    v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                            }
-
                             v_row = v_table.NewRow();
                             for (int i = 0; i < v_reader.FieldCount; i++)
                                 v_row[i] = v_reader.GetString(i);

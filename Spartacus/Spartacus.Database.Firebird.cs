@@ -95,15 +95,12 @@ namespace Spartacus.Database
                     v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, v_fbcon);
                     v_reader = v_fbcmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     while (v_reader.Read())
                     {
-                        if (v_table == null)
-                        {
-                            v_table = new System.Data.DataTable(p_tablename);
-                            for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                        }
-
                         v_row = v_table.NewRow();
                         for (int i = 0; i < v_reader.FieldCount; i++)
                             v_row[i] = v_reader.GetString(i);
@@ -119,31 +116,6 @@ namespace Spartacus.Database
             }
 
             return v_table;
-
-            /*
-            System.Data.DataTable v_table = null;
-            FirebirdSql.Data.FirebirdClient.FbDataAdapter v_fbadp;
-            FirebirdSql.Data.FirebirdClient.FbCommand v_fbcmd;
-
-            using (FirebirdSql.Data.FirebirdClient.FbConnection v_fbcon = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_fbcon.Open();
-
-                    v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, v_fbcon);
-                    v_fbadp = new FirebirdSql.Data.FirebirdClient.FbDataAdapter(v_fbcmd);
-                    v_table = new System.Data.DataTable(p_tablename);
-                    v_fbadp.Fill(v_table);
-                }
-                catch (FirebirdSql.Data.FirebirdClient.FbException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-
-            return v_table;
-            */
         }
 
         /// <summary>
@@ -178,18 +150,15 @@ namespace Spartacus.Database
                     v_fbcmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, v_fbcon);
                     v_reader = v_fbcmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     v_currentrow = 0;
                     while (v_reader.Read())
                     {
                         if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
                         {
-                            if (v_table == null)
-                            {
-                                v_table = new System.Data.DataTable(p_tablename);
-                                for (int i = 0; i < v_reader.FieldCount; i++)
-                                    v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                            }
-
                             v_row = v_table.NewRow();
                             for (int i = 0; i < v_reader.FieldCount; i++)
                                 v_row[i] = v_reader.GetString(i);

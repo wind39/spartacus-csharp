@@ -94,15 +94,12 @@ namespace Spartacus.Database
                     v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, v_pgcon);
                     v_reader = v_pgcmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     while (v_reader.Read())
                     {
-                        if (v_table == null)
-                        {
-                            v_table = new System.Data.DataTable(p_tablename);
-                            for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                        }
-
                         v_row = v_table.NewRow();
                         for (int i = 0; i < v_reader.FieldCount; i++)
                             v_row[i] = v_reader.GetString(i);
@@ -118,32 +115,6 @@ namespace Spartacus.Database
             }
 
             return v_table;
-
-            /*
-            System.Data.DataTable v_table = null;
-            Npgsql.NpgsqlDataAdapter v_pgadp;
-            Npgsql.NpgsqlCommand v_pgcmd;
-
-            using (Npgsql.NpgsqlConnection v_pgcon = new Npgsql.NpgsqlConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_pgcon.Open();
-
-                    v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, v_pgcon);
-                    v_pgadp = new Npgsql.NpgsqlDataAdapter(v_pgcmd);
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    v_pgadp.Fill(v_table);
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-
-            return v_table;
-            */
         }
 
         /// <summary>
@@ -178,18 +149,15 @@ namespace Spartacus.Database
                     v_pgcmd = new Npgsql.NpgsqlCommand(p_sql, v_pgcon);
                     v_reader = v_pgcmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     v_currentrow = 0;
                     while (v_reader.Read())
                     {
                         if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
                         {
-                            if (v_table == null)
-                            {
-                                v_table = new System.Data.DataTable(p_tablename);
-                                for (int i = 0; i < v_reader.FieldCount; i++)
-                                    v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                            }
-
                             v_row = v_table.NewRow();
                             for (int i = 0; i < v_reader.FieldCount; i++)
                                 v_row[i] = v_reader.GetString(i);

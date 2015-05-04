@@ -122,15 +122,12 @@ namespace Spartacus.Database
                     v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
                     v_reader = v_olecmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     while (v_reader.Read())
                     {
-                        if (v_table == null)
-                        {
-                            v_table = new System.Data.DataTable(p_tablename);
-                            for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                        }
-
                         v_row = v_table.NewRow();
                         for (int i = 0; i < v_reader.FieldCount; i++)
                             v_row[i] = v_reader.GetString(i);
@@ -146,31 +143,6 @@ namespace Spartacus.Database
             }
 
             return v_table;
-
-            /*
-            System.Data.DataTable v_table = null;
-            System.Data.OleDb.OleDbDataAdapter v_oleadp;
-            System.Data.OleDb.OleDbCommand v_olecmd;
-
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_olecon.Open();
-
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
-                    v_oleadp = new System.Data.OleDb.OleDbDataAdapter(v_olecmd);
-                    v_table = new System.Data.DataTable(p_tablename);
-                    v_oleadp.Fill(v_table);
-                }
-                catch (System.Data.OleDb.OleDbException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-
-            return v_table;
-            */
         }
 
         /// <summary>
@@ -205,18 +177,15 @@ namespace Spartacus.Database
                     v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
                     v_reader = v_olecmd.ExecuteReader();
 
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+
                     v_currentrow = 0;
                     while (v_reader.Read())
                     {
                         if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
                         {
-                            if (v_table == null)
-                            {
-                                v_table = new System.Data.DataTable(p_tablename);
-                                for (int i = 0; i < v_reader.FieldCount; i++)
-                                    v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
-                            }
-
                             v_row = v_table.NewRow();
                             for (int i = 0; i < v_reader.FieldCount; i++)
                                 v_row[i] = v_reader.GetString(i);
