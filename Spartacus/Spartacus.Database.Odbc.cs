@@ -95,7 +95,7 @@ namespace Spartacus.Database
                     {
                         v_row = v_table.NewRow();
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_row[i] = v_reader.GetString(i);
+                            v_row[i] = v_reader[i].ToString();
                         v_table.Rows.Add(v_row);
                     }
 
@@ -153,9 +153,12 @@ namespace Spartacus.Database
                         {
                             v_row = v_table.NewRow();
                             for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_row[i] = v_reader.GetString(i);
+                                v_row[i] = v_reader[i].ToString();
                             v_table.Rows.Add(v_row);
                         }
+
+                        if (v_currentrow > p_endrow)
+                            break;
 
                         v_currentrow++;
                     }

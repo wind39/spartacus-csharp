@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.37.6:  Fix para DataReader.GetString, que no Mono 3 funciona de forma diferente do Mono 4
 0.37.5:  Corrigindo Query para retornar DataTable vazia, ao invés de null, caso a consulta não retorne dados
 0.37.4:  Corrigindo bug no fix temporário para bug nos nomes de colunas (Spartacus.Database.Generic.FixColumnName)
 0.37.3:  Fix temporário para bug nos nomes de colunas do DataTable no Mono 4.0. Implementada sobrecarga para Query que faz busca em blocos.
