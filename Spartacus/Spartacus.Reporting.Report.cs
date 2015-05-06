@@ -1499,7 +1499,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_cryptor = new Spartacus.Net.Cryptor("spartacus");
-                v_datafilename = v_cryptor.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "") + ".tmp";
+                v_datafilename = v_cryptor.RandomString() + ".tmp";
                 this.v_datafile = System.IO.File.Open(
                     v_datafilename,
                     System.IO.FileMode.Create,
@@ -1640,7 +1640,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_cryptor = new Spartacus.Net.Cryptor("spartacus");
-                v_datafilename = v_cryptor.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "") + ".tmp";
+                v_datafilename = v_cryptor.RandomString() + ".tmp";
                 this.v_datafile = System.IO.File.Open(
                     v_datafilename,
                     System.IO.FileMode.Create,

@@ -609,7 +609,7 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""), false, false);
+                        v_markup = this.CreateTemplate(false, false);
                         this.ExportXLSX(p_filename, v_markup);
                         (new System.IO.FileInfo(v_markup)).Delete();
                         break;
@@ -649,7 +649,7 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        v_markup = this.CreateTemplate(p_filename.Replace(".xlsx", ""), p_freezeheader, p_showfilter);
+                        v_markup = this.CreateTemplate(p_freezeheader, p_showfilter);
                         this.ExportXLSX(p_filename, v_markup);
                         (new System.IO.FileInfo(v_markup)).Delete();
                         break;
@@ -770,7 +770,7 @@ namespace Spartacus.Utils
                 switch (v_file.v_extension.ToLower())
                 {
                     case "xlsx":
-                        v_markup = this.ReplaceMarkup(p_templatenames, p_filename);
+                        v_markup = this.ReplaceMarkup(p_templatenames);
                         this.ExportXLSX(p_filename, v_markup);
                         (new System.IO.FileInfo(v_markup)).Delete();
                         break;
@@ -1059,7 +1059,6 @@ namespace Spartacus.Utils
         private string ReplaceMarkup(string p_templatename)
         {
             Spartacus.Net.Cryptor v_cryptor;
-            Spartacus.Utils.File v_file;
             System.IO.FileInfo v_src;
             System.IO.FileInfo v_dst;
             string v_dstname;
@@ -1076,7 +1075,6 @@ namespace Spartacus.Utils
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
-            v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_templatename);
             v_src = new System.IO.FileInfo(p_templatename);
 
             using (OfficeOpenXml.ExcelPackage v_package = new OfficeOpenXml.ExcelPackage(v_src))
@@ -1220,7 +1218,7 @@ namespace Spartacus.Utils
                     }
                 }
 
-                v_dstname = v_cryptor.Encrypt(v_file.GetBaseNameNoExt()).Replace("/", "").Replace("=", "").Replace("+", "") + ".xlsx";
+                v_dstname = v_cryptor.RandomString() + ".xlsx";
                 v_dst = new System.IO.FileInfo(v_dstname);
 
                 v_package.SaveAs(v_dst);
@@ -1235,8 +1233,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Nome do arquivo XLSX com cabeçalho aplicado em todas as planilhas.</returns>
         /// <param name="p_templatenames">Nome dos arquivo XLSX usados como templates.</param>
-        /// <param name="p_reportname">Nome do relatório, que será usado para criar o arquivo temporário com nome criptografado.</param>
-        private string ReplaceMarkup(System.Collections.ArrayList p_templatenames, string p_reportname)
+        private string ReplaceMarkup(System.Collections.ArrayList p_templatenames)
         {
             Spartacus.Net.Cryptor v_cryptor;
             System.IO.FileInfo v_src;
@@ -1255,7 +1252,7 @@ namespace Spartacus.Utils
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
-            v_dstname = v_cryptor.Encrypt(p_reportname).Replace("/", "").Replace("=", "").Replace("+", "") + ".xlsx";
+            v_dstname = v_cryptor.RandomString() + ".xlsx";
             v_dst = new System.IO.FileInfo(v_dstname);
 
             using (OfficeOpenXml.ExcelPackage v_package_dst = new OfficeOpenXml.ExcelPackage(v_dst))
@@ -1471,10 +1468,9 @@ namespace Spartacus.Utils
         /// Baseado em um DataTable preenchido, cria um XLSX para ser usado como template.
         /// </summary>
         /// <returns>Nome do arquivo a ser usado como template.</returns>
-        /// <param name="p_reportname">Nome do relatório.</param>
         /// <param name="p_freezeheader">Se deve congelar ou não a primeira linha da planilha.</param>
         /// <param name="p_showfilter">Se deve mostrar ou não o filtro na primeira linha da planilha.</param>
-        private string CreateTemplate(string p_reportname, bool p_freezeheader, bool p_showfilter)
+        private string CreateTemplate(bool p_freezeheader, bool p_showfilter)
         {
             Spartacus.Net.Cryptor v_cryptor;
             System.IO.FileInfo v_dst;
@@ -1484,7 +1480,7 @@ namespace Spartacus.Utils
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
-            v_dstname = v_cryptor.Encrypt(p_reportname).Replace("/", "").Replace("=", "").Replace("+", "") + ".xlsx";
+            v_dstname = v_cryptor.RandomString() + ".xlsx";
             v_dst = new System.IO.FileInfo(v_dstname);
 
             using (OfficeOpenXml.ExcelPackage v_package = new OfficeOpenXml.ExcelPackage(v_dst))

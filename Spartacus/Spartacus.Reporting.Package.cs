@@ -206,7 +206,7 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+                        v_encrypted = v_cryptor.RandomString() + ".pdf";
 
                         v_report = (Spartacus.Reporting.Report) this.v_reports[k];
 
@@ -286,7 +286,7 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+                        v_encrypted = v_cryptor.RandomString() + ".pdf";
 
                         v_report = (Spartacus.Reporting.Report) this.v_reports[k];
 
@@ -367,7 +367,7 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_encrypted = v_cryptor.Encrypt((string)this.v_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+                        v_encrypted = v_cryptor.RandomString() + ".pdf";
 
                         v_report = (Spartacus.Reporting.Report) this.v_reports[k];
 
@@ -448,7 +448,7 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_encrypted = v_cryptor.Encrypt((string)p_filenames[k]).Replace("/", "").Replace("=", "").Replace("+", "") + ".pdf";
+                        v_encrypted = v_cryptor.RandomString() + ".pdf";
 
                         v_report = (Spartacus.Reporting.Report) this.v_reports[k];
 

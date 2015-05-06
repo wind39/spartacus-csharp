@@ -1,0 +1,6 @@
+<map id="Spartacus.Reporting.Report" name="Spartacus.Reporting.Report">
+<area shape="rect" id="node2" href="$classSpartacus_1_1Reporting_1_1Settings.html" title="Classe Settings. Armazena informações gerais sobre o relatório. " alt="" coords="209,168,402,195"/>
+<area shape="rect" id="node3" href="$classSpartacus_1_1Reporting_1_1Border.html" title="Classe Border. Armazena informações sobre quais bordas devem ser ativadas. " alt="" coords="22,5,205,32"/>
+<area shape="rect" id="node5" href="$classSpartacus_1_1Reporting_1_1Block.html" title="Classe Block. Representa um bloco que pode conter qualquer informação. O cabeçalho do relatório e o r..." alt="" coords="5,168,184,195"/>
+<area shape="rect" id="node4" href="$classSpartacus_1_1Reporting_1_1Font.html" title="Classe Fonte. " alt="" coords="248,5,419,32"/>
+</map>

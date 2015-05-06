@@ -442,6 +442,25 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Cria uma string aleatória para diversos propósitos.
+        /// </summary>
+        /// <returns>String aleatória.</returns>
+        public string RandomString()
+        {
+            return this.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "");
+        }
+
+        /// <summary>
+        /// Cria uma string aleatória para diversos propósitos.
+        /// </summary>
+        /// <returns>String aleatória.</returns>
+        /// <param name="p_plaintext">String em texto puro a ser usada para criar a string aleatória.</param>
+        public string RandomString(string p_plaintext)
+        {
+            return this.Encrypt(p_plaintext).Replace("/", "").Replace("=", "").Replace("+", "");
+        }
+
         #endregion
 
         #region DECRYPT
