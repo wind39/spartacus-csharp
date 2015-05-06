@@ -1,9 +1,0 @@
-<map id="Spartacus.Database.Generic" name="Spartacus.Database.Generic">
-<area shape="rect" id="node2" href="$classSpartacus_1_1Database_1_1Firebird.html" title="Classe Spartacus.Database.Firebird. Herda da classe Spartacus.Database.Generic. Utiliza o Firebird ..." alt="" coords="253,5,441,32"/>
-<area shape="rect" id="node3" href="$classSpartacus_1_1Database_1_1Mysql.html" title="Classe Spartacus.Database.Mysql. Herda da classe Spartacus.Database.Generic. Utiliza o MySQL ..." alt="" coords="257,56,437,83"/>
-<area shape="rect" id="node4" href="$classSpartacus_1_1Database_1_1Odbc.html" title="Classe Spartacus.Database.Odbc. Herda da classe Spartacus.Database.Generic. Utiliza a implementação O..." alt="" coords="259,107,435,133"/>
-<area shape="rect" id="node5" href="$classSpartacus_1_1Database_1_1Oledb.html" title="Classe Spartacus.Database.Oledb. Herda da classe Spartacus.Database.Generic. Utiliza a implementação ..." alt="" coords="258,157,437,184"/>
-<area shape="rect" id="node6" href="$classSpartacus_1_1Database_1_1Oracle.html" title="Classe Spartacus.Database.Oracle. Herda da classe Spartacus.Database.Generic. Utiliza o Oracle ..." alt="" coords="256,208,439,235"/>
-<area shape="rect" id="node7" href="$classSpartacus_1_1Database_1_1Postgresql.html" title="Classe Spartacus.Database.Postgresql. Herda da classe Spartacus.Database.Generic. Utiliza o Npgsql ..." alt="" coords="244,259,451,285"/>
-<area shape="rect" id="node8" href="$classSpartacus_1_1Database_1_1Sqlite.html" title="Classe Spartacus.Database.Sqlite. Herda da classe Spartacus.Database.Generic. Utiliza o Mono..." alt="" coords="258,309,437,336"/>
-</map>
