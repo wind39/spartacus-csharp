@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.1:  Permitindo caractere # na Spartacus.Database.Command
 0.38.0:  Implementada função Spartacus.Net.Cryptor.RandomString, para criar strings aleatórias para diversos propósitos
 
 0.37.6:  Fix para DataReader.GetString, que no Mono 3 funciona de forma diferente do Mono 4
