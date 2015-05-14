@@ -97,6 +97,21 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
+        public override void CreateDatabase(string p_name)
+        {
+        }
+
+        /// <summary>
+        /// Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// </summary>
+        public override void Open()
+        {
+        }
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="System.Data.DataTable"/>.
         /// </summary>
         /// <param name='p_sql'>
@@ -261,7 +276,7 @@ namespace Spartacus.Database
 
                     if (p_verbose)
                     {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.Execute:", System.DateTime.UtcNow);
                         System.Console.WriteLine(v_sql);
                         System.Console.WriteLine("--------------------------------------------------");
                     }
@@ -337,7 +352,7 @@ namespace Spartacus.Database
 
                     if (p_verbose)
                     {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.ExecuteScalar:", System.DateTime.UtcNow);
                         System.Console.WriteLine(v_sql);
                         System.Console.WriteLine("--------------------------------------------------");
                     }
@@ -355,44 +370,25 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Insere uma massa de dados.
-        /// <paramref name="p_table"/> precisa ter o nome igual ao nome da tabela onde será inserido.
-        /// Os nomes das colunas também precisam ser os mesmos.
+        /// Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
         /// </summary>
-        /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
-        public override void BulkInsert(System.Data.DataTable p_table)
+        public override void Close()
         {
-            System.Data.OleDb.OleDbCommand v_olecmd;
-            string v_sqlheader, v_sql;
-            int k;
+        }
 
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_olecon.Open();
+        /// <summary>
+        /// Deleta um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
+        public override void DropDatabase(string p_name)
+        {
+        }
 
-                    v_sqlheader = "insert into " + p_table.TableName + " (" + p_table.Columns[0].ColumnName + ", ";
-                    for (k = 1; k < p_table.Columns.Count; k++)
-                        v_sqlheader += ", " + p_table.Columns[k].ColumnName;
-                    v_sqlheader += ") values (";
-
-                    foreach (System.Data.DataRow r in p_table.Rows)
-                    {
-                        v_sql = v_sqlheader + r[0].ToString() + ", ";
-                        for (k = 1; k < p_table.Columns.Count; k++)
-                            v_sql += ", " + r[k].ToString();
-                        v_sql += ")";
-
-                        v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_sql), v_olecon);
-                        v_olecmd.ExecuteNonQuery();
-                    }
-                }
-                catch (System.Data.OleDb.OleDbException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+        /// <summary>
+        /// Deleta o banco de dados conectado atualmente.
+        /// </summary>
+        public override void DropDatabase()
+        {
         }
     }
 }

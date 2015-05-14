@@ -241,6 +241,55 @@ namespace Spartacus.Utils
         }
 
         /// <summary>
+        /// Importa todas as planilhas de um arquivo Excel para várias <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
+        public void Import(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding)
+        {
+            System.IO.FileInfo v_fileinfo;
+            Spartacus.Utils.File v_file;
+
+            v_fileinfo = new System.IO.FileInfo(p_filename);
+
+            if (! v_fileinfo.Exists)
+            {
+                throw new Spartacus.Utils.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
+            }
+            else
+            {
+                try
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                    switch (v_file.v_extension.ToLower())
+                    {
+                        case "xlsx":
+                            this.ImportXLSX(p_filename);
+                            break;
+                        case "csv":
+                            this.ImportCSV(p_filename, p_separator, p_delimitator, p_header, p_encoding);
+                            break;
+                        default:
+                            throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                    }
+                }
+                catch (Spartacus.Utils.Exception e)
+                {
+                    throw new Spartacus.Utils.Exception("Erro ao converter para DataSet o arquivo {0}.", e, p_filename);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Utils.Exception("Erro ao converter para DataSet o arquivo {0}.", e, p_filename);
+                }
+            }
+        }
+
+        /// <summary>
         /// Importa uma lista de arquivos Excel.
         /// A lista pode conter arquivos XLSX ou CSV, e pode ser misturado.
         /// </summary>
@@ -310,17 +359,88 @@ namespace Spartacus.Utils
                     }
                     else
                     {
-                        if (v_line.Length != v_table.Columns.Count)
+                        v_row = v_table.NewRow();
+                        for (j = 0; j < System.Math.Min(v_table.Columns.Count, v_line.Length); j++)
+                            v_row[j] = v_line[j];
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    i++;
+                }
+
+                this.v_set.Tables.Add(v_table);
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
+            }
+            finally
+            {
+                if (v_reader != null)
+                {
+                    v_reader.Close();
+                    v_reader = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Importa um arquivo CSV para um <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo CSV.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        private void ImportCSV(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Utils.File v_file;
+            System.IO.StreamReader v_reader = null;
+            System.Data.DataTable v_table;
+            System.Data.DataRow v_row;
+            string[] v_line;
+            int i, j;
+
+            try
+            {
+                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+                v_table = new System.Data.DataTable(v_file.v_name.Replace("." + v_file.v_extension, ""));
+
+                v_reader = new System.IO.StreamReader(p_filename, p_encoding);
+
+                i = 0;
+                while (! v_reader.EndOfStream)
+                {
+                    v_line = v_reader.ReadLine().Split(p_separator);
+
+                    if (i == 0)
+                    {
+                        if (p_header)
                         {
-                            throw new Spartacus.Utils.Exception("Linha {0} contem {1} colunas, diferente do esperado.", i, v_line.Length);
+                            for (j = 0; j < v_line.Length; j++)
+                                v_table.Columns.Add(v_line [j].Trim(p_delimitator));
                         }
                         else
                         {
+                            for (j = 0; j < v_line.Length; j++)
+                                v_table.Columns.Add("col" + j.ToString());
+
                             v_row = v_table.NewRow();
                             for (j = 0; j < v_table.Columns.Count; j++)
-                                v_row[j] = v_line[j];
+                                v_row[j] = v_line[j].Trim(p_delimitator);
                             v_table.Rows.Add(v_row);
                         }
+                    }
+                    else
+                    {
+                        v_row = v_table.NewRow();
+                        for (j = 0; j < System.Math.Min(v_table.Columns.Count, v_line.Length); j++)
+                            v_row[j] = v_line[j].Trim(p_delimitator);
+                        v_table.Rows.Add(v_row);
                     }
 
                     i++;

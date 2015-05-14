@@ -1,4 +1,4 @@
-/*
+﻿/*
 The MIT License (MIT)
 
 Copyright (c) 2014,2015 William Ivanski
@@ -29,16 +29,22 @@ using Mono.Data.Sqlite;
 namespace Spartacus.Database
 {
     /// <summary>
-    /// Classe Spartacus.Database.Sqlite.
+    /// Classe Spartacus.Database.XbaseReadOnly.
     /// Herda da classe <see cref="Spartacus.Database.Generic"/>.
-    /// Utiliza o Mono.Data.Sqlite para acessar um SGBD Sqlite.
+    /// Converte um ou mais arquivos DBF para um banco de dados SQLite.
+    /// Depois utiliza o Mono.Data.Sqlite para acessar esse banco de dados.
     /// </summary>
-    public class Sqlite : Spartacus.Database.Generic
+    public class XbaseReadOnly : Spartacus.Database.Generic
     {
         /// <summary>
         /// String de conexão para acessar o banco.
         /// </summary>
         public string v_connectionstring;
+
+        /// <summary>
+        /// Lista de arquivos DBF de origem a serem convertidos para SQLite
+        /// </summary>
+        private System.Collections.ArrayList v_sourcefiles;
 
         /// <summary>
         /// Conexão persistente com o banco de dados.
@@ -47,34 +53,103 @@ namespace Spartacus.Database
 
 
         /// <summary>
-        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlite"/>.
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.XbaseReadOnly"/>.
         /// </summary>
-        /// <param name='p_file'>
-        /// Caminho para o arquivo DB.
+        /// <param name='p_filelist'>
+        /// Lista de arquivos DBF de origem a serem convertidos para SQLite
         /// </param>
-        public Sqlite(string p_file)
-            : base(p_file)
+        public XbaseReadOnly(string p_filelist)
+            : base(p_filelist)
         {
-            this.v_connectionstring = "Data Source=" + p_file + ";Version=3;Synchronous=Full;Journal Mode=Off;";
+            this.v_sourcefiles = new System.Collections.ArrayList();
+
+            foreach (string v_file in p_filelist.Split(','))
+                this.v_sourcefiles.Add(v_file);
         }
 
         /// <summary>
-        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlite"/>.
-        /// </summary>
-        public Sqlite()
-            : base()
-        {
-        }
-
-        /// <summary>
-        /// Cria um banco de dados.
+        /// Cria um banco de dados SQLite contendo todos os arquivos DBF, um em cada tabela.
         /// </summary>
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
-            Mono.Data.Sqlite.SqliteConnection.CreateFile(p_name);
-            this.v_service = p_name;
-            this.v_connectionstring = "Data Source=" + p_name + ";Version=3;Synchronous=Full;Journal Mode=Off;";
+            System.Diagnostics.Process v_process;
+            System.Diagnostics.ProcessStartInfo v_startinfo;
+            Spartacus.Utils.File v_file;
+            Spartacus.Utils.Excel v_excel;
+            string v_tablename, v_sql;
+
+            try
+            {
+                // criando banco de dados de destino
+                Mono.Data.Sqlite.SqliteConnection.CreateFile(p_name);
+                this.v_service = p_name;
+                this.v_connectionstring = "Data Source=" + p_name + ";Version=3;Synchronous=Full;Journal Mode=Off;";
+
+                // criando processo de conversão de DBF para CSV
+                v_process = new System.Diagnostics.Process();
+                v_startinfo = new System.Diagnostics.ProcessStartInfo();
+                v_startinfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+                    v_startinfo.FileName = "dbf";
+                else
+                    v_startinfo.FileName = "dbf.exe";
+
+                v_excel = new Spartacus.Utils.Excel();
+                this.Open();
+
+                for (int k = 0; k < this.v_sourcefiles.Count; k++)
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, (string) this.v_sourcefiles[k]);
+                    v_tablename = v_file.GetBaseNameNoExt().ToLower();
+                    v_startinfo.Arguments = " --separator \";\" --csv " + v_tablename + ".csv " + v_file.v_name;
+                    v_process.StartInfo = v_startinfo;
+                    v_process.Start();
+                    v_process.WaitForExit();
+
+                    v_excel.Clear();
+                    v_excel.Import(v_tablename + ".csv", ';', '"', true, System.Text.Encoding.UTF8);
+                    (new System.IO.FileInfo(v_tablename + ".csv")).Delete();
+
+                    if (v_excel.v_set.Tables[0] != null && v_excel.v_set.Tables[0].Columns.Count > 0)
+                    {
+                        // arrumando nomes de colunas
+                        for (int j = 0; j < v_excel.v_set.Tables[0].Columns.Count; j++)
+                            v_excel.v_set.Tables[0].Columns[j].ColumnName = v_excel.v_set.Tables[0].Columns[j].ColumnName.ToLower().Split(',')[0];
+
+                        // criando tabela
+                        v_sql = "create table " + v_tablename + "(" + v_excel.v_set.Tables[0].Columns[0].ColumnName.ToLower() + " text";
+                        for (int j = 1; j < v_excel.v_set.Tables[0].Columns.Count; j++)
+                            v_sql += ", " + v_excel.v_set.Tables[0].Columns[j].ColumnName.ToLower() + " text";
+                        v_sql += ");";
+                        this.Execute(v_sql);
+
+                        // inserindo dados
+                        foreach (System.Data.DataRow v_row in v_excel.v_set.Tables[0].Rows)
+                        {
+                            v_sql = "insert into " + v_tablename + " values ('" + Spartacus.Database.Command.RemoveUnwantedChars(v_row[0].ToString());
+                            for (int j = 1; j < v_excel.v_set.Tables[0].Columns.Count; j++)
+                                v_sql += "', '" + Spartacus.Database.Command.RemoveUnwantedChars(v_row[j].ToString());
+                            v_sql += "');";
+                            this.Execute(v_sql);
+                        }
+                    }
+                }
+
+                this.Close();
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
         }
 
         /// <summary>
@@ -234,7 +309,7 @@ namespace Spartacus.Database
 
                 if (p_verbose)
                 {
-                    System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Sqlite.Execute:", System.DateTime.UtcNow);
+                    System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.XbaseReadOnly.Execute:", System.DateTime.UtcNow);
                     System.Console.WriteLine(v_sql);
                     System.Console.WriteLine("--------------------------------------------------");
                 }
@@ -300,7 +375,7 @@ namespace Spartacus.Database
 
                 if (p_verbose)
                 {
-                    System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Sqlite.ExecuteScalar:", System.DateTime.UtcNow);
+                    System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.XbaseReadOnly.ExecuteScalar:", System.DateTime.UtcNow);
                     System.Console.WriteLine(v_sql);
                     System.Console.WriteLine("--------------------------------------------------");
                 }

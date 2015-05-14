@@ -422,7 +422,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
             if (minute >= 60) { hour++; minute = 0; }
             if (hour >= 24) { day++; hour = 0; }
 
-            DateTime d = System.DateTime.Now;
+            DateTime d = System.DateTime.UtcNow;
             bool success= false;
             try
             {

@@ -29,6 +29,9 @@ Spartacus reuse code from this projects:
   - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
   - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
+To be able to work with old DBF files, Spartacus uses binaries from this project:
+  - dBASE Reader and Converter (http://sourceforge.net/projects/dbf)
+
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
   - Planning Service Transfer Pricing (http://www.planningservice.com.br)

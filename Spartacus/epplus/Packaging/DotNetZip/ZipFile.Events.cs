@@ -353,7 +353,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         ///                 options.Encoding,
         ///                 FlavorToString(options.ZipFlavor),
         ///                 options.Zip64.ToString(),
-        ///                 System.DateTime.Now.ToString("yyyy-MMM-dd HH:mm:ss"),
+        ///                 System.DateTime.UtcNow.ToString("yyyy-MMM-dd HH:mm:ss"),
         ///                 this.Text);
         ///
         ///     if (this.tbComment.Text != TB_COMMENT_NOTE)

@@ -70,7 +70,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         /// <para>
         ///   The DotNetZip library sets the LastModified value for an entry, equal to
         ///   the Last Modified time of the file in the filesystem.  If an entry is
-        ///   added from a stream, the library uses <c>System.DateTime.Now</c> for this
+        ///   added from a stream, the library uses <c>System.DateTime.UtcNow</c> for this
         ///   value, for the given entry.
         /// </para>
         ///

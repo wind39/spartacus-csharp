@@ -77,7 +77,13 @@ namespace Spartacus.Database
                     this.v_database = new Spartacus.Database.Postgresql(p_host, p_port, p_service, p_user, p_password);
                     break;
                 case "sqlite":
-                    this.v_database = new Spartacus.Database.Sqlite(p_service);
+                    if (p_service != null)
+                        this.v_database = new Spartacus.Database.Sqlite(p_service);
+                    else
+                        this.v_database = new Spartacus.Database.Sqlite();
+                    break;
+                case "oracle":
+                    this.v_database = new Spartacus.Database.Oracle(p_host, p_port, p_service, p_user, p_password);
                     break;
                 default:
                     this.v_database = null;

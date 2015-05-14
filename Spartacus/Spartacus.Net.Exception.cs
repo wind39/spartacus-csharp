@@ -43,7 +43,7 @@ namespace Spartacus.Net
         public Exception()
             :base()
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Spartacus.Net
         public Exception(System.Exception p_inner)
             : base(null, p_inner)
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Spartacus.Net
         public Exception(string p_message)
             : base(p_message)
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Spartacus.Net
         public Exception(string p_format, params object[] p_args)
             : base(string.Format(p_format, p_args))
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Spartacus.Net
         public Exception(string p_message, System.Exception p_inner)
             : base(p_message, p_inner)
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Spartacus.Net
         public Exception(string p_format, System.Exception p_inner, params object[] p_args)
             : base(string.Format(p_format, p_args), p_inner)
         {
-            this.v_message = "[" + System.DateTime.Now.ToString() + "] " + this.ToString();
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
         }
     }
 }

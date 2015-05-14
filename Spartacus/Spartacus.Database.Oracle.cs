@@ -44,9 +44,6 @@ namespace Spartacus.Database
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oracle"/>.
         /// Cria a string de conexão ao banco.
         /// </summary>
-        /// <param name='p_provider'>
-        /// SGBD que fornece o banco de dados.
-        /// </param>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.
         /// </param>
@@ -71,6 +68,21 @@ namespace Spartacus.Database
             this.v_connectionstring += "(HOST=" + p_host + ")";
             this.v_connectionstring += "(PORT=" + p_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";
             this.v_connectionstring += "(SERVICE_NAME=" + p_service + ")))";
+        }
+
+        /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
+        public override void CreateDatabase(string p_name)
+        {
+        }
+
+        /// <summary>
+        /// Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// </summary>
+        public override void Open()
+        {
         }
 
         /// <summary>
@@ -238,7 +250,7 @@ namespace Spartacus.Database
 
                     if (p_verbose)
                     {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oracle.Execute:", System.DateTime.Now);
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oracle.Execute:", System.DateTime.UtcNow);
                         System.Console.WriteLine(v_sql);
                         System.Console.WriteLine("--------------------------------------------------");
                     }
@@ -314,7 +326,7 @@ namespace Spartacus.Database
 
                     if (p_verbose)
                     {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oracle.ExecuteScalar:", System.DateTime.Now);
+                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oracle.ExecuteScalar:", System.DateTime.UtcNow);
                         System.Console.WriteLine(v_sql);
                         System.Console.WriteLine("--------------------------------------------------");
                     }
@@ -332,44 +344,25 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Insere uma massa de dados.
-        /// <paramref name="p_table"/> precisa ter o nome igual ao nome da tabela onde será inserido.
-        /// Os nomes das colunas também precisam ser os mesmos.
+        /// Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
         /// </summary>
-        /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
-        public override void BulkInsert(System.Data.DataTable p_table)
+        public override void Close()
         {
-            System.Data.OracleClient.OracleCommand v_oracmd;
-            string v_sqlheader, v_sql;
-            int k;
+        }
 
-            using (System.Data.OracleClient.OracleConnection v_oracon = new System.Data.OracleClient.OracleConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_oracon.Open();
+        /// <summary>
+        /// Deleta um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
+        public override void DropDatabase(string p_name)
+        {
+        }
 
-                    v_sqlheader = "insert into " + p_table.TableName + " (" + p_table.Columns[0].ColumnName + ", ";
-                    for (k = 1; k < p_table.Columns.Count; k++)
-                        v_sqlheader += ", " + p_table.Columns[k].ColumnName;
-                    v_sqlheader += ") values (";
-
-                    foreach (System.Data.DataRow r in p_table.Rows)
-                    {
-                        v_sql = v_sqlheader + r[0].ToString() + ", ";
-                        for (k = 1; k < p_table.Columns.Count; k++)
-                            v_sql += ", " + r[k].ToString();
-                        v_sql += ")";
-
-                        v_oracmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_sql), v_oracon);
-                        v_oracmd.ExecuteNonQuery();
-                    }
-                }
-                catch (System.Data.OracleClient.OracleException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+        /// <summary>
+        /// Deleta o banco de dados conectado atualmente.
+        /// </summary>
+        public override void DropDatabase()
+        {
         }
     }
 }

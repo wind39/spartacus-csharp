@@ -448,7 +448,7 @@ namespace Spartacus.Net
         /// <returns>String aleatória.</returns>
         public string RandomString()
         {
-            return this.Encrypt(System.DateTime.Now.ToString()).Replace("/", "").Replace("=", "").Replace("+", "");
+            return this.Encrypt(System.DateTime.UtcNow.ToString()).Replace("/", "").Replace("=", "").Replace("+", "");
         }
 
         /// <summary>

@@ -906,6 +906,7 @@
     <Compile Include="epplus\RangeCollection.cs" />
     <Compile Include="epplus\XmlHelper.cs" />
     <Compile Include="epplus\XmlHelperFactory.cs" />
+    <Compile Include="Spartacus.Database.XbaseReadOnly.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -957,6 +958,14 @@
     <None Include="epplus\LICENSE.txt" />
     <None Include="bin\Release\Spartacus.xml" />
     <None Include="dist\Spartacus-0.38.0.zip" />
+    <None Include="bin\Debug\dbf" />
+    <None Include="bin\Debug\dbf.exe" />
+    <None Include="bin\Release\dbf" />
+    <None Include="bin\Release\dbf.exe" />
+    <None Include="lib\dbf" />
+    <None Include="lib\dbf.exe" />
+    <None Include="thirdparties\dbf-0.8.3.1.bin.win.zip" />
+    <None Include="thirdparties\dbf-0.8.3.1.bin.x86.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

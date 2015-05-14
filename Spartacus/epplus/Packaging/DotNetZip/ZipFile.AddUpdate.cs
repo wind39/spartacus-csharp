@@ -1117,7 +1117,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         /// {
         ///   zip1.AddFile("MyDocuments\\Resume.doc", "files");
         ///   zip1.AddEntry("Readme.txt", Content);
-        ///   zip1.Comment = "This zip file was created at " + System.DateTime.Now.ToString("G");
+        ///   zip1.Comment = "This zip file was created at " + System.DateTime.UtcNow.ToString("G");
         ///   zip1.Save("Content.zip");
         /// }
         ///

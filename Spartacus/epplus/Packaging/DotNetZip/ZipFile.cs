@@ -3270,7 +3270,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         ///     zip.RemoveEntry(zombie);
         ///
         ///   zip.Comment= String.Format("This zip archive was updated at {0}.",
-        ///                              System.DateTime.Now.ToString("G"));
+        ///                              System.DateTime.UtcNow.ToString("G"));
         ///
         ///   // save with a different name
         ///   zip.Save("Archive-Updated.zip");

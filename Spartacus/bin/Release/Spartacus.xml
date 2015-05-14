@@ -1413,7 +1413,7 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
             Armazena informações de conexão que são genéricas a qualquer SGBD.
             </summary>
-            <param name="p_file">
+            <param name="p_dsn">
             DSN (Data Source Name).
             </param>
             <param name="p_user">
@@ -1430,6 +1430,19 @@
             <param name="p_file">
             Arquivo do banco de dados.
             </param></member>
+        <member name="M:Spartacus.Database.Generic.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
+            </summary></member>
+        <member name="M:Spartacus.Database.Generic.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Generic.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -1451,7 +1464,7 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <param name="p_numrows">
+            <param name="p_startrow">
             Número da linha inicial.
             </param>
             <param name="p_endrow">
@@ -1497,13 +1510,19 @@
             <param name="p_verbose">
             Se deve ser mostrado o código SQL no console.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Generic.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Generic.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Generic.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -1534,6 +1553,15 @@
             <param name="p_password">
             A senha do usuário ou schema.
             </param></member>
+        <member name="M:Spartacus.Database.Odbc.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -1607,13 +1635,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Odbc.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Odbc.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Odbc.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Odbc.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -1702,6 +1736,15 @@
             <param name="p_password">
             Senha do Firebird.
             </param></member>
+        <member name="M:Spartacus.Database.Firebird.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -1775,13 +1818,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Firebird.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Firebird.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Firebird.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Firebird.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -1811,6 +1860,15 @@
             <param name="p_password">
             Senha do MySQL.
             </param></member>
+        <member name="M:Spartacus.Database.Mysql.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -1884,13 +1942,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Mysql.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Mysql.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Mysql.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Mysql.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -1924,6 +1988,15 @@
             <param name="p_password">
             A senha do usuário ou schema.
             </param></member>
+        <member name="M:Spartacus.Database.Oledb.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -1997,13 +2070,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oledb.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Oledb.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Oledb.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Oledb.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -2803,6 +2882,10 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Sqlite.v_sqlcon">
+            <summary>
+            Conexão persistente com o banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Sqlite.#ctor(System.String)">
             <summary>
             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlite" />.
@@ -2810,6 +2893,19 @@
             <param name="p_file">
             Caminho para o arquivo DB.
             </param></member>
+        <member name="M:Spartacus.Database.Sqlite.#ctor">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlite" />.
+            </summary></member>
+        <member name="M:Spartacus.Database.Sqlite.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -2883,13 +2979,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Sqlite.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Sqlite.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Sqlite.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:Spartacus.Net.Cryptor">
             <summary>
             Classe Cryptor.
@@ -3408,6 +3510,15 @@
             <param name="p_password">
             Senha do PostgreSQL.
             </param></member>
+        <member name="M:Spartacus.Database.Postgresql.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -3481,13 +3592,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Postgresql.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Postgresql.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Postgresql.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -4327,6 +4444,16 @@
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
+        <member name="M:Spartacus.Utils.Excel.Import(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Importa todas as planilhas de um arquivo Excel para várias <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" />.
+            </summary>
+            <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
         <member name="M:Spartacus.Utils.Excel.Import(System.Collections.ArrayList)">
             <summary>
             Importa uma lista de arquivos Excel.
@@ -4339,6 +4466,15 @@
             </summary>
             <param name="p_filename">Nome do arquivo CSV.</param>
             <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param></member>
+        <member name="M:Spartacus.Utils.Excel.ImportCSV(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Importa um arquivo CSV para um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_filename">Nome do arquivo CSV.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param></member>
         <member name="M:Spartacus.Utils.Excel.ImportXLSX(System.String)">
@@ -4995,9 +5131,6 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
             Cria a string de conexão ao banco.
             </summary>
-            <param name="p_provider">
-            SGBD que fornece o banco de dados.
-            </param>
             <param name="p_host">
             Hostname ou IP onde o banco de dados está localizado.
             </param>
@@ -5013,6 +5146,15 @@
             <param name="p_password">
             A senha do usuário ou schema.
             </param></member>
+        <member name="M:Spartacus.Database.Oracle.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
         <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -5086,13 +5228,19 @@
             Se deve ser mostrado o código SQL no console.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oracle.BulkInsert(System.Data.DataTable)">
+        <member name="M:Spartacus.Database.Oracle.Close">
             <summary>
-            Insere uma massa de dados.
-            <paramref name="p_table" /> precisa ter o nome igual ao nome da tabela onde será inserido.
-            Os nomes das colunas também precisam ser os mesmos.
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.Oracle.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
             </summary>
-            <param name="p_table">Tabela com os dados e definições para inserção em massa.</param></member>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Oracle.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -18388,7 +18536,7 @@
             <para>
             The DotNetZip library sets the LastModified value for an entry, equal to
             the Last Modified time of the file in the filesystem.  If an entry is
-            added from a stream, the library uses <c>System.DateTime.Now</c> for this
+            added from a stream, the library uses <c>System.DateTime.UtcNow</c> for this
             value, for the given entry.
             </para>
             <para>
@@ -21442,7 +21590,7 @@
             {
             zip1.AddFile("MyDocuments\\Resume.doc", "files");
             zip1.AddEntry("Readme.txt", Content);
-            zip1.Comment = "This zip file was created at " + System.DateTime.Now.ToString("G");
+            zip1.Comment = "This zip file was created at " + System.DateTime.UtcNow.ToString("G");
             zip1.Save("Content.zip");
             }
             </code>
@@ -24247,7 +24395,7 @@
             foreach (ZipEntry zombie in EntriesToRemove)
             zip.RemoveEntry(zombie);
             zip.Comment= String.Format("This zip archive was updated at {0}.",
-            System.DateTime.Now.ToString("G"));
+            System.DateTime.UtcNow.ToString("G"));
             // save with a different name
             zip.Save("Archive-Updated.zip");
             }
@@ -24650,7 +24798,7 @@
             options.Encoding,
             FlavorToString(options.ZipFlavor),
             options.Zip64.ToString(),
-            System.DateTime.Now.ToString("yyyy-MMM-dd HH:mm:ss"),
+            System.DateTime.UtcNow.ToString("yyyy-MMM-dd HH:mm:ss"),
             this.Text);
             if (this.tbComment.Text != TB_COMMENT_NOTE)
             options.Comment += this.tbComment.Text;
@@ -34315,5 +34463,126 @@
             <param name="parentNode">Parent node</param>
             <param name="beforeNodes">comma separated list containing nodes to insert after. Left to right order</param>
             <param name="newNode">The new node to be inserterd</param></member>
+        <member name="T:Spartacus.Database.XbaseReadOnly">
+            <summary>
+            Classe Spartacus.Database.XbaseReadOnly.
+            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+            Converte um ou mais arquivos DBF para um banco de dados SQLite.
+            Depois utiliza o Mono.Data.Sqlite para acessar esse banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_connectionstring">
+            <summary>
+            String de conexão para acessar o banco.
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_sourcefiles">
+            <summary>
+            Lista de arquivos DBF de origem a serem convertidos para SQLite
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_sqlcon">
+            <summary>
+            Conexão persistente com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.XbaseReadOnly" />.
+            </summary>
+            <param name="p_filelist">
+            Lista de arquivos DBF de origem a serem convertidos para SQLite
+            </param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados SQLite contendo todos os arquivos DBF, um em cada tabela.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Open">
+            <summary>
+            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_startrow">
+            Número da linha inicial.
+            </param>
+            <param name="p_endrow">
+            Número da linha final.
+            </param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Execute(System.String)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Execute(System.String,System.Boolean)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param>
+            <param name="p_verbose">
+            Se deve ser mostrado o código SQL no console.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.ExecuteScalar(System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.ExecuteScalar(System.String,System.Boolean)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_verbose">
+            Se deve ser mostrado o código SQL no console.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Close">
+            <summary>
+            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            </summary></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
     </members>
 </doc>

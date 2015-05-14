@@ -91,7 +91,7 @@ namespace Spartacus.Database
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
         /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
-        /// <param name='p_file'>
+        /// <param name='p_dsn'>
         /// DSN (Data Source Name).
         /// </param>
         /// <param name='p_user'>
@@ -120,6 +120,24 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
+        /// </summary>
+        public Generic()
+        {
+        }
+
+        /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do banco de dados a ser criado.</param>
+        public abstract void CreateDatabase(string p_name);
+
+        /// <summary>
+        /// Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// </summary>
+        public abstract void Open();
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
         /// </summary>
         /// <param name='p_sql'>
@@ -140,7 +158,7 @@ namespace Spartacus.Database
         /// <param name='p_tablename'>
         /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
         /// </param>
-        /// <param name='p_numrows'>
+        /// <param name='p_startrow'>
         /// Número da linha inicial.
         /// </param>
         /// <param name='p_endrow'>
@@ -193,12 +211,20 @@ namespace Spartacus.Database
         public abstract string ExecuteScalar(string p_sql, bool p_verbose);
 
         /// <summary>
-        /// Insere uma massa de dados.
-        /// <paramref name="p_table"/> precisa ter o nome igual ao nome da tabela onde será inserido.
-        /// Os nomes das colunas também precisam ser os mesmos.
+        /// Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
         /// </summary>
-        /// <param name="p_table">Tabela com os dados e definições para inserção em massa.</param>
-        public abstract void BulkInsert(System.Data.DataTable p_table);
+        public abstract void Close();
+
+        /// <summary>
+        /// Deleta um banco de dados.
+        /// </summary>
+        /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
+        public abstract void DropDatabase(string p_name);
+
+        /// <summary>
+        /// Deleta o banco de dados conectado atualmente.
+        /// </summary>
+        public abstract void DropDatabase();
 
         /// <summary>
         /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
