@@ -125,7 +125,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Fonte usada para renderizar o histórico de pastas pai no aplicativo cliente.
         /// </summary>
-        public System.Drawing.Font v_returnhistory_font;
+        public PDFjet.NET.Font v_returnhistory_font;
 
         /// <summary>
         /// Texto a ser exibido como pasta raiz ao renderizar o histórico de pastas pai.
@@ -147,11 +147,6 @@ namespace Spartacus.Utils
         /// </summary>
         public double v_returnhistory_maxwidth;
 
-        /// <summary>
-        /// Objeto usado para auxiliar renderização de texto.
-        /// </summary>
-        private System.Drawing.Graphics v_graphics;
-
 
         /// <summary>
         /// Initializa uma nova instância da classe <see cref="Spartacus.Utils.FileExplorer"/>.
@@ -170,8 +165,8 @@ namespace Spartacus.Utils
             this.v_files = new System.Collections.ArrayList();
 
             this.v_returnhistory = new System.Collections.ArrayList();
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
+            this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
             this.v_returnhistory_sep = " > ";
             this.v_returnhistory_first = "...";
@@ -201,8 +196,8 @@ namespace Spartacus.Utils
             this.v_files = new System.Collections.ArrayList();
 
             this.v_returnhistory = new System.Collections.ArrayList();
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
+            this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
             this.v_returnhistory_sep = " > ";
             this.v_returnhistory_first = "...";
@@ -237,8 +232,8 @@ namespace Spartacus.Utils
             this.v_files = new System.Collections.ArrayList();
 
             this.v_returnhistory = new System.Collections.ArrayList();
-            this.v_graphics = (new System.Windows.Forms.Form()).CreateGraphics();
-            this.v_returnhistory_font = new System.Drawing.Font("Helvetica", (float) 12.0, System.Drawing.FontStyle.Regular);
+            this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
+            this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
             this.v_returnhistory_sep = " > ";
             this.v_returnhistory_first = "...";
@@ -617,28 +612,16 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_font">Nome da fonte.</param>
         /// <param name="p_size">Tamanho da fonte.</param>
-        /// <param name="p_bold">Se a fonte deve ser renderizada com estilo negrito ou não.</param>
         /// <param name="p_italic">Se a fonte deve ser renderizada com estilo itálico ou não.</param>
         /// <param name="p_fakeroot">Nome falso da raiz.</param>
         /// <param name="p_sep">Texto separador entre pastas.</param>
         /// <param name="p_first">Texto do primeiro nível, caso o texto total do histórico de pastas pai estoure o limite.</param>
         /// <param name="p_maxwidth">Largura máxima do texto a ser renderizado.</param>
-        public void SetupReturnHistory(string p_font, float p_size, bool p_bold, bool p_italic, string p_fakeroot, string p_sep, string p_first, int p_maxwidth)
+        public void SetupReturnHistory(string p_font, float p_size, bool p_italic, string p_fakeroot, string p_sep, string p_first, int p_maxwidth)
         {
-            if (p_bold && p_italic)
-                this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic);
-            else
-            {
-                if (p_bold)
-                    this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Bold);
-                else
-                {
-                    if (p_italic)
-                        this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Italic);
-                    else
-                        this.v_returnhistory_font = new System.Drawing.Font(p_font, p_size, System.Drawing.FontStyle.Regular);
-                }
-            }
+            if (p_italic)
+                this.v_returnhistory_font.SetItalic(true);
+            this.v_returnhistory_font.SetSize(p_size);
 
             this.v_returnhistory_root = p_fakeroot;
             this.v_returnhistory_sep = p_sep;
@@ -670,7 +653,7 @@ namespace Spartacus.Utils
 
                 v_text += this.v_returnhistory_sep + (v_directory.v_name);
 
-                if (this.v_graphics.MeasureString(this.v_returnhistory_root + v_text, this.v_returnhistory_font).Width > this.v_returnhistory_maxwidth)
+                if (this.v_returnhistory_font.StringWidth(this.v_returnhistory_root + v_text) > this.v_returnhistory_maxwidth)
                 {
                     v_handledhistory.Insert(0, this.v_returnhistory_first);
                     p_overflow = true;

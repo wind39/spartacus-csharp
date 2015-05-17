@@ -45,17 +45,16 @@
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.OracleClient">
       <HintPath>lib\System.Data.OracleClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -887,6 +886,21 @@
     <Compile Include="epplus\XmlHelperFactory.cs" />
     <Compile Include="Spartacus.Database.XbaseReadOnly.cs" />
     <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
+    <Compile Include="Spartacus.Forms.Buttons.cs" />
+    <Compile Include="Spartacus.Forms.Container.cs" />
+    <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
+    <Compile Include="Spartacus.Forms.Exception.cs" />
+    <Compile Include="Spartacus.Forms.Filepicker.cs" />
+    <Compile Include="Spartacus.Forms.Form.cs" />
+    <Compile Include="Spartacus.Forms.Grid.cs" />
+    <Compile Include="Spartacus.Forms.Lookup.cs" />
+    <Compile Include="Spartacus.Forms.Memobox.cs" />
+    <Compile Include="Spartacus.Forms.Menu.cs" />
+    <Compile Include="Spartacus.Forms.Messagebox.cs" />
+    <Compile Include="Spartacus.Forms.Passwordbox.cs" />
+    <Compile Include="Spartacus.Forms.Textbox.cs" />
+    <Compile Include="Spartacus.Forms.Window.cs" />
+    <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

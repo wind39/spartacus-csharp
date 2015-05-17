@@ -24,6 +24,7 @@ Spartacus reuse code from this projects:
   - EPPlus (http://epplus.codeplex.com/)
   - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
   - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
+  - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
 To be able to work with old DBF files, Spartacus uses binaries from this project:
   - dBASE Reader and Converter (http://sourceforge.net/projects/dbf)
