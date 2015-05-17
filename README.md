@@ -17,12 +17,9 @@ Spartacus links this libraries:
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - Npgsql (https://github.com/npgsql/npgsql)
   - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
-  - PresentationCore (http://wpf.codeplex.com/)
-  - WindowsBase (http://wpf.codeplex.com/)
- 
-Please note that PresentationCore and WindowsBase are required for EPPlus to be able to insert images at Excel files.
   
 Spartacus reuse code from this projects:
+  - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
   - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)

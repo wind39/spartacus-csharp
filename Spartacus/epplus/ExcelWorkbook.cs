@@ -32,7 +32,7 @@
  *******************************************************************************/
 using System;
 using System.Runtime.Remoting.Messaging;
-using System.Windows.Navigation;
+//using System.Windows.Navigation;
 using System.Xml;
 using System.IO;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ using System.Text.RegularExpressions;
 using OfficeOpenXml.VBA;
 using System.Drawing;
 using OfficeOpenXml.Utils;
-using System.Windows.Media;
+//using System.Windows.Media;
 using System.Windows;
 using Ionic.Zip;
 using OfficeOpenXml.FormulaParsing;
@@ -338,7 +338,7 @@ namespace OfficeOpenXml
                 if (_standardFontWidth == decimal.MinValue || _fontID != Styles.Fonts[0].Id)
 				{
 					var font = Styles.Fonts[0];
-                    try
+                    /*try
                     {
                         //Font f = new Font(font.Name, font.Size);
                         _standardFontWidth = 0;
@@ -374,7 +374,8 @@ namespace OfficeOpenXml
                     catch   //Error, set default value
                     {
                         _standardFontWidth = (int)(font.Size * (2D / 3D)); //Aprox for Calibri.
-                    }
+                    }*/
+                    _standardFontWidth = (int)(font.Size * (2D / 3D)); //Aprox for Calibri.
 				}
 				return _standardFontWidth;
 			}

@@ -83,12 +83,6 @@ License LGPLv2.1
 -------------------------------------------------------------------
 
 
-SIMPLIFIED LICENSE NOTICE FOR WINDOWS PRESENTATION FOUNDATION (PresentationCore.dll and WindowsBase.dll):
--------------------------------------------------------------------
-Windows Presentation Foundation is released under Microsoft Public License (Ms-PL).
--------------------------------------------------------------------
-
-
 AUTHOR NOTICE FOR DBF:
 -------------------------------------------------------------------
 dbf version 0.8.3.1

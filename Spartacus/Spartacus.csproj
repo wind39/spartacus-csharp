@@ -56,12 +56,6 @@
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
-    <Reference Include="PresentationCore">
-      <HintPath>lib\PresentationCore.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase">
-      <HintPath>lib\WindowsBase.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -907,6 +901,7 @@
     <Compile Include="epplus\XmlHelper.cs" />
     <Compile Include="epplus\XmlHelperFactory.cs" />
     <Compile Include="Spartacus.Database.XbaseReadOnly.cs" />
+    <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -934,13 +929,7 @@
     <None Include="thirdparties\mysql-connector-net-6.8.3-noinstall.7z" />
     <None Include="thirdparties\Npgsql-2.2.1-net45.7z" />
     <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
-    <None Include="lib\PresentationCore.dll" />
-    <None Include="lib\WindowsBase.dll" />
     <None Include="doc\doxygen_sqlite3.db" />
-    <None Include="bin\Release\PresentationCore.dll" />
-    <None Include="bin\Release\WindowsBase.dll" />
-    <None Include="bin\Debug\PresentationCore.dll" />
-    <None Include="bin\Debug\WindowsBase.dll" />
     <None Include="thirdparties\FirebirdSql.Data.FirebirdClient-4.6.1.0-MONO_LINUX.7z" />
     <None Include="lib\System.Data.OracleClient.dll" />
     <None Include="instantclient\linux_x64.7z" />

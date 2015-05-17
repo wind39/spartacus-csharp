@@ -38,6 +38,8 @@ using System.Xml;
 using OfficeOpenXml.Utils;
 using OfficeOpenXml.Packaging.Ionic.Zip;
 using Ionic.Zip;
+using Spartacus.ThirdParty;
+
 namespace OfficeOpenXml.Packaging
 {
     /// <summary>

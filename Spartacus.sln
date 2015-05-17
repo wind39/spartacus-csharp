@@ -11,28 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CHANGELOG.txt = CHANGELOG.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplo01", "Exemplos\Exemplo01\Exemplo01.csproj", "{C23A4B7E-2EFF-4873-B5A8-0B764BE259F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplo02", "Exemplos\Exemplo02\Exemplo02.csproj", "{35C5AAA5-9F72-4C45-898B-4A6B39984AE2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35C5AAA5-9F72-4C45-898B-4A6B39984AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35C5AAA5-9F72-4C45-898B-4A6B39984AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35C5AAA5-9F72-4C45-898B-4A6B39984AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35C5AAA5-9F72-4C45-898B-4A6B39984AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C23A4B7E-2EFF-4873-B5A8-0B764BE259F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C23A4B7E-2EFF-4873-B5A8-0B764BE259F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C23A4B7E-2EFF-4873-B5A8-0B764BE259F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C23A4B7E-2EFF-4873-B5A8-0B764BE259F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
