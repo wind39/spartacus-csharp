@@ -366,7 +366,7 @@ namespace Spartacus.Database
                 {
                     v_insert = p_insert;
                     for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)) + "#", v_reader[i].ToString());
+                        v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
 
                     p_destdatabase.Execute(v_insert);
                     v_transfered++;
