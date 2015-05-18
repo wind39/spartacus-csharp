@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.6:  Implementada função Transfer para transferir dados de um banco de dados para outro.
+         Início Implementação Spartacus.Game
 0.38.5:  Reinserida Spartacus.Forms e removida dependência de System.Windows.Forms da classe Spartacus.Utils.FileExplorer
 0.38.4:  Removida Spartacus.Forms
 0.38.3:  Removida dependência de WindowsBase.dll e PresentationCore.dll

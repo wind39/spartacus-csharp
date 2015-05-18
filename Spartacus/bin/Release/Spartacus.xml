@@ -1518,6 +1518,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -1643,6 +1651,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -1826,6 +1842,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -1950,6 +1974,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -2078,6 +2110,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -2987,6 +3027,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Net.Cryptor">
             <summary>
             Classe Cryptor.
@@ -3600,6 +3648,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -4333,6 +4389,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -33676,6 +33740,14 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
         <member name="T:Spartacus.Forms.Buttons">
             <summary>
             Classe Buttons.

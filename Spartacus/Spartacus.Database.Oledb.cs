@@ -390,5 +390,48 @@ namespace Spartacus.Database
         public override void DropDatabase()
         {
         }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        public override int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase)
+        {
+            System.Data.OleDb.OleDbDataReader v_reader;
+            System.Data.OleDb.OleDbCommand v_olecmd;
+            int v_transfered = 0;
+            string v_insert;
+
+            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_olecon.Open();
+                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_query, v_olecon);
+                    v_reader = v_olecmd.ExecuteReader();
+
+                    while (v_reader.Read())
+                    {
+                        v_insert = p_insert;
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)) + "#", v_reader[i].ToString());
+
+                        p_destdatabase.Execute(v_insert);
+                        v_transfered++;
+                    }
+
+                    v_reader.Close();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_transfered;
+        }
     }
 }

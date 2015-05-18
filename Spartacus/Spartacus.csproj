@@ -901,6 +901,9 @@
     <Compile Include="Spartacus.Forms.Textbox.cs" />
     <Compile Include="Spartacus.Forms.Window.cs" />
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
+    <Compile Include="Spartacus.Game.Object.cs" />
+    <Compile Include="Spartacus.Game.Layer.cs" />
+    <Compile Include="Spartacus.Game.Level.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

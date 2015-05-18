@@ -364,6 +364,49 @@ namespace Spartacus.Database
         public override void DropDatabase()
         {
         }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        public override int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase)
+        {
+            System.Data.OracleClient.OracleDataReader v_reader;
+            System.Data.OracleClient.OracleCommand v_oracmd;
+            int v_transfered = 0;
+            string v_insert;
+
+            using (System.Data.OracleClient.OracleConnection v_oracon = new System.Data.OracleClient.OracleConnection(this.v_connectionstring))
+            {
+                try
+                {
+                    v_oracon.Open();
+                    v_oracmd = new System.Data.OracleClient.OracleCommand(p_query, v_oracon);
+                    v_reader = v_oracmd.ExecuteReader();
+
+                    while (v_reader.Read())
+                    {
+                        v_insert = p_insert;
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)) + "#", v_reader[i].ToString());
+
+                        p_destdatabase.Execute(v_insert);
+                        v_transfered++;
+                    }
+
+                    v_reader.Close();
+                }
+                catch (System.Data.OracleClient.OracleException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+
+            return v_transfered;
+        }
     }
 }
     

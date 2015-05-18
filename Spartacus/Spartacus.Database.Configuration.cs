@@ -85,6 +85,9 @@ namespace Spartacus.Database
                 case "oracle":
                     this.v_database = new Spartacus.Database.Oracle(p_host, p_port, p_service, p_user, p_password);
                     break;
+                case "xbase":
+                    this.v_database = new Spartacus.Database.XbaseReadOnly(p_service);
+                    break;
                 default:
                     this.v_database = null;
                     break;
