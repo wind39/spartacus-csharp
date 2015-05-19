@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.11: Fazendo Spartacus.Reporting.Report entender todos os tipos de conexão com banco de dados suportados
 0.38.10: Implementada classe Spartacus.Database.FirebirdEmbed, para conexão a um banco de dados Firebird embarcado
 0.38.9:  Implementada classe Spartacus.Database.Memory, para conexão a um banco de dados totalmente em memória
 0.38.8:  Otimização completa na Spartacus.Database

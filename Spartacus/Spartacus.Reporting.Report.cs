@@ -476,64 +476,40 @@ namespace Spartacus.Reporting
                 }
             }
 
-            switch (v_type)
+            switch (v_type.ToLower())
             {
-                case "odbc":
-                    // instanciando uma nova conexão com banco de dados via ODBC
-                    this.v_database = new Spartacus.Database.Odbc(
-                        v_service,
-                        v_user,
-                        v_password
-                    );
+                case "firebird":
+                    this.v_database = new Spartacus.Database.Firebird(v_host, v_port, v_service, v_user, v_password);
                     break;
-                case "oledb":
-                    // instanciando uma nova conexão com banco de dados via ODBC
-                    this.v_database = new Spartacus.Database.Oledb(
-                        v_provider,
-                        v_host,
-                        v_port,
-                        v_service,
-                        v_user,
-                        v_password
-                    );
+                case "firebirdembed":
+                    this.v_database = new Spartacus.Database.FirebirdEmbed(v_service, v_user, v_password);
                     break;
                 case "mysql":
-                    // instanciando uma nova conexao com banco de dados via MySQL
-                    this.v_database = new Spartacus.Database.Mysql(
-                        v_host,
-                        v_port,
-                        v_service,
-                        v_user,
-                        v_password
-                    );
+                    this.v_database = new Spartacus.Database.Mysql(v_host, v_port, v_service, v_user, v_password);
                     break;
-                case "firebird":
-                    // instanciando uma nova conexao com banco de dados via FirebirdSQL
-                    this.v_database = new Spartacus.Database.Firebird(
-                        v_host,
-                        v_port,
-                        v_service,
-                        v_user,
-                        v_password
-                    );
+                case "odbc":
+                    this.v_database = new Spartacus.Database.Odbc(v_service, v_user, v_password);
                     break;
-                case "sqlite":
-                    // instanciando uma nova conexao com banco de dados via SQLite
-                    this.v_database = new Spartacus.Database.Sqlite(
-                        v_service
-                    );
+                case "oledb":
+                    this.v_database = new Spartacus.Database.Oledb(v_provider, v_host, v_port, v_service, v_user, v_password);
                     break;
                 case "postgresql":
-                    // instanciando uma nova conexao com banco de dados via PostgreSQL
-                    this.v_database = new Spartacus.Database.Postgresql(
-                        v_host,
-                        v_port,
-                        v_service,
-                        v_user,
-                        v_password
-                    );
+                    this.v_database = new Spartacus.Database.Postgresql(v_host, v_port, v_service, v_user, v_password);
+                    break;
+                case "sqlite":
+                    this.v_database = new Spartacus.Database.Sqlite(v_service);
+                    break;
+                case "oracle":
+                    this.v_database = new Spartacus.Database.Oracle(v_host, v_port, v_service, v_user, v_password);
+                    break;
+                case "xbase":
+                    this.v_database = new Spartacus.Database.XbaseReadOnly(v_service);
+                    break;
+                case "memory":
+                    this.v_database = new Spartacus.Database.Memory();
                     break;
                 default:
+                    this.v_database = null;
                     break;
             }
         }
