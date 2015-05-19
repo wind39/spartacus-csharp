@@ -133,6 +133,11 @@ namespace Spartacus.Database
         public abstract void CreateDatabase(string p_name);
 
         /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        public abstract void CreateDatabase();
+
+        /// <summary>
         /// Abre a conexão com o banco de dados.
         /// </summary>
         public abstract void Open();

@@ -102,6 +102,13 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        public override void CreateDatabase()
+        {
+        }
+
+        /// <summary>
         /// Abre a conexão com o banco de dados.
         /// </summary>
         public override void Open()

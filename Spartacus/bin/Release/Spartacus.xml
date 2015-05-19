@@ -1434,6 +1434,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Generic.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -1557,6 +1561,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Odbc.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Odbc.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -1740,6 +1748,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Firebird.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Firebird.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -1864,6 +1876,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Mysql.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Mysql.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -1992,6 +2008,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Oledb.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Oledb.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -2897,6 +2917,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Sqlite.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -3510,6 +3534,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Postgresql.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -4243,6 +4271,10 @@
             Cria um banco de dados.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Oracle.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.Oracle.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -33582,6 +33614,10 @@
             Cria um banco de dados SQLite contendo todos os arquivos DBF, um em cada tabela.
             </summary>
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Open">
             <summary>
             Abre a conexão com o banco de dados.
@@ -34559,5 +34595,240 @@
             Deve ser chamada após a instanciação da Janela.
             Na prática, apenas mostra e em seguida esconde a Janela.
             </summary></member>
+        <member name="T:Spartacus.Database.Memory">
+            <summary>
+            Classe Spartacus.Database.Memory.
+            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+            Utiliza o Mono.Data.Sqlite para acessar um SGBD Sqlite em memória.
+            </summary></member>
+        <member name="F:Spartacus.Database.Memory.v_connectionstring">
+            <summary>
+            String de conexão para acessar o banco.
+            </summary></member>
+        <member name="F:Spartacus.Database.Memory.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Memory.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Memory.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Memory.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.#ctor">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Memory" />.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Memory.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.Open">
+            <summary>
+            Abre a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Memory.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_startrow">
+            Número da linha inicial.
+            </param>
+            <param name="p_endrow">
+            Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Memory.Execute(System.String)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.Memory.ExecuteScalar(System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.Memory.Close">
+            <summary>
+            Fecha a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Memory.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="T:Spartacus.Database.FirebirdEmbed">
+            <summary>
+            Classe Spartacus.Database.FirebirdEmbed.
+            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+            Utiliza o Firebird .NET Provider para acessar um SGBD Firebird embarcado.
+            </summary></member>
+        <member name="F:Spartacus.Database.FirebirdEmbed.v_connectionstring">
+            <summary>
+            String de conexão para acessar o banco.
+            </summary></member>
+        <member name="F:Spartacus.Database.FirebirdEmbed.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.FirebirdEmbed.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.FirebirdEmbed.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.FirebirdEmbed.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Firebird" />.
+            </summary>
+            <param name="p_file">
+            Caminho completo para o arquivo FDB ou GDB.
+            </param>
+            <param name="p_user">
+            Usuário do Firebird.
+            </param>
+            <param name="p_password">
+            Senha do Firebird.
+            </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Open">
+            <summary>
+            Abre a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_startrow">
+            Número da linha inicial.
+            </param>
+            <param name="p_endrow">
+            Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Execute(System.String)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.ExecuteScalar(System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Close">
+            <summary>
+            Fecha a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,System.String,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
     </members>
 </doc>

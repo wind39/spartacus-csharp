@@ -64,6 +64,9 @@ namespace Spartacus.Database
                 case "firebird":
                     this.v_database = new Spartacus.Database.Firebird(p_host, p_port, p_service, p_user, p_password);
                     break;
+                case "firebirdembed":
+                    this.v_database = new Spartacus.Database.FirebirdEmbed(p_service, p_user, p_password);
+                    break;
                 case "mysql":
                     this.v_database = new Spartacus.Database.Mysql(p_host, p_port, p_service, p_user, p_password);
                     break;
@@ -87,6 +90,9 @@ namespace Spartacus.Database
                     break;
                 case "xbase":
                     this.v_database = new Spartacus.Database.XbaseReadOnly(p_service);
+                    break;
+                case "memory":
+                    this.v_database = new Spartacus.Database.Memory();
                     break;
                 default:
                     this.v_database = null;

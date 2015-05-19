@@ -100,6 +100,15 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Cria um banco de dados.
+        /// </summary>
+        public override void CreateDatabase()
+        {
+            Mono.Data.Sqlite.SqliteConnection.CreateFile(this.v_service);
+            this.v_connectionstring = "Data Source=" + this.v_service + ";Version=3;Synchronous=Full;Journal Mode=Off;";
+        }
+
+        /// <summary>
         /// Abre a conexão com o banco de dados.
         /// </summary>
         public override void Open()

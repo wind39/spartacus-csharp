@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Sqlite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Memory.cs">
     <Files>
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="165" Column="98" />
+      <File FileName="Spartacus/AssemblyInfo.cs" Line="44" Column="35" />
+      <File FileName="CHANGELOG.txt" Line="25" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Memory.cs" Line="310" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

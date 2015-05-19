@@ -905,6 +905,7 @@
     <Compile Include="Spartacus.Game.Layer.cs" />
     <Compile Include="Spartacus.Game.Level.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
+    <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -918,8 +919,6 @@
     <None Include="bin\Release\Npgsql.dll" />
     <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="lib\Mono.Data.Sqlite.dll" />
-    <None Include="bin\Release\sqlite3.dll" />
-    <None Include="lib\sqlite3.dll" />
     <None Include="doc\Spartacus Report Engine.xlsx" />
     <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
@@ -927,20 +926,8 @@
     <None Include="bin\Debug\Npgsql.dll" />
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
-    <None Include="bin\Debug\sqlite3.dll" />
-    <None Include="thirdparties\Mono.Data.Sqlite.7z" />
-    <None Include="thirdparties\mysql-connector-net-6.8.3-noinstall.7z" />
-    <None Include="thirdparties\Npgsql-2.2.1-net45.7z" />
-    <None Include="thirdparties\sqlite-dll-win32-x86-3080700.7z" />
     <None Include="doc\doxygen_sqlite3.db" />
-    <None Include="thirdparties\FirebirdSql.Data.FirebirdClient-4.6.1.0-MONO_LINUX.7z" />
     <None Include="lib\System.Data.OracleClient.dll" />
-    <None Include="instantclient\linux_x64.7z" />
-    <None Include="instantclient\linux_x86.7z" />
-    <None Include="instantclient\macos_x64.7z" />
-    <None Include="instantclient\macos_x86.7z" />
-    <None Include="instantclient\windows_x64.7z" />
-    <None Include="instantclient\windows_x86.7z" />
     <None Include="bin\Debug\System.Data.OracleClient.dll" />
     <None Include="bin\Release\System.Data.OracleClient.dll" />
     <None Include="dist\Spartacus-0.36.0.zip" />
@@ -950,18 +937,36 @@
     <None Include="epplus\LICENSE.txt" />
     <None Include="bin\Release\Spartacus.xml" />
     <None Include="dist\Spartacus-0.38.0.zip" />
-    <None Include="bin\Debug\dbf" />
-    <None Include="bin\Debug\dbf.exe" />
-    <None Include="bin\Release\dbf" />
-    <None Include="bin\Release\dbf.exe" />
-    <None Include="lib\dbf" />
-    <None Include="lib\dbf.exe" />
-    <None Include="thirdparties\dbf-0.8.3.1.bin.win.zip" />
-    <None Include="thirdparties\dbf-0.8.3.1.bin.x86.zip" />
+    <None Include="lib\oracleinstantclient\linux_x64.7z" />
+    <None Include="lib\oracleinstantclient\linux_x86.7z" />
+    <None Include="lib\oracleinstantclient\macos_x64.7z" />
+    <None Include="lib\oracleinstantclient\macos_x86.7z" />
+    <None Include="lib\oracleinstantclient\windows_x64.7z" />
+    <None Include="lib\oracleinstantclient\windows_x86.7z" />
+    <None Include="lib\sqlite\windows_x86\sqlite3.dll" />
+    <None Include="lib\sqlite\linux_x64\libsqlite3.so" />
+    <None Include="lib\sqlite\linux_x86\libsqlite3.so" />
+    <None Include="lib\xbase\linux_x86\dbf" />
+    <None Include="lib\xbase\windows_x64\dbf.exe" />
+    <None Include="lib\firebird\linux_x64\libfbembed.so" />
+    <None Include="lib\firebird\windows_x86\fbembed.dll" />
+    <None Include="lib\firebird\windows_x86\icudt30.dll" />
+    <None Include="lib\firebird\windows_x86\icuin30.dll" />
+    <None Include="lib\firebird\windows_x86\icuuc30.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="doc\" />
     <Folder Include="dist\" />
+    <Folder Include="lib\sqlite\" />
+    <Folder Include="lib\sqlite\windows_x86\" />
+    <Folder Include="lib\sqlite\linux_x86\" />
+    <Folder Include="lib\sqlite\linux_x64\" />
+    <Folder Include="lib\xbase\" />
+    <Folder Include="lib\xbase\linux_x86\" />
+    <Folder Include="lib\xbase\windows_x64\" />
+    <Folder Include="lib\firebird\" />
+    <Folder Include="lib\firebird\linux_x64\" />
+    <Folder Include="lib\firebird\windows_x86\" />
   </ItemGroup>
 </Project>
