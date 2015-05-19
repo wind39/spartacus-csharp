@@ -904,6 +904,7 @@
     <Compile Include="Spartacus.Game.Object.cs" />
     <Compile Include="Spartacus.Game.Layer.cs" />
     <Compile Include="Spartacus.Game.Level.cs" />
+    <Compile Include="Spartacus.Database.Memory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
