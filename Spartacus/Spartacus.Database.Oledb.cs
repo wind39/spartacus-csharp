@@ -38,7 +38,28 @@ namespace Spartacus.Database
         /// <summary>
         /// String de conexão para acessar o banco.
         /// </summary>
-        public string v_connectionstring;
+        private string v_connectionstring;
+
+        /// <summary>
+        /// Conexão com o banco de dados.
+        /// </summary>
+        private System.Data.OleDb.OleDbConnection v_con;
+
+        /// <summary>
+        /// Comando para conexão com o banco de dados.
+        /// </summary>
+        private System.Data.OleDb.OleDbCommand v_cmd;
+
+        /// <summary>
+        /// Leitor de dados do banco de dados.
+        /// </summary>
+        private System.Data.OleDb.OleDbDataReader v_reader;
+
+        /// <summary>
+        /// Linha atual da QueryBlock.
+        /// </summary>
+        private uint v_currentrow;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oledb"/>.
@@ -94,6 +115,10 @@ namespace Spartacus.Database
                         + this.v_password;
                     break;
             }
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
         }
 
         /// <summary>
@@ -105,10 +130,21 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// Abre a conexão com o banco de dados.
         /// </summary>
         public override void Open()
         {
+            try
+            {
+                this.v_con = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
+                this.v_con.Open();
+                this.v_cmd = new System.Data.OleDb.OleDbCommand();
+                this.v_cmd.Connection = this.v_con;
+            }
+            catch (System.Data.OleDb.OleDbException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
         }
 
         /// <summary>
@@ -121,48 +157,84 @@ namespace Spartacus.Database
         /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
         /// </param>
         /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception>
         public override System.Data.DataTable Query(string p_sql, string p_tablename)
         {
             System.Data.DataTable v_table = null;
-            System.Data.OleDb.OleDbDataReader v_reader;
-            System.Data.OleDb.OleDbCommand v_olecmd;
             System.Data.DataRow v_row;
 
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            if (this.v_con == null)
             {
                 try
                 {
-                    v_olecon.Open();
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
-                    v_reader = v_olecmd.ExecuteReader();
+                    this.v_con = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.OleDb.OleDbCommand(p_sql, this.v_con);
+                    this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
                     for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
                         v_row = v_table.NewRow();
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_row[i] = v_reader[i].ToString();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
                         v_table.Rows.Add(v_row);
                     }
 
-                    v_reader.Close();
+                    return v_table;
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
+                finally
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                    this.v_cmd.Dispose();
+                    this.v_cmd = null;
+                    this.v_con.Close();
+                    this.v_con = null;
+                }
             }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_sql;
+                    this.v_reader = this.v_cmd.ExecuteReader();
 
-            return v_table;
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    return v_table;
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+            }
         }
 
         /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
-        /// Utiliza um DataReader para buscar em blocos.
+        /// Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
         /// </summary>
         /// <param name='p_sql'>
         /// Código SQL a ser consultado no banco de dados.
@@ -176,52 +248,58 @@ namespace Spartacus.Database
         /// <param name='p_endrow'>
         /// Número da linha final.
         /// </param>
-        public override System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow)
+        /// <param name='p_hasmoredata'>
+        /// Indica se ainda há mais dados a serem lidos.
+        /// </param>
+        public override System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
             System.Data.DataTable v_table = null;
-            System.Data.OleDb.OleDbDataReader v_reader;
-            System.Data.OleDb.OleDbCommand v_olecmd;
             System.Data.DataRow v_row;
-            uint v_currentrow;
 
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            try
             {
-                try
+                if (this.v_reader == null)
                 {
-                    v_olecon.Open();
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_sql, v_olecon);
-                    v_reader = v_olecmd.ExecuteReader();
+                    this.v_cmd.CommandText = p_sql;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+                    this.v_currentrow = 0;
+                }
 
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(v_reader.GetName(i)), typeof(string));
+                v_table = new System.Data.DataTable(p_tablename);
+                for (int i = 0; i < v_reader.FieldCount; i++)
+                    v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
 
-                    v_currentrow = 0;
-                    while (v_reader.Read())
+                while (this.v_reader.Read())
+                {
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        if (v_currentrow >= p_startrow && v_currentrow <= p_endrow)
-                        {
-                            v_row = v_table.NewRow();
-                            for (int i = 0; i < v_reader.FieldCount; i++)
-                                v_row[i] = v_reader[i].ToString();
-                            v_table.Rows.Add(v_row);
-                        }
-
-                        if (v_currentrow > p_endrow)
-                            break;
-
-                        v_currentrow++;
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
                     }
 
-                    v_reader.Close();
-                }
-                catch (System.Data.OleDb.OleDbException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+                    if (this.v_currentrow > p_endrow)
+                        break;
 
-            return v_table;
+                    this.v_currentrow++;
+                }
+
+                if (this.v_currentrow > p_endrow)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                    p_hasmoredata = false;
+                }
+                else
+                    p_hasmoredata = true;
+
+                return v_table;
+            }
+            catch (System.Data.OleDb.OleDbException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
         }
 
         /// <summary>
@@ -230,59 +308,35 @@ namespace Spartacus.Database
         /// <param name='p_sql'>
         /// Código SQL a ser executado no banco de dados.
         /// </param>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override void Execute(string p_sql)
         {
-            System.Data.OleDb.OleDbCommand v_olecmd;
-
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            if (this.v_con == null)
             {
                 try
                 {
-                    v_olecon.Open();
-
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_olecon);
-                    v_olecmd.ExecuteNonQuery();
+                    this.v_con = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    this.v_cmd.ExecuteNonQuery();
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
+                finally
+                {
+                    this.v_cmd.Dispose();
+                    this.v_cmd = null;
+                    this.v_con.Close();
+                    this.v_con = null;
+                }
             }
-        }
-
-        /// <summary>
-        /// Executa um código SQL no banco de dados.
-        /// </summary>
-        /// <param name='p_sql'>
-        /// Código SQL a ser executado no banco de dados.
-        /// </param>
-        /// <param name='p_verbose'>
-        /// Se deve ser mostrado o código SQL no console.
-        /// </param>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
-        public override void Execute(string p_sql, bool p_verbose)
-        {
-            System.Data.OleDb.OleDbCommand v_olecmd;
-            string v_sql;
-
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            else
             {
                 try
                 {
-                    v_olecon.Open();
-
-                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-
-                    if (p_verbose)
-                    {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.Execute:", System.DateTime.UtcNow);
-                        System.Console.WriteLine(v_sql);
-                        System.Console.WriteLine("--------------------------------------------------");
-                    }
-
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(v_sql, v_olecon);
-                    v_olecmd.ExecuteNonQuery();
+                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    this.v_cmd.ExecuteNonQuery();
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {
@@ -300,80 +354,52 @@ namespace Spartacus.Database
         /// <param name='p_sql'>
         /// Código SQL a ser consultado no banco de dados.
         /// </param>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
         public override string ExecuteScalar(string p_sql)
         {
-            System.Data.OleDb.OleDbCommand v_olecmd;
-            string v_ret;
-
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            if (this.v_con == null)
             {
                 try
                 {
-                    v_olecon.Open();
-
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), v_olecon);
-                    v_ret = v_olecmd.ExecuteScalar().ToString();
+                    this.v_con = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.OleDb.OleDbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    return (string) this.v_cmd.ExecuteScalar();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    this.v_cmd.Dispose();
+                    this.v_cmd = null;
+                    this.v_con.Close();
+                    this.v_con = null;
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    return (string) this.v_cmd.ExecuteScalar();
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
             }
-
-            return v_ret;
         }
 
         /// <summary>
-        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-        /// </summary>
-        /// <returns>
-        /// string com o dado de retorno.
-        /// </returns>
-        /// <param name='p_sql'>
-        /// Código SQL a ser consultado no banco de dados.
-        /// </param>
-        /// <param name='p_verbose'>
-        /// Se deve ser mostrado o código SQL no console.
-        /// </param>
-        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception>
-        public override string ExecuteScalar(string p_sql, bool p_verbose)
-        {
-            System.Data.OleDb.OleDbCommand v_olecmd;
-            string v_sql, v_ret;
-
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
-            {
-                try
-                {
-                    v_olecon.Open();
-
-                    v_sql = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-
-                    if (p_verbose)
-                    {
-                        System.Console.WriteLine("Spartacus [{0}] - Spartacus.Database.Oledb.ExecuteScalar:", System.DateTime.UtcNow);
-                        System.Console.WriteLine(v_sql);
-                        System.Console.WriteLine("--------------------------------------------------");
-                    }
-
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(v_sql, v_olecon);
-                    v_ret = v_olecmd.ExecuteScalar().ToString();
-                }
-                catch (System.Data.OleDb.OleDbException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-
-            return v_ret;
-        }
-
-        /// <summary>
-        /// Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// Fecha a conexão com o banco de dados.
         /// </summary>
         public override void Close()
         {
+            this.v_cmd.Dispose();
+            this.v_cmd = null;
+            this.v_con.Close();
+            this.v_con = null;
         }
 
         /// <summary>
@@ -393,6 +419,7 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
         /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -400,18 +427,17 @@ namespace Spartacus.Database
         /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
         public override int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase)
         {
-            System.Data.OleDb.OleDbDataReader v_reader;
-            System.Data.OleDb.OleDbCommand v_olecmd;
             int v_transfered = 0;
             string v_insert;
 
-            using (System.Data.OleDb.OleDbConnection v_olecon = new System.Data.OleDb.OleDbConnection(this.v_connectionstring))
+            if (this.v_con == null)
             {
                 try
                 {
-                    v_olecon.Open();
-                    v_olecmd = new System.Data.OleDb.OleDbCommand(p_query, v_olecon);
-                    v_reader = v_olecmd.ExecuteReader();
+                    this.v_con = new System.Data.OleDb.OleDbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.OleDb.OleDbCommand(p_query, this.v_con);
+                    this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
                     {
@@ -423,15 +449,51 @@ namespace Spartacus.Database
                         v_transfered++;
                     }
 
-                    v_reader.Close();
+                    return v_transfered;
                 }
                 catch (System.Data.OleDb.OleDbException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
+                finally
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                    this.v_cmd.Dispose();
+                    this.v_cmd = null;
+                    this.v_con.Close();
+                    this.v_con = null;
+                }
             }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
 
-            return v_transfered;
+                    while (v_reader.Read())
+                    {
+                        v_insert = p_insert;
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
+
+                        p_destdatabase.Execute(v_insert);
+                        v_transfered++;
+                    }
+
+                    return v_transfered;
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+            }
         }
     }
 }

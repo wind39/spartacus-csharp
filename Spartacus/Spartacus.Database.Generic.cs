@@ -133,7 +133,7 @@ namespace Spartacus.Database
         public abstract void CreateDatabase(string p_name);
 
         /// <summary>
-        /// Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// Abre a conexão com o banco de dados.
         /// </summary>
         public abstract void Open();
 
@@ -164,7 +164,10 @@ namespace Spartacus.Database
         /// <param name='p_endrow'>
         /// Número da linha final.
         /// </param>
-        public abstract System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow);
+        /// <param name='p_hasmoredata'>
+        /// Indica se ainda há mais dados a serem lidos.
+        /// </param>
+        public abstract System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
 
         /// <summary>
         /// Executa uma instrução SQL no banco de dados.
@@ -173,17 +176,6 @@ namespace Spartacus.Database
         /// Código SQL a ser executado no banco de dados.
         /// </param>
         public abstract void Execute(string p_sql);
-
-        /// <summary>
-        /// Executa uma instrução SQL no banco de dados.
-        /// </summary>
-        /// <param name='p_sql'>
-        /// Código SQL a ser executado no banco de dados.
-        /// </param>
-        /// <param name='p_verbose'>
-        /// Se deve ser mostrado o código SQL no console.
-        /// </param>
-        public abstract void Execute(string p_sql, bool p_verbose);
 
         /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -197,21 +189,7 @@ namespace Spartacus.Database
         public abstract string ExecuteScalar(string p_sql);
 
         /// <summary>
-        /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-        /// </summary>
-        /// <returns>
-        /// string com o dado de retorno.
-        /// </returns>
-        /// <param name='p_sql'>
-        /// Código SQL a ser consultado no banco de dados.
-        /// </param>
-        /// <param name='p_verbose'>
-        /// Se deve ser mostrado o código SQL no console.
-        /// </param>
-        public abstract string ExecuteScalar(string p_sql, bool p_verbose);
-
-        /// <summary>
-        /// Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+        /// Fecha a conexão com o banco de dados.
         /// </summary>
         public abstract void Close();
 

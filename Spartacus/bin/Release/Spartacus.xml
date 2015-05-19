@@ -1436,7 +1436,7 @@
             <param name="p_name">Nome do banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Generic.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Generic.Query(System.String,System.String)">
             <summary>
@@ -1448,7 +1448,7 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.Query(System.String,System.String,System.UInt32,System.UInt32)">
+        <member name="M:Spartacus.Database.Generic.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos.
@@ -1464,6 +1464,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Generic.Execute(System.String)">
             <summary>
@@ -1471,16 +1474,6 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param></member>
-        <member name="M:Spartacus.Database.Generic.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
             </param></member>
         <member name="M:Spartacus.Database.Generic.ExecuteScalar(System.String)">
             <summary>
@@ -1492,22 +1485,9 @@
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param></member>
         <member name="M:Spartacus.Database.Generic.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Generic.DropDatabase(System.String)">
             <summary>
@@ -1542,6 +1522,22 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Odbc.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Odbc.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Odbc.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Odbc.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
         <member name="M:Spartacus.Database.Odbc.#ctor(System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Odbc" />.
@@ -1563,7 +1559,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Odbc.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String)">
             <summary>
@@ -1575,12 +1571,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -1593,6 +1588,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Odbc.Execute(System.String)">
             <summary>
@@ -1600,19 +1598,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Odbc.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Odbc.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -1622,25 +1608,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Odbc.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Odbc.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Odbc.DropDatabase(System.String)">
             <summary>
@@ -1654,6 +1625,7 @@
         <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -1728,6 +1700,22 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Firebird.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Firebird.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Firebird.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Firebird.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
         <member name="M:Spartacus.Database.Firebird.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Firebird" />.
@@ -1754,7 +1742,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Firebird.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String)">
             <summary>
@@ -1766,12 +1754,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -1784,6 +1771,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Firebird.Execute(System.String)">
             <summary>
@@ -1791,19 +1781,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Firebird.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Firebird.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -1813,25 +1791,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Firebird.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Firebird.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Firebird.DropDatabase(System.String)">
             <summary>
@@ -1845,6 +1808,7 @@
         <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -1859,6 +1823,22 @@
         <member name="F:Spartacus.Database.Mysql.v_connectionstring">
             <summary>
             String de conexão para acessar o banco.
+            </summary></member>
+        <member name="F:Spartacus.Database.Mysql.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Mysql.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Mysql.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Mysql.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
             </summary></member>
         <member name="M:Spartacus.Database.Mysql.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
@@ -1886,7 +1866,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Mysql.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String)">
             <summary>
@@ -1898,12 +1878,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -1916,6 +1895,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Mysql.Execute(System.String)">
             <summary>
@@ -1923,19 +1905,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Mysql.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Mysql.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -1945,25 +1915,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Mysql.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Mysql.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Mysql.DropDatabase(System.String)">
             <summary>
@@ -1977,6 +1932,7 @@
         <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -1991,6 +1947,22 @@
         <member name="F:Spartacus.Database.Oledb.v_connectionstring">
             <summary>
             String de conexão para acessar o banco.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oledb.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oledb.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oledb.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oledb.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
             </summary></member>
         <member name="M:Spartacus.Database.Oledb.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
@@ -2022,7 +1994,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Oledb.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String)">
             <summary>
@@ -2034,12 +2006,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -2052,6 +2023,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Oledb.Execute(System.String)">
             <summary>
@@ -2059,19 +2033,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oledb.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Oledb.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -2081,25 +2043,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oledb.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Oledb.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Oledb.DropDatabase(System.String)">
             <summary>
@@ -2113,6 +2060,7 @@
         <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -2917,9 +2865,21 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
-        <member name="F:Spartacus.Database.Sqlite.v_sqlcon">
+        <member name="F:Spartacus.Database.Sqlite.v_con">
             <summary>
-            Conexão persistente com o banco de dados.
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Sqlite.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Sqlite.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Sqlite.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
             </summary></member>
         <member name="M:Spartacus.Database.Sqlite.#ctor(System.String)">
             <summary>
@@ -2939,7 +2899,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Sqlite.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String)">
             <summary>
@@ -2951,12 +2911,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -2969,6 +2928,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Sqlite.Execute(System.String)">
             <summary>
@@ -2976,19 +2938,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Sqlite.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Sqlite.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -2998,25 +2948,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Sqlite.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Sqlite.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Sqlite.DropDatabase(System.String)">
             <summary>
@@ -3030,6 +2965,7 @@
         <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -3534,6 +3470,22 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Postgresql.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Postgresql.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Postgresql.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Postgresql.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
         <member name="M:Spartacus.Database.Postgresql.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Postgresql" />.
@@ -3560,7 +3512,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Postgresql.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String)">
             <summary>
@@ -3572,12 +3524,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -3590,6 +3541,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Postgresql.Execute(System.String)">
             <summary>
@@ -3597,19 +3551,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Postgresql.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Postgresql.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -3619,25 +3561,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Postgresql.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Postgresql.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Postgresql.DropDatabase(System.String)">
             <summary>
@@ -3651,6 +3578,7 @@
         <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -4274,6 +4202,22 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Oracle.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oracle.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oracle.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Oracle.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
         <member name="M:Spartacus.Database.Oracle.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
@@ -4301,7 +4245,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.Oracle.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String)">
             <summary>
@@ -4313,12 +4257,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -4331,6 +4274,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.Oracle.Execute(System.String)">
             <summary>
@@ -4338,19 +4284,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oracle.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Oracle.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -4360,25 +4294,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.Oracle.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.Oracle.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.Oracle.DropDatabase(System.String)">
             <summary>
@@ -4392,6 +4311,7 @@
         <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
@@ -33630,13 +33550,25 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.XbaseReadOnly.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
         <member name="F:Spartacus.Database.XbaseReadOnly.v_sourcefiles">
             <summary>
             Lista de arquivos DBF de origem a serem convertidos para SQLite
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_sqlcon">
-            <summary>
-            Conexão persistente com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.#ctor(System.String)">
             <summary>
@@ -33652,7 +33584,7 @@
             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Open">
             <summary>
-            Abra a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Abre a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String)">
             <summary>
@@ -33664,12 +33596,11 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar a consulta.</exception></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,System.UInt32,System.UInt32)">
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
             </summary>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
@@ -33682,6 +33613,9 @@
             </param>
             <param name="p_endrow">
             Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
             </param></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Execute(System.String)">
             <summary>
@@ -33689,19 +33623,7 @@
             </summary>
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Execute(System.String,System.Boolean)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.ExecuteScalar(System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
@@ -33711,25 +33633,10 @@
             </returns>
             <param name="p_sql">
             Código SQL a ser consultado no banco de dados.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.ExecuteScalar(System.String,System.Boolean)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_verbose">
-            Se deve ser mostrado o código SQL no console.
-            </param>
-            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando não for possível executar o código SQL.</exception></member>
+            </param></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Close">
             <summary>
-            Fecha a conexão com o banco de dados, se esta for persistente (por exemplo, SQLite).
+            Fecha a conexão com o banco de dados.
             </summary></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.DropDatabase(System.String)">
             <summary>
@@ -33743,6 +33650,7 @@
         <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>

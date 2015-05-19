@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.8:  Otimização completa na Spartacus.Database
 0.38.7:  Correção de bug na função Transfer
 0.38.6:  Implementada função Transfer para transferir dados de um banco de dados para outro.
          Início Implementação Spartacus.Game
