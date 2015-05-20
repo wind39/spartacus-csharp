@@ -1,16 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.ProgressEvent.cs">
-    <Files>
-      <File FileName="Spartacus/Spartacus.Game.Layer.cs" Line="51" Column="1" />
-      <File FileName="Spartacus/Spartacus.Game.Level.cs" Line="43" Column="10" />
-      <File FileName="Spartacus/Spartacus.Game.Object.cs" Line="58" Column="45" />
-      <File FileName="Spartacus/Spartacus.Game.Animation.cs" Line="63" Column="10" />
-      <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="49" Column="9" />
-      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="105" Column="78" />
-      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="1549" Column="56" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

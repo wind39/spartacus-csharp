@@ -171,12 +171,21 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                    this.v_cmd.Dispose();
-                    this.v_cmd = null;
-                    this.v_con.Close();
-                    this.v_con = null;
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
                 }
             }
             else
@@ -206,8 +215,11 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_reader.Close();
-                    this.v_reader = null;
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
                 }
             }
         }
@@ -305,10 +317,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_cmd.Dispose();
-                    this.v_cmd = null;
-                    this.v_con.Close();
-                    this.v_con = null;
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
                 }
             }
             else
@@ -351,10 +369,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_cmd.Dispose();
-                    this.v_cmd = null;
-                    this.v_con.Close();
-                    this.v_con = null;
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
                 }
             }
             else
@@ -376,10 +400,16 @@ namespace Spartacus.Database
         /// </summary>
         public override void Close()
         {
-            this.v_cmd.Dispose();
-            this.v_cmd = null;
-            this.v_con.Close();
-            this.v_con = null;
+            if (this.v_cmd != null)
+            {
+                this.v_cmd.Dispose();
+                this.v_cmd = null;
+            }
+            if (this.v_con != null)
+            {
+                this.v_con.Close();
+                this.v_con = null;
+            }
         }
 
         /// <summary>
@@ -437,12 +467,21 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                    this.v_cmd.Dispose();
-                    this.v_cmd = null;
-                    this.v_con.Close();
-                    this.v_con = null;
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
                 }
             }
             else
@@ -470,8 +509,11 @@ namespace Spartacus.Database
                 }
                 finally
                 {
-                    this.v_reader.Close();
-                    this.v_reader = null;
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
                 }
             }
         }
