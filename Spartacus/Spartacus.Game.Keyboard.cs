@@ -26,25 +26,36 @@ using System;
 
 namespace Spartacus.Game
 {
-    public class Layer
+    public class Keyboard
     {
-        public System.Collections.ArrayList v_objects;
-
-
-        public Layer()
+        public Keyboard(System.Windows.Forms.Form p_screen)
         {
-            this.v_objects = new System.Collections.ArrayList();
+            p_screen.KeyPreview = true;
+            p_screen.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.OnPreviewKeyDown);
+            p_screen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            p_screen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            p_screen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressed);
         }
 
-        public void AddObject(Spartacus.Game.Object p_object)
+        private void OnPreviewKeyDown(object sender, System.Windows.Forms.PreviewKeyDownEventArgs e)
         {
-            this.v_objects.Add(p_object);
+            e.IsInputKey = true;
         }
 
-        public void Render(System.Drawing.Graphics p_graphics)
+        private void OnKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            for (int k = 0; k < this.v_objects.Count; k++)
-                ((Spartacus.Game.Object)this.v_objects[k]).Render(p_graphics);
+            Console.WriteLine("KeyDown: '" + e.KeyCode + "' down.");
+        }
+
+        private void OnKeyPressed(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            Console.WriteLine("KeyPressed: '" + e.KeyChar.ToString() + "' pressed.");
+        }
+
+        private void OnKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            Console.WriteLine("KeyUp: '" + e.KeyCode + "' up.");
+            e.Handled = true;
         }
     }
 }

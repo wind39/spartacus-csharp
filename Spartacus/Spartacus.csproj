@@ -906,6 +906,8 @@
     <Compile Include="Spartacus.Game.Level.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
     <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
+    <Compile Include="Spartacus.Game.Animation.cs" />
+    <Compile Include="Spartacus.Game.Keyboard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
