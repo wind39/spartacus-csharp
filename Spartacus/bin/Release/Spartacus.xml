@@ -1264,6 +1264,28 @@
             Indica se o valor do Parâmetro deve ser NULL ou não.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetValue(System.Int32,System.String)">
+            <summary>
+            Atribui o valor do Parâmetro de índice <paramref name="p_index" />.
+            </summary>
+            <param name="p_index">
+            Índice do Parâmetro que vai ter o valor atribuído.
+            </param>
+            <param name="p_value">
+            Valor a ser atribuído ao Parâmetro.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetValue(System.Int32,System.Boolean)">
+            <summary>
+            Atribui o valor do Parâmetro de índice <paramref name="p_index" />.
+            </summary>
+            <param name="p_index">
+            Índice do Parâmetro que vai ter o valor atribuído.
+            </param>
+            <param name="p_null">
+            Indica se o valor do Parâmetro deve ser NULL ou não.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.SetDateFormat(System.String,System.String)">
             <summary>
             Atribui um formato de data específico ao Parâmetro de nome <paramref name="p_name" />.
@@ -1282,8 +1304,19 @@
             <param name="p_name">
             Nome do Parâmetro.
             </param>
-            <param name="p_localse">
+            <param name="p_locale">
             Localização, representação de número real, AMERICAN ou EUROPEAN.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetDescription(System.String,System.String)">
+            <summary>
+            Atribui uma descrição ao parâmetro de nome <paramref name="p_name" />.
+            </summary>
+            <param name="p_name">
+            Nome do Parâmetro.
+            </param>
+            <param name="p_description">
+            Descrição do Parâmetro.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.GetValue(System.String)">
@@ -1505,11 +1538,43 @@
         <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
             </summary>
             <returns>Número de linhas transferidas.</returns>
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -1639,6 +1704,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -1826,6 +1922,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -1954,6 +2081,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -2086,6 +2244,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -2995,6 +3184,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Net.Cryptor">
             <summary>
             Classe Cryptor.
@@ -3612,6 +3832,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -4349,6 +4600,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -33692,6 +33974,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Forms.Buttons">
             <summary>
             Classe Buttons.
@@ -34708,6 +35021,37 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
         <member name="T:Spartacus.Database.FirebirdEmbed">
             <summary>
             Classe Spartacus.Database.FirebirdEmbed.
@@ -34830,5 +35174,36 @@
             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,System.String,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
     </members>
 </doc>

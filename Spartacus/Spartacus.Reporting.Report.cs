@@ -702,6 +702,7 @@ namespace Spartacus.Reporting
             Spartacus.Database.Type v_type = Spartacus.Database.Type.STRING;
             Spartacus.Database.Locale v_locale = Spartacus.Database.Locale.EUROPEAN;
             string v_dateformat = null;
+            string v_description = null;
 
             while (p_reader.Read())
             {
@@ -756,6 +757,9 @@ namespace Spartacus.Reporting
                         case "dateformat":
                             v_dateformat = p_reader.ReadString();
                             break;
+                        case "description":
+                            v_description = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -768,6 +772,7 @@ namespace Spartacus.Reporting
             else
                 if (v_type == Spartacus.Database.Type.DATE)
                     this.v_cmd.SetDateFormat(v_name, v_dateformat);
+            this.v_cmd.SetDescription(v_name, v_description);
         }
 
         /// <summary>

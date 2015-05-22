@@ -769,6 +769,72 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Atribui o valor do Parâmetro de índice <paramref name="p_index"/>.
+        /// </summary>
+        /// <param name='p_index'>
+        /// Índice do Parâmetro que vai ter o valor atribuído.
+        /// </param>
+        /// <param name='p_value'>
+        /// Valor a ser atribuído ao Parâmetro.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetValue(int p_index, string p_value)
+        {
+            if (p_index >= 0 && p_index < this.v_parameters.Count)
+            {
+                if (p_value == null || p_value == "")
+                {
+                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = null;
+                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_null = true;
+                }
+                else
+                {
+                    switch (((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_type)
+                    {
+                        case Spartacus.Database.Type.QUOTEDSTRING:
+                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = RemoveUnwantedCharsQuoted(p_value);
+                            break;
+                        case Spartacus.Database.Type.UNDEFINED:
+                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = p_value;
+                            break;
+                        default:
+                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = RemoveUnwantedChars(p_value);
+                            break;
+                    }
+                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_null = false;
+                }
+            }
+            else
+            {
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados de índice {0} não existe.", p_index);
+            }
+        }
+
+        /// <summary>
+        /// Atribui o valor do Parâmetro de índice <paramref name="p_index"/>.
+        /// </summary>
+        /// <param name='p_index'>
+        /// Índice do Parâmetro que vai ter o valor atribuído.
+        /// </param>
+        /// <param name='p_null'>
+        /// Indica se o valor do Parâmetro deve ser NULL ou não.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetValue(int p_index, bool p_null)
+        {
+            if (p_index >= 0 && p_index < this.v_parameters.Count)
+            {
+                ((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_null = p_null;
+                if (p_null)
+                    ((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_value = null;
+            }
+            else
+            {
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados de índice {0} não existe.", p_index);
+            }
+        }
+
+        /// <summary>
         /// Atribui um formato de data específico ao Parâmetro de nome <paramref name="p_name"/>.
         /// </summary>
         /// <param name='p_name'>
@@ -807,11 +873,11 @@ namespace Spartacus.Database
         /// <param name='p_name'>
         /// Nome do Parâmetro.
         /// </param>
-        /// <param name='p_localse'>
+        /// <param name='p_locale'>
         /// Localização, representação de número real, AMERICAN ou EUROPEAN.
         /// </param>
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
-        public void SetLocale(String p_name, Spartacus.Database.Locale p_locale)
+        public void SetLocale(string p_name, Spartacus.Database.Locale p_locale)
         {
             int k;
             bool achou;
@@ -835,6 +901,39 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Atribui uma descrição ao parâmetro de nome <paramref name="p_name"/>.
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do Parâmetro.
+        /// </param>
+        /// <param name='p_description'>
+        /// Descrição do Parâmetro.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetDescription(string p_name, string p_description)
+        {
+            int k;
+            bool achou;
+
+            k = 0;
+            achou = false;
+            while (k < this.v_parameters.Count && !achou)
+            {
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                    achou = true;
+                else
+                    k++;
+            }
+
+            if (achou)
+                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_description = p_description;
+            else
+            {
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+            }
+        }
+
+        /// <summary>
         /// Retorna o valor do Parâmetro de nome <paramref name="p_name"/>.
         /// </summary>
         /// <returns>
@@ -844,7 +943,7 @@ namespace Spartacus.Database
         /// Nome do Parâmetro.
         /// </param>
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
-        public string GetValue(String p_name)
+        public string GetValue(string p_name)
         {
             int k;
             bool achou;

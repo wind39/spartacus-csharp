@@ -211,12 +211,47 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
         /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
         /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
         /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
         public abstract int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        public abstract int Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        public abstract int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        public abstract int Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log);
 
         /// <summary>
         /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4

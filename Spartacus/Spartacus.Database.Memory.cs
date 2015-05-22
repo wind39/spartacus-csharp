@@ -336,5 +336,157 @@ namespace Spartacus.Database
                 }
             }
         }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        public override int Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase)
+        {
+            int v_transfered = 0;
+
+            try
+            {
+                this.v_cmd.CommandText = p_query;
+                this.v_reader = this.v_cmd.ExecuteReader();
+
+                while (v_reader.Read())
+                {
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+
+                    p_destdatabase.Execute(p_insert.GetUpdatedText());
+                    v_transfered++;
+                }
+
+                return v_transfered;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            finally
+            {
+                if (this.v_reader != null)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        public override int Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log)
+        {
+            int v_transfered = 0;
+            string v_insert;
+
+            p_log = "";
+
+            try
+            {
+                this.v_cmd.CommandText = p_query;
+                this.v_reader = this.v_cmd.ExecuteReader();
+
+                while (v_reader.Read())
+                {
+                    v_insert = p_insert;
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
+
+                    try
+                    {
+                        p_destdatabase.Execute(v_insert);
+                        v_transfered++;
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_log += v_insert + "\n" + e.v_message + "\n";
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            finally
+            {
+                if (this.v_reader != null)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        public override int Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log)
+        {
+            int v_transfered = 0;
+            string v_insert;
+
+            p_log = "";
+
+            try
+            {
+                this.v_cmd.CommandText = p_query;
+                this.v_reader = this.v_cmd.ExecuteReader();
+
+                while (v_reader.Read())
+                {
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+
+                    v_insert = p_insert.GetUpdatedText();
+                    try
+                    {
+                        p_destdatabase.Execute(v_insert);
+                        v_transfered++;
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_log += v_insert + "\n" + e.v_message + "\n";
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            finally
+            {
+                if (this.v_reader != null)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+            }
+        }
     }
 }

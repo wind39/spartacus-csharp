@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.14: Adicionando suporte a descrição de parâmetros na Spartacus.Database
+         Início implementação Spartacus.Tools.ReportManager
+         Melhorias na função Transfer do Spartacus.Database
 0.38.13: Corrigido bug na Spartacus.Database
 0.38.12: Adicionando classes Spartacus.Game.Animation e Spartacus.Game.Keyboard
 0.38.11: Fazendo Spartacus.Reporting.Report entender todos os tipos de conexão com banco de dados suportados
