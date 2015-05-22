@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.15: Correção no tipo Spartacus.Database.Type.QUOTEDSTRING
 0.38.14: Adicionando suporte a descrição de parâmetros na Spartacus.Database
          Início implementação Spartacus.Tools.ReportManager
          Melhorias na função Transfer do Spartacus.Database

@@ -476,7 +476,7 @@ namespace Spartacus.Database
                         j++;
                 }
                 if (! v_achou)
-                    v_newarray [i] = '.';
+                    v_newarray [i] = '_';
             }
             v_newstring = new string(v_newarray).Replace("'", "''");
 
@@ -669,7 +669,7 @@ namespace Spartacus.Database
                         j++;
                 }
                 if (! v_achou)
-                    v_newarray[i] = '.';
+                    v_newarray[i] = '_';
             }
             v_newstring = new string(v_newarray);
 

@@ -143,6 +143,8 @@ namespace Spartacus.Database
                             return "to_date('" + this.v_value.Trim() + "', '" + this.v_dateformat.Trim() + "')";
                         case Spartacus.Database.Type.STRING:
                             return "'" + this.v_value.Trim() + "'";
+                        case Spartacus.Database.Type.QUOTEDSTRING:
+                            return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.UNDEFINED:
                             return this.v_value.Trim();
                         default:
