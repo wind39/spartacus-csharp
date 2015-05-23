@@ -153,5 +153,19 @@ namespace Spartacus.Utils
                 this.ErrorEvent(this, this.ErrorEventArgs);
             }
         }
+
+        /// <summary>
+        /// Dispara o evento de Erro.
+        /// </summary>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        public void FireEvent(string p_message)
+        {
+            if (this.ErrorEvent != null)
+            {
+                this.ErrorEventArgs.v_message = p_message;
+
+                this.ErrorEvent(this, this.ErrorEventArgs);
+            }
+        }
     }
 }

@@ -1040,6 +1040,10 @@
             <summary>
             Mensagem atual do processo.
             </summary></member>
+        <member name="F:Spartacus.Utils.ProgressEventArgs.v_counter">
+            <summary>
+            Contador de número de elementos processados até o momento.
+            </summary></member>
         <member name="F:Spartacus.Utils.ProgressEventArgs.v_verbose">
             <summary>
             Informa se o processo deve mostrar suas mensagens ao usuário ou não.
@@ -1087,6 +1091,11 @@
             <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
             <param name="p_percentage">Percentual de execução do processo.</param>
             <param name="p_message">Mensagem atual do processo.</param></member>
+        <member name="M:Spartacus.Utils.ProgressEventClass.FireEvent(System.UInt32)">
+            <summary>
+            Dispara o evento de Progresso.
+            </summary>
+            <param name="p_counter">Número de elementos processados até o momento.</param></member>
         <member name="T:Spartacus.Utils.WarningEventArgs">
             <summary>
             Classe WarningEventArgs.
@@ -1485,6 +1494,19 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param></member>
+        <member name="M:Spartacus.Database.Generic.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">
+            Evento de progresso da execução da consulta.
+            </param></member>
         <member name="M:Spartacus.Database.Generic.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -1575,6 +1597,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -1644,6 +1690,18 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
@@ -1735,6 +1793,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -1863,6 +1945,18 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -1953,6 +2047,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -2021,6 +2139,18 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
@@ -2112,6 +2242,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -2184,6 +2338,18 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
@@ -2275,6 +2441,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -3125,6 +3315,18 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -3215,6 +3417,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Net.Cryptor">
             <summary>
             Classe Cryptor.
@@ -3762,6 +3988,18 @@
             <summary>
             Abre a conexão com o banco de dados.
             </summary></member>
+        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -3863,6 +4101,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -4010,6 +4272,11 @@
             <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
             <param name="p_message">Mensagem atual do processo.</param>
             <param name="p_stacktrace">Stacktrace atual do processo.</param></member>
+        <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String)">
+            <summary>
+            Dispara o evento de Erro.
+            </summary>
+            <param name="p_message">Mensagem atual do processo.</param></member>
         <member name="T:Spartacus.Utils.Excel">
             <summary>
             Classe Excel.
@@ -4541,6 +4808,18 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -4631,6 +4910,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -33915,6 +34218,18 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -34005,6 +34320,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Forms.Buttons">
             <summary>
             Classe Buttons.
@@ -34962,6 +35301,18 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Memory.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Memory.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
@@ -35052,6 +35403,30 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Database.FirebirdEmbed">
             <summary>
             Classe Spartacus.Database.FirebirdEmbed.
@@ -35114,6 +35489,18 @@
             <param name="p_tablename">
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.FirebirdEmbed.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
@@ -35205,5 +35592,29 @@
             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,System.String,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
     </members>
 </doc>

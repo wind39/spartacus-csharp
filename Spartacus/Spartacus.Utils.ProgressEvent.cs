@@ -54,6 +54,11 @@ namespace Spartacus.Utils
         public string v_message;
 
         /// <summary>
+        /// Contador de número de elementos processados até o momento.
+        /// </summary>
+        public uint v_counter;
+
+        /// <summary>
         /// Informa se o processo deve mostrar suas mensagens ao usuário ou não.
         /// </summary>
         public bool v_verbose;
@@ -129,6 +134,20 @@ namespace Spartacus.Utils
                 this.ProgressEventArgs.v_subprocess = p_subprocess;
                 this.ProgressEventArgs.v_percentage = p_percentage;
                 this.ProgressEventArgs.v_message = p_message;
+
+                this.ProgressEvent(this, this.ProgressEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Progresso.
+        /// </summary>
+        /// <param name="p_counter">Número de elementos processados até o momento.</param>
+        public void FireEvent(uint p_counter)
+        {
+            if (this.ProgressEvent != null)
+            {
+                this.ProgressEventArgs.v_counter = p_counter;
 
                 this.ProgressEvent(this, this.ProgressEventArgs);
             }
