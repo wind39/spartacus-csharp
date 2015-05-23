@@ -437,8 +437,11 @@ namespace Spartacus.Database
                 for (int i = 0; i < v_reader.FieldCount; i++)
                     v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
 
+                p_hasmoredata = false;
                 while (this.v_reader.Read())
                 {
+                    p_hasmoredata = true;
+
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         v_row = v_table.NewRow();
@@ -447,20 +450,17 @@ namespace Spartacus.Database
                         v_table.Rows.Add(v_row);
                     }
 
+                    this.v_currentrow++;
+
                     if (this.v_currentrow > p_endrow)
                         break;
-
-                    this.v_currentrow++;
                 }
 
-                if (this.v_currentrow > p_endrow)
+                if (! p_hasmoredata)
                 {
                     this.v_reader.Close();
                     this.v_reader = null;
-                    p_hasmoredata = false;
                 }
-                else
-                    p_hasmoredata = true;
 
                 return v_table;
             }
@@ -611,97 +611,6 @@ namespace Spartacus.Database
         /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
         /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
         /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
-        public override uint Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase)
-        {
-            uint v_transfered = 0;
-            string v_insert;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(p_query, this.v_con);
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        v_insert = p_insert;
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
-
-                        p_destdatabase.Execute(v_insert);
-                        v_transfered++;
-                    }
-
-                    return v_transfered;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        v_insert = p_insert;
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
-
-                        p_destdatabase.Execute(v_insert);
-                        v_transfered++;
-                    }
-
-                    return v_transfered;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Transfere dados do banco de dados atual para um banco de dados de destino.
-        /// Conexão com o banco de destino precisa estar aberta.
-        /// </summary>
-        /// <returns>Número de linhas transferidas.</returns>
-        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase)
         {
             uint v_transfered = 0;
@@ -763,115 +672,6 @@ namespace Spartacus.Database
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
-                    }
-
-                    return v_transfered;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Transfere dados do banco de dados atual para um banco de dados de destino.
-        /// Conexão com o banco de destino precisa estar aberta.
-        /// Não pára a execução se der um problema num comando de inserção específico.
-        /// </summary>
-        /// <returns>Número de linhas transferidas.</returns>
-        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
-        /// <param name="p_log">Log de inserção.</param>
-        public override uint Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log)
-        {
-            uint v_transfered = 0;
-            string v_insert;
-
-            p_log = "";
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(p_query, this.v_con);
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        v_insert = p_insert;
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
-
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += v_insert + "\n" + e.v_message + "\n";
-                        }
-                    }
-
-                    return v_transfered;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        v_insert = p_insert;
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
-
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += v_insert + "\n" + e.v_message + "\n";
-                        }
                     }
 
                     return v_transfered;
@@ -1003,112 +803,127 @@ namespace Spartacus.Database
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            uint v_transfered = 0;
+
+            try
+            {
+                if (this.v_reader == null)
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+                    this.v_currentrow = 0;
+                }
+
+                p_hasmoredata = false;
+                while (v_reader.Read())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
+                    {
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+
+                        p_destdatabase.Execute(p_insert.GetUpdatedText());
+                        v_transfered++;
+                    }
+
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                        break;
+                }
+
+                if (! p_hasmoredata)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+
+                return v_transfered;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
         /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
         /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
         /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
         /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
-        /// <param name="p_progress">Evento de progresso.</param>
-        /// <param name="p_error">Evento de erro.</param>
-        public override uint Transfer(string p_query, string p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
             uint v_transfered = 0;
             string v_insert;
 
-            p_progress.FireEvent(v_transfered);
-
-            if (this.v_con == null)
+            try
             {
-                try
-                {
-                    this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(p_query, this.v_con);
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        v_insert = p_insert;
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
-
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                            p_progress.FireEvent(v_transfered);
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_error.FireEvent(v_insert + "\n" + e.v_message);
-                        }
-                    }
-
-                    return v_transfered;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
+                if (this.v_reader == null)
                 {
                     this.v_cmd.CommandText = p_query;
                     this.v_reader = this.v_cmd.ExecuteReader();
+                    this.v_currentrow = 0;
+                }
 
-                    while (v_reader.Read())
+                p_hasmoredata = false;
+                while (v_reader.Read())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        v_insert = p_insert;
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            v_insert = v_insert.Replace("#" + this.FixColumnName(v_reader.GetName(i)).ToLower() + "#", v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
 
+                        v_insert = p_insert.GetUpdatedText();
                         try
                         {
                             p_destdatabase.Execute(v_insert);
                             v_transfered++;
-                            p_progress.FireEvent(v_transfered);
                         }
                         catch (Spartacus.Database.Exception e)
                         {
-                            p_error.FireEvent(v_insert + "\n" + e.v_message);
+                            p_log += v_insert + "\n" + e.v_message + "\n";
                         }
                     }
 
-                    return v_transfered;
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                        break;
                 }
-                catch (Mono.Data.Sqlite.SqliteException e)
+
+                if (! p_hasmoredata)
                 {
-                    throw new Spartacus.Database.Exception(e);
+                    this.v_reader.Close();
+                    this.v_reader = null;
                 }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
+
+                return v_transfered;
+            }
+            catch (Mono.Data.Sqlite.SqliteException e)
+            {
+                throw new Spartacus.Database.Exception(e);
             }
         }
 

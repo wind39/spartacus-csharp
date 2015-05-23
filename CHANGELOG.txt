@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.17: Implementado Transfer em blocos e corrigido bug na Query em blocos
 0.38.16: Implementado evento de progresso e erro para Query e Transfer
 0.38.15: Correção no tipo Spartacus.Database.Type.QUOTEDSTRING
 0.38.14: Adicionando suporte a descrição de parâmetros na Spartacus.Database
