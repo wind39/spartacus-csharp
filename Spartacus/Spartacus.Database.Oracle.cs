@@ -973,11 +973,7 @@ namespace Spartacus.Database
                     this.v_currentrow++;
 
                     if (this.v_currentrow > p_endrow)
-                    {
-                        p_destdatabase.InsertBlock(p_table, v_rows);
-
                         break;
-                    }
                 }
 
                 if (! p_hasmoredata)
@@ -985,6 +981,8 @@ namespace Spartacus.Database
                     this.v_reader.Close();
                     this.v_reader = null;
                 }
+                else
+                    p_destdatabase.InsertBlock(p_table, v_rows);
 
                 return v_transfered;
             }
@@ -1039,24 +1037,24 @@ namespace Spartacus.Database
                     this.v_currentrow++;
 
                     if (this.v_currentrow > p_endrow)
-                    {
-                        try
-                        {
-                            p_destdatabase.InsertBlock(p_table, v_rows);
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += e.v_message + "\n";
-                        }
-
                         break;
-                    }
                 }
 
                 if (! p_hasmoredata)
                 {
                     this.v_reader.Close();
                     this.v_reader = null;
+                }
+                else
+                {
+                    try
+                    {
+                        p_destdatabase.InsertBlock(p_table, v_rows);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_log += e.v_message + "\n";
+                    }
                 }
 
                 return v_transfered;
