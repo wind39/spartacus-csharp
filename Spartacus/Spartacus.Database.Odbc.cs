@@ -443,6 +443,79 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Insere um bloco de linhas em uma determinada tabela.
+        /// </summary>
+        /// <param name='p_table'>
+        /// Nome da tabela a serem inseridas as linhas.
+        /// </param>
+        /// <param name='p_rows'>
+        /// Lista de linhas a serem inseridas na tabela.
+        /// </param>
+        public override void InsertBlock(string p_table, System.Collections.ArrayList p_rows)
+        {
+            string v_block;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con.Open();
+
+                    v_block = "insert into " + p_table + " values\n";
+                    for (int k = 0; k < p_rows.Count; k++)
+                    {
+                        if (k < p_rows.Count-1)
+                            v_block += (string)p_rows[k] + ",\n";
+                        else
+                            v_block += (string)p_rows[k] + ";\n";
+                    }
+
+                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd.ExecuteNonQuery();
+                }
+                catch (System.Data.Odbc.OdbcException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    v_block = "insert into " + p_table + " values\n";
+                    for (int k = 0; k < p_rows.Count; k++)
+                    {
+                        if (k < p_rows.Count-1)
+                            v_block += (string)p_rows[k] + ",\n";
+                        else
+                            v_block += (string)p_rows[k] + ";\n";
+                    }
+
+                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd.ExecuteNonQuery();
+                }
+                catch (System.Data.Odbc.OdbcException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -834,6 +907,144 @@ namespace Spartacus.Database
 
                     if (this.v_currentrow > p_endrow)
                         break;
+                }
+
+                if (! p_hasmoredata)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+
+                return v_transfered;
+            }
+            catch (System.Data.Odbc.OdbcException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            uint v_transfered = 0;
+            System.Collections.ArrayList v_rows = new System.Collections.ArrayList();
+
+            try
+            {
+                if (this.v_reader == null)
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+                    this.v_currentrow = 0;
+                }
+
+                p_hasmoredata = false;
+                while (v_reader.Read())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
+                    {
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+
+                        v_rows.Add(p_insert.GetUpdatedText());
+
+                        v_transfered++;
+                    }
+
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                    {
+                        p_destdatabase.InsertBlock(p_table, v_rows);
+
+                        break;
+                    }
+                }
+
+                if (! p_hasmoredata)
+                {
+                    this.v_reader.Close();
+                    this.v_reader = null;
+                }
+
+                return v_transfered;
+            }
+            catch (System.Data.Odbc.OdbcException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            uint v_transfered = 0;
+            System.Collections.ArrayList v_rows = new System.Collections.ArrayList();
+
+            try
+            {
+                if (this.v_reader == null)
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+                    this.v_currentrow = 0;
+                }
+
+                p_hasmoredata = false;
+                while (v_reader.Read())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
+                    {
+                        for (int i = 0; i < v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+
+                        v_rows.Add(p_insert.GetUpdatedText());
+
+                        v_transfered++;
+                    }
+
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                    {
+                        try
+                        {
+                            p_destdatabase.InsertBlock(p_table, v_rows);
+                        }
+                        catch (Spartacus.Database.Exception e)
+                        {
+                            p_log += e.v_message + "\n";
+                        }
+
+                        break;
+                    }
                 }
 
                 if (! p_hasmoredata)

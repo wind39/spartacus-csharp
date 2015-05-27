@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Command.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Oracle.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="111" Column="31" />
-      <File FileName="Spartacus/Spartacus.Database.Command.cs" Line="480" Column="14" />
+      <File FileName="Spartacus/Spartacus.Database.Oracle.cs" Line="904" Column="64" />
+      <File FileName="THIRDPARTIES.txt" Line="41" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="533" Column="44" />
+      <File FileName="README.md" Line="17" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

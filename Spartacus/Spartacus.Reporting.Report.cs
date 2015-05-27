@@ -136,11 +136,6 @@ namespace Spartacus.Reporting
         public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_detaileventemplate;
 
         /// <summary>
-        /// Lista de strings para renderização do relatório.
-        /// </summary>
-        //public System.Collections.Generic.List<System.Collections.Generic.List<string>> v_textlist;
-
-        /// <summary>
         /// Arquivo de texto contendo a matriz de renderização.
         /// </summary>
         public System.IO.FileStream v_datafile;
@@ -733,6 +728,9 @@ namespace Spartacus.Reporting
                                     break;
                                 case "STRING":
                                     v_type = Spartacus.Database.Type.STRING;
+                                    break;
+                                case "QUOTEDSTRING":
+                                    v_type = Spartacus.Database.Type.QUOTEDSTRING;
                                     break;
                                 case "UNDEFINED":
                                     v_type = Spartacus.Database.Type.UNDEFINED;
@@ -1959,14 +1957,12 @@ namespace Spartacus.Reporting
         )
         {
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_data;
-            //System.Collections.Generic.List<string> v_textrow;
             string v_textrow;
             System.IO.StreamWriter v_writer;
             string v_text;
             int k, r, v_sectionrow;
 
             v_data = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
-            //this.v_textlist = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
             v_writer = new System.IO.StreamWriter(this.v_datafile);
 
             // se o relatorio possui grupos
@@ -1990,18 +1986,15 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                     {
-                        //v_textrow = new System.Collections.Generic.List<string>();
                         v_textrow = "";
                         for (k = 0; k < this.v_fields.Count; k++)
                         {
                             if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                             {
                                 v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-                                //v_textrow.Add(v_text);
                                 v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-                        //this.v_textlist.Add(v_textrow);
                         v_writer.WriteLine(v_textrow);
                     }
 
@@ -2044,7 +2037,6 @@ namespace Spartacus.Reporting
         )
         {
             Spartacus.Reporting.Group v_group;
-            //System.Collections.Generic.List<string> v_textrow;
             string v_textrow;
             string v_text;
             int k, r, v_sectionrow;
@@ -2072,7 +2064,6 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsheader; v_sectionrow++)
                     {
-                        //v_textrow = new System.Collections.Generic.List<string>();
                         v_textrow = "";
                         for (k = 0; k < v_group.v_headerfields.Count; k++)
                         {
@@ -2082,11 +2073,9 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                //v_textrow.Add(v_text);
                                 v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-                        //this.v_textlist.Add(v_textrow);
                         p_writer.WriteLine(v_textrow);
                     }
 
@@ -2102,18 +2091,15 @@ namespace Spartacus.Reporting
                     {
                         for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                         {
-                            //v_textrow = new System.Collections.Generic.List<string>();
                             v_textrow = "";
                             for (k = 0; k < this.v_fields.Count; k++)
                             {
                                 if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-                                    //v_textrow.Add(v_text);
                                     v_textrow += v_text.Replace(';', ',') + ";";
                                 }
                             }
-                            //this.v_textlist.Add(v_textrow);
                             p_writer.WriteLine(v_textrow);
                         }
 
@@ -2150,7 +2136,6 @@ namespace Spartacus.Reporting
                 {
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsfooter; v_sectionrow++)
                     {
-                        //v_textrow = new System.Collections.Generic.List<string>();
                         v_textrow = "";
                         for (k = 0; k < v_group.v_footerfields.Count; k++)
                         {
@@ -2160,11 +2145,9 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                //v_textrow.Add(v_text);
                                 v_textrow += v_text.Replace(';', ',') + ";";
                             }
                         }
-                        //this.v_textlist.Add(v_textrow);
                         p_writer.WriteLine(v_textrow);
                     }
 

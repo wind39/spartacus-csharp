@@ -198,6 +198,17 @@ namespace Spartacus.Database
         public abstract void Execute(string p_sql);
 
         /// <summary>
+        /// Insere um bloco de linhas em uma determinada tabela.
+        /// </summary>
+        /// <param name='p_table'>
+        /// Nome da tabela a serem inseridas as linhas.
+        /// </param>
+        /// <param name='p_rows'>
+        /// Lista de linhas a serem inseridas na tabela.
+        /// </param>
+        public abstract void InsertBlock(string p_table, System.Collections.ArrayList p_rows);
+
+        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
         /// </summary>
         /// <returns>
@@ -273,6 +284,36 @@ namespace Spartacus.Database
         /// <param name='p_endrow'>Número da linha final.</param>
         /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
         public abstract uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public abstract uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public abstract uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
 
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.

@@ -246,10 +246,16 @@ namespace Spartacus.Forms
         /// </summary>
         private void OnClick(object sender, System.EventArgs e)
         {
+            string v_currentdirectory;
+
+            v_currentdirectory = System.Environment.CurrentDirectory;
+
             if (this.v_filedialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.v_textbox.Text = this.v_filedialog.FileName;
             }
+
+            System.Environment.CurrentDirectory = v_currentdirectory;
         }
     }
 }

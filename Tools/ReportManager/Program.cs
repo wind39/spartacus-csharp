@@ -47,6 +47,8 @@ namespace Spartacus.Tools.ReportManager
 
         private Spartacus.Forms.Window v_paramwindow;
         private Spartacus.Forms.Buttons v_parambuttons;
+        private Spartacus.Forms.Filepicker v_reportpdffile;
+        private Spartacus.Forms.Progressbar v_progressbar;
 
         private string v_currentfile;
 
@@ -241,7 +243,7 @@ namespace Spartacus.Tools.ReportManager
             this.v_paramwindow = new Spartacus.Forms.Window(
                 System.Configuration.ConfigurationManager.AppSettings["param.title"].ToString(),
                 500,
-                200,
+                320,
                 this.v_mainwindow
             );
 
@@ -254,10 +256,22 @@ namespace Spartacus.Tools.ReportManager
                 this.v_paramwindow.Add(v_param);
             }
 
+            this.v_reportpdffile = new Spartacus.Forms.Filepicker(
+                this.v_paramwindow,
+                Spartacus.Forms.Filepicker.Type.SAVE,
+                System.Configuration.ConfigurationManager.AppSettings["param.pdffile"].ToString(),
+                System.Configuration.ConfigurationManager.AppSettings["param.filter"].ToString()
+            );
+            this.v_paramwindow.Add(this.v_reportpdffile);
+
             this.v_parambuttons = new Spartacus.Forms.Buttons(this.v_paramwindow);
             this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.execute"].ToString(), this.OnParamExecuteClick);
             this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.cancel"].ToString(), this.OnParamCancelClick);
             this.v_paramwindow.Add(this.v_parambuttons);
+
+            this.v_progressbar = new Spartacus.Forms.Progressbar(this.v_paramwindow);
+            this.v_progressbar.SetValue("Aguardando início", 0);
+            this.v_paramwindow.Add(this.v_progressbar);
 
             this.v_paramwindow.Show();
         }
@@ -269,11 +283,12 @@ namespace Spartacus.Tools.ReportManager
                 for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
                     this.v_report.v_cmd.SetValue(k, ((Spartacus.Forms.Textbox)this.v_paramwindow.v_containers[k]).GetValue());
 
-                this.v_report.Execute();
-                this.v_report.Save("pdfs/" + this.v_currentfile.ToLower().Replace(".xml", ".pdf"));
-                //System.Diagnostics.Process.Start("pdfs/" + this.v_currentfile.ToLower().Replace(".xml", ".pdf"));
+                this.v_report.v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(this.OnProgress);
 
-                this.v_paramwindow.Hide();
+                this.v_report.Execute();
+                this.v_report.Save(this.v_reportpdffile.GetValue());
+
+                this.v_progressbar.SetValue("Pronto!", 100);
             }
             catch (Spartacus.Database.Exception exc)
             {
@@ -295,6 +310,11 @@ namespace Spartacus.Tools.ReportManager
         private void OnParamCancelClick(object sender, System.EventArgs e)
         {
             this.v_paramwindow.Hide();
+        }
+
+        private void OnProgress(Spartacus.Utils.ProgressEventClass sender, Spartacus.Utils.ProgressEventArgs e)
+        {
+            this.v_progressbar.SetValue(e.v_message, (int)e.v_percentage);
         }
     }
 }
