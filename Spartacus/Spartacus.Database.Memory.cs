@@ -795,68 +795,27 @@ namespace Spartacus.Database
         {
             string[] v_array;
 
-            if (this.v_con == null)
+            try
             {
-                try
-                {
-                    this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(p_sql, this.v_con);
-                    this.v_reader = this.v_cmd.ExecuteReader();
+                this.v_cmd.CommandText = p_sql;
+                this.v_reader = this.v_cmd.ExecuteReader();
 
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
+                v_array = new string[v_reader.FieldCount];
+                for (int i = 0; i < v_reader.FieldCount; i++)
+                    v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
 
-                    return v_array;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
+                return v_array;
             }
-            else
+            catch (Mono.Data.Sqlite.SqliteException e)
             {
-                try
+                throw new Spartacus.Database.Exception(e);
+            }
+            finally
+            {
+                if (this.v_reader != null)
                 {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
-
-                    return v_array;
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
+                    this.v_reader.Close();
+                    this.v_reader = null;
                 }
             }
         }
