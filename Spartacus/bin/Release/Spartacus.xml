@@ -1653,6 +1653,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_query">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -1880,6 +1886,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -2165,6 +2177,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -2391,6 +2409,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -2621,6 +2645,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -3628,6 +3658,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Net.Cryptor">
             <summary>
             Classe Cryptor.
@@ -4343,6 +4379,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -5183,6 +5225,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -34624,6 +34672,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.XbaseReadOnly.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Forms.Buttons">
             <summary>
             Classe Buttons.
@@ -35738,6 +35792,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.FirebirdEmbed">
             <summary>
             Classe Spartacus.Database.FirebirdEmbed.
@@ -35958,6 +36018,12 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Forms.Progressbar">
             <summary>
             Classe Memobox.

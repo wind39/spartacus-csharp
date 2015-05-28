@@ -1167,5 +1167,80 @@ namespace Spartacus.Database
                 }
             }
         }
+
+        /// <summary>
+        /// Lista os nomes de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Vetor com os nomes de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[] GetColumnNames(string p_sql)
+        {
+            string[] v_array;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_array = new string[v_reader.FieldCount];
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
+
+                    return v_array;
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_sql;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_array = new string[v_reader.FieldCount];
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
+
+                    return v_array;
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
     }
 }

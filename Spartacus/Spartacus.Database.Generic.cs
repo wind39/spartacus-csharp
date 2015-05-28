@@ -329,6 +329,13 @@ namespace Spartacus.Database
         public abstract uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
 
         /// <summary>
+        /// Lista os nomes de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Vetor com os nomes de colunas.</returns>
+        /// <param name="p_query">Consulta SQL.</param>
+        public abstract string[] GetColumnNames(string p_query);
+
+        /// <summary>
         /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
         /// </summary>
         /// <returns>Nome da coluna corrigido.</returns>
