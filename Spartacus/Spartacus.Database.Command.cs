@@ -703,7 +703,7 @@ namespace Spartacus.Database
 
             if (achou)
             {
-                if (p_value == null || p_value == "")
+                if (p_value == null)
                 {
                     ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = null;
                     ((Spartacus.Database.Parameter)this.v_parameters[k]).v_null = true;
@@ -782,7 +782,7 @@ namespace Spartacus.Database
         {
             if (p_index >= 0 && p_index < this.v_parameters.Count)
             {
-                if (p_value == null || p_value == "")
+                if (p_value == null)
                 {
                     ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = null;
                     ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_null = true;
