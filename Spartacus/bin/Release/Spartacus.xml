@@ -4610,13 +4610,13 @@
             <summary>
             Importa todas as planilhas de um arquivo Excel para várias <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" />.
             </summary>
-            <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+            <param name="p_filename">Nome do arquivo XLSX, CSV ou DBF a ser importado.</param>
             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
         <member name="M:Spartacus.Utils.Excel.Import(System.String,System.Char,System.Boolean,System.Text.Encoding)">
             <summary>
             Importa todas as planilhas de um arquivo Excel para várias <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" />.
             </summary>
-            <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+            <param name="p_filename">Nome do arquivo CSV a ser importado.</param>
             <param name="p_separator">Separador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
@@ -4625,7 +4625,7 @@
             <summary>
             Importa todas as planilhas de um arquivo Excel para várias <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" />.
             </summary>
-            <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+            <param name="p_filename">Nome do arquivo CSV a ser importado.</param>
             <param name="p_separator">Separador de campos do arquivo CSV.</param>
             <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
@@ -4645,6 +4645,11 @@
             <param name="p_separator">Separador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param></member>
+        <member name="M:Spartacus.Utils.Excel.ImportDBF(System.String)">
+            <summary>
+            Importa um arquivo DBF para um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_filename">Nome do arquivo DBF.</param></member>
         <member name="M:Spartacus.Utils.Excel.ImportCSV(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding)">
             <summary>
             Importa um arquivo CSV para um <see cref="T:System.Data.DataTable" />.
@@ -34453,231 +34458,6 @@
             <param name="parentNode">Parent node</param>
             <param name="beforeNodes">comma separated list containing nodes to insert after. Left to right order</param>
             <param name="newNode">The new node to be inserterd</param></member>
-        <member name="T:Spartacus.Database.XbaseReadOnly">
-            <summary>
-            Classe Spartacus.Database.XbaseReadOnly.
-            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
-            Converte um ou mais arquivos DBF para um banco de dados SQLite.
-            Depois utiliza o Mono.Data.Sqlite para acessar esse banco de dados.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_con">
-            <summary>
-            Conexão com o banco de dados.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_cmd">
-            <summary>
-            Comando para conexão com o banco de dados.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_reader">
-            <summary>
-            Leitor de dados do banco de dados.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_currentrow">
-            <summary>
-            Linha atual da QueryBlock.
-            </summary></member>
-        <member name="F:Spartacus.Database.XbaseReadOnly.v_sourcefiles">
-            <summary>
-            Lista de arquivos DBF de origem a serem convertidos para SQLite
-            </summary></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.#ctor(System.String)">
-            <summary>
-            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.XbaseReadOnly" />.
-            </summary>
-            <param name="p_filelist">
-            Lista de arquivos DBF de origem a serem convertidos para SQLite
-            </param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.CreateDatabase(System.String)">
-            <summary>
-            Cria um banco de dados SQLite contendo todos os arquivos DBF, um em cada tabela.
-            </summary>
-            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.CreateDatabase">
-            <summary>
-            Cria um banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Open">
-            <summary>
-            Abre a conexão com o banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_tablename">
-            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
-            </param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_tablename">
-            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
-            </param>
-            <param name="p_progress">Evento de progresso da execução da consulta.</param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
-            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_tablename">
-            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
-            </param>
-            <param name="p_startrow">
-            Número da linha inicial.
-            </param>
-            <param name="p_endrow">
-            Número da linha final.
-            </param>
-            <param name="p_hasmoredata">
-            Indica se ainda há mais dados a serem lidos.
-            </param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Execute(System.String)">
-            <summary>
-            Executa um código SQL no banco de dados.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser executado no banco de dados.
-            </param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.InsertBlock(System.String,System.Collections.ArrayList)">
-            <summary>
-            Insere um bloco de linhas em uma determinada tabela.
-            </summary>
-            <param name="p_table">
-            Nome da tabela a serem inseridas as linhas.
-            </param>
-            <param name="p_rows">
-            Lista de linhas a serem inseridas na tabela.
-            </param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.ExecuteScalar(System.String)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
-            </summary>
-            <returns>
-            string com o dado de retorno.
-            </returns>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Close">
-            <summary>
-            Fecha a conexão com o banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.DropDatabase(System.String)">
-            <summary>
-            Deleta um banco de dados.
-            </summary>
-            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.DropDatabase">
-            <summary>
-            Deleta o banco de dados conectado atualmente.
-            </summary></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_log">Log de inserção.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_startrow">Número da linha inicial.</param>
-            <param name="p_endrow">Número da linha final.</param>
-            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_log">Log de inserção.</param>
-            <param name="p_startrow">Número da linha inicial.</param>
-            <param name="p_endrow">Número da linha final.</param>
-            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_table">Nome da tabela de destino.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_startrow">Número da linha inicial.</param>
-            <param name="p_endrow">Número da linha final.</param>
-            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_table">Nome da tabela de destino.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_log">Log de inserção.</param>
-            <param name="p_startrow">Número da linha inicial.</param>
-            <param name="p_endrow">Número da linha final.</param>
-            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados do banco de dados atual para um banco de dados de destino.
-            Conexão com o banco de destino precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
-            <param name="p_destdatabase">Conexão com o banco de destino.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.XbaseReadOnly.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Forms.Buttons">
             <summary>
             Classe Buttons.
@@ -36078,5 +35858,661 @@
             Retorna o texto ou valor atual do Textbox.
             </summary>
             <returns>Texto ou valor atual do Textbox.</returns></member>
+        <member name="T:SocialExplorer.IO.FastDBF.DbfColumn">
+            <summary>
+            This class represents a DBF Column.
+            </summary>
+            <remarks>
+            Note that certain properties can not be modified after creation of the object.
+            This is because we are locking the header object after creation of a data row,
+            and columns are part of the header so either we have to have a lock field for each column,
+            or make it so that certain properties such as length can only be set during creation of a column.
+            Otherwise a user of this object could modify a column that belongs to a locked header and thus corrupt the DBF file.
+            </remarks></member>
+        <member name="T:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType">
+            <summary>
+            Great information on DBF located here:
+            http://www.clicketyclick.dk/databases/xbase/format/data_types.html
+            http://www.clicketyclick.dk/databases/xbase/format/dbf.html
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character">
+            <summary>
+            Character  less than 254 length
+            ASCII text less than 254 characters long in dBASE.
+            Character fields can be up to 32 KB long (in Clipper and FoxPro) using decimal
+            count as high byte in field length. It's possible to use up to 64KB long fields
+            by reading length as unsigned.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Number">
+            <summary>
+            Number 	Length: less than 18
+            ASCII text up till 18 characters long (include sign and decimal point).
+            Valid characters:
+            "0" - "9" and "-". Number fields can be up to 20 characters long in FoxPro and Clipper.
+            </summary>
+            <remarks>
+            We are not enforcing this 18 char limit.
+            </remarks></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Boolean">
+            <summary>
+            L  Logical  Length: 1    Boolean/byte (8 bit)
+            Legal values:
+            ? 	Not initialised (default)
+            Y,y 	Yes
+            N,n 	No
+            F,f 	False
+            T,t 	True
+            Logical fields are always displayed using T/F/?. Some sources claims
+            that space (ASCII 20h) is valid for not initialised. Space may occur, but is not defined.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Date">
+            <summary>
+            D 	Date 	Length: 8  Date in format YYYYMMDD. A date like 0000-00- 00 is *NOT* valid.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo">
+            <summary>
+            M 	Memo 	Length: 10 	Pointer to ASCII text field in memo file 10 digits representing a pointer to a DBT block (default is blanks).
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary">
+            <summary>
+            B 	Binary 	 	(dBASE V) Like Memo fields, but not for text processing.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Integer">
+            <summary>
+            I 	Integer 	Length: 4 byte little endian integer 	(FoxPro)
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.mName">
+            <summary>
+            Column (field) name
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.mType">
+            <summary>
+            Field Type (Char, number, boolean, date, memo, binary)
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.mDataAddress">
+            <summary>
+            Offset from the start of the record
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.mLength">
+            <summary>
+            Length of the data in bytes; some rules apply which are in the spec (read more above).
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfColumn.mDecimalCount">
+            <summary>
+            Decimal precision count, or number of digits afer decimal point. This applies to Number types only.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfColumn.#ctor(System.String,SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType,System.Int32,System.Int32)">
+            <summary>
+            Full spec constructor sets all relevant fields.
+            </summary>
+            <param name="sName"></param>
+            <param name="type"></param>
+            <param name="nLength"></param>
+            <param name="nDecimals"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfColumn.#ctor(System.String,SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create a new column fully specifying all properties.
+            </summary>
+            <param name="sName">column name</param>
+            <param name="type">type of field</param>
+            <param name="nLength">field length including decimal places and decimal point if any</param>
+            <param name="nDecimals">decimal places</param>
+            <param name="nDataAddress">offset from start of record</param></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.Name">
+            <summary>
+            Field Name.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.ColumnType">
+            <summary>
+            Field Type (C N L D or M).
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.ColumnTypeChar">
+            <summary>
+            Returns column type as a char, (as written in the DBF column header)
+            N=number, C=char, B=binary, L=boolean, D=date, I=integer, M=memo
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.DataAddress">
+            <summary>
+            Field Data Address offset from the start of the record.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.Length">
+            <summary>
+            Length of the data in bytes.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfColumn.DecimalCount">
+            <summary>
+            Field decimal count in Binary, indicating where the decimal is.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfColumn.GetDbaseType(System.Type)">
+            <summary>
+            Returns corresponding dbf field type given a .net Type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfColumn.ShapeField">
+            <summary>
+            Returns shp file Shape Field.
+            </summary>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfColumn.IdField">
+            <summary>
+            Returns Shp file ID field.
+            </summary>
+            <returns></returns></member>
+        <member name="T:SocialExplorer.IO.FastDBF.DbfFile">
+            <summary>
+            This class represents a DBF file. You can create new, open, update and save DBF files using this class and supporting classes.
+            Also, this class supports reading/writing from/to an internet forward only type of stream!
+            </summary>
+            <remarks>
+            TODO: add end of file byte '0x1A' !!!
+            We don't relly on that byte at all, and everything works with or without that byte, but it should be there by spec.
+            </remarks></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mHeader">
+            <summary>
+            Helps read/write dbf file header information.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mHeaderWritten">
+            <summary>
+            flag that indicates whether the header was written or not...
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mDbfFile">
+            <summary>
+            Streams to read and write to the DBF file.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mFileName">
+            <summary>
+            File that was opened, if one was opened at all.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mRecordsReadCount">
+            <summary>
+            Number of records read using ReadNext() methods only. This applies only when we are using a forward-only stream.
+            mRecordsReadCount is used to keep track of record index. With a seek enabled stream,
+            we can always calculate index using stream position.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfFile.mIsForwardOnly">
+            <summary>
+            keep these values handy so we don't call functions on every read.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Open(System.IO.Stream)">
+            <summary>
+            Open a DBF from a FileStream. This can be a file or an internet connection stream. Make sure that it is positioned at start of DBF file.
+            Reading a DBF over the internet we can not determine size of the file, so we support HasMore(), ReadNext() interface.
+            RecordCount information in header can not be trusted always, since some packages store 0 there.
+            </summary>
+            <param name="ofs"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Open(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Open a DBF file or create a new one.
+            </summary>
+            <param name="sPath">Full path to the file.</param>
+            <param name="mode"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Open(System.String,System.IO.FileMode,System.IO.FileAccess)">
+            <summary>
+            Open a DBF file or create a new one.
+            </summary>
+            <param name="sPath">Full path to the file.</param>
+            <param name="mode"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Open(System.String,System.IO.FileMode)">
+            <summary>
+            Open a DBF file or create a new one.
+            </summary>
+            <param name="sPath">Full path to the file.</param>
+            <param name="mode"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Create(System.String)">
+            <summary>
+            Creates a new DBF 4 file. Overwrites if file exists! Use Open() function for more options.
+            </summary>
+            <param name="sPath"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Close">
+            <summary>
+            Update header info, flush buffers and close streams. You should always call this method when you are done with a DBF file.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfFile.IsReadOnly">
+            <summary>
+            Returns true if we can not write to the DBF file stream.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfFile.IsForwardOnly">
+            <summary>
+            Returns true if we can not seek to different locations within the file, such as internet connections.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfFile.FileName">
+            <summary>
+            Returns the name of the filestream.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.ReadNext(SocialExplorer.IO.FastDBF.DbfRecord)">
+            <summary>
+            Read next record and fill data into parameter oFillRecord. Returns true if a record was read, otherwise false.
+            </summary>
+            <param name="oFillRecord"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.ReadNext">
+            <summary>
+            Tries to read a record and returns a new record object or null if nothing was read.
+            </summary>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Read(System.Int32,SocialExplorer.IO.FastDBF.DbfRecord)">
+            <summary>
+            Reads a record specified by index into oFillRecord object. You can use this method
+            to read in and process records without creating and discarding record objects.
+            Note that you should check that your stream is not forward-only! If you have a forward only stream, use ReadNext() functions.
+            </summary>
+            <param name="index">Zero based record index.</param>
+            <param name="oFillRecord">Record object to fill, must have same size and number of fields as thid DBF file header!</param>
+            <remarks>
+            <returns>True if read a record was read, otherwise false. If you read end of file false will be returned and oFillRecord will NOT be modified!</returns>
+            The parameter record (oFillRecord) must match record size specified by the header and number of columns as well.
+            It does not have to come from the same header, but it must match the structure. We are not going as far as to check size of each field.
+            The idea is to be flexible but safe. It's a fine balance, these two are almost always at odds.
+            </remarks></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Read(System.Int32)">
+            <summary>
+            Reads a record specified by index. This method requires the stream to be able to seek to position.
+            If you are using a http stream, or a stream that can not stream, use ReadNext() methods to read in all records.
+            </summary>
+            <param name="index">Zero based index.</param>
+            <returns>Null if record can not be read, otherwise returns a new record.</returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Write(SocialExplorer.IO.FastDBF.DbfRecord)">
+            <summary>
+            Write a record to file. If RecordIndex is present, record will be updated, otherwise a new record will be written.
+            Header will be output first if this is the first record being writen to file.
+            This method does not require stream seek capability to add a new record.
+            </summary>
+            <param name="orec"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.Update(SocialExplorer.IO.FastDBF.DbfRecord)">
+            <summary>
+            Update a record. RecordIndex (zero based index) must be more than -1, otherwise an exception is thrown.
+            You can also use Write method which updates a record if it has RecordIndex or adds a new one if RecordIndex == -1.
+            RecordIndex is set automatically when you call any Read() methods on this class.
+            </summary>
+            <param name="orec"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfFile.WriteHeader">
+            <summary>
+            Save header to file. Normally, you do not have to call this method, header is saved
+            automatically and updated when you close the file (if it changed).
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfFile.Header">
+            <summary>
+            Access DBF header with information on columns. Use this object for faster access to header.
+            Remove one layer of function calls by saving header reference and using it directly to access columns.
+            </summary></member>
+        <member name="T:SocialExplorer.IO.FastDBF.DbfHeader">
+            <summary>
+            This class represents a DBF IV file header.
+            </summary>
+            <remarks>
+            DBF files are really wasteful on space but this legacy format lives on because it's really really simple.
+            It lacks much in features though.
+            Thanks to Erik Bachmann for providing the DBF file structure information!!
+            http://www.clicketyclick.dk/databases/xbase/format/dbf.html
+            _______________________  _______
+            00h /   0| Version number      *1|  ^
+            |-----------------------|  |
+            01h /   1| Date of last update   |  |
+            02h /   2|      YYMMDD        *21|  |
+            03h /   3|                    *14|  |
+            |-----------------------|  |
+            04h /   4| Number of records     | Record
+            05h /   5| in data file          | header
+            06h /   6| ( 32 bits )        *14|  |
+            07h /   7|                       |  |
+            |-----------------------|  |
+            08h /   8| Length of header   *14|  |
+            09h /   9| structure ( 16 bits ) |  |
+            |-----------------------|  |
+            0Ah /  10| Length of each record |  |
+            0Bh /  11| ( 16 bits )     *2 *14|  |
+            |-----------------------|  |
+            0Ch /  12| ( Reserved )        *3|  |
+            0Dh /  13|                       |  |
+            |-----------------------|  |
+            0Eh /  14| Incomplete transac.*12|  |
+            |-----------------------|  |
+            0Fh /  15| Encryption flag    *13|  |
+            |-----------------------|  |
+            10h /  16| Free record thread    |  |
+            11h /  17| (reserved for LAN     |  |
+            12h /  18|  only )               |  |
+            13h /  19|                       |  |
+            |-----------------------|  |
+            14h /  20| ( Reserved for        |  |            _        |=======================| ______
+            |   multi-user dBASE )  |  |           / 00h /  0| Field name in ASCII   |  ^
+            : ( dBASE III+ - )      :  |          /          : (terminated by 00h)   :  |
+            :                       :  |         |           |                       |  |
+            1Bh /  27|                       |  |         |   0Ah / 10|                       |  |
+            |-----------------------|  |         |           |-----------------------| For
+            1Ch /  28| MDX flag (dBASE IV)*14|  |         |   0Bh / 11| Field type (ASCII) *20| each
+            |-----------------------|  |         |           |-----------------------| field
+            1Dh /  29| Language driver     *5|  |        /    0Ch / 12| Field data address    |  |
+            |-----------------------|  |       /             |                     *6|  |
+            1Eh /  30| ( Reserved )          |  |      /              | (in memory !!!)       |  |
+            1Fh /  31|                     *3|  |     /       0Fh / 15| (dBASE III+)          |  |
+            |=======================|__|____/                |-----------------------|  |  -
+            20h /  32|                       |  |  ^          10h / 16| Field length       *22|  |   |
+            |- - - - - - - - - - - -|  |  |                  |-----------------------|  |   | *7
+            |                    *19|  |  |          11h / 17| Decimal count      *23|  |   |
+            |- - - - - - - - - - - -|  |  Field              |-----------------------|  |  -
+            |                       |  | Descriptor  12h / 18| ( Reserved for        |  |
+            :. . . . . . . . . . . .:  |  |array     13h / 19|   multi-user dBASE)*18|  |
+            :                       :  |  |                  |-----------------------|  |
+            n  |                       |__|__v_         14h / 20| Work area ID       *16|  |
+            |-----------------------|  |    \                |-----------------------|  |
+            n+1| Terminator (0Dh)      |  |     \       15h / 21| ( Reserved for        |  |
+            |=======================|  |      \      16h / 22|   multi-user dBASE )  |  |
+            m  | Database Container    |  |       \             |-----------------------|  |
+            :                    *15:  |        \    17h / 23| Flag for SET FIELDS   |  |
+            :                       :  |         |           |-----------------------|  |
+            / m+263                      |  |         |   18h / 24| ( Reserved )          |  |
+            |=======================|__v_ ___    |           :                       :  |
+            :                       :    ^       |           :                       :  |
+            :                       :    |       |           :                       :  |
+            :                       :    |       |   1Eh / 30|                       |  |
+            | Record structure      |    |       |           |-----------------------|  |
+            |                       |    |        \  1Fh / 31| Index field flag    *8|  |
+            |                       |    |         \_        |=======================| _v_____
+            |                       | Records
+            |-----------------------|    |
+            |                       |    |          _        |=======================| _______
+            |                       |    |         / 00h /  0| Record deleted flag *9|  ^
+            |                       |    |        /          |-----------------------|  |
+            |                       |    |       /           | Data               *10|  One
+            |                       |    |      /            : (ASCII)            *17: record
+            |                       |____|_____/             |                       |  |
+            :                       :    |                   |                       | _v_____
+            :                       :____|_____              |=======================|
+            :                       :    |
+            |                       |    |
+            |                       |    |
+            |                       |    |
+            |                       |    |
+            |                       |    |
+            |=======================|    |
+            |__End_of_File__________| ___v____  End of file ( 1Ah )  *11
+            </remarks></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfHeader.FileDescriptorSize">
+            <summary>
+            Header file descriptor size is 33 bytes (32 bytes + 1 terminator byte), followed by column metadata which is 32 bytes each.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfHeader.ColumnDescriptorSize">
+            <summary>
+            Field or DBF Column descriptor is 32 bytes long.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfHeader.mIsDirty">
+            <summary>
+            When object is modified dirty flag is set.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfHeader.mEmptyRecord">
+            <summary>
+            mEmptyRecord is an array used to clear record data in CDbf4Record.
+            This is shared by all record objects, used to speed up clearing fields or entire record.
+            <seealso cref="P:SocialExplorer.IO.FastDBF.DbfHeader.EmptyDataRecord" />
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.#ctor(System.Int32)">
+            <summary>
+            Specify initial column capacity.
+            </summary>
+            <param name="nInitialFields"></param></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.HeaderLength">
+            <summary>
+            Gets header length.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.AddColumn(SocialExplorer.IO.FastDBF.DbfColumn)">
+            <summary>
+            Add a new column to the DBF header.
+            </summary>
+            <param name="oNewCol"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.AddColumn(System.String,SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType)">
+            <summary>
+            Create and add a new column with specified name and type.
+            </summary>
+            <param name="sName"></param>
+            <param name="type"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.AddColumn(System.String,SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType,System.Int32,System.Int32)">
+            <summary>
+            Create and add a new column with specified name, type, length, and decimal precision.
+            </summary>
+            <param name="sName">Field name. Uniqueness is not enforced.</param>
+            <param name="type"></param>
+            <param name="nLength">Length of the field including decimal point and decimal numbers</param>
+            <param name="nDecimals">Number of decimal places to keep.</param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.RemoveColumn(System.Int32)">
+            <summary>
+            Remove column from header definition.
+            </summary>
+            <param name="nIndex"></param></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.Item(System.String)">
+            <summary>
+            Look up a column index by name. Note that this is case sensitive, internally it does a lookup using a dictionary.
+            </summary>
+            <param name="sName"></param></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.Item(System.Int32)">
+            <summary>
+            Returns column at specified index. Index is 0 based.
+            </summary>
+            <param name="nIndex">Zero based index.</param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.FindColumn(System.String)">
+            <summary>
+            Finds a column index by using a fast dictionary lookup-- creates column dictionary on first use. Returns -1 if not found. Note this is case sensitive!
+            </summary>
+            <param name="sName">Column name</param>
+            <returns>column index (0 based) or -1 if not found.</returns></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.EmptyDataRecord">
+            <summary>
+            Returns an empty data record. This is used to clear columns
+            </summary>
+            <remarks>
+            The reason we put this in the header class is because it allows us to use the CDbf4Record class in two ways.
+            1. we can create one instance of the record and reuse it to write many records quickly clearing the data array by bitblting to it.
+            2. we can create many instances of the record (a collection of records) and have only one copy of this empty dataset for all of them.
+            If we had put it in the Record class then we would be taking up twice as much space unnecessarily. The empty record also fits the model
+            and everything is neatly encapsulated and safe.
+            </remarks></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.ColumnCount">
+            <summary>
+            Returns Number of columns in this dbf header.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.RecordLength">
+            <summary>
+            Size of one record in bytes. All fields + 1 byte delete flag.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.RecordCount">
+            <summary>
+            Get/Set number of records in the DBF.
+            </summary>
+            <remarks>
+            The reason we allow client to set RecordCount is beause in certain streams
+            like internet streams we can not update record count as we write out records, we have to set it in advance,
+            so client has to be able to modify this property.
+            </remarks></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.Locked">
+            <summary>
+            Get/set whether this header is read only or can be modified. When you create a CDbfRecord
+            object and pass a header to it, CDbfRecord locks the header so that it can not be modified any longer.
+            in order to preserve DBF integrity.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.Unlock">
+            <summary>
+            Use this method with caution. Headers are locked for a reason, to prevent DBF from becoming corrupt.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfHeader.IsDirty">
+            <summary>
+            Returns true when this object is modified after read or write.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.Write(System.IO.BinaryWriter)">
+            <summary>
+            Encoding must be ASCII for this binary writer.
+            </summary>
+            <param name="writer"></param>
+            <remarks>
+            See class remarks for DBF file structure.
+            </remarks></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfHeader.Read(System.IO.BinaryReader)">
+            <summary>
+            Read header data, make sure the stream is positioned at the start of the file to read the header otherwise you will get an exception.
+            When this function is done the position will be the first record.
+            </summary>
+            <param name="reader"></param></member>
+        <member name="T:SocialExplorer.IO.FastDBF.DbfRecord">
+            <summary>
+            Use this class to create a record and write it to a dbf file. You can use one record object to write all records!!
+            It was designed for this kind of use. You can do this by clearing the record of all data
+            (call Clear() method) or setting values to all fields again, then write to dbf file.
+            This eliminates creating and destroying objects and optimizes memory use.
+            Once you create a record the header can no longer be modified, since modifying the header would make a corrupt DBF file.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mHeader">
+            <summary>
+            Header provides information on all field types, sizes, precision and other useful information about the DBF.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mData">
+            <summary>
+            Dbf data are a mix of ASCII characters and binary, which neatly fit in a byte array.
+            BinaryWriter would esentially perform the same conversion using the same Encoding class.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mRecordIndex">
+            <summary>
+            Zero based record index. -1 when not set, new records for example.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mEmptyRecord">
+            <summary>
+            Empty Record array reference used to clear fields quickly (or entire record).
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mAllowStringTruncate">
+            <summary>
+            Specifies whether we allow strings to be truncated. If false and string is longer than we can fit in the field, an exception is thrown.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mAllowDecimalTruncate">
+            <summary>
+            Specifies whether we allow the decimal portion of numbers to be truncated.
+            If false and decimal digits overflow the field, an exception is thrown.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mAllowIntegerTruncate">
+            <summary>
+            Specifies whether we allow the integer portion of numbers to be truncated.
+            If false and integer digits overflow the field, an exception is thrown.
+            </summary></member>
+        <member name="F:SocialExplorer.IO.FastDBF.DbfRecord.mColNameToConIdx">
+            <summary>
+            Column Name to Column Index map
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.#ctor(SocialExplorer.IO.FastDBF.DbfHeader)">
+            <summary>
+            </summary>
+            <param name="oHeader">Dbf Header will be locked once a record is created
+            since the record size is fixed and if the header was modified it would corrupt the DBF file.</param></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.Item(System.Int32)">
+            <summary>
+            Set string data to a column, if the string is longer than specified column length it will be truncated!
+            If dbf column type is not a string, input will be treated as dbf column
+            type and if longer than length an exception will be thrown.
+            </summary>
+            <param name="nColIndex"></param>
+            <returns></returns></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.Item(System.String)">
+            <summary>
+            Set string data to a column, if the string is longer than specified column length it will be truncated!
+            If dbf column type is not a string, input will be treated as dbf column
+            type and if longer than length an exception will be thrown.
+            </summary>
+            <param name="nColName"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.GetDateValue(System.Int32)">
+            <summary>
+            Get date value.
+            </summary>
+            <param name="nColIndex"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.SetDateValue(System.Int32,System.DateTime)">
+            <summary>
+            Get date value.
+            </summary>
+            <param name="nColIndex"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Clear">
+            <summary>
+            Clears all data in the record.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.ToString">
+            <summary>
+            returns a string representation of this record.
+            </summary>
+            <returns></returns></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.RecordIndex">
+            <summary>
+            Gets/sets a zero based record index. This information is not directly stored in DBF.
+            It is the location of this record within the DBF.
+            </summary>
+            <remarks>
+            This property is managed from outside this object,
+            CDbfFile object updates it when records are read. The reason we don't set it in the Read()
+            function within this object is that the stream can be forward-only so the Position property
+            is not available and there is no way to figure out what index the record was unless you
+            count how many records were read, and that's exactly what CDbfFile does.
+            </remarks></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.IsDeleted">
+            <summary>
+            Returns/sets flag indicating whether this record was tagged deleted.
+            </summary>
+            <remarks>Use CDbf4File.Compress() function to rewrite dbf removing records flagged as deleted.</remarks>
+            <seealso cref="!:CDbf4File.Compress() function" /></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.AllowStringTurncate">
+            <summary>
+            Specifies whether strings can be truncated. If false and string is longer than can fit in the field, an exception is thrown.
+            Default is True.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.AllowDecimalTruncate">
+            <summary>
+            Specifies whether to allow the decimal portion of numbers to be truncated.
+            If false and decimal digits overflow the field, an exception is thrown. Default is false.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.AllowIntegerTruncate">
+            <summary>
+            Specifies whether integer portion of numbers can be truncated.
+            If false and integer digits overflow the field, an exception is thrown.
+            Default is False.
+            </summary></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.Header">
+            <summary>
+            Returns header object associated with this record.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Column(System.Int32)">
+            <summary>
+            Get column by index.
+            </summary>
+            <param name="index"></param>
+            <returns></returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Column(System.String)">
+            <summary>
+            Get column by name.
+            </summary>
+            <param name="index"></param>
+            <returns></returns></member>
+        <member name="P:SocialExplorer.IO.FastDBF.DbfRecord.ColumnCount">
+            <summary>
+            Gets column count from header.
+            </summary></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.FindColumn(System.String)">
+            <summary>
+            Finds a column index by searching sequentially through the list. Case is ignored. Returns -1 if not found.
+            </summary>
+            <param name="sName">Column name.</param>
+            <returns>Column index (0 based) or -1 if not found.</returns></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Write(System.IO.Stream)">
+            <summary>
+            Writes data to stream. Make sure stream is positioned correctly because we simply write out the data to it.
+            </summary>
+            <param name="osw"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Write(System.IO.Stream,System.Boolean)">
+            <summary>
+            Writes data to stream. Make sure stream is positioned correctly because we simply write out data to it, and clear the record.
+            </summary>
+            <param name="osw"></param></member>
+        <member name="M:SocialExplorer.IO.FastDBF.DbfRecord.Read(System.IO.Stream)">
+            <summary>
+            Read record from stream. Returns true if record read completely, otherwise returns false.
+            </summary>
+            <param name="obr"></param>
+            <returns></returns></member>
     </members>
 </doc>

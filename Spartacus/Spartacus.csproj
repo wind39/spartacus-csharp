@@ -885,7 +885,6 @@
     <Compile Include="epplus\RangeCollection.cs" />
     <Compile Include="epplus\XmlHelper.cs" />
     <Compile Include="epplus\XmlHelperFactory.cs" />
-    <Compile Include="Spartacus.Database.XbaseReadOnly.cs" />
     <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
     <Compile Include="Spartacus.Forms.Buttons.cs" />
     <Compile Include="Spartacus.Forms.Container.cs" />
@@ -910,6 +909,11 @@
     <Compile Include="Spartacus.Game.Animation.cs" />
     <Compile Include="Spartacus.Game.Keyboard.cs" />
     <Compile Include="Spartacus.Forms.Progressbar.cs" />
+    <Compile Include="fastdbf\DbfColumn.cs" />
+    <Compile Include="fastdbf\DbfDataTruncateException.cs" />
+    <Compile Include="fastdbf\DbfFile.cs" />
+    <Compile Include="fastdbf\DbfHeader.cs" />
+    <Compile Include="fastdbf\DbfRecord.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -950,8 +954,6 @@
     <None Include="lib\sqlite\windows_x86\sqlite3.dll" />
     <None Include="lib\sqlite\linux_x64\libsqlite3.so" />
     <None Include="lib\sqlite\linux_x86\libsqlite3.so" />
-    <None Include="lib\xbase\linux_x86\dbf" />
-    <None Include="lib\xbase\windows_x64\dbf.exe" />
     <None Include="lib\firebird\linux_x64\libfbembed.so" />
     <None Include="lib\firebird\windows_x86\fbembed.dll" />
     <None Include="lib\firebird\windows_x86\icudt30.dll" />
@@ -966,9 +968,6 @@
     <Folder Include="lib\sqlite\windows_x86\" />
     <Folder Include="lib\sqlite\linux_x86\" />
     <Folder Include="lib\sqlite\linux_x64\" />
-    <Folder Include="lib\xbase\" />
-    <Folder Include="lib\xbase\linux_x86\" />
-    <Folder Include="lib\xbase\windows_x64\" />
     <Folder Include="lib\firebird\" />
     <Folder Include="lib\firebird\linux_x64\" />
     <Folder Include="lib\firebird\windows_x86\" />

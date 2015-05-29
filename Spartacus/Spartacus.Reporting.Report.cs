@@ -497,9 +497,6 @@ namespace Spartacus.Reporting
                 case "oracle":
                     this.v_database = new Spartacus.Database.Oracle(v_host, v_port, v_service, v_user, v_password);
                     break;
-                case "xbase":
-                    this.v_database = new Spartacus.Database.XbaseReadOnly(v_service);
-                    break;
                 case "memory":
                     this.v_database = new Spartacus.Database.Memory();
                     break;

@@ -65,7 +65,6 @@ You may include Firebird source code (modified or not) in a larger work and dist
 Please notice that the above is a simplified overview. Only the original license texts are legally binding. You can find them here:
 
 http://www.firebirdsql.org/ipl/ (IPL)
-
 http://www.firebirdsql.org/idpl/ (IDPL)
 -------------------------------------------------------------------
 
@@ -83,10 +82,9 @@ License LGPLv2.1
 -------------------------------------------------------------------
 
 
-AUTHOR NOTICE FOR DBF:
+AUTHOR NOTICE FOR FASTDBF:
 -------------------------------------------------------------------
-dbf version 0.8.3.1
-dBASE reader and converter for dBASE databases
-Author: Bjoern Berg
-Email: clergyman@gmx.de
+A free and open source .net library for reading/writing DBF files. Fast and easy to use. Supports writing to forward-only streams which makes it easy to write dbf files in a web server environment.
+Author: Ahmed Lacevic
+https://github.com/SocialExplorer/FastDBF
 -------------------------------------------------------------------

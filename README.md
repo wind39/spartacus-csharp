@@ -25,13 +25,13 @@ Spartacus reuse code from this C# projects:
   - EPPlus (http://epplus.codeplex.com/)
   - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
   - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
+  - FastDBF, from Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
   - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
 Spartacus also optionally use this native libraries and binaries:
   - SQLite (https://www.sqlite.org/)
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
-  - dBASE Reader and Converter (http://sourceforge.net/projects/dbf)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)

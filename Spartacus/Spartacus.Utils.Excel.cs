@@ -150,7 +150,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Importa todas as planilhas de um arquivo Excel para várias <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/>.
         /// </summary>
-        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+        /// <param name="p_filename">Nome do arquivo XLSX, CSV ou DBF a ser importado.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
         public void Import(string p_filename)
         {
@@ -177,6 +177,9 @@ namespace Spartacus.Utils
                         case "csv":
                             this.ImportCSV(p_filename, ';', true, System.Text.Encoding.Default);
                             break;
+                        case "dbf":
+                            this.ImportDBF(p_filename);
+                            break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
@@ -195,7 +198,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Importa todas as planilhas de um arquivo Excel para várias <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/>.
         /// </summary>
-        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+        /// <param name="p_filename">Nome do arquivo CSV a ser importado.</param>
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
         /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
         /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
@@ -243,7 +246,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Importa todas as planilhas de um arquivo Excel para várias <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/>.
         /// </summary>
-        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser importado.</param>
+        /// <param name="p_filename">Nome do arquivo CSV a ser importado.</param>
         /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
         /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
         /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
@@ -385,6 +388,59 @@ namespace Spartacus.Utils
                     v_reader.Close();
                     v_reader = null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Importa um arquivo DBF para um <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo DBF.</param>
+        private void ImportDBF(string p_filename)
+        {
+            Spartacus.Utils.File v_file;
+            System.Data.DataTable v_table;
+            System.Data.DataRow v_row;
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+
+            try
+            {
+                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+                v_table = new System.Data.DataTable(v_file.v_name.Replace("." + v_file.v_extension, ""));
+
+                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                v_dbf.Open(p_filename, System.IO.FileMode.Open);
+
+                for (int i = 0; i < v_dbf.Header.ColumnCount; i++)
+                {
+                    if (v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                        v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                        v_table.Columns.Add(v_dbf.Header[i].Name, typeof(string));
+                }
+
+                v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                while (v_dbf.ReadNext(v_record))
+                {
+                    if (! v_record.IsDeleted)
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < v_record.ColumnCount; i++)
+                            v_row[i] = v_record[i].Trim();
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+
+                v_dbf.Close();
+
+                this.v_set.Tables.Add(v_table);
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
             }
         }
 
