@@ -1,9 +1,8 @@
 Spartacus is a multi-purpose library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
   - Render reports from a unique XML markup to PDF, using own database objects;
-  - Really fast import and export spreadsheets (CSV and XLSX), with no need of Excel or any other piece of software;
+  - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
   - Communication between client and server;
-  - Simple 2D game engine based on System.Drawing;
   - Easy to work with cryptography of files and messages;
   - Compress and uncompress zip files.
 
