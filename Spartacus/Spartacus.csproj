@@ -901,13 +901,8 @@
     <Compile Include="Spartacus.Forms.Textbox.cs" />
     <Compile Include="Spartacus.Forms.Window.cs" />
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
-    <Compile Include="Spartacus.Game.Object.cs" />
-    <Compile Include="Spartacus.Game.Layer.cs" />
-    <Compile Include="Spartacus.Game.Level.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
     <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
-    <Compile Include="Spartacus.Game.Animation.cs" />
-    <Compile Include="Spartacus.Game.Keyboard.cs" />
     <Compile Include="Spartacus.Forms.Progressbar.cs" />
     <Compile Include="fastdbf\DbfColumn.cs" />
     <Compile Include="fastdbf\DbfDataTruncateException.cs" />

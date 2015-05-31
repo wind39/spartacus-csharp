@@ -294,7 +294,7 @@ namespace Spartacus.Utils
 
         /// <summary>
         /// Importa uma lista de arquivos Excel.
-        /// A lista pode conter arquivos XLSX ou CSV, e pode ser misturado.
+        /// A lista pode conter arquivos XLSX, CSV ou DBF, e pode ser misturado.
         /// </summary>
         /// <param name="p_filelist">Lista de nomes de arquivos.</param>
         public void Import(System.Collections.ArrayList p_filelist)

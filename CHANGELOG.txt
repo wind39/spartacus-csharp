@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.23: Removido namespace Spartacus.Game
 0.38.22: Incorporado código da FastDBF para implementar função Spartacus.Utils.Excel.ImportDBF
          Removida classe Spartacus.Database.XbaseReadOnly
 0.38.21: Mudando Parameter da Spartacus.Database para não retornar "null" caso seja string vazia
