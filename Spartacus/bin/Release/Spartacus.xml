@@ -2748,6 +2748,10 @@
             <summary>
             Em qual linha dentro do detalhe o campo aparece.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Field.v_format">
+            <summary>
+            Formato de impressão do campo numérico.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Field.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.

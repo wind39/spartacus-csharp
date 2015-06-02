@@ -77,6 +77,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public int v_row;
 
+        /// <summary>
+        /// Formato de impressão do campo numérico.
+        /// </summary>
+        public string v_format;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
@@ -85,6 +90,7 @@ namespace Spartacus.Reporting
         {
             this.v_groupedvalue = false;
             this.v_row = 0;
+            this.v_format = "###,###,###,###,##0.00";
         }
 
         /// <summary>
@@ -139,9 +145,9 @@ namespace Spartacus.Reporting
                     break;
                 case Spartacus.Database.Type.REAL:
                     if (double.TryParse(p_text.Replace('.', ','), out v_tmpdouble))
-                        v_ret = string.Format("{0:###,###,###,###,##0.00}", v_tmpdouble);
+                        v_ret = string.Format("{0:" + this.v_format + "}", v_tmpdouble);
                     else
-                        v_ret = "0,00";
+                        v_ret = string.Format("{0:" + this.v_format + "}", (double) 0.0);
                     break;
                 case Spartacus.Database.Type.DATE:
                     if (p_text.Length >= 8 && int.TryParse(p_text, out v_tmpint))

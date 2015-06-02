@@ -1032,6 +1032,9 @@ namespace Spartacus.Reporting
                         case "row":
                             v_field.v_row = System.Convert.ToInt32(p_reader.ReadString());
                             break;
+                        case "format":
+                            v_field.v_format = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -1194,6 +1197,9 @@ namespace Spartacus.Reporting
                         case "row":
                             v_field.v_row = System.Convert.ToInt32(p_reader.ReadString());
                             break;
+                        case "format":
+                            v_field.v_format = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -1279,6 +1285,9 @@ namespace Spartacus.Reporting
                             break;
                         case "row":
                             v_field.v_row = System.Convert.ToInt32(p_reader.ReadString());
+                            break;
+                        case "format":
+                            v_field.v_format = p_reader.ReadString();
                             break;
                         default:
                             break;
