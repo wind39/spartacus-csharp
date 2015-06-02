@@ -1371,7 +1371,7 @@ namespace Spartacus.Utils
                                         v_worksheet.Cells["A1"].Value = v_options[2];
                                         break;
                                     case "TD":
-                                        v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
+                                        v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
                                         v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
                                         v_offset = v_options[1].Split(';')[0].Split(',').Length;
                                         for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
@@ -1609,7 +1609,7 @@ namespace Spartacus.Utils
                                                 v_worksheet.Cells["A1"].Value = v_options[2];
                                                 break;
                                             case "TD":
-                                                v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium9);
+                                                v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
                                                 v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
                                                 v_offset = v_options[1].Split(';')[0].Split(',').Length;
                                                 for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
