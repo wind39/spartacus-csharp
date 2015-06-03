@@ -1011,7 +1011,7 @@ namespace Spartacus.Database
                 }
 
                 v_cmd = new Spartacus.Database.Command();
-                v_cmd.v_text = "insert into " + p_newtable + " (";
+                v_cmd.v_text = "insert into " + p_newtable + " values (";
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
@@ -1103,7 +1103,7 @@ namespace Spartacus.Database
                 }
 
                 v_cmd = new Spartacus.Database.Command();
-                v_cmd.v_text = "insert into " + p_newtable + " (";
+                v_cmd.v_text = "insert into " + p_newtable + " values (";
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
@@ -1196,7 +1196,7 @@ namespace Spartacus.Database
                 }
 
                 v_cmd = new Spartacus.Database.Command();
-                v_cmd.v_text = "insert into " + p_newtable + " (";
+                v_cmd.v_text = "insert into " + p_newtable + " values (";
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
