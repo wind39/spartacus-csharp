@@ -1403,6 +1403,7 @@ namespace Spartacus.Database
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
                     else
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                    v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
@@ -1494,6 +1495,7 @@ namespace Spartacus.Database
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
                     else
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                    v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
@@ -1586,6 +1588,7 @@ namespace Spartacus.Database
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
                     else
                         v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                    v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
