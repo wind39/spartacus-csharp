@@ -329,6 +329,100 @@ namespace Spartacus.Database
         public abstract uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
 
         /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public abstract uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo do Excel.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public abstract uint TransferToFile(string p_query, string p_filename);
+
+        /// <summary>
         /// Lista os nomes de colunas de uma determinada consulta.
         /// </summary>
         /// <returns>Vetor com os nomes de colunas.</returns>

@@ -132,6 +132,426 @@
             <summary>
             Informa se o arquivo é oculto ou não.
             </summary></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.DateTime)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator,System.DateTime)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.DateTime,System.Int64)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator,System.DateTime,System.Int64)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.DateTime,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator,System.DateTime,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.DateTime,System.Int64,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,Spartacus.Utils.PathSeparator,System.DateTime,System.Int64,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,System.DateTime)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator,System.DateTime)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,System.DateTime,System.Int64)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator,System.DateTime,System.Int64)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,System.DateTime,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator,System.DateTime,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,System.DateTime,System.Int64,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
+        <member name="M:Spartacus.Utils.File.#ctor(Spartacus.Utils.FileType,System.String,System.Boolean,Spartacus.Utils.PathSeparator,System.DateTime,System.Int64,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
+            </summary>
+            <param name="p_type">
+            Indica se é um arquivo ou um diretório.
+            </param>
+            <param name="p_completename">
+            Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+            </param>
+            <param name="p_encryptedname">
+            Se o nome do arquivo está criptografado ou não.
+            </param>
+            <param name="p_separator">
+            Separador de diretórios do caminho completo do arquivo.
+            </param>
+            <param name="p_lastwritedate">
+            Data da última modificação do arquivo ou diretório.
+            </param>
+            <param name="p_size">
+            Tamanho do arquivo.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
+            </param></member>
         <member name="M:Spartacus.Utils.File.#ctor(System.Int32,System.Int32,Spartacus.Utils.FileType,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.File" />.
@@ -1653,6 +2073,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Generic.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -1886,6 +2393,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Odbc.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -2177,6 +2771,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Firebird.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -2409,6 +3090,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Mysql.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -2645,6 +3413,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Oledb.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -3662,6 +4517,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Sqlite.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -4383,6 +5325,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Postgresql.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -4554,6 +5583,10 @@
             <summary>
             Estrutura usada para armazenar as informações da planilha.
             </summary></member>
+        <member name="F:Spartacus.Utils.Excel.Sheet.v_name">
+            <summary>
+            Noma da planilha atual, utilizando SejExcel.
+            </summary></member>
         <member name="F:Spartacus.Utils.Excel.Sheet.v_data">
             <summary>
             Utilizado para criar planilhas Excel utilizando SejExcel.
@@ -4572,7 +5605,7 @@
             </summary></member>
         <member name="M:Spartacus.Utils.Excel.Sheet.#ctor">
             <summary>
-            Inicializa uma nova instância da classe <see cref="!:Spartacus.Utils.Excel+Sheet" />.
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Excel.Sheet" />.
             </summary></member>
         <member name="F:Spartacus.Utils.Excel.v_set">
             <summary>
@@ -4649,11 +5682,6 @@
             <param name="p_separator">Separador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param></member>
-        <member name="M:Spartacus.Utils.Excel.ImportDBF(System.String)">
-            <summary>
-            Importa um arquivo DBF para um <see cref="T:System.Data.DataTable" />.
-            </summary>
-            <param name="p_filename">Nome do arquivo DBF.</param></member>
         <member name="M:Spartacus.Utils.Excel.ImportCSV(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding)">
             <summary>
             Importa um arquivo CSV para um <see cref="T:System.Data.DataTable" />.
@@ -4663,6 +5691,11 @@
             <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
             <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
             <param name="p_encoding">Codificação para leitura do arquivo CSV.</param></member>
+        <member name="M:Spartacus.Utils.Excel.ImportDBF(System.String)">
+            <summary>
+            Importa um arquivo DBF para um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_filename">Nome do arquivo DBF.</param></member>
         <member name="M:Spartacus.Utils.Excel.ImportXLSX(System.String)">
             <summary>
             Importa todas as planilhas de um arquivo XLSX para várias <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" />.
@@ -4722,7 +5755,7 @@
             </summary>
             <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
             <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
-            <param name="p_markupname">Se deve substituir o markup do cabeçalho ou não.</param>
+            <param name="p_replacemarkup">Se deve substituir o markup do cabeçalho ou não.</param>
             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
         <member name="M:Spartacus.Utils.Excel.Export(System.String,System.Collections.ArrayList)">
             <summary>
@@ -4791,11 +5824,11 @@
             </summary>
             <returns>Tabela dinâmica.</returns>
             <param name="p_table">Tabela original.</param>
-            <param name="p_textcolumn">
+            <param name="p_origcolumn">
             Nomes originais das colunas, separados por vírgula.
             Nomes de colunas de texto vem à esquerda, separadas dos nomes de colunas de valor por um ponto-e-vírgula.
             </param>
-            <param name="p_valuecolumns">Nomes fantasia das colunas, separados por vírgula.</param></member>
+            <param name="p_fakecolumns">Nomes fantasia das colunas, separados por vírgula.</param></member>
         <member name="T:Spartacus.ThirdParty.ZipStorer.Compression">
             <summary>
             Compression method enumeration
@@ -5234,6 +6267,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Oracle.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -35576,6 +36696,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Memory.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.
@@ -35802,6 +37009,93 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.FirebirdEmbed.GetColumnNames(System.String)">
             <summary>
             Lista os nomes de colunas de uma determinada consulta.

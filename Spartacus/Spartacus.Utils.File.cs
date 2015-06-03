@@ -118,6 +118,947 @@ namespace Spartacus.Utils
         /// </summary>
         public bool v_hidden;
 
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, System.DateTime p_lastwritedate)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, System.DateTime p_lastwritedate, long p_size)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
+        {
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(p_completename);
+            this.v_extension = this.GetExtension(p_completename);
+            this.v_path = this.GetPath(p_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = System.Text.Encoding.GetEncoding("utf-8");
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = -1;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
+        /// </summary>
+        /// <param name='p_type'>
+        /// Indica se é um arquivo ou um diretório.
+        /// </param>
+        /// <param name='p_completename'>
+        /// Nome completo, absoluto ou relativo, do arquivo ou diretório atual.
+        /// </param>
+        /// <param name='p_encryptedname'>
+        /// Se o nome do arquivo está criptografado ou não.
+        /// </param>
+        /// <param name='p_separator'>
+        /// Separador de diretórios do caminho completo do arquivo.
+        /// </param>
+        /// <param name='p_lastwritedate'>
+        /// Data da última modificação do arquivo ou diretório.
+        /// </param>
+        /// <param name='p_size'>
+        /// Tamanho do arquivo.
+        /// </param>
+        /// <param name='p_encoding'>
+        /// Codificação do arquivo.
+        /// </param>
+        public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Net.Cryptor v_cryptor;
+            string v_completename;
+
+            if (p_encryptedname)
+            {
+                try
+                {
+                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_completename = v_cryptor.Decrypt(p_completename);
+                }
+                catch (System.Exception)
+                {
+                    v_completename = p_completename;
+                }
+            }
+            else
+                v_completename = p_completename;
+
+            this.v_filetype = p_type;
+            this.v_pathseparator = p_separator;
+            this.v_name = this.GetBaseName(v_completename);
+            this.v_extension = this.GetExtension(v_completename);
+            this.v_path = this.GetPath(v_completename);
+            this.v_lastwritedate = p_lastwritedate;
+            this.v_size = p_size;
+            this.v_encoding = p_encoding;
+            this.v_protected = false;
+            this.v_hidden = this.GetHidden();
+        }
+
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.File"/>.
         /// </summary>

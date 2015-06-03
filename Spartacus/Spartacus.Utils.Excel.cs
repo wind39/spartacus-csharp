@@ -56,6 +56,9 @@ namespace Spartacus.Utils
         /// </summary>
         public class Sheet
         {
+            /// <summary>
+            /// Noma da planilha atual, utilizando SejExcel.
+            /// </summary>
             public string v_name;
 
             /// <summary>
@@ -79,7 +82,7 @@ namespace Spartacus.Utils
             public System.Collections.Generic.Dictionary<int, string> v_mapping;
 
             /// <summary>
-            /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Excel+Sheet"/>.
+            /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Excel.Sheet"/>.
             /// </summary>
             public Sheet()
             {
@@ -228,6 +231,9 @@ namespace Spartacus.Utils
                         case "csv":
                             this.ImportCSV(p_filename, p_separator, p_header, p_encoding);
                             break;
+                        case "dbf":
+                            this.ImportDBF(p_filename);
+                            break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
@@ -276,6 +282,9 @@ namespace Spartacus.Utils
                             break;
                         case "csv":
                             this.ImportCSV(p_filename, p_separator, p_delimitator, p_header, p_encoding);
+                            break;
+                        case "dbf":
+                            this.ImportDBF(p_filename);
                             break;
                         default:
                             throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
@@ -392,59 +401,6 @@ namespace Spartacus.Utils
         }
 
         /// <summary>
-        /// Importa um arquivo DBF para um <see cref="System.Data.DataTable"/>.
-        /// </summary>
-        /// <param name="p_filename">Nome do arquivo DBF.</param>
-        private void ImportDBF(string p_filename)
-        {
-            Spartacus.Utils.File v_file;
-            System.Data.DataTable v_table;
-            System.Data.DataRow v_row;
-            SocialExplorer.IO.FastDBF.DbfFile v_dbf;
-            SocialExplorer.IO.FastDBF.DbfRecord v_record;
-
-            try
-            {
-                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
-                v_table = new System.Data.DataTable(v_file.v_name.Replace("." + v_file.v_extension, ""));
-
-                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
-                v_dbf.Open(p_filename, System.IO.FileMode.Open);
-
-                for (int i = 0; i < v_dbf.Header.ColumnCount; i++)
-                {
-                    if (v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
-                        v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
-                        v_table.Columns.Add(v_dbf.Header[i].Name, typeof(string));
-                }
-
-                v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
-                while (v_dbf.ReadNext(v_record))
-                {
-                    if (! v_record.IsDeleted)
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < v_record.ColumnCount; i++)
-                            v_row[i] = v_record[i].Trim();
-                        v_table.Rows.Add(v_row);
-                    }
-                }
-
-                v_dbf.Close();
-
-                this.v_set.Tables.Add(v_table);
-            }
-            catch (Spartacus.Utils.Exception e)
-            {
-                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
-            }
-            catch (System.Exception e)
-            {
-                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
-            }
-        }
-
-        /// <summary>
         /// Importa um arquivo CSV para um <see cref="System.Data.DataTable"/>.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo CSV.</param>
@@ -519,6 +475,65 @@ namespace Spartacus.Utils
                     v_reader.Close();
                     v_reader = null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Importa um arquivo DBF para um <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo DBF.</param>
+        private void ImportDBF(string p_filename)
+        {
+            Spartacus.Utils.File v_file;
+            System.Data.DataTable v_table;
+            System.Data.DataRow v_row;
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+
+            try
+            {
+                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+                v_table = new System.Data.DataTable(v_file.v_name.Replace("." + v_file.v_extension, ""));
+
+                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                v_dbf.Open(p_filename, System.IO.FileMode.Open);
+
+                for (int i = 0; i < v_dbf.Header.ColumnCount; i++)
+                {
+                    if (v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                        v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                        v_table.Columns.Add(v_dbf.Header[i].Name, typeof(string));
+                }
+
+                v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                while (v_dbf.ReadNext(v_record))
+                {
+                    if (! v_record.IsDeleted)
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < v_record.ColumnCount; i++)
+                        {
+                            if (v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                                v_dbf.Header[i].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                            {
+                                v_row[i] = v_record[i].Trim();
+                            }
+                        }
+                        v_table.Rows.Add(v_row);
+                    }
+                }
+
+                v_dbf.Close();
+
+                this.v_set.Tables.Add(v_table);
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao carregar o arquivo {0}.", e, p_filename);
             }
         }
 
@@ -887,7 +902,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
-        /// <param name="p_markupname">Se deve substituir o markup do cabeçalho ou não.</param>
+        /// <param name="p_replacemarkup">Se deve substituir o markup do cabeçalho ou não.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
         public void Export(string p_filename, string p_templatename, bool p_replacemarkup)
         {
@@ -1707,11 +1722,11 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Tabela dinâmica.</returns>
         /// <param name="p_table">Tabela original.</param>
-        /// <param name="p_textcolumn">
+        /// <param name="p_origcolumn">
         ///   Nomes originais das colunas, separados por vírgula.
         ///   Nomes de colunas de texto vem à esquerda, separadas dos nomes de colunas de valor por um ponto-e-vírgula.
         /// </param>
-        /// <param name="p_valuecolumns">Nomes fantasia das colunas, separados por vírgula.</param>
+        /// <param name="p_fakecolumns">Nomes fantasia das colunas, separados por vírgula.</param>
         private System.Data.DataTable CreatePivotTable(System.Data.DataTable p_table, string p_origcolumns, string p_fakecolumns)
         {
             System.Data.DataTable v_pivot, v_table;

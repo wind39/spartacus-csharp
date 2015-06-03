@@ -1176,6 +1176,506 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename);
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = p_insert.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename, p_separator, p_header, p_encoding);
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = p_insert.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename, p_separator, p_delimitator, p_header, p_encoding);
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = p_insert.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Database.Command v_cmd;
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_createtable;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename);
+
+                v_createtable = "create table " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                    else
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                }
+                try
+                {
+                    this.Execute(v_createtable);
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    p_error.FireEvent(v_createtable + "\n" + e.v_message);
+                }
+
+                v_cmd = new Spartacus.Database.Command();
+                v_cmd.v_text = "insert into " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                    else
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                }
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = v_cmd.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Database.Command v_cmd;
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_createtable;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename, p_separator, p_header, p_encoding);
+
+                v_createtable = "create table " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                    else
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                }
+                try
+                {
+                    this.Execute(v_createtable);
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    p_error.FireEvent(v_createtable + "\n" + e.v_message);
+                }
+
+                v_cmd = new Spartacus.Database.Command();
+                v_cmd.v_text = "insert into " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                    else
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                }
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = v_cmd.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo Excel para o banco de dados atual.
+        /// Conexão com o banco atual precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo de origem.</param>
+        /// <param name="p_separator">Separador de campos do arquivo CSV.</param>
+        /// <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+        /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+        /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public override uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            Spartacus.Database.Command v_cmd;
+            Spartacus.Utils.Excel v_excel = null;
+            uint v_transfered = 0;
+            string v_createtable;
+            string v_insert;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+                v_excel.Import(p_filename, p_separator, p_delimitator, p_header, p_encoding);
+
+                v_createtable = "create table " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                    else
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                }
+                try
+                {
+                    this.Execute(v_createtable);
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    p_error.FireEvent(v_createtable + "\n" + e.v_message);
+                }
+
+                v_cmd = new Spartacus.Database.Command();
+                v_cmd.v_text = "insert into " + p_newtable + " (";
+                for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
+                {
+                    if (k < v_excel.v_set.Tables[0].Columns.Count-1)
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                    else
+                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                }
+
+                foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
+                {
+                    foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
+                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+
+                    v_insert = v_cmd.GetUpdatedText();
+                    try
+                    {
+                        this.Execute(v_insert);
+                        v_transfered++;
+                        p_progress.FireEvent(v_transfered);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_error.FireEvent(v_insert + "\n" + e.v_message);
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo do Excel.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public override uint TransferToFile(string p_query, string p_filename)
+        {
+            Spartacus.Utils.Excel v_excel = null;
+            System.Data.DataTable v_table;
+
+            try
+            {
+                v_excel = new Spartacus.Utils.Excel();
+
+                v_table = this.Query(p_query, "TRANSFER");
+
+                if (v_table != null && v_table.Rows.Count > 0)
+                {
+                    v_excel.v_set.Tables.Add(v_table);
+                    v_excel.Export(p_filename);
+
+                    return (uint) v_table.Rows.Count;
+                }
+                else
+                    return 0;
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_excel != null)
+                {
+                    v_excel.Clear();
+                    v_excel = null;
+                }
+            }
+        }
+
+        /// <summary>
         /// Lista os nomes de colunas de uma determinada consulta.
         /// </summary>
         /// <returns>Vetor com os nomes de colunas.</returns>
