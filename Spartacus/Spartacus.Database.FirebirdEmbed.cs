@@ -1397,9 +1397,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#,";
                     else
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#)";
                     v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
@@ -1489,9 +1489,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#,";
                     else
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#)";
                     v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
@@ -1582,9 +1582,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ",";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#,";
                     else
-                        v_cmd.v_text += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + ")";
+                        v_cmd.v_text += "#" + v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + "#)";
                     v_cmd.AddParameter(v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower(), Spartacus.Database.Type.QUOTEDSTRING);
                 }
 
