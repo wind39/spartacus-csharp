@@ -566,11 +566,17 @@ namespace Spartacus.Reporting
                         case "datafieldoddcolor":
                             this.v_settings.v_datafieldoddcolor = this.v_settings.GetColor(p_reader.ReadString());
                             break;
-                        case "groupheadercolor":
-                            this.v_settings.v_groupheadercolor = this.v_settings.GetColor(p_reader.ReadString());
+                        case "groupheaderevencolor":
+                            this.v_settings.v_groupheaderevencolor = this.v_settings.GetColor(p_reader.ReadString());
                             break;
-                        case "groupfootercolor":
-                            this.v_settings.v_groupfootercolor = this.v_settings.GetColor(p_reader.ReadString());
+                        case "groupheaderoddcolor":
+                            this.v_settings.v_groupheaderoddcolor = this.v_settings.GetColor(p_reader.ReadString());
+                            break;
+                        case "groupfooterevencolor":
+                            this.v_settings.v_groupfooterevencolor = this.v_settings.GetColor(p_reader.ReadString());
+                            break;
+                        case "groupfooteroddcolor":
+                            this.v_settings.v_groupfooteroddcolor = this.v_settings.GetColor(p_reader.ReadString());
                             break;
                         case "reportheaderfont":
                             this.v_settings.v_reportheaderfont = new Spartacus.Reporting.Font();
@@ -1035,6 +1041,9 @@ namespace Spartacus.Reporting
                         case "format":
                             v_field.v_format = p_reader.ReadString();
                             break;
+                        case "border":
+                            v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
+                            break;
                         default:
                             break;
                     }
@@ -1200,6 +1209,9 @@ namespace Spartacus.Reporting
                         case "format":
                             v_field.v_format = p_reader.ReadString();
                             break;
+                        case "border":
+                            v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
+                            break;
                         default:
                             break;
                     }
@@ -1288,6 +1300,9 @@ namespace Spartacus.Reporting
                             break;
                         case "format":
                             v_field.v_format = p_reader.ReadString();
+                            break;
+                        case "border":
+                            v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
                             break;
                         default:
                             break;
@@ -1747,10 +1762,20 @@ namespace Spartacus.Reporting
                                 break;
                         }
                         v_cell.SetBgColor(this.v_settings.v_dataheadercolor);
-                        v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_dataheaderborder.v_top);
-                        v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_dataheaderborder.v_bottom);
-                        v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_dataheaderborder.v_left);
-                        v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_dataheaderborder.v_right);
+                        if (((Spartacus.Reporting.Field)this.v_fields[k]).v_border != null)
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_top || this.v_settings.v_dataheaderborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_bottom || this.v_settings.v_dataheaderborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_left || this.v_settings.v_dataheaderborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_right || this.v_settings.v_dataheaderborder.v_right);
+                        }
+                        else
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_dataheaderborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_dataheaderborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_dataheaderborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_dataheaderborder.v_right);
+                        }
                         v_row.Add(v_cell);
                     }
                 }
@@ -1779,7 +1804,7 @@ namespace Spartacus.Reporting
             System.Collections.Generic.List<PDFjet.NET.Cell> v_row;
             PDFjet.NET.Cell v_cell;
             Spartacus.Reporting.Group v_group;
-            int k, v_sectionrow, v_level;
+            int k, r, v_sectionrow, v_level;
 
             // modelo do detalhe ímpar
 
@@ -1809,10 +1834,20 @@ namespace Spartacus.Reporting
                                 break;
                         }
                         v_cell.SetBgColor(this.v_settings.v_datafieldoddcolor);
-                        v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_datafieldborder.v_top);
-                        v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_datafieldborder.v_bottom);
-                        v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_datafieldborder.v_left);
-                        v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_datafieldborder.v_right);
+                        if (((Spartacus.Reporting.Field)this.v_fields[k]).v_border != null)
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_top || this.v_settings.v_datafieldborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_bottom || this.v_settings.v_datafieldborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_left || this.v_settings.v_datafieldborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_right || this.v_settings.v_datafieldborder.v_right);
+                        }
+                        else
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_datafieldborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_datafieldborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_datafieldborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_datafieldborder.v_right);
+                        }
                         v_row.Add(v_cell);
                     }
                 }
@@ -1847,10 +1882,20 @@ namespace Spartacus.Reporting
                                 break;
                         }
                         v_cell.SetBgColor(this.v_settings.v_datafieldevencolor);
-                        v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_datafieldborder.v_top);
-                        v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_datafieldborder.v_bottom);
-                        v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_datafieldborder.v_left);
-                        v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_datafieldborder.v_right);
+                        if (((Spartacus.Reporting.Field)this.v_fields[k]).v_border != null)
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_top || this.v_settings.v_datafieldborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_bottom || this.v_settings.v_datafieldborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_left || this.v_settings.v_datafieldborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)this.v_fields[k]).v_border.v_right || this.v_settings.v_datafieldborder.v_right);
+                        }
+                        else
+                        {
+                            v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_datafieldborder.v_top);
+                            v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_datafieldborder.v_bottom);
+                            v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_datafieldborder.v_left);
+                            v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_datafieldborder.v_right);
+                        }
                         v_row.Add(v_cell);
                     }
                 }
@@ -1867,6 +1912,7 @@ namespace Spartacus.Reporting
                 {
                     v_group.v_headertemplate = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
 
+                    r = 0;
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsheader; v_sectionrow++)
                     {
                         v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
@@ -1890,24 +1936,39 @@ namespace Spartacus.Reporting
                                     default:
                                         break;
                                 }
-                                v_cell.SetBgColor(this.v_settings.v_groupheadercolor);
-                                v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_groupheaderborder.v_top);
-                                v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_groupheaderborder.v_bottom);
-                                v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_groupheaderborder.v_left);
-                                v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_groupheaderborder.v_right);
+                                if (r % 2 == 0)
+                                    v_cell.SetBgColor(this.v_settings.v_groupheaderevencolor);
+                                else
+                                    v_cell.SetBgColor(this.v_settings.v_groupheaderoddcolor);
+                                if (((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_border != null)
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_border.v_top || this.v_settings.v_groupheaderborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_border.v_bottom || this.v_settings.v_groupheaderborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_border.v_left || this.v_settings.v_groupheaderborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_border.v_right || this.v_settings.v_groupheaderborder.v_right);
+                                }
+                                else
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_groupheaderborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_groupheaderborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_groupheaderborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_groupheaderborder.v_right);
+                                }
                                 v_row.Add(v_cell);
                             }
                         }
                         v_group.v_headertemplate.Add(v_row);
+                        r++;
                     }
                 }
 
-                // modelo do rodapé do grupo
+                // modelo do rodapé grupo
 
                 if (v_group.v_showfooter)
                 {
                     v_group.v_footertemplate = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
 
+                    r = 0;
                     for (v_sectionrow = 0; v_sectionrow < v_group.v_numrowsfooter; v_sectionrow++)
                     {
                         v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
@@ -1931,15 +1992,29 @@ namespace Spartacus.Reporting
                                     default:
                                         break;
                                 }
-                                v_cell.SetBgColor(this.v_settings.v_groupfootercolor);
-                                v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_groupfooterborder.v_top);
-                                v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_groupfooterborder.v_bottom);
-                                v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_groupfooterborder.v_left);
-                                v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_groupfooterborder.v_right);
+                                if (r % 2 == 0)
+                                    v_cell.SetBgColor(this.v_settings.v_groupfooterevencolor);
+                                else
+                                    v_cell.SetBgColor(this.v_settings.v_groupfooteroddcolor);
+                                if (((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_border != null)
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_border.v_top || this.v_settings.v_groupfooterborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_border.v_bottom || this.v_settings.v_groupfooterborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_border.v_left || this.v_settings.v_groupfooterborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_border.v_right || this.v_settings.v_groupfooterborder.v_right);
+                                }
+                                else
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_groupfooterborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_groupfooterborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_groupfooterborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_groupfooterborder.v_right);
+                                }
                                 v_row.Add(v_cell);
                             }
                         }
                         v_group.v_footertemplate.Add(v_row);
+                        r++;
                     }
                 }
             }

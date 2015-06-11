@@ -1462,188 +1462,190 @@ namespace Spartacus.Utils
                             v_worksheet.View.ShowGridLines = v_worksheet_src.View.ShowGridLines;
 
                             v_table = this.v_set.Tables[v_worksheet.Name];
-
-                            using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet_src.Cells["A1"].Value.ToString()))
+                            if (v_table != null && v_table.Rows.Count > 0)
                             {
-                                /* EXEMPLO DE CONFIGURACAO DE MARKUP:
-                                    TIPO|CAMPO|POSICAO|OPCIONAL
-                                    CA||A1:AD12|
-                                    ST|titulo|A6|
-                                    ST|filtro|A8|
-                                    ST|ano|E2:J2|
-                                    ST|empresa|E4:J4|
-                                    FO|U10/S10|V7|
-                                    TO|SUM(#)|M9|M12
-                                    TO|SUM(#)|N9|N12
-                                    TO|SUM(#)|O9|O12
-                                    TO|SUM(#)|P9|P12
-                                    TO|SUM(#)|Q9|Q12
-                                    TO|SUM(#)|R9|R12
-                                    TO|SUM(#)|S9|S12
-                                    TO|SUM(#)|T9|T12
-                                    TO|SUM(#)|U9|U12
-                                    TO|SUM(#)|V9|V12
-                                    TO|SUM(#)|W9|W12
-                                    TO|SUM(#)|X9|X12
-                                    TO|SUM(#)|Y9|Y12
-                                    TO|SUBTOTAL(9,#)|M10|M12
-                                    TO|SUBTOTAL(9,#)|N10|N12
-                                    TO|SUBTOTAL(9,#)|O10|O12
-                                    TO|SUBTOTAL(9,#)|P10|P12
-                                    TO|SUBTOTAL(9,#)|Q10|Q12
-                                    TO|SUBTOTAL(9,#)|R10|R12
-                                    TO|SUBTOTAL(9,#)|S10|S12
-                                    TO|SUBTOTAL(9,#)|T10|T12
-                                    TO|SUBTOTAL(9,#)|U10|U12
-                                    TO|SUBTOTAL(9,#)|V10|V12
-                                    TO|SUBTOTAL(9,#)|W10|W12
-                                    TO|SUBTOTAL(9,#)|X10|X12
-                                    TO|SUBTOTAL(9,#)|Y10|Y12
-                                    CF|#DBE5F1|A11:AD11|
-                                    TA|A:AD|11|30
-                                    IM|imagem|0:0|80
-                                    TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
-                                    FC|$W2=2|#D3D3D3|A:AD
-                                 */
-
-                                v_line = string.Empty;
-                                k = 0;
-
-                                do
+                                using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet_src.Cells["A1"].Value.ToString()))
                                 {
-                                    v_line = v_reader.ReadLine();
+                                    /* EXEMPLO DE CONFIGURACAO DE MARKUP:
+                                        TIPO|CAMPO|POSICAO|OPCIONAL
+                                        CA||A1:AD12|
+                                        ST|titulo|A6|
+                                        ST|filtro|A8|
+                                        ST|ano|E2:J2|
+                                        ST|empresa|E4:J4|
+                                        FO|U10/S10|V7|
+                                        TO|SUM(#)|M9|M12
+                                        TO|SUM(#)|N9|N12
+                                        TO|SUM(#)|O9|O12
+                                        TO|SUM(#)|P9|P12
+                                        TO|SUM(#)|Q9|Q12
+                                        TO|SUM(#)|R9|R12
+                                        TO|SUM(#)|S9|S12
+                                        TO|SUM(#)|T9|T12
+                                        TO|SUM(#)|U9|U12
+                                        TO|SUM(#)|V9|V12
+                                        TO|SUM(#)|W9|W12
+                                        TO|SUM(#)|X9|X12
+                                        TO|SUM(#)|Y9|Y12
+                                        TO|SUBTOTAL(9,#)|M10|M12
+                                        TO|SUBTOTAL(9,#)|N10|N12
+                                        TO|SUBTOTAL(9,#)|O10|O12
+                                        TO|SUBTOTAL(9,#)|P10|P12
+                                        TO|SUBTOTAL(9,#)|Q10|Q12
+                                        TO|SUBTOTAL(9,#)|R10|R12
+                                        TO|SUBTOTAL(9,#)|S10|S12
+                                        TO|SUBTOTAL(9,#)|T10|T12
+                                        TO|SUBTOTAL(9,#)|U10|U12
+                                        TO|SUBTOTAL(9,#)|V10|V12
+                                        TO|SUBTOTAL(9,#)|W10|W12
+                                        TO|SUBTOTAL(9,#)|X10|X12
+                                        TO|SUBTOTAL(9,#)|Y10|Y12
+                                        CF|#DBE5F1|A11:AD11|
+                                        TA|A:AD|11|30
+                                        IM|imagem|0:0|80
+                                        TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
+                                        FC|$W2=2|#D3D3D3|A:AD
+                                     */
 
-                                    if (v_line != null && k > 0)
+                                    v_line = string.Empty;
+                                    k = 0;
+
+                                    do
                                     {
-                                        v_options = v_line.Split('|');
+                                        v_line = v_reader.ReadLine();
 
-                                        switch (v_options[0])
+                                        if (v_line != null && k > 0)
                                         {
-                                            case "CA":
-                                                foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells[v_options[2]])
-                                                {
-                                                    // valor
-                                                    v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
+                                            v_options = v_line.Split('|');
 
-                                                    // alinhamento
-                                                    v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
-                                                    v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
-
-                                                    // bordas
-                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
-
-                                                    // padrão de cor de fundo
-                                                    v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
-
-                                                    // fonte
-                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
-                                                    v_worksheet.Cells[v_cell.Address].Style.Font.Family = v_worksheet_src.Cells[v_cell.Address].Style.Font.Family;
-                                                    if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
-                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
-
-                                                    // formato numérico
-                                                    v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
-
-                                                    // quebrar texto automaticamente
-                                                    v_worksheet.Cells[v_cell.Address].Style.WrapText = v_worksheet_src.Cells[v_cell.Address].Style.WrapText;
-
-                                                    // comentários
-                                                    if (v_worksheet_src.Cells[v_cell.Address].Comment != null)
+                                            switch (v_options[0])
+                                            {
+                                                case "CA":
+                                                    foreach (OfficeOpenXml.ExcelRangeBase v_cell in v_worksheet_src.Cells[v_options[2]])
                                                     {
-                                                        v_worksheet.Cells[v_cell.Address].AddComment(v_worksheet_src.Cells[v_cell.Address].Comment.Text, v_worksheet_src.Cells[v_cell.Address].Comment.Author);
-                                                        v_worksheet.Cells[v_cell.Address].Comment.AutoFit = true;
-                                                    }
-                                                }
-                                                break;
-                                            case "ST":
-                                                v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
-                                                if (v_options[2].Contains(':'))
-                                                    v_worksheet.Cells[v_options[2]].Merge = true;
-                                                break;
-                                            case "FO":
-                                                v_worksheet.Cells [v_options[2]].Formula = v_options[1];
-                                                break;
-                                            case "IM":
-                                                try
-                                                {
-                                                    v_imagefilename = v_cryptor.Decrypt(v_table.Rows[0][v_options[1]].ToString());
-                                                }
-                                                catch (Spartacus.Net.Exception)
-                                                {
-                                                    v_imagefilename = "";
-                                                }
-                                                if (v_imagefilename != "")
-                                                {
-                                                    try
-                                                    {
-                                                        v_image = new System.Drawing.Bitmap(v_imagefilename);
-                                                        v_picture = null;
-                                                        if (v_image != null)
+                                                        // valor
+                                                        v_worksheet.Cells[v_cell.Address].Value = v_worksheet_src.Cells[v_cell.Address].Value;
+
+                                                        // alinhamento
+                                                        v_worksheet.Cells[v_cell.Address].Style.VerticalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.VerticalAlignment;
+                                                        v_worksheet.Cells[v_cell.Address].Style.HorizontalAlignment = v_worksheet_src.Cells[v_cell.Address].Style.HorizontalAlignment;
+
+                                                        // bordas
+                                                        v_worksheet.Cells[v_cell.Address].Style.Border.Top.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Top.Style;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Border.Left.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Left.Style;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Border.Right.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Right.Style;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Border.Bottom.Style = v_worksheet_src.Cells[v_cell.Address].Style.Border.Bottom.Style;
+
+                                                        // padrão de cor de fundo
+                                                        v_worksheet.Cells[v_cell.Address].Style.Fill.PatternType = v_worksheet_src.Cells[v_cell.Address].Style.Fill.PatternType;
+
+                                                        // fonte
+                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Bold = v_worksheet_src.Cells[v_cell.Address].Style.Font.Bold;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Italic = v_worksheet_src.Cells[v_cell.Address].Style.Font.Italic;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Size = v_worksheet_src.Cells[v_cell.Address].Style.Font.Size;
+                                                        v_worksheet.Cells[v_cell.Address].Style.Font.Family = v_worksheet_src.Cells[v_cell.Address].Style.Font.Family;
+                                                        if (v_worksheet_src.Cells[v_cell.Address].Style.Font.Color.Theme == "0")
+                                                            v_worksheet.Cells[v_cell.Address].Style.Font.Color.SetColor(System.Drawing.Color.White);
+
+                                                        // formato numérico
+                                                        v_worksheet.Cells[v_cell.Address].Style.Numberformat.Format = v_worksheet_src.Cells[v_cell.Address].Style.Numberformat.Format;
+
+                                                        // quebrar texto automaticamente
+                                                        v_worksheet.Cells[v_cell.Address].Style.WrapText = v_worksheet_src.Cells[v_cell.Address].Style.WrapText;
+
+                                                        // comentários
+                                                        if (v_worksheet_src.Cells[v_cell.Address].Comment != null)
                                                         {
-                                                            v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
-                                                            v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
-                                                            v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+                                                            v_worksheet.Cells[v_cell.Address].AddComment(v_worksheet_src.Cells[v_cell.Address].Comment.Text, v_worksheet_src.Cells[v_cell.Address].Comment.Author);
+                                                            v_worksheet.Cells[v_cell.Address].Comment.AutoFit = true;
                                                         }
                                                     }
-                                                    catch (System.Exception)
+                                                    break;
+                                                case "ST":
+                                                    v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
+                                                    if (v_options[2].Contains(':'))
+                                                        v_worksheet.Cells[v_options[2]].Merge = true;
+                                                    break;
+                                                case "FO":
+                                                    v_worksheet.Cells[v_options[2]].Formula = v_options[1];
+                                                    break;
+                                                case "IM":
+                                                    try
                                                     {
+                                                        v_imagefilename = v_cryptor.Decrypt(v_table.Rows[0][v_options[1]].ToString());
                                                     }
-                                                }
-                                                break;
-                                            case "TO":
-                                                v_worksheet.Cells[v_options[2]].Value = "";
-                                                v_row = v_worksheet.Cells[v_options[3]].Start.Row;
-                                                v_col = v_worksheet.Cells[v_options[3]].Start.Column;
-                                                if (v_options[1] != "")
-                                                    v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
-                                                else
-                                                    v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
-                                                break;
-                                            case "CF":
-                                                v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
-                                                break;
-                                            case "TA":
-                                                v_row = int.Parse(v_options[2]);
-                                                for (int i = 1; i <= v_row; i++)
-                                                    v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
-                                                v_col = int.Parse(v_options[3]);
-                                                for (int j = 1; j <= v_col; j++)
-                                                    v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
-                                                v_worksheet.View.FreezePanes(v_row + 1, 1);
-                                                v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
-                                                v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
-                                                v_worksheet.Tables[0].ShowFilter = true;
-                                                // passando informação para demais configurações
-                                                v_datastart = int.Parse(v_options[2]);
-                                                // passando informação para SejExcel
-                                                v_worksheet.Cells["A1"].Value = v_options[2];
-                                                break;
-                                            case "TD":
-                                                v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
-                                                v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
-                                                v_offset = v_options[1].Split(';')[0].Split(',').Length;
-                                                for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
-                                                    v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j+v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
-                                                break;
-                                            case "FC":
-                                                var v_rule = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart+1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
-                                                v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                                                v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
-                                                v_rule.Formula = v_options[1];
-                                                break;
-                                            default:
-                                                break;
+                                                    catch (Spartacus.Net.Exception)
+                                                    {
+                                                        v_imagefilename = "";
+                                                    }
+                                                    if (v_imagefilename != "")
+                                                    {
+                                                        try
+                                                        {
+                                                            v_image = new System.Drawing.Bitmap(v_imagefilename);
+                                                            v_picture = null;
+                                                            if (v_image != null)
+                                                            {
+                                                                v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
+                                                                v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
+                                                                v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+                                                            }
+                                                        }
+                                                        catch (System.Exception)
+                                                        {
+                                                        }
+                                                    }
+                                                    break;
+                                                case "TO":
+                                                    v_worksheet.Cells[v_options[2]].Value = "";
+                                                    v_row = v_worksheet.Cells[v_options[3]].Start.Row;
+                                                    v_col = v_worksheet.Cells[v_options[3]].Start.Column;
+                                                    if (v_options[1] != "")
+                                                        v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                    else
+                                                        v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                    break;
+                                                case "CF":
+                                                    v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
+                                                    break;
+                                                case "TA":
+                                                    v_row = int.Parse(v_options[2]);
+                                                    for (int i = 1; i <= v_row; i++)
+                                                        v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
+                                                    v_col = int.Parse(v_options[3]);
+                                                    for (int j = 1; j <= v_col; j++)
+                                                        v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
+                                                    v_worksheet.View.FreezePanes(v_row + 1, 1);
+                                                    v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
+                                                    v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
+                                                    v_worksheet.Tables[0].ShowFilter = true;
+                                                    // passando informação para demais configurações
+                                                    v_datastart = int.Parse(v_options[2]);
+                                                    // passando informação para SejExcel
+                                                    v_worksheet.Cells["A1"].Value = v_options[2];
+                                                    break;
+                                                case "TD":
+                                                    v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
+                                                    v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
+                                                    v_offset = v_options[1].Split(';')[0].Split(',').Length;
+                                                    for (int j = 0; j < v_options[1].Split(';')[1].Split(',').Length; j++)
+                                                        v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].Columns[j + v_offset].TotalsRowFunction = OfficeOpenXml.Table.RowFunctions.Sum;
+                                                    break;
+                                                case "FC":
+                                                    var v_rule = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart + 1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
+                                                    v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                                    v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
+                                                    v_rule.Formula = v_options[1];
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
                                         }
-                                    }
 
-                                    k++;
+                                        k++;
+                                    }
+                                    while (v_line != null);
                                 }
-                                while (v_line != null);
                             }
                         }
                     }

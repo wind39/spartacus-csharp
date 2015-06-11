@@ -3607,6 +3607,10 @@
             <summary>
             Formato de impressão do campo numérico.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Field.v_border">
+            <summary>
+            Borda do campo.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Field.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.
@@ -4098,13 +4102,21 @@
             <summary>
             Cor de fundo do campo de dados em linhas ímpares.
             </summary></member>
-        <member name="F:Spartacus.Reporting.Settings.v_groupheadercolor">
+        <member name="F:Spartacus.Reporting.Settings.v_groupheaderevencolor">
             <summary>
-            Cor de fundo do cabeçalho de grupo.
+            Cor de fundo do cabeçalho de grupo em linhas pares.
             </summary></member>
-        <member name="F:Spartacus.Reporting.Settings.v_groupfootercolor">
+        <member name="F:Spartacus.Reporting.Settings.v_groupheaderoddcolor">
             <summary>
-            Cor de fundo do rodapé de grupo.
+            Cor de fundo do cabeçalho de grupo em linhas ímpares.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Settings.v_groupfooterevencolor">
+            <summary>
+            Cor de fundo do rodapé de grupo em linhas pares.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Settings.v_groupfooteroddcolor">
+            <summary>
+            Cor de fundo do rodapé de grupo em linhas ímpares.
             </summary></member>
         <member name="M:Spartacus.Reporting.Settings.#ctor">
             <summary>

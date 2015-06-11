@@ -154,14 +154,25 @@ namespace Spartacus.Reporting
         public int v_datafieldoddcolor;
 
         /// <summary>
-        /// Cor de fundo do cabeçalho de grupo.
+        /// Cor de fundo do cabeçalho de grupo em linhas pares.
         /// </summary>
-        public int v_groupheadercolor;
+        public int v_groupheaderevencolor;
 
         /// <summary>
-        /// Cor de fundo do rodapé de grupo.
+        /// Cor de fundo do cabeçalho de grupo em linhas ímpares.
         /// </summary>
-        public int v_groupfootercolor;
+        public int v_groupheaderoddcolor;
+
+        /// <summary>
+        /// Cor de fundo do rodapé de grupo em linhas pares.
+        /// </summary>
+        public int v_groupfooterevencolor;
+
+        /// <summary>
+        /// Cor de fundo do rodapé de grupo em linhas ímpares.
+        /// </summary>
+        public int v_groupfooteroddcolor;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Settings"/>.
