@@ -1482,7 +1482,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_dataheadertable.SetCellBordersWidth(0.8f);
+                v_dataheadertable.SetCellBordersWidth(2.0f);
 
                 // tabela de dados
 
@@ -1515,7 +1515,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_datatable.SetCellBordersWidth(0.8f);
+                v_datatable.SetCellBordersWidth(2.0f);
 
                 this.v_datafile.Seek(0, System.IO.SeekOrigin.Begin);
                 v_reader = new System.IO.StreamReader(this.v_datafile);

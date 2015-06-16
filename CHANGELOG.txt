@@ -21,7 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-0.38.28: Cor para ou ímpar para quando houver mais de uma linha no cabeçalho e rodapé de grupo
+0.38.29: Spartacus.Reporting: Aumentada largura da borda padrão de 0.8 para 2.0
+0.38.28: Cor par ou ímpar para quando houver mais de uma linha no cabeçalho e rodapé de grupo
          Borda em campos específicos
 0.38.27: Corrigido bug na função TransferFromFile
 0.38.26: Implementadas funções TransferFromFile e TransferToFile na Spartacus.Database
