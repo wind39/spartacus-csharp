@@ -41,7 +41,7 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Objeto para comunicação com o banco de dados.
         /// </summary>
-        private Spartacus.Database.Generic v_database;
+        public Spartacus.Database.Generic v_database;
 
         /// <summary>
         /// Comando SQL que pode possuir parâmetros entre #.
@@ -57,6 +57,12 @@ namespace Spartacus.Reporting
         /// Tabela com os dados do relatório, após tratar tipos de colunas.
         /// </summary>
         public System.Data.DataTable v_table;
+
+        /// <summary>
+        /// Tabela com os dados do relatório, ordenada de acordo com grupo de nível 0.
+        /// Usada para renderização dos detalhes.
+        /// </summary>
+        public System.Data.DataTable v_rendertable;
 
         /// <summary>
         /// Configurações globais e de dados do relatório.
@@ -159,6 +165,7 @@ namespace Spartacus.Reporting
             this.v_database = null;
             this.v_tabletemp = null;
             this.v_table = null;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = false;
 
@@ -194,6 +201,7 @@ namespace Spartacus.Reporting
             this.v_database = p_database;
             this.v_tabletemp = null;
             this.v_table = null;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = false;
 
@@ -229,6 +237,7 @@ namespace Spartacus.Reporting
             this.v_database = null;
             this.v_tabletemp = null;
             this.v_table = p_table;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = false;
 
@@ -264,6 +273,7 @@ namespace Spartacus.Reporting
             this.v_database = null;
             this.v_tabletemp = null;
             this.v_table = null;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = p_calculate_groups;
 
@@ -300,6 +310,7 @@ namespace Spartacus.Reporting
             this.v_database = p_database;
             this.v_tabletemp = null;
             this.v_table = null;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = p_calculate_groups;
 
@@ -336,6 +347,7 @@ namespace Spartacus.Reporting
             this.v_database = null;
             this.v_tabletemp = p_table;
             this.v_table = null;
+            this.v_rendertable = null;
 
             this.v_calculate_groups = p_calculate_groups;
 
@@ -701,6 +713,7 @@ namespace Spartacus.Reporting
             Spartacus.Database.Locale v_locale = Spartacus.Database.Locale.EUROPEAN;
             string v_dateformat = null;
             string v_description = null;
+            string v_lookup = null;
 
             while (p_reader.Read())
             {
@@ -761,6 +774,9 @@ namespace Spartacus.Reporting
                         case "description":
                             v_description = p_reader.ReadString();
                             break;
+                        case "lookup":
+                            v_lookup = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -774,6 +790,7 @@ namespace Spartacus.Reporting
                 if (v_type == Spartacus.Database.Type.DATE)
                     this.v_cmd.SetDateFormat(v_name, v_dateformat);
             this.v_cmd.SetDescription(v_name, v_description);
+            this.v_cmd.SetLookup(v_name, v_lookup);
         }
 
         /// <summary>
@@ -1044,6 +1061,9 @@ namespace Spartacus.Reporting
                         case "border":
                             v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
                             break;
+                        case "blank":
+                            v_field.v_blank = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -1212,6 +1232,9 @@ namespace Spartacus.Reporting
                         case "border":
                             v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
                             break;
+                        case "blank":
+                            v_field.v_blank = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -1304,6 +1327,9 @@ namespace Spartacus.Reporting
                         case "border":
                             v_field.v_border = new Spartacus.Reporting.Border(p_reader.ReadString());
                             break;
+                        case "blank":
+                            v_field.v_blank = p_reader.ReadString();
+                            break;
                         default:
                             break;
                     }
@@ -1323,6 +1349,7 @@ namespace Spartacus.Reporting
         /// </summary>
         public void Execute()
         {
+            string v_parentgroupcolumn;
             int k;
 
             this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Executando relatorio " + this.v_reportid.ToString());
@@ -1364,8 +1391,12 @@ namespace Spartacus.Reporting
                         // gerando tabelas auxiliares para todos os grupos
                         if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
                         {
-                            for (k = 0; k < this.v_groups.Count; k++)
-                                ((Spartacus.Reporting.Group)this.v_groups [k]).BuildCalculate(this.v_table);
+                            v_parentgroupcolumn = null;
+                            for (k = this.v_groups.Count-1; k >= 0; k--)
+                            {
+                                ((Spartacus.Reporting.Group)this.v_groups [k]).BuildCalculate(this.v_table, v_parentgroupcolumn);
+                                v_parentgroupcolumn = ((Spartacus.Reporting.Group)this.v_groups [k]).v_column;
+                            }
                         }
                     }
                     else
@@ -1375,8 +1406,12 @@ namespace Spartacus.Reporting
                         // gerando tabelas auxiliares para todos os grupos
                         if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
                         {
-                            for (k = 0; k < this.v_groups.Count; k++)
-                                ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                            v_parentgroupcolumn = null;
+                            for (k = this.v_groups.Count-1; k >= 0; k--)
+                            {
+                                ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table, v_parentgroupcolumn);
+                                v_parentgroupcolumn = ((Spartacus.Reporting.Group)this.v_groups [k]).v_column;
+                            }
                         }
                     }
                 }
@@ -1412,8 +1447,12 @@ namespace Spartacus.Reporting
                     // gerando tabelas auxiliares para todos os grupos
                     if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
                     {
-                        for (k = 0; k < this.v_groups.Count; k++)
-                            ((Spartacus.Reporting.Group)this.v_groups [k]).BuildCalculate(this.v_table);
+                        v_parentgroupcolumn = null;
+                        for (k = this.v_groups.Count-1; k >= 0; k--)
+                        {
+                            ((Spartacus.Reporting.Group)this.v_groups[k]).BuildCalculate(this.v_table, v_parentgroupcolumn);
+                            v_parentgroupcolumn = ((Spartacus.Reporting.Group)this.v_groups[k]).v_column;
+                        }
                     }
                 }
                 else
@@ -1423,8 +1462,12 @@ namespace Spartacus.Reporting
                     // gerando tabelas auxiliares para todos os grupos
                     if (this.v_table != null && this.v_table.Rows.Count > 0 && this.v_groups.Count > 0)
                     {
-                        for (k = 0; k < this.v_groups.Count; k++)
-                            ((Spartacus.Reporting.Group)this.v_groups [k]).Build(this.v_table);
+                        v_parentgroupcolumn = null;
+                        for (k = this.v_groups.Count-1; k >= 0; k--)
+                        {
+                            ((Spartacus.Reporting.Group)this.v_groups[k]).Build(this.v_table, v_parentgroupcolumn);
+                            v_parentgroupcolumn = ((Spartacus.Reporting.Group)this.v_groups[k]).v_column;
+                        }
                     }
                 }
             }
@@ -1482,7 +1525,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_dataheadertable.SetCellBordersWidth(2.0f);
+                //v_dataheadertable.SetCellBordersWidth(1.5f);
 
                 // tabela de dados
 
@@ -1515,7 +1558,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_datatable.SetCellBordersWidth(2.0f);
+                //v_datatable.SetCellBordersWidth(1.5f);
 
                 this.v_datafile.Seek(0, System.IO.SeekOrigin.Begin);
                 v_reader = new System.IO.StreamReader(this.v_datafile);
@@ -1623,7 +1666,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_dataheadertable.SetCellBordersWidth(0.8f);
+                //v_dataheadertable.SetCellBordersWidth(1.5f);
 
                 // tabela de dados
 
@@ -1656,7 +1699,7 @@ namespace Spartacus.Reporting
                 );
 
                 v_datatable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                v_datatable.SetCellBordersWidth(0.8f);
+                //v_datatable.SetCellBordersWidth(1.5f);
 
                 this.v_datafile.Seek(0, System.IO.SeekOrigin.Begin);
                 v_reader = new System.IO.StreamReader(this.v_datafile);
@@ -2038,10 +2081,12 @@ namespace Spartacus.Reporting
         )
         {
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_data;
+            System.Data.DataView v_view;
             string v_textrow;
             System.IO.StreamWriter v_writer;
             string v_text;
             int k, r, v_sectionrow;
+            string v_sort;
 
             v_data = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
             v_writer = new System.IO.StreamWriter(this.v_datafile);
@@ -2049,8 +2094,18 @@ namespace Spartacus.Reporting
             // se o relatorio possui grupos
             if (this.v_groups.Count > 0)
             {
+                // ordenando campos da tabela original para otimizar a renderização
+                v_sort = "";
+                for (k = this.v_groups.Count - 1; k >= 0; k--)
+                    v_sort += ((Spartacus.Reporting.Group)v_groups[k]).v_column + ", ";
+                v_view = new System.Data.DataView(this.v_table);
+                v_view.Sort = v_sort + ((Spartacus.Reporting.Group)v_groups[0]).v_sort;
+                this.v_rendertable = v_view.ToTable();
+
                 this.RenderGroup(
                     this.v_groups.Count - 1,
+                    null,
+                    null,
                     v_data,
                     p_pageheight,
                     p_pagewidth,
@@ -2100,6 +2155,8 @@ namespace Spartacus.Reporting
         /// Renderiza um grupo.
         /// </summary>
         /// <param name="p_level">Nível do grupo atual.</param>
+        /// <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
+        /// <param name="p_parentgroupvalue">Valor do grupo pai.</param>
         /// <param name="p_data">Matriz de dados.</param>
         /// <param name="p_pageheight">Altura da página.</param>
         /// <param name="p_pagewidth">Largura da página.</param>
@@ -2108,6 +2165,8 @@ namespace Spartacus.Reporting
         /// <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param>
         private void RenderGroup(
             int p_level,
+            string p_parentgroupcolumn,
+            string p_parentgroupvalue,
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> p_data,
             float p_pageheight,
             float p_pagewidth,
@@ -2121,24 +2180,15 @@ namespace Spartacus.Reporting
             string v_textrow;
             string v_text;
             int k, r, v_sectionrow;
-            System.Data.DataRow rb;
-            System.Data.DataView v_view;
-            System.Data.DataTable v_rendertable;
+            System.Data.DataRow rg, rb;
 
             v_group = (Spartacus.Reporting.Group)this.v_groups [p_level];
 
-            // ordenando campos da tabela original para otimizar a renderização
-            if (v_group.v_level == 0)
-            {
-                v_view = new System.Data.DataView(this.v_table);
-                v_view.Sort = v_group.v_column + ", " + v_group.v_sort;
-                v_rendertable = v_view.ToTable();
-            }
-            else
-                v_rendertable = this.v_table;
-
-            // para cada elemento do grupo
-            foreach (System.Data.DataRow rg in v_group.v_table.Rows)
+            // percorrendo elementos do grupo
+            rg = v_group.v_table.Rows[v_group.v_renderedrows];
+            while (v_group.v_renderedrows < v_group.v_table.Rows.Count &&
+                   (v_group.v_level == this.v_groups.Count-1 ||
+                    rg[p_parentgroupcolumn].ToString() == p_parentgroupvalue))
             {
                 // renderizando campos do cabecalho
                 if (v_group.v_showheader)
@@ -2154,7 +2204,7 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_headerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_headerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                v_textrow += v_text.Replace(';', ',') + ";";
+                                v_textrow += v_text.Replace(';', ',').Replace('\n', ' ').Replace('\r', ' ') + ";";
                             }
                         }
                         p_writer.WriteLine(v_textrow);
@@ -2167,8 +2217,11 @@ namespace Spartacus.Reporting
                 {
                     // renderizando dados do grupo
                     r = 0;
-                    rb = v_rendertable.Rows[this.v_renderedrows];
-                    while (this.v_renderedrows < v_rendertable.Rows.Count && rb[v_group.v_column].ToString() == rg[v_group.v_column].ToString())
+                    rb = this.v_rendertable.Rows[this.v_renderedrows];
+                    while (this.v_renderedrows < this.v_rendertable.Rows.Count &&
+                           rb[v_group.v_column].ToString() == rg[v_group.v_column].ToString() &&
+                           (v_group.v_level == this.v_groups.Count-1 ||
+                            rb[p_parentgroupcolumn].ToString() == p_parentgroupvalue))
                     {
                         for (v_sectionrow = 0; v_sectionrow < this.v_numrowsdetail; v_sectionrow++)
                         {
@@ -2178,7 +2231,7 @@ namespace Spartacus.Reporting
                                 if (((Spartacus.Reporting.Field)this.v_fields[k]).v_row == v_sectionrow)
                                 {
                                     v_text = ((Spartacus.Reporting.Field)this.v_fields[k]).Format(rb[((Spartacus.Reporting.Field)this.v_fields[k]).v_column].ToString());
-                                    v_textrow += v_text.Replace(';', ',') + ";";
+                                    v_textrow += v_text.Replace(';', ',').Replace('\n', ' ').Replace('\r', ' ') + ";";
                                 }
                             }
                             p_writer.WriteLine(v_textrow);
@@ -2194,14 +2247,16 @@ namespace Spartacus.Reporting
                         this.v_renderedrows++;
                         this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", this.v_perc, "Relatorio " + this.v_reportid.ToString() + ": linha " + this.v_renderedrows.ToString() + " de " + this.v_table.Rows.Count.ToString());
 
-                        if (this.v_renderedrows < v_rendertable.Rows.Count)
-                            rb = v_rendertable.Rows[this.v_renderedrows];
+                        if (this.v_renderedrows < this.v_rendertable.Rows.Count)
+                            rb = this.v_rendertable.Rows[this.v_renderedrows];
                     }
                 }
                 else
                 {
                     this.RenderGroup(
                         p_level - 1,
+                        v_group.v_column,
+                        rg[v_group.v_column].ToString(),
                         p_data,
                         p_pageheight,
                         p_pagewidth,
@@ -2226,7 +2281,7 @@ namespace Spartacus.Reporting
                                     v_text = ((Spartacus.Reporting.Field)v_group.v_footerfields[k]).Format(rg[((Spartacus.Reporting.Field)v_group.v_footerfields[k]).v_column].ToString());
                                 else
                                     v_text = "";
-                                v_textrow += v_text.Replace(';', ',') + ";";
+                                v_textrow += v_text.Replace(';', ',').Replace('\n', ' ').Replace('\r', ' ') + ";";
                             }
                         }
                         p_writer.WriteLine(v_textrow);
@@ -2234,6 +2289,10 @@ namespace Spartacus.Reporting
 
                     p_data.AddRange(v_group.v_footertemplate);
                 }
+
+                v_group.v_renderedrows++;
+                if (v_group.v_renderedrows < v_group.v_table.Rows.Count)
+                    rg = v_group.v_table.Rows[v_group.v_renderedrows];
             }
         }
     }

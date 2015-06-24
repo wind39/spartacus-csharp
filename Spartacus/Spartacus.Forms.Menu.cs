@@ -108,6 +108,24 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Informa o texto ou valor a ser mostrado no Container.
+        /// Usado para mostrar ao usuário um formulário já preenchido.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Container.</param>
+        public override void SetValue(string p_text)
+        {
+        }
+
+        /// <summary>
+        /// Retorna o texto ou valor atual do Container.
+        /// </summary>
+        /// <returns>Texto ou valor atual do Container.</returns>
+        public override string GetValue()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Adiciona um grupo ao Menu.
         /// </summary>
         /// <returns>Retorna o grupo, para poder adicionar outros grupos ou itens a ele.</returns>

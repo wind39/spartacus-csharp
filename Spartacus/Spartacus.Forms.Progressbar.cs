@@ -131,6 +131,16 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Informa o texto a ser mostrado no Label.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Label.</param>
+        public override void SetValue(string p_text)
+        {
+            this.v_label.Text = p_text;
+            this.v_label.Refresh();
+        }
+
+        /// <summary>
         /// Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
         /// </summary>
         /// <param name="p_text">Texto a ser mostrado no Label.</param>
@@ -146,7 +156,7 @@ namespace Spartacus.Forms
         /// Retorna o texto ou valor atual do Textbox.
         /// </summary>
         /// <returns>Texto ou valor atual do Textbox.</returns>
-        public string GetValue()
+        public override string GetValue()
         {
             return this.v_label.Text;
         }

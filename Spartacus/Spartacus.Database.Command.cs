@@ -965,5 +965,38 @@ namespace Spartacus.Database
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
             }
         }
+
+        /// <summary>
+        /// Atribui uma string SQL ao parâmetro de nome <paramref name="p_name"/>.
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do Parâmetro.
+        /// </param>
+        /// <param name='p_lookup'>
+        /// Lookup do Parâmetro.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetLookup(string p_name, string p_lookup)
+        {
+            int k;
+            bool achou;
+
+            k = 0;
+            achou = false;
+            while (k < this.v_parameters.Count && !achou)
+            {
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                    achou = true;
+                else
+                    k++;
+            }
+
+            if (achou)
+                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_lookup = p_lookup;
+            else
+            {
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+            }
+        }
     }
 }

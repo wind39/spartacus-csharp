@@ -87,6 +87,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public Spartacus.Reporting.Border v_border;
 
+        /// <summary>
+        /// Valor padrão caso o valor do campo seja vazio.
+        /// </summary>
+        public string v_blank;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
@@ -97,6 +102,7 @@ namespace Spartacus.Reporting
             this.v_row = 0;
             this.v_format = "###,###,###,###,##0.00";
             this.v_border = null;
+            this.v_blank = "";
         }
 
         /// <summary>
@@ -141,30 +147,35 @@ namespace Spartacus.Reporting
             double v_tmpdouble;
             int v_tmpint;
 
-            switch (this.v_type)
+            if (p_text != null && p_text != "")
             {
-                case Spartacus.Database.Type.INTEGER:
-                    if (int.TryParse(p_text, out v_tmpint))
+                switch (this.v_type)
+                {
+                    case Spartacus.Database.Type.INTEGER:
+                        if (int.TryParse(p_text, out v_tmpint))
+                            v_ret = p_text;
+                        else
+                            v_ret = this.v_blank;
+                        break;
+                    case Spartacus.Database.Type.REAL:
+                        if (double.TryParse(p_text.Replace('.', ','), out v_tmpdouble))
+                            v_ret = string.Format("{0:" + this.v_format + "}", v_tmpdouble);
+                        else
+                            v_ret = this.v_blank;
+                        break;
+                    case Spartacus.Database.Type.DATE:
+                        if (p_text.Length >= 8 && int.TryParse(p_text, out v_tmpint))
+                            v_ret = string.Format("{0}/{1}/{2}", p_text.Substring(6, 2), p_text.Substring(4, 2), p_text.Substring(0, 4));
+                        else
+                            v_ret = this.v_blank;
+                        break;
+                    default:
                         v_ret = p_text;
-                    else
-                        v_ret = "0";
-                    break;
-                case Spartacus.Database.Type.REAL:
-                    if (double.TryParse(p_text.Replace('.', ','), out v_tmpdouble))
-                        v_ret = string.Format("{0:" + this.v_format + "}", v_tmpdouble);
-                    else
-                        v_ret = string.Format("{0:" + this.v_format + "}", (double) 0.0);
-                    break;
-                case Spartacus.Database.Type.DATE:
-                    if (p_text.Length >= 8 && int.TryParse(p_text, out v_tmpint))
-                        v_ret = string.Format("{0}/{1}/{2}", p_text.Substring(6, 2), p_text.Substring(4, 2), p_text.Substring(0, 4));
-                    else
-                        v_ret = "01/01/1900";
-                    break;
-                default:
-                    v_ret = p_text;
-                    break;
+                        break;
+                }
             }
+            else
+                v_ret = this.v_blank;
 
             return v_ret;
         }

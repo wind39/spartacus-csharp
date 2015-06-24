@@ -99,7 +99,7 @@ namespace Spartacus.Forms
             this.v_textbox.Parent = this.v_control;
 
             this.v_lookup = new ThirdParty.MultiColumnComboBox();
-            this.v_lookup.AutoComplete = false;
+            this.v_lookup.AutoComplete = true;
             this.v_lookup.AutoDropdown = true;
             this.v_lookup.BackColorEven = System.Drawing.Color.White;
             this.v_lookup.BackColorOdd = System.Drawing.Color.Silver;
@@ -147,7 +147,7 @@ namespace Spartacus.Forms
             this.v_textbox.Parent = this.v_control;
 
             this.v_lookup = new ThirdParty.MultiColumnComboBox();
-            this.v_lookup.AutoComplete = false;
+            this.v_lookup.AutoComplete = true;
             this.v_lookup.AutoDropdown = true;
             this.v_lookup.BackColorEven = System.Drawing.Color.White;
             this.v_lookup.BackColorOdd = System.Drawing.Color.Silver;
@@ -223,7 +223,7 @@ namespace Spartacus.Forms
         /// Usado para mostrar um formulário já preenchido ao usuário.
         /// </summary>
         /// <param name="p_text">Valor do componente (não do textbox).</param>
-        public void SetValue(string p_text)
+        public override void SetValue(string p_text)
         {
             System.Data.DataRow v_row;
             bool v_achou;
@@ -250,7 +250,7 @@ namespace Spartacus.Forms
         /// Retorna o valor atual do componente.
         /// </summary>
         /// <returns>Valor atual do componente.</returns>
-        public string GetValue()
+        public override string GetValue()
         {
             if (this.v_lookup.SelectedIndex >= 0 &&
                 this.v_lookup.SelectedIndex < ((System.Data.DataTable)this.v_lookup.DataSource).Rows.Count)
@@ -267,6 +267,7 @@ namespace Spartacus.Forms
         /// Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
         /// </summary>
         /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
+        /// <param name="p_sql">SQl a ser executado no banco de dados.</param>
         /// <param name="p_columnvalue">Coluna de valor.</param>
         /// <param name="p_columndisplay">Coluna para mostrar no Textbox.</param>
         /// <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param>
@@ -291,6 +292,40 @@ namespace Spartacus.Forms
             this.v_lookup.DataSource = v_table;
             this.v_lookup.DisplayMember = p_columnvalue;
             this.v_lookup.ValueMember = p_columndisplay;
+            this.v_lookup.SelectedIndex = -1;
+            this.v_lookup.Text = "";
+        }
+
+        /// <summary>
+        /// Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+        /// </summary>
+        /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
+        /// <param name="p_sql">SQl a ser executado no banco de dados.</param>
+        public void Populate(Spartacus.Database.Generic p_database, string p_sql)
+        {
+            System.Data.DataTable v_table;
+            string v_columnnames, v_columnwidths;
+            int k;
+
+            this.v_database = p_database;
+            this.v_sql = p_sql;
+
+            v_table = this.v_database.Query(this.v_sql, "LOOKUP");
+
+            v_columnnames = v_table.Columns[0].ColumnName;
+            v_columnwidths = "50";
+            for (k = 1; k < v_table.Columns.Count; k++)
+            {
+                v_columnnames += ";" + v_table.Columns[k].ColumnName;
+                v_columnwidths += ";120";
+            }
+
+            this.v_lookup.ColumnNames = v_columnnames;
+            this.v_lookup.ColumnWidths = v_columnwidths;
+
+            this.v_lookup.DataSource = v_table;
+            this.v_lookup.DisplayMember = v_table.Columns[0].ColumnName;
+            this.v_lookup.ValueMember = v_table.Columns[1].ColumnName;
             this.v_lookup.SelectedIndex = -1;
             this.v_lookup.Text = "";
         }

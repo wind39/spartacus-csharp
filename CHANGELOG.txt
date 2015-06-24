@@ -21,7 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-0.38.29: Spartacus.Reporting: Aumentada largura da borda padrão de 0.8 para 2.0
+0.38.30: Spartacus.Tools.ReportManager: Suporte a parâmetros do tipo DATE e LOOKUP
+         Spartacus.Reporting.Report: Fazendo funcionar renderização para 2 ou mais grupos variantes
+         Spartacus.Reporting.Field: Implementada opção "blank", que é o valor padrão a ser renderizado quando o campo for vazio
+0.38.29: Spartacus.Reporting: Usando largura de borda padrão da PDFjet
 0.38.28: Cor par ou ímpar para quando houver mais de uma linha no cabeçalho e rodapé de grupo
          Borda em campos específicos
 0.38.27: Corrigido bug na função TransferFromFile

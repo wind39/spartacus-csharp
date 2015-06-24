@@ -169,7 +169,7 @@ namespace Spartacus.Forms
         /// Usado para mostrar ao usuário um formulário já preenchido.
         /// </summary>
         /// <param name="p_text">Texto a ser mostrado no Textbox.</param>
-        public void SetValue(string p_text)
+        public override void SetValue(string p_text)
         {
             this.v_datetimepicker.Text = p_text;
         }
@@ -178,7 +178,7 @@ namespace Spartacus.Forms
         /// Retorna o texto ou valor atual do Textbox.
         /// </summary>
         /// <returns>Texto ou valor atual do Textbox.</returns>
-        public string GetValue()
+        public override string GetValue()
         {
             return this.v_datetimepicker.Text;
         }

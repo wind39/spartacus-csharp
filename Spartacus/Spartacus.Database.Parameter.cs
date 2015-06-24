@@ -95,6 +95,12 @@ namespace Spartacus.Database
         public string v_description;
 
         /// <summary>
+        /// String SQL para buscar as opções do parâmetro.
+        /// </summary>
+        public string v_lookup;
+
+
+        /// <summary>
         /// Inicializa uma instância da classe <see cref="Spartacus.Database.Parameter"/> .
         /// </summary>
         /// <param name='p_name'>
@@ -112,6 +118,7 @@ namespace Spartacus.Database
             this.v_null = true;
 
             this.v_description = "";
+            this.v_lookup = "";
         }
 
         /// <summary>

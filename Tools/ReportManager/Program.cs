@@ -243,17 +243,42 @@ namespace Spartacus.Tools.ReportManager
             this.v_paramwindow = new Spartacus.Forms.Window(
                 System.Configuration.ConfigurationManager.AppSettings["param.title"].ToString(),
                 500,
-                320,
+                500,
                 this.v_mainwindow
             );
 
             for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
             {
-                Spartacus.Forms.Textbox v_param = new Spartacus.Forms.Textbox(
-                    this.v_paramwindow,
-                    ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
-                );
-                this.v_paramwindow.Add(v_param);
+                if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_type == Spartacus.Database.Type.DATE)
+                {
+                    Spartacus.Forms.Datetimepicker v_param = new Spartacus.Forms.Datetimepicker(
+                        this.v_paramwindow,
+                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description,
+                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_dateformat
+                    );
+                    this.v_paramwindow.Add(v_param);
+                }
+                else
+                {
+                    if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != null &&
+                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != "")
+                    {
+                        Spartacus.Forms.Lookup v_param = new Spartacus.Forms.Lookup(
+                            this.v_paramwindow,
+                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                        );
+                        v_param.Populate(this.v_report.v_database, ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup);
+                        this.v_paramwindow.Add(v_param);
+                    }
+                    else
+                    {
+                        Spartacus.Forms.Textbox v_param = new Spartacus.Forms.Textbox(
+                            this.v_paramwindow,
+                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                        );
+                        this.v_paramwindow.Add(v_param);
+                    }
+                }
             }
 
             this.v_reportpdffile = new Spartacus.Forms.Filepicker(
@@ -281,12 +306,16 @@ namespace Spartacus.Tools.ReportManager
             try
             {
                 for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
-                    this.v_report.v_cmd.SetValue(k, ((Spartacus.Forms.Textbox)this.v_paramwindow.v_containers[k]).GetValue());
+                    this.v_report.v_cmd.SetValue(k, ((Spartacus.Forms.Container)this.v_paramwindow.v_containers[k]).GetValue());
 
                 this.v_report.v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(this.OnProgress);
 
                 this.v_report.Execute();
-                this.v_report.Save(this.v_reportpdffile.GetValue());
+
+                if (this.v_report.v_table.Rows.Count == 0)
+                    Spartacus.Forms.Messagebox.Show("O relatorio nao foi salvo em PDF porque nao tem dados.", "Sem dados!", Spartacus.Forms.Messagebox.Icon.HAND);
+                else
+                    this.v_report.Save(this.v_reportpdffile.GetValue());
 
                 this.v_progressbar.SetValue("Pronto!", 100);
             }

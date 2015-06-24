@@ -148,6 +148,24 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Informa o texto ou valor a ser mostrado no Container.
+        /// Usado para mostrar ao usuário um formulário já preenchido.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Container.</param>
+        public override void SetValue(string p_text)
+        {
+        }
+
+        /// <summary>
+        /// Retorna o texto ou valor atual do Container.
+        /// </summary>
+        /// <returns>Texto ou valor atual do Container.</returns>
+        public override string GetValue()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
         /// </summary>
         /// <param name="p_database">Objeto de conexão com o banco de dados.</param>

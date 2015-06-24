@@ -92,6 +92,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_footertemplate;
 
+        /// <summary>
+        /// Número de linhas da tabela de dados do grupo que já foram renderizadas.
+        /// </summary>
+        public int v_renderedrows;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Group"/>.
@@ -103,6 +108,8 @@ namespace Spartacus.Reporting
 
             this.v_headerfields = new System.Collections.ArrayList();
             this.v_footerfields = new System.Collections.ArrayList();
+
+            this.v_renderedrows = 0;
         }
 
         /// <summary>
@@ -110,7 +117,8 @@ namespace Spartacus.Reporting
         /// Percorre tabela de dados do relatório, filtrando e distinguindo os dados pela coluna do grupo.
         /// </summary>
         /// <param name="p_table">Tabela de dados do relatório.</param>
-        public void Build(System.Data.DataTable p_table)
+        /// <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
+        public void Build(System.Data.DataTable p_table, string p_parentgroupcolumn)
         {
             System.Collections.ArrayList v_allcolumns_temp;
             string[] v_allcolumns;
@@ -118,6 +126,10 @@ namespace Spartacus.Reporting
 
             // alocando lista de colunas
             v_allcolumns_temp = new System.Collections.ArrayList();
+
+            // adicionando coluna do grupo pai
+            if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
+                v_allcolumns_temp.Add(p_parentgroupcolumn);
 
             // adicionando coluna do grupo
             v_allcolumns_temp.Add(this.v_column);
@@ -144,6 +156,10 @@ namespace Spartacus.Reporting
                 v_allcolumns [k] = (string) v_allcolumns_temp[k];
 
             // filtrando dados distintos pela lista de colunas, e armazenando em tabela
+            if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
+                p_table.DefaultView.Sort = p_parentgroupcolumn + ", " + this.v_column;
+            else
+                p_table.DefaultView.Sort = this.v_column;
             this.v_table = p_table.DefaultView.ToTable(true, v_allcolumns);
         }
 
@@ -153,7 +169,8 @@ namespace Spartacus.Reporting
         /// Também calcula os valores de cada grupo, totalizando-os.
         /// </summary>
         /// <param name="p_table">Tabela de dados do relatório.</param>
-        public void BuildCalculate(System.Data.DataTable p_table)
+        /// <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
+        public void BuildCalculate(System.Data.DataTable p_table, string p_parentgroupcolumn)
         {
             System.Collections.ArrayList v_allcolumns_temp;
             string[] v_allcolumns;
@@ -163,6 +180,10 @@ namespace Spartacus.Reporting
 
             // alocando lista de colunas
             v_allcolumns_temp = new System.Collections.ArrayList();
+
+            // adicionando coluna do grupo pai
+            if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
+                v_allcolumns_temp.Add(p_parentgroupcolumn);
 
             // adicionando coluna do grupo
             v_allcolumns_temp.Add(this.v_column);
@@ -193,6 +214,10 @@ namespace Spartacus.Reporting
                 v_allcolumns [k] = (string)v_allcolumns_temp [k];
 
             // filtrando dados distintos pela lista de colunas, e armazenando em tabela
+            if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
+                p_table.DefaultView.Sort = p_parentgroupcolumn + ", " + this.v_column;
+            else
+                p_table.DefaultView.Sort = this.v_column;
             this.v_table = p_table.DefaultView.ToTable(true, v_allcolumns);
 
             // PASSO 2: PREENCHENDO VALORES

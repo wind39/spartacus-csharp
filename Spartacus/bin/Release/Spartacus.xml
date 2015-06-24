@@ -1759,6 +1759,17 @@
             Nome do Parâmetro.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetLookup(System.String,System.String)">
+            <summary>
+            Atribui uma string SQL ao parâmetro de nome <paramref name="p_name" />.
+            </summary>
+            <param name="p_name">
+            Nome do Parâmetro.
+            </param>
+            <param name="p_lookup">
+            Lookup do Parâmetro.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="T:Spartacus.Database.Exception">
             <summary>
             Classe Spartacus.Database.Exception.
@@ -2529,6 +2540,10 @@
         <member name="F:Spartacus.Database.Parameter.v_description">
             <summary>
             Descrição do parâmetro, a ser mostrado para o usuário.
+            </summary></member>
+        <member name="F:Spartacus.Database.Parameter.v_lookup">
+            <summary>
+            String SQL para buscar as opções do parâmetro.
             </summary></member>
         <member name="M:Spartacus.Database.Parameter.#ctor(System.String,Spartacus.Database.Type)">
             <summary>
@@ -3611,6 +3626,10 @@
             <summary>
             Borda do campo.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Field.v_blank">
+            <summary>
+            Valor padrão caso o valor do campo seja vazio.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Field.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.
@@ -3649,6 +3668,11 @@
         <member name="F:Spartacus.Reporting.Report.v_table">
             <summary>
             Tabela com os dados do relatório, após tratar tipos de colunas.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Report.v_rendertable">
+            <summary>
+            Tabela com os dados do relatório, ordenada de acordo com grupo de nível 0.
+            Usada para renderização dos detalhes.
             </summary></member>
         <member name="F:Spartacus.Reporting.Report.v_settings">
             <summary>
@@ -3898,11 +3922,13 @@
             <param name="p_datafieldfont">Fonte do campo de dados.</param>
             <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
             <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
-        <member name="M:Spartacus.Reporting.Report.RenderGroup(System.Int32,System.Collections.Generic.List{System.Collections.Generic.List{PDFjet.NET.Cell}},System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font,System.IO.StreamWriter)">
+        <member name="M:Spartacus.Reporting.Report.RenderGroup(System.Int32,System.String,System.String,System.Collections.Generic.List{System.Collections.Generic.List{PDFjet.NET.Cell}},System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font,System.IO.StreamWriter)">
             <summary>
             Renderiza um grupo.
             </summary>
             <param name="p_level">Nível do grupo atual.</param>
+            <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
+            <param name="p_parentgroupvalue">Valor do grupo pai.</param>
             <param name="p_data">Matriz de dados.</param>
             <param name="p_pageheight">Altura da página.</param>
             <param name="p_pagewidth">Largura da página.</param>
@@ -3962,23 +3988,29 @@
             <summary>
             Modelo de renderização do rodapé do grupo.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Group.v_renderedrows">
+            <summary>
+            Número de linhas da tabela de dados do grupo que já foram renderizadas.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Group.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Group" />.
             </summary></member>
-        <member name="M:Spartacus.Reporting.Group.Build(System.Data.DataTable)">
+        <member name="M:Spartacus.Reporting.Group.Build(System.Data.DataTable,System.String)">
             <summary>
             Constrói dados do grupo.
             Percorre tabela de dados do relatório, filtrando e distinguindo os dados pela coluna do grupo.
             </summary>
-            <param name="p_table">Tabela de dados do relatório.</param></member>
-        <member name="M:Spartacus.Reporting.Group.BuildCalculate(System.Data.DataTable)">
+            <param name="p_table">Tabela de dados do relatório.</param>
+            <param name="p_parentgroupcolumn">Coluna do grupo pai.</param></member>
+        <member name="M:Spartacus.Reporting.Group.BuildCalculate(System.Data.DataTable,System.String)">
             <summary>
             Constrói dados do grupo.
             Percorre tabela de dados do relatório, filtrando e distinguindo os dados pela coluna do grupo.
             Também calcula os valores de cada grupo, totalizando-os.
             </summary>
-            <param name="p_table">Tabela de dados do relatório.</param></member>
+            <param name="p_table">Tabela de dados do relatório.</param>
+            <param name="p_parentgroupcolumn">Coluna do grupo pai.</param></member>
         <member name="T:Spartacus.Reporting.Border">
             <summary>
             Classe Border.
@@ -35639,6 +35671,17 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Buttons.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Forms.Buttons.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
         <member name="M:Spartacus.Forms.Buttons.AddButton(System.String,System.EventHandler)">
             <summary>
             Adiciona um botão à lista de botões.
@@ -35753,6 +35796,17 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Container.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Forms.Container.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
         <member name="T:Spartacus.Forms.Datetimepicker">
             <summary>
             Classe DateTimepicker.
@@ -36056,6 +36110,17 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Grid.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Forms.Grid.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
         <member name="M:Spartacus.Forms.Grid.Populate(Spartacus.Database.Generic,System.String)">
             <summary>
             Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
@@ -36165,9 +36230,16 @@
             Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
             </summary>
             <param name="p_database">Objeto de conexão com o banco de dados.</param>
+            <param name="p_sql">SQl a ser executado no banco de dados.</param>
             <param name="p_columnvalue">Coluna de valor.</param>
             <param name="p_columndisplay">Coluna para mostrar no Textbox.</param>
             <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param></member>
+        <member name="M:Spartacus.Forms.Lookup.Populate(Spartacus.Database.Generic,System.String)">
+            <summary>
+            Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+            </summary>
+            <param name="p_database">Objeto de conexão com o banco de dados.</param>
+            <param name="p_sql">SQl a ser executado no banco de dados.</param></member>
         <member name="M:Spartacus.Forms.Lookup.Populate">
             <summary>
             Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
@@ -36268,6 +36340,17 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Menu.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Forms.Menu.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
         <member name="M:Spartacus.Forms.Menu.AddGroup(System.String)">
             <summary>
             Adiciona um grupo ao Menu.
@@ -36483,6 +36566,17 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Window.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Forms.Window.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
         <member name="M:Spartacus.Forms.Window.Show">
             <summary>
             Mostra a Janela atual.
@@ -37157,6 +37251,11 @@
             <summary>
             Atualiza os dados do Container atual.
             </summary></member>
+        <member name="M:Spartacus.Forms.Progressbar.SetValue(System.String)">
+            <summary>
+            Informa o texto a ser mostrado no Label.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Label.</param></member>
         <member name="M:Spartacus.Forms.Progressbar.SetValue(System.String,System.Int32)">
             <summary>
             Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
