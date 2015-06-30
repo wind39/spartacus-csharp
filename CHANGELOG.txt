@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.31: Spartacus.Reporting: Opção para renderizar títulos de grupos no cabeçalho de dados
+         Classe Spartacus.Reporting.Report dividida em dois arquivos
 0.38.30: Spartacus.Tools.ReportManager: Suporte a parâmetros do tipo DATE e LOOKUP
          Spartacus.Reporting.Report: Fazendo funcionar renderização para 2 ou mais grupos variantes
          Spartacus.Reporting.Field: Implementada opção "blank", que é o valor padrão a ser renderizado quando o campo for vazio

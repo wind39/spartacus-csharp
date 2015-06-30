@@ -97,6 +97,16 @@ namespace Spartacus.Reporting
         /// </summary>
         public int v_renderedrows;
 
+        /// <summary>
+        /// Indica se os títulos dos campos de cabeçalho do grupo devem ser mostrados no cabeçalho de dados ou não.
+        /// </summary>
+        public bool v_showheadertitles;
+
+        /// <summary>
+        /// Indica se os títulos dos campos de rodapé do grupo devem ser mostrados no cabeçalho de dados ou não.
+        /// </summary>
+        public bool v_showfootertitles;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Group"/>.
@@ -110,6 +120,9 @@ namespace Spartacus.Reporting
             this.v_footerfields = new System.Collections.ArrayList();
 
             this.v_renderedrows = 0;
+
+            this.v_showheadertitles = false;
+            this.v_showfootertitles = false;
         }
 
         /// <summary>

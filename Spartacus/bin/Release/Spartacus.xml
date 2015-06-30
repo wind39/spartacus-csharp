@@ -3648,6 +3648,10 @@
             <summary>
             Classe Report.
             Representa um relatório em PDF.
+            </summary>
+            <summary>
+            Classe Report.
+            Representa um relatório em PDF.
             </summary></member>
         <member name="F:Spartacus.Reporting.Report.v_reportid">
             <summary>
@@ -3740,6 +3744,10 @@
             <summary>
             Arquivo de texto contendo a matriz de renderização.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Report.v_numrowsdataheader">
+            <summary>
+            Número de linhas no cabeçalho de dados.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Report.#ctor(System.Int32,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
@@ -3783,6 +3791,63 @@
             <param name="p_filename">Nome do arquivo XML.</param>
             <param name="p_table">Tabela com os dados.</param>
             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param></member>
+        <member name="M:Spartacus.Reporting.Report.Execute">
+            <summary>
+            Executa o relatório.
+            Se o relatório não possui tabela pré-definida, utiliza o comando SQL do relatório para buscar os dados no banco.
+            Em seguida gera tabelas auxiliares para todos os grupos.
+            </summary></member>
+        <member name="M:Spartacus.Reporting.Report.Save(System.String)">
+            <summary>
+            Salva como PDF.
+            </summary>
+            <param name="p_filename">Nome do arquivo PDF.</param></member>
+        <member name="M:Spartacus.Reporting.Report.SavePartial(PDFjet.NET.PDF)">
+            <summary>
+            Salva como PDF parcialmente.
+            Usado para renderização de pacotes de arquivos PDF.
+            </summary>
+            <param name="p_pdf">Objeto PDF aberto.</param></member>
+        <member name="M:Spartacus.Reporting.Report.RenderDataHeader(System.Single,System.Single,PDFjet.NET.Font)">
+            <summary>
+            Renderiza cabeçalho de dados.
+            </summary>
+            <returns>Matriz representando o cabeçalho de dados.</returns>
+            <param name="p_pageheight">Altura da página.</param>
+            <param name="p_pagewidth">Largura da página.</param>
+            <param name="p_dataheaderfont">Fonte do cabeçalho de dados.</param></member>
+        <member name="M:Spartacus.Reporting.Report.BuildTemplates(System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font)">
+            <summary>
+            Contrói modelos de renderização em memória.
+            </summary>
+            <param name="p_pageheight">Altura da página.</param>
+            <param name="p_pagewidth">Largura da página.</param>
+            <param name="p_datafieldfont">Fonte do campo de dados.</param>
+            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
+            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
+        <member name="M:Spartacus.Reporting.Report.RenderData(System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font)">
+            <summary>
+            Renderiza matriz de dados.
+            </summary>
+            <returns>Matriz de dados.</returns>
+            <param name="p_pageheight">Altura da página.</param>
+            <param name="p_pagewidth">Largura da página.</param>
+            <param name="p_datafieldfont">Fonte do campo de dados.</param>
+            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
+            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
+        <member name="M:Spartacus.Reporting.Report.RenderGroup(System.Int32,System.String,System.String,System.Collections.Generic.List{System.Collections.Generic.List{PDFjet.NET.Cell}},System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font,System.IO.StreamWriter)">
+            <summary>
+            Renderiza um grupo.
+            </summary>
+            <param name="p_level">Nível do grupo atual.</param>
+            <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
+            <param name="p_parentgroupvalue">Valor do grupo pai.</param>
+            <param name="p_data">Matriz de dados.</param>
+            <param name="p_pageheight">Altura da página.</param>
+            <param name="p_pagewidth">Largura da página.</param>
+            <param name="p_datafieldfont">Fonte do campo de dados.</param>
+            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
+            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
         <member name="M:Spartacus.Reporting.Report.ReadXml(System.String)">
             <summary>
             Lê o arquivo XML que define o relatório.
@@ -3878,63 +3943,6 @@
             </summary>
             <param name="p_reader">Objeto XML.</param>
             <param name="p_group">Grupo do relatório.</param></member>
-        <member name="M:Spartacus.Reporting.Report.Execute">
-            <summary>
-            Executa o relatório.
-            Se o relatório não possui tabela pré-definida, utiliza o comando SQL do relatório para buscar os dados no banco.
-            Em seguida gera tabelas auxiliares para todos os grupos.
-            </summary></member>
-        <member name="M:Spartacus.Reporting.Report.Save(System.String)">
-            <summary>
-            Salva como PDF.
-            </summary>
-            <param name="p_filename">Nome do arquivo PDF.</param></member>
-        <member name="M:Spartacus.Reporting.Report.SavePartial(PDFjet.NET.PDF)">
-            <summary>
-            Salva como PDF parcialmente.
-            Usado para renderização de pacotes de arquivos PDF.
-            </summary>
-            <param name="p_pdf">Objeto PDF aberto.</param></member>
-        <member name="M:Spartacus.Reporting.Report.RenderDataHeader(System.Single,System.Single,PDFjet.NET.Font)">
-            <summary>
-            Renderiza cabeçalho de dados.
-            </summary>
-            <returns>Matriz representando o cabeçalho de dados.</returns>
-            <param name="p_pageheight">Altura da página.</param>
-            <param name="p_pagewidth">Largura da página.</param>
-            <param name="p_dataheaderfont">Fonte do cabeçalho de dados.</param></member>
-        <member name="M:Spartacus.Reporting.Report.BuildTemplates(System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font)">
-            <summary>
-            Contrói modelos de renderização em memória.
-            </summary>
-            <param name="p_pageheight">Altura da página.</param>
-            <param name="p_pagewidth">Largura da página.</param>
-            <param name="p_datafieldfont">Fonte do campo de dados.</param>
-            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
-            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
-        <member name="M:Spartacus.Reporting.Report.RenderData(System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font)">
-            <summary>
-            Renderiza matriz de dados.
-            </summary>
-            <returns>Matriz de dados.</returns>
-            <param name="p_pageheight">Altura da página.</param>
-            <param name="p_pagewidth">Largura da página.</param>
-            <param name="p_datafieldfont">Fonte do campo de dados.</param>
-            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
-            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
-        <member name="M:Spartacus.Reporting.Report.RenderGroup(System.Int32,System.String,System.String,System.Collections.Generic.List{System.Collections.Generic.List{PDFjet.NET.Cell}},System.Single,System.Single,PDFjet.NET.Font,PDFjet.NET.Font,PDFjet.NET.Font,System.IO.StreamWriter)">
-            <summary>
-            Renderiza um grupo.
-            </summary>
-            <param name="p_level">Nível do grupo atual.</param>
-            <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
-            <param name="p_parentgroupvalue">Valor do grupo pai.</param>
-            <param name="p_data">Matriz de dados.</param>
-            <param name="p_pageheight">Altura da página.</param>
-            <param name="p_pagewidth">Largura da página.</param>
-            <param name="p_datafieldfont">Fonte do campo de dados.</param>
-            <param name="p_groupheaderfont">Fonte do cabeçalho de grupo.</param>
-            <param name="p_groupfooterfont">Fonte do rodapé de grupo.</param></member>
         <member name="T:Spartacus.Reporting.Group">
             <summary>
             Classe Group.
@@ -3991,6 +3999,14 @@
         <member name="F:Spartacus.Reporting.Group.v_renderedrows">
             <summary>
             Número de linhas da tabela de dados do grupo que já foram renderizadas.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Group.v_showheadertitles">
+            <summary>
+            Indica se os títulos dos campos de cabeçalho do grupo devem ser mostrados no cabeçalho de dados ou não.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Group.v_showfootertitles">
+            <summary>
+            Indica se os títulos dos campos de rodapé do grupo devem ser mostrados no cabeçalho de dados ou não.
             </summary></member>
         <member name="M:Spartacus.Reporting.Group.#ctor">
             <summary>
