@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.32: Spartacus.Reporting: Opção para ocultar cabeçalho de dados
+         Spartacus.Reporting: Suporte a fill em valores reais
+         Spartacus.Reporting.Field: System.Net.WebUtility.HtmlDecode em campos não-numéricos
 0.38.31: Spartacus.Reporting: Opção para renderizar títulos de grupos no cabeçalho de dados
          Classe Spartacus.Reporting.Report dividida em dois arquivos
 0.38.30: Spartacus.Tools.ReportManager: Suporte a parâmetros do tipo DATE e LOOKUP

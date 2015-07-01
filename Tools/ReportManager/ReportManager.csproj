@@ -74,5 +74,7 @@
   <ItemGroup>
     <Folder Include="bin\Release\templates\" />
     <Folder Include="bin\Debug\templates\" />
+    <Folder Include="bin\Debug\images\" />
+    <Folder Include="bin\Release\images\" />
   </ItemGroup>
 </Project>

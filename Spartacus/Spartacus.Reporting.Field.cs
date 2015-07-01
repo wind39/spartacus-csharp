@@ -60,7 +60,7 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Percentual indicando quanto da largura da página o campo ocupa.
         /// </summary>
-        public int v_fill;
+        public double v_fill;
 
         /// <summary>
         /// Tipo de dados do campo.
@@ -170,7 +170,7 @@ namespace Spartacus.Reporting
                             v_ret = this.v_blank;
                         break;
                     default:
-                        v_ret = p_text;
+                        v_ret = System.Net.WebUtility.HtmlDecode(p_text);
                         break;
                 }
             }

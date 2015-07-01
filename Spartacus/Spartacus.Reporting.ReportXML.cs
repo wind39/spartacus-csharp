@@ -295,6 +295,12 @@ namespace Spartacus.Reporting
                             this.ReadFont(this.v_settings.v_groupfooterfont, v_item);
                             v_item.Close();
                             break;
+                        case "showdataheader":
+                            if (p_reader.ReadString() == "TRUE")
+                                this.v_settings.v_showdataheader = true;
+                            else
+                                this.v_settings.v_showdataheader = false;
+                            break;
                         default:
                             break;
                     }
@@ -716,7 +722,7 @@ namespace Spartacus.Reporting
                             }
                             break;
                         case "fill":
-                            v_field.v_fill = System.Convert.ToInt32(p_reader.ReadString());
+                            v_field.v_fill = double.Parse(p_reader.ReadString());
                             break;
                         case "type":
                             v_field.SetType(p_reader.ReadString());
@@ -893,7 +899,7 @@ namespace Spartacus.Reporting
                             }
                             break;
                         case "fill":
-                            v_field.v_fill = System.Convert.ToInt32(p_reader.ReadString());
+                            v_field.v_fill = double.Parse(p_reader.ReadString());
                             break;
                         case "type":
                             v_field.SetType(p_reader.ReadString());
@@ -988,7 +994,7 @@ namespace Spartacus.Reporting
                             }
                             break;
                         case "fill":
-                            v_field.v_fill = System.Convert.ToInt32(p_reader.ReadString());
+                            v_field.v_fill = double.Parse(p_reader.ReadString());
                             break;
                         case "type":
                             v_field.SetType(p_reader.ReadString());

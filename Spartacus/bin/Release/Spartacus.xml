@@ -4166,6 +4166,10 @@
             <summary>
             Cor de fundo do rodapé de grupo em linhas ímpares.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Settings.v_showdataheader">
+            <summary>
+            Se o cabeçalho de dados deve ser mostrado ou não.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Settings.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Settings" />.

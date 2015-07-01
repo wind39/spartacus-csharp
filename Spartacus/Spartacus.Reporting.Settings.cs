@@ -173,6 +173,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public int v_groupfooteroddcolor;
 
+        /// <summary>
+        /// Se o cabeçalho de dados deve ser mostrado ou não.
+        /// </summary>
+        public bool v_showdataheader;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Settings"/>.
@@ -183,6 +188,7 @@ namespace Spartacus.Reporting
             this.v_bottommargin = 20.0f;
             this.v_leftmargin = 20.0f;
             this.v_rightmargin = 20.0f;
+            this.v_showdataheader = true;
         }
 
         /// <summary>

@@ -509,7 +509,7 @@ namespace Spartacus.Reporting
             PDFjet.NET.PDF v_pdf;
             System.IO.BufferedStream v_buffer;
             System.IO.FileStream f;
-            PDFjet.NET.Table v_dataheadertable, v_datatable;
+            PDFjet.NET.Table v_dataheadertable = null, v_datatable;
             float[] v_layout;
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
@@ -542,23 +542,29 @@ namespace Spartacus.Reporting
 
                 // tabela de cabecalho de dados
 
-                v_dataheadertable = new PDFjet.NET.Table();
-                v_dataheadertable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
+                if (this.v_settings.v_showdataheader)
+                {
+                    v_dataheadertable = new PDFjet.NET.Table();
+                    v_dataheadertable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
 
-                v_rendered = this.RenderDataHeader(
-                    v_page.GetHeight(),
-                    v_page.GetWidth(),
-                    this.v_settings.v_dataheaderfont.GetFont(v_pdf)
-                );
+                    v_rendered = this.RenderDataHeader(
+                        v_page.GetHeight(),
+                        v_page.GetWidth(),
+                        this.v_settings.v_dataheaderfont.GetFont(v_pdf)
+                    );
 
-                v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                //v_dataheadertable.SetCellBordersWidth(1.5f);
+                    v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
+                    //v_dataheadertable.SetCellBordersWidth(1.5f);
+                }
 
                 // tabela de dados
 
                 v_datatable = new PDFjet.NET.Table();
                 //v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdetail));
-                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdataheader));
+                if (this.v_settings.v_showdataheader)
+                    v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdataheader));
+                else
+                    v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
                 v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
 
                 this.BuildTemplates(
@@ -612,7 +618,8 @@ namespace Spartacus.Reporting
                         v_page
                     );
 
-                    v_dataheadertable.DrawOn(v_page);
+                    if (this.v_settings.v_showdataheader)
+                        v_dataheadertable.DrawOn(v_page);
                     v_datatable.ImprovedDrawOn(v_page, v_reader);
 
                     this.v_footer.Render(
@@ -626,7 +633,8 @@ namespace Spartacus.Reporting
 
                     if (v_datatable.HasMoreData())
                     {
-                        v_dataheadertable.ResetRenderedPagesCount();
+                        if (this.v_settings.v_showdataheader)
+                            v_dataheadertable.ResetRenderedPagesCount();
 
                         v_page = new PDFjet.NET.Page(v_pdf, v_layout);
                         v_currentpage++;
@@ -656,7 +664,7 @@ namespace Spartacus.Reporting
         /// <param name="p_pdf">Objeto PDF aberto.</param>
         public void SavePartial(PDFjet.NET.PDF p_pdf)
         {
-            PDFjet.NET.Table v_dataheadertable, v_datatable;
+            PDFjet.NET.Table v_dataheadertable = null, v_datatable;
             float[] v_layout;
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
@@ -684,23 +692,29 @@ namespace Spartacus.Reporting
 
                 // tabela de cabecalho de dados
 
-                v_dataheadertable = new PDFjet.NET.Table();
-                v_dataheadertable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
+                if (this.v_settings.v_showdataheader)
+                {
+                    v_dataheadertable = new PDFjet.NET.Table();
+                    v_dataheadertable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
 
-                v_rendered = this.RenderDataHeader(
-                    v_page.GetHeight(),
-                    v_page.GetWidth(),
-                    this.v_settings.v_dataheaderfont.GetFont(p_pdf)
-                );
+                    v_rendered = this.RenderDataHeader(
+                        v_page.GetHeight(),
+                        v_page.GetWidth(),
+                        this.v_settings.v_dataheaderfont.GetFont(p_pdf)
+                    );
 
-                v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
-                //v_dataheadertable.SetCellBordersWidth(1.5f);
+                    v_dataheadertable.SetData(v_rendered, PDFjet.NET.Table.DATA_HAS_0_HEADER_ROWS);
+                    //v_dataheadertable.SetCellBordersWidth(1.5f);
+                }
 
                 // tabela de dados
 
                 v_datatable = new PDFjet.NET.Table();
                 //v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdetail));
-                v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdataheader));
+                if (this.v_settings.v_showdataheader)
+                    v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height + ((this.v_settings.v_dataheaderfont.v_size + 2) * 1.8 * this.v_numrowsdataheader));
+                else
+                    v_datatable.SetPosition(this.v_settings.v_leftmargin, this.v_settings.v_topmargin  + this.v_header.v_height);
                 v_datatable.SetBottomMargin(this.v_settings.v_bottommargin + this.v_footer.v_height);
 
                 this.BuildTemplates(
@@ -754,7 +768,8 @@ namespace Spartacus.Reporting
                         v_page
                     );
 
-                    v_dataheadertable.DrawOn(v_page);
+                    if (this.v_settings.v_showdataheader)
+                        v_dataheadertable.DrawOn(v_page);
                     v_datatable.ImprovedDrawOn(v_page, v_reader);
 
                     this.v_footer.Render(
@@ -768,7 +783,8 @@ namespace Spartacus.Reporting
 
                     if (v_datatable.HasMoreData())
                     {
-                        v_dataheadertable.ResetRenderedPagesCount();
+                        if (this.v_settings.v_showdataheader)
+                            v_dataheadertable.ResetRenderedPagesCount();
 
                         v_page = new PDFjet.NET.Page(p_pdf, v_layout);
                         v_currentpage++;
