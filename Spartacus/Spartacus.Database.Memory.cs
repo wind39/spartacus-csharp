@@ -329,7 +329,7 @@ namespace Spartacus.Database
             try
             {
                 this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                return (string) this.v_cmd.ExecuteScalar();
+                return this.v_cmd.ExecuteScalar().ToString();
             }
             catch (Mono.Data.Sqlite.SqliteException e)
             {

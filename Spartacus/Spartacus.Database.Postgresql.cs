@@ -540,7 +540,7 @@ namespace Spartacus.Database
                     this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (Npgsql.NpgsqlException e)
                 {
@@ -565,7 +565,7 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (Npgsql.NpgsqlException e)
                 {

@@ -532,7 +532,7 @@ namespace Spartacus.Database
                     this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
@@ -557,7 +557,7 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {

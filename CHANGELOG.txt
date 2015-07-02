@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.33: Spartacus.Database: ExecuteScalar usa ToString ao invés de cast
+         Spartacus.Database: Nomes de parâmetros são compatibilizados para maiúscula
 0.38.32: Spartacus.Reporting: Opção para ocultar cabeçalho de dados
          Spartacus.Reporting: Suporte a fill em valores reais
          Spartacus.Reporting.Field: System.Net.WebUtility.HtmlDecode em campos não-numéricos

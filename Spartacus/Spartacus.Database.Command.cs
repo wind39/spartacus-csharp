@@ -103,7 +103,7 @@ namespace Spartacus.Database
         /// </param>
         public void AddParameter(string p_name, Spartacus.Database.Type p_type)
         {
-            this.v_parameters.Add(new Spartacus.Database.Parameter(p_name, p_type));
+            this.v_parameters.Add(new Spartacus.Database.Parameter(p_name.ToUpper(), p_type));
         }
 
 		/// <summary>
@@ -688,14 +688,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetValue(string p_name, string p_value)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters[k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters[k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -727,7 +730,7 @@ namespace Spartacus.Database
             }
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -743,14 +746,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetValue(string p_name, bool p_null)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -764,7 +770,7 @@ namespace Spartacus.Database
             }
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -846,14 +852,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetDateFormat(string p_name, string p_dateformat)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -863,7 +872,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_dateformat = p_dateformat;
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -879,14 +888,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetLocale(string p_name, Spartacus.Database.Locale p_locale)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -896,7 +908,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_locale = p_locale;
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -912,14 +924,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetDescription(string p_name, string p_description)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -929,7 +944,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_description = p_description;
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -945,14 +960,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public string GetValue(string p_name)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -962,7 +980,7 @@ namespace Spartacus.Database
                 return ((Spartacus.Database.Parameter)this.v_parameters [k]).v_value;
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
 
@@ -978,14 +996,17 @@ namespace Spartacus.Database
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
         public void SetLookup(string p_name, string p_lookup)
         {
+            string v_name;
             int k;
             bool achou;
+
+            v_name = p_name.ToUpper();
 
             k = 0;
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == p_name)
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -995,7 +1016,7 @@ namespace Spartacus.Database
                 ((Spartacus.Database.Parameter)this.v_parameters [k]).v_lookup = p_lookup;
             else
             {
-                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", p_name);
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
     }

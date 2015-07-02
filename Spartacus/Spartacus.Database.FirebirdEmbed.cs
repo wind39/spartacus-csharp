@@ -528,7 +528,7 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
                 {
@@ -553,7 +553,7 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    return (string) this.v_cmd.ExecuteScalar();
+                    return this.v_cmd.ExecuteScalar().ToString();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
                 {
