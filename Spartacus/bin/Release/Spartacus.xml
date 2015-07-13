@@ -36147,6 +36147,10 @@
             </summary>
             <param name="p_database">Objeto de conexão com o banco de dados.</param>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Forms.Grid.Populate(System.Data.DataTable)">
+            <summary>
+            Popula o Grid atual com os dados de um DataTable.
+            </summary></member>
         <member name="M:Spartacus.Forms.Grid.Populate">
             <summary>
             Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.

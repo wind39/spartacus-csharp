@@ -180,6 +180,15 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Popula o Grid atual com os dados de um DataTable.
+        /// </summary>
+        public void Populate(System.Data.DataTable p_table)
+        {
+            this.v_grid.DataSource = p_table;
+            this.v_grid.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+        /// <summary>
         /// Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
         /// </summary>
         public void Populate()
