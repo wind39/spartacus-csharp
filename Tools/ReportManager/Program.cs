@@ -50,7 +50,10 @@ namespace Spartacus.Tools.ReportManager
         private Spartacus.Forms.Filepicker v_reportpdffile;
         private Spartacus.Forms.Progressbar v_progressbar;
 
+        private int v_currentcode;
         private string v_currentfile;
+
+        private bool v_editable;
 
 
         public void Initialize()
@@ -76,11 +79,13 @@ namespace Spartacus.Tools.ReportManager
                 this.v_maingrid.Populate(this.v_database, "select * from reports");
                 this.v_mainwindow.Add(this.v_maingrid);
 
+                this.v_editable = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["editable"].ToString());
+
                 this.v_mainbuttons = new Spartacus.Forms.Buttons(this.v_mainwindow);
                 this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.execute"].ToString(), this.OnMainExecuteClick);
-                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.insert"].ToString(), this.OnMainInsertClick);
-                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.update"].ToString(), this.OnMainUpdateClick);
-                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.delete"].ToString(), this.OnMainDeleteClick);
+                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.insert"].ToString(), this.OnMainInsertClick, this.v_editable);
+                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.update"].ToString(), this.OnMainUpdateClick, this.v_editable);
+                this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.delete"].ToString(), this.OnMainDeleteClick, this.v_editable);
                 this.v_mainwindow.Add(this.v_mainbuttons);
 
                 System.Windows.Forms.Application.EnableVisualStyles();
@@ -237,74 +242,100 @@ namespace Spartacus.Tools.ReportManager
         {
             System.Data.DataRow v_row = this.v_maingrid.CurrentRow();
 
-            v_currentfile = v_row["xmlfile"].ToString();
-            this.v_report = new Spartacus.Reporting.Report(int.Parse(v_row["code"].ToString()), v_currentfile);
-
-            this.v_paramwindow = new Spartacus.Forms.Window(
-                System.Configuration.ConfigurationManager.AppSettings["param.title"].ToString(),
-                500,
-                500,
-                this.v_mainwindow
-            );
-
-            for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
+            try
             {
-                if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_type == Spartacus.Database.Type.DATE)
+                this.v_currentcode = int.Parse(v_row["code"].ToString());
+                this.v_currentfile = v_row["xmlfile"].ToString();
+                this.v_report = new Spartacus.Reporting.Report(this.v_currentcode, this.v_currentfile);
+
+                this.v_paramwindow = new Spartacus.Forms.Window(
+                    System.Configuration.ConfigurationManager.AppSettings["param.title"].ToString(),
+                    500,
+                    500,
+                    this.v_mainwindow
+                );
+
+                for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
                 {
-                    Spartacus.Forms.Datetimepicker v_param = new Spartacus.Forms.Datetimepicker(
-                        this.v_paramwindow,
-                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description,
-                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_dateformat
-                    );
-                    this.v_paramwindow.Add(v_param);
-                }
-                else
-                {
-                    if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != null &&
-                        ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != "")
+                    if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_type == Spartacus.Database.Type.DATE)
                     {
-                        Spartacus.Forms.Lookup v_param = new Spartacus.Forms.Lookup(
+                        Spartacus.Forms.Datetimepicker v_param = new Spartacus.Forms.Datetimepicker(
                             this.v_paramwindow,
-                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description,
+                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_dateformat
                         );
-                        v_param.Populate(this.v_report.v_database, ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup);
                         this.v_paramwindow.Add(v_param);
                     }
                     else
                     {
-                        Spartacus.Forms.Textbox v_param = new Spartacus.Forms.Textbox(
-                            this.v_paramwindow,
-                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
-                        );
-                        this.v_paramwindow.Add(v_param);
+                        if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != null &&
+                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != "")
+                        {
+                            Spartacus.Forms.Lookup v_param = new Spartacus.Forms.Lookup(
+                                this.v_paramwindow,
+                                ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                            );
+                            v_param.Populate(this.v_report.v_database, ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup, "80;150");
+                            this.v_paramwindow.Add(v_param);
+                        }
+                        else
+                        {
+                            Spartacus.Forms.Textbox v_param = new Spartacus.Forms.Textbox(
+                                this.v_paramwindow,
+                                ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                            );
+                            this.v_paramwindow.Add(v_param);
+                        }
                     }
                 }
+
+                this.v_reportpdffile = new Spartacus.Forms.Filepicker(
+                    this.v_paramwindow,
+                    Spartacus.Forms.Filepicker.Type.SAVE,
+                    System.Configuration.ConfigurationManager.AppSettings["param.pdffile"].ToString(),
+                    System.Configuration.ConfigurationManager.AppSettings["param.filter"].ToString()
+                );
+                this.v_paramwindow.Add(this.v_reportpdffile);
+
+                this.v_parambuttons = new Spartacus.Forms.Buttons(this.v_paramwindow);
+                this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.execute"].ToString(), this.OnParamExecuteClick);
+                this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.cancel"].ToString(), this.OnParamCancelClick);
+                this.v_paramwindow.Add(this.v_parambuttons);
+
+                this.v_progressbar = new Spartacus.Forms.Progressbar(this.v_paramwindow);
+                this.v_progressbar.SetValue("Aguardando início", 0);
+                this.v_paramwindow.Add(this.v_progressbar);
+
+                this.v_paramwindow.Show();
             }
-
-            this.v_reportpdffile = new Spartacus.Forms.Filepicker(
-                this.v_paramwindow,
-                Spartacus.Forms.Filepicker.Type.SAVE,
-                System.Configuration.ConfigurationManager.AppSettings["param.pdffile"].ToString(),
-                System.Configuration.ConfigurationManager.AppSettings["param.filter"].ToString()
-            );
-            this.v_paramwindow.Add(this.v_reportpdffile);
-
-            this.v_parambuttons = new Spartacus.Forms.Buttons(this.v_paramwindow);
-            this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.execute"].ToString(), this.OnParamExecuteClick);
-            this.v_parambuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["param.cancel"].ToString(), this.OnParamCancelClick);
-            this.v_paramwindow.Add(this.v_parambuttons);
-
-            this.v_progressbar = new Spartacus.Forms.Progressbar(this.v_paramwindow);
-            this.v_progressbar.SetValue("Aguardando início", 0);
-            this.v_paramwindow.Add(this.v_progressbar);
-
-            this.v_paramwindow.Show();
+            catch (Spartacus.Database.Exception exc)
+            {
+                Spartacus.Forms.Messagebox.Show(exc.v_message, "Spartacus.Database.Exception", Spartacus.Forms.Messagebox.Icon.ERROR);
+                System.Environment.Exit(-1);
+            }
+            catch (Spartacus.Reporting.Exception exc)
+            {
+                Spartacus.Forms.Messagebox.Show(exc.v_message, "Spartacus.Reporting.Exception", Spartacus.Forms.Messagebox.Icon.ERROR);
+                System.Environment.Exit(-1);
+            }
+            catch (Spartacus.Forms.Exception exc)
+            {
+                Spartacus.Forms.Messagebox.Show(exc.v_message, "Spartacus.Forms.Exception", Spartacus.Forms.Messagebox.Icon.ERROR);
+                System.Environment.Exit(-1);
+            }
+            catch (System.Exception exc)
+            {
+                Spartacus.Forms.Messagebox.Show(exc.Message, exc.GetType().ToString(), Spartacus.Forms.Messagebox.Icon.ERROR);
+                System.Environment.Exit(-1);
+            }
         }
 
         private void OnParamExecuteClick(object sender, System.EventArgs e)
         {
             try
             {
+                this.v_report = new Spartacus.Reporting.Report(this.v_currentcode, this.v_currentfile);
+
                 for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
                     this.v_report.v_cmd.SetValue(k, ((Spartacus.Forms.Container)this.v_paramwindow.v_containers[k]).GetValue());
 
@@ -329,6 +360,11 @@ namespace Spartacus.Tools.ReportManager
                 Spartacus.Forms.Messagebox.Show(exc.v_message, "Spartacus.Reporting.Exception", Spartacus.Forms.Messagebox.Icon.ERROR);
                 System.Environment.Exit(-1);
             }
+            catch (Spartacus.Forms.Exception exc)
+            {
+                Spartacus.Forms.Messagebox.Show(exc.v_message, "Spartacus.Forms.Exception", Spartacus.Forms.Messagebox.Icon.ERROR);
+                System.Environment.Exit(-1);
+            }
             catch (System.Exception exc)
             {
                 Spartacus.Forms.Messagebox.Show(exc.Message, exc.GetType().ToString(), Spartacus.Forms.Messagebox.Icon.ERROR);
@@ -339,6 +375,9 @@ namespace Spartacus.Tools.ReportManager
         private void OnParamCancelClick(object sender, System.EventArgs e)
         {
             this.v_paramwindow.Hide();
+            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[1]).Enabled = this.v_editable;
+            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[2]).Enabled = this.v_editable;
+            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[3]).Enabled = this.v_editable;
         }
 
         private void OnProgress(Spartacus.Utils.ProgressEventClass sender, Spartacus.Utils.ProgressEventArgs e)

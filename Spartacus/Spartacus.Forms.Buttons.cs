@@ -186,5 +186,52 @@ namespace Spartacus.Forms
 
             this.v_offsetx = v_button.Location.X - 10;
         }
+
+        /// <summary>
+        /// Adiciona um botão à lista de botões.
+        /// </summary>
+        /// <param name="p_text">Texto do botão.</param>
+        /// <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
+        /// <param name="p_enabled">Se o botão deve começar habilitado ou não.</param>
+        public void AddButton(string p_text, System.EventHandler p_delegate, bool p_enabled)
+        {
+            System.Windows.Forms.Button v_button;
+
+            v_button = new System.Windows.Forms.Button();
+            v_button.Text = p_text;
+            v_button.Width = 100;
+            v_button.Location = new System.Drawing.Point(this.v_offsetx - v_button.Width, 5);
+            v_button.Click += p_delegate;
+            v_button.Parent = this.v_control;
+            v_button.Enabled = p_enabled;
+
+            this.v_list.Add(v_button);
+
+            this.v_offsetx = v_button.Location.X - 10;
+        }
+
+        /// <summary>
+        /// Adiciona um botão à lista de botões.
+        /// </summary>
+        /// <param name="p_text">Texto do botão.</param>
+        /// <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
+        /// <param name="p_width">Largura do botão.</param>
+        /// <param name="p_enabled">Se o botão deve começar habilitado ou não.</param>
+        public void AddButton(string p_text, System.EventHandler p_delegate, int p_width, bool p_enabled)
+        {
+            System.Windows.Forms.Button v_button;
+
+            v_button = new System.Windows.Forms.Button();
+            v_button.Text = p_text;
+            v_button.Width = p_width;
+            v_button.Location = new System.Drawing.Point(this.v_offsetx - v_button.Width, 5);
+            v_button.Click += p_delegate;
+            v_button.Parent = this.v_control;
+            v_button.Enabled = p_enabled;
+
+            this.v_list.Add(v_button);
+
+            this.v_offsetx = v_button.Location.X - 10;
+        }
     }
 }

@@ -301,6 +301,37 @@ namespace Spartacus.Forms
         /// </summary>
         /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
         /// <param name="p_sql">SQl a ser executado no banco de dados.</param>
+        /// <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param>
+        public void Populate(Spartacus.Database.Generic p_database, string p_sql, string p_columnwidths)
+        {
+            System.Data.DataTable v_table;
+            string v_columnnames;
+            int k;
+
+            this.v_database = p_database;
+            this.v_sql = p_sql;
+
+            v_table = this.v_database.Query(this.v_sql, "LOOKUP");
+
+            v_columnnames = v_table.Columns[0].ColumnName;
+            for (k = 1; k < v_table.Columns.Count; k++)
+                v_columnnames += ";" + v_table.Columns[k].ColumnName;
+
+            this.v_lookup.ColumnNames = v_columnnames;
+            this.v_lookup.ColumnWidths = p_columnwidths;
+
+            this.v_lookup.DataSource = v_table;
+            this.v_lookup.DisplayMember = v_table.Columns[0].ColumnName;
+            this.v_lookup.ValueMember = v_table.Columns[1].ColumnName;
+            this.v_lookup.SelectedIndex = -1;
+            this.v_lookup.Text = "";
+        }
+
+        /// <summary>
+        /// Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+        /// </summary>
+        /// <param name="p_database">Objeto de conexão com o banco de dados.</param>
+        /// <param name="p_sql">SQl a ser executado no banco de dados.</param>
         public void Populate(Spartacus.Database.Generic p_database, string p_sql)
         {
             System.Data.DataTable v_table;

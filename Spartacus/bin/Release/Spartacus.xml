@@ -35715,6 +35715,21 @@
             <param name="p_text">Texto do botão.</param>
             <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
             <param name="p_width">Largura do botão.</param></member>
+        <member name="M:Spartacus.Forms.Buttons.AddButton(System.String,System.EventHandler,System.Boolean)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
+            <param name="p_enabled">Se o botão deve começar habilitado ou não.</param></member>
+        <member name="M:Spartacus.Forms.Buttons.AddButton(System.String,System.EventHandler,System.Int32,System.Boolean)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
+            <param name="p_width">Largura do botão.</param>
+            <param name="p_enabled">Se o botão deve começar habilitado ou não.</param></member>
         <member name="T:Spartacus.Forms.Container">
             <summary>
             Classe Container.
@@ -36257,6 +36272,13 @@
             <param name="p_sql">SQl a ser executado no banco de dados.</param>
             <param name="p_columnvalue">Coluna de valor.</param>
             <param name="p_columndisplay">Coluna para mostrar no Textbox.</param>
+            <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param></member>
+        <member name="M:Spartacus.Forms.Lookup.Populate(Spartacus.Database.Generic,System.String,System.String)">
+            <summary>
+            Popula o componente Lookup com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+            </summary>
+            <param name="p_database">Objeto de conexão com o banco de dados.</param>
+            <param name="p_sql">SQl a ser executado no banco de dados.</param>
             <param name="p_columnwidths">Larguras das colunas mostradas no Lookup, separadas por ponto-e-vírgula.</param></member>
         <member name="M:Spartacus.Forms.Lookup.Populate(Spartacus.Database.Generic,System.String)">
             <summary>
