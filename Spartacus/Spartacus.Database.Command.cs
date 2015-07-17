@@ -62,7 +62,10 @@ namespace Spartacus.Database
             int k;
 
             for (k = 0; k < this.v_parameters.Count; k++)
+            {
                 this.v_text = this.v_text.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+                this.v_text = this.v_text.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name.ToLower() + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+            }
         }
 
         /// <summary>
@@ -77,7 +80,10 @@ namespace Spartacus.Database
 
             v_localtext = this.v_text;
             for (k = 0; k < this.v_parameters.Count; k++)
+            {
                 v_localtext = v_localtext.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+                v_localtext = v_localtext.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name.ToLower() + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+            }
 
             return v_localtext;
         }

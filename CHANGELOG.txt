@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.36: Spartacus.Database.Parameter: Correção de bug relacionado ao nome do parâmetro
 0.38.35: Spartacus.Forms.Buttons: Sobrecarga para criar botões habilitados ou desabilitados
 0.38.34: Spartacus.Forms.Grid: Opção para alimentar grid a partir de um DataTable
 0.38.33: Spartacus.Database: ExecuteScalar usa ToString ao invés de cast

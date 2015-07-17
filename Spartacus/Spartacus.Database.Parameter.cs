@@ -111,7 +111,7 @@ namespace Spartacus.Database
         /// </param>
         public Parameter(String p_name, Spartacus.Database.Type p_type)
         {
-            this.v_name = p_name;
+            this.v_name = p_name.ToUpper();
             this.v_type = p_type;
 
             this.v_value = "";
