@@ -125,10 +125,16 @@ namespace Spartacus.Reporting
                         this.RenderImage((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_pdf, p_page);
                         break;
                     case Spartacus.Reporting.ObjectType.PAGENUMBER:
-                        this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                        if (((Spartacus.Reporting.Object)this.v_objects [k]).v_font != null)
+                            this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
+                        else
+                            this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
                         break;
                     case Spartacus.Reporting.ObjectType.TEXT:
-                        this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                        if (((Spartacus.Reporting.Object)this.v_objects [k]).v_font != null)
+                            this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
+                        else
+                            this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
                         break;
                     default:
                         break;

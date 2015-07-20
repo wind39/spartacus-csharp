@@ -506,6 +506,7 @@ namespace Spartacus.Reporting
         private void ReadHeaderObject(System.Xml.XmlReader p_reader)
         {
             Spartacus.Reporting.Object v_object;
+            System.Xml.XmlReader v_item;
 
             v_object = new Spartacus.Reporting.Object();
 
@@ -555,6 +556,12 @@ namespace Spartacus.Reporting
                                 default:
                                     break;
                             }
+                            break;
+                        case "font":
+                            v_object.v_font = new Spartacus.Reporting.Font();
+                            v_item = p_reader.ReadSubtree();
+                            this.ReadFont(v_object.v_font, v_item);
+                            v_item.Close();
                             break;
                         default:
                             break;
@@ -603,6 +610,7 @@ namespace Spartacus.Reporting
         private void ReadFooterObject(System.Xml.XmlReader p_reader)
         {
             Spartacus.Reporting.Object v_object;
+            System.Xml.XmlReader v_item;
 
             v_object = new Spartacus.Reporting.Object();
 
@@ -653,6 +661,12 @@ namespace Spartacus.Reporting
                                     break;
                             }
                             break;
+                        case "font":
+                            v_object.v_font = new Spartacus.Reporting.Font();
+                            v_item = p_reader.ReadSubtree();
+                            this.ReadFont(v_object.v_font, v_item);
+                            v_item.Close();
+                            break;
                         default:
                             break;
                     }
@@ -690,6 +704,7 @@ namespace Spartacus.Reporting
         private void ReadField(System.Xml.XmlReader p_reader)
         {
             Spartacus.Reporting.Field v_field;
+            System.Xml.XmlReader v_item;
 
             v_field = new Spartacus.Reporting.Field();
 
@@ -738,6 +753,12 @@ namespace Spartacus.Reporting
                             break;
                         case "blank":
                             v_field.v_blank = p_reader.ReadString();
+                            break;
+                        case "font":
+                            v_field.v_font = new Spartacus.Reporting.Font();
+                            v_item = p_reader.ReadSubtree();
+                            this.ReadFont(v_field.v_font, v_item);
+                            v_item.Close();
                             break;
                         default:
                             break;
@@ -867,6 +888,7 @@ namespace Spartacus.Reporting
         private void ReadGroupHeaderField(System.Xml.XmlReader p_reader, Spartacus.Reporting.Group p_group)
         {
             Spartacus.Reporting.Field v_field;
+            System.Xml.XmlReader v_item;
 
             v_field = new Spartacus.Reporting.Field();
 
@@ -921,6 +943,12 @@ namespace Spartacus.Reporting
                             break;
                         case "blank":
                             v_field.v_blank = p_reader.ReadString();
+                            break;
+                        case "font":
+                            v_field.v_font = new Spartacus.Reporting.Font();
+                            v_item = p_reader.ReadSubtree();
+                            this.ReadFont(v_field.v_font, v_item);
+                            v_item.Close();
                             break;
                         default:
                             break;
@@ -962,6 +990,7 @@ namespace Spartacus.Reporting
         private void ReadGroupFooterField(System.Xml.XmlReader p_reader, Spartacus.Reporting.Group p_group)
         {
             Spartacus.Reporting.Field v_field;
+            System.Xml.XmlReader v_item;
 
             v_field = new Spartacus.Reporting.Field();
 
@@ -1016,6 +1045,12 @@ namespace Spartacus.Reporting
                             break;
                         case "blank":
                             v_field.v_blank = p_reader.ReadString();
+                            break;
+                        case "font":
+                            v_field.v_font = new Spartacus.Reporting.Font();
+                            v_item = p_reader.ReadSubtree();
+                            this.ReadFont(v_field.v_font, v_item);
+                            v_item.Close();
                             break;
                         default:
                             break;

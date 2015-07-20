@@ -3630,6 +3630,10 @@
             <summary>
             Valor padrão caso o valor do campo seja vazio.
             </summary></member>
+        <member name="F:Spartacus.Reporting.Field.v_font">
+            <summary>
+            Fonte específica para renderização do campo.
+            </summary></member>
         <member name="M:Spartacus.Reporting.Field.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.
@@ -4348,6 +4352,10 @@
         <member name="F:Spartacus.Reporting.Object.v_pdfobject">
             <summary>
             Objeto PDF nativo já configurado dentro do Bloco.
+            </summary></member>
+        <member name="F:Spartacus.Reporting.Object.v_font">
+            <summary>
+            Fonte específica para renderização do objeto.
             </summary></member>
         <member name="M:Spartacus.Reporting.Object.#ctor">
             <summary>

@@ -77,6 +77,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public object v_pdfobject;
 
+        /// <summary>
+        /// Fonte específica para renderização do objeto.
+        /// </summary>
+        public Spartacus.Reporting.Font v_font;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Object"/>.
@@ -90,6 +95,7 @@ namespace Spartacus.Reporting
             this.v_posy = 0.0;
             this.v_align = Spartacus.Reporting.FieldAlignment.LEFT;
             this.v_pdfobject = null;
+            this.v_font = null;
         }
 
         /// <summary>

@@ -92,6 +92,11 @@ namespace Spartacus.Reporting
         /// </summary>
         public string v_blank;
 
+        /// <summary>
+        /// Fonte específica para renderização do campo.
+        /// </summary>
+        public Spartacus.Reporting.Font v_font;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
@@ -103,6 +108,7 @@ namespace Spartacus.Reporting
             this.v_format = "###,###,###,###,##0.00";
             this.v_border = null;
             this.v_blank = "";
+            this.v_font = null;
         }
 
         /// <summary>
