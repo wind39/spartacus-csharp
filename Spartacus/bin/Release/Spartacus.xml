@@ -5896,7 +5896,7 @@
             </summary>
             <returns>Tabela dinâmica.</returns>
             <param name="p_table">Tabela original.</param>
-            <param name="p_origcolumn">
+            <param name="p_origcolumns">
             Nomes originais das colunas, separados por vírgula.
             Nomes de colunas de texto vem à esquerda, separadas dos nomes de colunas de valor por um ponto-e-vírgula.
             </param>

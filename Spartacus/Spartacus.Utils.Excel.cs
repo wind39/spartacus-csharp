@@ -1285,31 +1285,8 @@ namespace Spartacus.Utils
                             ST|empresa|E4:J4|
                             FO|U10/S10|V7|
                             TO|SUM(#)|M9|M12
-                            TO|SUM(#)|N9|N12
-                            TO|SUM(#)|O9|O12
-                            TO|SUM(#)|P9|P12
-                            TO|SUM(#)|Q9|Q12
-                            TO|SUM(#)|R9|R12
-                            TO|SUM(#)|S9|S12
-                            TO|SUM(#)|T9|T12
-                            TO|SUM(#)|U9|U12
-                            TO|SUM(#)|V9|V12
-                            TO|SUM(#)|W9|W12
-                            TO|SUM(#)|X9|X12
-                            TO|SUM(#)|Y9|Y12
                             TO|SUBTOTAL(9,#)|M10|M12
-                            TO|SUBTOTAL(9,#)|N10|N12
-                            TO|SUBTOTAL(9,#)|O10|O12
-                            TO|SUBTOTAL(9,#)|P10|P12
-                            TO|SUBTOTAL(9,#)|Q10|Q12
-                            TO|SUBTOTAL(9,#)|R10|R12
-                            TO|SUBTOTAL(9,#)|S10|S12
-                            TO|SUBTOTAL(9,#)|T10|T12
-                            TO|SUBTOTAL(9,#)|U10|U12
-                            TO|SUBTOTAL(9,#)|V10|V12
-                            TO|SUBTOTAL(9,#)|W10|W12
-                            TO|SUBTOTAL(9,#)|X10|X12
-                            TO|SUBTOTAL(9,#)|Y10|Y12
+                            TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
                             CF|#DBE5F1|A11:AD11|
                             TA|A:AD|11|30
                             IM|imagem|0:0|80
@@ -1367,12 +1344,30 @@ namespace Spartacus.Utils
                                         break;
                                     case "TO":
                                         v_worksheet.Cells [v_options[2]].Value = "";
-                                        v_row = v_worksheet.Cells[v_options[3]].Start.Row;
-                                        v_col = v_worksheet.Cells[v_options[3]].Start.Column;
-                                        if (v_options[1] != "")
-                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                        if (v_options[3].Split(';').Length > 1)
+                                        {
+                                            k = 0;
+                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1];
+                                            foreach (string v_dest in v_options[3].Split(';'))
+                                            {
+                                                v_row = v_worksheet.Cells[v_dest].Start.Row;
+                                                v_col = v_worksheet.Cells[v_dest].Start.Column;
+                                                if (v_options[1] != "")
+                                                    v_worksheet.Cells [v_options[2]].Formula = v_worksheet.Cells [v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                else
+                                                    v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                k++;
+                                            }
+                                        }
                                         else
-                                            v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                        {
+                                            v_row = v_worksheet.Cells[v_options[3]].Start.Row;
+                                            v_col = v_worksheet.Cells[v_options[3]].Start.Column;
+                                            if (v_options[1] != "")
+                                                v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                            else
+                                                v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                        }
                                         break;
                                     case "TA":
                                         v_row = int.Parse(v_options[2]);
@@ -1475,31 +1470,8 @@ namespace Spartacus.Utils
                                         ST|empresa|E4:J4|
                                         FO|U10/S10|V7|
                                         TO|SUM(#)|M9|M12
-                                        TO|SUM(#)|N9|N12
-                                        TO|SUM(#)|O9|O12
-                                        TO|SUM(#)|P9|P12
-                                        TO|SUM(#)|Q9|Q12
-                                        TO|SUM(#)|R9|R12
-                                        TO|SUM(#)|S9|S12
-                                        TO|SUM(#)|T9|T12
-                                        TO|SUM(#)|U9|U12
-                                        TO|SUM(#)|V9|V12
-                                        TO|SUM(#)|W9|W12
-                                        TO|SUM(#)|X9|X12
-                                        TO|SUM(#)|Y9|Y12
                                         TO|SUBTOTAL(9,#)|M10|M12
-                                        TO|SUBTOTAL(9,#)|N10|N12
-                                        TO|SUBTOTAL(9,#)|O10|O12
-                                        TO|SUBTOTAL(9,#)|P10|P12
-                                        TO|SUBTOTAL(9,#)|Q10|Q12
-                                        TO|SUBTOTAL(9,#)|R10|R12
-                                        TO|SUBTOTAL(9,#)|S10|S12
-                                        TO|SUBTOTAL(9,#)|T10|T12
-                                        TO|SUBTOTAL(9,#)|U10|U12
-                                        TO|SUBTOTAL(9,#)|V10|V12
-                                        TO|SUBTOTAL(9,#)|W10|W12
-                                        TO|SUBTOTAL(9,#)|X10|X12
-                                        TO|SUBTOTAL(9,#)|Y10|Y12
+                                        TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
                                         CF|#DBE5F1|A11:AD11|
                                         TA|A:AD|11|30
                                         IM|imagem|0:0|80
@@ -1597,13 +1569,31 @@ namespace Spartacus.Utils
                                                     }
                                                     break;
                                                 case "TO":
-                                                    v_worksheet.Cells[v_options[2]].Value = "";
-                                                    v_row = v_worksheet.Cells[v_options[3]].Start.Row;
-                                                    v_col = v_worksheet.Cells[v_options[3]].Start.Column;
-                                                    if (v_options[1] != "")
-                                                        v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                    v_worksheet.Cells [v_options[2]].Value = "";
+                                                    if (v_options[3].Split(';').Length > 1)
+                                                    {
+                                                        k = 0;
+                                                        v_worksheet.Cells [v_options[2]].Formula = v_options[1];
+                                                        foreach (string v_dest in v_options[3].Split(';'))
+                                                        {
+                                                            v_row = v_worksheet.Cells[v_dest].Start.Row;
+                                                            v_col = v_worksheet.Cells[v_dest].Start.Column;
+                                                            if (v_options[1] != "")
+                                                                v_worksheet.Cells [v_options[2]].Formula = v_worksheet.Cells [v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                            else
+                                                                v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                            k++;
+                                                        }
+                                                    }
                                                     else
-                                                        v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                    {
+                                                        v_row = v_worksheet.Cells[v_options[3]].Start.Row;
+                                                        v_col = v_worksheet.Cells[v_options[3]].Start.Column;
+                                                        if (v_options[1] != "")
+                                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                        else
+                                                            v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                    }
                                                     break;
                                                 case "CF":
                                                     v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
@@ -1724,7 +1714,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Tabela dinâmica.</returns>
         /// <param name="p_table">Tabela original.</param>
-        /// <param name="p_origcolumn">
+        /// <param name="p_origcolumns">
         ///   Nomes originais das colunas, separados por vírgula.
         ///   Nomes de colunas de texto vem à esquerda, separadas dos nomes de colunas de valor por um ponto-e-vírgula.
         /// </param>
