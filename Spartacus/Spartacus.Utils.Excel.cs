@@ -1263,6 +1263,7 @@ namespace Spartacus.Utils
             int v_col, v_row;
             int v_offset;
             int v_datastart = 1;
+            int v_height, v_width;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1289,7 +1290,7 @@ namespace Spartacus.Utils
                             TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
                             CF|#DBE5F1|A11:AD11|
                             TA|A:AD|11|30
-                            IM|imagem|0:0|80
+                            IM|imagem|0:0|80;240
                             TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                             FC|$W2=2|#D3D3D3|A:AD
                         */
@@ -1334,7 +1335,23 @@ namespace Spartacus.Utils
                                                 {
                                                     v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
                                                     v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
-                                                    v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+
+                                                    if (v_options[3].Split(';').Length > 1)
+                                                    {
+                                                        v_height = int.Parse(v_options[3].Split(';')[0]);
+                                                        v_width = v_height * v_image.Width / v_image.Height;
+                                                        if (v_width > int.Parse(v_options[3].Split(';')[1]))
+                                                        {
+                                                            v_width = int.Parse(v_options[3].Split(';')[1]);
+                                                            v_height = v_width * v_image.Height / v_image.Width;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        v_height = int.Parse(v_options[3].Split(';')[0]);
+                                                        v_width = v_height * v_image.Width / v_image.Height;
+                                                    }
+                                                    v_picture.SetSize(v_width, v_height);
                                                 }
                                             }
                                             catch (System.Exception)
@@ -1435,6 +1452,7 @@ namespace Spartacus.Utils
             int v_col, v_row;
             int v_offset;
             int v_datastart = 1;
+            int v_width, v_height;
 
             v_cryptor = new Spartacus.Net.Cryptor("spartacus");
 
@@ -1474,7 +1492,7 @@ namespace Spartacus.Utils
                                         TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
                                         CF|#DBE5F1|A11:AD11|
                                         TA|A:AD|11|30
-                                        IM|imagem|0:0|80
+                                        IM|imagem|0:0|80;240
                                         TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                                         FC|$W2=2|#D3D3D3|A:AD
                                      */
@@ -1560,7 +1578,23 @@ namespace Spartacus.Utils
                                                             {
                                                                 v_picture = v_worksheet.Drawings.AddPicture(v_imagefilename, v_image);
                                                                 v_picture.SetPosition(int.Parse(v_options[2].Split(':')[0]), int.Parse(v_options[2].Split(':')[1]));
-                                                                v_picture.SetSize(int.Parse(v_options[3]) * v_image.Width / v_image.Height, int.Parse(v_options[3]));
+
+                                                                if (v_options[3].Split(';').Length > 1)
+                                                                {
+                                                                    v_height = int.Parse(v_options[3].Split(';')[0]);
+                                                                    v_width = v_height * v_image.Width / v_image.Height;
+                                                                    if (v_width > int.Parse(v_options[3].Split(';')[1]))
+                                                                    {
+                                                                        v_width = int.Parse(v_options[3].Split(';')[1]);
+                                                                        v_height = v_width * v_image.Height / v_image.Width;
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    v_height = int.Parse(v_options[3].Split(';')[0]);
+                                                                    v_width = v_height * v_image.Width / v_image.Height;
+                                                                }
+                                                                v_picture.SetSize(v_width, v_height);
                                                             }
                                                         }
                                                         catch (System.Exception)

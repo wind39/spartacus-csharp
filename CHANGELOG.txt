@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.38.39: Spartacus.Utils.Excel: Opção para especificar altura e largura máximos para imagens inseridas em arquivos XLSX
 0.38.38: Spartacus.Utils.Excel: Suporte a fórmulas com múltiplos ranges (ex. SUMIF)
 0.38.37: Spartacus.Reporting: Suporte a fontes específicas em objetos e campos
 0.38.36: Spartacus.Database.Parameter: Correção de bug relacionado ao nome do parâmetro
