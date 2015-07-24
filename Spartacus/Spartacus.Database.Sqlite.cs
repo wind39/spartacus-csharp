@@ -525,6 +525,8 @@ namespace Spartacus.Database
         /// </param>
         public override string ExecuteScalar(string p_sql)
         {
+            object v_tmp;
+
             if (this.v_con == null)
             {
                 try
@@ -532,7 +534,11 @@ namespace Spartacus.Database
                     this.v_con = new Mono.Data.Sqlite.SqliteConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    return this.v_cmd.ExecuteScalar().ToString();
+                    v_tmp = this.v_cmd.ExecuteScalar();
+                    if (v_tmp != null)
+                        return v_tmp.ToString();
+                    else
+                        return "";
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {
@@ -557,7 +563,11 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    return this.v_cmd.ExecuteScalar().ToString();
+                    v_tmp = this.v_cmd.ExecuteScalar();
+                    if (v_tmp != null)
+                        return v_tmp.ToString();
+                    else
+                        return "";
                 }
                 catch (Mono.Data.Sqlite.SqliteException e)
                 {

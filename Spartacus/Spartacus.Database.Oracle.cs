@@ -527,6 +527,8 @@ namespace Spartacus.Database
         /// </param>
         public override string ExecuteScalar(string p_sql)
         {
+            object v_tmp;
+
             if (this.v_con == null)
             {
                 try
@@ -534,7 +536,11 @@ namespace Spartacus.Database
                     this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    return this.v_cmd.ExecuteScalar().ToString();
+                    v_tmp = this.v_cmd.ExecuteScalar();
+                    if (v_tmp != null)
+                        return v_tmp.ToString();
+                    else
+                        return "";
                 }
                 catch (System.Data.OracleClient.OracleException e)
                 {
@@ -559,8 +565,11 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-
-                    return this.v_cmd.ExecuteScalar().ToString();
+                    v_tmp = this.v_cmd.ExecuteScalar();
+                    if (v_tmp != null)
+                        return v_tmp.ToString();
+                    else
+                        return "";
                 }
                 catch (System.Data.OracleClient.OracleException e)
                 {
