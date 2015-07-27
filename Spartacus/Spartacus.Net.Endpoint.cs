@@ -43,14 +43,14 @@ namespace Spartacus.Net
         public int v_port;
 
         /// <summary>
-        /// Socket usado para comunicação.
+        /// Sockets usado para comunicação.
         /// </summary>
-        public System.Net.Sockets.TcpClient v_socket;
+        public System.Collections.Generic.List<System.Net.Sockets.TcpClient> v_sockets;
 
         /// <summary>
-        /// Stream usada para comunicação.
+        /// Streams usadas para comunicação.
         /// </summary>
-        public System.Net.Sockets.NetworkStream v_stream;
+        public System.Collections.Generic.List<System.Net.Sockets.NetworkStream> v_streams;
 
         /// <summary>
         /// Tamanho do buffer para envio e recebimento.
@@ -73,8 +73,8 @@ namespace Spartacus.Net
             this.v_ip = p_ip;
             this.v_port = p_port;
 
-            this.v_socket = null;
-            this.v_stream = null;
+            this.v_sockets = new System.Collections.Generic.List<System.Net.Sockets.TcpClient>();
+            this.v_streams = new System.Collections.Generic.List<System.Net.Sockets.NetworkStream>();
 
             this.v_buffersize = 1048576;
 
@@ -87,20 +87,101 @@ namespace Spartacus.Net
         /// Recebe um pacote.
         /// </summary>
         /// <returns>Pacote.</returns>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception>
-        public Spartacus.Net.Packet Recv()
+        public Spartacus.Net.Packet Recv(int p_endpoint)
         {
             byte[] v_tmpbuffer;
             int v_numbytesrecv;
 
             try
             {
-                v_numbytesrecv = this.v_stream.Read(this.v_recvbuffer, 0, this.v_recvbuffer.Length);
+                v_numbytesrecv = this.v_streams[p_endpoint].Read(this.v_recvbuffer, 0, this.v_recvbuffer.Length);
 
                 v_tmpbuffer = new byte[v_numbytesrecv];
                 System.Array.Copy(this.v_recvbuffer, 0, v_tmpbuffer, 0, v_numbytesrecv);
 
                 return new Packet(v_tmpbuffer);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Net.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Recebe um pacote.
+        /// </summary>
+        /// <returns>Pacote.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception>
+        public Spartacus.Net.Packet Recv()
+        {
+            try
+            {
+                return this.Recv(0);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Recebe uma string.
+        /// Pode ser necessário vários pacotes para montar essa string.
+        /// </summary>
+        /// <returns>String.</returns>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception>
+        public string RecvString(int p_endpoint)
+        {
+            string v_text;
+            Spartacus.Net.Packet v_packetrecv, v_packetsend;
+            int v_numpackets, v_sequence;
+
+            try
+            {
+                v_packetrecv = this.Recv(p_endpoint);
+
+                v_sequence = 0;
+                v_numpackets = v_packetrecv.v_numpackets;
+
+                // se a sequencia estah errada, entao precisa tratar um erro
+                // if (v_packet.v_sequence != v_sequence)
+
+                v_text = v_packetrecv.GetString();
+
+                // enviando ack
+                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
+                this.Send(p_endpoint, v_packetsend);
+
+                v_sequence++;
+                while (v_sequence < v_numpackets)
+                {
+                    // recebendo pacote
+                    v_packetrecv = this.Recv(p_endpoint);
+
+                    // se a sequencia estah errada, entao precisa tratar um erro
+                    // if (v_packet.v_sequence != v_sequence)
+
+                    // se o numero de pacotes estah errado, entao precisa tratar um erro
+                    // if (v_packet.v_numpackets != v_numpackets)
+
+                    // acumulando conteudo dos dados do pacote na string
+                    v_text += v_packetrecv.GetString();
+
+                    // enviando ack
+                    v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
+                    this.Send(p_endpoint, v_packetsend);
+
+                    v_sequence++;
+                }
+
+                return v_text;
             }
             catch (Spartacus.Net.Exception e)
             {
@@ -120,57 +201,13 @@ namespace Spartacus.Net
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception>
         public string RecvString()
         {
-            string v_text;
-            Spartacus.Net.Packet v_packetrecv, v_packetsend;
-            int v_numpackets, v_sequence;
-
             try
             {
-                v_packetrecv = this.Recv();
-
-                v_sequence = 0;
-                v_numpackets = v_packetrecv.v_numpackets;
-
-                // se a sequencia estah errada, entao precisa tratar um erro
-                // if (v_packet.v_sequence != v_sequence)
-
-                v_text = v_packetrecv.GetString();
-
-                // enviando ack
-                v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                this.Send(v_packetsend);
-
-                v_sequence++;
-                while (v_sequence < v_numpackets)
-                {
-                    // recebendo pacote
-                    v_packetrecv = this.Recv();
-
-                    // se a sequencia estah errada, entao precisa tratar um erro
-                    // if (v_packet.v_sequence != v_sequence)
-
-                    // se o numero de pacotes estah errado, entao precisa tratar um erro
-                    // if (v_packet.v_numpackets != v_numpackets)
-
-                    // acumulando conteudo dos dados do pacote na string
-                    v_text += v_packetrecv.GetString();
-
-                    // enviando ack
-                    v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                    this.Send(v_packetsend);
-
-                    v_sequence++;
-                }
-
-                return v_text;
+                return this.RecvString(0);
             }
             catch (Spartacus.Net.Exception e)
             {
                 throw e;
-            }
-            catch (System.Exception e)
-            {
-                throw new Spartacus.Net.Exception(e);
             }
         }
 
@@ -179,8 +216,9 @@ namespace Spartacus.Net
         /// Recebe um pacote por linha da <see cref="System.Data.DataTable"/>.
         /// </summary>
         /// <returns><see cref="System.Data.DataTable"/>.</returns>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="System.Data.DataTable"/>.</exception>
-        public System.Data.DataTable RecvDataTable()
+        public System.Data.DataTable RecvDataTable(int p_endpoint)
         {
             System.Data.DataTable v_table;
             System.Data.DataRow v_row;
@@ -191,7 +229,7 @@ namespace Spartacus.Net
 
             try
             {
-                v_packetrecv = this.Recv();
+                v_packetrecv = this.Recv(p_endpoint);
 
                 v_sequence = 0;
                 v_numpackets = v_packetrecv.v_numpackets;
@@ -209,13 +247,13 @@ namespace Spartacus.Net
 
                 // enviando ack
                 v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                this.Send(v_packetsend);
+                this.Send(p_endpoint, v_packetsend);
 
                 v_sequence++;
                 while (v_sequence < v_numpackets)
                 {
                     // recebendo pacote
-                    v_packetrecv = this.Recv();
+                    v_packetrecv = this.Recv(p_endpoint);
 
                     // se a sequencia estah errada, entao precisa tratar um erro
                     // if (v_packet.v_sequence != v_sequence)
@@ -238,7 +276,7 @@ namespace Spartacus.Net
 
                     // enviando ack
                     v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                    this.Send(v_packetsend);
+                    this.Send(p_endpoint, v_packetsend);
 
                     v_sequence++;
                 }
@@ -256,11 +294,30 @@ namespace Spartacus.Net
         }
 
         /// <summary>
+        /// Recebe uma <see cref="System.Data.DataTable"/>.
+        /// Recebe um pacote por linha da <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <returns><see cref="System.Data.DataTable"/>.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="System.Data.DataTable"/>.</exception>
+        public System.Data.DataTable RecvDataTable()
+        {
+            try
+            {
+                return this.RecvDataTable(0);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// Recebe um arquivo.
         /// </summary>
         /// <returns>Nome do arquivo.</returns>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception>
-        public string RecvFile()
+        public string RecvFile(int p_endpoint)
         {
             System.IO.FileStream v_file;
             System.IO.BinaryWriter v_writer;
@@ -270,7 +327,7 @@ namespace Spartacus.Net
             try
             {
                 // recebendo nome do arquivo
-                v_packetrecv = this.Recv();
+                v_packetrecv = this.Recv(p_endpoint);
 
                 if (v_packetrecv.v_type != Spartacus.Net.PacketType.FILE)
                     return null;
@@ -281,10 +338,10 @@ namespace Spartacus.Net
 
                 // enviando ack
                 v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, "");
-                this.Send(v_packetsend);
+                this.Send(p_endpoint, v_packetsend);
 
                 // recebendo primeiro pacote de dados do arquivo
-                v_packetrecv = this.Recv();
+                v_packetrecv = this.Recv(p_endpoint);
 
                 v_sequence = 0;
                 v_numpackets = v_packetrecv.v_numpackets;
@@ -296,13 +353,13 @@ namespace Spartacus.Net
 
                 // enviando ack
                 v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                this.Send(v_packetsend);
+                this.Send(p_endpoint, v_packetsend);
 
                 v_sequence++;
                 while (v_sequence < v_numpackets)
                 {
                     // recebendo pacote
-                    v_packetrecv = this.Recv();
+                    v_packetrecv = this.Recv(p_endpoint);
 
                     // se a sequencia estah errada, entao precisa tratar um erro
                     // if (v_packet.v_sequence != v_sequence)
@@ -315,7 +372,7 @@ namespace Spartacus.Net
 
                     // enviando ack
                     v_packetsend = new Spartacus.Net.Packet(Spartacus.Net.PacketType.ACK, v_sequence, v_numpackets, "");
-                    this.Send(v_packetsend);
+                    this.Send(p_endpoint, v_packetsend);
 
                     v_sequence++;
                 }
@@ -335,6 +392,23 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Recebe um arquivo.
+        /// </summary>
+        /// <returns>Nome do arquivo.</returns>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception>
+        public string RecvFile()
+        {
+            try
+            {
+                return this.RecvFile(0);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
         #endregion
 
         #region SEND
@@ -342,13 +416,14 @@ namespace Spartacus.Net
         /// <summary>
         /// Envia um pacote.
         /// </summary>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <param name="p_packet">Pacote.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
-        public void Send(Spartacus.Net.Packet p_packet)
+        public void Send(int p_endpoint, Spartacus.Net.Packet p_packet)
         {
             try
             {
-                this.v_stream.Write(p_packet.v_buffer, 0, p_packet.v_buffer.Length);
+                this.v_streams[p_endpoint].Write(p_packet.v_buffer, 0, p_packet.v_buffer.Length);
             }
             catch (Spartacus.Net.Exception e)
             {
@@ -361,12 +436,30 @@ namespace Spartacus.Net
         }
 
         /// <summary>
+        /// Envia um pacote.
+        /// </summary>
+        /// <param name="p_packet">Pacote.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
+        public void Send(Spartacus.Net.Packet p_packet)
+        {
+            try
+            {
+                this.Send(0, p_packet);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// Envia uma string.
         /// Pode ser necessário quebrar essa string em vários pacotes.
         /// </summary>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <param name="p_text">String.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception>
-        public void SendString(string p_text)
+        public void SendString(int p_endpoint, string p_text)
         {
             Spartacus.Net.Packet v_packetsend, v_packetrecv;
             int v_chunksize;
@@ -397,10 +490,10 @@ namespace Spartacus.Net
                     while (! v_ack)
                     {
                         // enviando pacote
-                        this.Send(v_packetsend);
+                        this.Send(p_endpoint, v_packetsend);
 
                         // recebendo ACK
-                        v_packetrecv = this.Recv();
+                        v_packetrecv = this.Recv(p_endpoint);
                         if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK && v_packetrecv.v_sequence == v_sequence)
                             v_ack = true;
                     }
@@ -419,12 +512,31 @@ namespace Spartacus.Net
         }
 
         /// <summary>
+        /// Envia uma string.
+        /// Pode ser necessário quebrar essa string em vários pacotes.
+        /// </summary>
+        /// <param name="p_text">String.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception>
+        public void SendString(string p_text)
+        {
+            try
+            {
+                this.SendString(0, p_text);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// Envia uma <see cref="System.Data.DataTable"/>.
         /// Envia uma linha por pacote.
         /// </summary>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <param name="p_table"><see cref="System.Data.DataTable"/>.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="System.Data.DataTable"/>.</exception>
-        public void SendDataTable(System.Data.DataTable p_table)
+        public void SendDataTable(int p_endpoint, System.Data.DataTable p_table)
         {
             Spartacus.Net.Packet v_packetsend, v_packetrecv;
             int v_sequence, v_numpackets;
@@ -452,10 +564,10 @@ namespace Spartacus.Net
                 while (! v_ack)
                 {
                     // enviando pacote
-                    this.Send(v_packetsend);
+                    this.Send(p_endpoint, v_packetsend);
 
                     // recebendo ACK
-                    v_packetrecv = this.Recv();
+                    v_packetrecv = this.Recv(p_endpoint);
                     if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK && v_packetrecv.v_sequence == v_sequence)
                         v_ack = true;
                 }
@@ -478,10 +590,10 @@ namespace Spartacus.Net
                     while (! v_ack)
                     {
                         // enviando pacote
-                        this.Send(v_packetsend);
+                        this.Send(p_endpoint, v_packetsend);
 
                         // recebendo ACK
-                        v_packetrecv = this.Recv();
+                        v_packetrecv = this.Recv(p_endpoint);
                         if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK && v_packetrecv.v_sequence == v_sequence)
                             v_ack = true;
                     }
@@ -500,11 +612,30 @@ namespace Spartacus.Net
         }
 
         /// <summary>
+        /// Envia uma <see cref="System.Data.DataTable"/>.
+        /// Envia uma linha por pacote.
+        /// </summary>
+        /// <param name="p_table"><see cref="System.Data.DataTable"/>.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="System.Data.DataTable"/>.</exception>
+        public void SendDataTable(System.Data.DataTable p_table)
+        {
+            try
+            {
+                this.SendDataTable(0, p_table);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// Envia um arquivo.
         /// </summary>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
         /// <param name="p_filename">Nome do arquivo.</param>
         /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception>
-        public void SendFile(string p_filename)
+        public void SendFile(int p_endpoint, string p_filename)
         {
             System.IO.FileStream v_file;
             System.IO.BinaryReader v_reader;
@@ -535,10 +666,10 @@ namespace Spartacus.Net
                 while (! v_ack)
                 {
                     // enviando pacote
-                    this.Send(v_packetsend);
+                    this.Send(p_endpoint, v_packetsend);
 
                     // recebendo ACK
-                    v_packetrecv = this.Recv();
+                    v_packetrecv = this.Recv(p_endpoint);
                     if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK)
                         v_ack = true;
                 }
@@ -561,10 +692,10 @@ namespace Spartacus.Net
                     while (! v_ack)
                     {
                         // enviando pacote
-                        this.Send(v_packetsend);
+                        this.Send(p_endpoint, v_packetsend);
 
                         // recebendo ACK
-                        v_packetrecv = this.Recv();
+                        v_packetrecv = this.Recv(p_endpoint);
                         if (v_packetrecv.v_type == Spartacus.Net.PacketType.ACK && v_packetrecv.v_sequence == v_sequence)
                             v_ack = true;
                     }
@@ -584,7 +715,41 @@ namespace Spartacus.Net
             }
         }
 
+        /// <summary>
+        /// Envia um arquivo.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <exception cref="Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception>
+        public void SendFile(string p_filename)
+        {
+            try
+            {
+                this.SendFile(0, p_filename);
+            }
+            catch (Spartacus.Net.Exception e)
+            {
+                throw e;
+            }
+        }
+
         #endregion
+
+        /// <summary>
+        /// Fecha o canal de comunicação.
+        /// </summary>
+        /// <param name="p_endpoint">Ponto de comunicação.</param>
+        public void Stop(int p_endpoint)
+        {
+            try
+            {
+                this.v_streams[p_endpoint].Close();
+                this.v_sockets[p_endpoint].Close();
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Net.Exception(e);
+            }
+        }
 
         /// <summary>
         /// Fecha o canal de comunicação.
@@ -593,12 +758,11 @@ namespace Spartacus.Net
         {
             try
             {
-                this.v_stream.Close();
-                this.v_socket.Close();
+                this.Stop(0);
             }
-            catch (System.Exception e)
+            catch (Spartacus.Net.Exception e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw e;
             }
         }
     }

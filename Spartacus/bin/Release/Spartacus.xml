@@ -4888,9 +4888,41 @@
             Classe Server.
             Herda da classe <see cref="T:Spartacus.Net.Endpoint" />.
             </summary></member>
+        <member name="F:Spartacus.Net.Server.v_status">
+            <summary>
+            Situação do servidor: escutando ou não escutando.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_numclients">
+            <summary>
+            Número de clientes conectados.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_connect">
+            <summary>
+            Objeto que gerencia o evento de Conexão.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_disconnect">
+            <summary>
+            Objeto que gerencia o evento de Desconexão.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_available">
+            <summary>
+            Objeto que gerencia o evento de Conexão.
+            </summary></member>
         <member name="F:Spartacus.Net.Server.v_listener">
             <summary>
             Listener usado para recebe conexões de clientes.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_clienthandlers">
+            <summary>
+            Gerenciadores de conexão com clientes.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_threadaccept">
+            <summary>
+            Thread para escuta de novos clientes.
+            </summary></member>
+        <member name="F:Spartacus.Net.Server.v_threadcheck">
+            <summary>
+            Thread para verificação de clientes conectados.
             </summary></member>
         <member name="M:Spartacus.Net.Server.#ctor(System.String,System.Int32)">
             <summary>
@@ -4901,6 +4933,14 @@
         <member name="M:Spartacus.Net.Server.Accept">
             <summary>
             Escuta por conexões de clientes e as aceita.
+            </summary></member>
+        <member name="M:Spartacus.Net.Server.ThreadAccept">
+            <summary>
+            Thread para escuta de novos clientes.
+            </summary></member>
+        <member name="M:Spartacus.Net.Server.ThreadCheck">
+            <summary>
+            Thread para verificação de clientes conectados.
             </summary></member>
         <member name="M:Spartacus.Net.Server.StopServer">
             <summary>
@@ -5092,13 +5132,13 @@
             <summary>
             Porta do ponto de comunicação.
             </summary></member>
-        <member name="F:Spartacus.Net.Endpoint.v_socket">
+        <member name="F:Spartacus.Net.Endpoint.v_sockets">
             <summary>
-            Socket usado para comunicação.
+            Sockets usado para comunicação.
             </summary></member>
-        <member name="F:Spartacus.Net.Endpoint.v_stream">
+        <member name="F:Spartacus.Net.Endpoint.v_streams">
             <summary>
-            Stream usada para comunicação.
+            Streams usadas para comunicação.
             </summary></member>
         <member name="F:Spartacus.Net.Endpoint.v_buffersize">
             <summary>
@@ -5115,12 +5155,27 @@
             </summary>
             <param name="p_ip">IP do ponto de comunicação.</param>
             <param name="p_port">Porta do ponto de comunicação.</param></member>
+        <member name="M:Spartacus.Net.Endpoint.Recv(System.Int32)">
+            <summary>
+            Recebe um pacote.
+            </summary>
+            <returns>Pacote.</returns>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.Recv">
             <summary>
             Recebe um pacote.
             </summary>
             <returns>Pacote.</returns>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.RecvString(System.Int32)">
+            <summary>
+            Recebe uma string.
+            Pode ser necessário vários pacotes para montar essa string.
+            </summary>
+            <returns>String.</returns>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.RecvString">
             <summary>
             Recebe uma string.
@@ -5128,6 +5183,14 @@
             </summary>
             <returns>String.</returns>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.RecvDataTable(System.Int32)">
+            <summary>
+            Recebe uma <see cref="T:System.Data.DataTable" />.
+            Recebe um pacote por linha da <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <returns><see cref="T:System.Data.DataTable" />.</returns>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="T:System.Data.DataTable" />.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.RecvDataTable">
             <summary>
             Recebe uma <see cref="T:System.Data.DataTable" />.
@@ -5135,18 +5198,40 @@
             </summary>
             <returns><see cref="T:System.Data.DataTable" />.</returns>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="T:System.Data.DataTable" />.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.RecvFile(System.Int32)">
+            <summary>
+            Recebe um arquivo.
+            </summary>
+            <returns>Nome do arquivo.</returns>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.RecvFile">
             <summary>
             Recebe um arquivo.
             </summary>
             <returns>Nome do arquivo.</returns>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.Send(System.Int32,Spartacus.Net.Packet)">
+            <summary>
+            Envia um pacote.
+            </summary>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <param name="p_packet">Pacote.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.Send(Spartacus.Net.Packet)">
             <summary>
             Envia um pacote.
             </summary>
             <param name="p_packet">Pacote.</param>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.SendString(System.Int32,System.String)">
+            <summary>
+            Envia uma string.
+            Pode ser necessário quebrar essa string em vários pacotes.
+            </summary>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <param name="p_text">String.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.SendString(System.String)">
             <summary>
             Envia uma string.
@@ -5154,6 +5239,14 @@
             </summary>
             <param name="p_text">String.</param>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.SendDataTable(System.Int32,System.Data.DataTable)">
+            <summary>
+            Envia uma <see cref="T:System.Data.DataTable" />.
+            Envia uma linha por pacote.
+            </summary>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <param name="p_table"><see cref="T:System.Data.DataTable" />.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="T:System.Data.DataTable" />.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.SendDataTable(System.Data.DataTable)">
             <summary>
             Envia uma <see cref="T:System.Data.DataTable" />.
@@ -5161,12 +5254,24 @@
             </summary>
             <param name="p_table"><see cref="T:System.Data.DataTable" />.</param>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="T:System.Data.DataTable" />.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.SendFile(System.Int32,System.String)">
+            <summary>
+            Envia um arquivo.
+            </summary>
+            <param name="p_endpoint">Ponto de comunicação.</param>
+            <param name="p_filename">Nome do arquivo.</param>
+            <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception></member>
         <member name="M:Spartacus.Net.Endpoint.SendFile(System.String)">
             <summary>
             Envia um arquivo.
             </summary>
             <param name="p_filename">Nome do arquivo.</param>
             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception></member>
+        <member name="M:Spartacus.Net.Endpoint.Stop(System.Int32)">
+            <summary>
+            Fecha o canal de comunicação.
+            </summary>
+            <param name="p_endpoint">Ponto de comunicação.</param></member>
         <member name="M:Spartacus.Net.Endpoint.Stop">
             <summary>
             Fecha o canal de comunicação.
@@ -37977,5 +38082,209 @@
             </summary>
             <param name="obr"></param>
             <returns></returns></member>
+        <member name="T:Spartacus.Net.ConnectEventArgs">
+            <summary>
+            Classe ConnectEventArgs.
+            Representa os argumentos do evento de Conexão.
+            Herda da classe <see cref="T:System.EventArgs" />.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_serverip">
+            <summary>
+            IP do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_serverport">
+            <summary>
+            Porta do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_clientip">
+            <summary>
+            IP do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_clientport">
+            <summary>
+            Porta do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_index">
+            <summary>
+            Índice do Cliente na lista de Clientes.
+            </summary></member>
+        <member name="M:Spartacus.Net.ConnectEventArgs.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.ConnectEventArgs" />.
+            </summary></member>
+        <member name="T:Spartacus.Net.ConnectEventClass">
+            <summary>
+            Classe ConnectEventClass.
+            Representa um evento de Conexão.
+            </summary></member>
+        <member name="T:Spartacus.Net.ConnectEventClass.ConnectEventHandler">
+            <summary>
+            Delegate para gerenciar o evento de Conexão.
+            </summary></member>
+        <member name="E:Spartacus.Net.ConnectEventClass.ConnectEvent">
+            <summary>
+            Evento de Conexão propriamente dito.
+            </summary></member>
+        <member name="F:Spartacus.Net.ConnectEventClass.ConnectEventArgs">
+            <summary>
+            Argumentos do evento de Conexão.
+            </summary></member>
+        <member name="M:Spartacus.Net.ConnectEventClass.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.ConnectEventClass" />.
+            </summary></member>
+        <member name="M:Spartacus.Net.ConnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Dispara o evento de Conexão.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param></member>
+        <member name="M:Spartacus.Net.ConnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Dispara o evento de Conexão.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param>
+            <param name="p_index">Índice do Cliente.</param></member>
+        <member name="T:Spartacus.Net.DisconnectEventArgs">
+            <summary>
+            Classe DisconnectEventArgs.
+            Representa os argumentos do evento de Desconexão.
+            Herda da classe <see cref="T:System.EventArgs" />.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_serverip">
+            <summary>
+            IP do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_serverport">
+            <summary>
+            Porta do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_clientip">
+            <summary>
+            IP do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_clientport">
+            <summary>
+            Porta do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_index">
+            <summary>
+            Índice do Cliente na lista de Clientes.
+            </summary></member>
+        <member name="M:Spartacus.Net.DisconnectEventArgs.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.DisconnectEventArgs" />.
+            </summary></member>
+        <member name="T:Spartacus.Net.DisconnectEventClass">
+            <summary>
+            Classe DisconnectEventClass.
+            Representa um evento de Desconexão.
+            </summary></member>
+        <member name="T:Spartacus.Net.DisconnectEventClass.DisconnectEventHandler">
+            <summary>
+            Delegate para gerenciar o evento de Desconexão.
+            </summary></member>
+        <member name="E:Spartacus.Net.DisconnectEventClass.DisconnectEvent">
+            <summary>
+            Evento de Desconexão propriamente dito.
+            </summary></member>
+        <member name="F:Spartacus.Net.DisconnectEventClass.DisconnectEventArgs">
+            <summary>
+            Argumentos do evento de Desconexão.
+            </summary></member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.DisconnectEventClass" />.
+            </summary></member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Dispara o evento de Desconexão.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param></member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Dispara o evento de Desconexão.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param>
+            <param name="p_index">Índice do Cliente.</param></member>
+        <member name="T:Spartacus.Net.AvailableEventArgs">
+            <summary>
+            Classe AvailableEventArgs.
+            Representa os argumentos do evento de Dados Disponíveis.
+            Herda da classe <see cref="T:System.EventArgs" />.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_serverip">
+            <summary>
+            IP do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_serverport">
+            <summary>
+            Porta do Servidor.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_clientip">
+            <summary>
+            IP do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_clientport">
+            <summary>
+            Porta do Cliente.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_index">
+            <summary>
+            Índice do Cliente na lista de Clientes.
+            </summary></member>
+        <member name="M:Spartacus.Net.AvailableEventArgs.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.AvailableEventArgs" />.
+            </summary></member>
+        <member name="T:Spartacus.Net.AvailableEventClass">
+            <summary>
+            Classe AvailableEventClass.
+            Representa um evento de Dados Disponíveis.
+            </summary></member>
+        <member name="T:Spartacus.Net.AvailableEventClass.AvailableEventHandler">
+            <summary>
+            Delegate para gerenciar o evento de Dados Disponíveis.
+            </summary></member>
+        <member name="E:Spartacus.Net.AvailableEventClass.AvailableEvent">
+            <summary>
+            Evento de Dados Disponíveis propriamente dito.
+            </summary></member>
+        <member name="F:Spartacus.Net.AvailableEventClass.AvailableEventArgs">
+            <summary>
+            Argumentos do evento de Dados Disponíveis.
+            </summary></member>
+        <member name="M:Spartacus.Net.AvailableEventClass.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.AvailableEventClass" />.
+            </summary></member>
+        <member name="M:Spartacus.Net.AvailableEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Dispara o evento de Dados Disponíveis.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param></member>
+        <member name="M:Spartacus.Net.AvailableEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Dispara o evento de Dados Disponíveis.
+            </summary>
+            <param name="p_serverip">IP do Servidor.</param>
+            <param name="p_serverport">Porta do Servidor.</param>
+            <param name="p_clientip">IP do Cliente.</param>
+            <param name="p_clientport">Porta do Cliente.</param>
+            <param name="p_index">Índice do Cliente.</param></member>
     </members>
 </doc>

@@ -910,6 +910,9 @@
     <Compile Include="fastdbf\DbfHeader.cs" />
     <Compile Include="fastdbf\DbfRecord.cs" />
     <Compile Include="Spartacus.Reporting.ReportXML.cs" />
+    <Compile Include="Spartacus.Net.ConnectEvent.cs" />
+    <Compile Include="Spartacus.Net.DisconnectEvent.cs" />
+    <Compile Include="Spartacus.Net.AvailableEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

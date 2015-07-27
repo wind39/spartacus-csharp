@@ -60,7 +60,7 @@ namespace Spartacus.Net
 
             v_endpoint = new IPEndPoint(System.Net.IPAddress.Parse(p_clientip), p_clientport);
 
-            this.v_socket = new System.Net.Sockets.TcpClient(v_endpoint);
+            this.v_sockets.Add(new System.Net.Sockets.TcpClient(v_endpoint));
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace Spartacus.Net
         {
             try
             {
-                this.v_socket.Connect(this.v_serverip, this.v_serverport);
-                this.v_stream = this.v_socket.GetStream();
+                this.v_sockets[0].Connect(this.v_serverip, this.v_serverport);
+                this.v_streams.Add(this.v_sockets[0].GetStream());
             }
             catch (System.Exception e)
             {
