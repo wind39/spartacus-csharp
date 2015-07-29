@@ -962,6 +962,15 @@
     <None Include="lib\firebird\windows_x86\icudt30.dll" />
     <None Include="lib\firebird\windows_x86\icuin30.dll" />
     <None Include="lib\firebird\windows_x86\icuuc30.dll" />
+    <None Include="lib\css\font-awesome.min.css" />
+    <None Include="lib\css\pure-min.css" />
+    <None Include="lib\fonts\FontAwesome.otf" />
+    <None Include="lib\fonts\fontawesome-webfont.eot" />
+    <None Include="lib\fonts\fontawesome-webfont.svg" />
+    <None Include="lib\fonts\fontawesome-webfont.ttf" />
+    <None Include="lib\fonts\fontawesome-webfont.woff" />
+    <None Include="lib\fonts\fontawesome-webfont.woff2" />
+    <None Include="lib\js\jquery.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
