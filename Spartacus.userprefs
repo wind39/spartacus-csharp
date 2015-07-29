@@ -1,10 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.Endpoint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Web.Textbox.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Net.Server.cs" Line="61" Column="10" />
-      <File FileName="Spartacus/Spartacus.Net.Client.cs" Line="75" Column="54" />
-      <File FileName="Spartacus/Spartacus.Net.Endpoint.cs" Line="746" Column="44" />
+      <File FileName="Spartacus/Spartacus.Web.Container.cs" Line="44" Column="9" />
+      <File FileName="Spartacus/Spartacus.Web.Window.cs" Line="94" Column="35" />
+      <File FileName="Spartacus/Spartacus.Web.Textbox.cs" Line="52" Column="71" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

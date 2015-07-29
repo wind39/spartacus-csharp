@@ -913,6 +913,10 @@
     <Compile Include="Spartacus.Net.ConnectEvent.cs" />
     <Compile Include="Spartacus.Net.DisconnectEvent.cs" />
     <Compile Include="Spartacus.Net.AvailableEvent.cs" />
+    <Compile Include="Spartacus.Web.Container.cs" />
+    <Compile Include="Spartacus.Web.Window.cs" />
+    <Compile Include="Spartacus.Web.Textbox.cs" />
+    <Compile Include="Spartacus.Web.Buttons.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

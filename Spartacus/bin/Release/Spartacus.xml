@@ -38286,5 +38286,195 @@
             <param name="p_clientip">IP do Cliente.</param>
             <param name="p_clientport">Porta do Cliente.</param>
             <param name="p_index">Índice do Cliente.</param></member>
+        <member name="T:Spartacus.Web.Container">
+            <summary>
+            Classe Container.
+            Representa um formulário (janela), painel, ou outro componente que contenha outros componentes.
+            </summary></member>
+        <member name="F:Spartacus.Web.Container.v_id">
+            <summary>
+            Identificador do Container atual.
+            </summary></member>
+        <member name="F:Spartacus.Web.Container.v_parent">
+            <summary>
+            Container pai do Container atual.
+            </summary></member>
+        <member name="F:Spartacus.Web.Container.v_containers">
+            <summary>
+            Lista de Containers filhos do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Container.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Container" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param></member>
+        <member name="M:Spartacus.Web.Container.#ctor(System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Container" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_parent">Container pai do Container atual.</param></member>
+        <member name="M:Spartacus.Web.Container.Add(Spartacus.Web.Container)">
+            <summary>
+            Adiciona um Container ao Container atual.
+            </summary>
+            <param name="p_container">Container a ser adicionado.</param></member>
+        <member name="M:Spartacus.Web.Container.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Container.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Container.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Web.Container.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
+        <member name="M:Spartacus.Web.Container.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="T:Spartacus.Web.Window">
+            <summary>
+            Classe Window.
+            Representa uma Janela.
+            </summary></member>
+        <member name="M:Spartacus.Web.Window.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Window" />.
+            </summary></member>
+        <member name="M:Spartacus.Web.Window.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Window.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Window.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Web.Window.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
+        <member name="M:Spartacus.Web.Window.GetChildById(System.String)">
+            <summary>
+            Procura e retorna o Container filho que possua o ID solicitado.
+            </summary>
+            <returns>Container filho..</returns>
+            <param name="p_id">Identificador.</param></member>
+        <member name="M:Spartacus.Web.Window.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="T:Spartacus.Web.Textbox">
+            <summary>
+            Classe Textbox.
+            Representa um componente em que o usuário pode digitar texto em uma única linha.
+            </summary></member>
+        <member name="F:Spartacus.Web.Textbox.v_label">
+            <summary>
+            Rótulo do Textbox.
+            </summary></member>
+        <member name="F:Spartacus.Web.Textbox.v_textbox">
+            <summary>
+            Controle nativo que representa o Textbox.
+            </summary></member>
+        <member name="M:Spartacus.Web.Textbox.#ctor(System.String,System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Textbox" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_label">Texto exibido no rótulo.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Textbox.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Textbox.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Textbox.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Textbox.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Textbox.</param></member>
+        <member name="M:Spartacus.Web.Textbox.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Textbox.
+            </summary>
+            <returns>Texto ou valor atual do Textbox.</returns></member>
+        <member name="M:Spartacus.Web.Textbox.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="T:Spartacus.Web.Buttons">
+            <summary>
+            Classe Buttons.
+            Herda da classe <see cref="T:Spartacus.Web.Container" />
+            Representa um componente com um ou mais botões.
+            </summary></member>
+        <member name="F:Spartacus.Web.Buttons.v_list">
+            <summary>
+            Lista de botões.
+            </summary></member>
+        <member name="M:Spartacus.Web.Buttons.#ctor(Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Buttons" />.
+            </summary>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Buttons.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Buttons.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Buttons.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Web.Buttons.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_id">Identificador do botão.</param>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param></member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_id">Identificador do botão.</param>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_text">Ícone do botão.</param>
+            <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param></member>
+        <member name="M:Spartacus.Web.Buttons.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
     </members>
 </doc>
