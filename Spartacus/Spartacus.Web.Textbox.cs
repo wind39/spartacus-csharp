@@ -52,6 +52,8 @@ namespace Spartacus.Web
         public Textbox(string p_id, string p_label, Spartacus.Web.Container p_parent)
             : base(p_id, p_parent)
         {
+            this.v_type = Spartacus.Web.ContainerType.TEXTBOX;
+
             this.v_label = new System.Web.UI.HtmlControls.HtmlGenericControl("label");
             this.v_label.Attributes.Add("for", p_id);
             this.v_label.InnerText = p_label;

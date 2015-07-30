@@ -57,6 +57,8 @@ namespace Spartacus.Web
         public Datetimepicker(string p_id, string p_label, Spartacus.Web.Container p_parent)
             : base(p_id, p_parent)
         {
+            this.v_type = Spartacus.Web.ContainerType.DATETIMEPICKER;
+
             this.v_label = new System.Web.UI.HtmlControls.HtmlGenericControl("label");
             this.v_label.Attributes.Add("for", p_id);
             this.v_label.InnerText = p_label;
@@ -80,6 +82,8 @@ namespace Spartacus.Web
         public Datetimepicker(string p_id, string p_label, string p_format, Spartacus.Web.Container p_parent)
             : base(p_id, p_parent)
         {
+            this.v_type = Spartacus.Web.ContainerType.DATETIMEPICKER;
+
             this.v_label = new System.Web.UI.HtmlControls.HtmlGenericControl("label");
             this.v_label.Attributes.Add("for", p_id);
             this.v_label.InnerText = p_label;
@@ -144,7 +148,7 @@ namespace Spartacus.Web
 
             v_html = "<div class='pure-control-group'>";
             v_html += v_builder.ToString();
-            v_html += "<script src='../js/moment.min.js'></script><script src='../js/pikaday.js'></script><script>var picker_" + this.v_id + " = new Pikaday({field: document.getElementById('" + this.v_id + "'), onSelect: function() {document.getElementById('" + this.v_id + "').value = picker_" + this.v_id + ".toString('" + this.v_format + "');}});</script>";
+            v_html += "<script>var picker_" + this.v_id + " = new Pikaday({field: document.getElementById('" + this.v_id + "'), onSelect: function() {document.getElementById('" + this.v_id + "').value = picker_" + this.v_id + ".toString('" + this.v_format + "');}});</script>";
             v_html += "</div>";
 
             return v_html;

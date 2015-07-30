@@ -975,6 +975,7 @@
     <None Include="lib\js\pikaday.js" />
     <None Include="lib\css\pikaday.css" />
     <None Include="lib\js\moment.min.js" />
+    <None Include="lib\js\notify.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

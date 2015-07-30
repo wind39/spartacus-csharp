@@ -46,6 +46,8 @@ namespace Spartacus.Web
         public Buttons(Spartacus.Web.Container p_parent)
             : base(null, p_parent)
         {
+            this.v_type = Spartacus.Web.ContainerType.BUTTONS;
+
             this.v_list = new System.Collections.ArrayList();
         }
 
@@ -93,7 +95,6 @@ namespace Spartacus.Web
 
             v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
             v_button.ID = p_id;
-            v_button.Attributes.Add("type", "text");
             v_button.Attributes.Add("class", "pure-button");
             v_button.Attributes.Add("onclick", p_onclick);
             v_button.InnerHtml = p_text;
@@ -114,7 +115,6 @@ namespace Spartacus.Web
 
             v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
             v_button.ID = p_id;
-            v_button.Attributes.Add("type", "text");
             v_button.Attributes.Add("class", "pure-button");
             v_button.Attributes.Add("onclick", p_onclick);
             v_button.InnerHtml = "<i class='" + p_icon + "'></i>" + p_text;

@@ -26,6 +26,21 @@ using System;
 
 namespace Spartacus.Web
 {
+    public enum ContainerType
+    {
+        MEMOBOX,
+        MENU,
+        MESSAGEBOX,
+        PASSWORDBOX,
+        PROGRESSBAR,
+        TEXTBOX,
+        BUTTONS,
+        DATETIMEPICKER,
+        GRID,
+        LOOKUP,
+        WINDOW
+    }
+
     /// <summary>
     /// Classe Container.
     /// Representa um formulário (janela), painel, ou outro componente que contenha outros componentes.
@@ -46,6 +61,11 @@ namespace Spartacus.Web
         /// Lista de Containers filhos do Container atual.
         /// </summary>
         public System.Collections.ArrayList v_containers;
+
+        /// <summary>
+        /// Tipo do Container atual.
+        /// </summary>
+        public Spartacus.Web.ContainerType v_type;
 
 
         /// <summary>

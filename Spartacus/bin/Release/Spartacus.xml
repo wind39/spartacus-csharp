@@ -38303,6 +38303,10 @@
             <summary>
             Lista de Containers filhos do Container atual.
             </summary></member>
+        <member name="F:Spartacus.Web.Container.v_type">
+            <summary>
+            Tipo do Container atual.
+            </summary></member>
         <member name="M:Spartacus.Web.Container.#ctor(System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Container" />.
@@ -38347,10 +38351,21 @@
             Classe Window.
             Representa uma Janela.
             </summary></member>
-        <member name="M:Spartacus.Web.Window.#ctor">
+        <member name="F:Spartacus.Web.Window.v_aspx">
+            <summary>
+            Nome da página ASPX.
+            </summary></member>
+        <member name="M:Spartacus.Web.Window.#ctor(System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Window" />.
-            </summary></member>
+            </summary>
+            <param name="p_aspx">Nome da página ASPX.</param></member>
+        <member name="M:Spartacus.Web.Window.#ctor(System.String,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Window" />.
+            </summary>
+            <param name="p_title">Título da Janela</param>
+            <param name="p_aspx">Nome da página ASPX.</param></member>
         <member name="M:Spartacus.Web.Window.Clear">
             <summary>
             Limpa os dados do Container atual.
@@ -38380,6 +38395,16 @@
             <summary>
             Renderiza o HTML do Container.
             </summary></member>
+        <member name="M:Spartacus.Web.Window.RenderHead">
+            <summary>
+            Renderiza o HTML head.
+            </summary>
+            <returns>String com o HTML head.</returns></member>
+        <member name="M:Spartacus.Web.Window.RenderBody">
+            <summary>
+            Renderiza o HTML body.
+            </summary>
+            <returns>String com o HTML body.</returns></member>
         <member name="T:Spartacus.Web.Textbox">
             <summary>
             Classe Textbox.

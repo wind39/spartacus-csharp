@@ -1286,6 +1286,7 @@ namespace Spartacus.Utils
                         /* EXEMPLO DE CONFIGURACAO DE MARKUP:
                             TIPO|CAMPO|POSICAO|OPCIONAL
                             CA||A1:AD12|
+                            CX|A:AD|11|30
                             ST|titulo|A6|
                             ST|filtro|A8|
                             ST|ano|E2:J2|
@@ -1316,6 +1317,12 @@ namespace Spartacus.Utils
 
                                 switch (v_options[0])
                                 {
+                                    case "CX":
+                                        // passando informação para demais configurações
+                                        v_datastart = int.Parse(v_options[2]);
+                                        // passando informação para SejExcel
+                                        v_worksheet.Cells["A1"].Value = v_options[2];
+                                        break;
                                     case "ST":
                                         v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
                                         break;
@@ -1488,6 +1495,7 @@ namespace Spartacus.Utils
                                     /* EXEMPLO DE CONFIGURACAO DE MARKUP:
                                         TIPO|CAMPO|POSICAO|OPCIONAL
                                         CA||A1:AD12|
+                                        CX|A:AD|11|30
                                         ST|titulo|A6|
                                         ST|filtro|A8|
                                         ST|ano|E2:J2|
@@ -1556,6 +1564,18 @@ namespace Spartacus.Utils
                                                             v_worksheet.Cells[v_cell.Address].Comment.AutoFit = true;
                                                         }
                                                     }
+                                                    break;
+                                                case "CX":
+                                                    v_row = int.Parse(v_options[2]);
+                                                    for (int i = 1; i <= v_row; i++)
+                                                        v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
+                                                    v_col = int.Parse(v_options[3]);
+                                                    for (int j = 1; j <= v_col; j++)
+                                                        v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
+                                                    // passando informação para demais configurações
+                                                    v_datastart = int.Parse(v_options[2]);
+                                                    // passando informação para SejExcel
+                                                    v_worksheet.Cells["A1"].Value = v_options[2];
                                                     break;
                                                 case "ST":
                                                     v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());

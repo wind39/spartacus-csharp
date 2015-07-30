@@ -33,11 +33,31 @@ namespace Spartacus.Web
     public class Window : Spartacus.Web.Container
     {
         /// <summary>
+        /// Nome da página ASPX.
+        /// </summary>
+        public string v_aspx;
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Web.Window"/>.
         /// </summary>
-        public Window()
+        /// <param name="p_aspx">Nome da página ASPX.</param>
+        public Window(string p_aspx)
             :base(null)
         {
+            this.v_type = Spartacus.Web.ContainerType.WINDOW;
+            this.v_aspx = p_aspx;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Web.Window"/>.
+        /// </summary>
+        /// <param name="p_title">Título da Janela</param>
+        /// <param name="p_aspx">Nome da página ASPX.</param>
+        public Window(string p_title, string p_aspx)
+            :base(p_title)
+        {
+            this.v_type = Spartacus.Web.ContainerType.WINDOW;
+            this.v_aspx = p_aspx;
         }
 
         /// <summary>
@@ -118,6 +138,107 @@ namespace Spartacus.Web
         /// Renderiza o HTML do Container.
         /// </summary>
         public override string Render()
+        {
+            return "<!DOCTYPE html><html><head>" + this.RenderHead() + "</head><body>" + this.RenderBody() + "</body></html>";
+        }
+
+        /// <summary>
+        /// Renderiza o HTML head.
+        /// </summary>
+        /// <returns>String com o HTML head.</returns>
+        public string RenderHead()
+        {
+            string v_html;
+            Spartacus.Web.Container v_container;
+            Spartacus.Web.Buttons v_buttons;
+            System.Web.UI.HtmlControls.HtmlGenericControl v_button;
+            string v_onclick, v_function, v_parameters;
+            bool v_has_buttons = false;
+            bool v_has_datetimepicker = false;
+            string[] v_tmp;
+
+            for (int k = 0; k < this.v_containers.Count; k++)
+            {
+                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                switch (v_container.v_type)
+                {
+                    case Spartacus.Web.ContainerType.BUTTONS:
+                        v_has_buttons = true;
+                        break;
+                    case Spartacus.Web.ContainerType.DATETIMEPICKER:
+                        v_has_datetimepicker = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            v_html = "<title>" + this.v_id + "</title>";
+
+            if (v_has_datetimepicker)
+                v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/pikaday.css' />";
+
+            v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/font-awesome.min.css' />";
+            v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/pure-min.css' />";
+            v_html += "<script type='text/javascript' src='../js/jquery.min.js'></script>";
+            v_html += "<script type='text/javascript' src='../js/notify.min.js'></script>";
+
+            if (v_has_datetimepicker)
+            {
+                v_html += "<script type='text/javascript' src='../js/moment.min.js'></script>";
+                v_html += "<script type='text/javascript' src='../js/pikaday.js'></script>";
+            }
+
+            if (v_has_buttons)
+            {
+                v_html += "<script type='text/javascript'>";
+
+                for (int i = 0; i < this.v_containers.Count; i++)
+                {
+                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    if (v_container.v_type == Spartacus.Web.ContainerType.BUTTONS)
+                    {
+                        v_buttons = (Spartacus.Web.Buttons)v_container;
+                        for (int j = 0; j < v_buttons.v_list.Count; j++)
+                        {
+                            v_button = (System.Web.UI.HtmlControls.HtmlGenericControl)v_buttons.v_list[j];
+
+                            v_onclick = v_button.Attributes["onclick"].Replace(" ", "");
+                            v_tmp = v_onclick.Split('(');
+                            v_function = v_tmp[0];
+
+                            v_html += " function " + v_function + "() {";
+                            v_html += "$.ajax({type: 'POST', url: '" + this.v_aspx + "/" + v_function + "', ";
+
+                            v_parameters = v_tmp[1].Replace(")", "");
+                            if (v_parameters != null && v_parameters != "")
+                            {
+                                v_tmp = v_parameters.Split(',');
+                                v_html += "data: JSON.stringify({p_" + v_tmp[0] + ": document.getElementById('" + v_tmp[0] + "').value";
+                                for (int k = 1; k < v_tmp.Length; k++)
+                                    v_html += ", p_" + v_tmp[k] + ": document.getElementById('" + v_tmp[k] + "').value";
+                                v_html += "}), ";
+                            }
+                            else
+                                v_html += "data: null, ";
+
+                            //TODO: melhorar success e failure e implementar notificações
+                            v_html += "contentType: 'application/json; charset=utf-8', dataType: 'json', success: function(response) {}, failure: function(response) { alert(response.d); } }); }";
+                        }
+                    }
+                }
+
+                v_html += "</script>";
+            }
+
+            return v_html;
+        }
+
+        /// <summary>
+        /// Renderiza o HTML body.
+        /// </summary>
+        /// <returns>String com o HTML body.</returns>
+        public string RenderBody()
         {
             string v_html;
             Spartacus.Web.Container v_container;

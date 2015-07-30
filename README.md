@@ -23,20 +23,21 @@ Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
-  - SejExcel, from Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
-  - ZipStorer, from Jaime Olivares (http://zipstorer.codeplex.com)
-  - FastDBF, from Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
-  - Data-bound Multi-column combobox, from Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
+  - SejExcel, by Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
+  - ZipStorer, by Jaime Olivares (http://zipstorer.codeplex.com)
+  - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
+  - Data-bound Multi-column combobox, by Nish Sivakumar (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
-Spartacus also optionally use this libraries, binaries and web assets:
+Spartacus also optionally use this native libraries, binaries and web assets:
   - SQLite (https://www.sqlite.org/)
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
   - JQuery (https://github.com/jquery/jquery)
   - Yahoo PureCSS (https://github.com/yahoo/pure/)
-  - Font Awesome (https://github.com/FortAwesome/Font-Awesome/)
-  - Pikaday (https://github.com/dbushell/Pikaday)
-  - Moment (https://github.com/moment/moment)
+  - Font Awesome, by Dave Gandy (https://github.com/FortAwesome/Font-Awesome/)
+  - Pikaday, by David Bushell (https://github.com/dbushell/Pikaday)
+  - Moment.js (https://github.com/moment/moment)
+  - Notify.js, by Jaime Pillora (https://github.com/jpillora/notifyjs)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
