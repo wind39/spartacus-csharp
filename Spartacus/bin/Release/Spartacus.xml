@@ -38476,5 +38476,60 @@
             <summary>
             Renderiza o HTML do Container.
             </summary></member>
+        <member name="T:Spartacus.Web.Datetimepicker">
+            <summary>
+            Classe Datetimepicker.
+            RRepresenta um componente em que o usuário pode selecionar uma data.
+            </summary></member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_label">
+            <summary>
+            Rótulo do Datetimepicker.
+            </summary></member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_datetimepicker">
+            <summary>
+            Controle nativo que representa o Datetimepicker.
+            </summary></member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_format">
+            <summary>
+            Formato de Data.
+            </summary></member>
+        <member name="M:Spartacus.Web.Datetimepicker.#ctor(System.String,System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Datetimepicker" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_label">Texto exibido no rótulo.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Datetimepicker.#ctor(System.String,System.String,System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Datetimepicker" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_label">Texto exibido no rótulo.</param>
+            <param name="p_format">Formato de data.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Datetimepicker.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Datetimepicker.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Datetimepicker.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Datetimepicker.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Datetimepicker.</param></member>
+        <member name="M:Spartacus.Web.Datetimepicker.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Datetimepicker.
+            </summary>
+            <returns>Texto ou valor atual do Datetimepicker.</returns></member>
+        <member name="M:Spartacus.Web.Datetimepicker.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
     </members>
 </doc>

@@ -917,6 +917,7 @@
     <Compile Include="Spartacus.Web.Window.cs" />
     <Compile Include="Spartacus.Web.Textbox.cs" />
     <Compile Include="Spartacus.Web.Buttons.cs" />
+    <Compile Include="Spartacus.Web.Datetimepicker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -971,6 +972,9 @@
     <None Include="lib\fonts\fontawesome-webfont.woff" />
     <None Include="lib\fonts\fontawesome-webfont.woff2" />
     <None Include="lib\js\jquery.min.js" />
+    <None Include="lib\js\pikaday.js" />
+    <None Include="lib\css\pikaday.css" />
+    <None Include="lib\js\moment.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

@@ -35,6 +35,8 @@ Spartacus also optionally use this libraries, binaries and web assets:
   - JQuery (https://github.com/jquery/jquery)
   - Yahoo PureCSS (https://github.com/yahoo/pure/)
   - Font Awesome (https://github.com/FortAwesome/Font-Awesome/)
+  - Pikaday (https://github.com/dbushell/Pikaday)
+  - Moment (https://github.com/moment/moment)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
