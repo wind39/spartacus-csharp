@@ -1958,6 +1958,19 @@
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
             </param></member>
+        <member name="M:Spartacus.Database.Generic.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
         <member name="M:Spartacus.Database.Generic.Execute(System.String)">
             <summary>
             Executa uma instrução SQL no banco de dados.
@@ -2278,6 +2291,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Odbc.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.Odbc.Execute(System.String)">
             <summary>
@@ -2661,6 +2687,19 @@
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
             </param></member>
+        <member name="M:Spartacus.Database.Firebird.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
         <member name="M:Spartacus.Database.Firebird.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -2979,6 +3018,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Mysql.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.Mysql.Execute(System.String)">
             <summary>
@@ -3302,6 +3354,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Oledb.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.Oledb.Execute(System.String)">
             <summary>
@@ -4464,6 +4529,19 @@
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
             </param></member>
+        <member name="M:Spartacus.Database.Sqlite.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
         <member name="M:Spartacus.Database.Sqlite.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -5376,6 +5454,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Postgresql.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.Postgresql.Execute(System.String)">
             <summary>
@@ -6318,6 +6409,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Oracle.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.Oracle.Execute(System.String)">
             <summary>
@@ -36836,6 +36940,19 @@
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
             </param></member>
+        <member name="M:Spartacus.Database.Memory.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
         <member name="M:Spartacus.Database.Memory.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -37148,6 +37265,19 @@
             </param>
             <param name="p_hasmoredata">
             Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
             </param></member>
         <member name="M:Spartacus.Database.FirebirdEmbed.Execute(System.String)">
             <summary>
@@ -38553,6 +38683,67 @@
             </summary>
             <returns>Texto ou valor atual do Datetimepicker.</returns></member>
         <member name="M:Spartacus.Web.Datetimepicker.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="T:Spartacus.Web.Grid">
+            <summary>
+            Classe Grid.
+            Representa um componente Grid.
+            Herda da classe <see cref="T:Spartacus.Web.Container" />.
+            </summary></member>
+        <member name="F:Spartacus.Web.Grid.v_html">
+            <summary>
+            Table HTML representando o grid.
+            </summary></member>
+        <member name="F:Spartacus.Web.Grid.v_database">
+            <summary>
+            Objeto de conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Web.Grid.v_sql">
+            <summary>
+            Consulta SQL para alimentar o Grid.
+            </summary></member>
+        <member name="M:Spartacus.Web.Grid.#ctor(System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Grid" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Grid.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Grid.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Grid.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Container.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Container.</param></member>
+        <member name="M:Spartacus.Web.Grid.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Container.
+            </summary>
+            <returns>Texto ou valor atual do Container.</returns></member>
+        <member name="M:Spartacus.Web.Grid.Populate(Spartacus.Database.Generic,System.String)">
+            <summary>
+            Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+            </summary>
+            <param name="p_database">Objeto de conexão com o banco de dados.</param>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Web.Grid.Populate(System.Data.DataTable)">
+            <summary>
+            Popula o Grid atual com os dados de um DataTable.
+            </summary></member>
+        <member name="M:Spartacus.Web.Grid.Populate">
+            <summary>
+            Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Web.Grid.Render">
             <summary>
             Renderiza o HTML do Container.
             </summary></member>

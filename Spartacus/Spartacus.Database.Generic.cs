@@ -190,6 +190,20 @@ namespace Spartacus.Database
         public abstract System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_id'>
+        /// ID da tabela no HTML.
+        /// </param>
+        /// <param name='p_options'>
+        /// Opções da tabela no HTML.
+        /// </param>
+        public abstract string QueryHtml(string p_sql, string p_id, string p_options);
+
+        /// <summary>
         /// Executa uma instrução SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>

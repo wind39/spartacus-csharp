@@ -155,11 +155,12 @@ namespace Spartacus.Web
             string v_onclick, v_function, v_parameters;
             bool v_has_buttons = false;
             bool v_has_datetimepicker = false;
+            bool v_has_grid = false;
             string[] v_tmp;
 
-            for (int k = 0; k < this.v_containers.Count; k++)
+            for (int i = 0; i < this.v_containers.Count; i++)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                v_container = (Spartacus.Web.Container)this.v_containers [i];
                 switch (v_container.v_type)
                 {
                     case Spartacus.Web.ContainerType.BUTTONS:
@@ -167,6 +168,9 @@ namespace Spartacus.Web
                         break;
                     case Spartacus.Web.ContainerType.DATETIMEPICKER:
                         v_has_datetimepicker = true;
+                        break;
+                    case Spartacus.Web.ContainerType.GRID:
+                        v_has_grid = true;
                         break;
                     default:
                         break;
@@ -178,6 +182,9 @@ namespace Spartacus.Web
             if (v_has_datetimepicker)
                 v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/pikaday.css' />";
 
+            if (v_has_grid)
+                v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/jquery.dataTables.min.css' />";
+
             v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/font-awesome.min.css' />";
             v_html += "<link rel='stylesheet' type='text/css' media='screen' href='../css/pure-min.css' />";
             v_html += "<script type='text/javascript' src='../js/jquery.min.js'></script>";
@@ -187,6 +194,26 @@ namespace Spartacus.Web
             {
                 v_html += "<script type='text/javascript' src='../js/moment.min.js'></script>";
                 v_html += "<script type='text/javascript' src='../js/pikaday.js'></script>";
+            }
+
+            if (v_has_grid)
+            {
+                v_html += "<script type='text/javascript' src='../js/jquery.dataTables.min.js'></script>";
+                v_html += "<script type='text/javascript' class='init'> $(document).ready(function () { ";
+
+                for (int i = 0; i < this.v_containers.Count; i++)
+                {
+                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    if (v_container.v_type == Spartacus.Web.ContainerType.GRID)
+                    {
+                        v_html += "var table_" + v_container.v_id + " = $('#" + v_container.v_id + "').DataTable(); ";
+                        v_html += "$('#" + v_container.v_id + " tbody').on('click', 'tr', function () { ";
+                        v_html += "if ($(this).hasClass('selected')) { $(this).removeClass('selected'); } ";
+                        v_html += "else { table_" + v_container.v_id + ".$('tr.selected').removeClass('selected'); $(this).addClass('selected'); }}); ";
+                    }
+                }
+
+                v_html += "}); </script>";
             }
 
             if (v_has_buttons)

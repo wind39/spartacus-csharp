@@ -918,6 +918,7 @@
     <Compile Include="Spartacus.Web.Textbox.cs" />
     <Compile Include="Spartacus.Web.Buttons.cs" />
     <Compile Include="Spartacus.Web.Datetimepicker.cs" />
+    <Compile Include="Spartacus.Web.Grid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -976,6 +977,13 @@
     <None Include="lib\css\pikaday.css" />
     <None Include="lib\js\moment.min.js" />
     <None Include="lib\js\notify.min.js" />
+    <None Include="lib\images\sort_asc.png" />
+    <None Include="lib\images\sort_asc_disabled.png" />
+    <None Include="lib\images\sort_both.png" />
+    <None Include="lib\images\sort_desc.png" />
+    <None Include="lib\images\sort_desc_disabled.png" />
+    <None Include="lib\css\jquery.dataTables.min.css" />
+    <None Include="lib\js\jquery.dataTables.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

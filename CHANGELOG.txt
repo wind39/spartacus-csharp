@@ -21,8 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.39.4:  Início implementação System.Web.Grid
 0.39.3:  Spartacus.Web gera HTML completo automaticamente
-0.39.2:  Implementada System.Web.Datetimepicker
+0.39.2:  Implementado System.Web.Datetimepicker
 0.39.1:  Início implementação Spartacus.Web
 0.39.0:  Spartacus.Net: Servidor com suporte a múltiplos clientes, e eventos OnConnect, OnDisconnect e OnAvailable
 

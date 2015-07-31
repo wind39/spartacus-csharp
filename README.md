@@ -38,6 +38,7 @@ Spartacus also optionally use this native libraries, binaries and web assets:
   - Pikaday, by David Bushell (https://github.com/dbushell/Pikaday)
   - Moment.js (https://github.com/moment/moment)
   - Notify.js, by Jaime Pillora (https://github.com/jpillora/notifyjs)
+  - DataTables (https://github.com/DataTables/DataTables)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
