@@ -62,6 +62,7 @@ namespace Spartacus.Web
             this.v_textbox.ID = p_id;
             this.v_textbox.Attributes.Add("runat", "server");
             this.v_textbox.Attributes.Add("type", "text");
+            this.v_textbox.Attributes.Add("class", "pure-input-2-3");
             this.v_textbox.Attributes.Add("value", "");
         }
 

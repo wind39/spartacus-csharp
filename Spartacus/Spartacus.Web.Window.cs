@@ -206,10 +206,10 @@ namespace Spartacus.Web
                     v_container = (Spartacus.Web.Container)this.v_containers [i];
                     if (v_container.v_type == Spartacus.Web.ContainerType.GRID)
                     {
-                        v_html += "var table_" + v_container.v_id + " = $('#" + v_container.v_id + "').DataTable(); ";
-                        v_html += "$('#" + v_container.v_id + " tbody').on('click', 'tr', function () { ";
-                        v_html += "if ($(this).hasClass('selected')) { $(this).removeClass('selected'); } ";
-                        v_html += "else { table_" + v_container.v_id + ".$('tr.selected').removeClass('selected'); $(this).addClass('selected'); }}); ";
+                        v_html += "var table_" + v_container.v_id + " = $('#grid_" + v_container.v_id + "').DataTable({stateSave: true}); ";
+                        v_html += "$('#grid_" + v_container.v_id + " tbody').on('click', 'tr', function () { ";
+                        v_html += "if ($(this).hasClass('selected')) { $(this).removeClass('selected'); $('#" + v_container.v_id + "').attr('value', ''); } ";
+                        v_html += "else { table_" + v_container.v_id + ".$('tr.selected').removeClass('selected'); $(this).addClass('selected'); $('#" + v_container.v_id + "').attr('value', $(this).children('td:first').text()); }}); ";
                     }
                 }
 

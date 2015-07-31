@@ -36,7 +36,13 @@ namespace Spartacus.Web
         /// <summary>
         /// Table HTML representando o grid.
         /// </summary>
-        public string v_html;
+        public string v_gridhtml;
+
+        /// <summary>
+        /// Controle nativo que representa o valor selecionado.
+        /// </summary>
+        public System.Web.UI.HtmlControls.HtmlGenericControl v_selected;
+
 
         /// <summary>
         /// Objeto de conexão com o banco de dados.
@@ -59,6 +65,13 @@ namespace Spartacus.Web
         {
             this.v_type = Spartacus.Web.ContainerType.GRID;
 
+            this.v_selected = new System.Web.UI.HtmlControls.HtmlGenericControl("input");
+            this.v_selected.ID = p_id;
+            this.v_selected.Attributes.Add("runat", "server");
+            this.v_selected.Attributes.Add("type", "text");
+            this.v_selected.Attributes.Add("value", "");
+            this.v_selected.Style.Add("display", "none");
+
             this.v_database = null;
             this.v_sql = null;
         }
@@ -68,6 +81,7 @@ namespace Spartacus.Web
         /// </summary>
         public override void Clear()
         {
+            this.v_selected.Attributes["value"] = "";
         }
 
         /// <summary>
@@ -85,6 +99,7 @@ namespace Spartacus.Web
         /// <param name="p_text">Texto a ser mostrado no Container.</param>
         public override void SetValue(string p_text)
         {
+            this.v_selected.Attributes["value"] = p_text;
         }
 
         /// <summary>
@@ -93,7 +108,7 @@ namespace Spartacus.Web
         /// <returns>Texto ou valor atual do Container.</returns>
         public override string GetValue()
         {
-            return null;
+            return this.v_selected.Attributes["value"];
         }
 
         /// <summary>
@@ -106,7 +121,7 @@ namespace Spartacus.Web
             this.v_database = p_database;
             this.v_sql = p_sql;
 
-            this.v_html = this.v_database.QueryHtml(this.v_sql, this.v_id, "class='display compact' cellspacing='0' width='100%'");
+            this.v_gridhtml = this.v_database.QueryHtml(this.v_sql, "grid_" + this.v_id, "class='display compact'");
         }
 
         /// <summary>
@@ -124,7 +139,7 @@ namespace Spartacus.Web
         {
             if (this.v_database != null)
             {
-                this.v_html = this.v_database.QueryHtml(this.v_sql, this.v_id, "class='display' cellspacing='0' width='100%'");
+                this.v_gridhtml = this.v_database.QueryHtml(this.v_sql, "grid_" + this.v_id, "class='display compact'");
             }
         }
 
@@ -133,7 +148,19 @@ namespace Spartacus.Web
         /// </summary>
         public override string Render()
         {
-            return this.v_html;
+            string v_html;
+            System.Text.StringBuilder v_builder;
+            System.Web.UI.HtmlTextWriter v_writer;
+
+            v_builder = new System.Text.StringBuilder();
+            v_writer = new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(v_builder));
+
+            this.v_selected.RenderControl(v_writer);
+
+            v_html = v_builder.ToString();
+            v_html += this.v_gridhtml;
+
+            return v_html;
         }
     }
 }

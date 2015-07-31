@@ -67,6 +67,7 @@ namespace Spartacus.Web
             this.v_datetimepicker.ID = p_id;
             this.v_datetimepicker.Attributes.Add("runat", "server");
             this.v_datetimepicker.Attributes.Add("type", "text");
+            this.v_datetimepicker.Attributes.Add("class", "pure-input-2-3");
             this.v_datetimepicker.Attributes.Add("value", "");
 
             this.v_format = "YYYY-MM-DD";

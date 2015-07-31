@@ -28,16 +28,10 @@ namespace Spartacus.Web
 {
     public enum ContainerType
     {
-        MEMOBOX,
-        MENU,
-        MESSAGEBOX,
-        PASSWORDBOX,
-        PROGRESSBAR,
         TEXTBOX,
         BUTTONS,
         DATETIMEPICKER,
         GRID,
-        LOOKUP,
         WINDOW
     }
 

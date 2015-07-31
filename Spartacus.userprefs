@@ -2,9 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="1327" Column="56" />
-      <File FileName="Spartacus/Spartacus.Web.Window.cs" Line="218" Column="39" />
-      <File FileName="CHANGELOG.txt" Line="31" Column="19" />
+      <File FileName="CHANGELOG.txt" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

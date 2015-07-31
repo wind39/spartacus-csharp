@@ -95,7 +95,7 @@ namespace Spartacus.Web
 
             v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
             v_button.ID = p_id;
-            v_button.Attributes.Add("class", "pure-button");
+            v_button.Attributes.Add("class", "pure-button pure-button-primary");
             v_button.Attributes.Add("onclick", p_onclick);
             v_button.InnerHtml = p_text;
 
@@ -107,7 +107,7 @@ namespace Spartacus.Web
         /// </summary>
         /// <param name="p_id">Identificador do botão.</param>
         /// <param name="p_text">Texto do botão.</param>
-        /// <param name="p_text">Ícone do botão.</param>
+        /// <param name="p_icon">Ícone do botão.</param>
         /// <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
         public void AddButton(string p_id, string p_text, string p_icon, string p_onclick)
         {
@@ -115,9 +115,9 @@ namespace Spartacus.Web
 
             v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
             v_button.ID = p_id;
-            v_button.Attributes.Add("class", "pure-button");
+            v_button.Attributes.Add("class", "pure-button pure-button-primary");
             v_button.Attributes.Add("onclick", p_onclick);
-            v_button.InnerHtml = "<i class='" + p_icon + "'></i>" + p_text;
+            v_button.InnerHtml = "<i class='" + p_icon + "'></i>&nbsp;&nbsp;" + p_text;
 
             this.v_list.Add(v_button);
         }

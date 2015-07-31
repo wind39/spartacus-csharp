@@ -38625,7 +38625,7 @@
             </summary>
             <param name="p_id">Identificador do botão.</param>
             <param name="p_text">Texto do botão.</param>
-            <param name="p_text">Ícone do botão.</param>
+            <param name="p_icon">Ícone do botão.</param>
             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param></member>
         <member name="M:Spartacus.Web.Buttons.Render">
             <summary>
@@ -38692,9 +38692,13 @@
             Representa um componente Grid.
             Herda da classe <see cref="T:Spartacus.Web.Container" />.
             </summary></member>
-        <member name="F:Spartacus.Web.Grid.v_html">
+        <member name="F:Spartacus.Web.Grid.v_gridhtml">
             <summary>
             Table HTML representando o grid.
+            </summary></member>
+        <member name="F:Spartacus.Web.Grid.v_selected">
+            <summary>
+            Controle nativo que representa o valor selecionado.
             </summary></member>
         <member name="F:Spartacus.Web.Grid.v_database">
             <summary>
