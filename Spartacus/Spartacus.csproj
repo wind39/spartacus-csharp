@@ -919,6 +919,8 @@
     <Compile Include="Spartacus.Web.Buttons.cs" />
     <Compile Include="Spartacus.Web.Datetimepicker.cs" />
     <Compile Include="Spartacus.Web.Grid.cs" />
+    <Compile Include="Spartacus.Web.Progressbar.cs" />
+    <Compile Include="Spartacus.Web.Label.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -984,6 +986,16 @@
     <None Include="lib\images\sort_desc_disabled.png" />
     <None Include="lib\css\jquery.dataTables.min.css" />
     <None Include="lib\js\jquery.dataTables.min.js" />
+    <None Include="lib\images\progress_border.png" />
+    <None Include="lib\images\progress_empty_big.png" />
+    <None Include="lib\images\progress_empty_small.png" />
+    <None Include="lib\images\progress_green_big.png" />
+    <None Include="lib\images\progress_green_small.png" />
+    <None Include="lib\images\progress_red_big.png" />
+    <None Include="lib\images\progress_red_small.png" />
+    <None Include="lib\images\progress_yellow_big.png" />
+    <None Include="lib\images\progress_yellow_small.png" />
+    <None Include="lib\lang\portuguese_brasil.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
@@ -996,5 +1008,6 @@
     <Folder Include="lib\firebird\" />
     <Folder Include="lib\firebird\linux_x64\" />
     <Folder Include="lib\firebird\windows_x86\" />
+    <Folder Include="lib\lang\" />
   </ItemGroup>
 </Project>

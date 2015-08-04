@@ -151,11 +151,13 @@ namespace Spartacus.Web
             string v_html;
             Spartacus.Web.Container v_container;
             Spartacus.Web.Buttons v_buttons;
+            Spartacus.Web.Progressbar v_progressbar;
             System.Web.UI.HtmlControls.HtmlGenericControl v_button;
             string v_onclick, v_function, v_parameters;
             bool v_has_buttons = false;
             bool v_has_datetimepicker = false;
             bool v_has_grid = false;
+            bool v_has_progressbar = false;
             string[] v_tmp;
 
             for (int i = 0; i < this.v_containers.Count; i++)
@@ -171,6 +173,9 @@ namespace Spartacus.Web
                         break;
                     case Spartacus.Web.ContainerType.GRID:
                         v_has_grid = true;
+                        break;
+                    case Spartacus.Web.ContainerType.PROGRESSBAR:
+                        v_has_progressbar = true;
                         break;
                     default:
                         break;
@@ -196,24 +201,55 @@ namespace Spartacus.Web
                 v_html += "<script type='text/javascript' src='../js/pikaday.js'></script>";
             }
 
-            if (v_has_grid)
+            if (v_has_grid || v_has_progressbar)
             {
-                v_html += "<script type='text/javascript' src='../js/jquery.dataTables.min.js'></script>";
+                if (v_has_grid)
+                    v_html += "<script type='text/javascript' src='../js/jquery.dataTables.min.js'></script>";
+
                 v_html += "<script type='text/javascript' class='init'> $(document).ready(function () { ";
+                for (int i = 0; i < this.v_containers.Count; i++)
+                {
+                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    switch (v_container.v_type)
+                    {
+                        case Spartacus.Web.ContainerType.GRID:
+                            v_html += "var table_" + v_container.v_id + " = $('#grid_" + v_container.v_id + "').DataTable({stateSave: true, language: {decimal: ',', url: 'lang/portuguese_brasil.json'}}); ";
+                            v_html += "$('#grid_" + v_container.v_id + " tbody').on('click', 'tr', function () { ";
+                            v_html += "if ($(this).hasClass('selected')) { $(this).removeClass('selected'); $('#" + v_container.v_id + "').attr('value', ''); } ";
+                            v_html += "else { table_" + v_container.v_id + ".$('tr.selected').removeClass('selected'); $(this).addClass('selected'); $('#" + v_container.v_id + "').attr('value', $(this).children('td:first').text()); }}); ";
+                            break;
+                        case Spartacus.Web.ContainerType.PROGRESSBAR:
+                            v_progressbar = (Spartacus.Web.Progressbar)v_container;
+                            v_html += "update_" + v_progressbar.v_id + "(); ";
+                            v_html += "setInterval(update_" + v_progressbar.v_id + ", " + v_progressbar.v_interval.ToString() + "); ";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                v_html += "}); </script>";
+            }
+
+            if (v_has_progressbar)
+            {
+                v_html += "<script type='text/javascript'>";
 
                 for (int i = 0; i < this.v_containers.Count; i++)
                 {
                     v_container = (Spartacus.Web.Container)this.v_containers [i];
-                    if (v_container.v_type == Spartacus.Web.ContainerType.GRID)
+                    if (v_container.v_type == Spartacus.Web.ContainerType.PROGRESSBAR)
                     {
-                        v_html += "var table_" + v_container.v_id + " = $('#grid_" + v_container.v_id + "').DataTable({stateSave: true}); ";
-                        v_html += "$('#grid_" + v_container.v_id + " tbody').on('click', 'tr', function () { ";
-                        v_html += "if ($(this).hasClass('selected')) { $(this).removeClass('selected'); $('#" + v_container.v_id + "').attr('value', ''); } ";
-                        v_html += "else { table_" + v_container.v_id + ".$('tr.selected').removeClass('selected'); $(this).addClass('selected'); $('#" + v_container.v_id + "').attr('value', $(this).children('td:first').text()); }}); ";
+                        v_progressbar = (Spartacus.Web.Progressbar)v_container;
+                        v_html += " function update_" + v_progressbar.v_id + "() {";
+                        v_html += "$.ajax({type: 'POST', url: '" + this.v_aspx + "/" + v_progressbar.v_webmethod + "', data: null, ";
+                        //TODO: melhorar success e failure e implementar notificações
+                        v_html += "contentType: 'application/json; charset=utf-8', dataType: 'json', ";
+                        v_html += "success: function(response) { document.getElementById('" + v_progressbar.v_id +"').innerHTML = response.d; }, ";
+                        v_html += "failure: function(response) { alert(response.d); } }); }";
                     }
                 }
 
-                v_html += "}); </script>";
+                v_html += "</script>";
             }
 
             if (v_has_buttons)
@@ -241,16 +277,28 @@ namespace Spartacus.Web
                             if (v_parameters != null && v_parameters != "")
                             {
                                 v_tmp = v_parameters.Split(',');
-                                v_html += "data: JSON.stringify({p_" + v_tmp[0] + ": document.getElementById('" + v_tmp[0] + "').value";
-                                for (int k = 1; k < v_tmp.Length; k++)
-                                    v_html += ", p_" + v_tmp[k] + ": document.getElementById('" + v_tmp[k] + "').value";
-                                v_html += "}), ";
+                                if (v_buttons.v_arrayparams)
+                                {
+                                    v_html += "data: JSON.stringify({p_array: [document.getElementById('" + v_tmp[0] + "').value";
+                                    for (int k = 1; k < v_tmp.Length; k++)
+                                        v_html += ", document.getElementById('" + v_tmp[k] + "').value";
+                                    v_html += "]}), ";
+                                }
+                                else
+                                {
+                                    v_html += "data: JSON.stringify({p_" + v_tmp[0] + ": document.getElementById('" + v_tmp[0] + "').value";
+                                    for (int k = 1; k < v_tmp.Length; k++)
+                                        v_html += ", p_" + v_tmp[k] + ": document.getElementById('" + v_tmp[k] + "').value";
+                                    v_html += "}), ";
+                                }
                             }
                             else
                                 v_html += "data: null, ";
 
                             //TODO: melhorar success e failure e implementar notificações
-                            v_html += "contentType: 'application/json; charset=utf-8', dataType: 'json', success: function(response) {}, failure: function(response) { alert(response.d); } }); }";
+                            v_html += "contentType: 'application/json; charset=utf-8', dataType: 'json', ";
+                            v_html += "success: function(response) { if (response.d.length > 0) window.location = response.d; }, ";
+                            v_html += "failure: function(response) { alert(response.d); } }); }";
                         }
                     }
                 }

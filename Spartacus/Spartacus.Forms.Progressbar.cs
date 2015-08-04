@@ -27,7 +27,7 @@ using System;
 namespace Spartacus.Forms
 {
     /// <summary>
-    /// Classe Memobox.
+    /// Classe Progressbar.
     /// Representa um componente que mostra o progresso de execução de alguma tarefa.
     /// </summary>
     public class Progressbar : Spartacus.Forms.Container
@@ -44,7 +44,7 @@ namespace Spartacus.Forms
 
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Memobox"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Progressbar"/>.
         /// </summary>
         /// <param name="p_parent">Container pai.</param>
         public Progressbar(Spartacus.Forms.Container p_parent)

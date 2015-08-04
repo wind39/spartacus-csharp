@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ReportManagerWeb</RootNamespace>
+    <AssemblyName>ReportManagerWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.38.13</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Spartacus\Spartacus.csproj">
+      <Project>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</Project>
+      <Name>Spartacus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <Content Include="Default.aspx" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\jquery.dataTables.min.css" />
+    <Content Include="css\pikaday.css" />
+    <Content Include="css\pure-min.css" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_asc_disabled.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
+    <Content Include="images\sort_desc_disabled.png" />
+    <Content Include="js\jquery.dataTables.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\moment.min.js" />
+    <Content Include="js\notify.min.js" />
+    <Content Include="js\pikaday.js" />
+    <Content Include="Params.aspx" />
+    <Content Include="images\progress_border.png" />
+    <Content Include="images\progress_empty_big.png" />
+    <Content Include="images\progress_empty_small.png" />
+    <Content Include="images\progress_green_big.png" />
+    <Content Include="images\progress_green_small.png" />
+    <Content Include="images\progress_red_big.png" />
+    <Content Include="images\progress_red_small.png" />
+    <Content Include="images\progress_yellow_big.png" />
+    <Content Include="images\progress_yellow_small.png" />
+    <Content Include="Execute.aspx" />
+    <Content Include="Download.aspx" />
+    <Content Include="ErrorMessage.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Params.aspx.cs">
+      <DependentUpon>Params.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Execute.aspx.cs">
+      <DependentUpon>Execute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorMessage.aspx.cs">
+      <DependentUpon>ErrorMessage.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="templates\" />
+    <Folder Include="tmp\" />
+    <Folder Include="lang\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fonts\fontawesome-webfont.woff2" />
+    <None Include="lang\portuguese_brasil.json" />
+  </ItemGroup>
+</Project>

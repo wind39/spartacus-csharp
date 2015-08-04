@@ -32,6 +32,8 @@ namespace Spartacus.Web
         BUTTONS,
         DATETIMEPICKER,
         GRID,
+        LABEL,
+        PROGRESSBAR,
         WINDOW
     }
 

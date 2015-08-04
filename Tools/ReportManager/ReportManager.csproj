@@ -70,6 +70,8 @@
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="bin\Debug\System.Data.OracleClient.dll" />
+    <None Include="bin\Debug\sqlite3.dll" />
+    <None Include="bin\Debug\libsqlite3.so" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\templates\" />

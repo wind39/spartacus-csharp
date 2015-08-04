@@ -1,8 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/ReportManagerWeb/Params.aspx.cs">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="23" Column="1" />
+      <File FileName="Tools/ReportManager/Program.cs" Line="349" Column="73" />
+      <File FileName="Tools/ReportManagerWeb/Default.aspx.cs" Line="59" Column="10" />
+      <File FileName="Tools/ReportManagerWeb/Params.aspx.cs" Line="120" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

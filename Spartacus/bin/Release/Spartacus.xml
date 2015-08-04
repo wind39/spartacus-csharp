@@ -37499,7 +37499,7 @@
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Forms.Progressbar">
             <summary>
-            Classe Memobox.
+            Classe Progressbar.
             Representa um componente que mostra o progresso de execução de alguma tarefa.
             </summary></member>
         <member name="F:Spartacus.Forms.Progressbar.v_label">
@@ -37512,7 +37512,7 @@
             </summary></member>
         <member name="M:Spartacus.Forms.Progressbar.#ctor(Spartacus.Forms.Container)">
             <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Forms.Memobox" />.
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Forms.Progressbar" />.
             </summary>
             <param name="p_parent">Container pai.</param></member>
         <member name="M:Spartacus.Forms.Progressbar.Resize(System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -38588,6 +38588,10 @@
             <summary>
             Lista de botões.
             </summary></member>
+        <member name="F:Spartacus.Web.Buttons.v_arrayparams">
+            <summary>
+            Se os parâmetros devem estar na forma de array.
+            </summary></member>
         <member name="M:Spartacus.Web.Buttons.#ctor(Spartacus.Web.Container)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Buttons" />.
@@ -38627,6 +38631,23 @@
             <param name="p_text">Texto do botão.</param>
             <param name="p_icon">Ícone do botão.</param>
             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param></member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_id">Identificador do botão.</param>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+            <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param></member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Adiciona um botão à lista de botões.
+            </summary>
+            <param name="p_id">Identificador do botão.</param>
+            <param name="p_text">Texto do botão.</param>
+            <param name="p_icon">Ícone do botão.</param>
+            <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+            <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param></member>
         <member name="M:Spartacus.Web.Buttons.Render">
             <summary>
             Renderiza o HTML do Container.
@@ -38748,6 +38769,117 @@
             Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
             </summary></member>
         <member name="M:Spartacus.Web.Grid.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="T:Spartacus.Web.Progressbar">
+            <summary>
+            Classe Progressbar.
+            Representa um componente que mostra o progresso de execução de alguma tarefa.
+            </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_percent">
+            <summary>
+            Percentual atual do Progressbar.
+            </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_text">
+            <summary>
+            Texto atual do Progressbar.
+            </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_size">
+            <summary>
+            Tamanho do Progressbar.
+            </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_interval">
+            <summary>
+            Intervalo de atualização do Progressbar.
+            </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_webmethod">
+            <summary>
+            Webmethod utilizado em conjunto com o Progressbar.
+            </summary></member>
+        <member name="M:Spartacus.Web.Progressbar.#ctor(System.String,Spartacus.Web.ProgressbarSize,System.Int32,System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Progressbar" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_size">Tamanho do Progressbar.</param>
+            <param name="p_interval">Intervalo de atualização do Progressbar.</param>
+            <param name="p_webmethod">Webmethod utilizado em conjunto com o Progressbar.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Progressbar.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Progressbar.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String)">
+            <summary>
+            Informa o texto a ser mostrado no Label.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Label.</param></member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String,System.Int32)">
+            <summary>
+            Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Label.</param>
+            <param name="p_value">Valor a ser mostrado no Progressbar</param></member>
+        <member name="M:Spartacus.Web.Progressbar.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Textbox.
+            </summary>
+            <returns>Texto ou valor atual do Textbox.</returns></member>
+        <member name="M:Spartacus.Web.Progressbar.Render">
+            <summary>
+            Renderiza o HTML do Container.
+            </summary></member>
+        <member name="M:Spartacus.Web.Progressbar.RenderInner">
+            <summary>
+            Renderiza interior do Progressbar.
+            </summary></member>
+        <member name="T:Spartacus.Web.Label">
+            <summary>
+            Classe Label.
+            Representa um componente que apenas mostra texto para o usuário.
+            </summary></member>
+        <member name="F:Spartacus.Web.Label.v_text">
+            <summary>
+            Texto a ser exibido para o usuário.
+            </summary></member>
+        <member name="M:Spartacus.Web.Label.#ctor(System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Label" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Label.#ctor(System.String,System.String,Spartacus.Web.Container)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Label" />.
+            </summary>
+            <param name="p_id">Identificador do Container atual.</param>
+            <param name="p_label">Texto a ser exibido para o usuário.</param>
+            <param name="p_parent">Container pai.</param></member>
+        <member name="M:Spartacus.Web.Label.Clear">
+            <summary>
+            Limpa os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Label.Refresh">
+            <summary>
+            Atualiza os dados do Container atual.
+            </summary></member>
+        <member name="M:Spartacus.Web.Label.SetValue(System.String)">
+            <summary>
+            Informa o texto ou valor a ser mostrado no Label.
+            Usado para mostrar ao usuário um formulário já preenchido.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Label.</param></member>
+        <member name="M:Spartacus.Web.Label.GetValue">
+            <summary>
+            Retorna o texto ou valor atual do Label.
+            </summary>
+            <returns>Texto ou valor atual do Label.</returns></member>
+        <member name="M:Spartacus.Web.Label.Render">
             <summary>
             Renderiza o HTML do Container.
             </summary></member>

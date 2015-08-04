@@ -38,6 +38,11 @@ namespace Spartacus.Web
         /// </summary>
         public System.Collections.ArrayList v_list;
 
+        /// <summary>
+        /// Se os parâmetros devem estar na forma de array.
+        /// </summary>
+        public bool v_arrayparams;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Web.Buttons"/>.
@@ -100,6 +105,7 @@ namespace Spartacus.Web
             v_button.InnerHtml = p_text;
 
             this.v_list.Add(v_button);
+            this.v_arrayparams = false;
         }
 
         /// <summary>
@@ -120,6 +126,50 @@ namespace Spartacus.Web
             v_button.InnerHtml = "<i class='" + p_icon + "'></i>&nbsp;&nbsp;" + p_text;
 
             this.v_list.Add(v_button);
+            this.v_arrayparams = false;
+        }
+
+        /// <summary>
+        /// Adiciona um botão à lista de botões.
+        /// </summary>
+        /// <param name="p_id">Identificador do botão.</param>
+        /// <param name="p_text">Texto do botão.</param>
+        /// <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+        /// <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param>
+        public void AddButton(string p_id, string p_text, string p_onclick, bool p_arrayparams)
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl v_button;
+
+            v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
+            v_button.ID = p_id;
+            v_button.Attributes.Add("class", "pure-button pure-button-primary");
+            v_button.Attributes.Add("onclick", p_onclick);
+            v_button.InnerHtml = p_text;
+
+            this.v_list.Add(v_button);
+            this.v_arrayparams = p_arrayparams;
+        }
+
+        /// <summary>
+        /// Adiciona um botão à lista de botões.
+        /// </summary>
+        /// <param name="p_id">Identificador do botão.</param>
+        /// <param name="p_text">Texto do botão.</param>
+        /// <param name="p_icon">Ícone do botão.</param>
+        /// <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+        /// <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param>
+        public void AddButton(string p_id, string p_text, string p_icon, string p_onclick, bool p_arrayparams)
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl v_button;
+
+            v_button = new System.Web.UI.HtmlControls.HtmlGenericControl("button");
+            v_button.ID = p_id;
+            v_button.Attributes.Add("class", "pure-button pure-button-primary");
+            v_button.Attributes.Add("onclick", p_onclick);
+            v_button.InnerHtml = "<i class='" + p_icon + "'></i>&nbsp;&nbsp;" + p_text;
+
+            this.v_list.Add(v_button);
+            this.v_arrayparams = p_arrayparams;
         }
 
         /// <summary>
