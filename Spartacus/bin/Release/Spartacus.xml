@@ -1468,6 +1468,10 @@
             <summary>
             Informa se o processo deve mostrar suas mensagens ao usuário ou não.
             </summary></member>
+        <member name="F:Spartacus.Utils.ProgressEventArgs.v_index">
+            <summary>
+            Índice da instância.
+            </summary></member>
         <member name="M:Spartacus.Utils.ProgressEventArgs.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ProgressEventArgs" />.
@@ -1477,6 +1481,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ProgressEventArgs" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.ProgressEventArgs.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ProgressEventArgs" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="T:Spartacus.Utils.ProgressEventClass">
             <summary>
             Classe ProgressEventClass.
@@ -1503,6 +1513,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ProgressEventClass" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.ProgressEventClass.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ProgressEventClass" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="M:Spartacus.Utils.ProgressEventClass.FireEvent(System.String,System.String,System.Double,System.String)">
             <summary>
             Dispara o evento de Progresso.
@@ -1542,6 +1558,10 @@
             <summary>
             Informa se o processo deve mostrar suas mensagens ao usuário ou não.
             </summary></member>
+        <member name="F:Spartacus.Utils.WarningEventArgs.v_index">
+            <summary>
+            Índice da instância.
+            </summary></member>
         <member name="M:Spartacus.Utils.WarningEventArgs.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.WarningEventArgs" />.
@@ -1551,6 +1571,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.WarningEventArgs" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.WarningEventArgs.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.WarningEventArgs" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="T:Spartacus.Utils.WarningEventClass">
             <summary>
             Classe WarningEventClass.
@@ -1577,6 +1603,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.WarningEventClass" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.WarningEventClass.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.WarningEventClass" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="M:Spartacus.Utils.WarningEventClass.FireEvent(System.String,System.String,System.String)">
             <summary>
             Dispara o evento de Aviso.
@@ -5783,6 +5815,10 @@
             <summary>
             Informa se o processo deve mostrar suas mensagens ao usuário ou não.
             </summary></member>
+        <member name="F:Spartacus.Utils.ErrorEventArgs.v_index">
+            <summary>
+            Índice da instância.
+            </summary></member>
         <member name="M:Spartacus.Utils.ErrorEventArgs.#ctor">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ErrorEventArgs" />.
@@ -5792,6 +5828,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ErrorEventArgs" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.ErrorEventArgs.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ErrorEventArgs" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="T:Spartacus.Utils.ErrorEventClass">
             <summary>
             Classe ErrorEventClass.
@@ -5818,6 +5860,12 @@
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ErrorEventClass" />.
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param></member>
+        <member name="M:Spartacus.Utils.ErrorEventClass.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.ErrorEventClass" />.
+            </summary>
+            <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+            <param name="p_index">Índice da instância.</param></member>
         <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String,System.String,System.String)">
             <summary>
             Dispara o evento de Erro.
@@ -38797,6 +38845,10 @@
             <summary>
             Webmethod utilizado em conjunto com o Progressbar.
             </summary></member>
+        <member name="F:Spartacus.Web.Progressbar.v_error">
+            <summary>
+            Se houve erro na operação.
+            </summary></member>
         <member name="M:Spartacus.Web.Progressbar.#ctor(System.String,Spartacus.Web.ProgressbarSize,System.Int32,System.String,Spartacus.Web.Container)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Progressbar" />.
@@ -38825,11 +38877,23 @@
             </summary>
             <param name="p_text">Texto a ser mostrado no Label.</param>
             <param name="p_value">Valor a ser mostrado no Progressbar</param></member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
+            </summary>
+            <param name="p_text">Texto a ser mostrado no Label.</param>
+            <param name="p_value">Valor a ser mostrado no Progressbar</param>
+            <param name="p_error">Se houve erro ou não.</param></member>
         <member name="M:Spartacus.Web.Progressbar.GetValue">
             <summary>
             Retorna o texto ou valor atual do Textbox.
             </summary>
             <returns>Texto ou valor atual do Textbox.</returns></member>
+        <member name="M:Spartacus.Web.Progressbar.SetError(System.Boolean)">
+            <summary>
+            Configura estado de erro do progresso.
+            </summary>
+            <param name="p_error">Se houve erro ou não.</param></member>
         <member name="M:Spartacus.Web.Progressbar.Render">
             <summary>
             Renderiza o HTML do Container.

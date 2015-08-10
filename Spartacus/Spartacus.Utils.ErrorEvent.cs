@@ -58,6 +58,11 @@ namespace Spartacus.Utils
         /// </summary>
         public bool v_verbose;
 
+        /// <summary>
+        /// Índice da instância.
+        /// </summary>
+        public int v_index;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventArgs"/>.
@@ -65,6 +70,7 @@ namespace Spartacus.Utils
         public ErrorEventArgs()
         {
             this.v_verbose = false;
+            this.v_index = 0;
         }
 
         /// <summary>
@@ -74,6 +80,18 @@ namespace Spartacus.Utils
         public ErrorEventArgs(bool p_verbose)
         {
             this.v_verbose = p_verbose;
+            this.v_index = 0;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventArgs"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public ErrorEventArgs(bool p_verbose, int p_index)
+        {
+            this.v_verbose = p_verbose;
+            this.v_index = p_index;
         }
     }
 
@@ -113,6 +131,16 @@ namespace Spartacus.Utils
         public ErrorEventClass(bool p_verbose)
         {
             this.ErrorEventArgs = new Spartacus.Utils.ErrorEventArgs(p_verbose);
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ErrorEventClass"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public ErrorEventClass(bool p_verbose, int p_index)
+        {
+            this.ErrorEventArgs = new Spartacus.Utils.ErrorEventArgs(p_verbose, p_index);
         }
 
         /// <summary>

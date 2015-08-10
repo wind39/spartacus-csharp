@@ -64,11 +64,18 @@ namespace Spartacus.Utils
         public bool v_verbose;
 
         /// <summary>
+        /// Índice da instância.
+        /// </summary>
+        public int v_index;
+
+
+        /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
         /// </summary>
         public ProgressEventArgs()
         {
             this.v_verbose = false;
+            this.v_index = 0;
         }
 
         /// <summary>
@@ -78,6 +85,18 @@ namespace Spartacus.Utils
         public ProgressEventArgs(bool p_verbose)
         {
             this.v_verbose = p_verbose;
+            this.v_index = 0;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventArgs"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public ProgressEventArgs(bool p_verbose, int p_index)
+        {
+            this.v_verbose = p_verbose;
+            this.v_index = p_index;
         }
     }
 
@@ -117,6 +136,16 @@ namespace Spartacus.Utils
         public ProgressEventClass(bool p_verbose)
         {
             this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs(p_verbose);
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.ProgressEventClass"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public ProgressEventClass(bool p_verbose, int p_index)
+        {
+            this.ProgressEventArgs = new Spartacus.Utils.ProgressEventArgs(p_verbose, p_index);
         }
 
         /// <summary>

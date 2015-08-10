@@ -79,6 +79,8 @@ namespace Spartacus.Tools.ReportManagerWeb
                 this.Session["MAINWINDOW"] = v_window;
             }
 
+            this.Session["PARAMWINDOW"] = null;
+
             return v_window.Render();
         }
 

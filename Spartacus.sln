@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "Tools\Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManagerWeb", "Tools\ReportManagerWeb\ReportManagerWeb.csproj", "{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportServer", "Tools\ReportServer\ReportServer.csproj", "{6B8F4F6D-D246-45EB-8403-776077E525F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8F4F6D-D246-45EB-8403-776077E525F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8F4F6D-D246-45EB-8403-776077E525F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8F4F6D-D246-45EB-8403-776077E525F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8F4F6D-D246-45EB-8403-776077E525F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7657D899-0569-46CC-A7A8-A9103E0282A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7657D899-0569-46CC-A7A8-A9103E0282A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7657D899-0569-46CC-A7A8-A9103E0282A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +45,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7657D899-0569-46CC-A7A8-A9103E0282A6} = {C18F2187-EA7E-420E-88E0-86822852E26B}
 		{28C45435-F6FE-4BCC-9C81-6A089EFB4BEB} = {C18F2187-EA7E-420E-88E0-86822852E26B}
+		{6B8F4F6D-D246-45EB-8403-776077E525F7} = {C18F2187-EA7E-420E-88E0-86822852E26B}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 0.38.13

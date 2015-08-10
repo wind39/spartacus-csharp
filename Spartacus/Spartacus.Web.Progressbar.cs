@@ -63,6 +63,11 @@ namespace Spartacus.Web
         /// </summary>
         public string v_webmethod;
 
+        /// <summary>
+        /// Se houve erro na operação.
+        /// </summary>
+        public bool v_error;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Web.Progressbar"/>.
@@ -121,12 +126,33 @@ namespace Spartacus.Web
         }
 
         /// <summary>
+        /// Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
+        /// </summary>
+        /// <param name="p_text">Texto a ser mostrado no Label.</param>
+        /// <param name="p_value">Valor a ser mostrado no Progressbar</param>
+        /// <param name="p_error">Se houve erro ou não.</param>
+        public void SetValue(string p_text, int p_value, bool p_error)
+        {
+            this.v_text = p_text;
+            this.v_percent = p_value;
+        }
+
+        /// <summary>
         /// Retorna o texto ou valor atual do Textbox.
         /// </summary>
         /// <returns>Texto ou valor atual do Textbox.</returns>
         public override string GetValue()
         {
             return this.v_text;
+        }
+
+        /// <summary>
+        /// Configura estado de erro do progresso.
+        /// </summary>
+        /// <param name="p_error">Se houve erro ou não.</param>
+        public void SetError(bool p_error)
+        {
+            this.v_error = p_error;
         }
 
         /// <summary>
@@ -152,18 +178,37 @@ namespace Spartacus.Web
 
             v_html = "<img style='margin-right: 0px;' src='images/progress_border.png'/>";
 
-            if (this.v_percent == 100)
+            if (this.v_error)
             {
-                for (int k = 0; k < this.v_percent; k++)
-                    v_html += "<img style='margin-right: 0px;' src='images/progress_green_" + v_sizetext + ".png'/>";
+                if (this.v_percent == 100)
+                {
+                    for (int k = 0; k < this.v_percent; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_red_" + v_sizetext + ".png'/>";
+                }
+                else
+                {
+                    for (int k = 0; k < this.v_percent; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_red_" + v_sizetext + ".png'/>";
+
+                    for (int k = this.v_percent; k < 100; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_empty_" + v_sizetext + ".png'/>";
+                }
             }
             else
             {
-                for (int k = 0; k < this.v_percent; k++)
-                    v_html += "<img style='margin-right: 0px;' src='images/progress_yellow_" + v_sizetext + ".png'/>";
+                if (this.v_percent == 100)
+                {
+                    for (int k = 0; k < this.v_percent; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_green_" + v_sizetext + ".png'/>";
+                }
+                else
+                {
+                    for (int k = 0; k < this.v_percent; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_yellow_" + v_sizetext + ".png'/>";
 
-                for (int k = this.v_percent; k < 100; k++)
-                    v_html += "<img style='margin-right: 0px;' src='images/progress_empty_" + v_sizetext + ".png'/>";
+                    for (int k = this.v_percent; k < 100; k++)
+                        v_html += "<img style='margin-right: 0px;' src='images/progress_empty_" + v_sizetext + ".png'/>";
+                }
             }
 
             v_html += "<img style='margin-right: 0px;' src='images/progress_border.png'/>";

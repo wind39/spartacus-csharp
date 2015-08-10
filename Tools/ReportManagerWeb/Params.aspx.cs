@@ -60,9 +60,10 @@ namespace Spartacus.Tools.ReportManagerWeb
             v_report = (Spartacus.Reporting.Report)this.Session["REPORT"];
             if (v_report == null)
             {
+                this.Session["XML"] = v_database.ExecuteScalar("select xmlfile from reports where code = " + this.Session["ID"]);
                 v_report = new Spartacus.Reporting.Report(
                     int.Parse(this.Session["ID"].ToString()),
-                    v_database.ExecuteScalar("select xmlfile from reports where code = " + this.Session["ID"])
+                    this.Session["XML"].ToString()
                 );
                 this.Session["REPORT"] = v_report;
             }

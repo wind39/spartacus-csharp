@@ -58,6 +58,11 @@ namespace Spartacus.Utils
         /// </summary>
         public bool v_verbose;
 
+        /// <summary>
+        /// Índice da instância.
+        /// </summary>
+        public int v_index;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.WarningEventArgs"/>.
@@ -65,6 +70,7 @@ namespace Spartacus.Utils
         public WarningEventArgs()
         {
             this.v_verbose = false;
+            this.v_index = 0;
         }
 
         /// <summary>
@@ -74,6 +80,18 @@ namespace Spartacus.Utils
         public WarningEventArgs(bool p_verbose)
         {
             this.v_verbose = p_verbose;
+            this.v_index = 0;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.WarningEventArgs"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public WarningEventArgs(bool p_verbose, int p_index)
+        {
+            this.v_verbose = p_verbose;
+            this.v_index = p_index;
         }
     }
 
@@ -113,6 +131,16 @@ namespace Spartacus.Utils
         public WarningEventClass(bool p_verbose)
         {
             this.WarningEventArgs = new Spartacus.Utils.WarningEventArgs(p_verbose);
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.WarningEventClass"/>.
+        /// </summary>
+        /// <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
+        /// <param name="p_index">Índice da instância.</param>
+        public WarningEventClass(bool p_verbose, int p_index)
+        {
+            this.WarningEventArgs = new Spartacus.Utils.WarningEventArgs(p_verbose, p_index);
         }
 
         /// <summary>

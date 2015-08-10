@@ -42,7 +42,13 @@ namespace Spartacus.Tools.ReportManagerWeb
             Spartacus.Web.Label v_label;
             Spartacus.Web.Progressbar v_progressbar;
             Spartacus.Web.Buttons v_buttons;
-            System.Threading.Thread v_thread;
+            //System.Threading.Thread v_thread;
+            Spartacus.Reporting.Report v_report;
+            Spartacus.Database.Parameter v_parameter;
+            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Net.Client v_client;
+            Spartacus.Net.Packet v_packet;
+            string v_options;
 
             // criando janela de parâmetros, se necessário
             v_window = (Spartacus.Web.Window)this.Session["EXECUTEWINDOW"];
@@ -64,24 +70,55 @@ namespace Spartacus.Tools.ReportManagerWeb
                 this.Session["EXECUTEWINDOW"] = v_window;
             }
 
-            v_thread = new System.Threading.Thread(this.Thread);
-            v_thread.Start();
+            //v_thread = new System.Threading.Thread(this.Thread);
+            //v_thread.Start();
 
-            this.Session["THREAD"] = v_thread;
-            this.Session["CANRENDER"] = "true";
+            //this.Session["THREAD"] = v_thread;
+            //this.Session["CANRENDER"] = "true";
+
+            v_report = (Spartacus.Reporting.Report)this.Session["REPORT"];
+
+            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+            this.Session["FILENAME"] = "tmp/" + v_cryptor.RandomString() + ".pdf";
+
+            v_options = "R;" + this.Session["ID"].ToString() + ";../" + this.Session["XML"].ToString() + ";../" + this.Session["FILENAME"].ToString() + ";";
+            if (v_report.v_cmd.v_parameters.Count > 0)
+            {
+                v_parameter = (Spartacus.Database.Parameter)v_report.v_cmd.v_parameters[0];
+                v_options += v_parameter.v_name + "=" + v_parameter.v_value;
+                for (int k = 1; k < v_report.v_cmd.v_parameters.Count; k++)
+                {
+                    v_parameter = (Spartacus.Database.Parameter)v_report.v_cmd.v_parameters[k];
+                    v_options += "," + v_parameter.v_name + "=" + v_parameter.v_value;
+                }
+            }
+
+            v_client = new Spartacus.Net.Client(
+                System.Web.Configuration.WebConfigurationManager.AppSettings["serverip"].ToString(),
+                int.Parse(System.Web.Configuration.WebConfigurationManager.AppSettings["serverport"].ToString()),
+                System.Web.Configuration.WebConfigurationManager.AppSettings["clientip"].ToString(),
+                int.Parse(System.Web.Configuration.WebConfigurationManager.AppSettings["clientport"].ToString())
+            );
+            v_client.Connect();
+            v_client.SendString(v_options);
+            this.Session["CLIENT"] = v_client;
+
+            v_packet = v_client.Recv();
+            if (v_packet.v_type != Spartacus.Net.PacketType.ACK)
+            {
+                this.Session["ERRORMESSAGE"] = "Impossível renderizar relatório!</br>Servidor de relatórios não reconheceu o relatório " + this.Session["ID"].ToString() + "!";
+                this.Response.Redirect("ErrorMessage.aspx");
+            }
 
             return v_window.Render();
         }
 
-        public void Thread()
+        /*public void Thread()
         {
             Spartacus.Reporting.Report v_report;
             Spartacus.Web.Window v_window;
             Spartacus.Net.Cryptor v_cryptor;
             string v_canrender;
-
-            //try
-            //{
 
             v_canrender = this.Session["CANRENDER"].ToString();
             if (v_canrender == null || v_canrender == "true")
@@ -105,22 +142,6 @@ namespace Spartacus.Tools.ReportManagerWeb
 
                 this.Session["EXECUTEWINDOW"] = v_window;
             }
-            /*}
-            catch (Spartacus.Reporting.Exception e)
-            {
-                this.Session["ERRORMESSAGE"] = e.v_message;
-                this.Response.Redirect("ErrorMessage.aspx");
-            }
-            catch (Spartacus.Database.Exception e)
-            {
-                this.Session["ERRORMESSAGE"] = e.v_message;
-                this.Response.Redirect("ErrorMessage.aspx");
-            }
-            catch (System.Exception e)
-            {
-                this.Session["ERRORMESSAGE"] = e.Message;
-                this.Response.Redirect("ErrorMessage.aspx");
-            }*/
         }
 
         public void OnReportProgress(Spartacus.Utils.ProgressEventClass sender, Spartacus.Utils.ProgressEventArgs e)
@@ -130,14 +151,33 @@ namespace Spartacus.Tools.ReportManagerWeb
             v_window = (Spartacus.Web.Window)this.Session["EXECUTEWINDOW"];
             ((Spartacus.Web.Progressbar)v_window.GetChildById("progress")).SetValue(e.v_message, (int)e.v_percentage);
             this.Session["EXECUTEWINDOW"] = v_window;
-        }
+        }*/
 
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static string OnProgress()
         {
             Spartacus.Web.Window v_window;
+            Spartacus.Net.Client v_client;
+            string v_message;
+            string[] v_messageparts;
 
             v_window = (Spartacus.Web.Window)System.Web.HttpContext.Current.Session["EXECUTEWINDOW"];
+            v_client = (Spartacus.Net.Client)System.Web.HttpContext.Current.Session["CLIENT"];
+
+            v_client.SendString("P");
+            v_message = v_client.RecvString();
+
+            v_messageparts = v_message.Split(';');
+            if (v_messageparts.Length == 3)
+            {
+                ((Spartacus.Web.Progressbar)v_window.GetChildById("progress")).SetValue(
+                    v_messageparts[1],
+                    int.Parse(v_messageparts[0]),
+                    bool.Parse(v_messageparts[2])
+                );
+            }
+
+            System.Web.HttpContext.Current.Session["EXECUTEWINDOW"] = v_window;
 
             return ((Spartacus.Web.Progressbar)v_window.GetChildById("progress")).RenderInner();
         }
@@ -145,18 +185,24 @@ namespace Spartacus.Tools.ReportManagerWeb
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static string OnBackClick()
         {
+            Spartacus.Net.Client v_client;
+
+            v_client = (Spartacus.Net.Client) System.Web.HttpContext.Current.Session["CLIENT"];
+            v_client.Stop();
+
             System.Web.HttpContext.Current.Session["EXECUTEWINDOW"] = null;
             System.Web.HttpContext.Current.Session["REPORT"] = null;
+            System.Web.HttpContext.Current.Session["CLIENT"] = null;
             return "Params.aspx";
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static string OnDownloadClick()
         {
-            System.Threading.Thread v_thread;
+            //System.Threading.Thread v_thread;
 
-            v_thread = (System.Threading.Thread)System.Web.HttpContext.Current.Session["THREAD"];
-            v_thread.Abort();
+            //v_thread = (System.Threading.Thread)System.Web.HttpContext.Current.Session["THREAD"];
+            //v_thread.Abort();
 
             return "Download.aspx";
         }

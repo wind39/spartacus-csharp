@@ -1,10 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/ReportManagerWeb/Params.aspx.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/ReportServer/Program.cs">
     <Files>
-      <File FileName="Tools/ReportManager/Program.cs" Line="349" Column="73" />
-      <File FileName="Tools/ReportManagerWeb/Default.aspx.cs" Line="59" Column="10" />
-      <File FileName="Tools/ReportManagerWeb/Params.aspx.cs" Line="120" Column="43" />
+      <File FileName="Tools/ReportServer/Program.cs" Line="178" Column="18" />
+      <File FileName="Tools/ReportManagerWeb/Execute.aspx.cs" Line="179" Column="13" />
+      <File FileName="Spartacus/Spartacus.Net.Endpoint.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Net.Packet.cs" Line="190" Column="67" />
+      <File FileName="Tools/ReportManagerWeb/Params.aspx.cs" Line="144" Column="10" />
+      <File FileName="Tools/ReportManagerWeb/Default.aspx.cs" Line="82" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

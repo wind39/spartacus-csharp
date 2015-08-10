@@ -62,7 +62,7 @@ namespace Spartacus.Tools.ReportManagerWeb
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public static string OnBackClick(string p_report)
+        public static string OnBackClick()
         {
             System.Web.HttpContext.Current.Session["ERRORWINDOW"] = null;
             System.Web.HttpContext.Current.Session["ERRORMESSAGE"] = null;
