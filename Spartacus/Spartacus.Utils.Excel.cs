@@ -1294,7 +1294,7 @@ namespace Spartacus.Utils
                             FO|U10/S10|V7|
                             TO|SUM(#)|M9|M12
                             TO|SUBTOTAL(9,#)|M10|M12
-                            TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
+                            TO|SUMIF(#0,2,#1)|N10|O12;N12
                             CF|#DBE5F1|A11:AD11|
                             TA|A:AD|11|30
                             IM|imagem|0:0|80;240
@@ -1503,7 +1503,7 @@ namespace Spartacus.Utils
                                         FO|U10/S10|V7|
                                         TO|SUM(#)|M9|M12
                                         TO|SUBTOTAL(9,#)|M10|M12
-                                        TO|SUMIF(#0,$W12=2,#1)|N10|O12;N12
+                                        TO|SUMIF(#0,2,#1)|N10|O12;N12
                                         CF|#DBE5F1|A11:AD11|
                                         TA|A:AD|11|30
                                         IM|imagem|0:0|80;240
