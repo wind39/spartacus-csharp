@@ -2003,6 +2003,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Generic.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Generic.Execute(System.String)">
             <summary>
             Executa uma instrução SQL no banco de dados.
@@ -2337,6 +2352,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Odbc.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Odbc.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -2732,6 +2762,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Firebird.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Firebird.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -3064,6 +3109,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Mysql.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Mysql.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -3400,6 +3460,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Oledb.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Oledb.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -4574,6 +4649,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Sqlite.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Sqlite.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -5500,6 +5590,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Postgresql.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Postgresql.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -6471,6 +6576,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Oracle.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Oracle.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -37001,6 +37121,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.Memory.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.Memory.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -37327,6 +37462,21 @@
             <param name="p_options">
             Opções da tabela no HTML.
             </param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
         <member name="M:Spartacus.Database.FirebirdEmbed.Execute(System.String)">
             <summary>
             Executa um código SQL no banco de dados.
@@ -38947,5 +39097,35 @@
             <summary>
             Renderiza o HTML do Container.
             </summary></member>
+        <member name="F:Spartacus.Utils.NotImplementedException.v_message">
+            <summary>
+            Mensagem de Exceção.
+            </summary></member>
+        <member name="M:Spartacus.Utils.NotImplementedException.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary></member>
+        <member name="M:Spartacus.Utils.NotImplementedException.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_function">
+            Nome do método não implementado.
+            </param></member>
+        <member name="F:Spartacus.Utils.NotSupportedException.v_message">
+            <summary>
+            Mensagem de Exceção.
+            </summary></member>
+        <member name="M:Spartacus.Utils.NotSupportedException.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary></member>
+        <member name="M:Spartacus.Utils.NotSupportedException.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_function">
+            Nome do método não implementado.
+            </param></member>
     </members>
 </doc>

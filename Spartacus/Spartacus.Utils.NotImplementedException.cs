@@ -1,4 +1,4 @@
-/*
+﻿/*
 The MIT License (MIT)
 
 Copyright (c) 2014,2015 William Ivanski
@@ -22,30 +22,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+using System;
 
-// Information about this assembly is defined by the following attributes. 
-// Change them to the values specific to your project.
+namespace Spartacus.Utils
+{
+    public class NotImplementedException : System.Exception
+    {
+        /// <summary>
+        /// Mensagem de Exceção.
+        /// </summary>
+        public string v_message;
 
-[assembly: AssemblyTitle("Spartacus")]
-[assembly: AssemblyDescription("Spartacus multi-purpose library.")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Spartacus")]
-[assembly: AssemblyCopyright("William Ivanski")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+        /// <summary>
+        /// Inicializa uma nova instância da classe.
+        /// </summary>
+        public NotImplementedException()
+            :base()
+        {
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
+        }
 
-// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision,
-// and "{Major}.{Minor}.{Build}.*" will update just the revision.
-
-[assembly: AssemblyVersion("0.39.8.*")]
-
-// The following attributes are used to specify the signing key for the assembly, 
-// if desired. See the Mono documentation for more information about signing.
-
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
+        /// <summary>
+        /// Inicializa uma nova instância da classe.
+        /// </summary>
+        /// <param name='p_function'>
+        /// Nome do método não implementado.
+        /// </param>
+        public NotImplementedException(string p_function)
+            : base("O método " + p_function + " ainda não foi implementado na biblioteca Spartacus.")
+        {
+            this.v_message = "[" + System.DateTime.UtcNow.ToString() + "] " + this.ToString();
+        }
+    }
+}
 

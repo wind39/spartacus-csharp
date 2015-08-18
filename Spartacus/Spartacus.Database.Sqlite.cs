@@ -509,6 +509,25 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
+        /// Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_tablename'>
+        /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+        /// </param>
+        /// <param name='p_outparam'>
+        /// Nome do parâmetro de saída que deve ser um REF CURSOR.
+        /// </param>
+        /// <remarks>Não suportado em todos os SGBDs.</remarks>
+        public override System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam)
+        {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Sqlite.QueryStoredProc");
+        }
+
+        /// <summary>
         /// Executa um código SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>

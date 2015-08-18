@@ -921,6 +921,8 @@
     <Compile Include="Spartacus.Web.Grid.cs" />
     <Compile Include="Spartacus.Web.Progressbar.cs" />
     <Compile Include="Spartacus.Web.Label.cs" />
+    <Compile Include="Spartacus.Utils.NotImplementedException.cs" />
+    <Compile Include="Spartacus.Utils.NotSupportedException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

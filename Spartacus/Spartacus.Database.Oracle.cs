@@ -511,6 +511,118 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
+        /// Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_tablename'>
+        /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+        /// </param>
+        /// <param name='p_outparam'>
+        /// Nome do parâmetro de saída que deve ser um REF CURSOR.
+        /// </param>
+        /// <remarks>Não suportado em todos os SGBDs.</remarks>
+        public override System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam)
+        {
+            System.Data.DataTable v_table = null;
+            System.Data.DataRow v_row;
+            System.Data.OracleClient.OracleParameter v_parameter = null;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    v_parameter = new System.Data.OracleClient.OracleParameter(p_outparam, System.Data.OracleClient.OracleType.Cursor);
+                    v_parameter.Direction = System.Data.ParameterDirection.Output;
+                    this.v_cmd.Parameters.Add(v_parameter);
+                    this.v_cmd.ExecuteNonQuery();
+                    this.v_reader = (System.Data.OracleClient.OracleDataReader) v_parameter.Value;
+
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    return v_table;
+                }
+                catch (System.Data.OracleClient.OracleException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_sql;
+                    v_parameter = new System.Data.OracleClient.OracleParameter(p_outparam, System.Data.OracleClient.OracleType.Cursor);
+                    v_parameter.Direction = System.Data.ParameterDirection.Output;
+                    this.v_cmd.Parameters.Add(v_parameter);
+                    this.v_cmd.ExecuteNonQuery();
+                    this.v_reader = (System.Data.OracleClient.OracleDataReader) v_parameter.Value;
+
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    return v_table;
+                }
+                catch (System.Data.OracleClient.OracleException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                        this.v_cmd.Parameters.Clear();
+                }
+            }
+        }
+
+        /// <summary>
         /// Executa um código SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>

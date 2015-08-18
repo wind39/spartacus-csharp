@@ -204,6 +204,22 @@ namespace Spartacus.Database
         public abstract string QueryHtml(string p_sql, string p_id, string p_options);
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
+        /// Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_tablename'>
+        /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+        /// </param>
+        /// <param name='p_outparam'>
+        /// Nome do parâmetro de saída que deve ser um REF CURSOR.
+        /// </param>
+        /// <remarks>Não suportado em todos os SGBDs.</remarks>
+        public abstract System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam);
+
+        /// <summary>
         /// Executa uma instrução SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>
