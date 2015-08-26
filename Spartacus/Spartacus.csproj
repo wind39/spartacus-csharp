@@ -886,24 +886,9 @@
     <Compile Include="epplus\XmlHelper.cs" />
     <Compile Include="epplus\XmlHelperFactory.cs" />
     <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
-    <Compile Include="Spartacus.Forms.Buttons.cs" />
-    <Compile Include="Spartacus.Forms.Container.cs" />
-    <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
-    <Compile Include="Spartacus.Forms.Exception.cs" />
-    <Compile Include="Spartacus.Forms.Filepicker.cs" />
-    <Compile Include="Spartacus.Forms.Form.cs" />
-    <Compile Include="Spartacus.Forms.Grid.cs" />
-    <Compile Include="Spartacus.Forms.Lookup.cs" />
-    <Compile Include="Spartacus.Forms.Memobox.cs" />
-    <Compile Include="Spartacus.Forms.Menu.cs" />
-    <Compile Include="Spartacus.Forms.Messagebox.cs" />
-    <Compile Include="Spartacus.Forms.Passwordbox.cs" />
-    <Compile Include="Spartacus.Forms.Textbox.cs" />
-    <Compile Include="Spartacus.Forms.Window.cs" />
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
     <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
-    <Compile Include="Spartacus.Forms.Progressbar.cs" />
     <Compile Include="fastdbf\DbfColumn.cs" />
     <Compile Include="fastdbf\DbfDataTruncateException.cs" />
     <Compile Include="fastdbf\DbfFile.cs" />
@@ -913,14 +898,6 @@
     <Compile Include="Spartacus.Net.ConnectEvent.cs" />
     <Compile Include="Spartacus.Net.DisconnectEvent.cs" />
     <Compile Include="Spartacus.Net.AvailableEvent.cs" />
-    <Compile Include="Spartacus.Web.Container.cs" />
-    <Compile Include="Spartacus.Web.Window.cs" />
-    <Compile Include="Spartacus.Web.Textbox.cs" />
-    <Compile Include="Spartacus.Web.Buttons.cs" />
-    <Compile Include="Spartacus.Web.Datetimepicker.cs" />
-    <Compile Include="Spartacus.Web.Grid.cs" />
-    <Compile Include="Spartacus.Web.Progressbar.cs" />
-    <Compile Include="Spartacus.Web.Label.cs" />
     <Compile Include="Spartacus.Utils.NotImplementedException.cs" />
     <Compile Include="Spartacus.Utils.NotSupportedException.cs" />
   </ItemGroup>
@@ -968,36 +945,6 @@
     <None Include="lib\firebird\windows_x86\icudt30.dll" />
     <None Include="lib\firebird\windows_x86\icuin30.dll" />
     <None Include="lib\firebird\windows_x86\icuuc30.dll" />
-    <None Include="lib\css\font-awesome.min.css" />
-    <None Include="lib\css\pure-min.css" />
-    <None Include="lib\fonts\FontAwesome.otf" />
-    <None Include="lib\fonts\fontawesome-webfont.eot" />
-    <None Include="lib\fonts\fontawesome-webfont.svg" />
-    <None Include="lib\fonts\fontawesome-webfont.ttf" />
-    <None Include="lib\fonts\fontawesome-webfont.woff" />
-    <None Include="lib\fonts\fontawesome-webfont.woff2" />
-    <None Include="lib\js\jquery.min.js" />
-    <None Include="lib\js\pikaday.js" />
-    <None Include="lib\css\pikaday.css" />
-    <None Include="lib\js\moment.min.js" />
-    <None Include="lib\js\notify.min.js" />
-    <None Include="lib\images\sort_asc.png" />
-    <None Include="lib\images\sort_asc_disabled.png" />
-    <None Include="lib\images\sort_both.png" />
-    <None Include="lib\images\sort_desc.png" />
-    <None Include="lib\images\sort_desc_disabled.png" />
-    <None Include="lib\css\jquery.dataTables.min.css" />
-    <None Include="lib\js\jquery.dataTables.min.js" />
-    <None Include="lib\images\progress_border.png" />
-    <None Include="lib\images\progress_empty_big.png" />
-    <None Include="lib\images\progress_empty_small.png" />
-    <None Include="lib\images\progress_green_big.png" />
-    <None Include="lib\images\progress_green_small.png" />
-    <None Include="lib\images\progress_red_big.png" />
-    <None Include="lib\images\progress_red_small.png" />
-    <None Include="lib\images\progress_yellow_big.png" />
-    <None Include="lib\images\progress_yellow_small.png" />
-    <None Include="lib\lang\portuguese_brasil.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
@@ -1010,6 +957,5 @@
     <Folder Include="lib\firebird\" />
     <Folder Include="lib\firebird\linux_x64\" />
     <Folder Include="lib\firebird\windows_x86\" />
-    <Folder Include="lib\lang\" />
   </ItemGroup>
 </Project>

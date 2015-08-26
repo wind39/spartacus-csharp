@@ -4,8 +4,7 @@ Spartacus is a multi-purpose library written in C#, focused on:
   - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
   - Communication between client and server;
   - Easy to work with cryptography of files and messages;
-  - Compress and uncompress zip files;
-  - Dynamic forms and components for Windows Forms and ASP.NET.
+  - Compress and uncompress zip files.
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
@@ -32,13 +31,6 @@ Spartacus also optionally use this native libraries, binaries and web assets:
   - SQLite (https://www.sqlite.org/)
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
-  - JQuery (https://github.com/jquery/jquery)
-  - Yahoo PureCSS (https://github.com/yahoo/pure/)
-  - Font Awesome, by Dave Gandy (https://github.com/FortAwesome/Font-Awesome/)
-  - Pikaday, by David Bushell (https://github.com/dbushell/Pikaday)
-  - Moment.js (https://github.com/moment/moment)
-  - Notify.js, by Jaime Pillora (https://github.com/jpillora/notifyjs)
-  - DataTables (https://github.com/DataTables/DataTables)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
