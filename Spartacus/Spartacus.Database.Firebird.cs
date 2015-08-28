@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class Firebird : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private FirebirdSql.Data.FirebirdClient.FbConnection v_con;
@@ -82,11 +77,41 @@ namespace Spartacus.Database
         public Firebird(string p_source, string p_port, string p_file, string p_user, string p_password)
             : base(p_source, p_port, p_file, p_user, p_password)
         {
-            this.v_connectionstring = "DataSource=" + p_source + ";"
-                + "Port=" + p_port + ";"
-                + "Database=" + p_file + ";"
-                + "User=" + p_user + ";"
-                + "Password=" + p_password + ";"
+            this.v_connectionstring = "DataSource=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User=" + this.v_user + ";"
+                + "Password=" + this.v_password + ";"
+                + "Dialect=3;Charset=NONE;Role=;";
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Firebird"/>.
+        /// </summary>
+        /// <param name='p_source'>
+        /// IP do servidor Firebird.
+        /// </param>
+        /// <param name='p_file'>
+        /// Caminho completo para o arquivo FDB ou GDB.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário do Firebird.
+        /// </param>
+        /// <param name='p_password'>
+        /// Senha do Firebird.
+        /// </param>
+        public Firebird(string p_source, string p_file, string p_user, string p_password)
+            : base(p_source, "3050", p_file, p_user, p_password)
+        {
+            this.v_connectionstring = "DataSource=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User=" + this.v_user + ";"
+                + "Password=" + this.v_password + ";"
                 + "Dialect=3;Charset=NONE;Role=;";
 
             this.v_con = null;
@@ -100,6 +125,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Firebird.CreateDatabase");
         }
 
         /// <summary>
@@ -107,6 +133,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Firebird.CreateDatabase");
         }
 
         /// <summary>
@@ -727,6 +754,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Firebird.DropDatabase");
         }
 
         /// <summary>
@@ -734,6 +762,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Firebird.DropDatabase");
         }
 
         /// <summary>

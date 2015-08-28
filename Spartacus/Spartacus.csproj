@@ -46,7 +46,6 @@
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -55,7 +54,10 @@
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Mono.Data.Tds">
+      <HintPath>lib\Mono.Data.Tds.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -886,7 +888,6 @@
     <Compile Include="epplus\XmlHelper.cs" />
     <Compile Include="epplus\XmlHelperFactory.cs" />
     <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
-    <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
     <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
     <Compile Include="fastdbf\DbfColumn.cs" />
@@ -900,6 +901,7 @@
     <Compile Include="Spartacus.Net.AvailableEvent.cs" />
     <Compile Include="Spartacus.Utils.NotImplementedException.cs" />
     <Compile Include="Spartacus.Utils.NotSupportedException.cs" />
+    <Compile Include="Spartacus.Database.SqlServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -945,6 +947,7 @@
     <None Include="lib\firebird\windows_x86\icudt30.dll" />
     <None Include="lib\firebird\windows_x86\icuin30.dll" />
     <None Include="lib\firebird\windows_x86\icuuc30.dll" />
+    <None Include="lib\Mono.Data.Tds.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

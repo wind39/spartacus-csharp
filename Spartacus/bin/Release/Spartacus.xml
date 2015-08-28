@@ -1888,6 +1888,14 @@
             <summary>
             A senha do usuário ou schema.
             </summary></member>
+        <member name="F:Spartacus.Database.Generic.v_integrated_security">
+            <summary>
+            Segurança integrada (suportada apenas na classe SqlServer).
+            </summary></member>
+        <member name="F:Spartacus.Database.Generic.v_connectionstring">
+            <summary>
+            String de conexão para acessar o banco.
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
@@ -1907,6 +1915,29 @@
             </param>
             <param name="p_password">
             A senha do usuário ou schema.
+            </param></member>
+        <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
+            Armazena informações de conexão que são genéricas a qualquer SGBD.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
+            </param>
+            <param name="p_port">
+            Porta TCP para conectar-se ao SGBG.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param>
+            <param name="p_integrated_security">
+            Segurança integrada (suportada apenas na classe SqlServer).
             </param></member>
         <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String)">
             <summary>
@@ -2248,10 +2279,6 @@
             Classe Spartacus.Database.Odbc.
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza a implementação ODBC (Open Database Connectivity) para acessar qualquer SGBD.
-            </summary></member>
-        <member name="F:Spartacus.Database.Odbc.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
             </summary></member>
         <member name="F:Spartacus.Database.Odbc.v_con">
             <summary>
@@ -2654,10 +2681,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Firebird .NET Provider para acessar um SGBD Firebird.
             </summary></member>
-        <member name="F:Spartacus.Database.Firebird.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Firebird.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -2683,6 +2706,22 @@
             </param>
             <param name="p_port">
             Porta de conexão.
+            </param>
+            <param name="p_file">
+            Caminho completo para o arquivo FDB ou GDB.
+            </param>
+            <param name="p_user">
+            Usuário do Firebird.
+            </param>
+            <param name="p_password">
+            Senha do Firebird.
+            </param></member>
+        <member name="M:Spartacus.Database.Firebird.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Firebird" />.
+            </summary>
+            <param name="p_source">
+            IP do servidor Firebird.
             </param>
             <param name="p_file">
             Caminho completo para o arquivo FDB ou GDB.
@@ -3001,10 +3040,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o MySQL .NET Provider para acessar um SGBD MySQL.
             </summary></member>
-        <member name="F:Spartacus.Database.Mysql.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Mysql.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -3030,6 +3065,22 @@
             </param>
             <param name="p_port">
             Porta de conexão.
+            </param>
+            <param name="p_database">
+            Nome da base de dados ou schema.
+            </param>
+            <param name="p_user">
+            Usuário do MySQL.
+            </param>
+            <param name="p_password">
+            Senha do MySQL.
+            </param></member>
+        <member name="M:Spartacus.Database.Mysql.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Mysql" />.
+            </summary>
+            <param name="p_server">
+            IP do servidor MySQL.
             </param>
             <param name="p_database">
             Nome da base de dados ou schema.
@@ -3347,10 +3398,6 @@
             Classe Spartacus.Database.Oledb.
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza a implementação OLE DB para acessar qualquer SGBD.
-            </summary></member>
-        <member name="F:Spartacus.Database.Oledb.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
             </summary></member>
         <member name="F:Spartacus.Database.Oledb.v_con">
             <summary>
@@ -4549,10 +4596,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Mono.Data.Sqlite para acessar um SGBD Sqlite.
             </summary></member>
-        <member name="F:Spartacus.Database.Sqlite.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Sqlite.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -5482,10 +5525,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Npgsql .NET Provider para acessar um SGBD PostgreSQL.
             </summary></member>
-        <member name="F:Spartacus.Database.Postgresql.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Postgresql.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -5511,6 +5550,22 @@
             </param>
             <param name="p_port">
             Porta de conexão.
+            </param>
+            <param name="p_database">
+            Nome da base de dados ou schema.
+            </param>
+            <param name="p_user">
+            Usuário do PostgreSQL.
+            </param>
+            <param name="p_password">
+            Senha do PostgreSQL.
+            </param></member>
+        <member name="M:Spartacus.Database.Postgresql.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Postgresql" />.
+            </summary>
+            <param name="p_server">
+            IP do servidor PostgreSQL.
             </param>
             <param name="p_database">
             Nome da base de dados ou schema.
@@ -5883,7 +5938,7 @@
             <summary>
             Objeto de conexão com o banco de dados.
             </summary></member>
-        <member name="M:Spartacus.Database.Configuration.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Spartacus.Database.Configuration.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Configuration" />.
             </summary>
@@ -5893,7 +5948,8 @@
             <param name="p_port">Porta.</param>
             <param name="p_service">Serviço.</param>
             <param name="p_user">Usuário.</param>
-            <param name="p_password">Senha.</param></member>
+            <param name="p_password">Senha.</param>
+            <param name="p_integrated_security">Segurança integrada.</param></member>
         <member name="T:Spartacus.Utils.ErrorEventArgs">
             <summary>
             Classe ErrorEventArgs.
@@ -6467,10 +6523,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Oracle .NET Provider para acessar um SGBD Oracle.
             </summary></member>
-        <member name="F:Spartacus.Database.Oracle.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Oracle.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -6497,6 +6549,23 @@
             </param>
             <param name="p_port">
             Porta TCP para conectar-se ao SGBG.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param></member>
+        <member name="M:Spartacus.Database.Oracle.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
+            Cria a string de conexão ao banco.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
             </param>
             <param name="p_service">
             Nome do serviço que representa o banco ao qual desejamos nos conectar.
@@ -36037,10 +36106,6 @@
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Mono.Data.Sqlite para acessar um SGBD Sqlite em memória.
             </summary></member>
-        <member name="F:Spartacus.Database.Memory.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
-            </summary></member>
         <member name="F:Spartacus.Database.Memory.v_con">
             <summary>
             Conexão com o banco de dados.
@@ -36368,10 +36433,6 @@
             Classe Spartacus.Database.FirebirdEmbed.
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
             Utiliza o Firebird .NET Provider para acessar um SGBD Firebird embarcado.
-            </summary></member>
-        <member name="F:Spartacus.Database.FirebirdEmbed.v_connectionstring">
-            <summary>
-            String de conexão para acessar o banco.
             </summary></member>
         <member name="F:Spartacus.Database.FirebirdEmbed.v_con">
             <summary>
@@ -37594,5 +37655,409 @@
             <param name="p_function">
             Nome do método não implementado.
             </param></member>
+        <member name="T:Spartacus.Database.SqlServer">
+            <summary>
+            Classe Spartacus.Database.SqlServer.
+            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+            Utiliza o Mono.Data.Tds para acessar um SGBD MS SQL Server.
+            </summary></member>
+        <member name="F:Spartacus.Database.SqlServer.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.SqlServer.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.SqlServer.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.SqlServer.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
+            Armazena informações de conexão que são genéricas a qualquer SGBD.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
+            </param>
+            <param name="p_port">
+            Porta TCP para conectar-se ao SGBG.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
+            Armazena informações de conexão que são genéricas a qualquer SGBD.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
+            Armazena informações de conexão que são genéricas a qualquer SGBD.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
+            </param>
+            <param name="p_port">
+            Porta TCP para conectar-se ao SGBG.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param>
+            <param name="p_integrated_security">
+            Segurança integrada (suportada apenas na classe SqlServer).
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
+            Armazena informações de conexão que são genéricas a qualquer SGBD.
+            </summary>
+            <param name="p_host">
+            Hostname ou IP onde o banco de dados está localizado.
+            </param>
+            <param name="p_service">
+            Nome do serviço que representa o banco ao qual desejamos nos conectar.
+            </param>
+            <param name="p_user">
+            Usuário ou schema para se conectar ao banco de dados.
+            </param>
+            <param name="p_password">
+            A senha do usuário ou schema.
+            </param>
+            <param name="p_integrated_security">
+            Segurança integrada (suportada apenas na classe SqlServer).
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.Open">
+            <summary>
+            Abre a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.SqlServer.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.SqlServer.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_startrow">
+            Número da linha inicial.
+            </param>
+            <param name="p_endrow">
+            Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
+        <member name="M:Spartacus.Database.SqlServer.Execute(System.String)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.InsertBlock(System.String,System.Collections.ArrayList)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.ExecuteScalar(System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.Close">
+            <summary>
+            Fecha a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo Excel para o banco de dados atual.
+            Conexão com o banco atual precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo de origem.</param>
+            <param name="p_separator">Separador de campos do arquivo CSV.</param>
+            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
+            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
+            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo do Excel.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
     </members>
 </doc>

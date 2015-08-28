@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class Postgresql : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private Npgsql.NpgsqlConnection v_con;
@@ -82,11 +77,40 @@ namespace Spartacus.Database
         public Postgresql(string p_server, string p_port, string p_database, string p_user, string p_password)
             : base(p_server, p_port, p_database, p_user, p_password)
         {
-            this.v_connectionstring = "Server=" + p_server + ";"
-                    + "Port=" + p_port + ";"
-                    + "Database=" + p_database + ";"
-                    + "User ID=" + p_user + ";"
-                    + "Password=" + p_password;
+            this.v_connectionstring = "Server=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User ID=" + this.v_user + ";"
+                + "Password=" + this.v_password;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Postgresql"/>.
+        /// </summary>
+        /// <param name='p_server'>
+        /// IP do servidor PostgreSQL.
+        /// </param>
+        /// <param name='p_database'>
+        /// Nome da base de dados ou schema.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário do PostgreSQL.
+        /// </param>
+        /// <param name='p_password'>
+        /// Senha do PostgreSQL.
+        /// </param>
+        public Postgresql(string p_server, string p_database, string p_user, string p_password)
+            : base(p_server, "5432", p_database, p_user, p_password)
+        {
+            this.v_connectionstring = "Server=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User ID=" + this.v_user + ";"
+                + "Password=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
@@ -99,6 +123,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.CreateDatabase");
         }
 
         /// <summary>
@@ -106,6 +131,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.CreateDatabase");
         }
 
         /// <summary>
@@ -739,6 +765,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.DropDatabase");
         }
 
         /// <summary>
@@ -746,6 +773,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.DropDatabase");
         }
 
         /// <summary>

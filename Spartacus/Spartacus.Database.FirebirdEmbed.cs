@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class FirebirdEmbed : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private FirebirdSql.Data.FirebirdClient.FbConnection v_con;

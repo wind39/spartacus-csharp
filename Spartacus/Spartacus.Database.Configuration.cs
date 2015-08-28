@@ -47,6 +47,7 @@ namespace Spartacus.Database
         /// <param name="p_service">Serviço.</param>
         /// <param name="p_user">Usuário.</param>
         /// <param name="p_password">Senha.</param>
+        /// <param name="p_integrated_security">Segurança integrada.</param>
         public Configuration(
             string p_type,
             string p_provider,
@@ -54,7 +55,8 @@ namespace Spartacus.Database
             string p_port,
             string p_service,
             string p_user,
-            string p_password
+            string p_password,
+            string p_integrated_security
         )
         {
             this.v_database = null;
@@ -91,6 +93,9 @@ namespace Spartacus.Database
                 case "memory":
                     this.v_database = new Spartacus.Database.Memory();
                     break;
+                case "sqlserver":
+                    this.v_database = new Spartacus.Database.SqlServer(p_host, p_port, p_service, p_user, p_password, bool.Parse(p_integrated_security));
+                    break;
                 default:
                     this.v_database = null;
                     break;
@@ -98,4 +103,3 @@ namespace Spartacus.Database
         }
     }
 }
-

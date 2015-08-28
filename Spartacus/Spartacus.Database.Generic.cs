@@ -59,6 +59,16 @@ namespace Spartacus.Database
         /// </summary>
         public string v_password;
 
+        /// <summary>
+        /// Segurança integrada (suportada apenas na classe SqlServer).
+        /// </summary>
+        public bool v_integrated_security;
+
+        /// <summary>
+        /// String de conexão para acessar o banco.
+        /// </summary>
+        public string v_connectionstring;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
@@ -86,6 +96,39 @@ namespace Spartacus.Database
             this.v_service = p_service;
             this.v_user = p_user;
             this.v_password = p_password;
+            this.v_integrated_security = false;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
+        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
+        /// </summary>
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_port'>
+        /// Porta TCP para conectar-se ao SGBG.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário ou schema para se conectar ao banco de dados.
+        /// </param>
+        /// <param name='p_password'>
+        /// A senha do usuário ou schema.
+        /// </param>
+        /// <param name='p_integrated_security'>
+        /// Segurança integrada (suportada apenas na classe SqlServer).
+        /// </param>
+        public Generic(string p_host, string p_port, string p_service, string p_user, string p_password, bool p_integrated_security)
+        {
+            this.v_host = p_host;
+            this.v_port = p_port;
+            this.v_service = p_service;
+            this.v_user = p_user;
+            this.v_password = p_password;
+            this.v_integrated_security = p_integrated_security;
         }
 
         /// <summary>
@@ -106,6 +149,7 @@ namespace Spartacus.Database
             this.v_service = p_dsn;
             this.v_user = p_user;
             this.v_password = p_password;
+            this.v_integrated_security = false;
         }
 
         /// <summary>
@@ -118,6 +162,7 @@ namespace Spartacus.Database
         public Generic(string p_file)
         {
             this.v_service = p_file;
+            this.v_integrated_security = false;
         }
 
         /// <summary>

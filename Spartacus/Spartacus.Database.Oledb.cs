@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class Oledb : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private System.Data.OleDb.OleDbConnection v_con;
@@ -127,6 +122,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oledb.CreateDatabase");
         }
 
         /// <summary>
@@ -134,6 +130,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oledb.CreateDatabase");
         }
 
         /// <summary>
@@ -762,6 +759,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oledb.DropDatabase");
         }
 
         /// <summary>
@@ -769,6 +767,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oledb.DropDatabase");
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-/*
+﻿/*
 The MIT License (MIT)
 
 Copyright (c) 2014,2015 William Ivanski
@@ -24,31 +24,32 @@ SOFTWARE.
 
 using System;
 using System.Data;
-using System.Data.Odbc;
+using System.Data.SqlClient;
+using Mono.Data.Tds;
 
 namespace Spartacus.Database
 {
     /// <summary>
-    /// Classe Spartacus.Database.Odbc.
+    /// Classe Spartacus.Database.SqlServer.
     /// Herda da classe <see cref="Spartacus.Database.Generic"/>.
-    /// Utiliza a implementação ODBC (Open Database Connectivity) para acessar qualquer SGBD.
+    /// Utiliza o Mono.Data.Tds para acessar um SGBD MS SQL Server.
     /// </summary>
-    public class Odbc : Spartacus.Database.Generic
+    public class SqlServer : Spartacus.Database.Generic
     {
         /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
-        private System.Data.Odbc.OdbcConnection v_con;
+        private System.Data.SqlClient.SqlConnection v_con;
 
         /// <summary>
         /// Comando para conexão com o banco de dados.
         /// </summary>
-        private System.Data.Odbc.OdbcCommand v_cmd;
+        private System.Data.SqlClient.SqlCommand v_cmd;
 
         /// <summary>
         /// Leitor de dados do banco de dados.
         /// </summary>
-        private System.Data.Odbc.OdbcDataReader v_reader;
+        private System.Data.SqlClient.SqlDataReader v_reader;
 
         /// <summary>
         /// Linha atual da QueryBlock.
@@ -57,11 +58,17 @@ namespace Spartacus.Database
 
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Odbc"/>.
-        /// Cria a string de conexão ao banco.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
+        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
-        /// <param name='p_dsn'>
-        /// DSN (Data Source Name).
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_port'>
+        /// Porta TCP para conectar-se ao SGBG.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
         /// </param>
         /// <param name='p_user'>
         /// Usuário ou schema para se conectar ao banco de dados.
@@ -69,12 +76,137 @@ namespace Spartacus.Database
         /// <param name='p_password'>
         /// A senha do usuário ou schema.
         /// </param>
-        public Odbc (string p_dsn, string p_user, string p_password)
-            : base(p_dsn, p_user, p_password)
+        public SqlServer(string p_host, string p_port, string p_service, string p_user, string p_password)
+            : base(p_host, p_port, p_service, p_user, p_password)
         {
-            this.v_connectionstring = "DSN=" + this.v_service + ";"
-                + "UID=" + this.v_user + ";"
-                + "PWD=" + this.v_password + ";";
+            if (this.v_integrated_security)
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password + ";" +
+                    "Integrated Security=SSPI";
+            else
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
+        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
+        /// </summary>
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário ou schema para se conectar ao banco de dados.
+        /// </param>
+        /// <param name='p_password'>
+        /// A senha do usuário ou schema.
+        /// </param>
+        public SqlServer(string p_host, string p_service, string p_user, string p_password)
+            : base(p_host, "1433", p_service, p_user, p_password)
+        {
+            if (this.v_integrated_security)
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password + ";" +
+                    "Integrated Security=SSPI";
+            else
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
+        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
+        /// </summary>
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_port'>
+        /// Porta TCP para conectar-se ao SGBG.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário ou schema para se conectar ao banco de dados.
+        /// </param>
+        /// <param name='p_password'>
+        /// A senha do usuário ou schema.
+        /// </param>
+        /// <param name='p_integrated_security'>
+        /// Segurança integrada (suportada apenas na classe SqlServer).
+        /// </param>
+        public SqlServer(string p_host, string p_port, string p_service, string p_user, string p_password, bool p_integrated_security)
+            : base(p_host, p_port, p_service, p_user, p_password, p_integrated_security)
+        {
+            if (this.v_integrated_security)
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password + ";" +
+                    "Integrated Security=SSPI";
+            else
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
+        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
+        /// </summary>
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário ou schema para se conectar ao banco de dados.
+        /// </param>
+        /// <param name='p_password'>
+        /// A senha do usuário ou schema.
+        /// </param>
+        /// <param name='p_integrated_security'>
+        /// Segurança integrada (suportada apenas na classe SqlServer).
+        /// </param>
+        public SqlServer(string p_host, string p_service, string p_user, string p_password, bool p_integrated_security)
+            : base(p_host, "1433", p_service, p_user, p_password, p_integrated_security)
+        {
+            if (this.v_integrated_security)
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password + ";" +
+                    "Integrated Security=SSPI";
+            else
+                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                    "Database=" + this.v_service + ";" +
+                    "User ID=" + this.v_user + ";" +
+                    "Password=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
@@ -87,7 +219,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Odbc.CreateDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.SqlServer.CreateDatabase");
         }
 
         /// <summary>
@@ -95,7 +227,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Odbc.CreateDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.SqlServer.CreateDatabase");
         }
 
         /// <summary>
@@ -105,12 +237,12 @@ namespace Spartacus.Database
         {
             try
             {
-                this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                 this.v_con.Open();
-                this.v_cmd = new System.Data.Odbc.OdbcCommand();
+                this.v_cmd = new System.Data.SqlClient.SqlCommand();
                 this.v_cmd.Connection = this.v_con;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -135,9 +267,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -154,7 +286,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -198,7 +330,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -236,9 +368,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -258,7 +390,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -305,7 +437,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -384,7 +516,7 @@ namespace Spartacus.Database
 
                 return v_table;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -410,9 +542,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
@@ -434,7 +566,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -483,7 +615,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -514,7 +646,7 @@ namespace Spartacus.Database
         /// <remarks>Não suportado em todos os SGBDs.</remarks>
         public override System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Odbc.QueryStoredProc");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Sqlite.QueryStoredProc");
         }
 
         /// <summary>
@@ -529,12 +661,12 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -559,7 +691,7 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -583,22 +715,18 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
 
-                    v_block = "insert into " + p_table + " values\n";
+                    v_block = "begin;\n";
                     for (int k = 0; k < p_rows.Count; k++)
-                    {
-                        if (k < p_rows.Count-1)
-                            v_block += (string)p_rows[k] + ",\n";
-                        else
-                            v_block += (string)p_rows[k] + ";\n";
-                    }
+                        v_block += "insert into " + p_table + " values " + (string)p_rows[k] + ";\n";
+                    v_block += "commit;";
 
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -620,19 +748,15 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    v_block = "insert into " + p_table + " values\n";
+                    v_block = "begin;\n";
                     for (int k = 0; k < p_rows.Count; k++)
-                    {
-                        if (k < p_rows.Count-1)
-                            v_block += (string)p_rows[k] + ",\n";
-                        else
-                            v_block += (string)p_rows[k] + ";\n";
-                    }
+                        v_block += "insert into " + p_table + " values " + (string)p_rows[k] + ";\n";
+                    v_block += "commit;";
 
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -656,16 +780,16 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     v_tmp = this.v_cmd.ExecuteScalar();
                     if (v_tmp != null)
                         return v_tmp.ToString();
                     else
                         return "";
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -694,7 +818,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -706,6 +830,11 @@ namespace Spartacus.Database
         /// </summary>
         public override void Close()
         {
+            if (this.v_reader != null)
+            {
+                this.v_reader.Close();
+                this.v_reader = null;
+            }
             if (this.v_cmd != null)
             {
                 this.v_cmd.Dispose();
@@ -724,7 +853,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Odbc.DropDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.SqlServer.DropDatabase");
         }
 
         /// <summary>
@@ -732,7 +861,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Odbc.DropDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.SqlServer.DropDatabase");
         }
 
         /// <summary>
@@ -751,9 +880,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_query, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -767,7 +896,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -808,7 +937,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -844,9 +973,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_query, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -868,7 +997,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -917,7 +1046,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -984,7 +1113,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1053,7 +1182,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1116,7 +1245,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1189,7 +1318,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.Odbc.OdbcException e)
+            catch (System.Data.SqlClient.SqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1217,9 +1346,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_query, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -1242,7 +1371,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1292,7 +1421,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1518,9 +1647,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
                 }
                 try
                 {
@@ -1610,9 +1739,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
                 }
                 try
                 {
@@ -1703,9 +1832,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " varchar)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
                 }
                 try
                 {
@@ -1823,9 +1952,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_array = new string[v_reader.FieldCount];
@@ -1834,7 +1963,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1870,7 +1999,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (System.Data.Odbc.OdbcException e)
+                catch (System.Data.SqlClient.SqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

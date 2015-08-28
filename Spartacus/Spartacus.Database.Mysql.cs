@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class Mysql : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private MySql.Data.MySqlClient.MySqlConnection v_con;
@@ -83,11 +78,41 @@ namespace Spartacus.Database
             : base(p_server, p_port, p_database, p_user, p_password)
         {
             this.v_connectionstring = "Persist Security Info=False;"
-                + "Server=" + p_server + ";"
-                + "Port=" + p_port + ";"
-                + "Database=" + p_database + ";"
-                + "Uid=" + p_user + ";"
-                + "Pwd=" + p_password;
+                + "Server=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "Uid=" + this.v_user + ";"
+                + "Pwd=" + this.v_password;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mysql"/>.
+        /// </summary>
+        /// <param name='p_server'>
+        /// IP do servidor MySQL.
+        /// </param>
+        /// <param name='p_database'>
+        /// Nome da base de dados ou schema.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário do MySQL.
+        /// </param>
+        /// <param name='p_password'>
+        /// Senha do MySQL.
+        /// </param>
+        public Mysql(string p_server, string p_database, string p_user, string p_password)
+            : base(p_server, "3306", p_database, p_user, p_password)
+        {
+            this.v_connectionstring = "Persist Security Info=False;"
+                + "Server=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "Uid=" + this.v_user + ";"
+                + "Pwd=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
@@ -100,6 +125,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mysql.CreateDatabase");
         }
 
         /// <summary>
@@ -107,6 +133,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mysql.CreateDatabase");
         }
 
         /// <summary>
@@ -735,6 +762,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mysql.DropDatabase");
         }
 
         /// <summary>
@@ -742,6 +770,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mysql.DropDatabase");
         }
 
         /// <summary>

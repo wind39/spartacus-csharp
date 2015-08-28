@@ -36,11 +36,6 @@ namespace Spartacus.Database
     public class Oracle : Spartacus.Database.Generic
     {
         /// <summary>
-        /// String de conexão para acessar o banco.
-        /// </summary>
-        private string v_connectionstring;
-
-        /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
         private System.Data.OracleClient.OracleConnection v_con;
@@ -83,12 +78,43 @@ namespace Spartacus.Database
         public Oracle (string p_host, string p_port, string p_service, string p_user, string p_password)
             : base(p_host, p_port, p_service, p_user, p_password)
         {
-            this.v_connectionstring = "User ID=" + p_user + ";";
-            this.v_connectionstring += "Password=" + p_password + ";Pooling=false;";
+            this.v_connectionstring = "User ID=" + this.v_user + ";";
+            this.v_connectionstring += "Password=" + this.v_password + ";Pooling=false;";
             this.v_connectionstring += "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)";
-            this.v_connectionstring += "(HOST=" + p_host + ")";
-            this.v_connectionstring += "(PORT=" + p_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";
-            this.v_connectionstring += "(SERVICE_NAME=" + p_service + ")))";
+            this.v_connectionstring += "(HOST=" + this.v_host + ")";
+            this.v_connectionstring += "(PORT=" + this.v_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";
+            this.v_connectionstring += "(SERVICE_NAME=" + this.v_service + ")))";
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oracle"/>.
+        /// Cria a string de conexão ao banco.
+        /// </summary>
+        /// <param name='p_host'>
+        /// Hostname ou IP onde o banco de dados está localizado.
+        /// </param>
+        /// <param name='p_service'>
+        /// Nome do serviço que representa o banco ao qual desejamos nos conectar.
+        /// </param>
+        /// <param name='p_user'>
+        /// Usuário ou schema para se conectar ao banco de dados.
+        /// </param>
+        /// <param name='p_password'>
+        /// A senha do usuário ou schema.
+        /// </param>
+        public Oracle (string p_host, string p_service, string p_user, string p_password)
+            : base(p_host, "1521", p_service, p_user, p_password)
+        {
+            this.v_connectionstring = "User ID=" + this.v_user + ";";
+            this.v_connectionstring += "Password=" + this.v_password + ";Pooling=false;";
+            this.v_connectionstring += "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)";
+            this.v_connectionstring += "(HOST=" + this.v_host + ")";
+            this.v_connectionstring += "(PORT=" + this.v_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";
+            this.v_connectionstring += "(SERVICE_NAME=" + this.v_service + ")))";
 
             this.v_con = null;
             this.v_cmd = null;
@@ -101,6 +127,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oracle.CreateDatabase");
         }
 
         /// <summary>
@@ -108,6 +135,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oracle.CreateDatabase");
         }
 
         /// <summary>
@@ -826,6 +854,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oracle.DropDatabase");
         }
 
         /// <summary>
@@ -833,6 +862,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Oracle.DropDatabase");
         }
 
         /// <summary>
