@@ -1460,7 +1460,10 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                    {
+                        if (p_insert.Exists(c.ColumnName))
+                            p_insert.SetValue(c.ColumnName, r[c].ToString());
+                    }
 
                     v_insert = p_insert.GetUpdatedText();
                     try
@@ -1522,7 +1525,10 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                    {
+                        if (p_insert.Exists(c.ColumnName))
+                            p_insert.SetValue(c.ColumnName, r[c].ToString());
+                    }
 
                     v_insert = p_insert.GetUpdatedText();
                     try
@@ -1585,7 +1591,10 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        p_insert.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                    {
+                        if (p_insert.Exists(c.ColumnName))
+                            p_insert.SetValue(c.ColumnName, r[c].ToString());
+                    }
 
                     v_insert = p_insert.GetUpdatedText();
                     try
@@ -1674,7 +1683,7 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                        v_cmd.SetValue(c.ColumnName, r[c].ToString());
 
                     v_insert = v_cmd.GetUpdatedText();
                     try
@@ -1766,7 +1775,7 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                        v_cmd.SetValue(c.ColumnName, r[c].ToString());
 
                     v_insert = v_cmd.GetUpdatedText();
                     try
@@ -1859,7 +1868,7 @@ namespace Spartacus.Database
                 foreach (System.Data.DataRow r in v_excel.v_set.Tables[0].Rows)
                 {
                     foreach (System.Data.DataColumn c in v_excel.v_set.Tables[0].Columns)
-                        v_cmd.SetValue(c.ColumnName.ToLower(), r[c].ToString());
+                        v_cmd.SetValue(c.ColumnName, r[c].ToString());
 
                     v_insert = v_cmd.GetUpdatedText();
                     try

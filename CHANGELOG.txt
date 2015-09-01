@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.39.11: TransferFromFile da Spartacus.Database agora preenche apenas as colunas existentes no arquivo e no banco de dados
 0.39.10: Implementada classe Spartacus.Database.SqlServer
 0.39.9:  Removidos namespaces Spartacus.Forms e Spartacus.Web, e também removido ReportServer
 0.39.8:  Implementado Spartacus.Database.Oracle.QueryStoredProc

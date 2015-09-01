@@ -1802,6 +1802,11 @@
             Lookup do Parâmetro.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.Exists(System.String)">
+            <summary>
+            Verifica se um determinado Parâmetro existe na lista de Parâmetros.
+            </summary>
+            <param name="p_name">Nome do Parâmetro.</param></member>
         <member name="T:Spartacus.Database.Exception">
             <summary>
             Classe Spartacus.Database.Exception.

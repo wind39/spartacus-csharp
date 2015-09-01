@@ -1025,5 +1025,30 @@ namespace Spartacus.Database
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
             }
         }
+
+        /// <summary>
+        /// Verifica se um determinado Parâmetro existe na lista de Parâmetros.
+        /// </summary>
+        /// <param name="p_name">Nome do Parâmetro.</param>
+        public bool Exists(string p_name)
+        {
+            string v_name;
+            int k;
+            bool achou;
+
+            v_name = p_name.ToUpper();
+
+            k = 0;
+            achou = false;
+            while (k < this.v_parameters.Count && !achou)
+            {
+                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                    achou = true;
+                else
+                    k++;
+            }
+
+            return achou;
+        }
     }
 }
