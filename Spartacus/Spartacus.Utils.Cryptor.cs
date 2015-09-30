@@ -24,7 +24,7 @@ SOFTWARE.
 
 using System;
 
-namespace Spartacus.Net
+namespace Spartacus.Utils
 {
     /// <summary>
     /// Classe Cryptor.
@@ -78,7 +78,7 @@ namespace Spartacus.Net
         private System.Security.Cryptography.ICryptoTransform v_decryptor;
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         public Cryptor(string p_password)
@@ -91,7 +91,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
@@ -108,7 +108,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
@@ -129,7 +129,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
@@ -154,7 +154,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
@@ -171,7 +171,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
@@ -192,7 +192,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
@@ -217,7 +217,7 @@ namespace Spartacus.Net
         }
 
         /// <summary>
-        /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Cryptor"/>.
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.Cryptor"/>.
         /// </summary>
         /// <param name="p_password">Senha da Criptografia.</param>
         /// <param name="p_keysize">Tamanho da Chave (128,192 ou 256).</param>
@@ -379,11 +379,11 @@ namespace Spartacus.Net
             }
             catch (System.IO.IOException e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -434,11 +434,11 @@ namespace Spartacus.Net
             }
             catch (System.IO.IOException e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -539,7 +539,7 @@ namespace Spartacus.Net
             }
             catch (System.Security.Cryptography.CryptographicException e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 
@@ -584,11 +584,11 @@ namespace Spartacus.Net
             }
             catch (System.IO.IOException e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.Net.Exception(e);
+                throw new Spartacus.Utils.Exception(e);
             }
         }
 

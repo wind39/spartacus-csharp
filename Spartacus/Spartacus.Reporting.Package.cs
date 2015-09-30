@@ -186,7 +186,7 @@ namespace Spartacus.Reporting
         public void SaveSplitted(bool p_compress)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_encrypted;
             Spartacus.Reporting.Report v_report;
             double v_perc, v_percstep, v_lastperc;
@@ -195,7 +195,7 @@ namespace Spartacus.Reporting
             {
                 if (p_compress)
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
@@ -266,7 +266,7 @@ namespace Spartacus.Reporting
         public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_encrypted;
             Spartacus.Reporting.Report v_report;
             double v_perc, v_percstep, v_lastperc;
@@ -275,7 +275,7 @@ namespace Spartacus.Reporting
             {
                 if (p_compress)
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(this.v_filename.Replace(".pdf", ".zip"), "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
@@ -347,7 +347,7 @@ namespace Spartacus.Reporting
         public void SaveSplitted(bool p_compress, string p_outfilename)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_encrypted;
             Spartacus.Reporting.Report v_report;
             double v_perc, v_percstep, v_lastperc;
@@ -356,7 +356,7 @@ namespace Spartacus.Reporting
             {
                 if (p_compress)
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;
@@ -428,7 +428,7 @@ namespace Spartacus.Reporting
         public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress, string p_outfilename)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_encrypted;
             Spartacus.Reporting.Report v_report;
             double v_perc, v_percstep, v_lastperc;
@@ -437,7 +437,7 @@ namespace Spartacus.Reporting
             {
                 if (p_compress)
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
                     v_zipstorer = Spartacus.ThirdParty.ZipStorer.Create(p_outfilename, "Generated with ZipStorer (by Jaime Olivares) embedded in Spartacus (by William Ivanski)");
                     v_zipstorer.EncodeUTF8 = true;

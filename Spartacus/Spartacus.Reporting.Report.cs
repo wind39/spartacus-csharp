@@ -514,7 +514,7 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_datafilename;
             System.IO.StreamReader v_reader;
 
@@ -575,7 +575,7 @@ namespace Spartacus.Reporting
                     this.v_settings.v_groupfooterfont.GetFont(v_pdf)
                 );
 
-                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                 v_datafilename = v_cryptor.RandomString() + ".tmp";
                 this.v_datafile = System.IO.File.Open(
                     v_datafilename,
@@ -669,7 +669,7 @@ namespace Spartacus.Reporting
             PDFjet.NET.Page v_page;
             System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>> v_rendered;
             int v_numpages, v_currentpage;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_datafilename;
             System.IO.StreamReader v_reader;
 
@@ -725,7 +725,7 @@ namespace Spartacus.Reporting
                     this.v_settings.v_groupfooterfont.GetFont(p_pdf)
                 );
 
-                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                 v_datafilename = v_cryptor.RandomString() + ".tmp";
                 this.v_datafile = System.IO.File.Open(
                     v_datafilename,

@@ -1,10 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.FileExplorer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/dist/merge_debug.sh">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="282" Column="21" />
-      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="1" Column="1" />
+      <File FileName="SDBC/Program.cs" Line="36" Column="3" />
+      <File FileName="Spartacus/dist/merge_release.sh" Line="5" Column="3" />
+      <File FileName="Spartacus/dist/merge_debug.sh" Line="6" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

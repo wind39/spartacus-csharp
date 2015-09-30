@@ -1255,7 +1255,7 @@ namespace Spartacus.Utils
         /// <param name="p_templatename">Nome do arquivo XLSX usado como template.</param>
         private string ReplaceMarkup(string p_templatename)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             System.IO.FileInfo v_src;
             System.IO.FileInfo v_dst;
             string v_dstname;
@@ -1271,7 +1271,7 @@ namespace Spartacus.Utils
             int v_datastart = 1;
             int v_height, v_width;
 
-            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+            v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
             v_src = new System.IO.FileInfo(p_templatename);
 
@@ -1334,7 +1334,7 @@ namespace Spartacus.Utils
                                         {
                                             v_imagefilename = v_cryptor.Decrypt(v_table.Rows [0] [v_options[1]].ToString());
                                         }
-                                        catch (Spartacus.Net.Exception)
+                                        catch (Spartacus.Utils.Exception)
                                         {
                                             v_imagefilename = "";
                                         }
@@ -1451,7 +1451,7 @@ namespace Spartacus.Utils
         /// <param name="p_templatenames">Nome dos arquivo XLSX usados como templates.</param>
         private string ReplaceMarkup(System.Collections.ArrayList p_templatenames)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             System.IO.FileInfo v_src;
             System.IO.FileInfo v_dst;
             string v_dstname;
@@ -1467,7 +1467,7 @@ namespace Spartacus.Utils
             int v_datastart = 1;
             int v_width, v_height;
 
-            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+            v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
             v_dstname = v_cryptor.RandomString() + ".xlsx";
             v_dst = new System.IO.FileInfo(v_dstname);
@@ -1590,7 +1590,7 @@ namespace Spartacus.Utils
                                                     {
                                                         v_imagefilename = v_cryptor.Decrypt(v_table.Rows[0][v_options[1]].ToString());
                                                     }
-                                                    catch (Spartacus.Net.Exception)
+                                                    catch (Spartacus.Utils.Exception)
                                                     {
                                                         v_imagefilename = "";
                                                     }
@@ -1715,13 +1715,13 @@ namespace Spartacus.Utils
         /// <param name="p_showfilter">Se deve mostrar ou não o filtro na primeira linha da planilha.</param>
         private string CreateTemplate(bool p_freezeheader, bool p_showfilter)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             System.IO.FileInfo v_dst;
             string v_dstname;
             string v_column;
             string v_prefix;
 
-            v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+            v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
             v_dstname = v_cryptor.RandomString() + ".xlsx";
             v_dst = new System.IO.FileInfo(v_dstname);

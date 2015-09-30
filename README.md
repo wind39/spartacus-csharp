@@ -10,7 +10,7 @@ Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/w
 Please note that Spartacus is not API ready yet, something may change until it becomes stable.
 Some development effort is tracked in this Trello board: https://trello.com/b/qIQ5id41/spartacus
 
-Spartacus links this managed libraries:
+Spartacus contains this managed libraries:
   - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Mono.Data.Tds (http://www.mono-project.com/docs/database-access/providers/sqlclient/)
@@ -26,12 +26,13 @@ Spartacus reuse code from this C# projects:
   - ZipStorer, by Jaime Olivares (http://zipstorer.codeplex.com)
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
 
-Spartacus also optionally use this native libraries, binaries and web assets:
+Spartacus also optionally use this native libraries and binaries:
   - SQLite (https://www.sqlite.org/)
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
+  - ILRepack (https://github.com/gluck/il-repack)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
-  - Rafael Thofehrn Castro (http://www.inf.ufpr.br/rtc10/page.html)
+  - Rafael Thofehrn Castro (http://www.http://rafaelthca.com.br)
   - Planning Service Transfer Pricing (http://www.planningservice.com.br)
   - Adsistem Sistemas Administrativos (http://www.adsistem.com.br)

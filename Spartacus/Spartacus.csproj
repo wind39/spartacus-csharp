@@ -22,6 +22,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="${ProjectDir}/dist/merge_debug.sh" workingdir="${ProjectDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -31,6 +36,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\Spartacus.xml</DocumentationFile>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="${ProjectDir}/dist/merge_release.sh" workingdir="${ProjectDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,7 +52,6 @@
     <Reference Include="MySql.Data">
       <HintPath>lib\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net" />
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
@@ -52,12 +61,12 @@
     <Reference Include="System.Data.OracleClient">
       <HintPath>lib\System.Data.OracleClient.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="Mono.Data.Tds">
       <HintPath>lib\Mono.Data.Tds.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -84,12 +93,6 @@
     <Compile Include="Spartacus.Reporting.Block.cs" />
     <Compile Include="Spartacus.Reporting.Object.cs" />
     <Compile Include="Spartacus.Database.Sqlite.cs" />
-    <Compile Include="Spartacus.Net.Cryptor.cs" />
-    <Compile Include="Spartacus.Net.Server.cs" />
-    <Compile Include="Spartacus.Net.Client.cs" />
-    <Compile Include="Spartacus.Net.Packet.cs" />
-    <Compile Include="Spartacus.Net.Exception.cs" />
-    <Compile Include="Spartacus.Net.Endpoint.cs" />
     <Compile Include="Spartacus.Database.Postgresql.cs" />
     <Compile Include="Spartacus.Utils.FileArray.cs" />
     <Compile Include="Spartacus.Database.Configuration.cs" />
@@ -896,12 +899,10 @@
     <Compile Include="fastdbf\DbfHeader.cs" />
     <Compile Include="fastdbf\DbfRecord.cs" />
     <Compile Include="Spartacus.Reporting.ReportXML.cs" />
-    <Compile Include="Spartacus.Net.ConnectEvent.cs" />
-    <Compile Include="Spartacus.Net.DisconnectEvent.cs" />
-    <Compile Include="Spartacus.Net.AvailableEvent.cs" />
     <Compile Include="Spartacus.Utils.NotImplementedException.cs" />
     <Compile Include="Spartacus.Utils.NotSupportedException.cs" />
     <Compile Include="Spartacus.Database.SqlServer.cs" />
+    <Compile Include="Spartacus.Utils.Cryptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -948,6 +949,13 @@
     <None Include="lib\firebird\windows_x86\icuin30.dll" />
     <None Include="lib\firebird\windows_x86\icuuc30.dll" />
     <None Include="lib\Mono.Data.Tds.dll" />
+    <None Include="dist\ILRepack.exe" />
+    <None Include="bin\Release\Mono.Data.Tds.dll" />
+    <None Include="bin\Debug\Mono.Data.Tds.dll" />
+    <None Include="dist\merge_release.sh" />
+    <None Include="dist\merge_debug.sh" />
+    <None Include="dist\Spartacus.dll" />
+    <None Include="dist\Spartacus.dll.mdb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

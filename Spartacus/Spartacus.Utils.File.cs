@@ -477,14 +477,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -523,14 +523,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -569,14 +569,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -619,14 +619,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -669,14 +669,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -722,14 +722,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -769,14 +769,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -818,14 +818,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -867,14 +867,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -920,14 +920,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -973,14 +973,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1029,14 +1029,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1519,14 +1519,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1573,14 +1573,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1627,14 +1627,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1685,14 +1685,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1743,14 +1743,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1804,14 +1804,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1859,14 +1859,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1916,14 +1916,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -1973,14 +1973,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -2034,14 +2034,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -2095,14 +2095,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -2159,14 +2159,14 @@ namespace Spartacus.Utils
         /// </param>
         public File(int p_id, int p_parentid, Spartacus.Utils.FileType p_type, string p_completename, bool p_encryptedname, Spartacus.Utils.PathSeparator p_separator, System.DateTime p_lastwritedate, long p_size, System.Text.Encoding p_encoding)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_completename;
 
             if (p_encryptedname)
             {
                 try
                 {
-                    v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                    v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                     v_completename = v_cryptor.Decrypt(p_completename);
                 }
                 catch (System.Exception)
@@ -2356,11 +2356,11 @@ namespace Spartacus.Utils
         /// </param>
         public string CompleteFileName(bool p_encryptname)
         {
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
 
             if (p_encryptname)
             {
-                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                 return v_cryptor.Encrypt(this.CompleteFileName());
             }
             else

@@ -186,7 +186,7 @@ namespace Spartacus.Reporting
             System.IO.FileInfo v_info;
             char[] v_ch;
             string[] v_temp;
-            Spartacus.Net.Cryptor v_cryptor;
+            Spartacus.Utils.Cryptor v_cryptor;
             string v_path;
 
             if (p_object.v_pdfobject == null)
@@ -194,7 +194,7 @@ namespace Spartacus.Reporting
                 v_ch = new char[1];
                 v_ch [0] = '.';
 
-                v_cryptor = new Spartacus.Net.Cryptor("spartacus");
+                v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
                 try
                 {
                     v_path = v_cryptor.Decrypt(p_object.v_value);

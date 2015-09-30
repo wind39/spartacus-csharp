@@ -21,18 +21,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.39.12: Unificadas managed DLLs com ILRepack
+         Movida classe Spartacus.Net.Cryptor para Spartacus.Utils
+         Removido namespace Spartacus.Net
 0.39.11: TransferFromFile da Spartacus.Database agora preenche apenas as colunas existentes no arquivo e no banco de dados
 0.39.10: Implementada classe Spartacus.Database.SqlServer
 0.39.9:  Removidos namespaces Spartacus.Forms e Spartacus.Web, e também removido ReportServer
 0.39.8:  Implementado Spartacus.Database.Oracle.QueryStoredProc
-0.39.7:  Implementado ReportServer usando Spartacus.Net
+0.39.7:  Implementado ReportServer usando Spartacus.Utils
 0.39.6:  Spartacus.Web funcional
 0.39.5:  Implementado System.Web.Grid, que também pode funcionar como lookup (sem modal)
 0.39.4:  Início implementação System.Web.Grid
 0.39.3:  Spartacus.Web gera HTML completo automaticamente
 0.39.2:  Implementado System.Web.Datetimepicker
 0.39.1:  Início implementação Spartacus.Web
-0.39.0:  Spartacus.Net: Servidor com suporte a múltiplos clientes, e eventos OnConnect, OnDisconnect e OnAvailable
+0.39.0:  Spartacus.Utils: Servidor com suporte a múltiplos clientes, e eventos OnConnect, OnDisconnect e OnAvailable
 
 0.38.40: Spartacus.Database: Corrigindo exceção não tratada NullReferenceException na ExecuteScalar
 0.38.39: Spartacus.Utils.Excel: Opção para especificar altura e largura máximos para imagens inseridas em arquivos XLSX
@@ -86,7 +89,7 @@ SOFTWARE.
 0.38.2:  Implementada classe Spartacus.Database.XbaseReadOnly, para abrir arquivos do formato DBF antigo.
          Spartacus.Database.Sqlite agora utiliza apenas uma conexão persistente, por isso agora é necessário utilizar Open() e Close().
 0.38.1:  Permitindo caractere # na Spartacus.Database.Command
-0.38.0:  Implementada função Spartacus.Net.Cryptor.RandomString, para criar strings aleatórias para diversos propósitos
+0.38.0:  Implementada função Spartacus.Utils.Cryptor.RandomString, para criar strings aleatórias para diversos propósitos
 
 0.37.6:  Fix para DataReader.GetString, que no Mono 3 funciona de forma diferente do Mono 4
 0.37.5:  Corrigindo Query para retornar DataTable vazia, ao invés de null, caso a consulta não retorne dados
@@ -175,7 +178,7 @@ SOFTWARE.
 0.31.5:  Permitindo caracteres <, >, [ e ] na RemoveUnwantedChars
 0.31.4:  Exceções padronizadas e agora mostram stacktrace
 0.31.3:  Adicionada classe ErrorEvent
-0.31.2:  Corrigido bug no Spartacus.Net.Cryptor, ao tentar descriptografar uma string vazia
+0.31.2:  Corrigido bug no Spartacus.Utils.Cryptor, ao tentar descriptografar uma string vazia
 0.31.1:  Implementada classe Spartacus.Database.Configuration
 0.31.0:  Implementada funcionalidade BulkInsert para Spartacus.Database
 
