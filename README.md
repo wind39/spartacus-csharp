@@ -2,7 +2,6 @@ Spartacus is a multi-purpose library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
   - Render reports from a unique XML markup to PDF, using own database objects;
   - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
-  - Communication between client and server;
   - Easy to work with cryptography of files and messages.
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki

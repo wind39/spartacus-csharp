@@ -908,25 +908,15 @@
   <ItemGroup>
     <None Include="lib\FirebirdSql.Data.FirebirdClient.dll" />
     <None Include="lib\MySql.Data.dll" />
-    <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="bin\Release\MySql.Data.dll" />
     <None Include="bin\Release\Spartacus.dll" />
     <None Include="doc\Doxyfile" />
     <None Include="lib\Npgsql.dll" />
-    <None Include="bin\Release\Npgsql.dll" />
-    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
     <None Include="lib\Mono.Data.Sqlite.dll" />
     <None Include="doc\Spartacus Report Engine.xlsx" />
-    <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
-    <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
-    <None Include="bin\Debug\MySql.Data.dll" />
-    <None Include="bin\Debug\Npgsql.dll" />
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="doc\doxygen_sqlite3.db" />
     <None Include="lib\System.Data.OracleClient.dll" />
-    <None Include="bin\Debug\System.Data.OracleClient.dll" />
-    <None Include="bin\Release\System.Data.OracleClient.dll" />
     <None Include="dist\Spartacus-0.36.0.zip" />
     <None Include="epplus\FormulaParsing\EpplusExcelDataProvider.cs.orig" />
     <None Include="epplus\FormulaParsing\ExcelDataProvider.cs.orig" />
@@ -950,8 +940,6 @@
     <None Include="lib\firebird\windows_x86\icuuc30.dll" />
     <None Include="lib\Mono.Data.Tds.dll" />
     <None Include="dist\ILRepack.exe" />
-    <None Include="bin\Release\Mono.Data.Tds.dll" />
-    <None Include="bin\Debug\Mono.Data.Tds.dll" />
     <None Include="dist\merge_release.sh" />
     <None Include="dist\merge_debug.sh" />
     <None Include="dist\Spartacus.dll" />
