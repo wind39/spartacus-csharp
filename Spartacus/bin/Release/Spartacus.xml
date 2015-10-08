@@ -4930,207 +4930,6 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
-        <member name="T:Spartacus.Utils.Cryptor">
-            <summary>
-            Classe Cryptor.
-            Objeto genérico que pode criptografar e descriptografar strings e arquivos.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_password">
-            <summary>
-            Senha da Criptografia.
-            A mesma senha usada para criptografar deve ser usada para descriptografar.
-            Obrigatório.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_initvector">
-            <summary>
-            Vetor de Inicialização.
-            Deve ser uma string de exatamente 16 caracteres.
-            O padrão é a string "0123456789ABCDEF".
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_keysize">
-            <summary>
-            Tamanho da Chave.
-            Pode ser 128, 192 ou 256. Quanto maior, mais forte é a criptografia.
-            O padrão é 256.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_minsaltlength">
-            <summary>
-            Tamanho mínimo do SALT (string aleatória incluída na criptografia).
-            Deve estar entre 8 e 255 caracteres.
-            O padrão é 8 caracteres.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_maxsaltlength">
-            <summary>
-            Tamanho máximo do SALT (string aleatória incluída na criptografia).
-            Deve estar entre 8 e 255 caracteres.
-            O padrão é 8 caracteres.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_encryptor">
-            <summary>
-            Objeto Criptografador.
-            </summary></member>
-        <member name="F:Spartacus.Utils.Cryptor.v_decryptor">
-            <summary>
-            Objeto Descriptografador.
-            </summary></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.Int32)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
-            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.String,System.Int32,System.Int32)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
-            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
-            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
-            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
-            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
-            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.String,System.Int32,System.Int32)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
-            </summary>
-            <param name="p_password">Senha da Criptografia.</param>
-            <param name="p_keysize">Tamanho da Chave (128,192 ou 256).</param>
-            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
-            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
-            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.Initialize">
-            <summary>
-            Initializa os objetos necessários para realizar criptografia e descriptografia.
-            </summary></member>
-        <member name="M:Spartacus.Utils.Cryptor.Encrypt(System.String)">
-            <summary>
-            Criptografa uma string em outra string.
-            </summary>
-            <returns>String criptografada.</returns>
-            <param name="p_plaintext">String em texto puro.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.Encrypt(System.Byte[])">
-            <summary>
-            Criptografa um array de bytes em uma string.
-            </summary>
-            <returns>String criptografada.</returns>
-            <param name="p_plaintextbytes">Array de bytes.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.EncryptToBytes(System.String)">
-            <summary>
-            Criptografa uma string em um array de bytes.
-            </summary>
-            <returns>Array de bytes criptografado.</returns>
-            <param name="p_plaintext">String em texto puro.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.EncryptToBytes(System.Byte[])">
-            <summary>
-            Criptografa um array de bytes em outro array de bytes.
-            </summary>
-            <returns>Array de bytes criptografado.</returns>
-            <param name="p_plaintextbytes">Array de bytes.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.EncryptFile(System.String,System.String)">
-            <summary>
-            Criptografa um arquivo em outro arquivo.
-            O tamanho do bloco é 1 MB.
-            </summary>
-            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
-            <param name="p_outputfilename">Nome do arquivo de saída.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.EncryptFile(System.String,System.String,System.Int32)">
-            <summary>
-            Criptografa um arquivo em outro arquivo.
-            </summary>
-            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
-            <param name="p_outputfilename">Nome do arquivo de saída.</param>
-            <param name="p_chunksize">Tamanho do bloco em bytes.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.RandomString">
-            <summary>
-            Cria uma string aleatória para diversos propósitos.
-            </summary>
-            <returns>String aleatória.</returns></member>
-        <member name="M:Spartacus.Utils.Cryptor.RandomString(System.String)">
-            <summary>
-            Cria uma string aleatória para diversos propósitos.
-            </summary>
-            <returns>String aleatória.</returns>
-            <param name="p_plaintext">String em texto puro a ser usada para criar a string aleatória.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.Decrypt(System.String)">
-            <summary>
-            Descriptografa uma string em outra string.
-            </summary>
-            <returns>String descriptografada em texto puro.</returns>
-            <param name="p_ciphertext">String criptografada.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.Decrypt(System.Byte[])">
-            <summary>
-            Descriptografa um array de bytes em uma string.
-            </summary>
-            <returns>String descriptografada em texto puro.</returns>
-            <param name="p_ciphertextbytes">Array de bytes criptografado.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.DecryptToBytes(System.String)">
-            <summary>
-            Descriptografa uma string em um array de bytes.
-            </summary>
-            <returns>Array de bytes descriptografado.</returns>
-            <param name="p_ciphertext">String criptografada.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.DecryptToBytes(System.Byte[])">
-            <summary>
-            Descriptografa um array de bytes em outro array de bytes.
-            </summary>
-            <returns>Array de bytes descriptografado.</returns>
-            <param name="p_ciphertextbytes">Array de bytes criptografado.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.DecryptFile(System.String,System.String)">
-            <summary>
-            Descriptografa um arquivo em outro arquivo.
-            </summary>
-            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
-            <param name="p_outputfilename">Nome do arquivo de saída.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.AddSalt(System.Byte[])">
-            <summary>
-            Adiciona SALT a um array de bytes.
-            SALT é uma string gerada aleatoriamente.
-            </summary>
-            <returns>Array de bytes com SALT.</returns>
-            <param name="p_plaintextbytes">Array de bytes.</param></member>
-        <member name="M:Spartacus.Utils.Cryptor.GenerateSalt">
-            <summary>
-            Gera um SALT.
-            </summary>
-            <returns>SALT.</returns></member>
-        <member name="M:Spartacus.Utils.Cryptor.GenerateRandomNumber(System.Int32,System.Int32)">
-            <summary>
-            Gera um número aleatório contido no intervalo especificado.
-            </summary>
-            <returns>Número aleatório.</returns>
-            <param name="p_minvalue">Valor mínimo.</param>
-            <param name="p_maxvalue">Valor máximo.</param></member>
         <member name="T:Spartacus.Database.Postgresql">
             <summary>
             Classe Spartacus.Database.Postgresql.
@@ -37467,5 +37266,206 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="T:Spartacus.Utils.Cryptor">
+            <summary>
+            Classe Cryptor.
+            Objeto genérico que pode criptografar e descriptografar strings e arquivos.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_password">
+            <summary>
+            Senha da Criptografia.
+            A mesma senha usada para criptografar deve ser usada para descriptografar.
+            Obrigatório.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_initvector">
+            <summary>
+            Vetor de Inicialização.
+            Deve ser uma string de exatamente 16 caracteres.
+            O padrão é a string "0123456789ABCDEF".
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_keysize">
+            <summary>
+            Tamanho da Chave.
+            Pode ser 128, 192 ou 256. Quanto maior, mais forte é a criptografia.
+            O padrão é 256.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_minsaltlength">
+            <summary>
+            Tamanho mínimo do SALT (string aleatória incluída na criptografia).
+            Deve estar entre 8 e 255 caracteres.
+            O padrão é 8 caracteres.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_maxsaltlength">
+            <summary>
+            Tamanho máximo do SALT (string aleatória incluída na criptografia).
+            Deve estar entre 8 e 255 caracteres.
+            O padrão é 8 caracteres.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_encryptor">
+            <summary>
+            Objeto Criptografador.
+            </summary></member>
+        <member name="F:Spartacus.Utils.Cryptor.v_decryptor">
+            <summary>
+            Objeto Descriptografador.
+            </summary></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.#ctor(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.Cryptor" />.
+            </summary>
+            <param name="p_password">Senha da Criptografia.</param>
+            <param name="p_keysize">Tamanho da Chave (128,192 ou 256).</param>
+            <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+            <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+            <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.Initialize">
+            <summary>
+            Initializa os objetos necessários para realizar criptografia e descriptografia.
+            </summary></member>
+        <member name="M:Spartacus.Utils.Cryptor.Encrypt(System.String)">
+            <summary>
+            Criptografa uma string em outra string.
+            </summary>
+            <returns>String criptografada.</returns>
+            <param name="p_plaintext">String em texto puro.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.Encrypt(System.Byte[])">
+            <summary>
+            Criptografa um array de bytes em uma string.
+            </summary>
+            <returns>String criptografada.</returns>
+            <param name="p_plaintextbytes">Array de bytes.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.EncryptToBytes(System.String)">
+            <summary>
+            Criptografa uma string em um array de bytes.
+            </summary>
+            <returns>Array de bytes criptografado.</returns>
+            <param name="p_plaintext">String em texto puro.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.EncryptToBytes(System.Byte[])">
+            <summary>
+            Criptografa um array de bytes em outro array de bytes.
+            </summary>
+            <returns>Array de bytes criptografado.</returns>
+            <param name="p_plaintextbytes">Array de bytes.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.EncryptFile(System.String,System.String)">
+            <summary>
+            Criptografa um arquivo em outro arquivo.
+            O tamanho do bloco é 1 MB.
+            </summary>
+            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+            <param name="p_outputfilename">Nome do arquivo de saída.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.EncryptFile(System.String,System.String,System.Int32)">
+            <summary>
+            Criptografa um arquivo em outro arquivo.
+            </summary>
+            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+            <param name="p_outputfilename">Nome do arquivo de saída.</param>
+            <param name="p_chunksize">Tamanho do bloco em bytes.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.RandomString">
+            <summary>
+            Cria uma string aleatória para diversos propósitos.
+            </summary>
+            <returns>String aleatória.</returns></member>
+        <member name="M:Spartacus.Utils.Cryptor.RandomString(System.String)">
+            <summary>
+            Cria uma string aleatória para diversos propósitos.
+            </summary>
+            <returns>String aleatória.</returns>
+            <param name="p_plaintext">String em texto puro a ser usada para criar a string aleatória.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.Decrypt(System.String)">
+            <summary>
+            Descriptografa uma string em outra string.
+            </summary>
+            <returns>String descriptografada em texto puro.</returns>
+            <param name="p_ciphertext">String criptografada.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.Decrypt(System.Byte[])">
+            <summary>
+            Descriptografa um array de bytes em uma string.
+            </summary>
+            <returns>String descriptografada em texto puro.</returns>
+            <param name="p_ciphertextbytes">Array de bytes criptografado.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.DecryptToBytes(System.String)">
+            <summary>
+            Descriptografa uma string em um array de bytes.
+            </summary>
+            <returns>Array de bytes descriptografado.</returns>
+            <param name="p_ciphertext">String criptografada.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.DecryptToBytes(System.Byte[])">
+            <summary>
+            Descriptografa um array de bytes em outro array de bytes.
+            </summary>
+            <returns>Array de bytes descriptografado.</returns>
+            <param name="p_ciphertextbytes">Array de bytes criptografado.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.DecryptFile(System.String,System.String)">
+            <summary>
+            Descriptografa um arquivo em outro arquivo.
+            </summary>
+            <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+            <param name="p_outputfilename">Nome do arquivo de saída.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.AddSalt(System.Byte[])">
+            <summary>
+            Adiciona SALT a um array de bytes.
+            SALT é uma string gerada aleatoriamente.
+            </summary>
+            <returns>Array de bytes com SALT.</returns>
+            <param name="p_plaintextbytes">Array de bytes.</param></member>
+        <member name="M:Spartacus.Utils.Cryptor.GenerateSalt">
+            <summary>
+            Gera um SALT.
+            </summary>
+            <returns>SALT.</returns></member>
+        <member name="M:Spartacus.Utils.Cryptor.GenerateRandomNumber(System.Int32,System.Int32)">
+            <summary>
+            Gera um número aleatório contido no intervalo especificado.
+            </summary>
+            <returns>Número aleatório.</returns>
+            <param name="p_minvalue">Valor mínimo.</param>
+            <param name="p_maxvalue">Valor máximo.</param></member>
     </members>
 </doc>

@@ -32,6 +32,6 @@ Spartacus also optionally use this native libraries and binaries:
   - ILRepack (https://github.com/gluck/il-repack)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
-  - Rafael Thofehrn Castro (http://www.http://rafaelthca.com.br)
+  - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
   - Planning Service Transfer Pricing (http://www.planningservice.com.br)
   - Adsistem Sistemas Administrativos (http://www.adsistem.com.br)
