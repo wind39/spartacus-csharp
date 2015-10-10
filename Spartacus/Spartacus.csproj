@@ -944,6 +944,12 @@
     <None Include="dist\merge_debug.sh" />
     <None Include="dist\Spartacus.dll" />
     <None Include="dist\Spartacus.dll.mdb" />
+    <None Include="icon\spartacus_128x128.png" />
+    <None Include="icon\spartacus_24x24.png" />
+    <None Include="icon\spartacus_256x256.png" />
+    <None Include="icon\spartacus_32x32.png" />
+    <None Include="icon\spartacus_48x48.png" />
+    <None Include="icon\spartacus_512x512.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
