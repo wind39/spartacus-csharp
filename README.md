@@ -1,4 +1,4 @@
-
+![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png)
 
 Spartacus is a business library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
