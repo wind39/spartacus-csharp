@@ -27,11 +27,12 @@ Spartacus reuse code from this C# projects:
   - ZipStorer, by Jaime Olivares (http://zipstorer.codeplex.com)
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
 
-Spartacus also optionally use this native libraries and binaries:
+Spartacus optionally use this native libraries and binaries:
   - SQLite (https://www.sqlite.org/)
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
-  - ILRepack (https://github.com/gluck/il-repack)
+
+Spartacus DLL is built with ILRepack (https://github.com/gluck/il-repack)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
