@@ -2022,5 +2022,86 @@ namespace Spartacus.Database
                 }
             }
         }
+
+        /// <summary>
+        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[,] GetColumnNamesAndTypes(string p_sql)
+        {
+            string[,] v_matrix;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.SqlClient.SqlCommand(p_sql, this.v_con);
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_matrix = new string[v_reader.FieldCount, 2];
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                    {
+                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
+                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
+                    }
+
+                    return v_matrix;
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_sql;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_matrix = new string[v_reader.FieldCount, 2];
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                    {
+                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
+                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
+                    }
+
+                    return v_matrix;
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
     }
 }

@@ -505,6 +505,13 @@ namespace Spartacus.Database
         public abstract string[] GetColumnNames(string p_query);
 
         /// <summary>
+        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
+        /// <param name="p_query">Consulta SQL.</param>
+        public abstract string[,] GetColumnNamesAndTypes(string p_query);
+
+        /// <summary>
         /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
         /// </summary>
         /// <returns>Nome da coluna corrigido.</returns>

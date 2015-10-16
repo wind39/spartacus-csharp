@@ -2273,6 +2273,12 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_query">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Generic.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_query">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
             <summary>
             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
@@ -2616,6 +2622,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Odbc.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
@@ -3039,6 +3051,12 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Firebird.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -3398,6 +3416,12 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Mysql.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -3744,6 +3768,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Oledb.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
@@ -4930,6 +4960,12 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Postgresql">
             <summary>
             Classe Spartacus.Database.Postgresql.
@@ -5288,6 +5324,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
@@ -6288,6 +6330,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Oracle.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
@@ -35839,6 +35887,12 @@
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Memory.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.FirebirdEmbed">
             <summary>
             Classe Spartacus.Database.FirebirdEmbed.
@@ -36175,6 +36229,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.FirebirdEmbed.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:SocialExplorer.IO.FastDBF.DbfColumn">
             <summary>
@@ -37265,6 +37325,12 @@
             Lista os nomes de colunas de uma determinada consulta.
             </summary>
             <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Utils.Cryptor">
             <summary>
