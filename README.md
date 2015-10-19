@@ -10,7 +10,6 @@ Spartacus is a business library written in C#, focused on:
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
 Please note that Spartacus is not API ready yet, something may change until it becomes stable.
-Some development effort is tracked in this Trello board: https://trello.com/b/qIQ5id41/spartacus
 
 Spartacus contains this managed libraries:
   - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
