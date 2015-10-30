@@ -602,6 +602,60 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Cancela a execução de uma instrução SQL no banco de dados.
+        /// </summary>
+        public override void Cancel()
+        {
+            if (this.v_con != null && this.v_cmd != null)
+            {
+                try
+                {
+                    this.v_cmd.Cancel();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    this.v_cmd.Dispose();
+                    this.v_cmd = null;
+                    this.v_con.Close();
+                    this.v_con = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cancela a execução de uma instrução SQL no banco de dados.
+        /// </summary>
+        /// <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param>
+        public override void Cancel(bool p_keepconnectionalive)
+        {
+            if (this.v_con != null && this.v_cmd != null)
+            {
+                try
+                {
+                    this.v_cmd.Cancel();
+                }
+                catch (System.Data.OleDb.OleDbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (!p_keepconnectionalive)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Insere um bloco de linhas em uma determinada tabela.
         /// </summary>
         /// <param name='p_table'>
