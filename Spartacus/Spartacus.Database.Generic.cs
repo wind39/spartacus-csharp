@@ -273,17 +273,6 @@ namespace Spartacus.Database
         public abstract void Execute(string p_sql);
 
         /// <summary>
-        /// Cancela a execução de uma instrução SQL no banco de dados.
-        /// </summary>
-        public abstract void Cancel();
-
-        /// <summary>
-        /// Cancela a execução de uma instrução SQL no banco de dados.
-        /// </summary>
-        /// <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param>
-        public abstract void Cancel(bool p_keepconnectionalive);
-
-        /// <summary>
         /// Insere um bloco de linhas em uma determinada tabela.
         /// </summary>
         /// <param name='p_table'>

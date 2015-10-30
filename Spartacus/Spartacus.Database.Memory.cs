@@ -357,43 +357,6 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Cancela a execução de uma instrução SQL no banco de dados.
-        /// </summary>
-        public override void Cancel()
-        {
-            if (this.v_con != null && this.v_cmd != null)
-            {
-                try
-                {
-                    this.v_cmd.Cancel();
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Cancela a execução de uma instrução SQL no banco de dados.
-        /// </summary>
-        /// <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param>
-        public override void Cancel(bool p_keepconnectionalive)
-        {
-            if (this.v_con != null && this.v_cmd != null)
-            {
-                try
-                {
-                    this.v_cmd.Cancel();
-                }
-                catch (Mono.Data.Sqlite.SqliteException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
-        }
-
-        /// <summary>
         /// Insere um bloco de linhas em uma determinada tabela.
         /// </summary>
         /// <param name='p_table'>

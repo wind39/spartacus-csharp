@@ -2061,15 +2061,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Generic.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Generic.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -2421,15 +2412,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Odbc.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Odbc.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Odbc.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -2858,15 +2840,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Firebird.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Firebird.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Firebird.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -3232,15 +3205,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Mysql.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Mysql.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Mysql.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -3594,15 +3558,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Oledb.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Oledb.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Oledb.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -4794,15 +4749,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Sqlite.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Sqlite.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Sqlite.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -5168,15 +5114,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Postgresql.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Postgresql.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Postgresql.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -6183,15 +6120,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Oracle.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Oracle.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Oracle.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -35748,15 +35676,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Memory.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Memory.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.Memory.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -36100,15 +36019,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.FirebirdEmbed.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.FirebirdEmbed.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.FirebirdEmbed.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
@@ -37205,15 +37115,6 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.SqlServer.Cancel">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.SqlServer.Cancel(System.Boolean)">
-            <summary>
-            Cancela a execução de uma instrução SQL no banco de dados.
-            </summary>
-            <param name="p_keepconnectionalive">Se deve manter a conexão ou não.</param></member>
         <member name="M:Spartacus.Database.SqlServer.InsertBlock(System.String,System.Collections.ArrayList)">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
