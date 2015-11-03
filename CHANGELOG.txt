@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.39.17: Spartacus.Reporting: Corrigido bug na renderização de cabeçalhos de rodapés de grupo
+0.39.16: Spartacus.Utils: Células ocultas no template permanecem ocultas no relatório resultante
 0.39.15: Removido método Cancel da Spartacus.Database, pois na maioria dos SGBDs não é suportado
 0.39.14: Implementado método Cancel na Spartacus.Database
 0.39.13: Implementado método GetColumnNamesAndTypes na Spartacus.Database

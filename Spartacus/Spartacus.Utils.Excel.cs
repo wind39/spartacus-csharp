@@ -1661,10 +1661,16 @@ namespace Spartacus.Utils
                                                 case "TA":
                                                     v_row = int.Parse(v_options[2]);
                                                     for (int i = 1; i <= v_row; i++)
+                                                    {
                                                         v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
+                                                        v_worksheet.Row(i).Hidden = v_worksheet_src.Row(i).Hidden;
+                                                    }
                                                     v_col = int.Parse(v_options[3]);
                                                     for (int j = 1; j <= v_col; j++)
+                                                    {
                                                         v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
+                                                        v_worksheet.Column(j).Hidden = v_worksheet_src.Column(j).Hidden;
+                                                    }
                                                     v_worksheet.View.FreezePanes(v_row + 1, 1);
                                                     v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
                                                     v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;

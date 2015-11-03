@@ -825,9 +825,9 @@ namespace Spartacus.Reporting
             v_data = new System.Collections.Generic.List<System.Collections.Generic.List<PDFjet.NET.Cell>>();
             this.v_numrowsdataheader = 0;
 
+            // renderizando titulos de cabeçalhos de grupos
             for (g = this.v_groups.Count - 1; g >= 0; g--)
             {
-                // renderizando titulos de cabeçalhos de grupos
                 if (((Spartacus.Reporting.Group)this.v_groups[g]).v_showheadertitles)
                 {
                     this.v_numrowsdataheader += ((Spartacus.Reporting.Group)this.v_groups[g]).v_numrowsheader;
@@ -863,57 +863,6 @@ namespace Spartacus.Reporting
                                     v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_headerfields[k]).v_border.v_bottom || this.v_settings.v_dataheaderborder.v_bottom);
                                     v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_headerfields[k]).v_border.v_left || this.v_settings.v_dataheaderborder.v_left);
                                     v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_headerfields[k]).v_border.v_right || this.v_settings.v_dataheaderborder.v_right);
-                                }
-                                else
-                                {
-                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_dataheaderborder.v_top);
-                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_dataheaderborder.v_bottom);
-                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_dataheaderborder.v_left);
-                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_dataheaderborder.v_right);
-                                }
-                                v_row.Add(v_cell);
-                            }
-                        }
-                        v_data.Add(v_row);
-                    }
-                }
-
-                // renderizando titulos de rodapés de grupos
-                if (((Spartacus.Reporting.Group)this.v_groups[g]).v_showfootertitles)
-                {
-                    this.v_numrowsdataheader += ((Spartacus.Reporting.Group)this.v_groups[g]).v_numrowsfooter;
-
-                    for (v_sectionrow = 0; v_sectionrow < ((Spartacus.Reporting.Group)this.v_groups[g]).v_numrowsfooter; v_sectionrow++)
-                    {
-                        v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
-                        for (k = 0; k < ((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields.Count; k++)
-                        {
-                            if (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_row == v_sectionrow)
-                            {
-                                v_cell = new PDFjet.NET.Cell(p_dataheaderfont);
-                                v_cell.SetText(((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_title);
-                                v_cell.SetWidth(((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_fill) / 100);
-                                switch (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_align)
-                                {
-                                    case Spartacus.Reporting.FieldAlignment.LEFT:
-                                        v_cell.SetTextAlignment(PDFjet.NET.Align.LEFT);
-                                        break;
-                                    case Spartacus.Reporting.FieldAlignment.RIGHT:
-                                        v_cell.SetTextAlignment(PDFjet.NET.Align.RIGHT);
-                                        break;
-                                    case Spartacus.Reporting.FieldAlignment.CENTER:
-                                        v_cell.SetTextAlignment(PDFjet.NET.Align.CENTER);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                v_cell.SetBgColor(this.v_settings.v_dataheadercolor);
-                                if (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border != null)
-                                {
-                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_top || this.v_settings.v_dataheaderborder.v_top);
-                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_bottom || this.v_settings.v_dataheaderborder.v_bottom);
-                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_left || this.v_settings.v_dataheaderborder.v_left);
-                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_right || this.v_settings.v_dataheaderborder.v_right);
                                 }
                                 else
                                 {
@@ -975,6 +924,60 @@ namespace Spartacus.Reporting
                     }
                 }
                 v_data.Add(v_row);
+            }
+
+            // renderizando titulos de rodapés de grupos
+            for (g = this.v_groups.Count - 1; g >= 0; g--)
+            {
+                if (((Spartacus.Reporting.Group)this.v_groups[g]).v_showfootertitles)
+                {
+                    this.v_numrowsdataheader += ((Spartacus.Reporting.Group)this.v_groups[g]).v_numrowsfooter;
+
+                    for (v_sectionrow = 0; v_sectionrow < ((Spartacus.Reporting.Group)this.v_groups[g]).v_numrowsfooter; v_sectionrow++)
+                    {
+                        v_row = new System.Collections.Generic.List<PDFjet.NET.Cell>();
+                        for (k = 0; k < ((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields.Count; k++)
+                        {
+                            if (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_row == v_sectionrow)
+                            {
+                                v_cell = new PDFjet.NET.Cell(p_dataheaderfont);
+                                v_cell.SetText(((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_title);
+                                v_cell.SetWidth(((p_pagewidth - (this.v_settings.v_leftmargin + this.v_settings.v_rightmargin)) * ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_fill) / 100);
+                                switch (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_align)
+                                {
+                                    case Spartacus.Reporting.FieldAlignment.LEFT:
+                                        v_cell.SetTextAlignment(PDFjet.NET.Align.LEFT);
+                                        break;
+                                    case Spartacus.Reporting.FieldAlignment.RIGHT:
+                                        v_cell.SetTextAlignment(PDFjet.NET.Align.RIGHT);
+                                        break;
+                                    case Spartacus.Reporting.FieldAlignment.CENTER:
+                                        v_cell.SetTextAlignment(PDFjet.NET.Align.CENTER);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                v_cell.SetBgColor(this.v_settings.v_dataheadercolor);
+                                if (((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border != null)
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_top || this.v_settings.v_dataheaderborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_bottom || this.v_settings.v_dataheaderborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_left || this.v_settings.v_dataheaderborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, ((Spartacus.Reporting.Field)((Spartacus.Reporting.Group)this.v_groups[g]).v_footerfields[k]).v_border.v_right || this.v_settings.v_dataheaderborder.v_right);
+                                }
+                                else
+                                {
+                                    v_cell.SetBorder(PDFjet.NET.Border.TOP, this.v_settings.v_dataheaderborder.v_top);
+                                    v_cell.SetBorder(PDFjet.NET.Border.BOTTOM, this.v_settings.v_dataheaderborder.v_bottom);
+                                    v_cell.SetBorder(PDFjet.NET.Border.LEFT, this.v_settings.v_dataheaderborder.v_left);
+                                    v_cell.SetBorder(PDFjet.NET.Border.RIGHT, this.v_settings.v_dataheaderborder.v_right);
+                                }
+                                v_row.Add(v_cell);
+                            }
+                        }
+                        v_data.Add(v_row);
+                    }
+                }
             }
 
             return v_data;
