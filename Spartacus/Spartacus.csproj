@@ -965,7 +965,6 @@
     <None Include="icon\spartacus_32x32.png" />
     <None Include="icon\spartacus_48x48.png" />
     <None Include="icon\spartacus_512x512.png" />
-    <None Include="dist\Spartacus.dll.nuspec" />
     <None Include="nuget\JsonLD.dll" />
     <None Include="nuget\Microsoft.Data.Edm.dll" />
     <None Include="nuget\Microsoft.Data.OData.dll" />
@@ -982,6 +981,7 @@
     <None Include="nuget\NuGet.Versioning.dll" />
     <None Include="nuget\NuGet.VisualStudioResources.dll" />
     <None Include="nuget\System.Spatial.dll" />
+    <None Include="dist\Spartacus.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>Spartacus.dll</id>
+    <id>Spartacus</id>
     <version>0.39.19</version>
-    <title>Spartacus</title>
     <authors>William Ivanski</authors>
     <owners>William Ivanski</owners>
     <licenseUrl>https://raw.githubusercontent.com/wind39/spartacus/master/LICENSE.txt</licenseUrl>
