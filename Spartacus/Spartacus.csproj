@@ -67,6 +67,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -903,6 +904,22 @@
     <Compile Include="Spartacus.Utils.NotSupportedException.cs" />
     <Compile Include="Spartacus.Database.SqlServer.cs" />
     <Compile Include="Spartacus.Utils.Cryptor.cs" />
+    <Compile Include="Spartacus.Forms.Buttons.cs" />
+    <Compile Include="Spartacus.Forms.Container.cs" />
+    <Compile Include="Spartacus.Forms.Datetimepicker.cs" />
+    <Compile Include="Spartacus.Forms.Exception.cs" />
+    <Compile Include="Spartacus.Forms.Filepicker.cs" />
+    <Compile Include="Spartacus.Forms.Form.cs" />
+    <Compile Include="Spartacus.Forms.Grid.cs" />
+    <Compile Include="Spartacus.Forms.Lookup.cs" />
+    <Compile Include="Spartacus.Forms.Memobox.cs" />
+    <Compile Include="Spartacus.Forms.Menu.cs" />
+    <Compile Include="Spartacus.Forms.Messagebox.cs" />
+    <Compile Include="Spartacus.Forms.Passwordbox.cs" />
+    <Compile Include="Spartacus.Forms.Progressbar.cs" />
+    <Compile Include="Spartacus.Forms.Textbox.cs" />
+    <Compile Include="Spartacus.Forms.Window.cs" />
+    <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

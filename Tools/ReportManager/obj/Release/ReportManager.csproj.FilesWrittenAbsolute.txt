@@ -1,0 +1,7 @@
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/bin/Release/ReportManager.exe.config
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/bin/Release/ReportManager.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/bin/Release/ReportManager.exe
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/obj/Release/ReportManager.exe
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/obj/Release/ReportManager.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/ReportManager/bin/Release/Spartacus.dll
