@@ -7,7 +7,7 @@ Spartacus is a business library written in C#, focused on:
   - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
   - Easy to work with cryptography of files and messages.
 
-NuGet package: https://www.nuget.org/packages/Spartacus.dll
+NuGet package: https://www.nuget.org/packages/Spartacus
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
