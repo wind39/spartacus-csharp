@@ -934,13 +934,11 @@
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="doc\doxygen_sqlite3.db" />
     <None Include="lib\System.Data.OracleClient.dll" />
-    <None Include="dist\Spartacus-0.36.0.zip" />
     <None Include="epplus\FormulaParsing\EpplusExcelDataProvider.cs.orig" />
     <None Include="epplus\FormulaParsing\ExcelDataProvider.cs.orig" />
     <None Include="pdfjet\LICENSE.txt" />
     <None Include="epplus\LICENSE.txt" />
     <None Include="bin\Release\Spartacus.xml" />
-    <None Include="dist\Spartacus-0.38.0.zip" />
     <None Include="lib\oracleinstantclient\linux_x64.7z" />
     <None Include="lib\oracleinstantclient\linux_x86.7z" />
     <None Include="lib\oracleinstantclient\macos_x64.7z" />
@@ -967,6 +965,23 @@
     <None Include="icon\spartacus_32x32.png" />
     <None Include="icon\spartacus_48x48.png" />
     <None Include="icon\spartacus_512x512.png" />
+    <None Include="dist\Spartacus.dll.nuspec" />
+    <None Include="nuget\JsonLD.dll" />
+    <None Include="nuget\Microsoft.Data.Edm.dll" />
+    <None Include="nuget\Microsoft.Data.OData.dll" />
+    <None Include="nuget\Microsoft.Data.Services.Client.dll" />
+    <None Include="nuget\Microsoft.Web.XmlTransform.dll" />
+    <None Include="nuget\Newtonsoft.Json.dll" />
+    <None Include="nuget\NuGet.Client.BaseTypes.dll" />
+    <None Include="nuget\NuGet.Client.dll" />
+    <None Include="nuget\NuGet.Client.V3Shim.dll" />
+    <None Include="nuget\NuGet.Core.dll" />
+    <None Include="nuget\NuGet.Data.dll" />
+    <None Include="nuget\NuGet.exe" />
+    <None Include="nuget\NuGet.exe.config" />
+    <None Include="nuget\NuGet.Versioning.dll" />
+    <None Include="nuget\NuGet.VisualStudioResources.dll" />
+    <None Include="nuget\System.Spatial.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

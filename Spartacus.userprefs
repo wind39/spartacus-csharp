@@ -1,8 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/dist/Spartacus.dll.nuspec">
     <Files>
-      <File FileName="Spartacus/AssemblyInfo.cs" Line="44" Column="41" />
+      <File FileName="Spartacus/AssemblyInfo.cs" Line="44" Column="36" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="76" />
+      <File FileName="Spartacus/dist/Spartacus.dll.nuspec" Line="5" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

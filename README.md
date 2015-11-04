@@ -7,6 +7,8 @@ Spartacus is a business library written in C#, focused on:
   - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
   - Easy to work with cryptography of files and messages.
 
+NuGet package: https://www.nuget.org/packages/Spartacus.dll
+
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
 Please note that Spartacus is not API ready yet, something may change until it becomes stable.
@@ -32,7 +34,7 @@ Spartacus optionally use this native libraries and binaries:
   - Firebird Embedded (http://www.firebirdsql.org/)
   - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
 
-Spartacus DLL is built with ILRepack (https://github.com/gluck/il-repack)
+Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
