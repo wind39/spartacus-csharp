@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.39.20: Corrigido bug na Spartacus.Database.Oracle.GetColumnNamesAndTypes
 0.39.19: Criando pacote NuGet: https://www.nuget.org/packages/Spartacus
 0.39.18: Spartacus.Forms voltou a fazer parte da Spartacus
 0.39.17: Spartacus.Reporting: Corrigido bug na renderização de cabeçalhos de rodapés de grupo

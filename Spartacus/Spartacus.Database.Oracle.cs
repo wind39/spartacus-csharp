@@ -2046,7 +2046,24 @@ namespace Spartacus.Database
                     for (int i = 0; i < v_reader.FieldCount; i++)
                     {
                         v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
-                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
+                        switch(this.v_reader.GetFieldType(i).Name)
+                        {
+                            case "String":
+                                v_matrix[i, 1] = "varchar";
+                                break;
+                            case "Decimal":
+                                v_matrix[i, 1] = "number";
+                                break;
+                            case "DateTime":
+                                v_matrix[i, 1] = "datetime";
+                                break;
+                            case "Byte[]":
+                                v_matrix[i, 1] = "blob";
+                                break;
+                            default:
+                                v_matrix[i, 1] = "unknown";
+                                break;
+                        }
                     }
 
                     return v_matrix;
