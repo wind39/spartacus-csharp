@@ -157,9 +157,6 @@ namespace Spartacus.Reporting
                 case "firebird":
                     this.v_database = new Spartacus.Database.Firebird(v_host, v_port, v_service, v_user, v_password);
                     break;
-                case "firebirdembed":
-                    this.v_database = new Spartacus.Database.FirebirdEmbed(v_service, v_user, v_password);
-                    break;
                 case "mysql":
                     this.v_database = new Spartacus.Database.Mysql(v_host, v_port, v_service, v_user, v_password);
                     break;

@@ -9,9 +9,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Spartacus</RootNamespace>
     <AssemblyName>Spartacus</AssemblyName>
-    <UseMSBuildEngine>False</UseMSBuildEngine>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.38.13</ReleaseVersion>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,9 +58,6 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.OracleClient">
-      <HintPath>lib\System.Data.OracleClient.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="Mono.Data.Tds">
       <HintPath>lib\Mono.Data.Tds.dll</HintPath>
@@ -68,6 +65,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>lib\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -893,7 +893,6 @@
     <Compile Include="epplus\XmlHelperFactory.cs" />
     <Compile Include="Spartacus.ThirdParty.FileFormatException.cs" />
     <Compile Include="Spartacus.Database.Memory.cs" />
-    <Compile Include="Spartacus.Database.FirebirdEmbed.cs" />
     <Compile Include="fastdbf\DbfColumn.cs" />
     <Compile Include="fastdbf\DbfDataTruncateException.cs" />
     <Compile Include="fastdbf\DbfFile.cs" />
@@ -933,26 +932,14 @@
     <None Include="bin\Debug\Spartacus.dll" />
     <None Include="bin\Debug\Spartacus.dll.mdb" />
     <None Include="doc\doxygen_sqlite3.db" />
-    <None Include="lib\System.Data.OracleClient.dll" />
     <None Include="epplus\FormulaParsing\EpplusExcelDataProvider.cs.orig" />
     <None Include="epplus\FormulaParsing\ExcelDataProvider.cs.orig" />
     <None Include="pdfjet\LICENSE.txt" />
     <None Include="epplus\LICENSE.txt" />
     <None Include="bin\Release\Spartacus.xml" />
-    <None Include="lib\oracleinstantclient\linux_x64.7z" />
-    <None Include="lib\oracleinstantclient\linux_x86.7z" />
-    <None Include="lib\oracleinstantclient\macos_x64.7z" />
-    <None Include="lib\oracleinstantclient\macos_x86.7z" />
-    <None Include="lib\oracleinstantclient\windows_x64.7z" />
-    <None Include="lib\oracleinstantclient\windows_x86.7z" />
     <None Include="lib\sqlite\windows_x86\sqlite3.dll" />
     <None Include="lib\sqlite\linux_x64\libsqlite3.so" />
     <None Include="lib\sqlite\linux_x86\libsqlite3.so" />
-    <None Include="lib\firebird\linux_x64\libfbembed.so" />
-    <None Include="lib\firebird\windows_x86\fbembed.dll" />
-    <None Include="lib\firebird\windows_x86\icudt30.dll" />
-    <None Include="lib\firebird\windows_x86\icuin30.dll" />
-    <None Include="lib\firebird\windows_x86\icuuc30.dll" />
     <None Include="lib\Mono.Data.Tds.dll" />
     <None Include="dist\ILRepack.exe" />
     <None Include="dist\merge_release.sh" />
@@ -965,23 +952,8 @@
     <None Include="icon\spartacus_32x32.png" />
     <None Include="icon\spartacus_48x48.png" />
     <None Include="icon\spartacus_512x512.png" />
-    <None Include="nuget\JsonLD.dll" />
-    <None Include="nuget\Microsoft.Data.Edm.dll" />
-    <None Include="nuget\Microsoft.Data.OData.dll" />
-    <None Include="nuget\Microsoft.Data.Services.Client.dll" />
-    <None Include="nuget\Microsoft.Web.XmlTransform.dll" />
-    <None Include="nuget\Newtonsoft.Json.dll" />
-    <None Include="nuget\NuGet.Client.BaseTypes.dll" />
-    <None Include="nuget\NuGet.Client.dll" />
-    <None Include="nuget\NuGet.Client.V3Shim.dll" />
-    <None Include="nuget\NuGet.Core.dll" />
-    <None Include="nuget\NuGet.Data.dll" />
-    <None Include="nuget\NuGet.exe" />
-    <None Include="nuget\NuGet.exe.config" />
-    <None Include="nuget\NuGet.Versioning.dll" />
-    <None Include="nuget\NuGet.VisualStudioResources.dll" />
-    <None Include="nuget\System.Spatial.dll" />
     <None Include="dist\Spartacus.nuspec" />
+    <None Include="lib\Oracle.ManagedDataAccess.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
@@ -991,8 +963,5 @@
     <Folder Include="lib\sqlite\windows_x86\" />
     <Folder Include="lib\sqlite\linux_x86\" />
     <Folder Include="lib\sqlite\linux_x64\" />
-    <Folder Include="lib\firebird\" />
-    <Folder Include="lib\firebird\linux_x64\" />
-    <Folder Include="lib\firebird\windows_x86\" />
   </ItemGroup>
 </Project>

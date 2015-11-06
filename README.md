@@ -14,9 +14,9 @@ Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/w
 Please note that Spartacus is not API ready yet, something may change until it becomes stable.
 
 Spartacus contains this managed libraries:
-  - Mono Oracle.Data.OracleClient (http://www.mono-project.com/docs/database-access/providers/oracle/)
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Mono.Data.Tds (http://www.mono-project.com/docs/database-access/providers/sqlclient/)
+  - Oracle ODP.NET, Managed Driver (https://www.nuget.org/packages/Oracle.ManagedDataAccess/)
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - Npgsql (https://github.com/npgsql/npgsql)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
@@ -28,11 +28,10 @@ Spartacus reuse code from this C# projects:
   - SejExcel, by Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
   - ZipStorer, by Jaime Olivares (http://zipstorer.codeplex.com)
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
+  - MultiColumnCombobox, by Nish Nishant (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
 Spartacus optionally use this native libraries and binaries:
   - SQLite (https://www.sqlite.org/)
-  - Firebird Embedded (http://www.firebirdsql.org/)
-  - Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
 
 Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
 

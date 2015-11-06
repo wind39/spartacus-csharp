@@ -2,3 +2,11 @@
 /work/projects/Repositories/Spartacus/Spartacus/bin/Release/Spartacus.dll
 /work/projects/Repositories/Spartacus/Spartacus/obj/Release/Spartacus.dll
 /work/projects/Repositories/Spartacus/Spartacus/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Spartacus/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Spartacus/obj/Release/Spartacus.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/FirebirdSql.Data.FirebirdClient.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/MySql.Data.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/Npgsql.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/Mono.Data.Sqlite.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/Mono.Data.Tds.dll
+/home/william/Documents/Projects/spartacus/Spartacus/bin/Release/Oracle.ManagedDataAccess.dll

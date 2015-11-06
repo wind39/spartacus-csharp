@@ -24,7 +24,7 @@ SOFTWARE.
 
 using System;
 using System.Data;
-using System.Data.OracleClient;
+using OracleManaged = Oracle.ManagedDataAccess.Client;
 
 namespace Spartacus.Database
 {
@@ -38,17 +38,17 @@ namespace Spartacus.Database
         /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
-        private System.Data.OracleClient.OracleConnection v_con;
+        private OracleManaged.OracleConnection v_con;
 
         /// <summary>
         /// Comando para conexão com o banco de dados.
         /// </summary>
-        private System.Data.OracleClient.OracleCommand v_cmd;
+        private OracleManaged.OracleCommand v_cmd;
 
         /// <summary>
         /// Leitor de dados do banco de dados.
         /// </summary>
-        private System.Data.OracleClient.OracleDataReader v_reader;
+        private OracleManaged.OracleDataReader v_reader;
 
         /// <summary>
         /// Linha atual da QueryBlock.
@@ -145,12 +145,12 @@ namespace Spartacus.Database
         {
             try
             {
-                this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                 this.v_con.Open();
-                this.v_cmd = new System.Data.OracleClient.OracleCommand();
+                this.v_cmd = new OracleManaged.OracleCommand();
                 this.v_cmd.Connection = this.v_con;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -175,9 +175,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -194,7 +194,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -238,7 +238,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -276,9 +276,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -298,7 +298,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -345,7 +345,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -424,7 +424,7 @@ namespace Spartacus.Database
 
                 return v_table;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -450,9 +450,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
@@ -474,7 +474,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -523,7 +523,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -556,20 +556,20 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
-            System.Data.OracleClient.OracleParameter v_parameter = null;
+            OracleManaged.OracleParameter v_parameter = null;
 
             if (this.v_con == null)
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
-                    v_parameter = new System.Data.OracleClient.OracleParameter(p_outparam, System.Data.OracleClient.OracleType.Cursor);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+                    v_parameter = new OracleManaged.OracleParameter(p_outparam, OracleManaged.OracleDbType.RefCursor);
                     v_parameter.Direction = System.Data.ParameterDirection.Output;
                     this.v_cmd.Parameters.Add(v_parameter);
                     this.v_cmd.ExecuteNonQuery();
-                    this.v_reader = (System.Data.OracleClient.OracleDataReader) v_parameter.Value;
+                    this.v_reader = (OracleManaged.OracleDataReader) v_parameter.Value;
 
                     v_table = new System.Data.DataTable(p_tablename);
                     for (int i = 0; i < v_reader.FieldCount; i++)
@@ -585,7 +585,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -613,11 +613,11 @@ namespace Spartacus.Database
                 try
                 {
                     this.v_cmd.CommandText = p_sql;
-                    v_parameter = new System.Data.OracleClient.OracleParameter(p_outparam, System.Data.OracleClient.OracleType.Cursor);
+                    v_parameter = new OracleManaged.OracleParameter(p_outparam, OracleManaged.OracleDbType.RefCursor);
                     v_parameter.Direction = System.Data.ParameterDirection.Output;
                     this.v_cmd.Parameters.Add(v_parameter);
                     this.v_cmd.ExecuteNonQuery();
-                    this.v_reader = (System.Data.OracleClient.OracleDataReader) v_parameter.Value;
+                    this.v_reader = (OracleManaged.OracleDataReader) v_parameter.Value;
 
                     v_table = new System.Data.DataTable(p_tablename);
                     for (int i = 0; i < v_reader.FieldCount; i++)
@@ -633,7 +633,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -662,12 +662,12 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -692,7 +692,7 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -716,7 +716,7 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
 
                     v_block = "insert all\n";
@@ -724,10 +724,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " values " + (string)p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -754,10 +754,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " values " + (string)p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -781,16 +781,16 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     v_tmp = this.v_cmd.ExecuteScalar();
                     if (v_tmp != null)
                         return v_tmp.ToString();
                     else
                         return "";
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -819,7 +819,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -881,9 +881,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_query, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -897,7 +897,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -938,7 +938,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -974,9 +974,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_query, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -998,7 +998,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1047,7 +1047,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1114,7 +1114,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1183,7 +1183,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1246,7 +1246,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1319,7 +1319,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (System.Data.OracleClient.OracleException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1347,9 +1347,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_query, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -1372,7 +1372,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1422,7 +1422,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1962,9 +1962,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_array = new string[v_reader.FieldCount];
@@ -1973,7 +1973,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2009,7 +2009,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2037,38 +2037,21 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new System.Data.OracleClient.OracleConnection(this.v_connectionstring);
+                    this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new System.Data.OracleClient.OracleCommand(p_sql, this.v_con);
+                    this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_matrix = new string[v_reader.FieldCount, 2];
                     for (int i = 0; i < v_reader.FieldCount; i++)
                     {
                         v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
-                        switch(this.v_reader.GetFieldType(i).Name)
-                        {
-                            case "String":
-                                v_matrix[i, 1] = "varchar";
-                                break;
-                            case "Decimal":
-                                v_matrix[i, 1] = "number";
-                                break;
-                            case "DateTime":
-                                v_matrix[i, 1] = "datetime";
-                                break;
-                            case "Byte[]":
-                                v_matrix[i, 1] = "blob";
-                                break;
-                            default:
-                                v_matrix[i, 1] = "unknown";
-                                break;
-                        }
+                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
                     }
 
                     return v_matrix;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2107,7 +2090,7 @@ namespace Spartacus.Database
 
                     return v_matrix;
                 }
-                catch (System.Data.OracleClient.OracleException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
