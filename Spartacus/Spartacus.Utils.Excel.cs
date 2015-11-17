@@ -1301,6 +1301,7 @@ namespace Spartacus.Utils
                             TO|SUBTOTAL(9,#)|M10|M12
                             TO|SUMIF(#0,2,#1)|N10|O12;N12
                             CF|#DBE5F1|A11:AD11|
+                            CT|#000000|A35:A37|
                             TA|A:AD|11|30
                             IM|imagem|0:0|80;240
                             TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
@@ -1550,6 +1551,7 @@ namespace Spartacus.Utils
                                         TO|SUBTOTAL(9,#)|M10|M12
                                         TO|SUMIF(#0,2,#1)|N10|O12;N12
                                         CF|#DBE5F1|A11:AD11|
+                                        CT|#000000|A35:A37|
                                         TA|A:AD|11|30
                                         IM|imagem|0:0|80;240
                                         TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
@@ -1741,6 +1743,9 @@ namespace Spartacus.Utils
                                                     break;
                                                 case "CF":
                                                     v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
+                                                    break;
+                                                case "CT":
+                                                    v_worksheet.Cells[v_options[2]].Style.Font.Color.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
                                                     break;
                                                 case "TA":
                                                     v_row = int.Parse(v_options[2]);

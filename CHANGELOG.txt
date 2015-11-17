@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.40.4:  Spartacus.Utils.Excel: Suporte a cor do texto (CT) assim como há cor de fundo (CF)
 0.40.3:  Spartacus.Utils.Excel: Suporte a campos fixos do tipo IN e RE, além de ST
 0.40.2:  Spartacus.Utils.Excel: Campo opcional do tipo ST define a linha da tabela onde está a string a ser mostrada
 0.40.1:  Implementação inicial do Spartacus.Tools.Cryptor
