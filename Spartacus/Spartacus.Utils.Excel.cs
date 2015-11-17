@@ -1270,6 +1270,8 @@ namespace Spartacus.Utils
             int v_offset;
             int v_datastart = 1;
             int v_height, v_width;
+            int v_in_tmp;
+            double v_re_tmp;
 
             v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
@@ -1292,6 +1294,8 @@ namespace Spartacus.Utils
                             ST|ano|E2:J2|
                             ST|empresa|E4:J4|
                             ST|coluna|B2|2
+                            IN|coluna|B3|3
+                            RE|coluna|B4|4
                             FO|U10/S10|V7|
                             TO|SUM(#)|M9|M12
                             TO|SUBTOTAL(9,#)|M10|M12
@@ -1329,6 +1333,38 @@ namespace Spartacus.Utils
                                             v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
                                         else
                                             v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                        break;
+                                    case "IN":
+                                        if (int.TryParse(v_options[3], out v_offset))
+                                        {
+                                            if (int.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_in_tmp))
+                                                v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                            else
+                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                        }
+                                        else
+                                        {
+                                            if (int.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_in_tmp))
+                                                v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                            else
+                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                        }
+                                        break;
+                                    case "RE":
+                                        if (int.TryParse(v_options[3], out v_offset))
+                                        {
+                                            if (double.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_re_tmp))
+                                                v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                            else
+                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                        }
+                                        else
+                                        {
+                                            if (double.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_re_tmp))
+                                                v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                            else
+                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                        }
                                         break;
                                     case "FO":
                                         v_worksheet.Cells [v_options[2]].Formula = v_options[1];
@@ -1470,6 +1506,8 @@ namespace Spartacus.Utils
             int v_offset;
             int v_datastart = 1;
             int v_width, v_height;
+            int v_in_tmp;
+            double v_re_tmp;
 
             v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
@@ -1505,6 +1543,8 @@ namespace Spartacus.Utils
                                         ST|ano|E2:J2|
                                         ST|empresa|E4:J4|
                                         ST|coluna|B2|2
+                                        IN|coluna|B3|3
+                                        RE|coluna|B4|4
                                         FO|U10/S10|V7|
                                         TO|SUM(#)|M9|M12
                                         TO|SUBTOTAL(9,#)|M10|M12
@@ -1587,6 +1627,42 @@ namespace Spartacus.Utils
                                                         v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
                                                     else
                                                         v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                    if (v_options[2].Contains(':'))
+                                                        v_worksheet.Cells[v_options[2]].Merge = true;
+                                                    break;
+                                                case "IN":
+                                                    if (int.TryParse(v_options[3], out v_offset))
+                                                    {
+                                                        if (int.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_in_tmp))
+                                                            v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                                        else
+                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                    }
+                                                    else
+                                                    {
+                                                        if (int.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_in_tmp))
+                                                            v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                                        else
+                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                    }
+                                                    if (v_options[2].Contains(':'))
+                                                        v_worksheet.Cells[v_options[2]].Merge = true;
+                                                    break;
+                                                case "RE":
+                                                    if (int.TryParse(v_options[3], out v_offset))
+                                                    {
+                                                        if (double.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_re_tmp))
+                                                            v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                                        else
+                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                    }
+                                                    else
+                                                    {
+                                                        if (double.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_re_tmp))
+                                                            v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                                        else
+                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                    }
                                                     if (v_options[2].Contains(':'))
                                                         v_worksheet.Cells[v_options[2]].Merge = true;
                                                     break;
