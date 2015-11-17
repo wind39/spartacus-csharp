@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.40.2:  Spartacus.Utils.Excel: Campo opcional do tipo ST define a linha da tabela onde está a string a ser mostrada
 0.40.1:  Implementação inicial do Spartacus.Tools.Cryptor
 0.40.0:  Utilizando Oracle.ManagedDataAccess.Client
          Removido Spartacus.Database.FirebirdEmbed

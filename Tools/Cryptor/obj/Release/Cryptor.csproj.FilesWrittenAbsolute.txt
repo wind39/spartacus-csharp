@@ -1,0 +1,6 @@
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/bin/Release/Cryptor.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/bin/Release/Cryptor.exe
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/obj/Release/Cryptor.exe
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/obj/Release/Cryptor.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/Cryptor/bin/Release/Spartacus.dll

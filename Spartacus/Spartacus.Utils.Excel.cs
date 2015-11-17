@@ -1291,6 +1291,7 @@ namespace Spartacus.Utils
                             ST|filtro|A8|
                             ST|ano|E2:J2|
                             ST|empresa|E4:J4|
+                            ST|coluna|B2|2
                             FO|U10/S10|V7|
                             TO|SUM(#)|M9|M12
                             TO|SUBTOTAL(9,#)|M10|M12
@@ -1324,7 +1325,10 @@ namespace Spartacus.Utils
                                         v_worksheet.Cells["A1"].Value = v_options[2];
                                         break;
                                     case "ST":
-                                        v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                        if (int.TryParse(v_options[3], out v_offset))
+                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                        else
+                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
                                         break;
                                     case "FO":
                                         v_worksheet.Cells [v_options[2]].Formula = v_options[1];
@@ -1500,6 +1504,7 @@ namespace Spartacus.Utils
                                         ST|filtro|A8|
                                         ST|ano|E2:J2|
                                         ST|empresa|E4:J4|
+                                        ST|coluna|B2|2
                                         FO|U10/S10|V7|
                                         TO|SUM(#)|M9|M12
                                         TO|SUBTOTAL(9,#)|M10|M12
@@ -1578,7 +1583,10 @@ namespace Spartacus.Utils
                                                     v_worksheet.Cells["A1"].Value = v_options[2];
                                                     break;
                                                 case "ST":
-                                                    v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
+                                                    if (int.TryParse(v_options[3], out v_offset))
+                                                        v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                    else
+                                                        v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
                                                     if (v_options[2].Contains(':'))
                                                         v_worksheet.Cells[v_options[2]].Merge = true;
                                                     break;
