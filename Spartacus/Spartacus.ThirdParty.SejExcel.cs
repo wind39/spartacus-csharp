@@ -262,6 +262,11 @@ namespace Spartacus.ThirdParty.SejExcel
             WriteCell(cell, (string)value);                                          
         }
 
+        public void WriteFormulaCell(int cell, string formula)
+        {
+            sdata.WriteFormulaCell(cell, formula);
+        }
+
         /*
         public void SaveToFile(string name)
         {
@@ -347,7 +352,7 @@ namespace Spartacus.ThirdParty.SejExcel
     // http://msdn.microsoft.com/en-us/library/documentformat.openxml.spreadsheet.cell(v=office.14).aspx
     class Column
     {
-        internal byte[] part1, part2, part3;
+        internal byte[] part1, part2, part2f, part3, part3f;
         internal Column(XmlNode n)
         {
             string p="      <c";                                                                                                // This is the cell name    
@@ -356,6 +361,8 @@ namespace Spartacus.ThirdParty.SejExcel
             part1=ASCIIEncoding.ASCII.GetBytes(p+" r=\""+ci);
             part2=ASCIIEncoding.ASCII.GetBytes("\"><v>");
             part3=ASCIIEncoding.ASCII.GetBytes("</v></c>\n");
+            part2f=ASCIIEncoding.ASCII.GetBytes("\"><f>");
+            part3f=ASCIIEncoding.ASCII.GetBytes("</f></c>\n");
         }
     }
 
@@ -493,6 +500,18 @@ namespace Spartacus.ThirdParty.SejExcel
             byte[] w = ASCIIEncoding.ASCII.GetBytes(value.ToString().Replace(",", "."));
             nbytes = nbytes + WriteBytes(w, nbuffer, nbytes);
             nbytes = nbytes + WriteBytes(c.part3, nbuffer, nbytes);
+        }
+
+        public void WriteFormulaCell(int cell, string formula)
+        {
+            if (cell >= columns.Count) return;
+            Column c=columns[cell];
+            nbytes = nbytes + WriteBytes(c.part1,nbuffer,nbytes);
+            nbytes = nbytes + WriteBytes(thisrow, nbuffer, nbytes); 
+            nbytes = nbytes + WriteBytes(c.part2f,nbuffer,nbytes);
+            byte[] w = ASCIIEncoding.ASCII.GetBytes(formula);
+            nbytes = nbytes + WriteBytes(w, nbuffer, nbytes);
+            nbytes = nbytes + WriteBytes(c.part3f,nbuffer,nbytes);
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Spartacus.Database
             : base(p_host, p_port, p_service, p_user, p_password)
         {
             this.v_connectionstring = "User ID=" + this.v_user + ";";
-            this.v_connectionstring += "Password=" + this.v_password + ";Pooling=false;";
+            this.v_connectionstring += "Password=" + this.v_password + ";";
             this.v_connectionstring += "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)";
             this.v_connectionstring += "(HOST=" + this.v_host + ")";
             this.v_connectionstring += "(PORT=" + this.v_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";
@@ -110,7 +110,7 @@ namespace Spartacus.Database
             : base(p_host, "1521", p_service, p_user, p_password)
         {
             this.v_connectionstring = "User ID=" + this.v_user + ";";
-            this.v_connectionstring += "Password=" + this.v_password + ";Pooling=false;";
+            this.v_connectionstring += "Password=" + this.v_password + ";";
             this.v_connectionstring += "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)";
             this.v_connectionstring += "(HOST=" + this.v_host + ")";
             this.v_connectionstring += "(PORT=" + this.v_port + "))(CONNECT_DATA=(SERVER=DEDICATED)";

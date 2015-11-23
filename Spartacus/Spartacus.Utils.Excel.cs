@@ -1138,6 +1138,14 @@ namespace Spartacus.Utils
                     v_package = null;
                 }
             }
+
+            using (OfficeOpenXml.ExcelPackage v_package2 = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(p_filename)))
+            {
+                foreach (OfficeOpenXml.ExcelWorksheet v_worksheet in v_package2.Workbook.Worksheets)
+                    v_worksheet.Calculate();
+
+                v_package2.Save();
+            }
         }
 
         /// <summary>
@@ -1176,7 +1184,7 @@ namespace Spartacus.Utils
                     else
                         v_value = v_cells[i];
                     if (v_value == "*")
-                        v_info.v_mapping[i] = v_cells[i].Replace("*", "");
+                        v_info.v_mapping[i] = v_cells[i].Substring(1);
                 }
                 if (v_info.v_mapping.Count > 0)
                     v_info.v_fixedrows = k;
@@ -1232,6 +1240,9 @@ namespace Spartacus.Utils
                                 p_sheet.WriteCell(v_pair.Key, v_re_value);
                             else
                                 p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
+                            break;
+                        case "fo":
+                            p_sheet.WriteFormulaCell(v_pair.Key, v_tail.Replace("#", v_info.v_currentrow.ToString()));
                             break;
                         default:
                             p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());

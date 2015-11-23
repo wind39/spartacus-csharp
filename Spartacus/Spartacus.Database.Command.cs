@@ -41,7 +41,7 @@ namespace Spartacus.Database
         /// Lista de Parâmetros.
         /// Cada parâmetro da lista deve ter um nome diferente.
         /// </summary>
-        public System.Collections.ArrayList v_parameters;
+        public System.Collections.Generic.List<Spartacus.Database.Parameter> v_parameters;
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Command"/>.
@@ -49,7 +49,7 @@ namespace Spartacus.Database
         public Command()
         {
             this.v_text = null;
-            this.v_parameters = new System.Collections.ArrayList();
+            this.v_parameters = new System.Collections.Generic.List<Spartacus.Database.Parameter>();
         }
 
         /// <summary>
@@ -63,8 +63,8 @@ namespace Spartacus.Database
 
             for (k = 0; k < this.v_parameters.Count; k++)
             {
-                this.v_text = this.v_text.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
-                this.v_text = this.v_text.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name.ToLower() + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+                this.v_text = this.v_text.Replace("#" + this.v_parameters[k].v_name + "#", this.v_parameters[k].Text());
+                this.v_text = this.v_text.Replace("#" + this.v_parameters[k].v_name.ToLower() + "#", this.v_parameters[k].Text());
             }
         }
 
@@ -81,8 +81,8 @@ namespace Spartacus.Database
             v_localtext = this.v_text;
             for (k = 0; k < this.v_parameters.Count; k++)
             {
-                v_localtext = v_localtext.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
-                v_localtext = v_localtext.Replace("#" + ((Spartacus.Database.Parameter)this.v_parameters[k]).v_name.ToLower() + "#", ((Spartacus.Database.Parameter)this.v_parameters[k]).Text());
+                v_localtext = v_localtext.Replace("#" + this.v_parameters[k].v_name + "#", this.v_parameters[k].Text());
+                v_localtext = v_localtext.Replace("#" + this.v_parameters[k].v_name.ToLower() + "#", this.v_parameters[k].Text());
             }
 
             return v_localtext;
@@ -704,7 +704,7 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters[k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -714,30 +714,28 @@ namespace Spartacus.Database
             {
                 if (p_value == null)
                 {
-                    ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = null;
-                    ((Spartacus.Database.Parameter)this.v_parameters[k]).v_null = true;
+                    this.v_parameters[k].v_value = null;
+                    this.v_parameters[k].v_null = true;
                 }
                 else
                 {
-                    switch (((Spartacus.Database.Parameter)this.v_parameters [k]).v_type)
+                    switch (this.v_parameters [k].v_type)
                     {
                         case Spartacus.Database.Type.QUOTEDSTRING:
-                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedCharsQuoted(p_value);
+                            this.v_parameters[k].v_value = RemoveUnwantedCharsQuoted(p_value);
                             break;
                         case Spartacus.Database.Type.UNDEFINED:
-                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = p_value;
+                            this.v_parameters[k].v_value = p_value;
                             break;
                         default:
-                            ((Spartacus.Database.Parameter)this.v_parameters[k]).v_value = RemoveUnwantedChars(p_value);
+                            this.v_parameters[k].v_value = RemoveUnwantedChars(p_value);
                             break;
                     }
-                    ((Spartacus.Database.Parameter)this.v_parameters[k]).v_null = false;
+                    this.v_parameters[k].v_null = false;
                 }
             }
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -762,7 +760,7 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
@@ -770,14 +768,12 @@ namespace Spartacus.Database
 
             if (achou)
             {
-                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_null = p_null;
+                this.v_parameters[k].v_null = p_null;
                 if (p_null)
-                    ((Spartacus.Database.Parameter)this.v_parameters [k]).v_value = null;
+                    this.v_parameters[k].v_value = null;
             }
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -796,30 +792,28 @@ namespace Spartacus.Database
             {
                 if (p_value == null)
                 {
-                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = null;
-                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_null = true;
+                    this.v_parameters[p_index].v_value = null;
+                    this.v_parameters[p_index].v_null = true;
                 }
                 else
                 {
-                    switch (((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_type)
+                    switch (this.v_parameters[p_index].v_type)
                     {
                         case Spartacus.Database.Type.QUOTEDSTRING:
-                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = RemoveUnwantedCharsQuoted(p_value);
+                            this.v_parameters[p_index].v_value = RemoveUnwantedCharsQuoted(p_value);
                             break;
                         case Spartacus.Database.Type.UNDEFINED:
-                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = p_value;
+                            this.v_parameters[p_index].v_value = p_value;
                             break;
                         default:
-                            ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_value = RemoveUnwantedChars(p_value);
+                            this.v_parameters[p_index].v_value = RemoveUnwantedChars(p_value);
                             break;
                     }
-                    ((Spartacus.Database.Parameter)this.v_parameters[p_index]).v_null = false;
+                    this.v_parameters[p_index].v_null = false;
                 }
             }
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados de índice {0} não existe.", p_index);
-            }
         }
 
         /// <summary>
@@ -836,14 +830,12 @@ namespace Spartacus.Database
         {
             if (p_index >= 0 && p_index < this.v_parameters.Count)
             {
-                ((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_null = p_null;
+                this.v_parameters[p_index].v_null = p_null;
                 if (p_null)
-                    ((Spartacus.Database.Parameter)this.v_parameters [p_index]).v_value = null;
+                    this.v_parameters[p_index].v_value = null;
             }
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados de índice {0} não existe.", p_index);
-            }
         }
 
         /// <summary>
@@ -868,18 +860,16 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters [k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_dateformat = p_dateformat;
+                this.v_parameters [k].v_dateformat = p_dateformat;
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -904,18 +894,16 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters [k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_locale = p_locale;
+                this.v_parameters [k].v_locale = p_locale;
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -940,18 +928,16 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_description = p_description;
+                this.v_parameters[k].v_description = p_description;
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -976,18 +962,16 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                return ((Spartacus.Database.Parameter)this.v_parameters [k]).v_value;
+                return this.v_parameters[k].v_value;
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -1012,18 +996,16 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                ((Spartacus.Database.Parameter)this.v_parameters [k]).v_lookup = p_lookup;
+                this.v_parameters[k].v_lookup = p_lookup;
             else
-            {
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
-            }
         }
 
         /// <summary>
@@ -1042,7 +1024,7 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (((Spartacus.Database.Parameter)this.v_parameters [k]).v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
