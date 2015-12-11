@@ -129,36 +129,25 @@ namespace Spartacus.Database
         {
             if (!this.v_null)
             {
-                if (this.v_value == null)
+                if (this.v_value == null || this.v_value.Trim() == "")
                     return "null";
                 else
                 {
                     switch (this.v_type)
                     {
                         case Spartacus.Database.Type.INTEGER:
-                            if (this.v_value.Trim() != "")
-                                return this.v_value.Trim().Replace(".", "").Replace(",", "");
-                            else
-                                return "null";
+                            return this.v_value.Trim().Replace(".", "").Replace(",", "");
                         case Spartacus.Database.Type.REAL:
-                            if (this.v_value.Trim() != "")
-                            {
-                                if (this.v_locale == Spartacus.Database.Locale.AMERICAN)
-                                    return this.v_value.Trim().Replace(",", "");
-                                else
-                                    return this.v_value.Trim().Replace(".", "").Replace(",", ".");
-                            }
+                            if (this.v_locale == Spartacus.Database.Locale.AMERICAN)
+                                return this.v_value.Trim().Replace(",", "");
                             else
-                                return "null";
+                                return this.v_value.Trim().Replace(".", "").Replace(",", ".");
                         case Spartacus.Database.Type.BOOLEAN:
                             return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.CHAR:
                             return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.DATE:
-                            if (this.v_value.Trim() != "")
-                                return "to_date('" + this.v_value.Trim() + "', '" + this.v_dateformat.Trim() + "')";
-                            else
-                                return "null";
+                            return "to_date('" + this.v_value.Trim() + "', '" + this.v_dateformat.Trim() + "')";
                         case Spartacus.Database.Type.STRING:
                             return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.QUOTEDSTRING:

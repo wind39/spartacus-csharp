@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.40.8:  Spartacus.Database.Parameter: Se valor for string vazia, retornará "null"
 0.40.7:  Spartacus.Database: Transfer insere com lista de colunas, para manter a ordem das colunas na transferência
 0.40.6:  Spartacus.Utils.Excel: Suporte a fórmulas em colunas
 0.40.5:  Spartacus.Database.Oracle utilizando Connection Pooling
