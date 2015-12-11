@@ -65,7 +65,7 @@ namespace Spartacus.Forms
         /// <summary>
         /// Lista de Containers filhos do Container atual.
         /// </summary>
-        public System.Collections.ArrayList v_containers;
+        public System.Collections.Generic.List<Spartacus.Forms.Container> v_containers;
 
         /// <summary>
         /// Deslocamento do eixo Y.
@@ -91,7 +91,7 @@ namespace Spartacus.Forms
         {
             this.v_parent = null;
 
-            this.v_containers = new System.Collections.ArrayList();
+            this.v_containers = new System.Collections.Generic.List<Container>();
 
             this.v_offsety = 0;
 
@@ -108,7 +108,7 @@ namespace Spartacus.Forms
         {
             this.v_parent = p_parent;
 
-            this.v_containers = new System.Collections.ArrayList();
+            this.v_containers = new System.Collections.Generic.List<Container>();
 
             this.v_offsety = 0;
 

@@ -281,7 +281,21 @@ namespace Spartacus.Database
         /// <param name='p_rows'>
         /// Lista de linhas a serem inseridas na tabela.
         /// </param>
-        public abstract void InsertBlock(string p_table, System.Collections.ArrayList p_rows);
+        public abstract void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows);
+
+        /// <summary>
+        /// Insere um bloco de linhas em uma determinada tabela.
+        /// </summary>
+        /// <param name='p_table'>
+        /// Nome da tabela a serem inseridas as linhas.
+        /// </param>
+        /// <param name='p_rows'>
+        /// Lista de linhas a serem inseridas na tabela.
+        /// </param>
+        /// <param name='p_columnnames'>
+        /// Nomes de colunas da tabela, entre parênteses, separados por vírgula.
+        /// </param>
+        public abstract void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows, string p_columnnames);
 
         /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.

@@ -42,7 +42,7 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Lista de objetos contidos no bloco.
         /// </summary>
-        public System.Collections.ArrayList v_objects;
+        public System.Collections.Generic.List<Spartacus.Reporting.Object> v_objects;
 
         /// <summary>
         /// Bordas do Bloco.
@@ -55,7 +55,7 @@ namespace Spartacus.Reporting
         public Block()
         {
             this.v_height = 0.0;
-            this.v_objects = new System.Collections.ArrayList();
+            this.v_objects = new System.Collections.Generic.List<Object>();
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Spartacus.Reporting
 
             for (k = 0; k < this.v_objects.Count; k++)
             {
-                if (((Spartacus.Reporting.Object)this.v_objects[k]).v_type != Spartacus.Reporting.ObjectType.PAGENUMBER)
-                    ((Spartacus.Reporting.Object)this.v_objects[k]).v_value = p_table.Rows[0][((Spartacus.Reporting.Object)this.v_objects[k]).v_column].ToString();
+                if (this.v_objects[k].v_type != Spartacus.Reporting.ObjectType.PAGENUMBER)
+                    this.v_objects[k].v_value = p_table.Rows[0][this.v_objects[k].v_column].ToString();
             }
         }
 
@@ -97,8 +97,8 @@ namespace Spartacus.Reporting
 
             for (k = 0; k < this.v_objects.Count; k++)
             {
-                if (((Spartacus.Reporting.Object)this.v_objects [k]).v_type == Spartacus.Reporting.ObjectType.PAGENUMBER)
-                    ((Spartacus.Reporting.Object)this.v_objects [k]).v_value = string.Format("Página: {0} de {1}", p_current, p_total);
+                if (this.v_objects [k].v_type == Spartacus.Reporting.ObjectType.PAGENUMBER)
+                    this.v_objects [k].v_value = string.Format("Página: {0} de {1}", p_current, p_total);
             }
         }
 
@@ -119,22 +119,22 @@ namespace Spartacus.Reporting
             // renderizando objetos do bloco
             for (k = 0; k < this.v_objects.Count; k++)
             {
-                switch (((Spartacus.Reporting.Object)this.v_objects [k]).v_type)
+                switch (this.v_objects [k].v_type)
                 {
                     case Spartacus.Reporting.ObjectType.IMAGE:
-                        this.RenderImage((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_pdf, p_page);
+                        this.RenderImage(this.v_objects [k], p_posx, p_posy, p_rightmargin, p_pdf, p_page);
                         break;
                     case Spartacus.Reporting.ObjectType.PAGENUMBER:
-                        if (((Spartacus.Reporting.Object)this.v_objects [k]).v_font != null)
-                            this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
+                        if ((this.v_objects [k]).v_font != null)
+                            this.RenderPageNumber(this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
                         else
-                            this.RenderPageNumber((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                            this.RenderPageNumber(this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
                         break;
                     case Spartacus.Reporting.ObjectType.TEXT:
-                        if (((Spartacus.Reporting.Object)this.v_objects [k]).v_font != null)
-                            this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
+                        if (this.v_objects [k].v_font != null)
+                            this.RenderText(this.v_objects [k], p_posx, p_posy, p_rightmargin, ((Spartacus.Reporting.Object)this.v_objects [k]).v_font, p_pdf, p_page);
                         else
-                            this.RenderText((Spartacus.Reporting.Object)this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
+                            this.RenderText(this.v_objects [k], p_posx, p_posy, p_rightmargin, p_font, p_pdf, p_page);
                         break;
                     default:
                         break;

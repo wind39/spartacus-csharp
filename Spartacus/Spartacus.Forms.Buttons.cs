@@ -36,7 +36,7 @@ namespace Spartacus.Forms
         /// <summary>
         /// Lista de botões.
         /// </summary>
-        public System.Collections.ArrayList v_list;
+        public System.Collections.Generic.List<System.Windows.Forms.Button> v_list;
 
         /// <summary>
         /// Deslocamento horizontal.
@@ -58,7 +58,7 @@ namespace Spartacus.Forms
             this.SetHeight(40);
             this.SetLocation(0, p_parent.v_offsety);
 
-            this.v_list = new System.Collections.ArrayList();
+            this.v_list = new System.Collections.Generic.List<System.Windows.Forms.Button>();
 
             this.v_offsetx = this.v_width - 10;
         }

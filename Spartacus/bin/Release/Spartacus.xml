@@ -2061,7 +2061,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Generic.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -2070,6 +2070,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Generic.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Generic.ExecuteScalar(System.String)">
             <summary>
@@ -2412,7 +2425,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Odbc.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Odbc.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -2421,6 +2434,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Odbc.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Odbc.ExecuteScalar(System.String)">
             <summary>
@@ -2840,7 +2866,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Firebird.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Firebird.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -2849,6 +2875,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Firebird.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Firebird.ExecuteScalar(System.String)">
             <summary>
@@ -3205,7 +3244,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Mysql.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Mysql.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -3214,6 +3253,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Mysql.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Mysql.ExecuteScalar(System.String)">
             <summary>
@@ -3558,7 +3610,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Oledb.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Oledb.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -3567,6 +3619,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Oledb.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Oledb.ExecuteScalar(System.String)">
             <summary>
@@ -4749,7 +4814,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Sqlite.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Sqlite.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -4758,6 +4823,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Sqlite.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Sqlite.ExecuteScalar(System.String)">
             <summary>
@@ -5114,7 +5192,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Postgresql.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Postgresql.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -5123,6 +5201,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Postgresql.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Postgresql.ExecuteScalar(System.String)">
             <summary>
@@ -6120,7 +6211,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Oracle.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Oracle.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -6129,6 +6220,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Oracle.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Oracle.ExecuteScalar(System.String)">
             <summary>
@@ -35676,7 +35780,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.Memory.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.Memory.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -35685,6 +35789,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Memory.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.Memory.ExecuteScalar(System.String)">
             <summary>
@@ -36772,7 +36889,7 @@
             <param name="p_sql">
             Código SQL a ser executado no banco de dados.
             </param></member>
-        <member name="M:Spartacus.Database.SqlServer.InsertBlock(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Database.SqlServer.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Insere um bloco de linhas em uma determinada tabela.
             </summary>
@@ -36781,6 +36898,19 @@
             </param>
             <param name="p_rows">
             Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.SqlServer.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
             </param></member>
         <member name="M:Spartacus.Database.SqlServer.ExecuteScalar(System.String)">
             <summary>

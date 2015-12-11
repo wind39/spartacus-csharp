@@ -613,7 +613,7 @@ namespace Spartacus.Database
         /// <param name='p_rows'>
         /// Lista de linhas a serem inseridas na tabela.
         /// </param>
-        public override void InsertBlock(string p_table, System.Collections.ArrayList p_rows)
+        public override void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows)
         {
             string v_block;
 
@@ -626,7 +626,7 @@ namespace Spartacus.Database
 
                     v_block = "execute block as begin\n";
                     for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + (string)p_rows[k] + ";\n";
+                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
@@ -656,7 +656,75 @@ namespace Spartacus.Database
                 {
                     v_block = "execute block as begin\n";
                     for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + (string)p_rows[k] + ";\n";
+                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
+                    v_block += "end";
+
+                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd.ExecuteNonQuery();
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Insere um bloco de linhas em uma determinada tabela.
+        /// </summary>
+        /// <param name='p_table'>
+        /// Nome da tabela a serem inseridas as linhas.
+        /// </param>
+        /// <param name='p_rows'>
+        /// Lista de linhas a serem inseridas na tabela.
+        /// </param>
+        /// <param name='p_columnnames'>
+        /// Nomes de colunas da tabela, entre parênteses, separados por vírgula.
+        /// </param>
+        public override void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows, string p_columnnames)
+        {
+            string v_block;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
+                    this.v_con.Open();
+
+                    v_block = "execute block as begin\n";
+                    for (int k = 0; k < p_rows.Count; k++)
+                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
+                    v_block += "end";
+
+                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    this.v_cmd.ExecuteNonQuery();
+                }
+                catch (FirebirdSql.Data.FirebirdClient.FbException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    v_block = "execute block as begin\n";
+                    for (int k = 0; k < p_rows.Count; k++)
+                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
@@ -1104,7 +1172,8 @@ namespace Spartacus.Database
         public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
             uint v_transfered = 0;
-            System.Collections.ArrayList v_rows = new System.Collections.ArrayList();
+            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
+            string v_columnnames;
 
             try
             {
@@ -1114,6 +1183,11 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
                     this.v_currentrow = 0;
                 }
+
+                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
+                for (int i = 1; i < v_reader.FieldCount; i++)
+                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(1));
+                v_columnnames += ")";
 
                 p_hasmoredata = false;
                 while (v_reader.Read())
@@ -1142,7 +1216,7 @@ namespace Spartacus.Database
                     this.v_reader = null;
                 }
                 else
-                    p_destdatabase.InsertBlock(p_table, v_rows);
+                    p_destdatabase.InsertBlock(p_table, v_rows, v_columnnames);
 
                 return v_transfered;
             }
@@ -1168,7 +1242,8 @@ namespace Spartacus.Database
         public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
             uint v_transfered = 0;
-            System.Collections.ArrayList v_rows = new System.Collections.ArrayList();
+            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
+            string v_columnnames;
 
             try
             {
@@ -1178,6 +1253,11 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
                     this.v_currentrow = 0;
                 }
+
+                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
+                for (int i = 1; i < v_reader.FieldCount; i++)
+                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(1));
+                v_columnnames += ")";
 
                 p_hasmoredata = false;
                 while (v_reader.Read())
@@ -1209,7 +1289,7 @@ namespace Spartacus.Database
                 {
                     try
                     {
-                        p_destdatabase.InsertBlock(p_table, v_rows);
+                        p_destdatabase.InsertBlock(p_table, v_rows, v_columnnames);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
