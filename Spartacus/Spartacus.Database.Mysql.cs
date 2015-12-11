@@ -1202,7 +1202,7 @@ namespace Spartacus.Database
 
                 v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
                 for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(1));
+                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
                 v_columnnames += ")";
 
                 p_hasmoredata = false;
@@ -1272,7 +1272,7 @@ namespace Spartacus.Database
 
                 v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
                 for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(1));
+                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
                 v_columnnames += ")";
 
                 p_hasmoredata = false;
