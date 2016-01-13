@@ -69,6 +69,11 @@ namespace Spartacus.Database
         /// </summary>
         public string v_connectionstring;
 
+        /// <summary>
+        /// Timeout de execução de comandos, em segundos.
+        /// </summary>
+        public int v_timeout;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
@@ -97,6 +102,7 @@ namespace Spartacus.Database
             this.v_user = p_user;
             this.v_password = p_password;
             this.v_integrated_security = false;
+            this.v_timeout = -1;
         }
 
         /// <summary>
@@ -129,6 +135,7 @@ namespace Spartacus.Database
             this.v_user = p_user;
             this.v_password = p_password;
             this.v_integrated_security = p_integrated_security;
+            this.v_timeout = -1;
         }
 
         /// <summary>
@@ -150,6 +157,7 @@ namespace Spartacus.Database
             this.v_user = p_user;
             this.v_password = p_password;
             this.v_integrated_security = false;
+            this.v_timeout = -1;
         }
 
         /// <summary>
@@ -163,6 +171,7 @@ namespace Spartacus.Database
         {
             this.v_service = p_file;
             this.v_integrated_security = false;
+            this.v_timeout = -1;
         }
 
         /// <summary>
@@ -170,6 +179,7 @@ namespace Spartacus.Database
         /// </summary>
         public Generic()
         {
+            this.v_timeout = -1;
         }
 
         /// <summary>
@@ -547,6 +557,15 @@ namespace Spartacus.Database
             }
 
             return v_output;
+        }
+
+        /// <summary>
+        /// Configura CommandTimeout de todas as conexões feitas com a instância atual.
+        /// </summary>
+        /// <param name="p_timeout">Timeout em segundos.</param>
+        public void SetTimeout(int p_timeout)
+        {
+            this.v_timeout = p_timeout;
         }
     }
 }

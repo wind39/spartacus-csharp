@@ -147,6 +147,8 @@ namespace Spartacus.Database
                 this.v_con.Open();
                 this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand();
                 this.v_cmd.Connection = this.v_con;
+                if (this.v_timeout > -1)
+                    this.v_cmd.CommandTimeout = this.v_timeout;
             }
             catch (FirebirdSql.Data.FirebirdClient.FbException e)
             {
@@ -176,6 +178,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -277,6 +281,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
@@ -451,6 +457,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
@@ -570,6 +578,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -630,6 +640,8 @@ namespace Spartacus.Database
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -660,6 +672,8 @@ namespace Spartacus.Database
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -698,6 +712,8 @@ namespace Spartacus.Database
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -728,6 +744,8 @@ namespace Spartacus.Database
                     v_block += "end";
 
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -757,6 +775,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     v_tmp = this.v_cmd.ExecuteScalar();
                     if (v_tmp != null)
                         return v_tmp.ToString();
@@ -852,6 +872,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -945,6 +967,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -1330,6 +1354,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     while (v_reader.Read())
@@ -1945,6 +1971,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_array = new string[v_reader.FieldCount];
@@ -2020,6 +2048,8 @@ namespace Spartacus.Database
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_matrix = new string[v_reader.FieldCount, 2];

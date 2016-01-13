@@ -92,6 +92,8 @@ namespace Spartacus.Database
                 this.v_con.Open();
                 this.v_cmd = new Mono.Data.Sqlite.SqliteCommand();
                 this.v_cmd.Connection = this.v_con;
+                if (this.v_timeout > -1)
+                    this.v_cmd.CommandTimeout = this.v_timeout;
             }
             catch (Mono.Data.Sqlite.SqliteException e)
             {
@@ -377,6 +379,8 @@ namespace Spartacus.Database
                 v_block += "commit;";
 
                 this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                if (this.v_timeout > -1)
+                    this.v_cmd.CommandTimeout = this.v_timeout;
                 this.v_cmd.ExecuteNonQuery();
             }
             catch (Mono.Data.Sqlite.SqliteException e)
@@ -409,6 +413,8 @@ namespace Spartacus.Database
                 v_block += "commit;";
 
                 this.v_cmd = new Mono.Data.Sqlite.SqliteCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                if (this.v_timeout > -1)
+                    this.v_cmd.CommandTimeout = this.v_timeout;
                 this.v_cmd.ExecuteNonQuery();
             }
             catch (Mono.Data.Sqlite.SqliteException e)

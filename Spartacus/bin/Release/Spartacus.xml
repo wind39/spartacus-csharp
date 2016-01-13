@@ -1901,6 +1901,10 @@
             <summary>
             String de conexão para acessar o banco.
             </summary></member>
+        <member name="F:Spartacus.Database.Generic.v_timeout">
+            <summary>
+            Timeout de execução de comandos, em segundos.
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
@@ -2298,6 +2302,11 @@
             </summary>
             <returns>Nome da coluna corrigido.</returns>
             <param name="p_input">Nome da coluna com problema.</param></member>
+        <member name="M:Spartacus.Database.Generic.SetTimeout(System.Int32)">
+            <summary>
+            Configura CommandTimeout de todas as conexões feitas com a instância atual.
+            </summary>
+            <param name="p_timeout">Timeout em segundos.</param></member>
         <member name="T:Spartacus.Database.Odbc">
             <summary>
             Classe Spartacus.Database.Odbc.
