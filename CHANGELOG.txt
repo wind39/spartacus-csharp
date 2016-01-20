@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.40.11: Criada versão da Spartacus.Utils.Excel.Export com parâmetro para calcular fórmulas opcionalmente.
 0.40.10: Spartacus.Database: Método SetTimeout opcional, que configura CommandTimeout para todas as tecnologias
 0.40.9:  Permitindo caractere & na Spartacus.Database.Command.RemoveUnwantedCharsExecute
 0.40.8:  Spartacus.Database.Parameter: Se valor for string vazia, retornará "null"

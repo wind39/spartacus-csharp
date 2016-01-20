@@ -785,6 +785,7 @@ namespace Spartacus.Utils
 
         /// <summary>
         /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
+        /// Após a alimentação dos dados, calcula todas as possíveis fórmulas dentro do arquivo.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
@@ -802,6 +803,45 @@ namespace Spartacus.Utils
                     case "xlsx":
                         v_markup = this.CreateTemplate(false, false);
                         this.ExportXLSX(p_filename, v_markup);
+                        (new System.IO.FileInfo(v_markup)).Delete();
+                        break;
+                    case "csv":
+                        this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    default:
+                        throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o DataSet no arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Exporta todas as <see cref="System.Data.DataTable"/> dentro de um <see cref="System.Data.DataSet"/> para um arquivo Excel.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+        /// <param name="p_calculateformulas">Se deve ou não calcular fórmulas dentro do arquivo.</param>
+        /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
+        public void Export(string p_filename, bool p_calculateformulas)
+        {
+            Spartacus.Utils.File v_file;
+            string v_markup;
+
+            v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+            try
+            {
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "xlsx":
+                        v_markup = this.CreateTemplate(false, false);
+                        this.ExportXLSX(p_filename, v_markup, p_calculateformulas);
                         (new System.IO.FileInfo(v_markup)).Delete();
                         break;
                     case "csv":
@@ -1084,6 +1124,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Exporta todas as <see cref="System.Data.DataTable"/> de um <see cref="System.Data.DataSet"/> para um arquivo XLSX.
         /// Utiliza como modelo um arquivo XLSX passado como parâmetro.
+        /// Calcula possíveis fórmulas no arquivo.
         /// </summary>
         /// <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
         /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
@@ -1145,6 +1186,77 @@ namespace Spartacus.Utils
                     v_worksheet.Calculate();
 
                 v_package2.Save();
+            }
+        }
+
+        /// <summary>
+        /// Exporta todas as <see cref="System.Data.DataTable"/> de um <see cref="System.Data.DataSet"/> para um arquivo XLSX.
+        /// Utiliza como modelo um arquivo XLSX passado como parâmetro.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
+        /// <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
+        /// <param name="p_calculateformulas">Se deve ou não calcular fórmulas no arquivo.</param>
+        private void ExportXLSX(string p_filename, string p_templatename, bool p_calculateformulas)
+        {
+            Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
+            Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
+
+            try
+            {
+                v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_templatename);
+
+                if (v_package != null && v_package.sheets != null && v_package.sheets.Count > 0)
+                {
+                    this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", 0.0, "Salvando arquivo " + p_filename);
+
+                    this.v_numtotalrows = 0;
+                    foreach (System.Data.DataTable v_table in this.v_set.Tables)
+                        this.v_numtotalrows += v_table.Rows.Count;
+                    this.v_inc = 100.0 / (double) this.v_numtotalrows;
+
+                    this.v_perc = 0.0;
+                    foreach (string v_key in v_package.sheets.Keys)
+                    {
+                        v_sheet = v_package.sheets[v_key];
+                        if (v_sheet != null)
+                            this.FillSheetWithDataTable(v_sheet, this.v_set.Tables[v_sheet.Name]);
+                        else
+                            throw new Spartacus.Utils.Exception("Arquivo {0} contem uma planilha invalida.", p_templatename);
+                    }
+                }
+                else
+                    throw new Spartacus.Utils.Exception("Arquivo {0} nao pode ser aberto, ou nao contem planilhas com dados.", p_templatename);
+
+                v_package.Save(p_filename);
+
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", 100.0, "Arquivo " + p_filename + " salvo.");
+            }
+            catch (Spartacus.Utils.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o arquivo {0}", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o arquivo {0}", e, p_filename);
+            }
+            finally
+            {
+                if (v_package != null)
+                {
+                    v_package.Close();
+                    v_package = null;
+                }
+            }
+
+            if (p_calculateformulas)
+            {
+                using (OfficeOpenXml.ExcelPackage v_package2 = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(p_filename)))
+                {
+                    foreach (OfficeOpenXml.ExcelWorksheet v_worksheet in v_package2.Workbook.Worksheets)
+                        v_worksheet.Calculate();
+
+                    v_package2.Save();
+                }
             }
         }
 

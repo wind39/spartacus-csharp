@@ -5761,8 +5761,16 @@
         <member name="M:Spartacus.Utils.Excel.Export(System.String)">
             <summary>
             Exporta todas as <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" /> para um arquivo Excel.
+            Após a alimentação dos dados, calcula todas as possíveis fórmulas dentro do arquivo.
             </summary>
             <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+            <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
+        <member name="M:Spartacus.Utils.Excel.Export(System.String,System.Boolean)">
+            <summary>
+            Exporta todas as <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" /> para um arquivo Excel.
+            </summary>
+            <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
+            <param name="p_calculateformulas">Se deve ou não calcular fórmulas dentro do arquivo.</param>
             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception></member>
         <member name="M:Spartacus.Utils.Excel.Export(System.String,System.Boolean,System.Boolean)">
             <summary>
@@ -5814,9 +5822,18 @@
             <summary>
             Exporta todas as <see cref="T:System.Data.DataTable" /> de um <see cref="T:System.Data.DataSet" /> para um arquivo XLSX.
             Utiliza como modelo um arquivo XLSX passado como parâmetro.
+            Calcula possíveis fórmulas no arquivo.
             </summary>
             <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
             <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param></member>
+        <member name="M:Spartacus.Utils.Excel.ExportXLSX(System.String,System.String,System.Boolean)">
+            <summary>
+            Exporta todas as <see cref="T:System.Data.DataTable" /> de um <see cref="T:System.Data.DataSet" /> para um arquivo XLSX.
+            Utiliza como modelo um arquivo XLSX passado como parâmetro.
+            </summary>
+            <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
+            <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
+            <param name="p_calculateformulas">Se deve ou não calcular fórmulas no arquivo.</param></member>
         <member name="M:Spartacus.Utils.Excel.FillSheetWithDataTable(Spartacus.ThirdParty.SejExcel.gSheet,System.Data.DataTable)">
             <summary>
             Preenche a planilha do template com os dados de uma <see cref="T:System.Data.DataTable" />.
