@@ -1394,7 +1394,7 @@ namespace Spartacus.Database
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
                             p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
-
+                        
                         v_rows.Add(p_insert.GetUpdatedText());
 
                         v_transfered++;

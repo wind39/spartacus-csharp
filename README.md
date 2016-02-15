@@ -11,8 +11,6 @@ NuGet package: https://www.nuget.org/packages/Spartacus
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
-Please note that Spartacus is not API ready yet, something may change until it becomes stable.
-
 Spartacus contains this managed libraries:
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Mono.Data.Tds (http://www.mono-project.com/docs/database-access/providers/sqlclient/)
@@ -26,14 +24,17 @@ Spartacus reuse code from this C# projects:
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - EPPlus (http://epplus.codeplex.com/)
   - SejExcel, by Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
-  - ZipStorer, by Jaime Olivares (http://zipstorer.codeplex.com)
+  - ZipStorer, by Jaime Olivares (https://github.com/jaime-olivares/zipstorer)
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
   - MultiColumnCombobox, by Nish Nishant (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
-Spartacus optionally use this native libraries and binaries:
+Spartacus optionally use this native library:
   - SQLite (https://www.sqlite.org/)
 
 Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
+
+Spartacus is successfully used by this projects:
+  - OmniDB (http://www.omnidb.com.br)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
