@@ -1357,7 +1357,7 @@ namespace Spartacus.Utils
                             p_sheet.WriteFormulaCell(v_pair.Key, v_tail.Replace("#", v_info.v_currentrow.ToString()));
                             break;
                         default:
-                            p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
+                            p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
                             break;
                     }
                 }
@@ -1562,6 +1562,12 @@ namespace Spartacus.Utils
                                             else
                                                 v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                         }
+                                        break;
+                                    case "CF":
+                                        v_worksheet.Cells[v_options[2]].Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
+                                        break;
+                                    case "CT":
+                                        v_worksheet.Cells[v_options[2]].Style.Font.Color.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
                                         break;
                                     case "TA":
                                         v_row = int.Parse(v_options[2]);
