@@ -28,8 +28,10 @@ Spartacus reuse code from this C# projects:
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
   - MultiColumnCombobox, by Nish Nishant (http://www.codeproject.com/Articles/19781/A-data-bound-multi-column-combobox)
 
-Spartacus optionally use this native library:
+Spartacus optionally use this libraries:
   - SQLite (https://www.sqlite.org/)
+  - UCanAccess (http://ucanaccess.sourceforge.net/site.html)
+  - IKVM.NET (http://www.ikvm.net/)
 
 Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
 

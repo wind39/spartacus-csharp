@@ -70,6 +70,18 @@
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>lib\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="ucanaccess-complete">
+      <HintPath>lib\ucanaccess-complete.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>lib\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>lib\IKVM.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -921,6 +933,7 @@
     <Compile Include="Spartacus.Forms.Window.cs" />
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spartacus.Database.Access.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -956,6 +969,25 @@
     <None Include="icon\spartacus_512x512.png" />
     <None Include="dist\Spartacus.nuspec" />
     <None Include="lib\Oracle.ManagedDataAccess.dll" />
+    <None Include="lib\IKVM.OpenJDK.Beans.dll" />
+    <None Include="lib\IKVM.OpenJDK.Charsets.dll" />
+    <None Include="lib\IKVM.OpenJDK.Corba.dll" />
+    <None Include="lib\IKVM.OpenJDK.Core.dll" />
+    <None Include="lib\IKVM.OpenJDK.Jdbc.dll" />
+    <None Include="lib\IKVM.OpenJDK.Management.dll" />
+    <None Include="lib\IKVM.OpenJDK.Media.dll" />
+    <None Include="lib\IKVM.OpenJDK.Misc.dll" />
+    <None Include="lib\IKVM.OpenJDK.Naming.dll" />
+    <None Include="lib\IKVM.OpenJDK.Remoting.dll" />
+    <None Include="lib\IKVM.OpenJDK.Security.dll" />
+    <None Include="lib\IKVM.OpenJDK.SwingAWT.dll" />
+    <None Include="lib\IKVM.OpenJDK.Text.dll" />
+    <None Include="lib\IKVM.OpenJDK.Util.dll" />
+    <None Include="lib\IKVM.OpenJDK.XML.API.dll" />
+    <None Include="lib\IKVM.OpenJDK.XML.Bind.dll" />
+    <None Include="lib\IKVM.OpenJDK.XML.Parse.dll" />
+    <None Include="lib\IKVM.Runtime.dll" />
+    <None Include="lib\ucanaccess-complete.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
@@ -965,5 +997,6 @@
     <Folder Include="lib\sqlite\windows_x86\" />
     <Folder Include="lib\sqlite\linux_x86\" />
     <Folder Include="lib\sqlite\linux_x64\" />
+    <Folder Include="lib\access\" />
   </ItemGroup>
 </Project>
