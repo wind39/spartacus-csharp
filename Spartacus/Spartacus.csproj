@@ -65,7 +65,6 @@
       <HintPath>lib\Mono.Data.Tds.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>lib\Oracle.ManagedDataAccess.dll</HintPath>
@@ -81,6 +80,10 @@
     </Reference>
     <Reference Include="IKVM.Runtime">
       <HintPath>lib\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="Mono.Security">
+      <HintPath>lib\Mono.Security.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -988,6 +991,7 @@
     <None Include="lib\IKVM.OpenJDK.XML.Parse.dll" />
     <None Include="lib\IKVM.Runtime.dll" />
     <None Include="lib\ucanaccess-complete.dll" />
+    <None Include="lib\Mono.Security.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

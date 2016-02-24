@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.1:  Adicionando Mono.Security.dll para funcionar acesso a PostgreSQL no Windows
 0.41.0:  Nova classe Spartacus.Database.Access
 
 0.40.12: Spartacus.Utils.Excel: Permitindo registros CF e CT para templates únicos
