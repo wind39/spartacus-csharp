@@ -240,8 +240,8 @@ namespace Spartacus.Reporting
             this.v_groups = new System.Collections.ArrayList();
 
             this.v_database = null;
-            this.v_tabletemp = null;
-            this.v_table = p_table;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
             this.v_rendertable = null;
 
             this.v_calculate_groups = false;

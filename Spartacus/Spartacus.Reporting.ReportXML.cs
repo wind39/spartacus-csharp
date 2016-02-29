@@ -178,6 +178,12 @@ namespace Spartacus.Reporting
                 case "memory":
                     this.v_database = new Spartacus.Database.Memory();
                     break;
+                case "sqlserver":
+                    this.v_database = new Spartacus.Database.SqlServer(v_host, v_port, v_service, v_user, v_password);
+                    break;
+                case "access":
+                    this.v_database = new Spartacus.Database.Access(v_service);
+                    break;
                 default:
                     this.v_database = null;
                     break;

@@ -93,6 +93,9 @@ namespace Spartacus.Database
                 case "sqlserver":
                     this.v_database = new Spartacus.Database.SqlServer(p_host, p_port, p_service, p_user, p_password, bool.Parse(p_integrated_security));
                     break;
+                case "access":
+                    this.v_database = new Spartacus.Database.Access(p_service);
+                    break;
                 default:
                     this.v_database = null;
                     break;
