@@ -1,8 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.SqlServer.cs">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="14" Column="1" />
+      <File FileName="CHANGELOG.txt" Line="21" Column="10" />
+      <File FileName="Spartacus/Spartacus.Database.SqlServer.cs" Line="766" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

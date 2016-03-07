@@ -800,10 +800,10 @@ namespace Spartacus.Database
                     this.v_con = new System.Data.SqlClient.SqlConnection(this.v_connectionstring);
                     this.v_con.Open();
 
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     if (this.v_timeout > -1)
@@ -832,10 +832,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     this.v_cmd = new System.Data.SqlClient.SqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     if (this.v_timeout > -1)
