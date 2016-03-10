@@ -577,7 +577,10 @@ namespace Spartacus.Database
                 {
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    else
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -604,7 +607,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    else
+                        this.v_cmd.CommandText = p_sql;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -639,7 +645,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    else
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -671,9 +680,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
+                    else
+                        this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -711,7 +721,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    else
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -743,9 +756,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
                     v_block += "end";
 
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
+                    else
+                        this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (FirebirdSql.Data.FirebirdClient.FbException e)
@@ -774,7 +788,10 @@ namespace Spartacus.Database
                 {
                     this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    else
+                        this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     v_tmp = this.v_cmd.ExecuteScalar();
@@ -805,7 +822,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    else
+                        this.v_cmd.CommandText = p_sql;
                     v_tmp = this.v_cmd.ExecuteScalar();
                     if (v_tmp != null)
                         return v_tmp.ToString();

@@ -674,7 +674,10 @@ namespace Spartacus.Database
                 {
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    else
+                        this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -701,7 +704,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    else
+                        this.v_cmd.CommandText = p_sql;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (System.Exception e)
@@ -736,7 +742,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " values " + p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    else
+                        this.v_cmd = new OracleManaged.OracleCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -768,9 +777,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " values " + p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
+                    else
+                        this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (System.Exception e)
@@ -808,7 +818,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " " + p_columnnames + " values " + p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                    else
+                        this.v_cmd = new OracleManaged.OracleCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -840,9 +853,10 @@ namespace Spartacus.Database
                         v_block += "into " + p_table + " " + p_columnnames + " values " + p_rows[k] + "\n";
                     v_block += "select * from dual";
 
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
+                    else
+                        this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
                 catch (System.Exception e)
@@ -871,7 +885,10 @@ namespace Spartacus.Database
                 {
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    if (this.v_execute_security)
+                        this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                    else
+                        this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     v_tmp = this.v_cmd.ExecuteScalar();
@@ -902,7 +919,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    if (this.v_execute_security)
+                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
+                    else
+                        this.v_cmd.CommandText = p_sql;
                     v_tmp = this.v_cmd.ExecuteScalar();
                     if (v_tmp != null)
                         return v_tmp.ToString();

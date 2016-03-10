@@ -532,7 +532,10 @@ namespace Spartacus.Database
                     this.v_cmd = this.v_con.createStatement();
                     if (this.v_timeout > -1)
                         this.v_cmd.setQueryTimeout(this.v_timeout);
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql));
+                    else
+                        this.v_cmd.execute(p_sql);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
@@ -556,7 +559,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql));
+                    else
+                        this.v_cmd.execute(p_sql);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
@@ -592,7 +598,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
                     v_block += "commit;";
 
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    else
+                        this.v_cmd.execute(v_block);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
@@ -621,7 +630,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
                     v_block += "commit;";
 
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    else
+                        this.v_cmd.execute(v_block);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
@@ -660,7 +672,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
                     v_block += "commit;";
 
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    else
+                        this.v_cmd.execute(v_block);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
@@ -689,7 +704,10 @@ namespace Spartacus.Database
                         v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
                     v_block += "commit;";
 
-                    this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    if (this.v_execute_security)
+                        this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
+                    else
+                        this.v_cmd.execute(v_block);
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {

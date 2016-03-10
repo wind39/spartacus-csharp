@@ -74,6 +74,11 @@ namespace Spartacus.Database
         /// </summary>
         public int v_timeout;
 
+        /// <summary>
+        /// Se deve tratar caracteres inseguros no Execute ou não.
+        /// </summary>
+        public bool v_execute_security;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
@@ -103,6 +108,7 @@ namespace Spartacus.Database
             this.v_password = p_password;
             this.v_integrated_security = false;
             this.v_timeout = -1;
+            this.v_execute_security = true;
         }
 
         /// <summary>
@@ -136,6 +142,7 @@ namespace Spartacus.Database
             this.v_password = p_password;
             this.v_integrated_security = p_integrated_security;
             this.v_timeout = -1;
+            this.v_execute_security = true;
         }
 
         /// <summary>
@@ -158,6 +165,7 @@ namespace Spartacus.Database
             this.v_password = p_password;
             this.v_integrated_security = false;
             this.v_timeout = -1;
+            this.v_execute_security = true;
         }
 
         /// <summary>
@@ -172,6 +180,7 @@ namespace Spartacus.Database
             this.v_service = p_file;
             this.v_integrated_security = false;
             this.v_timeout = -1;
+            this.v_execute_security = true;
         }
 
         /// <summary>
@@ -180,6 +189,7 @@ namespace Spartacus.Database
         public Generic()
         {
             this.v_timeout = -1;
+            this.v_execute_security = true;
         }
 
         /// <summary>
@@ -984,6 +994,15 @@ namespace Spartacus.Database
         public void SetTimeout(int p_timeout)
         {
             this.v_timeout = p_timeout;
+        }
+
+        /// <summary>
+        /// Configura Execute Security de todas as conexões feitas com a instância atual.
+        /// </summary>
+        /// <param name="p_execute_security">Se deve tratar caracteres inseguros no Execute ou não.</param>
+        public void SetExecuteSecurity(bool p_execute_security)
+        {
+            this.v_execute_security = p_execute_security;
         }
     }
 }
