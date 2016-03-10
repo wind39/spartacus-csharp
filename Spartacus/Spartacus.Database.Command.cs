@@ -794,7 +794,7 @@ namespace Spartacus.Database
                         }
                     }
                     else
-                        this.v_parameters[k].v_value = p_value;
+                        this.v_parameters[k].v_value = p_value.Replace("'", "''");
                     this.v_parameters[k].v_null = false;
                 }
             }
@@ -920,7 +920,7 @@ namespace Spartacus.Database
                         }
                     }
                     else
-                        this.v_parameters[p_index].v_value = p_value;
+                        this.v_parameters[p_index].v_value = p_value.Replace("'", "''");
                     this.v_parameters[p_index].v_null = false;
                 }
             }
