@@ -1714,6 +1714,20 @@
             Valor a ser atribuído ao Parâmetro.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetValue(System.String,System.String,System.Boolean)">
+            <summary>
+            Atribui o valor do Parâmetro de nome <paramref name="p_name" />.
+            </summary>
+            <param name="p_name">
+            Nome do Parâmetro que vai ter o valor atribuído.
+            </param>
+            <param name="p_value">
+            Valor a ser atribuído ao Parâmetro.
+            </param>
+            <param name="p_execute_security">
+            Se deve tratar caracteres estranhos no Execute ou não.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.SetValue(System.String,System.Boolean)">
             <summary>
             Atribui o valor do Parâmetro de nome <paramref name="p_name" />.
@@ -1734,6 +1748,20 @@
             </param>
             <param name="p_value">
             Valor a ser atribuído ao Parâmetro.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetValue(System.Int32,System.String,System.Boolean)">
+            <summary>
+            Atribui o valor do Parâmetro de índice <paramref name="p_index" />.
+            </summary>
+            <param name="p_index">
+            Índice do Parâmetro que vai ter o valor atribuído.
+            </param>
+            <param name="p_value">
+            Valor a ser atribuído ao Parâmetro.
+            </param>
+            <param name="p_execute_security">
+            Se deve tratar caracteres estranhos no Execute ou não.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.SetValue(System.Int32,System.Boolean)">

@@ -871,7 +871,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -912,7 +912,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -966,7 +966,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1015,7 +1015,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1078,7 +1078,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -1139,7 +1139,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1213,7 +1213,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1283,7 +1283,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1353,7 +1353,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1403,7 +1403,7 @@ namespace Spartacus.Database
                     while (v_reader.Read())
                     {
                         for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString());
+                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try

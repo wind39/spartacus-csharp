@@ -852,7 +852,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -894,7 +894,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -950,7 +950,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1000,7 +1000,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1065,7 +1065,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -1128,7 +1128,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1204,7 +1204,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1276,7 +1276,7 @@ namespace Spartacus.Database
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1348,7 +1348,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1399,7 +1399,7 @@ namespace Spartacus.Database
                     while (this.v_reader.next())
                     {
                         for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i));
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try

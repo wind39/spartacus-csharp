@@ -744,6 +744,70 @@ namespace Spartacus.Database
         /// <param name='p_name'>
         /// Nome do Parâmetro que vai ter o valor atribuído.
         /// </param>
+        /// <param name='p_value'>
+        /// Valor a ser atribuído ao Parâmetro.
+        /// </param>
+        /// <param name='p_execute_security'>
+        /// Se deve tratar caracteres estranhos no Execute ou não.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetValue(string p_name, string p_value, bool p_execute_security)
+        {
+            string v_name;
+            int k;
+            bool achou;
+
+            v_name = p_name.ToUpper();
+
+            k = 0;
+            achou = false;
+            while (k < this.v_parameters.Count && !achou)
+            {
+                if (this.v_parameters[k].v_name == v_name)
+                    achou = true;
+                else
+                    k++;
+            }
+
+            if (achou)
+            {
+                if (p_value == null)
+                {
+                    this.v_parameters[k].v_value = null;
+                    this.v_parameters[k].v_null = true;
+                }
+                else
+                {
+                    if (p_execute_security)
+                    {
+                        switch (this.v_parameters[k].v_type)
+                        {
+                            case Spartacus.Database.Type.QUOTEDSTRING:
+                                this.v_parameters[k].v_value = RemoveUnwantedCharsQuoted(p_value);
+                                break;
+                            case Spartacus.Database.Type.UNDEFINED:
+                                this.v_parameters[k].v_value = p_value;
+                                break;
+                            default:
+                                this.v_parameters[k].v_value = RemoveUnwantedChars(p_value);
+                                break;
+                        }
+                    }
+                    else
+                        this.v_parameters[k].v_value = p_value;
+                    this.v_parameters[k].v_null = false;
+                }
+            }
+            else
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
+        }
+
+        /// <summary>
+        /// Atribui o valor do Parâmetro de nome <paramref name="p_name"/>.
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do Parâmetro que vai ter o valor atribuído.
+        /// </param>
         /// <param name='p_null'>
         /// Indica se o valor do Parâmetro deve ser NULL ou não.
         /// </param>
@@ -809,6 +873,54 @@ namespace Spartacus.Database
                             this.v_parameters[p_index].v_value = RemoveUnwantedChars(p_value);
                             break;
                     }
+                    this.v_parameters[p_index].v_null = false;
+                }
+            }
+            else
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados de índice {0} não existe.", p_index);
+        }
+
+        /// <summary>
+        /// Atribui o valor do Parâmetro de índice <paramref name="p_index"/>.
+        /// </summary>
+        /// <param name='p_index'>
+        /// Índice do Parâmetro que vai ter o valor atribuído.
+        /// </param>
+        /// <param name='p_value'>
+        /// Valor a ser atribuído ao Parâmetro.
+        /// </param>
+        /// <param name='p_execute_security'>
+        /// Se deve tratar caracteres estranhos no Execute ou não.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetValue(int p_index, string p_value, bool p_execute_security)
+        {
+            if (p_index >= 0 && p_index < this.v_parameters.Count)
+            {
+                if (p_value == null)
+                {
+                    this.v_parameters[p_index].v_value = null;
+                    this.v_parameters[p_index].v_null = true;
+                }
+                else
+                {
+                    if (p_execute_security)
+                    {
+                        switch (this.v_parameters[p_index].v_type)
+                        {
+                            case Spartacus.Database.Type.QUOTEDSTRING:
+                                this.v_parameters[p_index].v_value = RemoveUnwantedCharsQuoted(p_value);
+                                break;
+                            case Spartacus.Database.Type.UNDEFINED:
+                                this.v_parameters[p_index].v_value = p_value;
+                                break;
+                            default:
+                                this.v_parameters[p_index].v_value = RemoveUnwantedChars(p_value);
+                                break;
+                        }
+                    }
+                    else
+                        this.v_parameters[p_index].v_value = p_value;
                     this.v_parameters[p_index].v_null = false;
                 }
             }
