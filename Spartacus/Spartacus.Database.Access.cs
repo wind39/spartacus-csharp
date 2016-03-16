@@ -66,8 +66,8 @@ namespace Spartacus.Database
         {
             this.v_service = p_file;
 
-            ikvm.runtime.Startup.addBootClassPathAssemby(System.Reflection.Assembly.Load("ucanaccess-complete"));
-            java.lang.Class.forName("net.ucanaccess.jdbc.UcanaccessDriver, ucanaccess-complete, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+            ikvm.runtime.Startup.addBootClassPathAssemby(System.Reflection.Assembly.Load("UCanAccess"));
+            java.lang.Class.forName("net.ucanaccess.jdbc.UcanaccessDriver, UCanAccess, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
         }
 
         /// <summary>

@@ -4997,27 +4997,6 @@
             <param name="p_directoryname">Nome do diretório.</param>
             <param name="p_filter">String que pode conter vários filtros separados por '|'.</param>
             <param name="p_searchoption">Opção de busca.</param></member>
-        <member name="T:Spartacus.Database.Configuration">
-            <summary>
-            Classe Configuration.
-            Permite instanciar um banco de dados a partir de uma configuração.
-            </summary></member>
-        <member name="F:Spartacus.Database.Configuration.v_database">
-            <summary>
-            Objeto de conexão com o banco de dados.
-            </summary></member>
-        <member name="M:Spartacus.Database.Configuration.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Configuration" />.
-            </summary>
-            <param name="p_type">Tipo.</param>
-            <param name="p_provider">Provider.</param>
-            <param name="p_host">Servidor.</param>
-            <param name="p_port">Porta.</param>
-            <param name="p_service">Serviço.</param>
-            <param name="p_user">Usuário.</param>
-            <param name="p_password">Senha.</param>
-            <param name="p_integrated_security">Segurança integrada.</param></member>
         <member name="T:Spartacus.Utils.ErrorEventArgs">
             <summary>
             Classe ErrorEventArgs.

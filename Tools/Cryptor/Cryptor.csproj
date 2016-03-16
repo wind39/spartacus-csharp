@@ -43,4 +43,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="bin\Debug\Cryptor.exe" />
+    <None Include="bin\Debug\Cryptor.exe.mdb" />
+    <None Include="bin\Debug\Spartacus.dll" />
+    <None Include="bin\Debug\Spartacus.dll.mdb" />
+    <None Include="bin\Release\Cryptor.exe" />
+    <None Include="bin\Release\Cryptor.exe.mdb" />
+    <None Include="bin\Release\Spartacus.dll" />
+    <None Include="bin\Release\Spartacus.dll.mdb" />
+  </ItemGroup>
 </Project>

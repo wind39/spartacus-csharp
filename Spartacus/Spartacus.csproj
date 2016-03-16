@@ -69,21 +69,21 @@
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>lib\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="ucanaccess-complete">
-      <HintPath>lib\ucanaccess-complete.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>lib\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime">
-      <HintPath>lib\IKVM.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="Mono.Security">
       <HintPath>lib\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>lib\access\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>lib\access\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>lib\access\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ucanaccess-complete">
+      <HintPath>lib\access\UCanAccess.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +112,6 @@
     <Compile Include="Spartacus.Database.Sqlite.cs" />
     <Compile Include="Spartacus.Database.Postgresql.cs" />
     <Compile Include="Spartacus.Utils.FileArray.cs" />
-    <Compile Include="Spartacus.Database.Configuration.cs" />
     <Compile Include="Spartacus.Utils.ErrorEvent.cs" />
     <Compile Include="Spartacus.Utils.Excel.cs" />
     <Compile Include="Spartacus.ThirdParty.SejExcel.cs" />
@@ -963,7 +962,6 @@
     <None Include="dist\merge_release.sh" />
     <None Include="dist\merge_debug.sh" />
     <None Include="dist\Spartacus.dll" />
-    <None Include="dist\Spartacus.dll.mdb" />
     <None Include="icon\spartacus_128x128.png" />
     <None Include="icon\spartacus_24x24.png" />
     <None Include="icon\spartacus_256x256.png" />
@@ -972,26 +970,27 @@
     <None Include="icon\spartacus_512x512.png" />
     <None Include="dist\Spartacus.nuspec" />
     <None Include="lib\Oracle.ManagedDataAccess.dll" />
-    <None Include="lib\IKVM.OpenJDK.Beans.dll" />
-    <None Include="lib\IKVM.OpenJDK.Charsets.dll" />
-    <None Include="lib\IKVM.OpenJDK.Corba.dll" />
-    <None Include="lib\IKVM.OpenJDK.Core.dll" />
-    <None Include="lib\IKVM.OpenJDK.Jdbc.dll" />
-    <None Include="lib\IKVM.OpenJDK.Management.dll" />
-    <None Include="lib\IKVM.OpenJDK.Media.dll" />
-    <None Include="lib\IKVM.OpenJDK.Misc.dll" />
-    <None Include="lib\IKVM.OpenJDK.Naming.dll" />
-    <None Include="lib\IKVM.OpenJDK.Remoting.dll" />
-    <None Include="lib\IKVM.OpenJDK.Security.dll" />
-    <None Include="lib\IKVM.OpenJDK.SwingAWT.dll" />
-    <None Include="lib\IKVM.OpenJDK.Text.dll" />
-    <None Include="lib\IKVM.OpenJDK.Util.dll" />
-    <None Include="lib\IKVM.OpenJDK.XML.API.dll" />
-    <None Include="lib\IKVM.OpenJDK.XML.Bind.dll" />
-    <None Include="lib\IKVM.OpenJDK.XML.Parse.dll" />
-    <None Include="lib\IKVM.Runtime.dll" />
-    <None Include="lib\ucanaccess-complete.dll" />
     <None Include="lib\Mono.Security.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Core.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Jdbc.dll" />
+    <None Include="lib\access\IKVM.Runtime.dll" />
+    <None Include="lib\access\UCanAccess.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Beans.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Charsets.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Corba.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Management.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Media.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Misc.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Naming.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Remoting.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Security.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.SwingAWT.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Text.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.Util.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.XML.API.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.XML.Bind.dll" />
+    <None Include="lib\access\IKVM.OpenJDK.XML.Parse.dll" />
+    <None Include="dist\Spartacus.dll.mdb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

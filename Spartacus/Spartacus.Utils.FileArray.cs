@@ -98,8 +98,6 @@ namespace Spartacus.Utils
             k = 1;
             foreach (string v_directoryname in p_directorynames)
             {
-                System.Console.WriteLine("Entrou " + v_directoryname);
-
                 v_filenames = this.FilterList(v_directoryname, p_filter, System.IO.SearchOption.TopDirectoryOnly);
 
                 foreach (string v_filename in v_filenames)
