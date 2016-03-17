@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.6:  Spartacus.Database.Parameter.Text: Se valor do parâmetro for vazio e for tipo texto, retorna duas aspas simples ao invés de null
 0.41.5:  Removida classe Spartacus.Database.Configuration, para não obrigar a ter na mesma pasta os arquivos IKVM
 0.41.4:  Spartacus.Database: Método SetExecuteSecurity, que configura se deve tratar caracteres especiais no Execute ou não
 0.41.3:  Corrigido bug no método Spartacus.Database.SqlServer.InsertBlock

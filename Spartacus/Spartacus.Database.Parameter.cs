@@ -127,10 +127,34 @@ namespace Spartacus.Database
         /// </summary>
         public string Text()
         {
-            if (!this.v_null)
+            if (this.v_null || this.v_value == null)
+                return "null";
+            else
             {
-                if (this.v_value == null || this.v_value.Trim() == "")
-                    return "null";
+                if (this.v_value.Trim() == "")
+                {
+                    switch (this.v_type)
+                    {
+                        case Spartacus.Database.Type.INTEGER:
+                            return "null";
+                        case Spartacus.Database.Type.REAL:
+                            return "null";
+                        case Spartacus.Database.Type.BOOLEAN:
+                            return "''";
+                        case Spartacus.Database.Type.CHAR:
+                            return "''";
+                        case Spartacus.Database.Type.DATE:
+                            return "null";
+                        case Spartacus.Database.Type.STRING:
+                            return "''";
+                        case Spartacus.Database.Type.QUOTEDSTRING:
+                            return "''";
+                        case Spartacus.Database.Type.UNDEFINED:
+                            return this.v_value.Trim();
+                        default:
+                            return "null";
+                    }
+                }
                 else
                 {
                     switch (this.v_type)
@@ -159,8 +183,6 @@ namespace Spartacus.Database
                     }
                 }
             }
-            else
-                return "null";
         }
     }
 }
