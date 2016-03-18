@@ -112,6 +112,23 @@ namespace Spartacus.Database
             this.v_parameters.Add(new Spartacus.Database.Parameter(p_name.ToUpper(), p_type));
         }
 
+        /// <summary>
+        /// Adiciona um Parâmetro à lista de Parâmetros.
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do Parâmetro dentro do Comando SQL.
+        /// </param>
+        /// <param name='p_type'>
+        /// Tipo de dados do Parâmetro.
+        /// </param>
+        /// <param name='p_datemask'>
+        /// Máscara de Data, usado se caso o parâmetro for do tipo DATE.
+        /// </param>
+        public void AddParameter(string p_name, Spartacus.Database.Type p_type, string p_datemask)
+        {
+            this.v_parameters.Add(new Spartacus.Database.Parameter(p_name.ToUpper(), p_type, p_datemask));
+        }
+
 		/// <summary>
 		/// Remove de uma string todos os caracteres com acentuação ou proibidos para a inserção SQL.
 		/// </summary>
@@ -951,16 +968,16 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Atribui um formato de data específico ao Parâmetro de nome <paramref name="p_name"/>.
+        /// Atribui uma máscara de data ao Parâmetro de nome <paramref name="p_name"/>.
         /// </summary>
         /// <param name='p_name'>
         /// Nome do Parâmetro.
         /// </param>
-        /// <param name='p_dateformat'>
-        /// Formato específico de data.
+        /// <param name='p_datemask'>
+        /// Máscara específica de data.
         /// </param>
         /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
-        public void SetDateFormat(string p_name, string p_dateformat)
+        public void SetDateMask(string p_name, string p_datemask)
         {
             string v_name;
             int k;
@@ -979,7 +996,7 @@ namespace Spartacus.Database
             }
 
             if (achou)
-                this.v_parameters [k].v_dateformat = p_dateformat;
+                this.v_parameters [k].v_datemask = p_datemask;
             else
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
         }

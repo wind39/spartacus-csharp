@@ -1669,6 +1669,19 @@
             <param name="p_type">
             Tipo de dados do Parâmetro.
             </param></member>
+        <member name="M:Spartacus.Database.Command.AddParameter(System.String,Spartacus.Database.Type,System.String)">
+            <summary>
+            Adiciona um Parâmetro à lista de Parâmetros.
+            </summary>
+            <param name="p_name">
+            Nome do Parâmetro dentro do Comando SQL.
+            </param>
+            <param name="p_type">
+            Tipo de dados do Parâmetro.
+            </param>
+            <param name="p_datemask">
+            Máscara de Data, usado se caso o parâmetro for do tipo DATE.
+            </param></member>
         <member name="M:Spartacus.Database.Command.RemoveUnwantedChars(System.String)">
             <summary>
             Remove de uma string todos os caracteres com acentuação ou proibidos para a inserção SQL.
@@ -1775,15 +1788,15 @@
             Indica se o valor do Parâmetro deve ser NULL ou não.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
-        <member name="M:Spartacus.Database.Command.SetDateFormat(System.String,System.String)">
+        <member name="M:Spartacus.Database.Command.SetDateMask(System.String,System.String)">
             <summary>
-            Atribui um formato de data específico ao Parâmetro de nome <paramref name="p_name" />.
+            Atribui uma máscara de data ao Parâmetro de nome <paramref name="p_name" />.
             </summary>
             <param name="p_name">
             Nome do Parâmetro.
             </param>
-            <param name="p_dateformat">
-            Formato específico de data.
+            <param name="p_datemask">
+            Máscara específica de data.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.SetLocale(System.String,Spartacus.Database.Locale)">
@@ -2642,9 +2655,9 @@
             <summary>
             Valor atual do Parâmetro.
             </summary></member>
-        <member name="F:Spartacus.Database.Parameter.v_dateformat">
+        <member name="F:Spartacus.Database.Parameter.v_datemask">
             <summary>
-            Formato de Data, usado se caso o Parâmetro for do tipo DATE.
+            Máscara de Data, usado se caso o Parâmetro for do tipo DATE.
             </summary></member>
         <member name="F:Spartacus.Database.Parameter.v_locale">
             <summary>
@@ -2671,6 +2684,19 @@
             </param>
             <param name="p_type">
             Tipo de dados do parâmetro.
+            </param></member>
+        <member name="M:Spartacus.Database.Parameter.#ctor(System.String,Spartacus.Database.Type,System.String)">
+            <summary>
+            Inicializa uma instância da classe <see cref="T:Spartacus.Database.Parameter" /> .
+            </summary>
+            <param name="p_name">
+            Nome do parâmetro dentro do Comando SQL.
+            </param>
+            <param name="p_type">
+            Tipo de dados do parâmetro.
+            </param>
+            <param name="p_datemask">
+            Máscara de Data, usado se caso o parâmetro for do tipo DATE.
             </param></member>
         <member name="M:Spartacus.Database.Parameter.Text">
             <summary>

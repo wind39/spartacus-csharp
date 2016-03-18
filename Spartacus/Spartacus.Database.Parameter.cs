@@ -75,9 +75,9 @@ namespace Spartacus.Database
         public string v_value;
 
         /// <summary>
-        /// Formato de Data, usado se caso o Parâmetro for do tipo DATE.
+        /// Máscara de Data, usado se caso o Parâmetro for do tipo DATE.
         /// </summary>
-        public string v_dateformat;
+        public string v_datemask;
 
         /// <summary>
         /// Localização, representação de números reais.
@@ -113,6 +113,32 @@ namespace Spartacus.Database
         {
             this.v_name = p_name.ToUpper();
             this.v_type = p_type;
+            this.v_datemask = "to_date('#', 'dd/mm/yyyy')";
+
+            this.v_value = "";
+            this.v_null = true;
+
+            this.v_description = "";
+            this.v_lookup = "";
+        }
+
+        /// <summary>
+        /// Inicializa uma instância da classe <see cref="Spartacus.Database.Parameter"/> .
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do parâmetro dentro do Comando SQL.
+        /// </param>
+        /// <param name='p_type'>
+        /// Tipo de dados do parâmetro.
+        /// </param>
+        /// <param name='p_datemask'>
+        /// Máscara de Data, usado se caso o parâmetro for do tipo DATE.
+        /// </param>
+        public Parameter(String p_name, Spartacus.Database.Type p_type, string p_datemask)
+        {
+            this.v_name = p_name.ToUpper();
+            this.v_type = p_type;
+            this.v_datemask = p_datemask;
 
             this.v_value = "";
             this.v_null = true;
@@ -171,7 +197,7 @@ namespace Spartacus.Database
                         case Spartacus.Database.Type.CHAR:
                             return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.DATE:
-                            return "to_date('" + this.v_value.Trim() + "', '" + this.v_dateformat.Trim() + "')";
+                            return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
                         case Spartacus.Database.Type.STRING:
                             return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.QUOTEDSTRING:

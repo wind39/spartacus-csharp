@@ -389,7 +389,7 @@ namespace Spartacus.Reporting
             string v_name = null;
             Spartacus.Database.Type v_type = Spartacus.Database.Type.STRING;
             Spartacus.Database.Locale v_locale = Spartacus.Database.Locale.EUROPEAN;
-            string v_dateformat = null;
+            string v_datemask = null;
             string v_description = null;
             string v_lookup = null;
 
@@ -446,8 +446,8 @@ namespace Spartacus.Reporting
                                     break;
                             }
                             break;
-                        case "dateformat":
-                            v_dateformat = p_reader.ReadString();
+                        case "datemask":
+                            v_datemask = p_reader.ReadString();
                             break;
                         case "description":
                             v_description = p_reader.ReadString();
@@ -466,7 +466,7 @@ namespace Spartacus.Reporting
                 this.v_cmd.SetLocale(v_name, v_locale);
             else
                 if (v_type == Spartacus.Database.Type.DATE)
-                    this.v_cmd.SetDateFormat(v_name, v_dateformat);
+                    this.v_cmd.SetDateMask(v_name, v_datemask);
             this.v_cmd.SetDescription(v_name, v_description);
             this.v_cmd.SetLookup(v_name, v_lookup);
         }
