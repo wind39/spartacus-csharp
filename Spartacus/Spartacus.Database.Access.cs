@@ -593,10 +593,10 @@ namespace Spartacus.Database
                     if (this.v_timeout > -1)
                         this.v_cmd.setQueryTimeout(this.v_timeout);
 
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
@@ -625,10 +625,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
@@ -667,10 +667,10 @@ namespace Spartacus.Database
                     if (this.v_timeout > -1)
                         this.v_cmd.setQueryTimeout(this.v_timeout);
 
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
@@ -699,10 +699,10 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    v_block = "begin;\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "commit;";
+                    v_block = "insert into " + p_table + " values \n";
+                    v_block += p_rows[0];
+                    for (int k = 1; k < p_rows.Count; k++)
+                        v_block += ", \n" + p_rows[k];
 
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
