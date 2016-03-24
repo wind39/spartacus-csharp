@@ -82,7 +82,7 @@
     <Reference Include="IKVM.Runtime">
       <HintPath>lib\access\IKVM.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="ucanaccess-complete">
+    <Reference Include="UCanAccess">
       <HintPath>lib\access\UCanAccess.dll</HintPath>
     </Reference>
   </ItemGroup>
