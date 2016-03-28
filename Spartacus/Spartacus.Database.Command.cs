@@ -1002,6 +1002,40 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Atribui um formato específico de data à máscara do Parâmetro de nome <paramref name="p_name"/>.
+        /// </summary>
+        /// <param name='p_name'>
+        /// Nome do Parâmetro.
+        /// </param>
+        /// <param name='p_dateformat'>
+        /// Formato específico de data.
+        /// </param>
+        /// <exception cref="Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception>
+        public void SetDateFormat(string p_name, string p_dateformat)
+        {
+            string v_name;
+            int k;
+            bool achou;
+
+            v_name = p_name.ToUpper();
+
+            k = 0;
+            achou = false;
+            while (k < this.v_parameters.Count && !achou)
+            {
+                if (this.v_parameters [k].v_name == v_name)
+                    achou = true;
+                else
+                    k++;
+            }
+
+            if (achou)
+                this.v_parameters [k].v_datemask = "to_date('#', '" + p_dateformat + "')";
+            else
+                throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
+        }
+
+        /// <summary>
         /// Atribui uma localização, ou seja, uma representação de número real, ao Parâmetro de nome <paramref name="p_name"/>.
         /// </summary>
         /// <param name='p_name'>

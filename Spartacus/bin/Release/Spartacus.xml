@@ -1799,6 +1799,17 @@
             Máscara específica de data.
             </param>
             <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
+        <member name="M:Spartacus.Database.Command.SetDateFormat(System.String,System.String)">
+            <summary>
+            Atribui um formato específico de data à máscara do Parâmetro de nome <paramref name="p_name" />.
+            </summary>
+            <param name="p_name">
+            Nome do Parâmetro.
+            </param>
+            <param name="p_dateformat">
+            Formato específico de data.
+            </param>
+            <exception cref="T:Spartacus.Database.Exception">Exceção acontece quando o parâmetro não existir.</exception></member>
         <member name="M:Spartacus.Database.Command.SetLocale(System.String,Spartacus.Database.Locale)">
             <summary>
             Atribui uma localização, ou seja, uma representação de número real, ao Parâmetro de nome <paramref name="p_name" />.

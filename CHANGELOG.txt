@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.9:  Spartacus.Utils.FileExplorer: Corrigido bug de proteção de diretórios e arquivos.
+         Spartacus.Database.Parameter: Suporte a SetDateFormat, utilizando máscara padrão.
 0.41.8:  Spartacus.Database.Access: Corrigindo InsertBlock
 0.41.7:  Spartacus.Database.Parameter: Alterado campo v_dateformat para v_datemask
 0.41.6:  Spartacus.Database.Parameter.Text: Se valor do parâmetro for vazio e for tipo texto, retorna duas aspas simples ao invés de null

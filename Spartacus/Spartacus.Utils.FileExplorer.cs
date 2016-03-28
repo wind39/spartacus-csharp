@@ -334,7 +334,7 @@ namespace Spartacus.Utils
 
                                 v_directory = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.DIRECTORY, v_item, this.v_pathseparator, v_directoryinfo.LastWriteTime);
 
-                                if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                                if (this.v_currentlevel < this.v_protectedminlevel)
                                     v_directory.v_protected = true;
 
                                 if (v_directory.v_hidden)
@@ -382,8 +382,26 @@ namespace Spartacus.Utils
 
                     v_file = new Spartacus.Utils.File(k, 0, Spartacus.Utils.FileType.FILE, v_item, this.v_pathseparator, v_fileinfo.LastWriteTime, v_fileinfo.Length);
 
-                    if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel || this.v_showpatterntype == ShowPatternType.SHOWALLPROTECTED)
-                        v_file.v_protected = true;
+                    switch (this.v_showpatterntype)
+                    {
+                        case Spartacus.Utils.ShowPatternType.SHOWALL:
+                            if (v_item.Contains(this.v_protectpattern) || this.v_currentlevel < this.v_protectedminlevel)
+                                v_file.v_protected = true;
+                            break;
+                        case Spartacus.Utils.ShowPatternType.SHOWALLEXCEPTPATTERN:
+                            if (this.v_currentlevel < this.v_protectedminlevel)
+                                v_file.v_protected = true;
+                            break;
+                        case Spartacus.Utils.ShowPatternType.SHOWONLYPATTERN:
+                            if (this.v_currentlevel < this.v_protectedminlevel)
+                                v_file.v_protected = true;
+                            break;
+                        case Spartacus.Utils.ShowPatternType.SHOWALLPROTECTED:
+                            v_file.v_protected = true;
+                            break;
+                        default:
+                            break;
+                    }
 
                     if (v_file.v_hidden)
                     {
