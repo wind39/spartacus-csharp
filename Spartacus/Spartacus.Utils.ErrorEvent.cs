@@ -146,6 +146,36 @@ namespace Spartacus.Utils
         /// <summary>
         /// Dispara o evento de Erro.
         /// </summary>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        public void FireEvent(string p_message)
+        {
+            if (this.ErrorEvent != null)
+            {
+                this.ErrorEventArgs.v_message = p_message;
+
+                this.ErrorEvent(this, this.ErrorEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Erro.
+        /// </summary>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        /// <param name="p_stacktrace">Stacktrace atual do processo.</param>
+        public void FireEvent(string p_message, string p_stacktrace)
+        {
+            if (this.ErrorEvent != null)
+            {
+                this.ErrorEventArgs.v_message = p_message;
+                this.ErrorEventArgs.v_stacktrace = p_stacktrace;
+
+                this.ErrorEvent(this, this.ErrorEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Erro.
+        /// </summary>
         /// <param name="p_process">Nome do processo.</param>
         /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
         /// <param name="p_message">Mensagem atual do processo.</param>
@@ -177,20 +207,6 @@ namespace Spartacus.Utils
                 this.ErrorEventArgs.v_subprocess = p_subprocess;
                 this.ErrorEventArgs.v_message = p_message;
                 this.ErrorEventArgs.v_stacktrace = p_stacktrace;
-
-                this.ErrorEvent(this, this.ErrorEventArgs);
-            }
-        }
-
-        /// <summary>
-        /// Dispara o evento de Erro.
-        /// </summary>
-        /// <param name="p_message">Mensagem atual do processo.</param>
-        public void FireEvent(string p_message)
-        {
-            if (this.ErrorEvent != null)
-            {
-                this.ErrorEventArgs.v_message = p_message;
 
                 this.ErrorEvent(this, this.ErrorEventArgs);
             }

@@ -1464,6 +1464,10 @@
             <summary>
             Contador de número de elementos processados até o momento.
             </summary></member>
+        <member name="F:Spartacus.Utils.ProgressEventArgs.v_total">
+            <summary>
+            Número total de elementos a serem processados.
+            </summary></member>
         <member name="F:Spartacus.Utils.ProgressEventArgs.v_verbose">
             <summary>
             Informa se o processo deve mostrar suas mensagens ao usuário ou não.
@@ -1519,6 +1523,12 @@
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
             <param name="p_index">Índice da instância.</param></member>
+        <member name="M:Spartacus.Utils.ProgressEventClass.FireEvent(System.Double,System.String)">
+            <summary>
+            Dispara o evento de Progresso.
+            </summary>
+            <param name="p_percentage">Percentual de execução do processo.</param>
+            <param name="p_message">Mensagem atual do processo.</param></member>
         <member name="M:Spartacus.Utils.ProgressEventClass.FireEvent(System.String,System.String,System.Double,System.String)">
             <summary>
             Dispara o evento de Progresso.
@@ -1532,6 +1542,12 @@
             Dispara o evento de Progresso.
             </summary>
             <param name="p_counter">Número de elementos processados até o momento.</param></member>
+        <member name="M:Spartacus.Utils.ProgressEventClass.FireEvent(System.UInt32,System.UInt32)">
+            <summary>
+            Dispara o evento de Progresso.
+            </summary>
+            <param name="p_counter">Número de elementos processados até o momento.</param>
+            <param name="p_total">Número total de elementos a serem processados.</param></member>
         <member name="T:Spartacus.Utils.WarningEventArgs">
             <summary>
             Classe WarningEventArgs.
@@ -1609,6 +1625,17 @@
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
             <param name="p_index">Índice da instância.</param></member>
+        <member name="M:Spartacus.Utils.WarningEventClass.FireEvent(System.String)">
+            <summary>
+            Dispara o evento de Aviso.
+            </summary>
+            <param name="p_message">Mensagem atual do processo.</param></member>
+        <member name="M:Spartacus.Utils.WarningEventClass.FireEvent(System.String,System.String)">
+            <summary>
+            Dispara o evento de Aviso.
+            </summary>
+            <param name="p_message">Mensagem atual do processo.</param>
+            <param name="p_stacktrace">Stacktrace atual do processo.</param></member>
         <member name="M:Spartacus.Utils.WarningEventClass.FireEvent(System.String,System.String,System.String)">
             <summary>
             Dispara o evento de Aviso.
@@ -5111,6 +5138,17 @@
             </summary>
             <param name="p_verbose">Se o processo deve mostrar suas mensagens ao usuário ou não.</param>
             <param name="p_index">Índice da instância.</param></member>
+        <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String)">
+            <summary>
+            Dispara o evento de Erro.
+            </summary>
+            <param name="p_message">Mensagem atual do processo.</param></member>
+        <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String,System.String)">
+            <summary>
+            Dispara o evento de Erro.
+            </summary>
+            <param name="p_message">Mensagem atual do processo.</param>
+            <param name="p_stacktrace">Stacktrace atual do processo.</param></member>
         <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String,System.String,System.String)">
             <summary>
             Dispara o evento de Erro.
@@ -5126,11 +5164,6 @@
             <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
             <param name="p_message">Mensagem atual do processo.</param>
             <param name="p_stacktrace">Stacktrace atual do processo.</param></member>
-        <member name="M:Spartacus.Utils.ErrorEventClass.FireEvent(System.String)">
-            <summary>
-            Dispara o evento de Erro.
-            </summary>
-            <param name="p_message">Mensagem atual do processo.</param></member>
         <member name="T:Spartacus.Utils.Excel">
             <summary>
             Classe Excel.

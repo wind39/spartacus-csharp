@@ -59,6 +59,11 @@ namespace Spartacus.Utils
         public uint v_counter;
 
         /// <summary>
+        /// Número total de elementos a serem processados.
+        /// </summary>
+        public uint v_total;
+
+        /// <summary>
         /// Informa se o processo deve mostrar suas mensagens ao usuário ou não.
         /// </summary>
         public bool v_verbose;
@@ -151,6 +156,22 @@ namespace Spartacus.Utils
         /// <summary>
         /// Dispara o evento de Progresso.
         /// </summary>
+        /// <param name="p_percentage">Percentual de execução do processo.</param>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        public void FireEvent(double p_percentage, string p_message)
+        {
+            if (this.ProgressEvent != null)
+            {
+                this.ProgressEventArgs.v_percentage = p_percentage;
+                this.ProgressEventArgs.v_message = p_message;
+
+                this.ProgressEvent(this, this.ProgressEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Progresso.
+        /// </summary>
         /// <param name="p_process">Nome do processo.</param>
         /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
         /// <param name="p_percentage">Percentual de execução do processo.</param>
@@ -177,6 +198,22 @@ namespace Spartacus.Utils
             if (this.ProgressEvent != null)
             {
                 this.ProgressEventArgs.v_counter = p_counter;
+
+                this.ProgressEvent(this, this.ProgressEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Progresso.
+        /// </summary>
+        /// <param name="p_counter">Número de elementos processados até o momento.</param>
+        /// <param name="p_total">Número total de elementos a serem processados.</param>
+        public void FireEvent(uint p_counter, uint p_total)
+        {
+            if (this.ProgressEvent != null)
+            {
+                this.ProgressEventArgs.v_counter = p_counter;
+                this.ProgressEventArgs.v_total = p_counter;
 
                 this.ProgressEvent(this, this.ProgressEventArgs);
             }

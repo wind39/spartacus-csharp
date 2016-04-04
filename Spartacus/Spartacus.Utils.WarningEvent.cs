@@ -146,6 +146,37 @@ namespace Spartacus.Utils
         /// <summary>
         /// Dispara o evento de Aviso.
         /// </summary>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        public void FireEvent(string p_message)
+        {
+            if (this.WarningEvent != null)
+            {
+                this.WarningEventArgs.v_message = p_message;
+                this.WarningEventArgs.v_stacktrace = "";
+
+                this.WarningEvent(this, this.WarningEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Aviso.
+        /// </summary>
+        /// <param name="p_message">Mensagem atual do processo.</param>
+        /// <param name="p_stacktrace">Stacktrace atual do processo.</param>
+        public void FireEvent(string p_message, string p_stacktrace)
+        {
+            if (this.WarningEvent != null)
+            {
+                this.WarningEventArgs.v_message = p_message;
+                this.WarningEventArgs.v_stacktrace = p_stacktrace;
+
+                this.WarningEvent(this, this.WarningEventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Dispara o evento de Aviso.
+        /// </summary>
         /// <param name="p_process">Nome do processo.</param>
         /// <param name="p_subprocess">Nome do subprocesso, método ou rotina.</param>
         /// <param name="p_message">Mensagem atual do processo.</param>

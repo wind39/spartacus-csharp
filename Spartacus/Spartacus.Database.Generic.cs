@@ -485,7 +485,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
@@ -550,7 +550,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
@@ -616,7 +616,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
@@ -705,7 +705,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
@@ -797,7 +797,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {
@@ -890,7 +890,7 @@ namespace Spartacus.Database
                     {
                         this.Execute(v_insert);
                         v_transfered++;
-                        p_progress.FireEvent(v_transfered);
+                        p_progress.FireEvent(v_transfered, (uint) v_excel.v_set.Tables[0].Rows.Count);
                     }
                     catch (Spartacus.Database.Exception e)
                     {

@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.10: Spartacus.Utils: Novas sobrecargas para FireEvent
 0.41.9:  Spartacus.Utils.FileExplorer: Corrigido bug de proteção de diretórios e arquivos.
          Spartacus.Database.Parameter: Suporte a SetDateFormat, utilizando máscara padrão.
 0.41.8:  Spartacus.Database.Access: Corrigindo InsertBlock
