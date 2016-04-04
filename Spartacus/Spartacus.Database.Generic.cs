@@ -652,9 +652,10 @@ namespace Spartacus.Database
         /// <returns>Número de linhas transferidas.</returns>
         /// <param name="p_filename">Nome do arquivo de origem.</param>
         /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_datatype">Tipo de dados padrão.</param>
         /// <param name="p_progress">Evento de progresso.</param>
         /// <param name="p_error">Evento de erro.</param>
-        public uint TransferFromFile(string p_filename, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        public uint TransferFromFile(string p_filename, string p_newtable, string p_datatype, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
             Spartacus.Database.Command v_cmd;
             Spartacus.Utils.Excel v_excel = null;
@@ -671,9 +672,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ",";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ")";
                 }
                 try
                 {
@@ -744,9 +745,10 @@ namespace Spartacus.Database
         /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
         /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
         /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_datatype">Tipo de dados padrão.</param>
         /// <param name="p_progress">Evento de progresso.</param>
         /// <param name="p_error">Evento de erro.</param>
-        public uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        public uint TransferFromFile(string p_filename, char p_separator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, string p_datatype, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
             Spartacus.Database.Command v_cmd;
             Spartacus.Utils.Excel v_excel = null;
@@ -763,9 +765,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ",";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ")";
                 }
                 try
                 {
@@ -837,9 +839,10 @@ namespace Spartacus.Database
         /// <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
         /// <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
         /// <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
+        /// <param name="p_datatype">Tipo de dados padrão.</param>
         /// <param name="p_progress">Evento de progresso.</param>
         /// <param name="p_error">Evento de erro.</param>
-        public uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        public uint TransferFromFile(string p_filename, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding, string p_newtable, string p_datatype, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
             Spartacus.Database.Command v_cmd;
             Spartacus.Utils.Excel v_excel = null;
@@ -856,9 +859,9 @@ namespace Spartacus.Database
                 for (int k = 0; k < v_excel.v_set.Tables[0].Columns.Count; k++)
                 {
                     if (k < v_excel.v_set.Tables[0].Columns.Count-1)
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text,";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ",";
                     else
-                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " text)";
+                        v_createtable += v_excel.v_set.Tables[0].Columns[k].ColumnName.ToLower() + " " + p_datatype + ")";
                 }
                 try
                 {
