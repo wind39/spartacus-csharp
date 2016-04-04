@@ -213,7 +213,7 @@ namespace Spartacus.Utils
             if (this.ProgressEvent != null)
             {
                 this.ProgressEventArgs.v_counter = p_counter;
-                this.ProgressEventArgs.v_total = p_counter;
+                this.ProgressEventArgs.v_total = p_total;
 
                 this.ProgressEvent(this, this.ProgressEventArgs);
             }
