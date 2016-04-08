@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014,2015 William Ivanski
+Copyright (c) 2014-2016 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -163,6 +163,109 @@ namespace Spartacus.Database
         /// <param name='p_tablename'>
         /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
         /// </param>
+        /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
+        public override System.Data.DataTable Query(string p_sql, string p_tablename)
+        {
+            System.Data.DataTable v_table = null;
+            System.Data.DataRow v_row;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.Query: " + p_sql);
+            #endif
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    return v_table;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_sql;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_table = new System.Data.DataTable(p_tablename);
+                    for (int i = 0; i < v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = v_table.NewRow();
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row[i] = this.v_reader[i].ToString();
+                        v_table.Rows.Add(v_row);
+                    }
+
+                    return v_table;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name='p_sql'>
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <param name='p_tablename'>
+        /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+        /// </param>
         /// <param name='p_progress'>Evento de progresso da execução da consulta.</param>
         /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
         public override System.Data.DataTable Query(string p_sql, string p_tablename, Spartacus.Utils.ProgressEventClass p_progress)
@@ -170,6 +273,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
             uint v_counter = 0;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.Query: " + p_sql);
+            #endif
 
             p_progress.FireEvent(v_counter);
 
@@ -264,105 +371,6 @@ namespace Spartacus.Database
         }
 
         /// <summary>
-        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="System.Data.DataTable"/>.
-        /// </summary>
-        /// <param name='p_sql'>
-        /// Código SQL a ser consultado no banco de dados.
-        /// </param>
-        /// <param name='p_tablename'>
-        /// Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
-        /// </param>
-        /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
-        public override System.Data.DataTable Query(string p_sql, string p_tablename)
-        {
-            System.Data.DataTable v_table = null;
-            System.Data.DataRow v_row;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader[i].ToString();
-                        v_table.Rows.Add(v_row);
-                    }
-
-                    return v_table;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader[i].ToString();
-                        v_table.Rows.Add(v_row);
-                    }
-
-                    return v_table;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable"/>.
         /// Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
         /// </summary>
@@ -385,6 +393,10 @@ namespace Spartacus.Database
         {
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.Query: " + p_sql);
+            #endif
 
             try
             {
@@ -447,6 +459,10 @@ namespace Spartacus.Database
         public override string QueryHtml(string p_sql, string p_id, string p_options)
         {
             string v_html;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.QueryHtml: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {
@@ -569,6 +585,10 @@ namespace Spartacus.Database
         /// </param>
         public override void Execute(string p_sql)
         {
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.Execute: " + p_sql);
+            #endif
+
             if (this.v_con == null)
             {
                 try
@@ -647,6 +667,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
@@ -685,6 +709,10 @@ namespace Spartacus.Database
                         else
                             v_block += p_rows[k] + ";\n";
                     }
+
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    #endif
 
                     if (this.v_execute_security)
                         this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
@@ -731,6 +759,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
@@ -770,6 +802,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
                     else
@@ -795,6 +831,10 @@ namespace Spartacus.Database
         public override string ExecuteScalar(string p_sql)
         {
             object v_tmp;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Postgresql.ExecuteScalar: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {

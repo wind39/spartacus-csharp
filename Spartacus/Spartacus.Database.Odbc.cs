@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014,2015 William Ivanski
+Copyright (c) 2014-2016 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -133,6 +133,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
 
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.Query: " + p_sql);
+            #endif
+
             if (this.v_con == null)
             {
                 try
@@ -233,6 +237,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
             uint v_counter = 0;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.Query: " + p_sql);
+            #endif
 
             p_progress.FireEvent(v_counter);
 
@@ -350,6 +358,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
 
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.Query: " + p_sql);
+            #endif
+
             try
             {
                 if (this.v_reader == null)
@@ -411,6 +423,10 @@ namespace Spartacus.Database
         public override string QueryHtml(string p_sql, string p_id, string p_options)
         {
             string v_html;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.QueryHtml: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {
@@ -533,6 +549,10 @@ namespace Spartacus.Database
         /// </param>
         public override void Execute(string p_sql)
         {
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.Execute: " + p_sql);
+            #endif
+
             if (this.v_con == null)
             {
                 try
@@ -611,6 +631,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Odbc.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
@@ -649,6 +673,10 @@ namespace Spartacus.Database
                         else
                             v_block += p_rows[k] + ";\n";
                     }
+
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Odbc.InsertBlock: " + v_block);
+                    #endif
 
                     if (this.v_execute_security)
                         this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
@@ -695,6 +723,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Odbc.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd = new System.Data.Odbc.OdbcCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
@@ -734,6 +766,10 @@ namespace Spartacus.Database
                             v_block += p_rows[k] + ";\n";
                     }
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Odbc.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
                     else
@@ -759,6 +795,10 @@ namespace Spartacus.Database
         public override string ExecuteScalar(string p_sql)
         {
             object v_tmp;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.ExecuteScalar: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {

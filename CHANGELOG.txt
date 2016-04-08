@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2014,2015 William Ivanski
+Copyright (c) 2014-2016 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.12: Início implementação Spartacus.Database.Pollydb
+         Removido Spartacus.Database.Generic.TransferFromFile
 0.41.11: Spartacus.Database.TransferFromFile: Incluído parâmetro para tipo padrão de dados na criação da tabela
 0.41.10: Spartacus.Utils: Novas sobrecargas para FireEvent
 0.41.9:  Spartacus.Utils.FileExplorer: Corrigido bug de proteção de diretórios e arquivos.

@@ -1,8 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.SqlServer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Generic.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.SqlServer.cs" Line="88" Column="17" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Connection.cs" Line="72" Column="14" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Command.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.DataReader.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.CsvScan.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Scan.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="448" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

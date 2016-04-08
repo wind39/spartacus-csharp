@@ -1,7 +1,7 @@
 ﻿/*
 The MIT License (MIT)
 
-Copyright (c) 2014,2015 William Ivanski
+Copyright (c) 2014-2016 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -121,6 +121,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
 
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.Query: " + p_sql);
+            #endif
+
             if (this.v_con == null)
             {
                 try
@@ -222,6 +226,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
             uint v_counter = 0;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.Query: " + p_sql);
+            #endif
 
             p_progress.FireEvent(v_counter);
 
@@ -340,6 +348,10 @@ namespace Spartacus.Database
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
 
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.Query: " + p_sql);
+            #endif
+
             try
             {
                 if (this.v_reader == null)
@@ -402,6 +414,10 @@ namespace Spartacus.Database
         {
             java.sql.ResultSetMetaData v_resmd;
             string v_html;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.QueryHtml: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {
@@ -524,6 +540,10 @@ namespace Spartacus.Database
         /// </param>
         public override void Execute(string p_sql)
         {
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.Execute: " + p_sql);
+            #endif
+
             if (this.v_con == null)
             {
                 try
@@ -598,6 +618,10 @@ namespace Spartacus.Database
                     for (int k = 1; k < p_rows.Count; k++)
                         v_block += ", \n" + p_rows[k];
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Access.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
                     else
@@ -629,6 +653,10 @@ namespace Spartacus.Database
                     v_block += p_rows[0];
                     for (int k = 1; k < p_rows.Count; k++)
                         v_block += ", \n" + p_rows[k];
+
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Access.InsertBlock: " + v_block);
+                    #endif
 
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
@@ -672,6 +700,10 @@ namespace Spartacus.Database
                     for (int k = 1; k < p_rows.Count; k++)
                         v_block += ", \n" + p_rows[k];
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Access.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
                     else
@@ -704,6 +736,10 @@ namespace Spartacus.Database
                     for (int k = 1; k < p_rows.Count; k++)
                         v_block += ", \n" + p_rows[k];
 
+                    #if DEBUG
+                    Console.WriteLine("Spartacus.Database.Access.InsertBlock: " + v_block);
+                    #endif
+
                     if (this.v_execute_security)
                         this.v_cmd.execute(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block));
                     else
@@ -728,6 +764,10 @@ namespace Spartacus.Database
         public override string ExecuteScalar(string p_sql)
         {
             object v_tmp;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Access.ExecuteScalar: " + p_sql);
+            #endif
 
             if (this.v_con == null)
             {

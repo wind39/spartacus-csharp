@@ -2292,89 +2292,6 @@
             </summary>
             <returns>Matriz com os nomes e tipos de colunas.</returns>
             <param name="p_query">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_separator">Separador de campos do arquivo CSV.</param>
-            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
-            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_separator">Separador de campos do arquivo CSV.</param>
-            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
-            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
-            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
-            <param name="p_insert">Comando de inserção para inserir cada linha no banco de dados atual.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
-            <param name="p_datatype">Tipo de dados padrão.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Boolean,System.Text.Encoding,System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_separator">Separador de campos do arquivo CSV.</param>
-            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
-            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
-            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
-            <param name="p_datatype">Tipo de dados padrão.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.Char,System.Char,System.Boolean,System.Text.Encoding,System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
-            <summary>
-            Transfere dados de um arquivo Excel para o banco de dados atual.
-            Conexão com o banco atual precisa estar aberta.
-            Não pára a execução se der um problema num comando de inserção específico.
-            </summary>
-            <returns>Número de linhas transferidas.</returns>
-            <param name="p_filename">Nome do arquivo de origem.</param>
-            <param name="p_separator">Separador de campos do arquivo CSV.</param>
-            <param name="p_delimitator">Delimitador de campos do arquivo CSV.</param>
-            <param name="p_header">Se deve considerar a primeira linha como cabeçalho ou não.</param>
-            <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
-            <param name="p_newtable">Nome da nova tabela a ser criada no banco de dados.</param>
-            <param name="p_datatype">Tipo de dados padrão.</param>
-            <param name="p_progress">Evento de progresso.</param>
-            <param name="p_error">Evento de erro.</param></member>
         <member name="M:Spartacus.Database.Generic.TransferToFile(System.String,System.String)">
             <summary>
             Transfere dados do banco de dados atual para um arquivo do Excel.
@@ -4792,6 +4709,17 @@
             <summary>
             Abre a conexão com o banco de dados.
             </summary></member>
+        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
@@ -4803,17 +4731,6 @@
             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
-            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String)">
-            <summary>
-            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
-            </summary>
-            <param name="p_sql">
-            Código SQL a ser consultado no banco de dados.
-            </param>
-            <param name="p_tablename">
-            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
-            </param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
         <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
@@ -37960,6 +37877,329 @@
             <returns>Vetor com os nomes de colunas.</returns>
             <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Access.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="T:Spartacus.PollyDB.Exception">
+            <summary>
+            Classe Spartacus.PollyDB.Exception.
+            Herda da classe <see cref="T:System.Exception" />.
+            </summary></member>
+        <member name="F:Spartacus.PollyDB.Exception.v_message">
+            <summary>
+            Mensagem de Exceção.
+            </summary></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.Exception)">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_inner">
+            Exceção interna, encapsulada por esta exceção.
+            </param></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_message">
+            Mensagem descritiva da exceção.
+            </param></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Object[])">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_format">
+            Formato da mensagem descritiva da exceção.
+            </param>
+            <param name="p_args">
+            Argumentos da mensagem descritiva da exceção.
+            </param></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Exception)">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_message">
+            Mensagem descritiva da exceção.
+            </param>
+            <param name="p_inner">
+            Exceção interna, encapsulada por esta exceção.
+            </param></member>
+        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Exception,System.Object[])">
+            <summary>
+            Inicializa uma nova instância da classe.
+            </summary>
+            <param name="p_format">
+            Formato da mensagem descritiva da exceção.
+            </param>
+            <param name="p_inner">
+            Exceção interna, encapsulada por esta exceção.
+            </param>
+            <param name="p_args">
+            Argumentos da mensagem descritiva da exceção.
+            </param></member>
+        <member name="T:Spartacus.Database.Pollydb">
+            <summary>
+            Classe Spartacus.Database.Pollydb.
+            Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+            Utiliza o Spartacus.PollyDB .NET Provider para acessar um SGBD PollyDB.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_con">
+            <summary>
+            Conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_cmd">
+            <summary>
+            Comando para conexão com o banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_reader">
+            <summary>
+            Leitor de dados do banco de dados.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_currentrow">
+            <summary>
+            Linha atual da QueryBlock.
+            </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.#ctor(System.String)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Pollydb" />.
+            </summary>
+            <param name="p_file">
+            Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.CreateDatabase(System.String)">
+            <summary>
+            Cria um banco de dados.
+            </summary>
+            <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.CreateDatabase">
+            <summary>
+            Cria um banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.Open">
+            <summary>
+            Abre a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.Query(System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Pollydb.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_progress">Evento de progresso da execução da consulta.</param>
+            <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
+        <member name="M:Spartacus.Database.Pollydb.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_startrow">
+            Número da linha inicial.
+            </param>
+            <param name="p_endrow">
+            Número da linha final.
+            </param>
+            <param name="p_hasmoredata">
+            Indica se ainda há mais dados a serem lidos.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.QueryHtml(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_id">
+            ID da tabela no HTML.
+            </param>
+            <param name="p_options">
+            Opções da tabela no HTML.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.QueryStoredProc(System.String,System.String,System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+            Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param>
+            <param name="p_tablename">
+            Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+            </param>
+            <param name="p_outparam">
+            Nome do parâmetro de saída que deve ser um REF CURSOR.
+            </param>
+            <remarks>Não suportado em todos os SGBDs.</remarks></member>
+        <member name="M:Spartacus.Database.Pollydb.Execute(System.String)">
+            <summary>
+            Executa um código SQL no banco de dados.
+            </summary>
+            <param name="p_sql">
+            Código SQL a ser executado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Insere um bloco de linhas em uma determinada tabela.
+            </summary>
+            <param name="p_table">
+            Nome da tabela a serem inseridas as linhas.
+            </param>
+            <param name="p_rows">
+            Lista de linhas a serem inseridas na tabela.
+            </param>
+            <param name="p_columnnames">
+            Nomes de colunas da tabela, entre parênteses, separados por vírgula.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.ExecuteScalar(System.String)">
+            <summary>
+            Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+            </summary>
+            <returns>
+            string com o dado de retorno.
+            </returns>
+            <param name="p_sql">
+            Código SQL a ser consultado no banco de dados.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.Close">
+            <summary>
+            Fecha a conexão com o banco de dados.
+            </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.DropDatabase(System.String)">
+            <summary>
+            Deleta um banco de dados.
+            </summary>
+            <param name="p_name">Nome do banco de dados a ser deletado.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.DropDatabase">
+            <summary>
+            Deleta o banco de dados conectado atualmente.
+            </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.GetColumnNamesAndTypes(System.String)">
             <summary>
             Lista os nomes e tipos de colunas de uma determinada consulta.
             </summary>
