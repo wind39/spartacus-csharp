@@ -1395,6 +1395,9 @@ namespace Spartacus.Utils
             int v_height, v_width;
             int v_in_tmp;
             double v_re_tmp;
+            string[] v_co1, v_co2;
+            int r, c;
+            bool v_achou;
 
             v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
@@ -1425,10 +1428,10 @@ namespace Spartacus.Utils
                             TO|SUMIF(#0,2,#1)|N10|O12;N12
                             CF|#DBE5F1|A11:AD11|
                             CT|#000000|A35:A37|
-                            TA|A:AD|11|30
                             IM|imagem|0:0|80;240
                             TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                             FC|$W2=2|#D3D3D3|A:AD
+                            CO|8,9,10|cfid2,cfrazao2,cfpais2|
                         */
 
                         v_worksheet.Cells ["A1"].Value = "";
@@ -1447,6 +1450,7 @@ namespace Spartacus.Utils
                                 switch (v_options[0])
                                 {
                                     case "CX":
+                                        v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + v_options[2]].AutoFilter = true;
                                         // passando informação para demais configurações
                                         v_datastart = int.Parse(v_options[2]);
                                         // passando informação para SejExcel
@@ -1569,17 +1573,6 @@ namespace Spartacus.Utils
                                     case "CT":
                                         v_worksheet.Cells[v_options[2]].Style.Font.Color.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
                                         break;
-                                    case "TA":
-                                        v_row = int.Parse(v_options[2]);
-                                        v_worksheet.View.FreezePanes(v_row + 1, 1);
-                                        v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_table.TableName);
-                                        v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
-                                        v_worksheet.Tables[0].ShowFilter = true;
-                                        // passando informação para demais configurações
-                                        v_datastart = int.Parse(v_options[2]);
-                                        // passando informação para SejExcel
-                                        v_worksheet.Cells["A1"].Value = v_options[2];
-                                        break;
                                     case "TD":
                                         v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
                                         v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
@@ -1592,6 +1585,27 @@ namespace Spartacus.Utils
                                         v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                         v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
                                         v_rule.Formula = v_options[1];
+                                        break;
+                                    case "CO":
+                                        v_co1 = v_options[1].Split(',');
+                                        v_co2 = v_options[2].Split(',');
+                                        if (v_co1.Length == v_co2.Length)
+                                        {
+                                            for (c = 0; c < v_co1.Length; c++)
+                                            {
+                                                r = 0;
+                                                v_achou = false;
+                                                while (r < v_table.Rows.Count && ! v_achou)
+                                                {
+                                                    if (v_table.Rows[r][v_co2[c]].ToString() != "")
+                                                        v_achou = true;
+                                                    else
+                                                        r++;
+                                                }
+                                                if (!v_achou)
+                                                    v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
+                                            }
+                                        }
                                         break;
                                     default:
                                         break;
@@ -1638,6 +1652,9 @@ namespace Spartacus.Utils
             int v_width, v_height;
             int v_in_tmp;
             double v_re_tmp;
+            string[] v_co1, v_co2;
+            int r, c;
+            bool v_achou;
 
             v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
 
@@ -1681,10 +1698,10 @@ namespace Spartacus.Utils
                                         TO|SUMIF(#0,2,#1)|N10|O12;N12
                                         CF|#DBE5F1|A11:AD11|
                                         CT|#000000|A35:A37|
-                                        TA|A:AD|11|30
                                         IM|imagem|0:0|80;240
                                         TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                                         FC|$W2=2|#D3D3D3|A:AD
+                                        CO|8,9,10|cfid2,cfrazao2,cfpais2|
                                      */
 
                                     v_line = string.Empty;
@@ -1744,10 +1761,17 @@ namespace Spartacus.Utils
                                                 case "CX":
                                                     v_row = int.Parse(v_options[2]);
                                                     for (int i = 1; i <= v_row; i++)
+                                                    {
                                                         v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
+                                                        v_worksheet.Row(i).Hidden = v_worksheet_src.Row(i).Hidden;
+                                                    }
                                                     v_col = int.Parse(v_options[3]);
                                                     for (int j = 1; j <= v_col; j++)
+                                                    {
                                                         v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
+                                                        v_worksheet.Column(j).Hidden = v_worksheet_src.Column(j).Hidden;
+                                                    }
+                                                    v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + v_options[2]].AutoFilter = true;
                                                     // passando informação para demais configurações
                                                     v_datastart = int.Parse(v_options[2]);
                                                     // passando informação para SejExcel
@@ -1876,28 +1900,6 @@ namespace Spartacus.Utils
                                                 case "CT":
                                                     v_worksheet.Cells[v_options[2]].Style.Font.Color.SetColor(System.Drawing.ColorTranslator.FromHtml(v_options[1]));
                                                     break;
-                                                case "TA":
-                                                    v_row = int.Parse(v_options[2]);
-                                                    for (int i = 1; i <= v_row; i++)
-                                                    {
-                                                        v_worksheet.Row(i).Height = v_worksheet_src.Row(i).Height;
-                                                        v_worksheet.Row(i).Hidden = v_worksheet_src.Row(i).Hidden;
-                                                    }
-                                                    v_col = int.Parse(v_options[3]);
-                                                    for (int j = 1; j <= v_col; j++)
-                                                    {
-                                                        v_worksheet.Column(j).Width = v_worksheet_src.Column(j).Width;
-                                                        v_worksheet.Column(j).Hidden = v_worksheet_src.Column(j).Hidden;
-                                                    }
-                                                    v_worksheet.View.FreezePanes(v_row + 1, 1);
-                                                    v_worksheet.Tables.Add(v_worksheet.Cells[v_options[1].Split(':')[0] + v_options[2] + ":" + v_options[1].Split(':')[1] + (v_table.Rows.Count + v_row).ToString()], v_worksheet_src.Name);
-                                                    v_worksheet.Tables[0].TableStyle = OfficeOpenXml.Table.TableStyles.None;
-                                                    v_worksheet.Tables[0].ShowFilter = true;
-                                                    // passando informação para demais configurações
-                                                    v_datastart = int.Parse(v_options[2]);
-                                                    // passando informação para SejExcel
-                                                    v_worksheet.Cells["A1"].Value = v_options[2];
-                                                    break;
                                                 case "TD":
                                                     v_worksheet.Cells[v_options[3]].LoadFromDataTable(this.CreatePivotTable(v_table, v_options[1], v_options[2]), true, OfficeOpenXml.Table.TableStyles.Medium23);
                                                     v_worksheet.Tables[v_table.TableName.Replace(' ', '_') + "_PIVOT"].ShowTotal = true;
@@ -1910,6 +1912,27 @@ namespace Spartacus.Utils
                                                     v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                                     v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
                                                     v_rule.Formula = v_options[1];
+                                                    break;
+                                                case "CO":
+                                                    v_co1 = v_options[1].Split(',');
+                                                    v_co2 = v_options[2].Split(',');
+                                                    if (v_co1.Length == v_co2.Length)
+                                                    {
+                                                        for (c = 0; c < v_co1.Length; c++)
+                                                        {
+                                                            r = 0;
+                                                            v_achou = false;
+                                                            while (r < v_table.Rows.Count && ! v_achou)
+                                                            {
+                                                                if (v_table.Rows[r][v_co2[c]].ToString() != "")
+                                                                    v_achou = true;
+                                                                else
+                                                                    r++;
+                                                            }
+                                                            if (!v_achou)
+                                                                v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
+                                                        }
+                                                    }
                                                     break;
                                                 default:
                                                     break;

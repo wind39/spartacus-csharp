@@ -943,6 +943,11 @@
     <Compile Include="Spartacus.PollyDB.CsvScan.cs" />
     <Compile Include="Spartacus.Database.Pollydb.cs" />
     <Compile Include="Spartacus.PollyDB.DataReader.cs" />
+    <Compile Include="Spartacus.PollyDB.Expression.cs" />
+    <Compile Include="Spartacus.PollyDB.Parser.cs" />
+    <Compile Include="Spartacus.PollyDB.Column.cs" />
+    <Compile Include="Spartacus.PollyDB.Relation.cs" />
+    <Compile Include="Spartacus.PollyDB.Query.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -998,6 +1003,9 @@
     <None Include="lib\access\IKVM.OpenJDK.XML.Bind.dll" />
     <None Include="lib\access\IKVM.OpenJDK.XML.Parse.dll" />
     <None Include="dist\Spartacus.dll.mdb" />
+    <None Include="lib\NCalc.dll" />
+    <None Include="icon\pollydb.png" />
+    <None Include="icon\pollydb_extended.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

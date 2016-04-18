@@ -91,5 +91,27 @@ namespace Spartacus.PollyDB
             this.v_files.Clear();
             this.v_open = false;
         }
+
+        public bool Exists(string p_file)
+        {
+            Spartacus.Utils.File v_file;
+            bool v_achou = false;
+            int k;
+
+            if (this.v_open)
+            {
+                k = 0;
+                while (k < this.v_files.Count && !v_achou)
+                {
+                    v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, this.v_files[k].ToLower());
+                    if (v_file.v_name == p_file)
+                        v_achou = true;
+                    else
+                        k++;
+                }
+            }
+
+            return v_achou;
+        }
     }
 }

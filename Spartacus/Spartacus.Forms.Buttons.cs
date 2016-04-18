@@ -233,5 +233,15 @@ namespace Spartacus.Forms
 
             this.v_offsetx = v_button.Location.X - 10;
         }
+
+        /// <summary>
+        /// Habilita ou desabilita um botão da lista de botões.
+        /// </summary>
+        /// <param name="p_index">Posição do botão dentro da lista de botões.</param>
+        /// <param name="p_enabled">Se o botão deve estar habilitado ou não.</param>
+        public void EnableButton(int p_index, bool p_enabled)
+        {
+            ((System.Windows.Forms.Button)this.v_list[p_index]).Enabled = p_enabled;
+        }
     }
 }

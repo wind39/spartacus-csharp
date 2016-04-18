@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.13: Spartacus.Forms: Implementados métodos Spartacus.Forms.Buttons.EnableButton e Spartacus.Forms.Window.Run
+         Spartacus.Utils.Excel: Filtros nas colunas agora funcionam corretamente. Removida tag TA. Incluída tag CO
 0.41.12: Início implementação Spartacus.Database.Pollydb
          Removido Spartacus.Database.Generic.TransferFromFile
 0.41.11: Spartacus.Database.TransferFromFile: Incluído parâmetro para tipo padrão de dados na criação da tabela

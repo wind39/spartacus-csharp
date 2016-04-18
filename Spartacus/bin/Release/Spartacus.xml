@@ -36653,6 +36653,12 @@
             <param name="p_delegate">Método que deve ser disparado quando o usuário clicar no botão.</param>
             <param name="p_width">Largura do botão.</param>
             <param name="p_enabled">Se o botão deve começar habilitado ou não.</param></member>
+        <member name="M:Spartacus.Forms.Buttons.EnableButton(System.Int32,System.Boolean)">
+            <summary>
+            Habilita ou desabilita um botão da lista de botões.
+            </summary>
+            <param name="p_index">Posição do botão dentro da lista de botões.</param>
+            <param name="p_enabled">Se o botão deve estar habilitado ou não.</param></member>
         <member name="T:Spartacus.Forms.Container">
             <summary>
             Classe Container.
@@ -37568,6 +37574,10 @@
         <member name="M:Spartacus.Forms.Window.OnResize(System.Object,System.EventArgs)">
             <summary>
             Evento disparado ao ocorrer o evento de redimensionamento da Janela.
+            </summary></member>
+        <member name="M:Spartacus.Forms.Window.Run">
+            <summary>
+            Inicializa o sistema gráfico System.Windows.Forms.
             </summary></member>
         <member name="M:Spartacus.Forms.Window.Resize(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>

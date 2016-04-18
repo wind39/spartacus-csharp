@@ -18,6 +18,7 @@ Spartacus contains this managed libraries:
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - Npgsql (https://github.com/npgsql/npgsql)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
+  - NCalc (http://ncalc.codeplex.com/)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)

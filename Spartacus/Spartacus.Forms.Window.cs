@@ -78,6 +78,15 @@ namespace Spartacus.Forms
         }
 
         /// <summary>
+        /// Inicializa o sistema gráfico System.Windows.Forms.
+        /// </summary>
+        public void Run()
+        {
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.Run((System.Windows.Forms.Form) this.v_control);
+        }
+
+        /// <summary>
         /// Redimensiona a Janela atual.
         /// Também redimensiona todos os Containers filhos.
         /// </summary>

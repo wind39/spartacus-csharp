@@ -88,8 +88,7 @@ namespace Spartacus.Tools.ReportManager
                 this.v_mainbuttons.AddButton(System.Configuration.ConfigurationManager.AppSettings["main.delete"].ToString(), this.OnMainDeleteClick, this.v_editable);
                 this.v_mainwindow.Add(this.v_mainbuttons);
 
-                System.Windows.Forms.Application.EnableVisualStyles();
-                System.Windows.Forms.Application.Run((System.Windows.Forms.Form) this.v_mainwindow.v_control);
+                this.v_mainwindow.Run();
             }
             catch(Spartacus.Database.Exception exc)
             {
@@ -375,9 +374,9 @@ namespace Spartacus.Tools.ReportManager
         private void OnParamCancelClick(object sender, System.EventArgs e)
         {
             this.v_paramwindow.Hide();
-            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[1]).Enabled = this.v_editable;
-            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[2]).Enabled = this.v_editable;
-            ((System.Windows.Forms.Button)this.v_mainbuttons.v_list[3]).Enabled = this.v_editable;
+            this.v_mainbuttons.EnableButton(1, this.v_editable);
+            this.v_mainbuttons.EnableButton(2, this.v_editable);
+            this.v_mainbuttons.EnableButton(3, this.v_editable);
         }
 
         private void OnProgress(Spartacus.Utils.ProgressEventClass sender, Spartacus.Utils.ProgressEventArgs e)
