@@ -26,29 +26,39 @@ using System;
 
 namespace Spartacus.PollyDB
 {
+    public enum JoinType
+    {
+        FROM,
+        INNER,
+        FULL
+    }
+
     public class Relation
     {
+        public Spartacus.PollyDB.JoinType v_type;
         public string v_name;
         public string v_alias;
 
         public System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> v_columns;
 
-        public Relation(string p_name, string p_alias)
+
+        public Relation(Spartacus.PollyDB.JoinType p_type, string p_name, string p_alias)
         {
+            this.v_type = p_type;
             this.v_name = p_name;
             this.v_alias = p_alias;
 
-            Console.WriteLine("Relation {0} {1}", this.v_name, this.v_alias);
+            this.v_columns = new System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column>();
         }
 
-        public void AddColumn(string p_name, string p_alias)
+        public void AddColumn(string p_name)
         {
             Spartacus.PollyDB.Column c;
 
             try
             {
-                c = new Spartacus.PollyDB.Column(this.v_alias, p_name, p_alias);
-                this.v_columns.Add(p_alias, c);
+                c = new Spartacus.PollyDB.Column(this.v_alias, p_name);
+                this.v_columns.Add(p_name, c);
             }
             catch (System.Exception)
             {

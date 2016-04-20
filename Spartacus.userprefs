@@ -1,11 +1,18 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.PollyDB.Parser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.Excel.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.PollyDB.Parser.cs" Line="212" Column="80" />
-      <File FileName="Spartacus/Spartacus.Database.Query.cs" Line="35" Column="23" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Column.cs" Line="46" Column="52" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Relation.cs" Line="55" Column="14" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Parser.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Query.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Column.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Relation.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Condition.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Command.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.DataReader.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.CsvScan.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Scan.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.NestedLoop.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="487" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

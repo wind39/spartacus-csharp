@@ -56,26 +56,40 @@ namespace Spartacus.PollyDB
         public Spartacus.PollyDB.DataReader ExecuteReader()
         {
             Spartacus.PollyDB.DataReader v_reader;
+            Spartacus.PollyDB.Parser v_parser;
             Spartacus.PollyDB.Scan v_scan;
+            Spartacus.PollyDB.NestedLoop v_loop;
+
+            v_parser = new Spartacus.PollyDB.Parser(this.Connection);
+
+            if (v_parser.Parse(this.CommandText) != Spartacus.PollyDB.CommandType.SELECT)
+                throw new Spartacus.PollyDB.Exception("Wrong type of command.");
 
             v_reader = new Spartacus.PollyDB.DataReader(this.Connection);
 
-            v_scan = new Spartacus.PollyDB.CsvScan(this.CommandText.Replace("select * from ", ""), this.Connection);
-            v_scan.Select(null);
-            //TODO: tratar lista de colunas
-            v_scan.StartRead(v_scan.v_all_columns);
-            v_reader.AddScan(v_scan);
+            foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Relation> kvp in v_parser.v_query.v_relations)
+            {
+                v_scan = new Spartacus.PollyDB.CsvScan(kvp.Value.v_name, kvp.Value.v_alias, this.Connection);
+                v_scan.Open(kvp.Value.v_columns);
+                v_reader.AddScan(v_scan);
+            }
+
+            v_loop = new Spartacus.PollyDB.NestedLoop(v_reader, v_parser.v_query.v_conditions_expression);
+
+            v_reader.SetIndex(v_loop.GetIndex());
+            v_reader.SetProjection(v_parser.v_query.v_projection);
 
             return v_reader;
         }
 
         public object ExecuteScalar()
         {
-            return null;
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.PollyDB.Command.ExecuteScalar");
         }
 
         public void ExecuteNonQuery()
         {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.PollyDB.Command.ExecuteNonQuery");
         }
     }
 }

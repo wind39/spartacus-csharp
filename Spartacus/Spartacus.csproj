@@ -85,6 +85,9 @@
     <Reference Include="UCanAccess">
       <HintPath>lib\access\UCanAccess.dll</HintPath>
     </Reference>
+    <Reference Include="NCalc">
+      <HintPath>lib\NCalc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -948,6 +951,8 @@
     <Compile Include="Spartacus.PollyDB.Column.cs" />
     <Compile Include="Spartacus.PollyDB.Relation.cs" />
     <Compile Include="Spartacus.PollyDB.Query.cs" />
+    <Compile Include="Spartacus.PollyDB.Condition.cs" />
+    <Compile Include="Spartacus.PollyDB.NestedLoop.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

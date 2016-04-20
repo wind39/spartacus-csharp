@@ -30,19 +30,20 @@ namespace Spartacus.PollyDB
     {
         private System.IO.StreamReader r = null;
 
-        public CsvScan(string p_tablename, Spartacus.PollyDB.Connection p_connection)
-            : base(p_tablename, p_connection)
+        public CsvScan(string p_relationname, string p_relationalias, Spartacus.PollyDB.Connection p_connection)
+            : base(p_relationname, p_relationalias, p_connection)
         {
         }
 
-        public override void Select(string p_filter)
+        public override void Open(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns)
         {
             string[] v_line;
-            uint i, j;
+            uint i;
+            int j;
 
             try
             {
-                this.r = new System.IO.StreamReader(this.v_tablename, this.v_connection.v_encoding);
+                this.r = new System.IO.StreamReader(this.v_relationname, this.v_connection.v_encoding);
 
                 i = 0;
                 while (! this.r.EndOfStream)
@@ -54,59 +55,44 @@ namespace Spartacus.PollyDB
                         if (this.v_connection.v_header)
                         {
                             for (j = 0; j < v_line.Length; j++)
-                                this.v_all_columns.Add(v_line[j]);
+                                this.v_all_columns.Add(v_line[j].ToLower());
                         }
                         else
                         {
                             for (j = 0; j < v_line.Length; j++)
                                 this.v_all_columns.Add("col" + j.ToString());
-
-                            //TODO: tratar filtro
+                            
                             this.v_rowids.Add(i);
+                        }
+
+                        foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in p_columns)
+                        {
+                            if (!this.v_all_columns.Contains(kvp.Value.v_name))
+                                throw new Spartacus.PollyDB.Exception("Column '{0}' does not exist in relation '{1}'.", kvp.Value.v_name, kvp.Value.v_relationalias);
+                        }
+
+                        for (j = 0; j < this.v_all_columns.Count; j++)
+                        {
+                            foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in p_columns)
+                            {
+                                if (kvp.Value.v_name == this.v_all_columns[j])
+                                {
+                                    this.v_colids.Add(j);
+                                    this.v_columns.Add(kvp.Value.v_name);
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        //TODO: tratar filtro
                         if (v_line.Length == this.v_all_columns.Count)
                             this.v_rowids.Add(i);
                     }
 
                     i++;
                 }
-            }
-            catch (System.Exception e)
-            {
-                throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.CsvScan.Select: Read error on file {0}.", e, this.v_tablename);
-            }
-            finally
-            {
-                if (this.r != null)
-                {
-                    this.r.Close();
-                    this.r = null;
-                }
-            }
-        }
 
-        public override void StartRead(System.Collections.Generic.List<string> p_columns)
-        {
-            try
-            {
-                //TODO: tratar colunas requeridas que não existem na tabela
-                for (int i = 0; i < p_columns.Count; i++)
-                {
-                    for (int j = 0; j < this.v_all_columns.Count; j++)
-                    {
-                        if (p_columns[i] == this.v_all_columns[j])
-                        {
-                            this.v_colids.Add((uint) j);
-                            this.v_columns.Add(p_columns[i]);
-                        }
-                    }
-                }
-
-                this.r = new System.IO.StreamReader(this.v_tablename, this.v_connection.v_encoding);
+                this.r = new System.IO.StreamReader(this.v_relationname, this.v_connection.v_encoding);
 
                 if (this.v_connection.v_header)
                 {
@@ -115,23 +101,27 @@ namespace Spartacus.PollyDB
                 }
                 else
                     this.v_currentfilerowid = 0;
-                
+
                 this.v_currentrowid = 0;
+            }
+            catch (Spartacus.PollyDB.Exception e)
+            {
+                throw e;
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.CsvScan.StartRead: Read error on file {0}.", e, this.v_tablename);
+                throw new Spartacus.PollyDB.Exception("Read error on file {0}.", e, this.v_relationname);
             }
         }
 
-        public override System.Collections.Generic.List<string> Read()
+        public override System.Collections.Generic.List<string> Read(uint p_row)
         {
             uint v_row;
             string v_tmp = "";
             string[] v_line;
             int j;
 
-            v_row = this.v_rowids[(int) this.v_currentrowid];
+            v_row = this.v_rowids[(int) p_row];
 
             try
             {
@@ -143,7 +133,7 @@ namespace Spartacus.PollyDB
                         this.r = null;
                     }
 
-                    this.r = new System.IO.StreamReader(this.v_tablename, this.v_connection.v_encoding);
+                    this.r = new System.IO.StreamReader(this.v_relationname, this.v_connection.v_encoding);
 
                     if (this.v_connection.v_header)
                     {
@@ -177,7 +167,7 @@ namespace Spartacus.PollyDB
                     else
                     {
                         if (v_line.Length > 1)
-                            throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.CsvScan.Read: Unexpected number of columns. It is {0} and should be {1}. Row: {2}", v_line.Length, this.v_colids.Count, v_tmp);
+                            throw new Spartacus.PollyDB.Exception("Unexpected number of columns. It is {0} and should be {1}. Row: {2}", v_line.Length, this.v_colids.Count, v_tmp);
                     }
                 }
 
@@ -185,16 +175,11 @@ namespace Spartacus.PollyDB
             }
             catch (System.Exception e)
             {
-                throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.CsvScan.Read: Read error on file {0}.", e, this.v_tablename);
+                throw new Spartacus.PollyDB.Exception("Read error on file {0}.", e, this.v_relationname);
             }
         }
 
-        public override void Next()
-        {
-            this.v_currentrowid++;
-        }
-
-        public override void StopRead()
+        public override void Close()
         {
             if (this.r != null)
             {

@@ -30,24 +30,11 @@ namespace Spartacus.PollyDB
     {
         public string v_relationalias;
         public string v_name;
-        public string v_alias;
 
         public Column(string p_relationalias, string p_name)
         {
             this.v_relationalias = p_relationalias;
             this.v_name = p_name;
-            this.v_alias = p_name;
-
-            Console.WriteLine("Coluna {0} {1} {2}", this.v_relationalias, this.v_name, this.v_alias);
-        }
-
-        public Column(string p_relationalias, string p_name, string p_alias)
-        {
-            this.v_relationalias = p_relationalias;
-            this.v_name = p_name;
-            this.v_alias = p_alias;
-
-            Console.WriteLine("Coluna {0} {1} {2}", this.v_relationalias, this.v_name, this.v_alias);
         }
     }
 }

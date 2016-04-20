@@ -29,11 +29,12 @@ namespace Spartacus.PollyDB
     public abstract class Scan
     {
         public Spartacus.PollyDB.Connection v_connection;
-        public string v_tablename;
+        public string v_relationname;
+        public string v_relationalias;
 
         public System.Collections.Generic.List<string> v_all_columns;
         public System.Collections.Generic.List<string> v_columns;
-        public System.Collections.Generic.List<uint> v_colids;
+        public System.Collections.Generic.List<int> v_colids;
 
         public System.Collections.Generic.List<uint> v_rowids;
         public System.Collections.Generic.List<string> v_currentrow;
@@ -41,24 +42,21 @@ namespace Spartacus.PollyDB
         public int v_currentrowid;
         public uint v_currentfilerowid;
 
-        public Scan(string p_tablename, Spartacus.PollyDB.Connection p_connection)
+        public Scan(string p_relationname, string p_relationalias, Spartacus.PollyDB.Connection p_connection)
         {
             this.v_connection = p_connection;
-            this.v_tablename = p_tablename;
+            this.v_relationname = p_relationname;
+            this.v_relationalias = p_relationalias;
             this.v_all_columns = new System.Collections.Generic.List<string>();
             this.v_columns = new System.Collections.Generic.List<string>();
             this.v_rowids = new System.Collections.Generic.List<uint>();
-            this.v_colids = new System.Collections.Generic.List<uint>();
+            this.v_colids = new System.Collections.Generic.List<int>();
         }
 
-        public abstract void Select(string p_filter);
+        public abstract void Open(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns);
 
-        public abstract void StartRead(System.Collections.Generic.List<string> p_columns);
+        public abstract System.Collections.Generic.List<string> Read(uint p_row);
 
-        public abstract System.Collections.Generic.List<string> Read();
-
-        public abstract void Next();
-
-        public abstract void StopRead();
+        public abstract void Close();
     }
 }

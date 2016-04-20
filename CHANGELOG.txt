@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.41.14: Spartacus.PollyDB básico funcional para CSV: select, from, inner join, full join e where
 0.41.13: Spartacus.Forms: Implementados métodos Spartacus.Forms.Buttons.EnableButton e Spartacus.Forms.Window.Run
          Spartacus.Utils.Excel: Filtros nas colunas agora funcionam corretamente. Removida tag TA. Incluída tag CO
 0.41.12: Início implementação Spartacus.Database.Pollydb

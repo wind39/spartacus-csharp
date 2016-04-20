@@ -31,6 +31,7 @@ namespace Spartacus.PollyDB
         public Spartacus.PollyDB.Connection v_connection;
 
         public System.Collections.Generic.List<Spartacus.PollyDB.Scan> v_scanlist;
+        public System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> v_columns;
 
         public int FieldCount
         {
@@ -41,44 +42,54 @@ namespace Spartacus.PollyDB
         }
 
         private uint v_currentrowid;
-        private uint v_totalrows;
 
         private System.Collections.Generic.List<string> v_currentrow;
-        private System.Collections.Generic.List<string> v_columns;
+        private System.Collections.Generic.List<uint[]> v_index;
 
         public DataReader(Spartacus.PollyDB.Connection p_connection)
         {
             this.v_connection = p_connection;
             this.v_scanlist = new System.Collections.Generic.List<Scan>();
-            this.v_columns = new System.Collections.Generic.List<string>();
             this.v_currentrowid = 0;
-            this.v_totalrows = 0;
         }
 
         public void AddScan(Spartacus.PollyDB.Scan p_scan)
         {
             this.v_scanlist.Add(p_scan);
-            this.v_columns.AddRange(p_scan.v_columns);
-            if (p_scan.v_rowids.Count > this.v_totalrows)
-                this.v_totalrows = (uint) p_scan.v_rowids.Count;
+        }
+
+        public void SetIndex(System.Collections.Generic.List<uint[]> p_index)
+        {
+            this.v_index = p_index;
+        }
+
+        public void SetProjection(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns)
+        {
+            this.v_columns = p_columns;
         }
 
         public bool Read()
         {
-            if (this.v_currentrowid < this.v_totalrows)
+            System.Collections.Generic.List<string> v_row;
+
+            if (this.v_currentrowid < this.v_index.Count)
             {
                 this.v_currentrow = new System.Collections.Generic.List<string>();
 
-                for (int k = 0; k < this.v_scanlist.Count; k++)
+                for (int i = 0; i < this.v_scanlist.Count; i++)
                 {
-                    if (this.v_currentrowid < this.v_scanlist[k].v_rowids.Count)
+                    v_row = this.v_scanlist[i].Read(this.v_index[(int)this.v_currentrowid][i]);
+
+                    for (int j = 0; j < v_row.Count; j++)
                     {
-                        this.v_currentrow.AddRange(this.v_scanlist[k].Read());
-                        this.v_scanlist[k].Next();
+                        foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in this.v_columns)
+                        {
+                            if (kvp.Value.v_relationalias == this.v_scanlist[i].v_relationalias &&
+                                kvp.Value.v_name == this.v_scanlist[i].v_columns[j])
+                                this.v_currentrow.Add(v_row[j]);
+                        }
                     }
                 }
-
-                //TODO: reordenar colunas para atender ordem de colunas da query
 
                 this.v_currentrowid++;
 
@@ -95,7 +106,15 @@ namespace Spartacus.PollyDB
 
         public string GetName(int p_column)
         {
-            return this.v_columns[p_column];
+            int k = 0;
+            foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in this.v_columns)
+            {
+                if (k == p_column)
+                    return kvp.Value.v_name;
+                else
+                    k++;
+            }
+            return "";
         }
 
         public string GetDataTypeName(int p_column)
@@ -106,7 +125,7 @@ namespace Spartacus.PollyDB
         public void Close()
         {
             foreach (Spartacus.PollyDB.Scan v_scan in this.v_scanlist)
-                v_scan.StopRead();
+                v_scan.Close();
         }
     }
 }
