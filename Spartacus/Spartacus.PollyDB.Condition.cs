@@ -26,18 +26,27 @@ using System;
 
 namespace Spartacus.PollyDB
 {
+    /// <summary>
+    /// Operador Lógico.
+    /// </summary>
     public enum LogicOperator
     {
         AND,
         OR
     }
 
+    /// <summary>
+    /// Operador de Comparação.
+    /// </summary>
     public enum Operator
     {
         EQ,
         NE
     }
 
+    /// <summary>
+    /// Tipo do Operando.
+    /// </summary>
     public enum OperandType
     {
         CONSTANT_NUMBER,
@@ -45,20 +54,61 @@ namespace Spartacus.PollyDB
         COLUMN
     }
 
+    /// <summary>
+    /// Classe Condition.
+    /// Representa uma Condição de join ou where.
+    /// </summary>
     public class Condition
     {
+        /// <summary>
+        /// Operador Lógico da Condição.
+        /// </summary>
         public Spartacus.PollyDB.LogicOperator v_logic_operator;
 
+        /// <summary>
+        /// Relação do operando da esquerda.
+        /// </summary>
         public string v_leftoperand_relation;
+
+        /// <summary>
+        /// Coluna do operando da esquerda.
+        /// </summary>
         public string v_leftoperand_column;
 
+        /// <summary>
+        /// Operador de Comparação.
+        /// </summary>
         public Spartacus.PollyDB.Operator v_operator;
 
+        /// <summary>
+        /// Tipo do operando da direita.
+        /// </summary>
         public Spartacus.PollyDB.OperandType v_rightoperand_type;
+
+        /// <summary>
+        /// Relação do operando da direita.
+        /// </summary>
         public string v_rightoperand_relation;
+
+        /// <summary>
+        /// Coluna do operando da direita.
+        /// </summary>
         public string v_rightoperand_column;
+
+        /// <summary>
+        /// Constante usada como operando da direita.
+        /// </summary>
         public string v_rightoperand_constant;
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Condition"/>.
+        /// </summary>
+        /// <param name="p_logic_operator">Operador Lógico.</param>
+        /// <param name="p_leftoperand_relation">Relação do operando da esquerda.</param>
+        /// <param name="p_leftoperand_column">Coluna do operando da esquerda.</param>
+        /// <param name="p_operator">Operador de Comparação.</param>
+        /// <param name="p_rightoperand_type">Tipo do operando da direita.</param>
+        /// <param name="p_rightoperand_constant">Constante usada como operando da direita.</param>
         public Condition(
             Spartacus.PollyDB.LogicOperator p_logic_operator,
             string p_leftoperand_relation,
@@ -78,6 +128,16 @@ namespace Spartacus.PollyDB
             this.v_rightoperand_constant = p_rightoperand_constant;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Condition"/>.
+        /// </summary>
+        /// <param name="p_logic_operator">Operador Lógico.</param>
+        /// <param name="p_leftoperand_relation">Relação do operando da esquerda.</param>
+        /// <param name="p_leftoperand_column">Coluna do operando da esquerda.</param>
+        /// <param name="p_operator">Operador de Comparação.</param>
+        /// <param name="p_rightoperand_type">Tipo do operando da direita.</param>
+        /// <param name="p_rightoperand_relation">Relação do operando da direita.</param>
+        /// <param name="p_rightoperand_column">Coluna do operando da direita.</param>
         public Condition(
             Spartacus.PollyDB.LogicOperator p_logic_operator,
             string p_leftoperand_relation,

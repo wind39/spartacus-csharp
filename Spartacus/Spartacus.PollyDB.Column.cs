@@ -26,11 +26,27 @@ using System;
 
 namespace Spartacus.PollyDB
 {
+    /// <summary>
+    /// Classe Column.
+    /// Representa uma coluna de qualquer Relação.
+    /// </summary>
     public class Column
     {
+        /// <summary>
+        /// Apelido da Relação.
+        /// </summary>
         public string v_relationalias;
+
+        /// <summary>
+        /// Nome da Coluna.
+        /// </summary>
         public string v_name;
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Column"/>.
+        /// </summary>
+        /// <param name="p_relationalias">Apelido da Relação.</param>
+        /// <param name="p_name">Nome da Coluna.</param>
         public Column(string p_relationalias, string p_name)
         {
             this.v_relationalias = p_relationalias;

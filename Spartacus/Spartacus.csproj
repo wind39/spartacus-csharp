@@ -88,6 +88,9 @@
     <Reference Include="NCalc">
       <HintPath>lib\NCalc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.SqlServerCe">
+      <HintPath>lib\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -953,6 +956,8 @@
     <Compile Include="Spartacus.PollyDB.Query.cs" />
     <Compile Include="Spartacus.PollyDB.Condition.cs" />
     <Compile Include="Spartacus.PollyDB.NestedLoop.cs" />
+    <Compile Include="Spartacus.Database.Sqlce.cs" />
+    <Compile Include="Spartacus.Database.FbEmbed.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -1011,6 +1016,32 @@
     <None Include="lib\NCalc.dll" />
     <None Include="icon\pollydb.png" />
     <None Include="icon\pollydb_extended.png" />
+    <None Include="lib\sqlce\windows_x64\msvcr90.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlceca40.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlcecompact40.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlceer40EN.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlceme40.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlceqp40.dll" />
+    <None Include="lib\sqlce\windows_x64\sqlcese40.dll" />
+    <None Include="lib\sqlce\windows_x86\msvcr90.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlceca40.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlcecompact40.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlceer40EN.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlceme40.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlceqp40.dll" />
+    <None Include="lib\sqlce\windows_x86\sqlcese40.dll" />
+    <None Include="lib\System.Data.SqlServerCe.dll" />
+    <None Include="lib\fbembed\windows_x86\fbembed.dll" />
+    <None Include="lib\fbembed\windows_x86\icudt30.dll" />
+    <None Include="lib\fbembed\windows_x86\icuin30.dll" />
+    <None Include="lib\fbembed\windows_x86\icuuc30.dll" />
+    <None Include="lib\samples\empty.fdb" />
+    <None Include="lib\samples\empty.mdb" />
+    <None Include="lib\samples\northwind.db" />
+    <None Include="lib\samples\northwind.fdb" />
+    <None Include="lib\samples\northwind.mdb" />
+    <None Include="lib\samples\northwind.sdf" />
+    <None Include="lib\samples\empty.sdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
@@ -1021,5 +1052,10 @@
     <Folder Include="lib\sqlite\linux_x86\" />
     <Folder Include="lib\sqlite\linux_x64\" />
     <Folder Include="lib\access\" />
+    <Folder Include="lib\sqlce\" />
+    <Folder Include="lib\sqlce\windows_x86\" />
+    <Folder Include="lib\sqlce\windows_x64\" />
+    <Folder Include="lib\fbembed\" />
+    <Folder Include="lib\fbembed\windows_x86\" />
   </ItemGroup>
 </Project>

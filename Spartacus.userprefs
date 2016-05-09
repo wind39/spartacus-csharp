@@ -1,18 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Utils.Excel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Sqlce.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.PollyDB.Parser.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Query.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Column.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Relation.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Condition.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Command.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.DataReader.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.CsvScan.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.Scan.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.PollyDB.NestedLoop.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="487" Column="41" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="30" />
+      <File FileName="Spartacus/Spartacus.Database.Sqlce.cs" Line="88" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

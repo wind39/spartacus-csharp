@@ -26,12 +26,30 @@ using System;
 
 namespace Spartacus.PollyDB
 {
+    /// <summary>
+    /// Classe Command.
+    /// Representa um comando a ser executado no SGBD, pela interface ADO.NET.
+    /// </summary>
     public class Command
     {
+        /// <summary>
+        /// Conexão usada pelo comando.
+        /// </summary>
         public Spartacus.PollyDB.Connection Connection;
+
+        /// <summary>
+        /// Texto usado pelo comando.
+        /// </summary>
         public string CommandText;
+
+        /// <summary>
+        /// Timeout do comando em segundos (0 = sem timeout).
+        /// </summary>
         public int CommandTimeout;
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Command"/>.
+        /// </summary>
         public Command()
         {
             this.Connection = null;
@@ -39,6 +57,10 @@ namespace Spartacus.PollyDB
             this.CommandTimeout = 300;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Command"/>.
+        /// </summary>
+        /// <param name="p_sql">Texto SQL.</param>
         public Command(string p_sql)
         {
             this.Connection = null;
@@ -46,6 +68,11 @@ namespace Spartacus.PollyDB
             this.CommandTimeout = 300;
         }
 
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.PollyDB.Command"/>.
+        /// </summary>
+        /// <param name="p_sql">Texto SQL.</param>
+        /// <param name="p_connection">Conexão a ser usada pelo comando.</param>
         public Command(string p_sql, Spartacus.PollyDB.Connection p_connection)
         {
             this.Connection = p_connection;
@@ -53,6 +80,10 @@ namespace Spartacus.PollyDB
             this.CommandTimeout = 300;
         }
 
+        /// <summary>
+        /// Constrói e aplica o plano de execução, retornando um objeto da classe <see cref="Spartacus.PollyDB.DataReader"/>.
+        /// </summary>
+        /// <returns>Objeto de leitura sequencial do resultado da consulta.</returns>
         public Spartacus.PollyDB.DataReader ExecuteReader()
         {
             Spartacus.PollyDB.DataReader v_reader;
@@ -62,6 +93,7 @@ namespace Spartacus.PollyDB
 
             v_parser = new Spartacus.PollyDB.Parser(this.Connection);
 
+            //TODO: suportar outros tipos de comando
             if (v_parser.Parse(this.CommandText) != Spartacus.PollyDB.CommandType.SELECT)
                 throw new Spartacus.PollyDB.Exception("Wrong type of command.");
 
@@ -82,11 +114,18 @@ namespace Spartacus.PollyDB
             return v_reader;
         }
 
+        /// <summary>
+        /// Constrói e aplica o plano de execução, retornando apenas a primeira coluna da primeira linha do resultado.
+        /// </summary>
+        /// <returns>Primeira coluna da primeira linha do resultado.</returns>
         public object ExecuteScalar()
         {
             throw new Spartacus.Utils.NotImplementedException("Spartacus.PollyDB.Command.ExecuteScalar");
         }
 
+        /// <summary>
+        /// Executa um comando DML ou DDL no banco de dados.
+        /// </summary>
         public void ExecuteNonQuery()
         {
             throw new Spartacus.Utils.NotImplementedException("Spartacus.PollyDB.Command.ExecuteNonQuery");
