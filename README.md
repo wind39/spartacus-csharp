@@ -1,5 +1,4 @@
 ![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png)
-[![Stories in Ready](https://badge.waffle.io/wind39/spartacus.svg?label=ready&title=Ready)](http://waffle.io/wind39/spartacus)
 
 Spartacus is a business library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
@@ -18,6 +17,7 @@ Spartacus contains this managed libraries:
   - Firebird .NET Provider (http://www.firebirdsql.org/en/net-provider/)
   - Npgsql (https://github.com/npgsql/npgsql)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
+  - System.Data.SqlServerCe (https://www.nuget.org/packages/Microsoft.SqlServer.Compact/)
   - NCalc (http://ncalc.codeplex.com/)
   
 Spartacus reuse code from this C# projects:
@@ -33,6 +33,8 @@ Spartacus optionally use this libraries:
   - SQLite (https://www.sqlite.org/)
   - UCanAccess (http://ucanaccess.sourceforge.net/site.html)
   - IKVM.NET (http://www.ikvm.net/)
+  - Native MS SQL Server CE (https://www.nuget.org/packages/Microsoft.SqlServer.Compact/)
+  - Firebird Embedded (http://www.firebirdsql.org/manual/ufb-cs-embedded.html)
 
 Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
 
