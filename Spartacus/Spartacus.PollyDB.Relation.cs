@@ -41,7 +41,6 @@ namespace Spartacus.PollyDB
 
         public System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> v_columns;
 
-
         public Relation(Spartacus.PollyDB.JoinType p_type, string p_name, string p_alias)
         {
             this.v_type = p_type;

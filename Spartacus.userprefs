@@ -1,9 +1,18 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/dist/Spartacus.nuspec">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.PollyDB.CsvScan.cs">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="24" Column="30" />
-      <File FileName="Spartacus/dist/Spartacus.nuspec" Line="18" Column="35" />
+      <File FileName="Spartacus/Spartacus.PollyDB.CsvScan.cs" Line="129" Column="18" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Connection.cs" Line="101" Column="30" />
+      <File FileName="Spartacus/Spartacus.Database.Pollydb.cs" Line="92" Column="10" />
+      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="36" Column="6" />
+      <File FileName="Spartacus/Spartacus.PollyDB.DataReader.cs" Line="84" Column="108" />
+      <File FileName="Spartacus/Spartacus.PollyDB.NestedLoop.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Command.cs" Line="106" Column="42" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Parser.cs" Line="177" Column="25" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Query.cs" Line="57" Column="103" />
+      <File FileName="Spartacus/Spartacus.PollyDB.Relation.cs" Line="50" Column="108" />
+      <File FileName="CHANGELOG.txt" Line="25" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

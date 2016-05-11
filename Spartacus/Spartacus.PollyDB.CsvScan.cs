@@ -30,16 +30,31 @@ namespace Spartacus.PollyDB
     {
         private System.IO.StreamReader r = null;
 
+        private System.Text.RegularExpressions.Regex v_regex;
+
         public CsvScan(string p_relationname, string p_relationalias, Spartacus.PollyDB.Connection p_connection)
             : base(p_relationname, p_relationalias, p_connection)
         {
+            this.v_regex = new System.Text.RegularExpressions.Regex(
+                "(?m)" + this.v_connection.v_separator +
+                "(?=[^" + this.v_connection.v_delimitator +
+                "]*" + this.v_connection.v_delimitator +
+                "(?:[^" + this.v_connection.v_delimitator +
+                "\n]*" + this.v_connection.v_delimitator +
+                "[^" + this.v_connection.v_delimitator +
+                "]*" + this.v_connection.v_delimitator +
+                ")*[^" + this.v_connection.v_delimitator +
+                "\n]*$)"
+            );
         }
 
         public override void Open(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns)
         {
+            string v_tmp = "";
             string[] v_line;
             uint i;
             int j;
+            string v_value;
 
             try
             {
@@ -48,14 +63,22 @@ namespace Spartacus.PollyDB
                 i = 0;
                 while (! this.r.EndOfStream)
                 {
-                    v_line = this.r.ReadLine().Split(this.v_connection.v_separator);
+                    v_tmp = this.r.ReadLine();
+                    v_tmp = this.v_regex.Replace(v_tmp, "");
+                    v_line = v_tmp.Split(new char[]{this.v_connection.v_separator});
 
                     if (i == 0)
                     {
                         if (this.v_connection.v_header)
                         {
                             for (j = 0; j < v_line.Length; j++)
-                                this.v_all_columns.Add(v_line[j].ToLower());
+                            {
+                                v_value = v_line[j].ToLower();
+                                if (v_value.StartsWith(this.v_connection.v_delimitator.ToString()) && v_value.EndsWith(this.v_connection.v_delimitator.ToString()))
+                                    this.v_all_columns.Add(v_value.Substring(1, v_value.Length-2));
+                                else
+                                    this.v_all_columns.Add(v_value);
+                            }
                         }
                         else
                         {
@@ -65,21 +88,32 @@ namespace Spartacus.PollyDB
                             this.v_rowids.Add(i);
                         }
 
-                        foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in p_columns)
-                        {
-                            if (!this.v_all_columns.Contains(kvp.Value.v_name))
-                                throw new Spartacus.PollyDB.Exception("Column '{0}' does not exist in relation '{1}'.", kvp.Value.v_name, kvp.Value.v_relationalias);
-                        }
-
-                        for (j = 0; j < this.v_all_columns.Count; j++)
+                        if (p_columns.Count > 0)
                         {
                             foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in p_columns)
                             {
-                                if (kvp.Value.v_name == this.v_all_columns[j])
+                                if (!this.v_all_columns.Contains(kvp.Value.v_name))
+                                    throw new Spartacus.PollyDB.Exception("Column '{0}' does not exist in relation '{1}'.", kvp.Value.v_name, kvp.Value.v_relationalias);
+                            }
+
+                            for (j = 0; j < this.v_all_columns.Count; j++)
+                            {
+                                foreach (System.Collections.Generic.KeyValuePair<string, Spartacus.PollyDB.Column> kvp in p_columns)
                                 {
-                                    this.v_colids.Add(j);
-                                    this.v_columns.Add(kvp.Value.v_name);
+                                    if (kvp.Value.v_name == this.v_all_columns[j])
+                                    {
+                                        this.v_colids.Add(j);
+                                        this.v_columns.Add(kvp.Value.v_name);
+                                    }
                                 }
+                            }
+                        }
+                        else
+                        {
+                            for (j = 0; j < this.v_all_columns.Count; j++)
+                            {
+                                this.v_colids.Add(j);
+                                this.v_columns.Add(this.v_all_columns[j]);
                             }
                         }
                     }
@@ -87,6 +121,8 @@ namespace Spartacus.PollyDB
                     {
                         if (v_line.Length == this.v_all_columns.Count)
                             this.v_rowids.Add(i);
+                        else
+                            throw new Spartacus.PollyDB.Exception("Unexpected number of columns. It is {0} and should be {1}. Row: {2}", v_line.Length, this.v_colids.Count, v_tmp);
                     }
 
                     i++;
@@ -120,6 +156,7 @@ namespace Spartacus.PollyDB
             string v_tmp = "";
             string[] v_line;
             int j;
+            string v_value;
 
             v_row = this.v_rowids[(int) p_row];
 
@@ -155,6 +192,7 @@ namespace Spartacus.PollyDB
                     }
                     while (this.v_currentfilerowid <= v_row);
 
+                    v_tmp = this.v_regex.Replace(v_tmp, "");
                     v_line = v_tmp.Split(this.v_connection.v_separator);
 
                     if (v_line.Length == this.v_all_columns.Count)
@@ -162,7 +200,13 @@ namespace Spartacus.PollyDB
                         this.v_currentrow = new System.Collections.Generic.List<string>();
 
                         for (j = 0; j < this.v_colids.Count; j++)
-                            this.v_currentrow.Add(v_line[this.v_colids[j]]);
+                        {
+                            v_value = v_line[this.v_colids[j]];
+                            if (v_value.StartsWith(this.v_connection.v_delimitator.ToString()) && v_value.EndsWith(this.v_connection.v_delimitator.ToString()))
+                                this.v_currentrow.Add(v_value.Substring(1, v_value.Length-2));
+                            else
+                                this.v_currentrow.Add(v_value);
+                        }
                     }
                     else
                     {

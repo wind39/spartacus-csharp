@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.42.1:  Spartacus.Database.PollyDB: Suporte a select * e tratativa para delimitador em arquivos CSV
 0.42.0:  Spartacus.Database: Suporte a Firebird Embedded e SQL Compact Edition (somente Windows)
 
 0.41.14: Spartacus.PollyDB básico funcional para CSV: select, from, inner join, full join e where

@@ -79,17 +79,10 @@ namespace Spartacus.Database
         public SqlServer(string p_host, string p_port, string p_service, string p_user, string p_password)
             : base(p_host, p_port, p_service, p_user, p_password)
         {
-            if (this.v_integrated_security)
-                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
-                    "Database=" + this.v_service + ";" +
-                    "User ID=" + this.v_user + ";" +
-                    "Password=" + this.v_password + ";" +
-                    "Integrated Security=SSPI";
-            else
-                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
-                    "Database=" + this.v_service + ";" +
-                    "User ID=" + this.v_user + ";" +
-                    "Password=" + this.v_password;
+            this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                "Database=" + this.v_service + ";" +
+                "User ID=" + this.v_user + ";" +
+                "Password=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
@@ -115,17 +108,10 @@ namespace Spartacus.Database
         public SqlServer(string p_host, string p_service, string p_user, string p_password)
             : base(p_host, "1433", p_service, p_user, p_password)
         {
-            if (this.v_integrated_security)
-                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
-                    "Database=" + this.v_service + ";" +
-                    "User ID=" + this.v_user + ";" +
-                    "Password=" + this.v_password + ";" +
-                    "Integrated Security=SSPI";
-            else
-                this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
-                    "Database=" + this.v_service + ";" +
-                    "User ID=" + this.v_user + ";" +
-                    "Password=" + this.v_password;
+            this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
+                "Database=" + this.v_service + ";" +
+                "User ID=" + this.v_user + ";" +
+                "Password=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
@@ -155,9 +141,9 @@ namespace Spartacus.Database
         /// Segurança integrada (suportada apenas na classe SqlServer).
         /// </param>
         public SqlServer(string p_host, string p_port, string p_service, string p_user, string p_password, bool p_integrated_security)
-            : base(p_host, p_port, p_service, p_user, p_password, p_integrated_security)
+            : base(p_host, p_port, p_service, p_user, p_password)
         {
-            if (this.v_integrated_security)
+            if (p_integrated_security)
                 this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
                     "Database=" + this.v_service + ";" +
                     "User ID=" + this.v_user + ";" +
@@ -194,9 +180,9 @@ namespace Spartacus.Database
         /// Segurança integrada (suportada apenas na classe SqlServer).
         /// </param>
         public SqlServer(string p_host, string p_service, string p_user, string p_password, bool p_integrated_security)
-            : base(p_host, "1433", p_service, p_user, p_password, p_integrated_security)
+            : base(p_host, "1433", p_service, p_user, p_password)
         {
-            if (this.v_integrated_security)
+            if (p_integrated_security)
                 this.v_connectionstring = "Server=" + this.v_host + "," + this.v_port + ";" +
                     "Database=" + this.v_service + ";" +
                     "User ID=" + this.v_user + ";" +

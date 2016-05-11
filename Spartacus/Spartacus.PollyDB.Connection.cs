@@ -38,28 +38,78 @@ namespace Spartacus.PollyDB
         public bool v_header;
         public System.Text.Encoding v_encoding;
 
-        public Connection(string p_directory)
+        public Connection(string p_connectionstring)
         {
-            this.v_directory = p_directory;
-            this.v_open = false;
-            this.v_files = new System.Collections.Generic.List<string>();
+            string[] v_split;
+            string[] v_tmp;
 
+            this.v_directory = "";
             this.v_separator = ';';
-            this.v_delimitator = ' ';
+            this.v_delimitator = '"';
             this.v_header = true;
             this.v_encoding = System.Text.Encoding.Default;
-        }
 
-        public Connection(string p_directory, char p_separator, char p_delimitator, bool p_header, System.Text.Encoding p_encoding)
-        {
-            this.v_directory = p_directory;
+            v_split = p_connectionstring.Split(new char[]{';'});
+            foreach (string s in v_split)
+            {
+                v_tmp = s.Split(new char[]{'='});
+                if (v_tmp.Length == 2)
+                {
+                    switch (v_tmp[0])
+                    {
+                        case "Directory":
+                            this.v_directory = v_tmp[1];
+                            break;
+                        case "Separator":
+                            try
+                            {
+                                this.v_separator = char.Parse(v_tmp[1]);
+                            }
+                            catch (System.Exception)
+                            {
+                                throw new Spartacus.Database.Exception("Invalid connection string.");
+                            }
+                            break;
+                        case "Delimitator":
+                            try
+                            {
+                                this.v_delimitator = char.Parse(v_tmp[1]);
+                            }
+                            catch (System.Exception)
+                            {
+                                throw new Spartacus.Database.Exception("Invalid connection string.");
+                            }
+                            break;
+                        case "Header":
+                            try
+                            {
+                                this.v_header = bool.Parse(v_tmp[1]);
+                            }
+                            catch (System.Exception)
+                            {
+                                throw new Spartacus.Database.Exception("Invalid connection string.");
+                            }
+                            break;
+                        case "Encoding":
+                            try
+                            {
+                                this.v_encoding = System.Text.Encoding.GetEncoding(v_tmp[1]);
+                            }
+                            catch (System.Exception)
+                            {
+                                throw new Spartacus.Database.Exception("Invalid connection string.");
+                            }
+                            break;
+                        default:
+                            throw new Spartacus.Database.Exception("Invalid connection string.");
+                    }
+                }
+                else
+                    throw new Spartacus.Database.Exception("Invalid connection string.");
+            }
+
             this.v_open = false;
             this.v_files = new System.Collections.Generic.List<string>();
-
-            this.v_separator = ';';
-            this.v_delimitator = ' ';
-            this.v_header = true;
-            this.v_encoding = System.Text.Encoding.Default;
         }
 
         public void Open()
@@ -80,10 +130,10 @@ namespace Spartacus.PollyDB
                 if (v_files.Count > 0)
                     this.v_open = true;
                 else
-                    throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.Connection.Open: Directory {0} does not contain any supported files.", this.v_directory);
+                    throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.Connection.Open: Directory '{0}' does not contain any supported files.", this.v_directory);
             }
             else
-                throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.Connection.Open: Directory {0} does not exist.", this.v_directory);
+                throw new Spartacus.PollyDB.Exception("Spartacus.PollyDB.Connection.Open: Directory '{0}' does not exist.", this.v_directory);
         }
 
         public void Close()

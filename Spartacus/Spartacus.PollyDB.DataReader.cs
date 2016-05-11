@@ -65,7 +65,27 @@ namespace Spartacus.PollyDB
 
         public void SetProjection(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns)
         {
-            this.v_columns = p_columns;
+            if (p_columns.Count > 0)
+                this.v_columns = p_columns;
+            else
+            {
+                this.v_columns = new System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column>();
+
+                foreach (Spartacus.PollyDB.Scan v_scan in this.v_scanlist)
+                {
+                    foreach (string v_column in v_scan.v_columns)
+                    {
+                        try
+                        {
+                            this.v_columns.Add(v_column, new Spartacus.PollyDB.Column(v_scan.v_relationalias, v_column));
+                        }
+                        catch (System.Exception)
+                        {
+                            throw new Spartacus.PollyDB.Exception("Ambiguous definition for column {0}.", v_column);
+                        }
+                    }
+                }
+            }
         }
 
         public bool Read()

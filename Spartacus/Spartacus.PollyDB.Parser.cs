@@ -61,7 +61,7 @@ namespace Spartacus.PollyDB
             System.Collections.Generic.List<string> v_sql, v_current, v_next;
             Spartacus.PollyDB.Expression v_expression = null;
 
-            v_sql = this.Split(p_sql.Replace(",", " , ").Replace("==", " == ").Replace("!=", " != "));
+            v_sql = this.Split(p_sql.Replace("*", " * ").Replace(",", " , ").Replace("==", " == ").Replace("!=", " != "));
 
             v_current = v_sql;
             while (v_current != null && v_current.Count > 0)
@@ -142,9 +142,9 @@ namespace Spartacus.PollyDB
         private void Select(System.Collections.Generic.List<string> p_current)
         {
             System.Collections.Generic.List<string> v_select;
-            System.Collections.Generic.List<string> v_tmp, v_tmp2;
+            System.Collections.Generic.List<string> v_tmp;
             string v_text, v_token;
-            bool v_error;
+            bool v_error, v_fullprojection;
             int k;
 
             v_text = string.Join(" ", p_current).Replace("select", "");
@@ -155,7 +155,8 @@ namespace Spartacus.PollyDB
 
             k = 0;
             v_error = false;
-            while (k < v_select.Count && !v_error)
+            v_fullprojection = false;
+            while (k < v_select.Count && !v_error && !v_fullprojection)
             {
                 v_token = v_select[k].Trim().ToLower();
 
@@ -171,7 +172,12 @@ namespace Spartacus.PollyDB
                         v_error = true;
                 }
                 else
-                    v_error = true;
+                {
+                    if (v_token == "*")
+                        v_fullprojection = true;
+                    else
+                        v_error = true;
+                }
             }
 
             if (v_error == true)

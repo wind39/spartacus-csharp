@@ -65,7 +65,26 @@ namespace Spartacus.Database
         public Pollydb(string p_directory)
             : base(p_directory)
         {
-            this.v_connectionstring = this.v_service;
+            this.v_connectionstring = "Directory=" + p_directory;
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Pollydb"/>.
+        /// </summary>
+        /// <param name='p_file'>
+        /// Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+        /// </param>
+        /// <param name='p_options'>
+        /// Opções para o tratamento dos arquivos.
+        /// </param>
+        public Pollydb(string p_directory, string p_options)
+            : base(p_directory)
+        {
+            this.v_connectionstring = "Directory=" + p_directory + ";" + p_options;
 
             this.v_con = null;
             this.v_cmd = null;
