@@ -33,8 +33,8 @@ namespace Spartacus.PollyDB
 
         private bool v_open;
 
-        public char v_separator;
-        public char v_delimitator;
+        public string v_separator;
+        public string v_delimitator;
         public bool v_header;
         public System.Text.Encoding v_encoding;
 
@@ -44,8 +44,8 @@ namespace Spartacus.PollyDB
             string[] v_tmp;
 
             this.v_directory = "";
-            this.v_separator = ';';
-            this.v_delimitator = '"';
+            this.v_separator = ";";
+            this.v_delimitator = "";
             this.v_header = true;
             this.v_encoding = System.Text.Encoding.Default;
 
@@ -63,7 +63,7 @@ namespace Spartacus.PollyDB
                         case "Separator":
                             try
                             {
-                                this.v_separator = char.Parse(v_tmp[1]);
+                                this.v_separator = v_tmp[1];
                             }
                             catch (System.Exception)
                             {
@@ -73,7 +73,7 @@ namespace Spartacus.PollyDB
                         case "Delimitator":
                             try
                             {
-                                this.v_delimitator = char.Parse(v_tmp[1]);
+                                this.v_delimitator = v_tmp[1];
                             }
                             catch (System.Exception)
                             {

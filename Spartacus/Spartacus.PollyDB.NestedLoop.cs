@@ -31,9 +31,9 @@ namespace Spartacus.PollyDB
         private System.Collections.Generic.List<Spartacus.PollyDB.Scan> v_scanlist;
         private NCalc.Expression v_condition;
 
-        private uint[] v_recvetor;
+        private int[] v_recvetor;
 
-        private System.Collections.Generic.List<uint[]> v_index;
+        private System.Collections.Generic.List<int[]> v_index;
 
 
         public NestedLoop(Spartacus.PollyDB.DataReader p_reader, NCalc.Expression p_condition)
@@ -41,24 +41,24 @@ namespace Spartacus.PollyDB
             this.v_scanlist = p_reader.v_scanlist;
             this.v_condition = p_condition;
 
-            this.v_recvetor = new uint[this.v_scanlist.Count];
-            this.v_index = new System.Collections.Generic.List<uint[]>();
+            this.v_recvetor = new int[this.v_scanlist.Count];
+            this.v_index = new System.Collections.Generic.List<int[]>();
 
             this.NestedLoopRec(0);
         }
 
-        public System.Collections.Generic.List<uint[]> GetIndex()
+        public System.Collections.Generic.List<int[]> GetIndex()
         {
             return this.v_index;
         }
 
         private void NestedLoopRec(int p_nivel)
         {
-            uint[] v_candidate;
+            int[] v_candidate;
 
             if (p_nivel == this.v_scanlist.Count)
             {
-                v_candidate = new uint[this.v_recvetor.Length];
+                v_candidate = new int[this.v_recvetor.Length];
                 for (int i = 0; i < this.v_recvetor.Length; i++)
                     v_candidate[i] = this.v_recvetor[i];
 
@@ -67,7 +67,7 @@ namespace Spartacus.PollyDB
             }
             else
             {
-                foreach (uint r in this.v_scanlist[p_nivel].v_rowids)
+                foreach (int r in this.v_scanlist[p_nivel].v_rowids)
                 {
                     this.NestedLoopRec(p_nivel + 1);
                     this.v_recvetor[p_nivel]++;
@@ -78,7 +78,7 @@ namespace Spartacus.PollyDB
             }
         }
 
-        private bool Filter(uint[] p_candidate)
+        private bool Filter(int[] p_candidate)
         {
             System.Collections.Generic.List<string> v_row;
 

@@ -41,10 +41,10 @@ namespace Spartacus.PollyDB
             }
         }
 
-        private uint v_currentrowid;
+        private int v_currentrowid;
 
         private System.Collections.Generic.List<string> v_currentrow;
-        private System.Collections.Generic.List<uint[]> v_index;
+        private System.Collections.Generic.List<int[]> v_index;
 
         public DataReader(Spartacus.PollyDB.Connection p_connection)
         {
@@ -58,7 +58,7 @@ namespace Spartacus.PollyDB
             this.v_scanlist.Add(p_scan);
         }
 
-        public void SetIndex(System.Collections.Generic.List<uint[]> p_index)
+        public void SetIndex(System.Collections.Generic.List<int[]> p_index)
         {
             this.v_index = p_index;
         }
@@ -98,7 +98,7 @@ namespace Spartacus.PollyDB
 
                 for (int i = 0; i < this.v_scanlist.Count; i++)
                 {
-                    v_row = this.v_scanlist[i].Read(this.v_index[(int)this.v_currentrowid][i]);
+                    v_row = this.v_scanlist[i].Read(this.v_index[this.v_currentrowid][i]);
 
                     for (int j = 0; j < v_row.Count; j++)
                     {

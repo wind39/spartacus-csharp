@@ -36,11 +36,11 @@ namespace Spartacus.PollyDB
         public System.Collections.Generic.List<string> v_columns;
         public System.Collections.Generic.List<int> v_colids;
 
-        public System.Collections.Generic.List<uint> v_rowids;
+        public System.Collections.Generic.List<int> v_rowids;
         public System.Collections.Generic.List<string> v_currentrow;
 
         public int v_currentrowid;
-        public uint v_currentfilerowid;
+        public int v_currentfilerowid;
 
         public Scan(string p_relationname, string p_relationalias, Spartacus.PollyDB.Connection p_connection)
         {
@@ -49,13 +49,13 @@ namespace Spartacus.PollyDB
             this.v_relationalias = p_relationalias;
             this.v_all_columns = new System.Collections.Generic.List<string>();
             this.v_columns = new System.Collections.Generic.List<string>();
-            this.v_rowids = new System.Collections.Generic.List<uint>();
+            this.v_rowids = new System.Collections.Generic.List<int>();
             this.v_colids = new System.Collections.Generic.List<int>();
         }
 
         public abstract void Open(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns);
 
-        public abstract System.Collections.Generic.List<string> Read(uint p_row);
+        public abstract System.Collections.Generic.List<string> Read(int p_row);
 
         public abstract void Close();
     }

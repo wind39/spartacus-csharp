@@ -30,30 +30,16 @@ namespace Spartacus.PollyDB
     {
         private System.IO.StreamReader r = null;
 
-        private System.Text.RegularExpressions.Regex v_regex;
-
         public CsvScan(string p_relationname, string p_relationalias, Spartacus.PollyDB.Connection p_connection)
             : base(p_relationname, p_relationalias, p_connection)
         {
-            this.v_regex = new System.Text.RegularExpressions.Regex(
-                "(?m)" + this.v_connection.v_separator +
-                "(?=[^" + this.v_connection.v_delimitator +
-                "]*" + this.v_connection.v_delimitator +
-                "(?:[^" + this.v_connection.v_delimitator +
-                "\n]*" + this.v_connection.v_delimitator +
-                "[^" + this.v_connection.v_delimitator +
-                "]*" + this.v_connection.v_delimitator +
-                ")*[^" + this.v_connection.v_delimitator +
-                "\n]*$)"
-            );
         }
 
         public override void Open(System.Collections.Generic.Dictionary<string, Spartacus.PollyDB.Column> p_columns)
         {
             string v_tmp = "";
             string[] v_line;
-            uint i;
-            int j;
+            int i, j;
             string v_value;
 
             try
@@ -64,8 +50,7 @@ namespace Spartacus.PollyDB
                 while (! this.r.EndOfStream)
                 {
                     v_tmp = this.r.ReadLine();
-                    v_tmp = this.v_regex.Replace(v_tmp, "");
-                    v_line = v_tmp.Split(new char[]{this.v_connection.v_separator});
+                    v_line = v_tmp.Split(new string[]{this.v_connection.v_separator}, System.StringSplitOptions.None);
 
                     if (i == 0)
                     {
@@ -150,15 +135,15 @@ namespace Spartacus.PollyDB
             }
         }
 
-        public override System.Collections.Generic.List<string> Read(uint p_row)
+        public override System.Collections.Generic.List<string> Read(int p_row)
         {
-            uint v_row;
+            int v_row;
             string v_tmp = "";
             string[] v_line;
             int j;
             string v_value;
 
-            v_row = this.v_rowids[(int) p_row];
+            v_row = this.v_rowids[p_row];
 
             try
             {
@@ -192,8 +177,7 @@ namespace Spartacus.PollyDB
                     }
                     while (this.v_currentfilerowid <= v_row);
 
-                    v_tmp = this.v_regex.Replace(v_tmp, "");
-                    v_line = v_tmp.Split(this.v_connection.v_separator);
+                    v_line = v_tmp.Split(new string[]{this.v_connection.v_separator}, System.StringSplitOptions.None);
 
                     if (v_line.Length == this.v_all_columns.Count)
                     {
