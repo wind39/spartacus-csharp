@@ -18,7 +18,6 @@ Spartacus contains this managed libraries:
   - Npgsql (https://github.com/npgsql/npgsql)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - System.Data.SqlServerCe (https://www.nuget.org/packages/Microsoft.SqlServer.Compact/)
-  - NCalc (http://ncalc.codeplex.com/)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)

@@ -85,9 +85,6 @@
     <Reference Include="UCanAccess">
       <HintPath>lib\access\UCanAccess.dll</HintPath>
     </Reference>
-    <Reference Include="NCalc">
-      <HintPath>lib\NCalc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.SqlServerCe">
       <HintPath>lib\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
@@ -942,20 +939,7 @@
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spartacus.Database.Access.cs" />
-    <Compile Include="Spartacus.PollyDB.Connection.cs" />
-    <Compile Include="Spartacus.PollyDB.Exception.cs" />
-    <Compile Include="Spartacus.PollyDB.Command.cs" />
-    <Compile Include="Spartacus.PollyDB.Scan.cs" />
-    <Compile Include="Spartacus.PollyDB.CsvScan.cs" />
     <Compile Include="Spartacus.Database.Pollydb.cs" />
-    <Compile Include="Spartacus.PollyDB.DataReader.cs" />
-    <Compile Include="Spartacus.PollyDB.Expression.cs" />
-    <Compile Include="Spartacus.PollyDB.Parser.cs" />
-    <Compile Include="Spartacus.PollyDB.Column.cs" />
-    <Compile Include="Spartacus.PollyDB.Relation.cs" />
-    <Compile Include="Spartacus.PollyDB.Query.cs" />
-    <Compile Include="Spartacus.PollyDB.Condition.cs" />
-    <Compile Include="Spartacus.PollyDB.NestedLoop.cs" />
     <Compile Include="Spartacus.Database.Sqlce.cs" />
     <Compile Include="Spartacus.Database.FbEmbed.cs" />
   </ItemGroup>
@@ -1013,7 +997,6 @@
     <None Include="lib\access\IKVM.OpenJDK.XML.Bind.dll" />
     <None Include="lib\access\IKVM.OpenJDK.XML.Parse.dll" />
     <None Include="dist\Spartacus.dll.mdb" />
-    <None Include="lib\NCalc.dll" />
     <None Include="icon\pollydb.png" />
     <None Include="icon\pollydb_extended.png" />
     <None Include="lib\sqlce\windows_x64\msvcr90.dll" />

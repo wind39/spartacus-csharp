@@ -74,6 +74,11 @@ namespace Spartacus.Database
         /// </summary>
         public bool v_execute_security;
 
+        /// <summary>
+        /// Tipo de dados padrão para string.
+        /// </summary>
+        public string v_default_string;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
@@ -210,7 +215,7 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>
         /// Indica se ainda há mais dados a serem lidos.
         /// </param>
-        public abstract System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
+        public abstract System.Data.DataTable QueryBlock(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
 
         /// <summary>
         /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
@@ -303,6 +308,71 @@ namespace Spartacus.Database
         public abstract void DropDatabase();
 
         /// <summary>
+        /// Lista os nomes de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Vetor com os nomes de colunas.</returns>
+        /// <param name="p_query">Consulta SQL.</param>
+        public abstract string[] GetColumnNames(string p_query);
+
+        /// <summary>
+        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
+        /// <param name="p_query">Consulta SQL.</param>
+        public abstract string[,] GetColumnNamesAndTypes(string p_query);
+
+        /// <summary>
+        /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
+        /// </summary>
+        /// <returns>Nome da coluna corrigido.</returns>
+        /// <param name="p_input">Nome da coluna com problema.</param>
+        public string FixColumnName(string p_input)
+        {
+            string v_output;
+            char[] v_array;
+            int k;
+
+            v_array = p_input.ToCharArray();
+
+            v_output = "";
+            k = 0;
+            while (k < v_array.Length && ((uint)v_array[k]) != 0)
+            {
+                v_output += v_array[k];
+                k++;
+            }
+
+            return v_output;
+        }
+
+        /// <summary>
+        /// Configura CommandTimeout de todas as conexões feitas com a instância atual.
+        /// </summary>
+        /// <param name="p_timeout">Timeout em segundos.</param>
+        public void SetTimeout(int p_timeout)
+        {
+            this.v_timeout = p_timeout;
+        }
+
+        /// <summary>
+        /// Configura Execute Security de todas as conexões feitas com a instância atual.
+        /// </summary>
+        /// <param name="p_execute_security">Se deve tratar caracteres inseguros no Execute ou não.</param>
+        public void SetExecuteSecurity(bool p_execute_security)
+        {
+            this.v_execute_security = p_execute_security;
+        }
+
+        /// <summary>
+        /// Configura o tipo de dados padrão para string.
+        /// </summary>
+        /// <param name="p_default_string">Tipo de dados padrão para string.</param>
+        public void SetDefaultString(string p_default_string)
+        {
+            this.v_default_string = p_default_string;
+        }
+
+        /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
         /// </summary>
@@ -385,6 +455,38 @@ namespace Spartacus.Database
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public abstract uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public abstract uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
         /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
@@ -396,104 +498,999 @@ namespace Spartacus.Database
         public abstract uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error);
 
         /// <summary>
-        /// Lista os nomes de colunas de uma determinada consulta.
-        /// </summary>
-        /// <returns>Vetor com os nomes de colunas.</returns>
-        /// <param name="p_query">Consulta SQL.</param>
-        public abstract string[] GetColumnNames(string p_query);
-
-        /// <summary>
-        /// Lista os nomes e tipos de colunas de uma determinada consulta.
-        /// </summary>
-        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
-        /// <param name="p_query">Consulta SQL.</param>
-        public abstract string[,] GetColumnNamesAndTypes(string p_query);
-
-        /// <summary>
-        /// Transfere dados do banco de dados atual para um arquivo do Excel.
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+        /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
-        /// <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
-        /// <param name="p_filename">Nome do arquivo de destino.</param>
-        public uint TransferToFile(string p_query, string p_filename)
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public uint TransferFromFile(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            Spartacus.Utils.Excel v_excel = null;
-            System.Data.DataTable v_table;
+            System.IO.FileInfo v_fileinfo;
+            Spartacus.Utils.File v_file;
+
+            v_fileinfo = new System.IO.FileInfo(p_filename);
+
+            if (! v_fileinfo.Exists)
+            {
+                throw new Spartacus.Database.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
+            }
+            else
+            {
+                try
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                    switch (v_file.v_extension.ToLower())
+                    {
+                        case "csv":
+                            return this.TransferFromCSV(p_filename, ";", "\"", true, System.Text.Encoding.Default, p_table, p_columns, p_insert, p_progress, p_error);
+                        case "xlsx":
+                            return this.TransferFromXLSX(p_filename, p_table, p_columns, p_insert, p_progress, p_error);
+                        case "dbf":
+                            return this.TransferFromDBF(p_filename, p_table, p_columns, p_insert, p_progress, p_error);
+                        default:
+                            throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                    }
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public uint TransferFromFile(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            System.IO.FileInfo v_fileinfo;
+            Spartacus.Utils.File v_file;
+
+            v_fileinfo = new System.IO.FileInfo(p_filename);
+
+            if (! v_fileinfo.Exists)
+            {
+                throw new Spartacus.Database.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
+            }
+            else
+            {
+                try
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                    switch (v_file.v_extension.ToLower())
+                    {
+                        case "csv":
+                            return this.TransferFromCSV(p_filename, ";", "\"", true, System.Text.Encoding.Default, p_table, p_progress, p_error);
+                        case "xlsx":
+                            return this.TransferFromXLSX(p_filename, p_table, p_progress, p_error);
+                        case "dbf":
+                            return this.TransferFromDBF(p_filename, p_table, p_progress, p_error);
+                        default:
+                            throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                    }
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public uint TransferFromFile(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            System.IO.FileInfo v_fileinfo;
+            Spartacus.Utils.File v_file;
+
+            v_fileinfo = new System.IO.FileInfo(p_filename);
+
+            if (! v_fileinfo.Exists)
+            {
+                throw new Spartacus.Database.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
+            }
+            else
+            {
+                try
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                    switch (v_file.v_extension.ToLower())
+                    {
+                        case "csv":
+                            return this.TransferFromCSV(p_filename, p_separator, p_delimiter, p_header, p_encoding, p_table, p_columns, p_insert, p_progress, p_error);
+                        case "xlsx":
+                            return this.TransferFromXLSX(p_filename, p_table, p_columns, p_insert, p_progress, p_error);
+                        case "dbf":
+                            return this.TransferFromDBF(p_filename, p_table, p_columns, p_insert, p_progress, p_error);
+                        default:
+                            throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                    }
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        public uint TransferFromFile(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            System.IO.FileInfo v_fileinfo;
+            Spartacus.Utils.File v_file;
+
+            v_fileinfo = new System.IO.FileInfo(p_filename);
+
+            if (! v_fileinfo.Exists)
+            {
+                throw new Spartacus.Database.Exception(string.Format("Arquivo {0} nao existe.", p_filename));
+            }
+            else
+            {
+                try
+                {
+                    v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                    switch (v_file.v_extension.ToLower())
+                    {
+                        case "csv":
+                            return this.TransferFromCSV(p_filename, p_separator, p_delimiter, p_header, p_encoding, p_table, p_progress, p_error);
+                        case "xlsx":
+                            return this.TransferFromXLSX(p_filename, p_table, p_progress, p_error);
+                        case "dbf":
+                            return this.TransferFromDBF(p_filename, p_table, p_progress, p_error);
+                        default:
+                            throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                    }
+                }
+                catch (Spartacus.Database.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromCSV(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            uint v_transfered, v_blocksize;
+            System.IO.StreamReader v_reader = null;
+            System.Collections.Generic.List<string> v_block, v_columns;
+            string[] v_row;
+            string v_tmp;
+            int i, j, k;
 
             try
             {
-                v_excel = new Spartacus.Utils.Excel();
+                v_reader = new System.IO.StreamReader(p_filename, p_encoding);
 
-                v_table = this.Query(p_query, "TRANSFER");
+                v_block = new System.Collections.Generic.List<string>();
+                v_columns = new System.Collections.Generic.List<string>();
 
-                if (v_table != null && v_table.Rows.Count > 0)
+                v_transfered = 0;
+                v_blocksize = 100;
+                i = 0;
+                k = 0;
+                while (! v_reader.EndOfStream)
                 {
-                    v_excel.v_set.Tables.Add(v_table);
-                    v_excel.Export(p_filename);
+                    v_tmp = v_reader.ReadLine();
+                    v_row = v_tmp.Split(new string[]{p_delimiter + p_separator + p_delimiter}, System.StringSplitOptions.None);
 
-                    return (uint) v_table.Rows.Count;
+                    if (v_row.Length == 1)
+                    {
+                        if (i == 0)
+                        {
+                            if (p_header)
+                                v_columns.Add(v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)));
+                            else
+                            {
+                                v_columns.Add("col0");
+
+                                p_insert.SetValue(0, v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)));
+
+                                v_block.Add(p_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block, p_columns);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (v_row.Length == v_columns.Count)
+                            {
+                                p_insert.SetValue(0, v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)));
+
+                                v_block.Add(p_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block, p_columns);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                            else
+                                p_error.FireEvent("Número de colunas inesperado: " + v_row.Length + ", deveria ser " + v_columns.Count);
+                        }
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
+                            if (p_header)
+                            {
+                                v_columns.Add(v_row[0].Substring(p_delimiter.Length));
+                                for (j = 1; j < v_row.Length-1; j++)
+                                    v_columns.Add(v_row[j]);
+                                v_columns.Add(v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+                            }
+                            else
+                            {
+                                for (j = 0; j < v_row.Length; j++)
+                                    v_columns.Add("col" + j.ToString());
+
+                                p_insert.SetValue(v_columns[0], v_row[0].Substring(p_delimiter.Length));
+                                for (j = 1; j < p_insert.v_parameters.Count-1; j++)
+                                    p_insert.SetValue(v_columns[j], v_row[j]);
+                                p_insert.SetValue(v_columns[v_row.Length-1], v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+
+                                v_block.Add(p_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block, p_columns);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (v_row.Length > 0)
+                            {
+                                if (v_row.Length == v_columns.Count)
+                                {
+                                    p_insert.SetValue(v_columns[0], v_row[0].Substring(p_delimiter.Length));
+                                    for (j = 1; j < p_insert.v_parameters.Count-1; j++)
+                                        p_insert.SetValue(v_columns[j], v_row[j]);
+                                    p_insert.SetValue(v_columns[v_row.Length-1], v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+
+                                    v_block.Add(p_insert.GetUpdatedText());
+                                    k++;
+
+                                    if (k == v_blocksize)
+                                    {
+                                        this.InsertBlock(p_table, v_block, p_columns);
+                                        v_transfered += (uint) v_block.Count;
+                                        p_progress.FireEvent(v_transfered);
+
+                                        v_block.Clear();
+                                        k = 0;
+                                    }
+                                }
+                                else
+                                    p_error.FireEvent("Número de colunas inesperado: " + v_row.Length + ", deveria ser " + v_columns.Count);
+                            }
+                        }
+                    }
+
+                    i++;
                 }
-                else
-                    return 0;
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block, p_columns);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
             }
-            catch (Spartacus.Utils.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
-            catch (Spartacus.Database.Exception e)
+            catch (System.Exception e)
             {
                 throw e;
             }
             finally
             {
-                if (v_excel != null)
+                if (v_reader != null)
+                    v_reader.Close();
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromCSV(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            uint v_transfered, v_blocksize;
+            System.IO.StreamReader v_reader = null;
+            System.Collections.Generic.List<string> v_block, v_columns;
+            Spartacus.Database.Command v_insert;
+            string[] v_row;
+            string v_createtable, v_tmp;
+            int i, j, k;
+
+            try
+            {
+                v_reader = new System.IO.StreamReader(p_filename, p_encoding);
+
+                v_block = new System.Collections.Generic.List<string>();
+                v_columns = new System.Collections.Generic.List<string>();
+                v_insert = new Spartacus.Database.Command();
+
+                v_transfered = 0;
+                v_blocksize = 100;
+                i = 0;
+                k = 0;
+                while (! v_reader.EndOfStream)
                 {
-                    v_excel.Clear();
-                    v_excel = null;
+                    v_tmp = v_reader.ReadLine();
+                    v_row = v_tmp.Split(new string[]{p_delimiter + p_separator + p_delimiter}, System.StringSplitOptions.None);
+
+                    if (v_row.Length == 1)
+                    {
+                        if (i == 0)
+                        {
+                            if (p_header)
+                            {
+                                v_insert.v_text = "(#" + v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)) + "#)";
+                                v_insert.AddParameter(v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)), Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable = "create table " + p_table + " (" + v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)) + " " + this.v_default_string + ")";
+                                v_columns.Add(v_row[0].Substring(p_delimiter.Length));
+
+                                this.Execute(v_createtable);
+                            }
+                            else
+                            {
+                                v_insert.v_text = "(#col0#)";
+                                v_insert.AddParameter("col0", Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable = "create table " + p_table + " (col0 " + this.v_default_string + ")";
+                                v_columns.Add("col0");
+
+                                this.Execute(v_createtable);
+
+                                v_insert.SetValue(0, v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)));
+
+                                v_block.Add(v_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (v_row.Length == v_columns.Count)
+                            {
+                                v_insert.SetValue(0, v_row[0].Substring(p_delimiter.Length, v_row[0].Length-(p_delimiter.Length*2)));
+
+                                v_block.Add(v_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                            else
+                                p_error.FireEvent("Número de colunas inesperado: " + v_row.Length + ", deveria ser " + v_columns.Count);
+                        }
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
+                            if (p_header)
+                            {
+                                v_insert.v_text = "(#" + v_row[0].Substring(p_delimiter.Length) + "#";
+                                v_insert.AddParameter(v_row[0].Substring(p_delimiter.Length), Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable = "create table " + p_table + " (" + v_row[0].Substring(p_delimiter.Length) + " " + this.v_default_string;
+                                v_columns.Add(v_row[0].Substring(p_delimiter.Length));
+
+                                for (j = 1; j < v_row.Length-1; j++)
+                                {
+                                    v_insert.v_text += ",#" + v_row[j] + "#";
+                                    v_insert.AddParameter(v_row[j], Spartacus.Database.Type.QUOTEDSTRING);
+                                    v_createtable += "," + v_row[j] + " " + this.v_default_string;
+                                    v_columns.Add(v_row[j]);
+                                }
+
+                                v_insert.v_text += ",#" + v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length) + "#)";
+                                v_insert.AddParameter(v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length), Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable += "," + v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length) + " " + this.v_default_string + ")";
+                                v_columns.Add(v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+
+                                this.Execute(v_createtable);
+                            }
+                            else
+                            {
+                                v_insert.v_text = "(#col0#";
+                                v_insert.AddParameter("col0", Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable = "create table " + p_table + " (col0 " + this.v_default_string;
+                                v_columns.Add("col0");
+
+                                for (j = 1; j < v_row.Length-1; j++)
+                                {
+                                    v_insert.v_text += ",#col" + j.ToString() + "#";
+                                    v_insert.AddParameter("col" + j.ToString(), Spartacus.Database.Type.QUOTEDSTRING);
+                                    v_createtable += ",col" + j.ToString() + " " + this.v_default_string;
+                                    v_columns.Add("col" + j.ToString());
+                                }
+
+                                v_insert.v_text += ",#col" + (v_row.Length-1).ToString() + "#)";
+                                v_insert.AddParameter("col" + (v_row.Length-1).ToString(), Spartacus.Database.Type.QUOTEDSTRING);
+                                v_createtable += ",col" + (v_row.Length-1).ToString() + " " + this.v_default_string + ")";
+                                v_columns.Add("col" + (v_row.Length-1).ToString());
+
+                                this.Execute(v_createtable);
+
+                                v_insert.SetValue(v_columns[0], v_row[0].Substring(p_delimiter.Length));
+                                for (j = 1; j < v_insert.v_parameters.Count-1; j++)
+                                    v_insert.SetValue(v_columns[j], v_row[j]);
+                                v_insert.SetValue(v_columns[v_row.Length-1], v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+
+                                v_block.Add(v_insert.GetUpdatedText());
+                                k++;
+
+                                if (k == v_blocksize)
+                                {
+                                    this.InsertBlock(p_table, v_block);
+                                    v_transfered += (uint) v_block.Count;
+                                    p_progress.FireEvent(v_transfered);
+
+                                    v_block.Clear();
+                                    k = 0;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (v_row.Length > 0)
+                            {
+                                if (v_row.Length == v_columns.Count)
+                                {
+                                    v_insert.SetValue(v_columns[0], v_row[0].Substring(p_delimiter.Length));
+                                    for (j = 1; j < v_insert.v_parameters.Count-1; j++)
+                                        v_insert.SetValue(v_columns[j], v_row[j]);
+                                    v_insert.SetValue(v_columns[v_row.Length-1], v_row[v_row.Length-1].Substring(0, v_row[v_row.Length-1].Length-p_delimiter.Length));
+
+                                    v_block.Add(v_insert.GetUpdatedText());
+                                    k++;
+
+                                    if (k == v_blocksize)
+                                    {
+                                        this.InsertBlock(p_table, v_block);
+                                        v_transfered += (uint) v_block.Count;
+                                        p_progress.FireEvent(v_transfered);
+
+                                        v_block.Clear();
+                                        k = 0;
+                                    }
+                                }
+                                else
+                                    p_error.FireEvent("Número de colunas inesperado: " + v_row.Length + ", deveria ser " + v_columns.Count);
+                            }
+                        }
+                    }
+
+                    i++;
+                }
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_reader != null)
+                    v_reader.Close();
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromXLSX(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
+        {
+            uint v_transfered, v_blocksize;
+            Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
+            Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
+            System.Collections.Generic.List<string> v_columns, v_block;
+            string[] v_row = null;
+            bool v_firstrow = true;
+            bool v_datanode = false;
+            bool v_istext = false;
+            string v_cellcontent, v_key = "";
+            double v_value;
+            int v_col = -1;
+            int j, k;
+
+            try
+            {
+                v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_filename);
+
+                if (v_package != null && v_package.sheets != null && v_package.sheets.Count == 1)
+                {
+                    foreach (string s in v_package.sheets.Keys)
+                        v_key = s;
+                    v_sheet = v_package.sheets[v_key];
+
+                    v_columns = new System.Collections.Generic.List<string>();
+                    v_block = new System.Collections.Generic.List<string>();
+
+                    v_transfered = 0;
+                    v_blocksize = 100;
+                    k = 0;
+                    using (System.Xml.XmlReader v_reader = System.Xml.XmlReader.Create(v_sheet.GetStream()))
+                    {
+                        while (v_reader.Read())
+                        {
+                            switch (v_reader.NodeType)
+                            {
+                                case System.Xml.XmlNodeType.Element:
+                                    v_datanode = false;
+                                    switch (v_reader.Name)
+                                    {
+                                        case "row":
+                                            if (! v_firstrow)
+                                                v_col = -1;
+                                            break;
+                                        case "c":
+                                            v_istext = false;
+                                            while (v_reader.MoveToNextAttribute())
+                                            {
+                                                if (v_reader.Name == "t")
+                                                {
+                                                    if (v_reader.Value == "s")
+                                                        v_istext = true;
+                                                }
+                                                else
+                                                {
+                                                    if (v_reader.Name == "r")
+                                                    {
+                                                        if (v_reader.Value.Length > 1)
+                                                            v_col++;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        case "v":
+                                            v_datanode = true;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case System.Xml.XmlNodeType.EndElement:
+                                    v_datanode = false;
+                                    if (v_reader.Name == "row")
+                                    {
+                                        if (v_firstrow)
+                                            v_firstrow = false;
+                                        else
+                                        {
+                                            for (j = 0; j < p_insert.v_parameters.Count-1; j++)
+                                                p_insert.SetValue(j, v_row[v_columns.IndexOf(p_insert.v_parameters[j].v_name)]);
+
+                                            v_block.Add(p_insert.GetUpdatedText());
+                                            k++;
+
+                                            if (k == v_blocksize)
+                                            {
+                                                this.InsertBlock(p_table, v_block, p_columns);
+                                                v_transfered += (uint) v_block.Count;
+                                                p_progress.FireEvent(v_transfered);
+
+                                                v_block.Clear();
+                                                k = 0;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case System.Xml.XmlNodeType.Text:
+                                    if (v_datanode)
+                                    {
+                                        if (v_istext)
+                                            v_cellcontent = v_package.words[int.Parse(v_reader.Value)];
+                                        else
+                                            v_cellcontent = v_reader.Value;
+                                        if (v_firstrow)
+                                        {
+                                            v_columns.Add(v_cellcontent);
+                                            v_row = new string[v_columns.Count];
+                                        }
+                                        else
+                                        {
+                                            if (double.TryParse(v_cellcontent, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out v_value))
+                                                v_row[v_col] = System.Math.Round(v_value, 8).ToString();
+                                            else
+                                                v_row[v_col] = v_cellcontent;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else
+                    throw new Spartacus.Database.Exception("Arquivo {0} nao pode ser aberto, nao contem planilhas com dados ou contem mais de uma planilha.", p_filename);
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block, p_columns);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_package != null)
+                {
+                    v_package.Close();
+                    v_package = null;
                 }
             }
         }
 
         /// <summary>
-        /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+        /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
-        /// <returns>Nome da coluna corrigido.</returns>
-        /// <param name="p_input">Nome da coluna com problema.</param>
-        public string FixColumnName(string p_input)
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromXLSX(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            string v_output;
-            char[] v_array;
-            int k;
+            uint v_transfered, v_blocksize;
+            Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
+            Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
+            System.Collections.Generic.List<string> v_columns, v_block;
+            Spartacus.Database.Command v_insert;
+            string[] v_row = null;
+            bool v_firstrow = true;
+            bool v_datanode = false;
+            bool v_istext = false;
+            string v_cellcontent, v_key = "", v_createtable;
+            double v_value;
+            int v_col = -1;
+            int j, k;
 
-            v_array = p_input.ToCharArray();
-
-            v_output = "";
-            k = 0;
-            while (k < v_array.Length && ((uint)v_array[k]) != 0)
+            try
             {
-                v_output += v_array[k];
-                k++;
+                v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_filename);
+
+                if (v_package != null && v_package.sheets != null && v_package.sheets.Count == 1)
+                {
+                    foreach (string s in v_package.sheets.Keys)
+                        v_key = s;
+                    v_sheet = v_package.sheets[v_key];
+
+                    v_columns = new System.Collections.Generic.List<string>();
+                    v_block = new System.Collections.Generic.List<string>();
+                    v_insert = new Spartacus.Database.Command();
+
+                    v_transfered = 0;
+                    v_blocksize = 100;
+                    k = 0;
+                    using (System.Xml.XmlReader v_reader = System.Xml.XmlReader.Create(v_sheet.GetStream()))
+                    {
+                        while (v_reader.Read())
+                        {
+                            switch (v_reader.NodeType)
+                            {
+                                case System.Xml.XmlNodeType.Element:
+                                    v_datanode = false;
+                                    switch (v_reader.Name)
+                                    {
+                                        case "row":
+                                            if (! v_firstrow)
+                                                v_col = -1;
+                                            break;
+                                        case "c":
+                                            v_istext = false;
+                                            while (v_reader.MoveToNextAttribute())
+                                            {
+                                                if (v_reader.Name == "t")
+                                                {
+                                                    if (v_reader.Value == "s")
+                                                        v_istext = true;
+                                                }
+                                                else
+                                                {
+                                                    if (v_reader.Name == "r")
+                                                    {
+                                                        if (v_reader.Value.Length > 1)
+                                                            v_col++;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        case "v":
+                                            v_datanode = true;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case System.Xml.XmlNodeType.EndElement:
+                                    v_datanode = false;
+                                    if (v_reader.Name == "row")
+                                    {
+                                        if (v_firstrow)
+                                        {
+                                            if (v_columns.Count == 1)
+                                            {
+                                                v_insert.v_text = "(#" + v_columns[0] + "#)";
+                                                v_insert.AddParameter(v_columns[0], Spartacus.Database.Type.QUOTEDSTRING);
+                                                v_createtable = "create table " + p_table + "(" + v_columns[0] + " " + this.v_default_string + ")";
+                                            }
+                                            else
+                                            {
+                                                v_insert.v_text = "(#" + v_columns[0] + "#";
+                                                v_insert.AddParameter(v_columns[0], Spartacus.Database.Type.QUOTEDSTRING);
+                                                v_createtable = "create table " + p_table + "(" + v_columns[0] + " " + this.v_default_string;
+
+                                                for (j = 1; j < v_columns.Count-1; j++)
+                                                {
+                                                    v_insert.v_text += ",#" + v_columns[j] + "#";
+                                                    v_insert.AddParameter(v_columns[j], Spartacus.Database.Type.QUOTEDSTRING);
+                                                    v_createtable += "," + v_columns[j] + " " + this.v_default_string;
+                                                }
+
+                                                v_insert.v_text += ",#" + v_columns[v_columns.Count-1] + "#)";
+                                                v_insert.AddParameter(v_columns[v_columns.Count-1], Spartacus.Database.Type.QUOTEDSTRING);
+                                                v_createtable += "," + v_columns[v_columns.Count-1] + " " + this.v_default_string + ")";
+                                            }
+
+                                            this.Execute(v_createtable);
+
+                                            v_firstrow = false;
+                                        }
+                                        else
+                                        {
+                                            for (j = 0; j < v_insert.v_parameters.Count-1; j++)
+                                                v_insert.SetValue(j, v_row[v_columns.IndexOf(v_insert.v_parameters[j].v_name)]);
+
+                                            v_block.Add(v_insert.GetUpdatedText());
+                                            k++;
+
+                                            if (k == v_blocksize)
+                                            {
+                                                this.InsertBlock(p_table, v_block);
+                                                v_transfered += (uint) v_block.Count;
+                                                p_progress.FireEvent(v_transfered);
+
+                                                v_block.Clear();
+                                                k = 0;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case System.Xml.XmlNodeType.Text:
+                                    if (v_datanode)
+                                    {
+                                        if (v_istext)
+                                            v_cellcontent = v_package.words[int.Parse(v_reader.Value)];
+                                        else
+                                            v_cellcontent = v_reader.Value;
+                                        if (v_firstrow)
+                                        {
+                                            v_columns.Add(v_cellcontent);
+                                            v_row = new string[v_columns.Count];
+                                        }
+                                        else
+                                        {
+                                            if (double.TryParse(v_cellcontent, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out v_value))
+                                                v_row[v_col] = System.Math.Round(v_value, 8).ToString();
+                                            else
+                                                v_row[v_col] = v_cellcontent;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else
+                    throw new Spartacus.Database.Exception("Arquivo {0} nao pode ser aberto, nao contem planilhas com dados ou contem mais de uma planilha.", p_filename);
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
             }
-
-            return v_output;
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_package != null)
+                {
+                    v_package.Close();
+                    v_package = null;
+                }
+            }
         }
 
         /// <summary>
-        /// Configura CommandTimeout de todas as conexões feitas com a instância atual.
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+        /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
-        /// <param name="p_timeout">Timeout em segundos.</param>
-        public void SetTimeout(int p_timeout)
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromDBF(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            this.v_timeout = p_timeout;
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Generic.TransferFromDBF");
         }
 
         /// <summary>
-        /// Configura Execute Security de todas as conexões feitas com a instância atual.
+        /// Transfere dados de um arquivo para o banco de dados atual.
+        /// Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+        /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
-        /// <param name="p_execute_security">Se deve tratar caracteres inseguros no Execute ou não.</param>
-        public void SetExecuteSecurity(bool p_execute_security)
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_filename">Nome do arquivo.</param>
+        /// <param name="p_table">Tabela de destino.</param>
+        /// <param name="p_progress">Evento de progresso.</param>
+        /// <param name="p_error">Evento de erro.</param>
+        private uint TransferFromDBF(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            this.v_execute_security = p_execute_security;
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Generic.TransferFromDBF");
         }
     }
 }

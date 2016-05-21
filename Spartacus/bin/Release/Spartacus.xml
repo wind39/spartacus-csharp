@@ -1984,6 +1984,10 @@
             <summary>
             Se deve tratar caracteres inseguros no Execute ou não.
             </summary></member>
+        <member name="F:Spartacus.Database.Generic.v_default_string">
+            <summary>
+            Tipo de dados padrão para string.
+            </summary></member>
         <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.
@@ -2066,7 +2070,7 @@
             <param name="p_progress">
             Evento de progresso da execução da consulta.
             </param></member>
-        <member name="M:Spartacus.Database.Generic.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Generic.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos.
@@ -2167,6 +2171,39 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Generic.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_query">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Generic.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_query">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
+            <summary>
+            Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
+            </summary>
+            <returns>Nome da coluna corrigido.</returns>
+            <param name="p_input">Nome da coluna com problema.</param></member>
+        <member name="M:Spartacus.Database.Generic.SetTimeout(System.Int32)">
+            <summary>
+            Configura CommandTimeout de todas as conexões feitas com a instância atual.
+            </summary>
+            <param name="p_timeout">Timeout em segundos.</param></member>
+        <member name="M:Spartacus.Database.Generic.SetExecuteSecurity(System.Boolean)">
+            <summary>
+            Configura Execute Security de todas as conexões feitas com a instância atual.
+            </summary>
+            <param name="p_execute_security">Se deve tratar caracteres inseguros no Execute ou não.</param></member>
+        <member name="M:Spartacus.Database.Generic.SetDefaultString(System.String)">
+            <summary>
+            Configura o tipo de dados padrão para string.
+            </summary>
+            <param name="p_default_string">Tipo de dados padrão para string.</param></member>
         <member name="M:Spartacus.Database.Generic.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2241,6 +2278,36 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Generic.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Generic.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2253,41 +2320,142 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Generic.GetColumnNames(System.String)">
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_query">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Generic.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_query">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Generic.TransferToFile(System.String,System.String)">
-            <summary>
-            Transfere dados do banco de dados atual para um arquivo do Excel.
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+            Não pára a execução se der um problema num comando de inserção específico.
             </summary>
             <returns>Número de linhas transferidas.</returns>
-            <param name="p_query">Consulta a ser executada no banco de dados atual para obter os dados.</param>
-            <param name="p_filename">Nome do arquivo de destino.</param></member>
-        <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_columns">Lista de colunas.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
-            Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+            Não pára a execução se der um problema num comando de inserção específico.
             </summary>
-            <returns>Nome da coluna corrigido.</returns>
-            <param name="p_input">Nome da coluna com problema.</param></member>
-        <member name="M:Spartacus.Database.Generic.SetTimeout(System.Int32)">
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,System.String,System.Boolean,System.Text.Encoding,System.String,System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
-            Configura CommandTimeout de todas as conexões feitas com a instância atual.
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+            Não pára a execução se der um problema num comando de inserção específico.
             </summary>
-            <param name="p_timeout">Timeout em segundos.</param></member>
-        <member name="M:Spartacus.Database.Generic.SetExecuteSecurity(System.Boolean)">
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_columns">Lista de colunas.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromFile(System.String,System.String,System.String,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
-            Configura Execute Security de todas as conexões feitas com a instância atual.
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+            Não pára a execução se der um problema num comando de inserção específico.
             </summary>
-            <param name="p_execute_security">Se deve tratar caracteres inseguros no Execute ou não.</param></member>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromCSV(System.String,System.String,System.String,System.Boolean,System.Text.Encoding,System.String,System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_columns">Lista de colunas.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromCSV(System.String,System.String,System.String,System.Boolean,System.Text.Encoding,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromXLSX(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_columns">Lista de colunas.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromXLSX(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromDBF(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino precisa existir.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_columns">Lista de colunas.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferFromDBF(System.String,System.String,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+            <summary>
+            Transfere dados de um arquivo para o banco de dados atual.
+            Conexão com o banco de dados atual precisa estar aberta. Tabela de destino será criada.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_filename">Nome do arquivo.</param>
+            <param name="p_table">Tabela de destino.</param>
+            <param name="p_progress">Evento de progresso.</param>
+            <param name="p_error">Evento de erro.</param></member>
         <member name="T:Spartacus.Database.Odbc">
             <summary>
             Classe Spartacus.Database.Odbc.
@@ -2360,7 +2528,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Odbc.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Odbc.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -2461,6 +2629,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Odbc.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Odbc.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2534,6 +2714,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Odbc.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2546,18 +2755,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Odbc.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Odbc.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -2727,7 +2924,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Firebird.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Firebird.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -2828,6 +3025,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Firebird.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Firebird.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2901,6 +3110,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Firebird.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -2913,18 +3151,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Firebird.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Firebird.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -3018,7 +3244,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Mysql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Mysql.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -3119,6 +3345,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Mysql.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Mysql.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3192,6 +3430,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Mysql.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3204,18 +3471,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Mysql.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Mysql.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -3297,7 +3552,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Oledb.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Oledb.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -3398,6 +3653,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Oledb.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Oledb.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3471,6 +3738,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Oledb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3483,18 +3779,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Oledb.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Oledb.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -4414,7 +4698,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Sqlite.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Sqlite.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -4515,6 +4799,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Sqlite.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -4588,6 +4884,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -4600,18 +4925,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Sqlite.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Sqlite.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.Postgresql">
             <summary>
             Classe Spartacus.Database.Postgresql.
@@ -4705,7 +5018,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Postgresql.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Postgresql.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -4806,6 +5119,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Postgresql.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -4879,6 +5204,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -4891,18 +5245,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Postgresql.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Postgresql.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -5639,7 +5981,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Oracle.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Oracle.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -5740,6 +6082,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Oracle.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Oracle.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -5813,6 +6167,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Oracle.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -5825,18 +6208,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Oracle.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Oracle.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -35121,7 +35492,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Memory.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Memory.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -35222,6 +35593,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Memory.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Memory.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -35295,6 +35678,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Memory.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -35307,18 +35719,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Memory.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Memory.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:SocialExplorer.IO.FastDBF.DbfColumn">
             <summary>
             This class represents a DBF Column.
@@ -36143,7 +36543,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.SqlServer.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.SqlServer.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -36244,6 +36644,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.SqlServer.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -36317,6 +36729,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -36329,18 +36770,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.SqlServer.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.SqlServer.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Utils.Cryptor">
             <summary>
             Classe Cryptor.
@@ -37667,7 +38096,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Access.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Access.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -37768,6 +38197,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Access.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Access.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Access.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -37841,6 +38282,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Access.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Access.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Access.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -37853,162 +38323,86 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Access.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Access.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="T:Spartacus.PollyDB.Exception">
-            <summary>
-            Classe Spartacus.PollyDB.Exception.
-            Herda da classe <see cref="T:System.Exception" />.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Exception.v_message">
-            <summary>
-            Mensagem de Exceção.
-            </summary></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.Exception)">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary>
-            <param name="p_inner">
-            Exceção interna, encapsulada por esta exceção.
-            </param></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String)">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary>
-            <param name="p_message">
-            Mensagem descritiva da exceção.
-            </param></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Object[])">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary>
-            <param name="p_format">
-            Formato da mensagem descritiva da exceção.
-            </param>
-            <param name="p_args">
-            Argumentos da mensagem descritiva da exceção.
-            </param></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Exception)">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary>
-            <param name="p_message">
-            Mensagem descritiva da exceção.
-            </param>
-            <param name="p_inner">
-            Exceção interna, encapsulada por esta exceção.
-            </param></member>
-        <member name="M:Spartacus.PollyDB.Exception.#ctor(System.String,System.Exception,System.Object[])">
-            <summary>
-            Inicializa uma nova instância da classe.
-            </summary>
-            <param name="p_format">
-            Formato da mensagem descritiva da exceção.
-            </param>
-            <param name="p_inner">
-            Exceção interna, encapsulada por esta exceção.
-            </param>
-            <param name="p_args">
-            Argumentos da mensagem descritiva da exceção.
-            </param></member>
-        <member name="T:Spartacus.PollyDB.Command">
-            <summary>
-            Classe Command.
-            Representa um comando a ser executado no SGBD, pela interface ADO.NET.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Command.Connection">
-            <summary>
-            Conexão usada pelo comando.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Command.CommandText">
-            <summary>
-            Texto usado pelo comando.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Command.CommandTimeout">
-            <summary>
-            Timeout do comando em segundos (0 = sem timeout).
-            </summary></member>
-        <member name="M:Spartacus.PollyDB.Command.#ctor">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Command" />.
-            </summary></member>
-        <member name="M:Spartacus.PollyDB.Command.#ctor(System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Command" />.
-            </summary>
-            <param name="p_sql">Texto SQL.</param></member>
-        <member name="M:Spartacus.PollyDB.Command.#ctor(System.String,Spartacus.PollyDB.Connection)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Command" />.
-            </summary>
-            <param name="p_sql">Texto SQL.</param>
-            <param name="p_connection">Conexão a ser usada pelo comando.</param></member>
-        <member name="M:Spartacus.PollyDB.Command.ExecuteReader">
-            <summary>
-            Constrói e aplica o plano de execução, retornando um objeto da classe <see cref="T:Spartacus.PollyDB.DataReader" />.
-            </summary>
-            <returns>Objeto de leitura sequencial do resultado da consulta.</returns></member>
-        <member name="M:Spartacus.PollyDB.Command.ExecuteScalar">
-            <summary>
-            Constrói e aplica o plano de execução, retornando apenas a primeira coluna da primeira linha do resultado.
-            </summary>
-            <returns>Primeira coluna da primeira linha do resultado.</returns></member>
-        <member name="M:Spartacus.PollyDB.Command.ExecuteNonQuery">
-            <summary>
-            Executa um comando DML ou DDL no banco de dados.
-            </summary></member>
         <member name="T:Spartacus.Database.Pollydb">
             <summary>
-            Classe Spartacus.Database.Pollydb.
+            Classe Spartacus.Database.PollyDB.
             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
-            Utiliza o Spartacus.PollyDB .NET Provider para acessar um SGBD PollyDB.
+            Utiliza o Mono.Data.Sqlite para acessar arquivos CSV, XLSX e DBF.
             </summary></member>
-        <member name="F:Spartacus.Database.Pollydb.v_con">
+        <member name="F:Spartacus.Database.Pollydb.v_files">
             <summary>
-            Conexão com o banco de dados.
+            Lista de arquivos.
             </summary></member>
-        <member name="F:Spartacus.Database.Pollydb.v_cmd">
+        <member name="F:Spartacus.Database.Pollydb.v_cachethreshold">
             <summary>
-            Comando para conexão com o banco de dados.
+            Limiar para saber se a cache deve ficar em memória ou em disco.
             </summary></member>
-        <member name="F:Spartacus.Database.Pollydb.v_reader">
+        <member name="F:Spartacus.Database.Pollydb.v_tables">
             <summary>
-            Leitor de dados do banco de dados.
+            Lista de arquivos em cache.
             </summary></member>
-        <member name="F:Spartacus.Database.Pollydb.v_currentrow">
+        <member name="F:Spartacus.Database.Pollydb.v_separator">
             <summary>
-            Linha atual da QueryBlock.
+            Separador de campos.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_delimiter">
+            <summary>
+            Delimitador de campos.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_header">
+            <summary>
+            Se a primeira linha do arquivo é cabeçalho ou não.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_encoding">
+            <summary>
+            Codificação do arquivo.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_database">
+            <summary>
+            Banco de dados SQLite ou Memory temporário.
+            </summary></member>
+        <member name="F:Spartacus.Database.Pollydb.v_tempdatabase">
+            <summary>
+            Nome do banco de dados temporário (se for SQLite).
             </summary></member>
         <member name="M:Spartacus.Database.Pollydb.#ctor(System.String)">
             <summary>
             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Pollydb" />.
             </summary>
-            <param name="p_file">
-            Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+            <param name="p_directory">
+            Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
             </param></member>
-        <member name="M:Spartacus.Database.Pollydb.#ctor(System.String,System.String)">
+        <member name="M:Spartacus.Database.Pollydb.#ctor(System.String,System.Int64)">
             <summary>
             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Pollydb" />.
             </summary>
-            <param name="p_file">
-            Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+            <param name="p_directory">
+            Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
             </param>
-            <param name="p_options">
-            Opções para o tratamento dos arquivos.
+            <param name="p_cachethreshold">
+            Limiar para saber se a cache deve ser construída em memória ou em disco.
+            </param></member>
+        <member name="M:Spartacus.Database.Pollydb.#ctor(System.String,System.Int64,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Pollydb" />.
+            </summary>
+            <param name="p_directory">
+            Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
+            </param>
+            <param name="p_cachethreshold">
+            Limiar para saber se a cache deve ser construída em memória ou em disco.
+            </param>
+            <param name="p_separator">
+            Separador de campos.
+            </param>
+            <param name="p_delimiter">
+            Delimitador de string.
+            </param>
+            <param name="p_header">
+            Se a primeira linha é cabeçalho ou não.
+            </param>
+            <param name="p_encoding">
+            Codificação do arquivo.
             </param></member>
         <member name="M:Spartacus.Database.Pollydb.CreateDatabase(System.String)">
             <summary>
@@ -38046,7 +38440,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Pollydb.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Pollydb.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -38147,6 +38541,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Pollydb.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38220,6 +38626,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38232,107 +38667,31 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Pollydb.GetColumnNames(System.String)">
+        <member name="M:Spartacus.Database.Pollydb.BuildCache(System.String)">
             <summary>
-            Lista os nomes de colunas de uma determinada consulta.
+            Constrói o banco de dados temporário.
             </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Pollydb.GetColumnNamesAndTypes(System.String)">
+            <param name="p_sql">Texto SQL.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.ExtractFromString(System.String,System.String,System.String)">
             <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
+            Extrai uma lista de texto entre os delimitadores especificados.
             </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="T:Spartacus.PollyDB.Column">
+            <returns>Lista de texto entre delimitadores especificados.</returns>
+            <param name="p_text">Texto original completo.</param>
+            <param name="p_start">Delimitador inicial.</param>
+            <param name="p_end">Delimitador final.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.DestroyCache">
             <summary>
-            Classe Column.
-            Representa uma coluna de qualquer Relação.
+            Destrói o banco de dados temporário.
             </summary></member>
-        <member name="F:Spartacus.PollyDB.Column.v_relationalias">
+        <member name="M:Spartacus.Database.Pollydb.OnProgress(Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ProgressEventArgs)">
             <summary>
-            Apelido da Relação.
+            Evento de progresso de transferência de um arquivo para o banco de dados temporário.
             </summary></member>
-        <member name="F:Spartacus.PollyDB.Column.v_name">
+        <member name="M:Spartacus.Database.Pollydb.OnError(Spartacus.Utils.ErrorEventClass,Spartacus.Utils.ErrorEventArgs)">
             <summary>
-            Nome da Coluna.
+            Evento de erro de transferência de um arquivo para o banco de dados temporário.
             </summary></member>
-        <member name="M:Spartacus.PollyDB.Column.#ctor(System.String,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Column" />.
-            </summary>
-            <param name="p_relationalias">Apelido da Relação.</param>
-            <param name="p_name">Nome da Coluna.</param></member>
-        <member name="T:Spartacus.PollyDB.LogicOperator">
-            <summary>
-            Operador Lógico.
-            </summary></member>
-        <member name="T:Spartacus.PollyDB.Operator">
-            <summary>
-            Operador de Comparação.
-            </summary></member>
-        <member name="T:Spartacus.PollyDB.OperandType">
-            <summary>
-            Tipo do Operando.
-            </summary></member>
-        <member name="T:Spartacus.PollyDB.Condition">
-            <summary>
-            Classe Condition.
-            Representa uma Condição de join ou where.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_logic_operator">
-            <summary>
-            Operador Lógico da Condição.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_leftoperand_relation">
-            <summary>
-            Relação do operando da esquerda.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_leftoperand_column">
-            <summary>
-            Coluna do operando da esquerda.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_operator">
-            <summary>
-            Operador de Comparação.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_rightoperand_type">
-            <summary>
-            Tipo do operando da direita.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_rightoperand_relation">
-            <summary>
-            Relação do operando da direita.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_rightoperand_column">
-            <summary>
-            Coluna do operando da direita.
-            </summary></member>
-        <member name="F:Spartacus.PollyDB.Condition.v_rightoperand_constant">
-            <summary>
-            Constante usada como operando da direita.
-            </summary></member>
-        <member name="M:Spartacus.PollyDB.Condition.#ctor(Spartacus.PollyDB.LogicOperator,System.String,System.String,Spartacus.PollyDB.Operator,Spartacus.PollyDB.OperandType,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Condition" />.
-            </summary>
-            <param name="p_logic_operator">Operador Lógico.</param>
-            <param name="p_leftoperand_relation">Relação do operando da esquerda.</param>
-            <param name="p_leftoperand_column">Coluna do operando da esquerda.</param>
-            <param name="p_operator">Operador de Comparação.</param>
-            <param name="p_rightoperand_type">Tipo do operando da direita.</param>
-            <param name="p_rightoperand_constant">Constante usada como operando da direita.</param></member>
-        <member name="M:Spartacus.PollyDB.Condition.#ctor(Spartacus.PollyDB.LogicOperator,System.String,System.String,Spartacus.PollyDB.Operator,Spartacus.PollyDB.OperandType,System.String,System.String)">
-            <summary>
-            Inicializa uma nova instância da classe <see cref="T:Spartacus.PollyDB.Condition" />.
-            </summary>
-            <param name="p_logic_operator">Operador Lógico.</param>
-            <param name="p_leftoperand_relation">Relação do operando da esquerda.</param>
-            <param name="p_leftoperand_column">Coluna do operando da esquerda.</param>
-            <param name="p_operator">Operador de Comparação.</param>
-            <param name="p_rightoperand_type">Tipo do operando da direita.</param>
-            <param name="p_rightoperand_relation">Relação do operando da direita.</param>
-            <param name="p_rightoperand_column">Coluna do operando da direita.</param></member>
         <member name="T:Spartacus.Database.Sqlce">
             <summary>
             Classe Spartacus.Database.Sqlce.
@@ -38398,7 +38757,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.Sqlce.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.Sqlce.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -38499,6 +38858,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.Sqlce.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.Sqlce.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38572,6 +38943,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.Sqlce.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38584,18 +38984,6 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.Sqlce.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.Sqlce.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
         <member name="T:Spartacus.Database.FbEmbed">
             <summary>
             Classe Spartacus.Database.FbEmbed.
@@ -38674,7 +39062,7 @@
             </param>
             <param name="p_progress">Evento de progresso da execução da consulta.</param>
             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns></member>
-        <member name="M:Spartacus.Database.FbEmbed.Query(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+        <member name="M:Spartacus.Database.FbEmbed.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
             <summary>
             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
@@ -38775,6 +39163,18 @@
             <summary>
             Deleta o banco de dados conectado atualmente.
             </summary></member>
+        <member name="M:Spartacus.Database.FbEmbed.GetColumnNames(System.String)">
+            <summary>
+            Lista os nomes de colunas de uma determinada consulta.
+            </summary>
+            <returns>Vetor com os nomes de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.GetColumnNamesAndTypes(System.String)">
+            <summary>
+            Lista os nomes e tipos de colunas de uma determinada consulta.
+            </summary>
+            <returns>Matriz com os nomes e tipos de colunas.</returns>
+            <param name="p_sql">Consulta SQL.</param></member>
         <member name="M:Spartacus.Database.FbEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38848,6 +39248,35 @@
             <param name="p_startrow">Número da linha inicial.</param>
             <param name="p_endrow">Número da linha final.</param>
             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+            <summary>
+            Transfere dados do banco de dados atual para um banco de dados de destino.
+            Conexão com o banco de destino precisa estar aberta.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+            <param name="p_table">Nome da tabela de destino.</param>
+            <param name="p_columns">Lista de colunas da tabela de destino.</param>
+            <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+            <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            <param name="p_log">Log de inserção.</param>
+            <param name="p_startrow">Número da linha inicial.</param>
+            <param name="p_endrow">Número da linha final.</param>
+            <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param></member>
         <member name="M:Spartacus.Database.FbEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
             <summary>
             Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -38860,17 +39289,5 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
-        <member name="M:Spartacus.Database.FbEmbed.GetColumnNames(System.String)">
-            <summary>
-            Lista os nomes de colunas de uma determinada consulta.
-            </summary>
-            <returns>Vetor com os nomes de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
-        <member name="M:Spartacus.Database.FbEmbed.GetColumnNamesAndTypes(System.String)">
-            <summary>
-            Lista os nomes e tipos de colunas de uma determinada consulta.
-            </summary>
-            <returns>Matriz com os nomes e tipos de colunas.</returns>
-            <param name="p_sql">Consulta SQL.</param></member>
     </members>
 </doc>

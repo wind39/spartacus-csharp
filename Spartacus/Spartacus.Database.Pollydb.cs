@@ -24,71 +24,145 @@ SOFTWARE.
 
 using System;
 using System.Data;
-using Spartacus.PollyDB;
+using Mono.Data.Sqlite;
 
 namespace Spartacus.Database
 {
     /// <summary>
-    /// Classe Spartacus.Database.Pollydb.
+    /// Classe Spartacus.Database.PollyDB.
     /// Herda da classe <see cref="Spartacus.Database.Generic"/>.
-    /// Utiliza o Spartacus.PollyDB .NET Provider para acessar um SGBD PollyDB.
+    /// Utiliza o Mono.Data.Sqlite para acessar arquivos CSV, XLSX e DBF.
     /// </summary>
     public class Pollydb : Spartacus.Database.Generic
     {
         /// <summary>
-        /// Conexão com o banco de dados.
+        /// Lista de arquivos.
         /// </summary>
-        private Spartacus.PollyDB.Connection v_con;
+        private System.Collections.Generic.List<string> v_files;
 
         /// <summary>
-        /// Comando para conexão com o banco de dados.
+        /// Limiar para saber se a cache deve ficar em memória ou em disco.
         /// </summary>
-        private Spartacus.PollyDB.Command v_cmd;
+        private long v_cachethreshold;
 
         /// <summary>
-        /// Leitor de dados do banco de dados.
+        /// Lista de arquivos em cache.
         /// </summary>
-        private Spartacus.PollyDB.DataReader v_reader;
+        System.Collections.Generic.List<string> v_tables;
 
         /// <summary>
-        /// Linha atual da QueryBlock.
+        /// Separador de campos.
         /// </summary>
-        private uint v_currentrow;
+        private string v_separator;
+
+        /// <summary>
+        /// Delimitador de campos.
+        /// </summary>
+        private string v_delimiter;
+
+        /// <summary>
+        /// Se a primeira linha do arquivo é cabeçalho ou não.
+        /// </summary>
+        private bool v_header;
+
+        /// <summary>
+        /// Codificação do arquivo.
+        /// </summary>
+        private System.Text.Encoding v_encoding;
+
+        /// <summary>
+        /// Banco de dados SQLite ou Memory temporário.
+        /// </summary>
+        private Spartacus.Database.Generic v_database;
+
+        /// <summary>
+        /// Nome do banco de dados temporário (se for SQLite).
+        /// </summary>
+        private string v_tempdatabase;
 
 
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Pollydb"/>.
         /// </summary>
-        /// <param name='p_file'>
-        /// Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+        /// <param name='p_directory'>
+        /// Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
         /// </param>
         public Pollydb(string p_directory)
             : base(p_directory)
         {
-            this.v_connectionstring = "Directory=" + p_directory;
+            this.v_separator = ";";
+            this.v_delimiter = "\"";
+            this.v_header = true;
+            this.v_encoding = System.Text.Encoding.Default;
+            this.v_files = new System.Collections.Generic.List<string>();
+            this.v_tables = new System.Collections.Generic.List<string>();
+            this.v_tempdatabase = "";
 
-            this.v_con = null;
-            this.v_cmd = null;
-            this.v_reader = null;
+            this.v_connectionstring = p_directory;
+            this.v_default_string = "text";
+            this.v_cachethreshold = 268435456; // 250 MB
         }
 
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Pollydb"/>.
         /// </summary>
-        /// <param name='p_file'>
-        /// Caminho absoluto ou relativo para o diretório onde estão os arquivos.
+        /// <param name='p_directory'>
+        /// Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
         /// </param>
-        /// <param name='p_options'>
-        /// Opções para o tratamento dos arquivos.
+        /// <param name="p_cachethreshold">
+        /// Limiar para saber se a cache deve ser construída em memória ou em disco.
         /// </param>
-        public Pollydb(string p_directory, string p_options)
+        public Pollydb(string p_directory, long p_cachethreshold)
             : base(p_directory)
         {
-            this.v_connectionstring = "Directory=" + p_directory + ";" + p_options;
+            this.v_separator = ";";
+            this.v_delimiter = "\"";
+            this.v_header = true;
+            this.v_encoding = System.Text.Encoding.Default;
+            this.v_files = new System.Collections.Generic.List<string>();
+            this.v_tables = new System.Collections.Generic.List<string>();
+            this.v_tempdatabase = "";
 
-            this.v_con = null;
-            this.v_cmd = null;
-            this.v_reader = null;
+            this.v_connectionstring = p_directory;
+            this.v_default_string = "text";
+            this.v_cachethreshold = 268435456; // 250 MB
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Pollydb"/>.
+        /// </summary>
+        /// <param name='p_directory'>
+        /// Caminho para o diretório onde estão os arquivos CSV, DBF e XLSX.
+        /// </param>
+        /// <param name="p_cachethreshold">
+        /// Limiar para saber se a cache deve ser construída em memória ou em disco.
+        /// </param>
+        /// <param name="p_separator">
+        /// Separador de campos.
+        /// </param>
+        /// <param name="p_delimiter">
+        /// Delimitador de string.
+        /// </param>
+        /// <param name="p_header">
+        /// Se a primeira linha é cabeçalho ou não.
+        /// </param>
+        /// <param name="p_encoding">
+        /// Codificação do arquivo.
+        /// </param>
+        public Pollydb(string p_directory, long p_cachethreshold, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
+            : base(p_directory)
+        {
+            this.v_separator = p_separator;
+            this.v_delimiter = p_delimiter;
+            this.v_header = p_header;
+            this.v_encoding = p_encoding;
+            this.v_files = new System.Collections.Generic.List<string>();
+            this.v_tables = new System.Collections.Generic.List<string>();
+            this.v_tempdatabase = "";
+
+            this.v_connectionstring = p_directory;
+            this.v_default_string = "text";
+            this.v_cachethreshold = p_cachethreshold;
         }
 
         /// <summary>
@@ -113,19 +187,24 @@ namespace Spartacus.Database
         /// </summary>
         public override void Open()
         {
-            try
+            System.IO.DirectoryInfo v_info;
+
+            v_info = new System.IO.DirectoryInfo(this.v_service);
+
+            if (v_info.Exists)
             {
-                this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                this.v_con.Open();
-                this.v_cmd = new Spartacus.PollyDB.Command();
-                this.v_cmd.Connection = this.v_con;
-                if (this.v_timeout > -1)
-                    this.v_cmd.CommandTimeout = this.v_timeout;
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.csv", System.IO.SearchOption.TopDirectoryOnly));
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.CSV", System.IO.SearchOption.TopDirectoryOnly));
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.dbf", System.IO.SearchOption.TopDirectoryOnly));
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.DBF", System.IO.SearchOption.TopDirectoryOnly));
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.xlsx", System.IO.SearchOption.TopDirectoryOnly));
+                v_files.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.XLSX", System.IO.SearchOption.TopDirectoryOnly));
+
+                if (v_files.Count == 0)
+                    throw new Spartacus.Database.Exception("Directory '{0}' does not contain any supported files.", this.v_service);
             }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+            else
+                throw new Spartacus.Database.Exception("Directory '{0}' does not exist.", this.v_service);
         }
 
         /// <summary>
@@ -140,94 +219,9 @@ namespace Spartacus.Database
         /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
         public override System.Data.DataTable Query(string p_sql, string p_tablename)
         {
-            System.Data.DataTable v_table = null;
-            System.Data.DataRow v_row;
-
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.Query: " + p_sql);
-            #endif
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader.GetValue(i);
-                        v_table.Rows.Add(v_row);
-                    }
-
-                    return v_table;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader.GetValue(i);
-                        v_table.Rows.Add(v_row);
-                    }
-
-                    return v_table;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            this.BuildCache(p_sql);
+            return this.v_database.Query(p_sql, p_tablename);
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -243,103 +237,9 @@ namespace Spartacus.Database
         /// <returns>Retorna uma <see cref="System.Data.DataTable"/> com os dados de retorno da consulta.</returns>
         public override System.Data.DataTable Query(string p_sql, string p_tablename, Spartacus.Utils.ProgressEventClass p_progress)
         {
-            System.Data.DataTable v_table = null;
-            System.Data.DataRow v_row;
-            uint v_counter = 0;
-
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.Query: " + p_sql);
-            #endif
-
-            p_progress.FireEvent(v_counter);
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader.GetValue(i);
-                        v_table.Rows.Add(v_row);
-
-                        v_counter++;
-                        p_progress.FireEvent(v_counter);
-                    }
-
-                    return v_table;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                    while (this.v_reader.Read())
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader.GetValue(i);
-                        v_table.Rows.Add(v_row);
-
-                        v_counter++;
-                        p_progress.FireEvent(v_counter);
-                    }
-
-                    return v_table;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            this.BuildCache(p_sql);
+            return this.v_database.Query(p_sql, p_tablename, p_progress);
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -361,59 +261,11 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>
         /// Indica se ainda há mais dados a serem lidos.
         /// </param>
-        public override System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        public override System.Data.DataTable QueryBlock(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
-            System.Data.DataTable v_table = null;
-            System.Data.DataRow v_row;
-
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.Query: " + p_sql);
-            #endif
-
-            try
-            {
-                if (this.v_reader == null)
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-                    this.v_currentrow = 0;
-                }
-
-                v_table = new System.Data.DataTable(p_tablename);
-                for (int i = 0; i < v_reader.FieldCount; i++)
-                    v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
-
-                p_hasmoredata = false;
-                while (this.v_reader.Read())
-                {
-                    p_hasmoredata = true;
-
-                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
-                    {
-                        v_row = v_table.NewRow();
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_row[i] = this.v_reader.GetValue(i);
-                        v_table.Rows.Add(v_row);
-                    }
-
-                    this.v_currentrow++;
-
-                    if (this.v_currentrow > p_endrow)
-                        break;
-                }
-
-                if (! p_hasmoredata)
-                {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                }
-
-                return v_table;
-            }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+            this.BuildCache(p_sql);
+            return this.v_database.QueryBlock(p_sql, p_tablename, p_startrow, p_endrow, out p_hasmoredata);
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -430,103 +282,9 @@ namespace Spartacus.Database
         /// </param>
         public override string QueryHtml(string p_sql, string p_id, string p_options)
         {
-            string v_html;
-
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.QueryHtml: " + p_sql);
-            #endif
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
-
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_html += "<th>" + this.FixColumnName(this.v_reader.GetName(i)) + "</th>";
-
-                    v_html += "</tr></thead><tbody>";
-
-                    while (this.v_reader.Read())
-                    {
-                        v_html += "<tr>";
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_html += "<td>" + this.v_reader.GetValue(i) + "</td>";
-                        v_html += "</tr>";
-                    }
-
-                    v_html += "</tbody></table>";
-
-                    return v_html;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
-
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_html += "<th>" + this.FixColumnName(this.v_reader.GetName(i)) + "</th>";
-
-                    v_html += "</tr></thead><tbody>";
-
-                    while (this.v_reader.Read())
-                    {
-                        v_html += "<tr>";
-                        for (int i = 0; i < this.v_reader.FieldCount; i++)
-                            v_html += "<td>" + this.v_reader.GetValue(i) + "</td>";
-                        v_html += "</tr>";
-                    }
-
-                    v_html += "</tbody></table>";
-
-                    return v_html;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            this.BuildCache(p_sql);
+            return this.v_database.QueryHtml(p_sql, p_id, p_options);
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -556,56 +314,10 @@ namespace Spartacus.Database
         /// </param>
         public override void Execute(string p_sql)
         {
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.Execute: " + p_sql);
-            #endif
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    if (this.v_execute_security)
-                        this.v_cmd = new Spartacus.PollyDB.Command(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    else
-                        this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    if (this.v_execute_security)
-                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    else
-                        this.v_cmd.CommandText = p_sql;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+            this.BuildCache(p_sql);
+            this.v_database.Execute(p_sql);
+            //TODO: atualizar arquivos
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -619,73 +331,10 @@ namespace Spartacus.Database
         /// </param>
         public override void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows)
         {
-            string v_block;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-
-                    v_block = "execute block as begin\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
-                    v_block += "end";
-
-                    #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Pollydb.InsertBlock: " + v_block);
-                    #endif
-
-                    if (this.v_execute_security)
-                        this.v_cmd = new Spartacus.PollyDB.Command(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    else
-                        this.v_cmd = new Spartacus.PollyDB.Command(v_block, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    v_block = "execute block as begin\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " values " + p_rows[k] + ";\n";
-                    v_block += "end";
-
-                    #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Pollydb.InsertBlock: " + v_block);
-                    #endif
-
-                    if (this.v_execute_security)
-                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
-                    else
-                        this.v_cmd.CommandText = v_block;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+            this.BuildCache(p_table);
+            this.v_database.InsertBlock(p_table, p_rows);
+            //TODO: atualizar arquivos
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -702,73 +351,10 @@ namespace Spartacus.Database
         /// </param>
         public override void InsertBlock(string p_table, System.Collections.Generic.List<string> p_rows, string p_columnnames)
         {
-            string v_block;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-
-                    v_block = "execute block as begin\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "end";
-
-                    #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Pollydb.InsertBlock: " + v_block);
-                    #endif
-
-                    if (this.v_execute_security)
-                        this.v_cmd = new Spartacus.PollyDB.Command(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
-                    else
-                        this.v_cmd = new Spartacus.PollyDB.Command(v_block, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    v_block = "execute block as begin\n";
-                    for (int k = 0; k < p_rows.Count; k++)
-                        v_block += "insert into " + p_table + " " + p_columnnames + " values " + p_rows[k] + ";\n";
-                    v_block += "end";
-
-                    #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Pollydb.InsertBlock: " + v_block);
-                    #endif
-
-                    if (this.v_execute_security)
-                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block);
-                    else
-                        this.v_cmd.CommandText = v_block;
-                    this.v_cmd.ExecuteNonQuery();
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+            this.BuildCache(p_table);
+            this.v_database.InsertBlock(p_table, p_rows, p_columnnames);
+            //TODO: atualizar arquivos
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -782,66 +368,9 @@ namespace Spartacus.Database
         /// </param>
         public override string ExecuteScalar(string p_sql)
         {
-            object v_tmp;
-
-            #if DEBUG
-            Console.WriteLine("Spartacus.Database.Pollydb.ExecuteScalar: " + p_sql);
-            #endif
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    if (this.v_execute_security)
-                        this.v_cmd = new Spartacus.PollyDB.Command(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
-                    else
-                        this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    v_tmp = this.v_cmd.ExecuteScalar();
-                    if (v_tmp != null)
-                        return v_tmp.ToString();
-                    else
-                        return "";
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    if (this.v_execute_security)
-                        this.v_cmd.CommandText = Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql);
-                    else
-                        this.v_cmd.CommandText = p_sql;
-                    v_tmp = this.v_cmd.ExecuteScalar();
-                    if (v_tmp != null)
-                        return v_tmp.ToString();
-                    else
-                        return "";
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-            }
+            this.BuildCache(p_sql);
+            return this.v_database.ExecuteScalar(p_sql);
+            this.DestroyCache();
         }
 
         /// <summary>
@@ -849,15 +378,8 @@ namespace Spartacus.Database
         /// </summary>
         public override void Close()
         {
-            if (this.v_cmd != null)
-            {
-                this.v_cmd = null;
-            }
-            if (this.v_con != null)
-            {
-                this.v_con.Close();
-                this.v_con = null;
-            }
+            this.DestroyCache();
+            this.v_files.Clear();
         }
 
         /// <summary>
@@ -878,6 +400,30 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Lista os nomes de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Vetor com os nomes de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[] GetColumnNames(string p_sql)
+        {
+            string[] v_array;
+
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetColumnNames");
+        }
+
+        /// <summary>
+        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[,] GetColumnNamesAndTypes(string p_sql)
+        {
+            string[,] v_matrix;
+
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetColumnNamesAndTypes");
+        }
+
+        /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
         /// </summary>
@@ -887,83 +433,7 @@ namespace Spartacus.Database
         /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase)
         {
-            uint v_transfered = 0;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_query, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        p_destdatabase.Execute(p_insert.GetUpdatedText());
-                        v_transfered++;
-                    }
-
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        p_destdatabase.Execute(p_insert.GetUpdatedText());
-                        v_transfered++;
-                    }
-
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -978,102 +448,7 @@ namespace Spartacus.Database
         /// <param name="p_log">Log de inserção.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log)
         {
-            uint v_transfered = 0;
-            string v_insert;
-
-            p_log = "";
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_query, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        v_insert = p_insert.GetUpdatedText();
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += v_insert + "\n" + e.v_message + "\n";
-                        }
-                    }
-
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    while (v_reader.Read())
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        v_insert = p_insert.GetUpdatedText();
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += v_insert + "\n" + e.v_message + "\n";
-                        }
-                    }
-
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -1089,49 +464,7 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
-            uint v_transfered = 0;
-
-            try
-            {
-                if (this.v_reader == null)
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-                    this.v_currentrow = 0;
-                }
-
-                p_hasmoredata = false;
-                while (v_reader.Read())
-                {
-                    p_hasmoredata = true;
-
-                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        p_destdatabase.Execute(p_insert.GetUpdatedText());
-                        v_transfered++;
-                    }
-
-                    this.v_currentrow++;
-
-                    if (this.v_currentrow > p_endrow)
-                        break;
-                }
-
-                if (! p_hasmoredata)
-                {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                }
-
-                return v_transfered;
-            }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -1149,58 +482,7 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
-            uint v_transfered = 0;
-            string v_insert;
-
-            try
-            {
-                if (this.v_reader == null)
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-                    this.v_currentrow = 0;
-                }
-
-                p_hasmoredata = false;
-                while (v_reader.Read())
-                {
-                    p_hasmoredata = true;
-
-                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        v_insert = p_insert.GetUpdatedText();
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_log += v_insert + "\n" + e.v_message + "\n";
-                        }
-                    }
-
-                    this.v_currentrow++;
-
-                    if (this.v_currentrow > p_endrow)
-                        break;
-                }
-
-                if (! p_hasmoredata)
-                {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                }
-
-                return v_transfered;
-            }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -1217,59 +499,7 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
         public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
-            uint v_transfered = 0;
-            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
-            string v_columnnames;
-
-            try
-            {
-                if (this.v_reader == null)
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-                    this.v_currentrow = 0;
-                }
-
-                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
-                for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
-                v_columnnames += ")";
-
-                p_hasmoredata = false;
-                while (v_reader.Read())
-                {
-                    p_hasmoredata = true;
-
-                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        v_rows.Add(p_insert.GetUpdatedText());
-
-                        v_transfered++;
-                    }
-
-                    this.v_currentrow++;
-
-                    if (this.v_currentrow > p_endrow)
-                        break;
-                }
-
-                if (! p_hasmoredata)
-                {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                }
-                else
-                    p_destdatabase.InsertBlock(p_table, v_rows, v_columnnames);
-
-                return v_transfered;
-            }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -1287,68 +517,44 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
         public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
-            uint v_transfered = 0;
-            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
-            string v_columnnames;
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+        }
 
-            try
-            {
-                if (this.v_reader == null)
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-                    this.v_currentrow = 0;
-                }
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+        }
 
-                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
-                for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
-                v_columnnames += ")";
-
-                p_hasmoredata = false;
-                while (v_reader.Read())
-                {
-                    p_hasmoredata = true;
-
-                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
-
-                        v_rows.Add(p_insert.GetUpdatedText());
-
-                        v_transfered++;
-                    }
-
-                    this.v_currentrow++;
-
-                    if (this.v_currentrow > p_endrow)
-                        break;
-                }
-
-                if (! p_hasmoredata)
-                {
-                    this.v_reader.Close();
-                    this.v_reader = null;
-                }
-                else
-                {
-                    try
-                    {
-                        p_destdatabase.InsertBlock(p_table, v_rows, v_columnnames);
-                    }
-                    catch (Spartacus.Database.Exception e)
-                    {
-                        p_log += e.v_message + "\n";
-                    }
-                }
-
-                return v_transfered;
-            }
-            catch (Spartacus.PollyDB.Exception e)
-            {
-                throw new Spartacus.Database.Exception(e);
-            }
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
         }
 
         /// <summary>
@@ -1364,262 +570,131 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered = 0;
-            string v_insert;
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+        }
 
-            p_progress.FireEvent(v_transfered);
+        /// <summary>
+        /// Constrói o banco de dados temporário.
+        /// </summary>
+        /// <param name="p_sql">Texto SQL.</param>
+        private void BuildCache(string p_sql)
+        {
+            Spartacus.Utils.ProgressEventClass v_progress;
+            Spartacus.Utils.ErrorEventClass v_error;
+            Spartacus.Utils.Cryptor v_cryptor;
+            System.IO.FileInfo v_info;
+            long v_totalsize;
 
-            if (this.v_con == null)
+            v_totalsize = 0;
+            foreach (string s in this.ExtractFromString(p_sql, "[", "]"))
             {
-                try
+                if (this.v_files.Contains(s))
                 {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_query, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
+                    v_info = new System.IO.FileInfo(s);
 
-                    while (v_reader.Read())
+                    if (v_info.Exists)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
+                        v_totalsize += v_info.Length;
+                        this.v_tables.Add(s);
+                    }
+                    else
+                        throw new Spartacus.Database.Exception("File '{0}' does not exist.", s);
+                }
+            }
 
-                        v_insert = p_insert.GetUpdatedText();
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                            p_progress.FireEvent(v_transfered);
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_error.FireEvent(v_insert + "\n" + e.v_message);
-                        }
-                    }
-
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
+            if (v_totalsize > this.v_cachethreshold)
+            {
+                v_cryptor = new Spartacus.Utils.Cryptor("spartacus");
+                this.v_tempdatabase = v_cryptor.RandomString() + ".db";
+                this.v_database = new Spartacus.Database.Sqlite(this.v_tempdatabase);
             }
             else
             {
-                try
-                {
-                    this.v_cmd.CommandText = p_query;
-                    this.v_reader = this.v_cmd.ExecuteReader();
+                this.v_tempdatabase = "";
+                this.v_database = new Spartacus.Database.Memory();
+            }
 
-                    while (v_reader.Read())
-                    {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader.GetValue(i), this.v_execute_security);
+            this.v_database.SetTimeout(-1);
+            this.v_database.SetExecuteSecurity(false);
+            this.v_database.Open();
+            this.v_database.Execute("PRAGMA synchronous=OFF");
 
-                        v_insert = p_insert.GetUpdatedText();
-                        try
-                        {
-                            p_destdatabase.Execute(v_insert);
-                            v_transfered++;
-                            p_progress.FireEvent(v_transfered);
-                        }
-                        catch (Spartacus.Database.Exception e)
-                        {
-                            p_error.FireEvent(v_insert + "\n" + e.v_message);
-                        }
-                    }
+            v_progress = new Spartacus.Utils.ProgressEventClass();
+            v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(OnProgress);
+            v_error = new Spartacus.Utils.ErrorEventClass();
+            v_error.ErrorEvent += new Spartacus.Utils.ErrorEventClass.ErrorEventHandler(OnError);
 
-                    return v_transfered;
-                }
-                catch (Spartacus.PollyDB.Exception e)
+            foreach (string t in this.v_tables)
+                this.v_database.TransferFromFile(t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding, "[" + t + "]", v_progress, v_error);
+        }
+
+        /// <summary>
+        /// Extrai uma lista de texto entre os delimitadores especificados.
+        /// </summary>
+        /// <returns>Lista de texto entre delimitadores especificados.</returns>
+        /// <param name="p_text">Texto original completo.</param>
+        /// <param name="p_start">Delimitador inicial.</param>
+        /// <param name="p_end">Delimitador final.</param>
+        private System.Collections.Generic.List<string> ExtractFromString(string p_text, string p_start, string p_end)
+        {            
+            System.Collections.Generic.List<string> v_matched;
+            string v_text;
+            int s, e;
+            bool v_exit = false;
+
+            v_matched = new System.Collections.Generic.List<string>();
+
+            v_text = p_text;
+            s = 0;
+            e = 0;
+            v_exit = false;
+            while(! v_exit)
+            {
+                s = v_text.IndexOf(p_start);
+                e = v_text.IndexOf(p_end);
+                if (s != -1 && e != -1)
                 {
-                    throw new Spartacus.Database.Exception(e);
+                    v_matched.Add(v_text.Substring(s + p_start.Length, e - s - p_start.Length));
+                    v_text = v_text.Substring(e + p_end.Length);
                 }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
+                else
+                    v_exit = true;
+            }
+
+            return v_matched;
+        }
+
+        /// <summary>
+        /// Destrói o banco de dados temporário.
+        /// </summary>
+        private void DestroyCache()
+        {
+            System.IO.FileInfo v_info;
+
+            this.v_database.Close();
+            this.v_tables.Clear();
+
+            if (this.v_tempdatabase != "")
+            {
+                v_info = new System.IO.FileInfo(this.v_tempdatabase);
+                if (v_info.Exists)
+                    v_info.Delete();
             }
         }
 
         /// <summary>
-        /// Lista os nomes de colunas de uma determinada consulta.
+        /// Evento de progresso de transferência de um arquivo para o banco de dados temporário.
         /// </summary>
-        /// <returns>Vetor com os nomes de colunas.</returns>
-        /// <param name="p_sql">Consulta SQL.</param>
-        public override string[] GetColumnNames(string p_sql)
+        private static void OnProgress(Spartacus.Utils.ProgressEventClass obj, Spartacus.Utils.ProgressEventArgs e)
         {
-            string[] v_array;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
-
-                    return v_array;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
-
-                    return v_array;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
         }
 
         /// <summary>
-        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// Evento de erro de transferência de um arquivo para o banco de dados temporário.
         /// </summary>
-        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
-        /// <param name="p_sql">Consulta SQL.</param>
-        public override string[,] GetColumnNamesAndTypes(string p_sql)
+        private static void OnError(Spartacus.Utils.ErrorEventClass obj, Spartacus.Utils.ErrorEventArgs e)
         {
-            string[,] v_matrix;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = new Spartacus.PollyDB.Connection(this.v_connectionstring);
-                    this.v_con.Open();
-                    this.v_cmd = new Spartacus.PollyDB.Command(p_sql, this.v_con);
-                    if (this.v_timeout > -1)
-                        this.v_cmd.CommandTimeout = this.v_timeout;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_matrix = new string[v_reader.FieldCount, 2];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                    {
-                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
-                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
-                    }
-
-                    return v_matrix;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.Close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_cmd.CommandText = p_sql;
-                    this.v_reader = this.v_cmd.ExecuteReader();
-
-                    v_matrix = new string[v_reader.FieldCount, 2];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                    {
-                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
-                        v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
-                    }
-
-                    return v_matrix;
-                }
-                catch (Spartacus.PollyDB.Exception e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.Close();
-                        this.v_reader = null;
-                    }
-                }
-            }
+            throw new Spartacus.Database.Exception(e.v_message);
         }
     }
 }

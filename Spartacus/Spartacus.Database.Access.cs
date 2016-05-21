@@ -64,10 +64,13 @@ namespace Spartacus.Database
         public Access(string p_file)
             : base(p_file)
         {
-            this.v_service = p_file;
-
             ikvm.runtime.Startup.addBootClassPathAssemby(System.Reflection.Assembly.Load("UCanAccess"));
             java.lang.Class.forName("net.ucanaccess.jdbc.UcanaccessDriver, UCanAccess, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "text";
         }
 
         /// <summary>
@@ -342,14 +345,14 @@ namespace Spartacus.Database
         /// <param name='p_hasmoredata'>
         /// Indica se ainda há mais dados a serem lidos.
         /// </param>
-        public override System.Data.DataTable Query(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        public override System.Data.DataTable QueryBlock(string p_sql, string p_tablename, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
         {
             java.sql.ResultSetMetaData v_resmd;
             System.Data.DataTable v_table = null;
             System.Data.DataRow v_row;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Access.Query: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Access.QueryBlock: " + p_sql);
             #endif
 
             try
@@ -865,6 +868,172 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Lista os nomes de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Vetor com os nomes de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[] GetColumnNames(string p_sql)
+        {
+            java.sql.ResultSetMetaData v_resmd;
+            string[] v_array;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
+                    this.v_cmd = this.v_con.createStatement();
+                    if (this.v_timeout > -1)
+                        this.v_cmd.setQueryTimeout(this.v_timeout);
+                    this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+                    v_resmd = this.v_reader.getMetaData();
+
+                    v_array = new string[v_resmd.getColumnCount()];
+                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                        v_array[i] = this.FixColumnName(v_resmd.getColumnLabel(i));
+
+                    return v_array;
+                }
+                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.close();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+                    v_resmd = this.v_reader.getMetaData();
+
+                    v_array = new string[v_resmd.getColumnCount()];
+                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                        v_array[i] = this.FixColumnName(v_resmd.getColumnLabel(i));
+
+                    return v_array;
+                }
+                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lista os nomes e tipos de colunas de uma determinada consulta.
+        /// </summary>
+        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
+        /// <param name="p_sql">Consulta SQL.</param>
+        public override string[,] GetColumnNamesAndTypes(string p_sql)
+        {
+            java.sql.ResultSetMetaData v_resmd;
+            string[,] v_matrix;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
+                    this.v_cmd = this.v_con.createStatement();
+                    if (this.v_timeout > -1)
+                        this.v_cmd.setQueryTimeout(this.v_timeout);
+                    this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+                    v_resmd = this.v_reader.getMetaData();
+
+                    v_matrix = new string[v_resmd.getColumnCount(), 2];
+                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                    {
+                        v_matrix[i, 0] = this.FixColumnName(v_resmd.getColumnLabel(i));
+                        v_matrix[i, 1] = v_resmd.getColumnTypeName(i);
+                    }
+
+                    return v_matrix;
+                }
+                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.close();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+                    v_resmd = this.v_reader.getMetaData();
+
+                    v_matrix = new string[v_resmd.getColumnCount(), 2];
+                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                    {
+                        v_matrix[i, 0] = this.FixColumnName(v_resmd.getColumnLabel(i));
+                        v_matrix[i, 1] = v_resmd.getColumnTypeName(i);
+                    }
+
+                    return v_matrix;
+                }
+                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
         /// </summary>
@@ -1357,6 +1526,148 @@ namespace Spartacus.Database
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            java.sql.ResultSetMetaData v_resmd;
+            uint v_transfered = 0;
+            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
+
+            try
+            {
+                if (this.v_reader == null)
+                {
+                    this.v_reader = this.v_cmd.executeQuery(p_query);
+                    this.v_currentrow = 0;
+                }
+
+                v_resmd = this.v_reader.getMetaData();
+
+                p_hasmoredata = false;
+                while (this.v_reader.next())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
+                    {
+                        for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
+
+                        v_rows.Add(p_insert.GetUpdatedText());
+
+                        v_transfered++;
+                    }
+
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                        break;
+                }
+
+                if (! p_hasmoredata)
+                {
+                    this.v_reader.close();
+                    this.v_reader = null;
+                }
+                else
+                    p_destdatabase.InsertBlock(p_table, v_rows, p_columns);
+
+                return v_transfered;
+            }
+            catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+        /// <param name="p_table">Nome da tabela de destino.</param>
+        /// <param name="p_columns">Lista de colunas da tabela de destino.</param>
+        /// <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+        /// <param name="p_destdatabase">Conexão com o banco de destino.</param>
+        /// <param name="p_log">Log de inserção.</param>
+        /// <param name='p_startrow'>Número da linha inicial.</param>
+        /// <param name='p_endrow'>Número da linha final.</param>
+        /// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
+        public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
+        {
+            java.sql.ResultSetMetaData v_resmd;
+            uint v_transfered = 0;
+            System.Collections.Generic.List<string> v_rows = new System.Collections.Generic.List<string>();
+
+            try
+            {
+                if (this.v_reader == null)
+                {
+                    this.v_reader = this.v_cmd.executeQuery(p_query);
+                    this.v_currentrow = 0;
+                }
+
+                v_resmd = this.v_reader.getMetaData();
+
+                p_hasmoredata = false;
+                while (this.v_reader.next())
+                {
+                    p_hasmoredata = true;
+
+                    if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
+                    {
+                        for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+                            p_insert.SetValue(this.FixColumnName(v_resmd.getColumnLabel(i)).ToLower(), this.v_reader.getString(i), this.v_execute_security);
+
+                        v_rows.Add(p_insert.GetUpdatedText());
+
+                        v_transfered++;
+                    }
+
+                    this.v_currentrow++;
+
+                    if (this.v_currentrow > p_endrow)
+                        break;
+                }
+
+                if (! p_hasmoredata)
+                {
+                    this.v_reader.close();
+                    this.v_reader = null;
+                }
+                else
+                {
+                    try
+                    {
+                        p_destdatabase.InsertBlock(p_table, v_rows, p_columns);
+                    }
+                    catch (Spartacus.Database.Exception e)
+                    {
+                        p_log += e.v_message + "\n";
+                    }
+                }
+
+                return v_transfered;
+            }
+            catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
+            {
+                throw new Spartacus.Database.Exception(e);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um banco de dados de destino.
+        /// Conexão com o banco de destino precisa estar aberta.
         /// Não pára a execução se der um problema num comando de inserção específico.
         /// </summary>
         /// <returns>Número de linhas transferidas.</returns>
@@ -1455,172 +1766,6 @@ namespace Spartacus.Database
                     }
 
                     return v_transfered;
-                }
-                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.close();
-                        this.v_reader = null;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Lista os nomes de colunas de uma determinada consulta.
-        /// </summary>
-        /// <returns>Vetor com os nomes de colunas.</returns>
-        /// <param name="p_sql">Consulta SQL.</param>
-        public override string[] GetColumnNames(string p_sql)
-        {
-            java.sql.ResultSetMetaData v_resmd;
-            string[] v_array;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
-                    this.v_cmd = this.v_con.createStatement();
-                    if (this.v_timeout > -1)
-                        this.v_cmd.setQueryTimeout(this.v_timeout);
-                    this.v_reader = this.v_cmd.executeQuery(p_sql);
-
-                    v_resmd = this.v_reader.getMetaData();
-
-                    v_array = new string[v_resmd.getColumnCount()];
-                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                        v_array[i] = this.FixColumnName(v_resmd.getColumnLabel(i));
-
-                    return v_array;
-                }
-                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.close();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_reader = this.v_cmd.executeQuery(p_sql);
-
-                    v_resmd = this.v_reader.getMetaData();
-
-                    v_array = new string[v_resmd.getColumnCount()];
-                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                        v_array[i] = this.FixColumnName(v_resmd.getColumnLabel(i));
-
-                    return v_array;
-                }
-                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.close();
-                        this.v_reader = null;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Lista os nomes e tipos de colunas de uma determinada consulta.
-        /// </summary>
-        /// <returns>Matriz com os nomes e tipos de colunas.</returns>
-        /// <param name="p_sql">Consulta SQL.</param>
-        public override string[,] GetColumnNamesAndTypes(string p_sql)
-        {
-            java.sql.ResultSetMetaData v_resmd;
-            string[,] v_matrix;
-
-            if (this.v_con == null)
-            {
-                try
-                {
-                    this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
-                    this.v_cmd = this.v_con.createStatement();
-                    if (this.v_timeout > -1)
-                        this.v_cmd.setQueryTimeout(this.v_timeout);
-                    this.v_reader = this.v_cmd.executeQuery(p_sql);
-
-                    v_resmd = this.v_reader.getMetaData();
-
-                    v_matrix = new string[v_resmd.getColumnCount(), 2];
-                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                    {
-                        v_matrix[i, 0] = this.FixColumnName(v_resmd.getColumnLabel(i));
-                        v_matrix[i, 1] = v_resmd.getColumnTypeName(i);
-                    }
-
-                    return v_matrix;
-                }
-                catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
-                finally
-                {
-                    if (this.v_reader != null)
-                    {
-                        this.v_reader.close();
-                        this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.close();
-                        this.v_cmd = null;
-                    }
-                    if (this.v_con != null)
-                    {
-                        this.v_con.close();
-                        this.v_con = null;
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    this.v_reader = this.v_cmd.executeQuery(p_sql);
-
-                    v_resmd = this.v_reader.getMetaData();
-
-                    v_matrix = new string[v_resmd.getColumnCount(), 2];
-                    for (int i = 1; i <= v_resmd.getColumnCount(); i++)
-                    {
-                        v_matrix[i, 0] = this.FixColumnName(v_resmd.getColumnLabel(i));
-                        v_matrix[i, 1] = v_resmd.getColumnTypeName(i);
-                    }
-
-                    return v_matrix;
                 }
                 catch (net.ucanaccess.jdbc.UcanaccessSQLException e)
                 {
