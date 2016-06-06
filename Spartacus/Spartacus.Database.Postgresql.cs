@@ -1822,5 +1822,381 @@ namespace Spartacus.Database
                 }
             }
         }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo CSV.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        public override uint TransferToCSV(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
+        {
+            System.IO.StreamWriter v_writer = null;
+            uint v_transfered = 0;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_writer = new System.IO.StreamWriter(new System.IO.FileStream(p_filename, System.IO.FileMode.Create), p_encoding);
+                    if (p_header)
+                    {
+                        v_writer.Write(p_delimiter + this.FixColumnName(v_reader.GetName(0)).ToUpper() + p_delimiter);
+                        for (int i = 1; i < v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.FixColumnName(v_reader.GetName(i)).ToUpper() + p_delimiter);
+                        v_writer.WriteLine();
+                    }
+
+                    while (v_reader.Read())
+                    {
+                        v_writer.Write(p_delimiter + v_reader[0].ToString() + p_delimiter);
+                        for (int i = 1; i < v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + v_reader[i].ToString() + p_delimiter);
+                        v_writer.WriteLine();
+
+                        v_transfered++;
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (v_writer != null)
+                    {
+                        v_writer.Close();
+                        v_writer = null;
+                    }
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_writer = new System.IO.StreamWriter(new System.IO.FileStream(p_filename, System.IO.FileMode.Create), p_encoding);
+                    if (p_header)
+                    {
+                        v_writer.Write(p_delimiter + this.FixColumnName(v_reader.GetName(0)).ToUpper() + p_delimiter);
+                        for (int i = 1; i < v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.FixColumnName(v_reader.GetName(i)).ToUpper() + p_delimiter);
+                        v_writer.WriteLine();
+                    }
+
+                    while (v_reader.Read())
+                    {
+                        v_writer.Write(p_delimiter + v_reader[0].ToString() + p_delimiter);
+                        for (int i = 1; i < v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + v_reader[i].ToString() + p_delimiter);
+                        v_writer.WriteLine();
+
+                        v_transfered++;
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (v_writer != null)
+                    {
+                        v_writer.Close();
+                        v_writer = null;
+                    }
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo XLSX.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public override uint TransferToXLSX(string p_query, string p_filename)
+        {
+            uint v_transfered = 0;
+            int i, j;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    using (OfficeOpenXml.ExcelPackage v_package = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(p_filename)))
+                    {
+                        using (OfficeOpenXml.ExcelWorksheet v_worksheet = v_package.Workbook.Worksheets.Add("RESULT"))
+                        {
+                            v_worksheet.View.ShowGridLines = true;
+
+                            for (j = 0; j < v_reader.FieldCount; j++)
+                                v_worksheet.Cells[1, j+1].Value = this.FixColumnName(v_reader.GetName(j)).ToUpper();
+
+                            i = 2;
+                            while (v_reader.Read())
+                            {
+                                for (j = 0; j < v_reader.FieldCount; j++)
+                                    v_worksheet.Cells[i, j+1].Value = v_reader[j].ToString();
+                                i++;
+
+                                v_transfered++;
+                            }
+
+                            v_package.Save();
+                        }
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    using (OfficeOpenXml.ExcelPackage v_package = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(p_filename)))
+                    {
+                        using (OfficeOpenXml.ExcelWorksheet v_worksheet = v_package.Workbook.Worksheets.Add("RESULT"))
+                        {
+                            v_worksheet.View.ShowGridLines = true;
+
+                            for (j = 0; j < v_reader.FieldCount; j++)
+                                v_worksheet.Cells[1, j+1].Value = this.FixColumnName(v_reader.GetName(j)).ToUpper();
+
+                            i = 2;
+                            while (v_reader.Read())
+                            {
+                                for (j = 0; j < v_reader.FieldCount; j++)
+                                    v_worksheet.Cells[i, j+1].Value = v_reader[j].ToString();
+                                i++;
+
+                                v_transfered++;
+                            }
+
+                            v_package.Save();
+                        }
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo DBF.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public override uint TransferToDBF(string p_query, string p_filename)
+        {
+            uint v_transfered = 0;
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf = null;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+            int j;
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                    v_dbf.Open(p_filename, System.IO.FileMode.Create);
+
+                    for (j = 0; j < v_reader.FieldCount; j++)
+                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.FixColumnName(v_reader.GetName(j)).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
+
+                    while (v_reader.Read())
+                    {
+                        v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                        for (j = 0; j < v_reader.FieldCount; j++)
+                            v_record[j] = v_reader[j].ToString();
+                        v_dbf.Write(v_record);
+
+                        v_transfered++;
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (v_dbf != null)
+                        v_dbf.Close();
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_cmd.CommandText = p_query;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                    v_dbf.Open(p_filename, System.IO.FileMode.Create);
+
+                    for (j = 0; j < v_reader.FieldCount; j++)
+                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.FixColumnName(v_reader.GetName(j)).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
+
+                    while (v_reader.Read())
+                    {
+                        v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                        for (j = 0; j < v_reader.FieldCount; j++)
+                            v_record[j] = v_reader[j].ToString();
+                        v_dbf.Write(v_record);
+
+                        v_transfered++;
+                    }
+
+                    return v_transfered;
+                }
+                catch (Npgsql.NpgsqlException e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (v_dbf != null)
+                        v_dbf.Close();
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
     }
 }

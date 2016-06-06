@@ -2456,6 +2456,54 @@
             <param name="p_table">Tabela de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToFile(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToFile(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Generic.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Odbc">
             <summary>
             Classe Spartacus.Database.Odbc.
@@ -2755,6 +2803,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Odbc.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Type">
             <summary>
             Tipos de Dados.
@@ -3151,6 +3227,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Firebird.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Mysql">
             <summary>
             Classe Spartacus.Database.Mysql.
@@ -3471,6 +3575,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Mysql.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Oledb">
             <summary>
             Classe Spartacus.Database.Oledb.
@@ -3779,6 +3911,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Oledb.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Reporting.Exception">
             <summary>
             Classe Spartacus.Reporting.Exception.
@@ -4925,6 +5085,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Sqlite.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Postgresql">
             <summary>
             Classe Spartacus.Database.Postgresql.
@@ -5245,6 +5433,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Postgresql.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="F:Spartacus.Utils.FileArray.v_files">
             <summary>
             Lista de arquivos e/ou diretórios contidos no FileArray.
@@ -6208,6 +6424,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Oracle.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:PDFjet.NET.A3">
              *  Used to specify PDF page with size <strong>A3</strong>.
              *  For more information about the page size classes - A3, A4, A5, B5, Executive, Letter, Legal and Tabloid - see the Page class.
@@ -35719,6 +35963,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Memory.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:SocialExplorer.IO.FastDBF.DbfColumn">
             <summary>
             This class represents a DBF Column.
@@ -36770,6 +37042,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.SqlServer.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Utils.Cryptor">
             <summary>
             Classe Cryptor.
@@ -38323,6 +38623,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Access.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Access.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Access.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.Pollydb">
             <summary>
             Classe Spartacus.Database.PollyDB.
@@ -38667,6 +38995,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Pollydb.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="M:Spartacus.Database.Pollydb.BuildCache(System.String)">
             <summary>
             Constrói o banco de dados temporário.
@@ -38984,6 +39340,34 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.Sqlce.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
         <member name="T:Spartacus.Database.FbEmbed">
             <summary>
             Classe Spartacus.Database.FbEmbed.
@@ -39289,5 +39673,33 @@
             <param name="p_destdatabase">Conexão com o banco de destino.</param>
             <param name="p_progress">Evento de progresso.</param>
             <param name="p_error">Evento de erro.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo CSV.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param>
+            <param name="p_separator">Separador de campos.</param>
+            <param name="p_delimiter">Delimitador de string.</param>
+            <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+            <param name="p_encoding">Codificação do arquivo.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.TransferToXLSX(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo XLSX.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
+        <member name="M:Spartacus.Database.FbEmbed.TransferToDBF(System.String,System.String)">
+            <summary>
+            Transfere dados do banco de dados atual para um arquivo DBF.
+            Não pára a execução se der um problema num comando de inserção específico.
+            </summary>
+            <returns>Número de linhas transferidas.</returns>
+            <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+            <param name="p_filename">Nome do arquivo de destino.</param></member>
     </members>
 </doc>

@@ -574,6 +574,46 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo CSV.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        public override uint TransferToCSV(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
+        {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToCSV");
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo XLSX.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public override uint TransferToXLSX(string p_query, string p_filename)
+        {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToXLSX");
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo DBF.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public override uint TransferToDBF(string p_query, string p_filename)
+        {
+            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToDBF");
+        }
+
+        /// <summary>
         /// Constrói o banco de dados temporário.
         /// </summary>
         /// <param name="p_sql">Texto SQL.</param>

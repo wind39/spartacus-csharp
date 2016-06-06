@@ -1475,7 +1475,72 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromDBF(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Generic.TransferFromDBF");
+            uint v_transfered, v_blocksize;
+            System.Collections.Generic.List<string> v_block, v_columns;
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+            int j, k;
+
+            try
+            {
+                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                v_dbf.Open(p_filename, System.IO.FileMode.Open);
+
+                v_block = new System.Collections.Generic.List<string>();
+                v_columns = new System.Collections.Generic.List<string>();
+
+                for (j = 0; j < v_dbf.Header.ColumnCount; j++)
+                {
+                    if (v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                        v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                        v_columns.Add(v_dbf.Header[j].Name);
+                }
+
+                v_transfered = 0;
+                v_blocksize = 100;
+                k = 0;
+                v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                while (v_dbf.ReadNext(v_record))
+                {
+                    if (! v_record.IsDeleted)
+                    {
+                        for (j = 0; j < v_record.ColumnCount; j++)
+                        {
+                            if (v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                                v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                                p_insert.SetValue(v_columns[j], v_record[j].Trim());
+                        }
+
+                        v_block.Add(p_insert.GetUpdatedText());
+                        k++;
+
+                        if (k == v_blocksize)
+                        {
+                            this.InsertBlock(p_table, v_block, p_columns);
+                            v_transfered += (uint) v_block.Count;
+                            p_progress.FireEvent(v_transfered);
+
+                            v_block.Clear();
+                            k = 0;
+                        }
+                    }
+                }
+
+                v_dbf.Close();
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block, p_columns);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -1490,7 +1555,207 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromDBF(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Generic.TransferFromDBF");
+            uint v_transfered, v_blocksize;
+            System.Collections.Generic.List<string> v_block, v_columns;
+            Spartacus.Database.Command v_insert;
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+            string v_createtable;
+            int j, k;
+            bool v_first;
+
+            try
+            {
+                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                v_dbf.Open(p_filename, System.IO.FileMode.Open);
+
+                v_block = new System.Collections.Generic.List<string>();
+                v_columns = new System.Collections.Generic.List<string>();
+                v_insert = new Spartacus.Database.Command();
+
+                v_insert.v_text = "(";
+                v_createtable = "create table " + p_table + " (";
+                v_first = true;
+                for (j = 0; j < v_dbf.Header.ColumnCount; j++)
+                {
+                    if (v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                        v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                    {
+                        if (v_first)
+                        {
+                            v_insert.v_text += "#" + v_dbf.Header[j].Name + "#";
+                            v_insert.AddParameter(v_dbf.Header[j].Name, Spartacus.Database.Type.QUOTEDSTRING);
+                            v_createtable += v_dbf.Header[j].Name + " " + this.v_default_string;
+                            v_columns.Add(v_dbf.Header[j].Name);
+                            v_first = false;
+                        }
+                        else
+                        {
+                            v_insert.v_text += ",#" + v_dbf.Header[j].Name + "#";
+                            v_insert.AddParameter(v_dbf.Header[j].Name, Spartacus.Database.Type.QUOTEDSTRING);
+                            v_createtable += "," + v_dbf.Header[j].Name + " " + this.v_default_string;
+                            v_columns.Add(v_dbf.Header[j].Name);
+                        }
+                    }
+                }
+                v_insert.v_text += ")";
+                v_createtable += ")";
+                this.Execute(v_createtable);
+
+                v_transfered = 0;
+                v_blocksize = 100;
+                k = 0;
+                v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                while (v_dbf.ReadNext(v_record))
+                {
+                    if (! v_record.IsDeleted)
+                    {
+                        for (j = 0; j < v_record.ColumnCount; j++)
+                        {
+                            if (v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Binary &&
+                                v_dbf.Header[j].ColumnType != SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Memo)
+                                v_insert.SetValue(v_columns[j], v_record[j].Trim());
+                        }
+
+                        v_block.Add(v_insert.GetUpdatedText());
+                        k++;
+
+                        if (k == v_blocksize)
+                        {
+                            this.InsertBlock(p_table, v_block);
+                            v_transfered += (uint) v_block.Count;
+                            p_progress.FireEvent(v_transfered);
+
+                            v_block.Clear();
+                            k = 0;
+                        }
+                    }
+                }
+
+                v_dbf.Close();
+
+                if (v_block.Count > 0)
+                {
+                    this.InsertBlock(p_table, v_block);
+                    v_transfered += (uint) v_block.Count;
+                    p_progress.FireEvent(v_transfered);
+                }
+
+                return v_transfered;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public uint TransferToFile(string p_query, string p_filename)
+        {
+            Spartacus.Utils.File v_file;
+
+            try
+            {
+                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "csv":
+                        return this.TransferToCSV(p_query, p_filename, ";", "\"", true, System.Text.Encoding.Default);
+                    case "xlsx":
+                        return this.TransferToXLSX(p_query, p_filename);
+                    case "dbf":
+                        return this.TransferToDBF(p_query, p_filename);
+                    default:
+                        throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        public uint TransferToFile(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
+        {
+            Spartacus.Utils.File v_file;
+
+            try
+            {
+                v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+
+                switch (v_file.v_extension.ToLower())
+                {
+                    case "csv":
+                        return this.TransferToCSV(p_query, p_filename, p_separator, p_delimiter, p_header, p_encoding);
+                    case "xlsx":
+                        return this.TransferToXLSX(p_query, p_filename);
+                    case "dbf":
+                        return this.TransferToDBF(p_query, p_filename);
+                    default:
+                        throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
+                }
+            }
+            catch (Spartacus.Database.Exception e)
+            {
+                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
+            }
+        }
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo CSV.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        /// <param name="p_separator">Separador de campos.</param>
+        /// <param name="p_delimiter">Delimitador de string.</param>
+        /// <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+        /// <param name="p_encoding">Codificação do arquivo.</param>
+        public abstract uint TransferToCSV(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo XLSX.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public abstract uint TransferToXLSX(string p_query, string p_filename);
+
+        /// <summary>
+        /// Transfere dados do banco de dados atual para um arquivo DBF.
+        /// Não pára a execução se der um problema num comando de inserção específico.
+        /// </summary>
+        /// <returns>Número de linhas transferidas.</returns>
+        /// <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+        /// <param name="p_filename">Nome do arquivo de destino.</param>
+        public abstract uint TransferToDBF(string p_query, string p_filename);
     }
 }
