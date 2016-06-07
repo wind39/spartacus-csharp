@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.5:  Removida classe Spartacus.Database.Pollydb
 0.42.4:  Spartacus.Database: Concluída implementação do TransferFromFile e TransferToFile, com suporte a CSV, XLSX e DBF
 0.42.3:  Spartacus.Database: Suporte a lista de colunas como parâmetro do Transfer
 0.42.2:  Spartacus.Database.PollyDB: Otimização removendo regex

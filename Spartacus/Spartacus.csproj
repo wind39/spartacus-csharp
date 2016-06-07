@@ -939,7 +939,6 @@
     <Compile Include="Spartacus.ThirdParty.MultiColumnCombobox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spartacus.Database.Access.cs" />
-    <Compile Include="Spartacus.Database.Pollydb.cs" />
     <Compile Include="Spartacus.Database.Sqlce.cs" />
     <Compile Include="Spartacus.Database.FbEmbed.cs" />
   </ItemGroup>
