@@ -5849,6 +5849,11 @@
             <param name="p_filename">Nome do arquivo XLSX a ser salvo.</param>
             <param name="p_templatename">Nome do arquivo XLSX a ser usado como template.</param>
             <param name="p_calculateformulas">Se deve ou não calcular fórmulas no arquivo.</param></member>
+        <member name="M:Spartacus.Utils.Excel.ExportDBF(System.String)">
+            <summary>
+            Exporta a primeira <see cref="T:System.Data.DataTable" /> de um <see cref="T:System.Data.DataSet" /> para um arquivo DBF.
+            </summary>
+            <param name="p_filename">Nome do arquivo DBF.</param></member>
         <member name="M:Spartacus.Utils.Excel.FillSheetWithDataTable(Spartacus.ThirdParty.SejExcel.gSheet,System.Data.DataTable)">
             <summary>
             Preenche a planilha do template com os dados de uma <see cref="T:System.Data.DataTable" />.

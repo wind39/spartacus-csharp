@@ -808,6 +808,9 @@ namespace Spartacus.Utils
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
                         break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
+                        break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
@@ -846,6 +849,9 @@ namespace Spartacus.Utils
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
                         break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
@@ -887,6 +893,9 @@ namespace Spartacus.Utils
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
                         break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
+                        break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
@@ -922,6 +931,9 @@ namespace Spartacus.Utils
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
+                        break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
                         break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
@@ -968,6 +980,9 @@ namespace Spartacus.Utils
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
                         break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
+                        break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
@@ -1008,6 +1023,9 @@ namespace Spartacus.Utils
                     case "csv":
                         this.ExportCSV(p_filename, ';', System.Text.Encoding.Default);
                         break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
+                        break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
@@ -1044,6 +1062,9 @@ namespace Spartacus.Utils
                         break;
                     case "csv":
                         this.ExportCSV(p_filename, p_separator, p_encoding);
+                        break;
+                    case "dbf":
+                        this.ExportDBF(p_filename);
                         break;
                     default:
                         throw new Spartacus.Utils.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
@@ -1257,6 +1278,54 @@ namespace Spartacus.Utils
 
                     v_package2.Save();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Exporta a primeira <see cref="System.Data.DataTable"/> de um <see cref="System.Data.DataSet"/> para um arquivo DBF.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo DBF.</param>
+        private void ExportDBF(string p_filename)
+        {
+            SocialExplorer.IO.FastDBF.DbfFile v_dbf = null;
+            SocialExplorer.IO.FastDBF.DbfRecord v_record;
+            int k, j;
+
+            try
+            {
+                v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
+                v_dbf.Open(p_filename, System.IO.FileMode.Create);
+
+                for (j = 0; j < this.v_set.Tables[0].Columns.Count; j++)
+                    v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.v_set.Tables[0].Columns[j].ColumnName, SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
+
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportDBF", 0.0, "Salvando arquivo " + p_filename);
+
+                this.v_inc = 100.0 / (double) this.v_set.Tables[0].Rows.Count;
+                this.v_perc = 0.0;
+                k = 0;
+                foreach (System.Data.DataRow r in this.v_set.Tables[0].Rows)
+                {
+                    v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
+                    for (j = 0; j < this.v_set.Tables[0].Columns.Count; j++)
+                        v_record[j] = r[j].ToString();
+                    v_dbf.Write(v_record);
+
+                    this.v_perc += this.v_inc;
+                    k++;
+                    this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportDBF", this.v_perc, "Planilha " + this.v_set.Tables[0].TableName + ": linha " + k.ToString() + " de " + this.v_set.Tables[0].Rows.Count.ToString());
+                }
+
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportDBF", 100.0, "Arquivo " + p_filename + " salvo.");
+            }
+            catch (System.Exception e)
+            {
+                throw new Spartacus.Utils.Exception("Erro ao salvar o arquivo {0}", e, p_filename);
+            }
+            finally
+            {
+                if (v_dbf != null)
+                    v_dbf.Close();
             }
         }
 

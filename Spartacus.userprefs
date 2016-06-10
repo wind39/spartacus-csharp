@@ -2,21 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="2059" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Access.cs" Line="2024" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.FbEmbed.cs" Line="2022" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="2037" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="2055" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Odbc.cs" Line="2016" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Oledb.cs" Line="2051" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Oracle.cs" Line="2133" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Pollydb.cs" Line="591" Column="9" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlce.cs" Line="2002" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.SqlServer.cs" Line="2126" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="2011" Column="46" />
-      <File FileName="Spartacus/Spartacus.Database.Memory.cs" Line="1266" Column="18" />
-      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="575" Column="39" />
-      <File FileName="CHANGELOG.txt" Line="29" Column="1" />
+      <File FileName="CHANGELOG.txt" Line="25" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
