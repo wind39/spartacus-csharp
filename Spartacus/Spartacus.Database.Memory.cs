@@ -503,8 +503,14 @@ namespace Spartacus.Database
         {
             if (this.v_cmd != null)
             {
+                this.v_cmd.Cancel();
                 this.v_cmd.Dispose();
                 this.v_cmd = null;
+            }
+            if (this.v_reader != null)
+            {
+                this.v_reader.Close();
+                this.v_reader = null;
             }
             if (this.v_con != null)
             {

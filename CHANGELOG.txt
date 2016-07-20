@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.42.8:  Chamando Command.Cancel antes de DataReader.Close
+0.42.7:  Spartacus.Utils.Excel: Caracteres coringa para fórmulas: # (linha atual), @ (linha inicial) e ! (linha final)
 0.42.6:  Implementado método Spartacus.Utils.Excel.ExportDBF
 0.42.5:  Removida classe Spartacus.Database.Pollydb
 0.42.4:  Spartacus.Database: Concluída implementação do TransferFromFile e TransferToFile, com suporte a CSV, XLSX e DBF

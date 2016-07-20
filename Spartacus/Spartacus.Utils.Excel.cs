@@ -1423,7 +1423,7 @@ namespace Spartacus.Utils
                                 p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
                             break;
                         case "fo":
-                            p_sheet.WriteFormulaCell(v_pair.Key, v_tail.Replace("#", v_info.v_currentrow.ToString()));
+                            p_sheet.WriteFormulaCell(v_pair.Key, v_tail.Replace("#", v_info.v_currentrow.ToString().Replace("@", (v_info.v_fixedrows+1).ToString()).Replace("!", (v_info.v_fixedrows+v_info.v_data.Rows.Count).ToString())));
                             break;
                         default:
                             p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());

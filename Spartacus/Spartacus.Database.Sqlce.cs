@@ -166,15 +166,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -276,15 +277,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -462,15 +464,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -573,6 +576,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
+                        this.v_cmd.Cancel();
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -645,6 +649,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
+                        this.v_cmd.Cancel();
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -729,6 +734,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
+                        this.v_cmd.Cancel();
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -808,6 +814,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
+                        this.v_cmd.Cancel();
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -844,15 +851,16 @@ namespace Spartacus.Database
         /// </summary>
         public override void Close()
         {
+            if (this.v_cmd != null)
+            {
+                this.v_cmd.Cancel();
+                this.v_cmd.Dispose();
+                this.v_cmd = null;
+            }
             if (this.v_reader != null)
             {
                 this.v_reader.Close();
                 this.v_reader = null;
-            }
-            if (this.v_cmd != null)
-            {
-                this.v_cmd.Dispose();
-                this.v_cmd = null;
             }
             if (this.v_con != null)
             {
@@ -910,15 +918,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -990,15 +999,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -1078,15 +1088,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -1181,15 +1192,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -1707,15 +1719,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -1829,15 +1842,16 @@ namespace Spartacus.Database
                         v_writer.Close();
                         v_writer = null;
                     }
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -1956,15 +1970,16 @@ namespace Spartacus.Database
                 }
                 finally
                 {
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
@@ -2079,15 +2094,16 @@ namespace Spartacus.Database
                 {
                     if (v_dbf != null)
                         v_dbf.Close();
+                    if (this.v_cmd != null)
+                    {
+                        this.v_cmd.Cancel();
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
                     if (this.v_reader != null)
                     {
                         this.v_reader.Close();
                         this.v_reader = null;
-                    }
-                    if (this.v_cmd != null)
-                    {
-                        this.v_cmd.Dispose();
-                        this.v_cmd = null;
                     }
                     if (this.v_con != null)
                     {
