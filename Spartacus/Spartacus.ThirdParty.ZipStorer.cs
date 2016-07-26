@@ -134,6 +134,8 @@ namespace Spartacus.ThirdParty
         internal static UInt32[] CrcTable = null;
         // Default filename encoder
         private static Encoding DefaultEncoding = Encoding.GetEncoding(437);
+        // Buffer size
+        private int BufferSize = 32768;
         #endregion
 
         #region Public methods
@@ -407,7 +409,7 @@ namespace Spartacus.ThirdParty
             else if (_zfe.Method == Compression.Deflate) inStream = new DeflateStream(this.ZipFileStream, CompressionMode.Decompress, true);
             else return false;
             // Buffered copy
-            byte[] buffer = new byte[2 * 16384];
+            byte[] buffer = new byte[2 * BufferSize];
             this.ZipFileStream.Seek(_zfe.FileOffset, SeekOrigin.Begin);
             uint bytesPending = _zfe.FileSize;
             uint bytesDone = 0;
@@ -657,7 +659,7 @@ namespace Spartacus.ThirdParty
         // Copies all source file into storage file
         private void Store(ref ZipFileEntry _zfe, Stream _source)
         {
-            byte[] buffer = new byte[16384];
+            byte[] buffer = new byte[BufferSize];
             int bytesRead;
             uint totalRead = 0;
             Stream outStream;

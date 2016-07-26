@@ -1500,6 +1500,7 @@ namespace Spartacus.Utils
                             IM|imagem|0:0|80;240
                             TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                             FC|$W2=2|#D3D3D3|A:AD
+                            TC|$W2=2|#FFFFFF|B:B
                             CO|8,9,10|cfid2,cfrazao2,cfpais2|
                         */
 
@@ -1655,6 +1656,14 @@ namespace Spartacus.Utils
                                         v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
                                         v_rule.Formula = v_options[1];
                                         break;
+                                    case "TC":
+                                        // TODO: fazer isso funcionar
+                                        var v_rule2 = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart+1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
+                                        OfficeOpenXml.Style.Dxf.ExcelDxfColor v_color = new OfficeOpenXml.Style.Dxf.ExcelDxfColor(null);
+                                        v_color.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
+                                        v_rule2.Style.Font.Color = v_color;
+                                        v_rule2.Formula = v_options[1];
+                                        break;
                                     case "CO":
                                         v_co1 = v_options[1].Split(',');
                                         v_co2 = v_options[2].Split(',');
@@ -1770,6 +1779,7 @@ namespace Spartacus.Utils
                                         IM|imagem|0:0|80;240
                                         TD|metodo,margem;qtdetotal,custototal,ajustetotal|Método,Margem,Qtde Total,Custo Total,Ajuste Total|F6
                                         FC|$W2=2|#D3D3D3|A:AD
+                                        TC|$W2=2|#FFFFFF|B:B
                                         CO|8,9,10|cfid2,cfrazao2,cfpais2|
                                      */
 
@@ -1981,6 +1991,14 @@ namespace Spartacus.Utils
                                                     v_rule.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                                     v_rule.Style.Fill.BackgroundColor.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
                                                     v_rule.Formula = v_options[1];
+                                                    break;
+                                                case "TC":
+                                                    // TODO: fazer isso funcionar
+                                                    var v_rule2 = v_worksheet.ConditionalFormatting.AddExpression(new OfficeOpenXml.ExcelAddress(v_options[3].Split(':')[0] + (v_datastart+1).ToString() + ":" + v_options[3].Split(':')[1] + (v_table.Rows.Count + v_datastart).ToString()));
+                                                    OfficeOpenXml.Style.Dxf.ExcelDxfColor v_color = new OfficeOpenXml.Style.Dxf.ExcelDxfColor(null);
+                                                    v_color.Color = System.Drawing.ColorTranslator.FromHtml(v_options[2]);
+                                                    v_rule2.Style.Font.Color = v_color;
+                                                    v_rule2.Formula = v_options[1];
                                                     break;
                                                 case "CO":
                                                     v_co1 = v_options[1].Split(',');

@@ -442,13 +442,36 @@ namespace Spartacus.ThirdParty.SejExcel
             if (buffer.Length < j) throw new Exception("Partial buffer writing NOT implemented");
             System.Buffer.BlockCopy(w, 0, buffer, pos, j);
             return j;
+
+            /*int r = w.Length;
+            int p1 = 0;
+            int p2 = pos;
+            if (p2 >= buffer.Length)
+                p2 = 0;
+            int s = 0;
+            while (r > 0)
+            {
+                if (r > (buffer.Length - p2))
+                    s = buffer.Length - p2;
+                else
+                    s = r;
+
+                System.Buffer.BlockCopy(w, p1, buffer, p2, s);
+
+                r -= s;
+                p1 += s;
+                p2 += s;
+                if (p2 >= buffer.Length)
+                    p2 = 0;
+            }
+            return p2;*/
         }
 
         private int WriteInt(int k, byte[] buffer,int pos)
         {
             byte[] w = ASCIIEncoding.ASCII.GetBytes(k.ToString());
             int j = w.Length;
-            if (buffer.Length > j) { } else throw new Exception("Partial buffer writing NOT implemented");
+            if (buffer.Length < j) throw new Exception("Partial buffer writing NOT implemented");
             System.Buffer.BlockCopy(w, 0, buffer, pos, j);
             return j;
         }
