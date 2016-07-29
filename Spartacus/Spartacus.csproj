@@ -950,6 +950,14 @@
     <Compile Include="Spartacus.Net.Exception.cs" />
     <Compile Include="Spartacus.Net.Packet.cs" />
     <Compile Include="Spartacus.Net.Server.cs" />
+    <Compile Include="Spartacus.Web.Buttons.cs" />
+    <Compile Include="Spartacus.Web.Container.cs" />
+    <Compile Include="Spartacus.Web.Datetimepicker.cs" />
+    <Compile Include="Spartacus.Web.Grid.cs" />
+    <Compile Include="Spartacus.Web.Label.cs" />
+    <Compile Include="Spartacus.Web.Progressbar.cs" />
+    <Compile Include="Spartacus.Web.Textbox.cs" />
+    <Compile Include="Spartacus.Web.Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -1033,6 +1041,36 @@
     <None Include="lib\samples\northwind.mdb" />
     <None Include="lib\samples\northwind.sdf" />
     <None Include="lib\samples\empty.sdf" />
+    <None Include="lib\web\css\font-awesome.min.css" />
+    <None Include="lib\web\css\jquery.dataTables.min.css" />
+    <None Include="lib\web\css\pikaday.css" />
+    <None Include="lib\web\css\pure-min.css" />
+    <None Include="lib\web\fonts\FontAwesome.otf" />
+    <None Include="lib\web\fonts\fontawesome-webfont.eot" />
+    <None Include="lib\web\fonts\fontawesome-webfont.svg" />
+    <None Include="lib\web\fonts\fontawesome-webfont.ttf" />
+    <None Include="lib\web\fonts\fontawesome-webfont.woff" />
+    <None Include="lib\web\fonts\fontawesome-webfont.woff2" />
+    <None Include="lib\web\images\progress_border.png" />
+    <None Include="lib\web\images\progress_empty_big.png" />
+    <None Include="lib\web\images\progress_empty_small.png" />
+    <None Include="lib\web\images\progress_green_big.png" />
+    <None Include="lib\web\images\progress_green_small.png" />
+    <None Include="lib\web\images\progress_red_big.png" />
+    <None Include="lib\web\images\progress_red_small.png" />
+    <None Include="lib\web\images\progress_yellow_big.png" />
+    <None Include="lib\web\images\progress_yellow_small.png" />
+    <None Include="lib\web\images\sort_asc.png" />
+    <None Include="lib\web\images\sort_asc_disabled.png" />
+    <None Include="lib\web\images\sort_both.png" />
+    <None Include="lib\web\images\sort_desc.png" />
+    <None Include="lib\web\images\sort_desc_disabled.png" />
+    <None Include="lib\web\js\jquery.dataTables.min.js" />
+    <None Include="lib\web\js\jquery.min.js" />
+    <None Include="lib\web\js\moment.min.js" />
+    <None Include="lib\web\js\notify.min.js" />
+    <None Include="lib\web\js\pikaday.js" />
+    <None Include="lib\web\lang\portuguese_brasil.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
