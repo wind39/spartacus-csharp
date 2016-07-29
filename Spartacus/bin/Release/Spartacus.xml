@@ -47476,5 +47476,1530 @@
              <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
              <param name="p_filename">Nome do arquivo de destino.</param>
             </member>
+        <member name="T:Spartacus.Net.AvailableEventArgs">
+             <summary>
+             Classe AvailableEventArgs.
+             Representa os argumentos do evento de Dados Disponíveis.
+             Herda da classe <see cref="T:System.EventArgs" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_serverip">
+             <summary>
+             IP do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_serverport">
+             <summary>
+             Porta do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_clientip">
+             <summary>
+             IP do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_clientport">
+             <summary>
+             Porta do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventArgs.v_index">
+             <summary>
+             Índice do Cliente na lista de Clientes.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.AvailableEventArgs.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.AvailableEventArgs" />.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.AvailableEventClass">
+             <summary>
+             Classe AvailableEventClass.
+             Representa um evento de Dados Disponíveis.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.AvailableEventClass.AvailableEventHandler">
+             <summary>
+             Delegate para gerenciar o evento de Dados Disponíveis.
+             </summary>
+            </member>
+        <member name="E:Spartacus.Net.AvailableEventClass.AvailableEvent">
+             <summary>
+             Evento de Dados Disponíveis propriamente dito.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.AvailableEventClass.AvailableEventArgs">
+             <summary>
+             Argumentos do evento de Dados Disponíveis.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.AvailableEventClass.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.AvailableEventClass" />.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.AvailableEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+             <summary>
+             Dispara o evento de Dados Disponíveis.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+            </member>
+        <member name="M:Spartacus.Net.AvailableEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+             <summary>
+             Dispara o evento de Dados Disponíveis.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+             <param name="p_index">Índice do Cliente.</param>
+            </member>
+        <member name="T:Spartacus.Net.Client">
+             <summary>
+             Classe Client.
+             Herda da classe <see cref="T:Spartacus.Net.Endpoint" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Client.v_serverip">
+             <summary>
+             IP do servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Client.v_serverport">
+             <summary>
+             Porta do servidor.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Client.#ctor(System.String,System.Int32,System.String,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Client" />.
+             </summary>
+             <param name="p_serverip">IP do servidor.</param>
+             <param name="p_serverport">Porta do servidor.</param>
+             <param name="p_clientip">IP do cliente.</param>
+             <param name="p_clientport">Porta do cliente.</param>
+            </member>
+        <member name="M:Spartacus.Net.Client.Connect">
+             <summary>
+             Conecta-se com o servidor.
+             </summary>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer se não conseguir se conectar com o servidor.</exception>
+            </member>
+        <member name="T:Spartacus.Net.ConnectEventArgs">
+             <summary>
+             Classe ConnectEventArgs.
+             Representa os argumentos do evento de Conexão.
+             Herda da classe <see cref="T:System.EventArgs" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_serverip">
+             <summary>
+             IP do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_serverport">
+             <summary>
+             Porta do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_clientip">
+             <summary>
+             IP do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_clientport">
+             <summary>
+             Porta do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventArgs.v_index">
+             <summary>
+             Índice do Cliente na lista de Clientes.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.ConnectEventArgs.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.ConnectEventArgs" />.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.ConnectEventClass">
+             <summary>
+             Classe ConnectEventClass.
+             Representa um evento de Conexão.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.ConnectEventClass.ConnectEventHandler">
+             <summary>
+             Delegate para gerenciar o evento de Conexão.
+             </summary>
+            </member>
+        <member name="E:Spartacus.Net.ConnectEventClass.ConnectEvent">
+             <summary>
+             Evento de Conexão propriamente dito.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.ConnectEventClass.ConnectEventArgs">
+             <summary>
+             Argumentos do evento de Conexão.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.ConnectEventClass.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.ConnectEventClass" />.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.ConnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+             <summary>
+             Dispara o evento de Conexão.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+            </member>
+        <member name="M:Spartacus.Net.ConnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+             <summary>
+             Dispara o evento de Conexão.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+             <param name="p_index">Índice do Cliente.</param>
+            </member>
+        <member name="T:Spartacus.Net.Cryptor">
+             <summary>
+             Classe Cryptor.
+             Objeto genérico que pode criptografar e descriptografar strings e arquivos.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_password">
+             <summary>
+             Senha da Criptografia.
+             A mesma senha usada para criptografar deve ser usada para descriptografar.
+             Obrigatório.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_initvector">
+             <summary>
+             Vetor de Inicialização.
+             Deve ser uma string de exatamente 16 caracteres.
+             O padrão é a string "0123456789ABCDEF".
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_keysize">
+             <summary>
+             Tamanho da Chave.
+             Pode ser 128, 192 ou 256. Quanto maior, mais forte é a criptografia.
+             O padrão é 256.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_minsaltlength">
+             <summary>
+             Tamanho mínimo do SALT (string aleatória incluída na criptografia).
+             Deve estar entre 8 e 255 caracteres.
+             O padrão é 8 caracteres.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_maxsaltlength">
+             <summary>
+             Tamanho máximo do SALT (string aleatória incluída na criptografia).
+             Deve estar entre 8 e 255 caracteres.
+             O padrão é 8 caracteres.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_encryptor">
+             <summary>
+             Objeto Criptografador.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Cryptor.v_decryptor">
+             <summary>
+             Objeto Descriptografador.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.Int32,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+             <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.String,System.Int32,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+             <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 255).</param>
+             <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 255).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.Int32,System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+             <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_keysize">Tamanho da Chave (128, 192 ou 256).</param>
+             <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+             <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.#ctor(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Cryptor" />.
+             </summary>
+             <param name="p_password">Senha da Criptografia.</param>
+             <param name="p_keysize">Tamanho da Chave (128,192 ou 256).</param>
+             <param name="p_initvector">Vetor de Inicialização (deve conter 16 caracteres).</param>
+             <param name="p_minsaltlength">Tamanho mínimo do SALT (entre 8 e 256).</param>
+             <param name="p_maxsaltlength">Tamanho máximo do SALT (entre 8 e 256).</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.Initialize">
+             <summary>
+             Initializa os objetos necessários para realizar criptografia e descriptografia.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.Encrypt(System.String)">
+             <summary>
+             Criptografa uma string em outra string.
+             </summary>
+             <returns>String criptografada.</returns>
+             <param name="p_plaintext">String em texto puro.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.Encrypt(System.Byte[])">
+             <summary>
+             Criptografa um array de bytes em uma string.
+             </summary>
+             <returns>String criptografada.</returns>
+             <param name="p_plaintextbytes">Array de bytes.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.EncryptToBytes(System.String)">
+             <summary>
+             Criptografa uma string em um array de bytes.
+             </summary>
+             <returns>Array de bytes criptografado.</returns>
+             <param name="p_plaintext">String em texto puro.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.EncryptToBytes(System.Byte[])">
+             <summary>
+             Criptografa um array de bytes em outro array de bytes.
+             </summary>
+             <returns>Array de bytes criptografado.</returns>
+             <param name="p_plaintextbytes">Array de bytes.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.EncryptFile(System.String,System.String)">
+             <summary>
+             Criptografa um arquivo em outro arquivo.
+             O tamanho do bloco é 1 MB.
+             </summary>
+             <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+             <param name="p_outputfilename">Nome do arquivo de saída.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.EncryptFile(System.String,System.String,System.Int32)">
+             <summary>
+             Criptografa um arquivo em outro arquivo.
+             </summary>
+             <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+             <param name="p_outputfilename">Nome do arquivo de saída.</param>
+             <param name="p_chunksize">Tamanho do bloco em bytes.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.RandomString">
+             <summary>
+             Cria uma string aleatória para diversos propósitos.
+             </summary>
+             <returns>String aleatória.</returns>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.RandomString(System.String)">
+             <summary>
+             Cria uma string aleatória para diversos propósitos.
+             </summary>
+             <returns>String aleatória.</returns>
+             <param name="p_plaintext">String em texto puro a ser usada para criar a string aleatória.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.Decrypt(System.String)">
+             <summary>
+             Descriptografa uma string em outra string.
+             </summary>
+             <returns>String descriptografada em texto puro.</returns>
+             <param name="p_ciphertext">String criptografada.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.Decrypt(System.Byte[])">
+             <summary>
+             Descriptografa um array de bytes em uma string.
+             </summary>
+             <returns>String descriptografada em texto puro.</returns>
+             <param name="p_ciphertextbytes">Array de bytes criptografado.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.DecryptToBytes(System.String)">
+             <summary>
+             Descriptografa uma string em um array de bytes.
+             </summary>
+             <returns>Array de bytes descriptografado.</returns>
+             <param name="p_ciphertext">String criptografada.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.DecryptToBytes(System.Byte[])">
+             <summary>
+             Descriptografa um array de bytes em outro array de bytes.
+             </summary>
+             <returns>Array de bytes descriptografado.</returns>
+             <param name="p_ciphertextbytes">Array de bytes criptografado.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.DecryptFile(System.String,System.String)">
+             <summary>
+             Descriptografa um arquivo em outro arquivo.
+             </summary>
+             <param name="p_inputfilename">Nome do arquivo de entrada.</param>
+             <param name="p_outputfilename">Nome do arquivo de saída.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.AddSalt(System.Byte[])">
+             <summary>
+             Adiciona SALT a um array de bytes.
+             SALT é uma string gerada aleatoriamente.
+             </summary>
+             <returns>Array de bytes com SALT.</returns>
+             <param name="p_plaintextbytes">Array de bytes.</param>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.GenerateSalt">
+             <summary>
+             Gera um SALT.
+             </summary>
+             <returns>SALT.</returns>
+            </member>
+        <member name="M:Spartacus.Net.Cryptor.GenerateRandomNumber(System.Int32,System.Int32)">
+             <summary>
+             Gera um número aleatório contido no intervalo especificado.
+             </summary>
+             <returns>Número aleatório.</returns>
+             <param name="p_minvalue">Valor mínimo.</param>
+             <param name="p_maxvalue">Valor máximo.</param>
+            </member>
+        <member name="T:Spartacus.Net.DisconnectEventArgs">
+             <summary>
+             Classe DisconnectEventArgs.
+             Representa os argumentos do evento de Desconexão.
+             Herda da classe <see cref="T:System.EventArgs" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_serverip">
+             <summary>
+             IP do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_serverport">
+             <summary>
+             Porta do Servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_clientip">
+             <summary>
+             IP do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_clientport">
+             <summary>
+             Porta do Cliente.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventArgs.v_index">
+             <summary>
+             Índice do Cliente na lista de Clientes.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.DisconnectEventArgs.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.DisconnectEventArgs" />.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.DisconnectEventClass">
+             <summary>
+             Classe DisconnectEventClass.
+             Representa um evento de Desconexão.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.DisconnectEventClass.DisconnectEventHandler">
+             <summary>
+             Delegate para gerenciar o evento de Desconexão.
+             </summary>
+            </member>
+        <member name="E:Spartacus.Net.DisconnectEventClass.DisconnectEvent">
+             <summary>
+             Evento de Desconexão propriamente dito.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.DisconnectEventClass.DisconnectEventArgs">
+             <summary>
+             Argumentos do evento de Desconexão.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.DisconnectEventClass" />.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32)">
+             <summary>
+             Dispara o evento de Desconexão.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+            </member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.FireEvent(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+             <summary>
+             Dispara o evento de Desconexão.
+             </summary>
+             <param name="p_serverip">IP do Servidor.</param>
+             <param name="p_serverport">Porta do Servidor.</param>
+             <param name="p_clientip">IP do Cliente.</param>
+             <param name="p_clientport">Porta do Cliente.</param>
+             <param name="p_index">Índice do Cliente.</param>
+            </member>
+        <member name="T:Spartacus.Net.Endpoint">
+             <summary>
+             Classe Endpoint.
+             Representa um ponto de comunicação, que pode ser tanto um cliente ou um servidor.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_ip">
+             <summary>
+             IP do ponto de comunicação.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_port">
+             <summary>
+             Porta do ponto de comunicação.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_sockets">
+             <summary>
+             Sockets usado para comunicação.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_streams">
+             <summary>
+             Streams usadas para comunicação.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_buffersize">
+             <summary>
+             Tamanho do buffer para envio e recebimento.
+             O padrão é 1 MB.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Endpoint.v_recvbuffer">
+             <summary>
+             Buffer usado para envio e recebimento.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.#ctor(System.String,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Endpoint" />.
+             </summary>
+             <param name="p_ip">IP do ponto de comunicação.</param>
+             <param name="p_port">Porta do ponto de comunicação.</param>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Recv(System.Int32)">
+             <summary>
+             Recebe um pacote.
+             </summary>
+             <returns>Pacote.</returns>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Recv">
+             <summary>
+             Recebe um pacote.
+             </summary>
+             <returns>Pacote.</returns>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o pacote.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvString(System.Int32)">
+             <summary>
+             Recebe uma string.
+             Pode ser necessário vários pacotes para montar essa string.
+             </summary>
+             <returns>String.</returns>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvString">
+             <summary>
+             Recebe uma string.
+             Pode ser necessário vários pacotes para montar essa string.
+             </summary>
+             <returns>String.</returns>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a string.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvDataTable(System.Int32)">
+             <summary>
+             Recebe uma <see cref="T:System.Data.DataTable" />.
+             Recebe um pacote por linha da <see cref="T:System.Data.DataTable" />.
+             </summary>
+             <returns><see cref="T:System.Data.DataTable" />.</returns>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="T:System.Data.DataTable" />.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvDataTable">
+             <summary>
+             Recebe uma <see cref="T:System.Data.DataTable" />.
+             Recebe um pacote por linha da <see cref="T:System.Data.DataTable" />.
+             </summary>
+             <returns><see cref="T:System.Data.DataTable" />.</returns>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber a <see cref="T:System.Data.DataTable" />.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvFile(System.Int32)">
+             <summary>
+             Recebe um arquivo.
+             </summary>
+             <returns>Nome do arquivo.</returns>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.RecvFile">
+             <summary>
+             Recebe um arquivo.
+             </summary>
+             <returns>Nome do arquivo.</returns>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir receber o arquivo.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Send(System.Int32,Spartacus.Net.Packet)">
+             <summary>
+             Envia um pacote.
+             </summary>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <param name="p_packet">Pacote.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Send(Spartacus.Net.Packet)">
+             <summary>
+             Envia um pacote.
+             </summary>
+             <param name="p_packet">Pacote.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o pacote.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendString(System.Int32,System.String)">
+             <summary>
+             Envia uma string.
+             Pode ser necessário quebrar essa string em vários pacotes.
+             </summary>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <param name="p_text">String.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendString(System.String)">
+             <summary>
+             Envia uma string.
+             Pode ser necessário quebrar essa string em vários pacotes.
+             </summary>
+             <param name="p_text">String.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a string.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendDataTable(System.Int32,System.Data.DataTable)">
+             <summary>
+             Envia uma <see cref="T:System.Data.DataTable" />.
+             Envia uma linha por pacote.
+             </summary>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <param name="p_table"><see cref="T:System.Data.DataTable" />.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="T:System.Data.DataTable" />.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendDataTable(System.Data.DataTable)">
+             <summary>
+             Envia uma <see cref="T:System.Data.DataTable" />.
+             Envia uma linha por pacote.
+             </summary>
+             <param name="p_table"><see cref="T:System.Data.DataTable" />.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar a <see cref="T:System.Data.DataTable" />.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendFile(System.Int32,System.String)">
+             <summary>
+             Envia um arquivo.
+             </summary>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+             <param name="p_filename">Nome do arquivo.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.SendFile(System.String)">
+             <summary>
+             Envia um arquivo.
+             </summary>
+             <param name="p_filename">Nome do arquivo.</param>
+             <exception cref="T:Spartacus.Net.Exception">Exceção pode ocorrer quando não conseguir enviar o arquivo.</exception>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Stop(System.Int32)">
+             <summary>
+             Fecha o canal de comunicação.
+             </summary>
+             <param name="p_endpoint">Ponto de comunicação.</param>
+            </member>
+        <member name="M:Spartacus.Net.Endpoint.Stop">
+             <summary>
+             Fecha o canal de comunicação.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.Exception">
+             <summary>
+             Classe Spartacus.Net.Exception.
+             Herda da classe <see cref="T:System.Exception" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Exception.v_message">
+             <summary>
+             Mensagem de Exceção.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor(System.Exception)">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+             <param name="p_inner">
+             Exceção interna, encapsulada por esta exceção.
+             </param>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor(System.String)">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+             <param name="p_message">
+             Mensagem descritiva da exceção.
+             </param>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor(System.String,System.Object[])">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+             <param name="p_format">
+             Formato da mensagem descritiva da exceção.
+             </param>
+             <param name="p_args">
+             Argumentos da mensagem descritiva da exceção.
+             </param>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor(System.String,System.Exception)">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+             <param name="p_message">
+             Mensagem descritiva da exceção.
+             </param>
+             <param name="p_inner">
+             Exceção interna, encapsulada por esta exceção.
+             </param>
+            </member>
+        <member name="M:Spartacus.Net.Exception.#ctor(System.String,System.Exception,System.Object[])">
+             <summary>
+             Inicializa uma nova instância da classe.
+             </summary>
+             <param name="p_format">
+             Formato da mensagem descritiva da exceção.
+             </param>
+             <param name="p_inner">
+             Exceção interna, encapsulada por esta exceção.
+             </param>
+             <param name="p_args">
+             Argumentos da mensagem descritiva da exceção.
+             </param>
+            </member>
+        <member name="T:Spartacus.Net.PacketType">
+             <summary>
+             Tipo do Pacote.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Net.Packet">
+             <summary>
+             Classe Packet.
+             Representa um pacote de dados enviado de um Endpoint a outro.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_type">
+             <summary>
+             Tipo do Pacote.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_sequence">
+             <summary>
+             Sequência atual do Pacote dentro da Mensagem.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_numpackets">
+             <summary>
+             Número total de pacotes da Mensagem.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_data">
+             <summary>
+             Dados do Pacote.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_buffer">
+             <summary>
+             Buffer que contém o pacote inteiro em bytes.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Packet.v_encoding">
+             <summary>
+             Codificação usada para converter de string para bytes e de bytes para string.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(Spartacus.Net.PacketType)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             </summary>
+             <param name="p_type">Tipo do Pacote.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(Spartacus.Net.PacketType,System.Byte[])">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             </summary>
+             <param name="p_type">Tipo do Pacote.</param>
+             <param name="p_data">Dados do Pacote.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(Spartacus.Net.PacketType,System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             </summary>
+             <param name="p_type">Tipo do Pacote.</param>
+             <param name="p_data">Dados do Pacote.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(Spartacus.Net.PacketType,System.Int32,System.Int32,System.Byte[])">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             </summary>
+             <param name="p_type">Tipo do Pacote.</param>
+             <param name="p_sequence">Sequência atual do Pacote dentro da Mensagem.</param>
+             <param name="p_numpackets">Número total de pacotes da Mensagem.</param>
+             <param name="p_data">Dados do Pacote.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(Spartacus.Net.PacketType,System.Int32,System.Int32,System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             </summary>
+             <param name="p_type">Tipo do Pacote.</param>
+             <param name="p_sequence">Sequência atual do Pacote dentro da Mensagem.</param>
+             <param name="p_numpackets">Número total de pacotes da Mensagem.</param>
+             <param name="p_data">Dados do Pacote.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.#ctor(System.Byte[])">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Packet" />.
+             Esse construtor é usado para extrair um Pacote dos dados recebidos.
+             </summary>
+             <param name="p_buffer">Buffer que contém o pacote inteiro em bytes.</param>
+            </member>
+        <member name="M:Spartacus.Net.Packet.BuildBuffer">
+             <summary>
+             Constrói o buffer de envio a partir dos dados do Pacote.
+             Usado para enviar um Pacote.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Packet.ParseBuffer">
+             <summary>
+             Constrói um Pacote a partir dos dados recebidos.
+             Usado para receber um Pacote.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Packet.GetString">
+             <summary>
+             Retorna os dados do Pacote convertidos para string.
+             </summary>
+             <returns>Dados convertidos para string.</returns>
+            </member>
+        <member name="T:Spartacus.Net.Server">
+             <summary>
+             Classe Server.
+             Herda da classe <see cref="T:Spartacus.Net.Endpoint" />.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_status">
+             <summary>
+             Situação do servidor: escutando ou não escutando.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_numclients">
+             <summary>
+             Número de clientes conectados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_connect">
+             <summary>
+             Objeto que gerencia o evento de Conexão.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_disconnect">
+             <summary>
+             Objeto que gerencia o evento de Desconexão.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_available">
+             <summary>
+             Objeto que gerencia o evento de Conexão.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_listener">
+             <summary>
+             Listener usado para recebe conexões de clientes.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_clienthandlers">
+             <summary>
+             Gerenciadores de conexão com clientes.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_threadaccept">
+             <summary>
+             Thread para escuta de novos clientes.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_threadcheck">
+             <summary>
+             Thread para verificação de clientes conectados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.#ctor(System.String,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Server" />.
+             </summary>
+             <param name="p_ip">IP do Servidor.</param>
+             <param name="p_port">Porta do Servidor.</param>
+            </member>
+        <member name="M:Spartacus.Net.Server.Accept">
+             <summary>
+             Escuta por conexões de clientes e as aceita.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.ThreadAccept">
+             <summary>
+             Thread para escuta de novos clientes.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.ThreadCheck">
+             <summary>
+             Thread para verificação de clientes conectados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.StopServer">
+             <summary>
+             Encerra o Servidor.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Buttons">
+             <summary>
+             Classe Buttons.
+             Herda da classe <see cref="T:Spartacus.Web.Container" /> 
+             Representa um componente com um ou mais botões.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Buttons.v_list">
+             <summary>
+             Lista de botões.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Buttons.v_arrayparams">
+             <summary>
+             Se os parâmetros devem estar na forma de array.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.#ctor(Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Buttons" />.
+             </summary>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Container.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Container.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Container.
+             </summary>
+             <returns>Texto ou valor atual do Container.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String)">
+             <summary>
+             Adiciona um botão à lista de botões.
+             </summary>
+             <param name="p_id">Identificador do botão.</param>
+             <param name="p_text">Texto do botão.</param>
+             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.String)">
+             <summary>
+             Adiciona um botão à lista de botões.
+             </summary>
+             <param name="p_id">Identificador do botão.</param>
+             <param name="p_text">Texto do botão.</param>
+             <param name="p_icon">Ícone do botão.</param>
+             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.Boolean)">
+             <summary>
+             Adiciona um botão à lista de botões.
+             </summary>
+             <param name="p_id">Identificador do botão.</param>
+             <param name="p_text">Texto do botão.</param>
+             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+             <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.AddButton(System.String,System.String,System.String,System.String,System.Boolean)">
+             <summary>
+             Adiciona um botão à lista de botões.
+             </summary>
+             <param name="p_id">Identificador do botão.</param>
+             <param name="p_text">Texto do botão.</param>
+             <param name="p_icon">Ícone do botão.</param>
+             <param name="p_onclick">Função JavaScript chamada quando o usuário clicar no botão.</param>
+             <param name="p_arrayparams">Se os parâmetros devem estar na forma de array.</param>
+            </member>
+        <member name="M:Spartacus.Web.Buttons.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Container">
+             <summary>
+             Classe Container.
+             Representa um formulário (janela), painel, ou outro componente que contenha outros componentes.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Container.v_id">
+             <summary>
+             Identificador do Container atual.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Container.v_parent">
+             <summary>
+             Container pai do Container atual.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Container.v_containers">
+             <summary>
+             Lista de Containers filhos do Container atual.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Container.v_type">
+             <summary>
+             Tipo do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Container.#ctor(System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Container" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+            </member>
+        <member name="M:Spartacus.Web.Container.#ctor(System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Container" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_parent">Container pai do Container atual.</param>
+            </member>
+        <member name="M:Spartacus.Web.Container.Add(Spartacus.Web.Container)">
+             <summary>
+             Adiciona um Container ao Container atual.
+             </summary>
+             <param name="p_container">Container a ser adicionado.</param>
+            </member>
+        <member name="M:Spartacus.Web.Container.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Container.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Container.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Container.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Container.</param>
+            </member>
+        <member name="M:Spartacus.Web.Container.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Container.
+             </summary>
+             <returns>Texto ou valor atual do Container.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Container.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Datetimepicker">
+             <summary>
+             Classe Datetimepicker.
+             RRepresenta um componente em que o usuário pode selecionar uma data.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_label">
+             <summary>
+             Rótulo do Datetimepicker.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_datetimepicker">
+             <summary>
+             Controle nativo que representa o Datetimepicker.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Datetimepicker.v_format">
+             <summary>
+             Formato de Data.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.#ctor(System.String,System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Datetimepicker" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_label">Texto exibido no rótulo.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.#ctor(System.String,System.String,System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Datetimepicker" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_label">Texto exibido no rótulo.</param>
+             <param name="p_format">Formato de data.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Datetimepicker.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Datetimepicker.</param>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Datetimepicker.
+             </summary>
+             <returns>Texto ou valor atual do Datetimepicker.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Datetimepicker.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Grid">
+             <summary>
+             Classe Grid.
+             Representa um componente Grid.
+             Herda da classe <see cref="T:Spartacus.Web.Container" />. 
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Grid.v_gridhtml">
+             <summary>
+             Table HTML representando o grid.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Grid.v_selected">
+             <summary>
+             Controle nativo que representa o valor selecionado.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Grid.v_database">
+             <summary>
+             Objeto de conexão com o banco de dados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Grid.v_sql">
+             <summary>
+             Consulta SQL para alimentar o Grid.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Grid.#ctor(System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Grid" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Grid.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Container.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Container.</param>
+            </member>
+        <member name="M:Spartacus.Web.Grid.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Container.
+             </summary>
+             <returns>Texto ou valor atual do Container.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Populate(Spartacus.Database.Generic,System.String)">
+             <summary>
+             Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+             </summary>
+             <param name="p_database">Objeto de conexão com o banco de dados.</param>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Populate(System.Data.DataTable)">
+             <summary>
+             Popula o Grid atual com os dados de um DataTable.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Populate">
+             <summary>
+             Popula o Grid atual com os dados obtidos a partir da execução da consulta SQL no banco de dados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Grid.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Label">
+             <summary>
+             Classe Label.
+             Representa um componente que apenas mostra texto para o usuário.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Label.v_text">
+             <summary>
+             Texto a ser exibido para o usuário.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Label.#ctor(System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Label" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Label.#ctor(System.String,System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Label" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_label">Texto a ser exibido para o usuário.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Label.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Label.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Label.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Label.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Label.</param>
+            </member>
+        <member name="M:Spartacus.Web.Label.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Label.
+             </summary>
+             <returns>Texto ou valor atual do Label.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Label.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Progressbar">
+             <summary>
+             Classe Progressbar.
+             Representa um componente que mostra o progresso de execução de alguma tarefa.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_percent">
+             <summary>
+             Percentual atual do Progressbar.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_text">
+             <summary>
+             Texto atual do Progressbar.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_size">
+             <summary>
+             Tamanho do Progressbar.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_interval">
+             <summary>
+             Intervalo de atualização do Progressbar.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_webmethod">
+             <summary>
+             Webmethod utilizado em conjunto com o Progressbar.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Progressbar.v_error">
+             <summary>
+             Se houve erro na operação.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.#ctor(System.String,Spartacus.Web.ProgressbarSize,System.Int32,System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Progressbar" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_size">Tamanho do Progressbar.</param>
+             <param name="p_interval">Intervalo de atualização do Progressbar.</param>
+             <param name="p_webmethod">Webmethod utilizado em conjunto com o Progressbar.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String)">
+             <summary>
+             Informa o texto a ser mostrado no Label.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Label.</param>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String,System.Int32)">
+             <summary>
+             Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Label.</param>
+             <param name="p_value">Valor a ser mostrado no Progressbar</param>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.SetValue(System.String,System.Int32,System.Boolean)">
+             <summary>
+             Informa o texto a ser mostrado no Label e valor a ser mostrado no Progressbar.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Label.</param>
+             <param name="p_value">Valor a ser mostrado no Progressbar</param>
+             <param name="p_error">Se houve erro ou não.</param>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Textbox.
+             </summary>
+             <returns>Texto ou valor atual do Textbox.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.SetError(System.Boolean)">
+             <summary>
+             Configura estado de erro do progresso.
+             </summary>
+             <param name="p_error">Se houve erro ou não.</param>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Progressbar.RenderInner">
+             <summary>
+             Renderiza interior do Progressbar.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Textbox">
+             <summary>
+             Classe Textbox.
+             Representa um componente em que o usuário pode digitar texto em uma única linha.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Textbox.v_label">
+             <summary>
+             Rótulo do Textbox.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Textbox.v_textbox">
+             <summary>
+             Controle nativo que representa o Textbox.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.#ctor(System.String,System.String,Spartacus.Web.Container)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Textbox" />.
+             </summary>
+             <param name="p_id">Identificador do Container atual.</param>
+             <param name="p_label">Texto exibido no rótulo.</param>
+             <param name="p_parent">Container pai.</param>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Textbox.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Textbox.</param>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Textbox.
+             </summary>
+             <returns>Texto ou valor atual do Textbox.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Textbox.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="T:Spartacus.Web.Window">
+             <summary>
+             Classe Window.
+             Representa uma Janela.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Web.Window.v_aspx">
+             <summary>
+             Nome da página ASPX.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Window.#ctor(System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Window" />.
+             </summary>
+             <param name="p_aspx">Nome da página ASPX.</param>
+            </member>
+        <member name="M:Spartacus.Web.Window.#ctor(System.String,System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Web.Window" />.
+             </summary>
+             <param name="p_title">Título da Janela</param>
+             <param name="p_aspx">Nome da página ASPX.</param>
+            </member>
+        <member name="M:Spartacus.Web.Window.Clear">
+             <summary>
+             Limpa os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Window.Refresh">
+             <summary>
+             Atualiza os dados do Container atual.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Window.SetValue(System.String)">
+             <summary>
+             Informa o texto ou valor a ser mostrado no Container.
+             Usado para mostrar ao usuário um formulário já preenchido.
+             </summary>
+             <param name="p_text">Texto a ser mostrado no Container.</param>
+            </member>
+        <member name="M:Spartacus.Web.Window.GetValue">
+             <summary>
+             Retorna o texto ou valor atual do Container.
+             </summary>
+             <returns>Texto ou valor atual do Container.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Window.GetChildById(System.String)">
+             <summary>
+             Procura e retorna o Container filho que possua o ID solicitado.
+             </summary>
+             <returns>Container filho..</returns>
+             <param name="p_id">Identificador.</param>
+            </member>
+        <member name="M:Spartacus.Web.Window.Render">
+             <summary>
+             Renderiza o HTML do Container.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Web.Window.RenderHead">
+             <summary>
+             Renderiza o HTML head.
+             </summary>
+             <returns>String com o HTML head.</returns>
+            </member>
+        <member name="M:Spartacus.Web.Window.RenderBody">
+             <summary>
+             Renderiza o HTML body.
+             </summary>
+             <returns>String com o HTML body.</returns>
+            </member>
     </members>
 </doc>

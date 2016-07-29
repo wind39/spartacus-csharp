@@ -88,6 +88,7 @@
     <Reference Include="System.Data.SqlServerCe">
       <HintPath>lib\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -941,6 +942,14 @@
     <Compile Include="Spartacus.Database.Access.cs" />
     <Compile Include="Spartacus.Database.Sqlce.cs" />
     <Compile Include="Spartacus.Database.FbEmbed.cs" />
+    <Compile Include="Spartacus.Net.AvailableEvent.cs" />
+    <Compile Include="Spartacus.Net.Client.cs" />
+    <Compile Include="Spartacus.Net.ConnectEvent.cs" />
+    <Compile Include="Spartacus.Net.DisconnectEvent.cs" />
+    <Compile Include="Spartacus.Net.Endpoint.cs" />
+    <Compile Include="Spartacus.Net.Exception.cs" />
+    <Compile Include="Spartacus.Net.Packet.cs" />
+    <Compile Include="Spartacus.Net.Server.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
