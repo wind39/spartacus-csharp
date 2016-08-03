@@ -59,6 +59,18 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlce"/>.
         /// </summary>
+        public Sqlce()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "text";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlce"/>.
+        /// </summary>
         /// <param name='p_file'>
         /// Caminho para o arquivo SDF.
         /// </param>

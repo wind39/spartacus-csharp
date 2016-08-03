@@ -51,9 +51,6 @@
     <Reference Include="FirebirdSql.Data.FirebirdClient">
       <HintPath>lib\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>lib\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql">
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
@@ -89,6 +86,9 @@
       <HintPath>lib\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="MySql.Data">
+      <HintPath>lib\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -958,6 +958,7 @@
     <Compile Include="Spartacus.Web.Progressbar.cs" />
     <Compile Include="Spartacus.Web.Textbox.cs" />
     <Compile Include="Spartacus.Web.Window.cs" />
+    <Compile Include="Spartacus.Database.Mariadb.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,4 +1,4 @@
-/*
+﻿/*
 The MIT License (MIT)
 
 Copyright (c) 2014-2016 William Ivanski
@@ -24,31 +24,31 @@ SOFTWARE.
 
 using System;
 using System.Data;
-using Npgsql;
+using MySql;
 
 namespace Spartacus.Database
 {
     /// <summary>
-    /// Classe Spartacus.Database.Postgresql.
+    /// Classe Spartacus.Database.Mariadb.
     /// Herda da classe <see cref="Spartacus.Database.Generic"/>.
-    /// Utiliza o Npgsql .NET Provider para acessar um SGBD PostgreSQL.
+    /// Utiliza o MySQL .NET Provider para acessar um SGBD MariaDB.
     /// </summary>
-    public class Postgresql : Spartacus.Database.Generic
+    public class Mariadb : Spartacus.Database.Generic
     {
         /// <summary>
         /// Conexão com o banco de dados.
         /// </summary>
-        private Npgsql.NpgsqlConnection v_con;
+        private MySql.Data.MySqlClient.MySqlConnection v_con;
 
         /// <summary>
         /// Comando para conexão com o banco de dados.
         /// </summary>
-        private Npgsql.NpgsqlCommand v_cmd;
+        private MySql.Data.MySqlClient.MySqlCommand v_cmd;
 
         /// <summary>
         /// Leitor de dados do banco de dados.
         /// </summary>
-        private Npgsql.NpgsqlDataReader v_reader;
+        private MySql.Data.MySqlClient.MySqlDataReader v_reader;
 
         /// <summary>
         /// Linha atual da QueryBlock.
@@ -57,22 +57,22 @@ namespace Spartacus.Database
 
 
         /// <summary>
-        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Postgresql"/>.
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mariadb"/>.
         /// </summary>
-        public Postgresql()
+        public Mariadb()
             : base()
         {
             this.v_con = null;
             this.v_cmd = null;
             this.v_reader = null;
-            this.v_default_string = "text";
+            this.v_default_string = "varchar(4000)";
         }
 
         /// <summary>
-        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Postgresql"/>.
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mariadb"/>.
         /// </summary>
         /// <param name='p_server'>
-        /// IP do servidor PostgreSQL.
+        /// IP do servidor MySQL.
         /// </param>
         /// <param name='p_port'>
         /// Porta de conexão.
@@ -81,54 +81,56 @@ namespace Spartacus.Database
         /// Nome da base de dados ou schema.
         /// </param>
         /// <param name='p_user'>
-        /// Usuário do PostgreSQL.
+        /// Usuário do MySQL.
         /// </param>
         /// <param name='p_password'>
-        /// Senha do PostgreSQL.
+        /// Senha do MySQL.
         /// </param>
-        public Postgresql(string p_server, string p_port, string p_database, string p_user, string p_password)
+        public Mariadb(string p_server, string p_port, string p_database, string p_user, string p_password)
             : base(p_server, p_port, p_database, p_user, p_password)
         {
-            this.v_connectionstring = "Server=" + this.v_host + ";"
+            this.v_connectionstring = "Persist Security Info=False;"
+                + "Server=" + this.v_host + ";"
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
-                + "User ID=" + this.v_user + ";"
-                + "Password=" + this.v_password;
+                + "Uid=" + this.v_user + ";"
+                + "Pwd=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
             this.v_reader = null;
-            this.v_default_string = "text";
+            this.v_default_string = "varchar(4000)";
         }
 
         /// <summary>
-        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Postgresql"/>.
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mariadb"/>.
         /// </summary>
         /// <param name='p_server'>
-        /// IP do servidor PostgreSQL.
+        /// IP do servidor MySQL.
         /// </param>
         /// <param name='p_database'>
         /// Nome da base de dados ou schema.
         /// </param>
         /// <param name='p_user'>
-        /// Usuário do PostgreSQL.
+        /// Usuário do MySQL.
         /// </param>
         /// <param name='p_password'>
-        /// Senha do PostgreSQL.
+        /// Senha do MySQL.
         /// </param>
-        public Postgresql(string p_server, string p_database, string p_user, string p_password)
-            : base(p_server, "5432", p_database, p_user, p_password)
+        public Mariadb(string p_server, string p_database, string p_user, string p_password)
+            : base(p_server, "3306", p_database, p_user, p_password)
         {
-            this.v_connectionstring = "Server=" + this.v_host + ";"
+            this.v_connectionstring = "Persist Security Info=False;"
+                + "Server=" + this.v_host + ";"
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
-                + "User ID=" + this.v_user + ";"
-                + "Password=" + this.v_password;
+                + "Uid=" + this.v_user + ";"
+                + "Pwd=" + this.v_password;
 
             this.v_con = null;
             this.v_cmd = null;
             this.v_reader = null;
-            this.v_default_string = "text";
+            this.v_default_string = "varchar(4000)";
         }
 
         /// <summary>
@@ -137,7 +139,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
         public override void CreateDatabase(string p_name)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.CreateDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mariadb.CreateDatabase");
         }
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void CreateDatabase()
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.CreateDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mariadb.CreateDatabase");
         }
 
         /// <summary>
@@ -155,14 +157,14 @@ namespace Spartacus.Database
         {
             try
             {
-                this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                 this.v_con.Open();
-                this.v_cmd = new Npgsql.NpgsqlCommand();
+                this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand();
                 this.v_cmd.Connection = this.v_con;
                 if (this.v_timeout > -1)
                     this.v_cmd.CommandTimeout = this.v_timeout;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -184,16 +186,16 @@ namespace Spartacus.Database
             System.Data.DataRow v_row;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.Query: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.Query: " + p_sql);
             #endif
 
             if (this.v_con == null)
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -212,7 +214,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -257,7 +259,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -290,7 +292,7 @@ namespace Spartacus.Database
             uint v_counter = 0;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.Query: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.Query: " + p_sql);
             #endif
 
             p_progress.FireEvent(v_counter);
@@ -299,9 +301,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -323,7 +325,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -371,7 +373,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -411,7 +413,7 @@ namespace Spartacus.Database
             System.Data.DataRow v_row;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.QueryBlock: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.QueryBlock: " + p_sql);
             #endif
 
             try
@@ -454,7 +456,7 @@ namespace Spartacus.Database
 
                 return v_table;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -477,16 +479,16 @@ namespace Spartacus.Database
             string v_html;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.QueryHtml: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.QueryHtml: " + p_sql);
             #endif
 
             if (this.v_con == null)
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -510,7 +512,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -560,7 +562,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -591,7 +593,7 @@ namespace Spartacus.Database
         /// <remarks>Não suportado em todos os SGBDs.</remarks>
         public override System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.QueryStoredProc");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mariadb.QueryStoredProc");
         }
 
         /// <summary>
@@ -603,24 +605,24 @@ namespace Spartacus.Database
         public override void Execute(string p_sql)
         {
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.Execute: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.Execute: " + p_sql);
             #endif
 
             if (this.v_con == null)
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
                     if (this.v_execute_security)
-                        this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     else
-                        this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -649,7 +651,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = p_sql;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -673,7 +675,7 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
 
                     v_block = "insert into " + p_table + " values\n";
@@ -686,18 +688,18 @@ namespace Spartacus.Database
                     }
 
                     #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    Console.WriteLine("Spartacus.Database.Mariadb.InsertBlock: " + v_block);
                     #endif
 
                     if (this.v_execute_security)
-                        this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
-                        this.v_cmd = new Npgsql.NpgsqlCommand(v_block, this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -730,7 +732,7 @@ namespace Spartacus.Database
                     }
 
                     #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    Console.WriteLine("Spartacus.Database.Mariadb.InsertBlock: " + v_block);
                     #endif
 
                     if (this.v_execute_security)
@@ -739,7 +741,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -766,7 +768,7 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
 
                     v_block = "insert into " + p_table + " " + p_columnnames + " values\n";
@@ -779,18 +781,18 @@ namespace Spartacus.Database
                     }
 
                     #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    Console.WriteLine("Spartacus.Database.Mariadb.InsertBlock: " + v_block);
                     #endif
 
                     if (this.v_execute_security)
-                        this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
-                        this.v_cmd = new Npgsql.NpgsqlCommand(v_block, this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(v_block, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -823,7 +825,7 @@ namespace Spartacus.Database
                     }
 
                     #if DEBUG
-                    Console.WriteLine("Spartacus.Database.Postgresql.InsertBlock: " + v_block);
+                    Console.WriteLine("Spartacus.Database.Mariadb.InsertBlock: " + v_block);
                     #endif
 
                     if (this.v_execute_security)
@@ -832,7 +834,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -853,19 +855,19 @@ namespace Spartacus.Database
             object v_tmp;
 
             #if DEBUG
-            Console.WriteLine("Spartacus.Database.Postgresql.ExecuteScalar: " + p_sql);
+            Console.WriteLine("Spartacus.Database.Mariadb.ExecuteScalar: " + p_sql);
             #endif
 
             if (this.v_con == null)
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
                     if (this.v_execute_security)
-                        this.v_cmd = new Npgsql.NpgsqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     else
-                        this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                        this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     v_tmp = this.v_cmd.ExecuteScalar();
@@ -874,7 +876,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -907,7 +909,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -943,7 +945,7 @@ namespace Spartacus.Database
         /// <param name="p_name">Nome do banco de dados a ser deletado.</param>
         public override void DropDatabase(string p_name)
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.DropDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mariadb.DropDatabase");
         }
 
         /// <summary>
@@ -951,7 +953,7 @@ namespace Spartacus.Database
         /// </summary>
         public override void DropDatabase()
         {
-            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Postgresql.DropDatabase");
+            throw new Spartacus.Utils.NotSupportedException("Spartacus.Database.Mariadb.DropDatabase");
         }
 
         /// <summary>
@@ -967,12 +969,11 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
-
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_array = new string[v_reader.FieldCount];
@@ -981,7 +982,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1018,7 +1019,7 @@ namespace Spartacus.Database
 
                     return v_array;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1046,9 +1047,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_sql, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_sql, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1062,7 +1063,7 @@ namespace Spartacus.Database
 
                     return v_matrix;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1102,7 +1103,7 @@ namespace Spartacus.Database
 
                     return v_matrix;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1133,9 +1134,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1151,7 +1152,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1193,7 +1194,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1229,9 +1230,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1255,7 +1256,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1305,7 +1306,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1372,7 +1373,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1441,7 +1442,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1510,7 +1511,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1589,7 +1590,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1653,7 +1654,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1727,7 +1728,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1755,9 +1756,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1782,7 +1783,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1833,7 +1834,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1868,9 +1869,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1896,7 +1897,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1957,7 +1958,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1997,9 +1998,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2029,7 +2030,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2089,7 +2090,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2126,9 +2127,9 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_con = new Npgsql.NpgsqlConnection(this.v_connectionstring);
+                    this.v_con = new MySql.Data.MySqlClient.MySqlConnection(this.v_connectionstring);
                     this.v_con.Open();
-                    this.v_cmd = new Npgsql.NpgsqlCommand(p_query, this.v_con);
+                    this.v_cmd = new MySql.Data.MySqlClient.MySqlCommand(p_query, this.v_con);
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2151,7 +2152,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -2206,7 +2207,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (MySql.Data.MySqlClient.MySqlException e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }

@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.42.12: Spartacus.Database.Mariadb incluído, e criados construtores vazios em todos os drivers, para o usuário poder passar a connect string
 0.42.11: Reincluindo Spartacus.Net e Spartacus.Web, mesmo incompleto
 0.42.10: Aumentando o tamanho do buffer da ZipStorer
 0.42.9:  Spartacus.Utils.Excel: Suporte a cor do texto na formatação condicional

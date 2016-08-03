@@ -2790,10 +2790,14 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Odbc.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Odbc" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Odbc.#ctor(System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Odbc" />.
-             Cria a string de conexão ao banco.
              </summary>
              <param name="p_dsn">
              DSN (Data Source Name).
@@ -3242,6 +3246,11 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Firebird.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Firebird" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Firebird.#ctor(System.String,System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Firebird" />.
@@ -3624,6 +3633,11 @@
         <member name="F:Spartacus.Database.Mysql.v_currentrow">
              <summary>
              Linha atual da QueryBlock.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mysql.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Mysql" />.
              </summary>
             </member>
         <member name="M:Spartacus.Database.Mysql.#ctor(System.String,System.String,System.String,System.String,System.String)">
@@ -4010,10 +4024,14 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Oledb.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oledb" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Oledb.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oledb" />.
-             Cria a string de conexão ao banco.
              </summary>
              <param name="p_provider">
              SGBD que fornece o banco de dados.
@@ -5402,6 +5420,11 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Sqlite.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlite" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Sqlite.#ctor(System.String)">
              <summary>
              Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlite" />.
@@ -5409,11 +5432,6 @@
              <param name="p_file">
              Caminho para o arquivo DB.
              </param>
-            </member>
-        <member name="M:Spartacus.Database.Sqlite.#ctor">
-             <summary>
-             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlite" />.
-             </summary>
             </member>
         <member name="M:Spartacus.Database.Sqlite.CreateDatabase(System.String)">
              <summary>
@@ -5760,6 +5778,11 @@
         <member name="F:Spartacus.Database.Postgresql.v_currentrow">
              <summary>
              Linha atual da QueryBlock.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Postgresql.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Postgresql" />.
              </summary>
             </member>
         <member name="M:Spartacus.Database.Postgresql.#ctor(System.String,System.String,System.String,System.String,System.String)">
@@ -6914,10 +6937,14 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Oracle.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Oracle.#ctor(System.String,System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
-             Cria a string de conexão ao banco.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -6938,7 +6965,6 @@
         <member name="M:Spartacus.Database.Oracle.#ctor(System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Oracle" />.
-             Cria a string de conexão ao banco.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -44495,10 +44521,14 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.SqlServer.#ctor">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
-             Armazena informações de conexão que são genéricas a qualquer SGBD.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -44519,7 +44549,6 @@
         <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
-             Armazena informações de conexão que são genéricas a qualquer SGBD.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -44537,7 +44566,6 @@
         <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
-             Armazena informações de conexão que são genéricas a qualquer SGBD.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -44561,7 +44589,6 @@
         <member name="M:Spartacus.Database.SqlServer.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.SqlServer" />.
-             Armazena informações de conexão que são genéricas a qualquer SGBD.
              </summary>
              <param name="p_host">
              Hostname ou IP onde o banco de dados está localizado.
@@ -46779,6 +46806,11 @@
              Linha atual da QueryBlock.
              </summary>
             </member>
+        <member name="M:Spartacus.Database.Sqlce.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlce" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Sqlce.#ctor(System.String)">
              <summary>
              Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Sqlce" />.
@@ -47132,6 +47164,11 @@
         <member name="F:Spartacus.Database.FbEmbed.v_currentrow">
              <summary>
              Linha atual da QueryBlock.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.FbEmbed.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.FbEmbed" />.
              </summary>
             </member>
         <member name="M:Spartacus.Database.FbEmbed.#ctor(System.String)">
@@ -48766,6 +48803,395 @@
              Renderiza o HTML body.
              </summary>
              <returns>String com o HTML body.</returns>
+            </member>
+        <member name="T:Spartacus.Database.Mariadb">
+             <summary>
+             Classe Spartacus.Database.Mariadb.
+             Herda da classe <see cref="T:Spartacus.Database.Generic" />.
+             Utiliza o MySQL .NET Provider para acessar um SGBD MariaDB.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Database.Mariadb.v_con">
+             <summary>
+             Conexão com o banco de dados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Database.Mariadb.v_cmd">
+             <summary>
+             Comando para conexão com o banco de dados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Database.Mariadb.v_reader">
+             <summary>
+             Leitor de dados do banco de dados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Database.Mariadb.v_currentrow">
+             <summary>
+             Linha atual da QueryBlock.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.#ctor">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Mariadb" />.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.#ctor(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Mariadb" />.
+             </summary>
+             <param name="p_server">
+             IP do servidor MySQL.
+             </param>
+             <param name="p_port">
+             Porta de conexão.
+             </param>
+             <param name="p_database">
+             Nome da base de dados ou schema.
+             </param>
+             <param name="p_user">
+             Usuário do MySQL.
+             </param>
+             <param name="p_password">
+             Senha do MySQL.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.#ctor(System.String,System.String,System.String,System.String)">
+             <summary>
+             Inicializa uma nova instancia da classe <see cref="T:Spartacus.Database.Mariadb" />.
+             </summary>
+             <param name="p_server">
+             IP do servidor MySQL.
+             </param>
+             <param name="p_database">
+             Nome da base de dados ou schema.
+             </param>
+             <param name="p_user">
+             Usuário do MySQL.
+             </param>
+             <param name="p_password">
+             Senha do MySQL.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.CreateDatabase(System.String)">
+             <summary>
+             Cria um banco de dados.
+             </summary>
+             <param name="p_name">Nome do arquivo de banco de dados a ser criado.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.CreateDatabase">
+             <summary>
+             Cria um banco de dados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Open">
+             <summary>
+             Abre a conexão com o banco de dados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Query(System.String,System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_tablename">
+             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+             </param>
+             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Query(System.String,System.String,Spartacus.Utils.ProgressEventClass)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see cref="T:System.Data.DataTable" />.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_tablename">
+             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+             </param>
+             <param name="p_progress">Evento de progresso da execução da consulta.</param>
+             <returns>Retorna uma <see cref="T:System.Data.DataTable" /> com os dados de retorno da consulta.</returns>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.QueryBlock(System.String,System.String,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+             Utiliza um DataReader para buscar em blocos. Conexão com o banco precisa estar aberta.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_tablename">
+             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+             </param>
+             <param name="p_startrow">
+             Número da linha inicial.
+             </param>
+             <param name="p_endrow">
+             Número da linha final.
+             </param>
+             <param name="p_hasmoredata">
+             Indica se ainda há mais dados a serem lidos.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.QueryHtml(System.String,System.String,System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma string HTML.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_id">
+             ID da tabela no HTML.
+             </param>
+             <param name="p_options">
+             Opções da tabela no HTML.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.QueryStoredProc(System.String,System.String,System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em um <see creg="System.Data.DataTable" />.
+             Utiliza um DataReader para buscar em blocos a partir do cursor de saída de uma Stored Procedure.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_tablename">
+             Nome virtual da tabela onde deve ser armazenado o resultado, para fins de cache.
+             </param>
+             <param name="p_outparam">
+             Nome do parâmetro de saída que deve ser um REF CURSOR.
+             </param>
+             <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Execute(System.String)">
+             <summary>
+             Executa um código SQL no banco de dados.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser executado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.InsertBlock(System.String,System.Collections.Generic.List{System.String})">
+             <summary>
+             Insere um bloco de linhas em uma determinada tabela.
+             </summary>
+             <param name="p_table">
+             Nome da tabela a serem inseridas as linhas.
+             </param>
+             <param name="p_rows">
+             Lista de linhas a serem inseridas na tabela.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.InsertBlock(System.String,System.Collections.Generic.List{System.String},System.String)">
+             <summary>
+             Insere um bloco de linhas em uma determinada tabela.
+             </summary>
+             <param name="p_table">
+             Nome da tabela a serem inseridas as linhas.
+             </param>
+             <param name="p_rows">
+             Lista de linhas a serem inseridas na tabela.
+             </param>
+             <param name="p_columnnames">
+             Nomes de colunas da tabela, entre parênteses, separados por vírgula.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.ExecuteScalar(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando um único dado de retorno em uma string.
+             </summary>
+             <returns>
+             string com o dado de retorno.
+             </returns>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Close">
+             <summary>
+             Fecha a conexão com o banco de dados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.DropDatabase(System.String)">
+             <summary>
+             Deleta um banco de dados.
+             </summary>
+             <param name="p_name">Nome do banco de dados a ser deletado.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.DropDatabase">
+             <summary>
+             Deleta o banco de dados conectado atualmente.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.GetColumnNames(System.String)">
+             <summary>
+             Lista os nomes de colunas de uma determinada consulta.
+             </summary>
+             <returns>Vetor com os nomes de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.GetColumnNamesAndTypes(System.String)">
+             <summary>
+             Lista os nomes e tipos de colunas de uma determinada consulta.
+             </summary>
+             <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_log">Log de inserção.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_log">Log de inserção.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_table">Nome da tabela de destino.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_table">Nome da tabela de destino.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_log">Log de inserção.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_table">Nome da tabela de destino.</param>
+             <param name="p_columns">Lista de colunas da tabela de destino.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,System.String,System.String,Spartacus.Database.Command,Spartacus.Database.Generic,System.String@,System.UInt32,System.UInt32,System.Boolean@)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_table">Nome da tabela de destino.</param>
+             <param name="p_columns">Lista de colunas da tabela de destino.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_log">Log de inserção.</param>
+             <param name="p_startrow">Número da linha inicial.</param>
+             <param name="p_endrow">Número da linha final.</param>
+             <param name="p_hasmoredata">Indica se ainda há mais dados a serem lidos.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic,Spartacus.Utils.ProgressEventClass,Spartacus.Utils.ErrorEventClass)">
+             <summary>
+             Transfere dados do banco de dados atual para um banco de dados de destino.
+             Conexão com o banco de destino precisa estar aberta.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta SQL para buscar os dados no banco atual.</param>
+             <param name="p_insert">Comando de inserção para inserir cada linha no banco de destino.</param>
+             <param name="p_destdatabase">Conexão com o banco de destino.</param>
+             <param name="p_progress">Evento de progresso.</param>
+             <param name="p_error">Evento de erro.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.TransferToCSV(System.String,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+             <summary>
+             Transfere dados do banco de dados atual para um arquivo CSV.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+             <param name="p_filename">Nome do arquivo de destino.</param>
+             <param name="p_separator">Separador de campos.</param>
+             <param name="p_delimiter">Delimitador de string.</param>
+             <param name="p_header">Se a primeira linha é cabeçalho ou não.</param>
+             <param name="p_encoding">Codificação do arquivo.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.TransferToXLSX(System.String,System.String)">
+             <summary>
+             Transfere dados do banco de dados atual para um arquivo XLSX.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+             <param name="p_filename">Nome do arquivo de destino.</param>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.TransferToDBF(System.String,System.String)">
+             <summary>
+             Transfere dados do banco de dados atual para um arquivo DBF.
+             Não pára a execução se der um problema num comando de inserção específico.
+             </summary>
+             <returns>Número de linhas transferidas.</returns>
+             <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
+             <param name="p_filename">Nome do arquivo de destino.</param>
             </member>
     </members>
 </doc>

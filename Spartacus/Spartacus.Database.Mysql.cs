@@ -59,6 +59,18 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mysql"/>.
         /// </summary>
+        public Mysql()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "varchar(4000)";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Mysql"/>.
+        /// </summary>
         /// <param name='p_server'>
         /// IP do servidor MySQL.
         /// </param>

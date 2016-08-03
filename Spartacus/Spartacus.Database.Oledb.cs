@@ -58,7 +58,18 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oledb"/>.
-        /// Cria a string de conexão ao banco.
+        /// </summary>
+        public Oledb ()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "text";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oledb"/>.
         /// </summary>
         /// <param name='p_provider'>
         /// SGBD que fornece o banco de dados.

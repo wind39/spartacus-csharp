@@ -58,7 +58,18 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oracle"/>.
-        /// Cria a string de conexão ao banco.
+        /// </summary>
+        public Oracle ()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "varchar2(4000)";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oracle"/>.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.
@@ -93,7 +104,6 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Oracle"/>.
-        /// Cria a string de conexão ao banco.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.

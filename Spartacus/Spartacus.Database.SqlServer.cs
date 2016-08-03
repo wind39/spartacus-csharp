@@ -59,7 +59,18 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
-        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
+        /// </summary>
+        public SqlServer()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "text";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.
@@ -92,7 +103,6 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
-        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.
@@ -122,7 +132,6 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
-        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.
@@ -165,7 +174,6 @@ namespace Spartacus.Database
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.SqlServer"/>.
-        /// Armazena informações de conexão que são genéricas a qualquer SGBD.
         /// </summary>
         /// <param name='p_host'>
         /// Hostname ou IP onde o banco de dados está localizado.

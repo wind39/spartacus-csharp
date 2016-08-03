@@ -59,14 +59,9 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlite"/>.
         /// </summary>
-        /// <param name='p_file'>
-        /// Caminho para o arquivo DB.
-        /// </param>
-        public Sqlite(string p_file)
-            : base(p_file)
+        public Sqlite()
+            : base()
         {
-            this.v_connectionstring = "Data Source=" + p_file + ";Version=3;Synchronous=Full;Journal Mode=Off;";
-
             this.v_con = null;
             this.v_cmd = null;
             this.v_reader = null;
@@ -76,9 +71,14 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Sqlite"/>.
         /// </summary>
-        public Sqlite()
-            : base()
+        /// <param name='p_file'>
+        /// Caminho para o arquivo DB.
+        /// </param>
+        public Sqlite(string p_file)
+            : base(p_file)
         {
+            this.v_connectionstring = "Data Source=" + p_file + ";Version=3;Synchronous=Full;Journal Mode=Off;";
+
             this.v_con = null;
             this.v_cmd = null;
             this.v_reader = null;

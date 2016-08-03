@@ -59,6 +59,18 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Firebird"/>.
         /// </summary>
+        public Firebird()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "blob sub_type text";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Firebird"/>.
+        /// </summary>
         /// <param name='p_source'>
         /// IP do servidor Firebird.
         /// </param>

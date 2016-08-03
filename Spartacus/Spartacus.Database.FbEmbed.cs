@@ -59,6 +59,18 @@ namespace Spartacus.Database
         /// <summary>
         /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.FbEmbed"/>.
         /// </summary>
+        public FbEmbed()
+            : base()
+        {
+            this.v_con = null;
+            this.v_cmd = null;
+            this.v_reader = null;
+            this.v_default_string = "blob sub_type text";
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.FbEmbed"/>.
+        /// </summary>
         /// <param name='p_file'>
         /// Caminho completo para o arquivo FDB ou GDB.
         /// </param>
