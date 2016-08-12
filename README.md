@@ -10,6 +10,8 @@ NuGet package: https://www.nuget.org/packages/Spartacus
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
+Discussion about Spartacus is here: https://www.reddit.com/r/spartacuslibrary/
+
 Spartacus contains this managed libraries:
   - Mono.Data.Sqlite (http://www.mono-project.com/docs/database-access/providers/sqlite/)
   - Mono.Data.Tds (http://www.mono-project.com/docs/database-access/providers/sqlclient/)
