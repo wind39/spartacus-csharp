@@ -75,7 +75,7 @@ namespace Spartacus.Tools.ReportManager
                     400
                 );
 
-                this.v_maingrid = new Spartacus.Forms.Grid(this.v_mainwindow, 600, 300);
+                this.v_maingrid = new Spartacus.Forms.Grid(this.v_mainwindow, 300);
                 this.v_maingrid.Populate(this.v_database, "select * from reports");
                 this.v_mainwindow.Add(this.v_maingrid);
 

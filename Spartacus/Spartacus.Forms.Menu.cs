@@ -130,12 +130,11 @@ namespace Spartacus.Forms
         /// </summary>
         /// <returns>Retorna o grupo, para poder adicionar outros grupos ou itens a ele.</returns>
         /// <param name="p_text">Texto exibido no menu para representar o grupo.</param>
-        public System.Windows.Forms.ToolStripMenuItem AddGroup(string p_text)
+        public Spartacus.Forms.Menugroup AddGroup(string p_text)
         {
-            System.Windows.Forms.ToolStripMenuItem v_menugroup;
+            Spartacus.Forms.Menugroup v_menugroup;
 
-            v_menugroup = new System.Windows.Forms.ToolStripMenuItem();
-            v_menugroup.Text = p_text;
+            v_menugroup = new Spartacus.Forms.Menugroup(p_text);
 
             this.v_menustrip.Items.Add(v_menugroup);
 
@@ -148,12 +147,11 @@ namespace Spartacus.Forms
         /// <returns>Retorna o grupo, para poder adicionar outros grupos ou itens a ele.</returns>
         /// <param name="p_menugroup">Grupo existente.</param>
         /// <param name="p_text">Texto exibido no menu para representar o grupo.</param>
-        public System.Windows.Forms.ToolStripMenuItem AddGroup(System.Windows.Forms.ToolStripMenuItem p_menugroup, string p_text)
+        public Spartacus.Forms.Menugroup AddGroup(Spartacus.Forms.Menugroup p_menugroup, string p_text)
         {
-            System.Windows.Forms.ToolStripMenuItem v_menugroup;
+            Spartacus.Forms.Menugroup v_menugroup;
 
-            v_menugroup = new System.Windows.Forms.ToolStripMenuItem();
-            v_menugroup.Text = p_text;
+            v_menugroup = new Spartacus.Forms.Menugroup(p_text);
 
             p_menugroup.DropDownItems.Add(v_menugroup);
 
@@ -166,12 +164,11 @@ namespace Spartacus.Forms
         /// <param name="p_menugroup">Grupo existente.</param>
         /// <param name="p_text">Texto exibido no menu para representar o item.</param>
         /// <param name="p_delegate">Método executado ao clicar no item do Menu.</param>
-        public void AddItem(System.Windows.Forms.ToolStripMenuItem p_menugroup, string p_text, System.EventHandler p_delegate)
+        public void AddItem(Spartacus.Forms.Menugroup p_menugroup, string p_text, System.EventHandler p_delegate)
         {
-            System.Windows.Forms.ToolStripMenuItem v_menuitem;
+            Spartacus.Forms.Menugroup v_menuitem;
 
-            v_menuitem = new System.Windows.Forms.ToolStripMenuItem();
-            v_menuitem.Text = p_text;
+            v_menuitem = new Spartacus.Forms.Menugroup(p_text);
             if (p_delegate != null)
                 v_menuitem.Click += p_delegate;
 

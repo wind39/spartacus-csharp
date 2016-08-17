@@ -45732,6 +45732,13 @@
              <param name="p_width">Largura.</param>
              <param name="p_height">Altura.</param>
             </member>
+        <member name="M:Spartacus.Forms.Grid.#ctor(Spartacus.Forms.Container,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Forms.Grid" />.
+             </summary>
+             <param name="p_parent">Container pai.</param>
+             <param name="p_height">Altura.</param>
+            </member>
         <member name="M:Spartacus.Forms.Grid.Resize(System.Int32,System.Int32,System.Int32,System.Int32)">
              <summary>
              Redimensiona o Componente atual.
@@ -46070,7 +46077,7 @@
              <returns>Retorna o grupo, para poder adicionar outros grupos ou itens a ele.</returns>
              <param name="p_text">Texto exibido no menu para representar o grupo.</param>
             </member>
-        <member name="M:Spartacus.Forms.Menu.AddGroup(System.Windows.Forms.ToolStripMenuItem,System.String)">
+        <member name="M:Spartacus.Forms.Menu.AddGroup(Spartacus.Forms.Menugroup,System.String)">
              <summary>
              Adiciona um grupo a um grupo existente.
              </summary>
@@ -46078,7 +46085,7 @@
              <param name="p_menugroup">Grupo existente.</param>
              <param name="p_text">Texto exibido no menu para representar o grupo.</param>
             </member>
-        <member name="M:Spartacus.Forms.Menu.AddItem(System.Windows.Forms.ToolStripMenuItem,System.String,System.EventHandler)">
+        <member name="M:Spartacus.Forms.Menu.AddItem(Spartacus.Forms.Menugroup,System.String,System.EventHandler)">
              <summary>
              Adiciona um item a um grupo do Menu.
              </summary>
