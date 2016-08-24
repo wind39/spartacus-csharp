@@ -162,7 +162,7 @@ namespace Spartacus.Database
                 if (this.v_timeout > -1)
                     this.v_cmd.CommandTimeout = this.v_timeout;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -199,8 +199,8 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.v_reader.GetName(i), typeof(string));
 
                     while (this.v_reader.Read())
                     {
@@ -212,7 +212,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -220,7 +220,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -244,8 +244,8 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.v_reader.GetName(i), typeof(string));
 
                     while (this.v_reader.Read())
                     {
@@ -257,7 +257,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -307,8 +307,8 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.v_reader.GetName(i), typeof(string));
 
                     while (this.v_reader.Read())
                     {
@@ -323,7 +323,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -331,7 +331,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -355,8 +355,8 @@ namespace Spartacus.Database
                     this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_table = new System.Data.DataTable(p_tablename);
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_table.Columns.Add(this.v_reader.GetName(i), typeof(string));
 
                     while (this.v_reader.Read())
                     {
@@ -371,7 +371,7 @@ namespace Spartacus.Database
 
                     return v_table;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -424,8 +424,8 @@ namespace Spartacus.Database
                 }
 
                 v_table = new System.Data.DataTable(p_tablename);
-                for (int i = 0; i < v_reader.FieldCount; i++)
-                    v_table.Columns.Add(this.FixColumnName(this.v_reader.GetName(i)), typeof(string));
+                for (int i = 0; i < this.v_reader.FieldCount; i++)
+                    v_table.Columns.Add(this.v_reader.GetName(i), typeof(string));
 
                 p_hasmoredata = false;
                 while (this.v_reader.Read())
@@ -454,7 +454,7 @@ namespace Spartacus.Database
 
                 return v_table;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -493,8 +493,8 @@ namespace Spartacus.Database
 
                     v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
 
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_html += "<th>" + this.FixColumnName(this.v_reader.GetName(i)) + "</th>";
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_html += "<th>" + this.v_reader.GetName(i) + "</th>";
 
                     v_html += "</tr></thead><tbody>";
 
@@ -510,7 +510,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -518,7 +518,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -543,8 +543,8 @@ namespace Spartacus.Database
 
                     v_html = "<table id='" + p_id + "' " + p_options + "><thead><tr>";
 
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_html += "<th>" + this.FixColumnName(this.v_reader.GetName(i)) + "</th>";
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_html += "<th>" + this.v_reader.GetName(i) + "</th>";
 
                     v_html += "</tr></thead><tbody>";
 
@@ -560,7 +560,7 @@ namespace Spartacus.Database
 
                     return v_html;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -620,7 +620,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -628,7 +628,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -649,7 +649,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = p_sql;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -697,7 +697,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -705,7 +705,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -739,7 +739,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -790,7 +790,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -798,7 +798,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -832,7 +832,7 @@ namespace Spartacus.Database
                         this.v_cmd.CommandText = v_block;
                     this.v_cmd.ExecuteNonQuery();
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -874,7 +874,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -882,7 +882,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -907,7 +907,7 @@ namespace Spartacus.Database
                     else
                         return "";
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -921,7 +921,7 @@ namespace Spartacus.Database
         {
             if (this.v_cmd != null)
             {
-                this.v_cmd.Cancel();
+                //try { this.v_cmd.Cancel(); } catch {}
                 this.v_cmd.Dispose();
                 this.v_cmd = null;
             }
@@ -975,13 +975,13 @@ namespace Spartacus.Database
 
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
+                    v_array = new string[this.v_reader.FieldCount];
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_array[i] = this.v_reader.GetName(i);
 
                     return v_array;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -989,7 +989,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1012,13 +1012,13 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = p_sql;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    v_array = new string[v_reader.FieldCount];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
-                        v_array[i] = this.FixColumnName(this.v_reader.GetName(i));
+                    v_array = new string[this.v_reader.FieldCount];
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        v_array[i] = this.v_reader.GetName(i);
 
                     return v_array;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1053,16 +1053,16 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    v_matrix = new string[v_reader.FieldCount, 2];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
+                    v_matrix = new string[this.v_reader.FieldCount, 2];
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
                     {
-                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
+                        v_matrix[i, 0] = this.v_reader.GetName(i);
                         v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
                     }
 
                     return v_matrix;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1070,7 +1070,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1093,16 +1093,16 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = p_sql;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    v_matrix = new string[v_reader.FieldCount, 2];
-                    for (int i = 0; i < v_reader.FieldCount; i++)
+                    v_matrix = new string[this.v_reader.FieldCount, 2];
+                    for (int i = 0; i < this.v_reader.FieldCount; i++)
                     {
-                        v_matrix[i, 0] = this.FixColumnName(this.v_reader.GetName(i));
+                        v_matrix[i, 0] = this.v_reader.GetName(i);
                         v_matrix[i, 1] = this.v_reader.GetDataTypeName(i);
                     }
 
                     return v_matrix;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1140,10 +1140,10 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -1151,7 +1151,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1159,7 +1159,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1182,10 +1182,10 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = p_query;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -1193,7 +1193,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1236,10 +1236,10 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1255,7 +1255,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1263,7 +1263,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1286,10 +1286,10 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = p_query;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1305,7 +1305,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1345,14 +1345,14 @@ namespace Spartacus.Database
                 }
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         p_destdatabase.Execute(p_insert.GetUpdatedText());
                         v_transfered++;
@@ -1372,7 +1372,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1406,14 +1406,14 @@ namespace Spartacus.Database
                 }
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1441,7 +1441,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1474,20 +1474,20 @@ namespace Spartacus.Database
                     this.v_currentrow = 0;
                 }
 
-                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
-                for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
+                v_columnnames = "(" + this.v_reader.GetName(0);
+                for (int i = 1; i < this.v_reader.FieldCount; i++)
+                    v_columnnames += "," + this.v_reader.GetName(i);
                 v_columnnames += ")";
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1510,7 +1510,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1544,20 +1544,20 @@ namespace Spartacus.Database
                     this.v_currentrow = 0;
                 }
 
-                v_columnnames = "(" + this.FixColumnName(this.v_reader.GetName(0));
-                for (int i = 1; i < v_reader.FieldCount; i++)
-                    v_columnnames += "," + this.FixColumnName(this.v_reader.GetName(i));
+                v_columnnames = "(" + this.v_reader.GetName(0);
+                for (int i = 1; i < this.v_reader.FieldCount; i++)
+                    v_columnnames += "," + this.v_reader.GetName(i);
                 v_columnnames += ")";
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1589,7 +1589,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1623,14 +1623,14 @@ namespace Spartacus.Database
                 }
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1653,7 +1653,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1688,14 +1688,14 @@ namespace Spartacus.Database
                 }
 
                 p_hasmoredata = false;
-                while (v_reader.Read())
+                while (this.v_reader.Read())
                 {
                     p_hasmoredata = true;
 
                     if (this.v_currentrow >= p_startrow && this.v_currentrow <= p_endrow)
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_rows.Add(p_insert.GetUpdatedText());
 
@@ -1727,7 +1727,7 @@ namespace Spartacus.Database
 
                 return v_transfered;
             }
-            catch (Npgsql.NpgsqlException e)
+            catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception(e);
             }
@@ -1762,10 +1762,10 @@ namespace Spartacus.Database
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1782,7 +1782,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1790,7 +1790,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1813,10 +1813,10 @@ namespace Spartacus.Database
                     this.v_cmd.CommandText = p_query;
                     this.v_reader = this.v_cmd.ExecuteReader();
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        for (int i = 0; i < v_reader.FieldCount; i++)
-                            p_insert.SetValue(this.FixColumnName(v_reader.GetName(i)).ToLower(), v_reader[i].ToString(), this.v_execute_security);
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            p_insert.SetValue(this.v_reader.GetName(i).ToLower(), this.v_reader[i].ToString(), this.v_execute_security);
 
                         v_insert = p_insert.GetUpdatedText();
                         try
@@ -1833,7 +1833,7 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
+                catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
                 }
@@ -1878,27 +1878,23 @@ namespace Spartacus.Database
                     v_writer = new System.IO.StreamWriter(new System.IO.FileStream(p_filename, System.IO.FileMode.Create), p_encoding);
                     if (p_header)
                     {
-                        v_writer.Write(p_delimiter + this.FixColumnName(v_reader.GetName(0)).ToUpper() + p_delimiter);
-                        for (int i = 1; i < v_reader.FieldCount; i++)
-                            v_writer.Write(p_separator + p_delimiter + this.FixColumnName(v_reader.GetName(i)).ToUpper() + p_delimiter);
+                        v_writer.Write(p_delimiter + this.v_reader.GetName(0).ToUpper() + p_delimiter);
+                        for (int i = 1; i < this.v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.v_reader.GetName(i).ToUpper() + p_delimiter);
                         v_writer.WriteLine();
                     }
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        v_writer.Write(p_delimiter + v_reader[0].ToString() + p_delimiter);
-                        for (int i = 1; i < v_reader.FieldCount; i++)
-                            v_writer.Write(p_separator + p_delimiter + v_reader[i].ToString() + p_delimiter);
+                        v_writer.Write(p_delimiter + this.v_reader[0].ToString() + p_delimiter);
+                        for (int i = 1; i < this.v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.v_reader[i].ToString() + p_delimiter);
                         v_writer.WriteLine();
 
                         v_transfered++;
                     }
 
                     return v_transfered;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
                 }
                 catch (System.Exception e)
                 {
@@ -1913,7 +1909,7 @@ namespace Spartacus.Database
                     }
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -1939,27 +1935,23 @@ namespace Spartacus.Database
                     v_writer = new System.IO.StreamWriter(new System.IO.FileStream(p_filename, System.IO.FileMode.Create), p_encoding);
                     if (p_header)
                     {
-                        v_writer.Write(p_delimiter + this.FixColumnName(v_reader.GetName(0)).ToUpper() + p_delimiter);
-                        for (int i = 1; i < v_reader.FieldCount; i++)
-                            v_writer.Write(p_separator + p_delimiter + this.FixColumnName(v_reader.GetName(i)).ToUpper() + p_delimiter);
+                        v_writer.Write(p_delimiter + this.v_reader.GetName(0).ToUpper() + p_delimiter);
+                        for (int i = 1; i < this.v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.v_reader.GetName(i).ToUpper() + p_delimiter);
                         v_writer.WriteLine();
                     }
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
-                        v_writer.Write(p_delimiter + v_reader[0].ToString() + p_delimiter);
-                        for (int i = 1; i < v_reader.FieldCount; i++)
-                            v_writer.Write(p_separator + p_delimiter + v_reader[i].ToString() + p_delimiter);
+                        v_writer.Write(p_delimiter + this.v_reader[0].ToString() + p_delimiter);
+                        for (int i = 1; i < this.v_reader.FieldCount; i++)
+                            v_writer.Write(p_separator + p_delimiter + this.v_reader[i].ToString() + p_delimiter);
                         v_writer.WriteLine();
 
                         v_transfered++;
                     }
 
                     return v_transfered;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
                 }
                 catch (System.Exception e)
                 {
@@ -2010,14 +2002,14 @@ namespace Spartacus.Database
                         {
                             v_worksheet.View.ShowGridLines = true;
 
-                            for (j = 0; j < v_reader.FieldCount; j++)
-                                v_worksheet.Cells[1, j+1].Value = this.FixColumnName(v_reader.GetName(j)).ToUpper();
+                            for (j = 0; j < this.v_reader.FieldCount; j++)
+                                v_worksheet.Cells[1, j+1].Value = this.v_reader.GetName(j).ToUpper();
 
                             i = 2;
-                            while (v_reader.Read())
+                            while (this.v_reader.Read())
                             {
-                                for (j = 0; j < v_reader.FieldCount; j++)
-                                    v_worksheet.Cells[i, j+1].Value = v_reader[j].ToString();
+                                for (j = 0; j < this.v_reader.FieldCount; j++)
+                                    v_worksheet.Cells[i, j+1].Value = this.v_reader[j].ToString();
                                 i++;
 
                                 v_transfered++;
@@ -2029,10 +2021,6 @@ namespace Spartacus.Database
 
                     return v_transfered;
                 }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
-                }
                 catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception(e);
@@ -2041,7 +2029,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -2070,14 +2058,14 @@ namespace Spartacus.Database
                         {
                             v_worksheet.View.ShowGridLines = true;
 
-                            for (j = 0; j < v_reader.FieldCount; j++)
-                                v_worksheet.Cells[1, j+1].Value = this.FixColumnName(v_reader.GetName(j)).ToUpper();
+                            for (j = 0; j < this.v_reader.FieldCount; j++)
+                                v_worksheet.Cells[1, j+1].Value = this.v_reader.GetName(j).ToUpper();
 
                             i = 2;
-                            while (v_reader.Read())
+                            while (this.v_reader.Read())
                             {
-                                for (j = 0; j < v_reader.FieldCount; j++)
-                                    v_worksheet.Cells[i, j+1].Value = v_reader[j].ToString();
+                                for (j = 0; j < this.v_reader.FieldCount; j++)
+                                    v_worksheet.Cells[i, j+1].Value = this.v_reader[j].ToString();
                                 i++;
 
                                 v_transfered++;
@@ -2088,10 +2076,6 @@ namespace Spartacus.Database
                     }
 
                     return v_transfered;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
                 }
                 catch (System.Exception e)
                 {
@@ -2136,24 +2120,20 @@ namespace Spartacus.Database
                     v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
                     v_dbf.Open(p_filename, System.IO.FileMode.Create);
 
-                    for (j = 0; j < v_reader.FieldCount; j++)
-                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.FixColumnName(v_reader.GetName(j)).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
+                    for (j = 0; j < this.v_reader.FieldCount; j++)
+                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.v_reader.GetName(j).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
                         v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
-                        for (j = 0; j < v_reader.FieldCount; j++)
-                            v_record[j] = v_reader[j].ToString();
+                        for (j = 0; j < this.v_reader.FieldCount; j++)
+                            v_record[j] = this.v_reader[j].ToString();
                         v_dbf.Write(v_record);
 
                         v_transfered++;
                     }
 
                     return v_transfered;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
                 }
                 catch (System.Exception e)
                 {
@@ -2165,7 +2145,7 @@ namespace Spartacus.Database
                         v_dbf.Close();
                     if (this.v_cmd != null)
                     {
-                        this.v_cmd.Cancel();
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -2191,24 +2171,20 @@ namespace Spartacus.Database
                     v_dbf = new SocialExplorer.IO.FastDBF.DbfFile(System.Text.Encoding.UTF8);
                     v_dbf.Open(p_filename, System.IO.FileMode.Create);
 
-                    for (j = 0; j < v_reader.FieldCount; j++)
-                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.FixColumnName(v_reader.GetName(j)).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
+                    for (j = 0; j < this.v_reader.FieldCount; j++)
+                        v_dbf.Header.AddColumn(new SocialExplorer.IO.FastDBF.DbfColumn(this.v_reader.GetName(j).ToUpper(), SocialExplorer.IO.FastDBF.DbfColumn.DbfColumnType.Character, 254, 0));
 
-                    while (v_reader.Read())
+                    while (this.v_reader.Read())
                     {
                         v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
-                        for (j = 0; j < v_reader.FieldCount; j++)
-                            v_record[j] = v_reader[j].ToString();
+                        for (j = 0; j < this.v_reader.FieldCount; j++)
+                            v_record[j] = this.v_reader[j].ToString();
                         v_dbf.Write(v_record);
 
                         v_transfered++;
                     }
 
                     return v_transfered;
-                }
-                catch (Npgsql.NpgsqlException e)
-                {
-                    throw new Spartacus.Database.Exception(e);
                 }
                 catch (System.Exception e)
                 {

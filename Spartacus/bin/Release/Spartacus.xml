@@ -2414,13 +2414,6 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_query">Consulta SQL.</param>
             </member>
-        <member name="M:Spartacus.Database.Generic.FixColumnName(System.String)">
-             <summary>
-             Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
-             </summary>
-             <returns>Nome da coluna corrigido.</returns>
-             <param name="p_input">Nome da coluna com problema.</param>
-            </member>
         <member name="M:Spartacus.Database.Generic.SetTimeout(System.Int32)">
              <summary>
              Configura CommandTimeout de todas as conexões feitas com a instância atual.

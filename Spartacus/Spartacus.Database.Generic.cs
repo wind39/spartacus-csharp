@@ -322,30 +322,6 @@ namespace Spartacus.Database
         public abstract string[,] GetColumnNamesAndTypes(string p_query);
 
         /// <summary>
-        /// Fix temporário para um problema de DataColumn.ColumnName que apareceu no Mono 4
-        /// </summary>
-        /// <returns>Nome da coluna corrigido.</returns>
-        /// <param name="p_input">Nome da coluna com problema.</param>
-        public string FixColumnName(string p_input)
-        {
-            string v_output;
-            char[] v_array;
-            int k;
-
-            v_array = p_input.ToCharArray();
-
-            v_output = "";
-            k = 0;
-            while (k < v_array.Length && ((uint)v_array[k]) != 0)
-            {
-                v_output += v_array[k];
-                k++;
-            }
-
-            return v_output;
-        }
-
-        /// <summary>
         /// Configura CommandTimeout de todas as conexões feitas com a instância atual.
         /// </summary>
         /// <param name="p_timeout">Timeout em segundos.</param>
@@ -538,10 +514,6 @@ namespace Spartacus.Database
                             throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
                 }
-                catch (Spartacus.Database.Exception e)
-                {
-                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
-                }
                 catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
@@ -587,10 +559,6 @@ namespace Spartacus.Database
                         default:
                             throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
-                }
-                catch (Spartacus.Database.Exception e)
-                {
-                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
                 }
                 catch (System.Exception e)
                 {
@@ -644,10 +612,6 @@ namespace Spartacus.Database
                             throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
                 }
-                catch (Spartacus.Database.Exception e)
-                {
-                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
-                }
                 catch (System.Exception e)
                 {
                     throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
@@ -697,10 +661,6 @@ namespace Spartacus.Database
                         default:
                             throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                     }
-                }
-                catch (Spartacus.Database.Exception e)
-                {
-                    throw new Spartacus.Database.Exception("Erro ao transferir dados do arquivo {0}.", e, p_filename);
                 }
                 catch (System.Exception e)
                 {
@@ -1676,10 +1636,6 @@ namespace Spartacus.Database
                         throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
             }
-            catch (Spartacus.Database.Exception e)
-            {
-                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
-            }
             catch (System.Exception e)
             {
                 throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
@@ -1716,10 +1672,6 @@ namespace Spartacus.Database
                     default:
                         throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
                 }
-            }
-            catch (Spartacus.Database.Exception e)
-            {
-                throw new Spartacus.Database.Exception("Erro ao transferir dados para o arquivo {0}.", e, p_filename);
             }
             catch (System.Exception e)
             {
