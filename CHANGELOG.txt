@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.42.14: Atualizando driver Npgsql
 0.42.13: Spartacus.Forms: Construtor da classe grid que utiliza largura da janela, e classe Menugroup
 0.42.12: Spartacus.Database.Mariadb incluído, e criados construtores vazios em todos os drivers, para o usuário poder passar a connect string
 0.42.11: Reincluindo Spartacus.Net e Spartacus.Web, mesmo incompleto
