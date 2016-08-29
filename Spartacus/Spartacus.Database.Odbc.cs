@@ -557,6 +557,221 @@ namespace Spartacus.Database
         }
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+        /// Utiliza um DataReader para buscar em blocos.
+        /// </summary>
+        /// <param name="p_sql">
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <typeparam name="T">
+        /// Tipo do objeto customizado (classe com propriedades).
+        /// </typeparam>
+        public override System.Collections.Generic.List<T> QueryList<T>(string p_sql)
+        {
+            System.Collections.Generic.List<T> v_list;
+            System.Type v_type;
+            T v_obj;
+            System.Reflection.PropertyInfo v_prop;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.QueryList<T>: " + p_sql);
+            #endif
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_list = new System.Collections.Generic.List<T>();
+                    v_type = typeof(T);
+
+                    while (this.v_reader.Read())
+                    {
+                        v_obj = System.Activator.CreateInstance<T>();
+
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        {
+                            v_prop = v_type.GetProperty(this.v_reader.GetName(i));
+                            if (v_prop != null && this.v_reader.GetName(i) == v_prop.Name && this.v_reader[i] != System.DBNull.Value)
+                                v_prop.SetValue(v_obj, System.Convert.ChangeType(this.v_reader[i], v_prop.PropertyType), null);
+                        }
+
+                        v_list.Add(v_obj);
+                    }
+
+                    return v_list;
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_cmd != null)
+                    {
+                        try { this.v_cmd.Cancel(); } catch {}
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_list = new System.Collections.Generic.List<T>();
+                    v_type = typeof(T);
+
+                    while (this.v_reader.Read())
+                    {
+                        v_obj = System.Activator.CreateInstance<T>();
+
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                        {
+                            v_prop = v_type.GetProperty(this.v_reader.GetName(i));
+                            if (v_prop != null && this.v_reader.GetName(i) == v_prop.Name && this.v_reader[i] != System.DBNull.Value)
+                                v_prop.SetValue(v_obj, System.Convert.ChangeType(this.v_reader[i], v_prop.PropertyType), null);
+                        }
+
+                        v_list.Add(v_obj);
+                    }
+
+                    return v_list;
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+        /// Utiliza um DataReader para buscar em blocos.
+        /// </summary>
+        /// <param name="p_sql">
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        public override System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql)
+        {
+            System.Collections.Generic.List<System.Collections.Generic.List<string>> v_list;
+            System.Collections.Generic.List<string> v_row;
+
+            #if DEBUG
+            Console.WriteLine("Spartacus.Database.Odbc.QuerySList: " + p_sql);
+            #endif
+
+            if (this.v_con == null)
+            {
+                try
+                {
+                    this.v_con = new System.Data.Odbc.OdbcConnection(this.v_connectionstring);
+                    this.v_con.Open();
+                    this.v_cmd = new System.Data.Odbc.OdbcCommand(p_sql, this.v_con);
+                    if (this.v_timeout > -1)
+                        this.v_cmd.CommandTimeout = this.v_timeout;
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = new System.Collections.Generic.List<string>();
+
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row.Add(this.v_reader[i].ToString());
+
+                        v_list.Add(v_row);
+                    }
+
+                    return v_list;
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_cmd != null)
+                    {
+                        try { this.v_cmd.Cancel(); } catch {}
+                        this.v_cmd.Dispose();
+                        this.v_cmd = null;
+                    }
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                    if (this.v_con != null)
+                    {
+                        this.v_con.Close();
+                        this.v_con = null;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    this.v_reader = this.v_cmd.ExecuteReader();
+
+                    v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+                    while (this.v_reader.Read())
+                    {
+                        v_row = new System.Collections.Generic.List<string>();
+
+                        for (int i = 0; i < this.v_reader.FieldCount; i++)
+                            v_row.Add(this.v_reader[i].ToString());
+
+                        v_list.Add(v_row);
+                    }
+
+                    return v_list;
+                }
+                catch (System.Exception e)
+                {
+                    throw new Spartacus.Database.Exception(e);
+                }
+                finally
+                {
+                    if (this.v_reader != null)
+                    {
+                        this.v_reader.Close();
+                        this.v_reader = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Executa um código SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>

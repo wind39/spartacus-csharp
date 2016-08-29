@@ -2340,6 +2340,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Generic.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Generic.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Generic.Execute(System.String)">
              <summary>
              Executa uma instrução SQL no banco de dados.
@@ -2894,6 +2915,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Odbc.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Odbc.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Odbc.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -3373,6 +3415,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Firebird.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Firebird.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Firebird.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -3762,6 +3825,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Mysql.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Mysql.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Mysql.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -4136,6 +4220,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Oledb.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Oledb.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.Oledb.Execute(System.String)">
              <summary>
@@ -5518,6 +5623,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Sqlite.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Sqlite.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Sqlite.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -5906,6 +6032,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Postgresql.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Postgresql.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.Postgresql.Execute(System.String)">
              <summary>
@@ -7063,6 +7210,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Oracle.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Oracle.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.Oracle.Execute(System.String)">
              <summary>
@@ -43453,6 +43621,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Memory.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Memory.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Memory.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -44690,6 +44879,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.SqlServer.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.SqlServer.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.SqlServer.Execute(System.String)">
              <summary>
@@ -46551,6 +46761,27 @@
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
             </member>
+        <member name="M:Spartacus.Database.Access.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Access.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Access.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -46910,6 +47141,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Sqlce.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Sqlce.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.Sqlce.Execute(System.String)">
              <summary>
@@ -47284,6 +47536,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.FbEmbed.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.FbEmbed.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.FbEmbed.Execute(System.String)">
              <summary>
@@ -48964,6 +49237,27 @@
              Nome do parâmetro de saída que deve ser um REF CURSOR.
              </param>
              <remarks>Não suportado em todos os SGBDs.</remarks>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.QueryList``1(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <typeparam name="T">
+             Tipo do objeto customizado (classe com propriedades).
+             </typeparam>
+            </member>
+        <member name="M:Spartacus.Database.Mariadb.QuerySList(System.String)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
             </member>
         <member name="M:Spartacus.Database.Mariadb.Execute(System.String)">
              <summary>

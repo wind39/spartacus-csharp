@@ -248,6 +248,27 @@ namespace Spartacus.Database
         public abstract System.Data.DataTable QueryStoredProc(string p_sql, string p_tablename, string p_outparam);
 
         /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de objetos customizados.
+        /// Utiliza um DataReader para buscar em blocos.
+        /// </summary>
+        /// <param name="p_sql">
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        /// <typeparam name="T">
+        /// Tipo do objeto customizado (classe com propriedades).
+        /// </typeparam>
+        public abstract System.Collections.Generic.List<T> QueryList<T>(string p_sql);
+
+        /// <summary>
+        /// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+        /// Utiliza um DataReader para buscar em blocos.
+        /// </summary>
+        /// <param name="p_sql">
+        /// Código SQL a ser consultado no banco de dados.
+        /// </param>
+        public abstract System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql);
+
+        /// <summary>
         /// Executa uma instrução SQL no banco de dados.
         /// </summary>
         /// <param name='p_sql'>

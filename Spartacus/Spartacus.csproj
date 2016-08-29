@@ -960,6 +960,7 @@
     <Compile Include="Spartacus.Web.Window.cs" />
     <Compile Include="Spartacus.Database.Mariadb.cs" />
     <Compile Include="Spartacus.Forms.Menugroup.cs" />
+    <Compile Include="Spartacus.Utils.Convert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

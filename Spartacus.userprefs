@@ -3,7 +3,6 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
       <File FileName="CHANGELOG.txt" Line="28" Column="35" />
-      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="221" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

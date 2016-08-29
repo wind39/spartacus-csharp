@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.1: Spartacus.Database: Implementados métodos QueryList<T> e QuerySList
+        Implementado método estático Spartacus.Utils.Convert.DataTableToList
 0.43.0: Removendo método FixColumnName (não é mais necessário no Mono 4.2)
         Trocando exceções específicas por exceções genéricas
         Removendo chamada de Command.Cancel no Spartacus.Database.Postgresql
