@@ -2255,7 +2255,7 @@ namespace Spartacus.Utils
                 if (p_completename.Contains("."))
                 {
                     v_partes = p_completename.Split(v_sep);
-                    return v_partes [v_partes.Length - 1].ToUpper();
+                    return v_partes[v_partes.Length - 1].ToUpper();
                 }
                 else
                     return " ";
@@ -2389,7 +2389,7 @@ namespace Spartacus.Utils
                     len = len / 1024;
                 }
 
-                return String.Format("{0:0.#} {1}", len, sizes [order]);
+                return String.Format("{0:0.#} {1}", len, sizes[order]);
             }
         }
 

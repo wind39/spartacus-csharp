@@ -256,32 +256,32 @@ namespace Spartacus.Tools.ReportManager
 
                 for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
                 {
-                    if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_type == Spartacus.Database.Type.DATE)
+                    if (this.v_report.v_cmd.v_parameters[k].v_type == Spartacus.Database.Type.DATE)
                     {
                         Spartacus.Forms.Datetimepicker v_param = new Spartacus.Forms.Datetimepicker(
                             this.v_paramwindow,
-                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description,
+                            this.v_report.v_cmd.v_parameters[k].v_description,
                             "dd/mm/yyyy"
                         );
                         this.v_paramwindow.Add(v_param);
                     }
                     else
                     {
-                        if (((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != null &&
-                            ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup != "")
+                        if (this.v_report.v_cmd.v_parameters[k].v_lookup != null &&
+                            this.v_report.v_cmd.v_parameters[k].v_lookup != "")
                         {
                             Spartacus.Forms.Lookup v_param = new Spartacus.Forms.Lookup(
                                 this.v_paramwindow,
-                                ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                                this.v_report.v_cmd.v_parameters[k].v_description
                             );
-                            v_param.Populate(this.v_report.v_database, ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_lookup, "80;150");
+                            v_param.Populate(this.v_report.v_database, this.v_report.v_cmd.v_parameters[k].v_lookup, "80;150");
                             this.v_paramwindow.Add(v_param);
                         }
                         else
                         {
                             Spartacus.Forms.Textbox v_param = new Spartacus.Forms.Textbox(
                                 this.v_paramwindow,
-                                ((Spartacus.Database.Parameter)this.v_report.v_cmd.v_parameters[k]).v_description
+                                this.v_report.v_cmd.v_parameters[k].v_description
                             );
                             this.v_paramwindow.Add(v_param);
                         }
@@ -336,7 +336,7 @@ namespace Spartacus.Tools.ReportManager
                 this.v_report = new Spartacus.Reporting.Report(this.v_currentcode, this.v_currentfile);
 
                 for (int k = 0; k < this.v_report.v_cmd.v_parameters.Count; k++)
-                    this.v_report.v_cmd.SetValue(k, ((Spartacus.Forms.Container)this.v_paramwindow.v_containers[k]).GetValue());
+                    this.v_report.v_cmd.SetValue(k, this.v_paramwindow.v_containers[k].GetValue());
 
                 this.v_report.v_progress.ProgressEvent += new Spartacus.Utils.ProgressEventClass.ProgressEventHandler(this.OnProgress);
 

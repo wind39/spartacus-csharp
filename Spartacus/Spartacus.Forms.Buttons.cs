@@ -241,7 +241,7 @@ namespace Spartacus.Forms
         /// <param name="p_enabled">Se o botão deve estar habilitado ou não.</param>
         public void EnableButton(int p_index, bool p_enabled)
         {
-            ((System.Windows.Forms.Button)this.v_list[p_index]).Enabled = p_enabled;
+            this.v_list[p_index].Enabled = p_enabled;
         }
     }
 }

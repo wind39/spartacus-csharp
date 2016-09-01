@@ -97,7 +97,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Lista de informações sobre planilhas usadas pela SejExcel para salvar arquivos XLSX.
         /// </summary>
-        public System.Collections.ArrayList v_sheets;
+        public System.Collections.Generic.List<Spartacus.Utils.Excel.Sheet> v_sheets;
 
         /// <summary>
         /// Objeto que gerencia eventos de progresso do processamento.
@@ -131,7 +131,7 @@ namespace Spartacus.Utils
         public Excel()
         {
             this.v_set = new System.Data.DataSet();
-            this.v_sheets = new System.Collections.ArrayList();
+            this.v_sheets = new System.Collections.Generic.List<Spartacus.Utils.Excel.Sheet>();
             this.v_progress = new Spartacus.Utils.ProgressEventClass();
         }
 
@@ -306,7 +306,7 @@ namespace Spartacus.Utils
         /// A lista pode conter arquivos XLSX, CSV ou DBF, e pode ser misturado.
         /// </summary>
         /// <param name="p_filelist">Lista de nomes de arquivos.</param>
-        public void Import(System.Collections.ArrayList p_filelist)
+        public void Import(System.Collections.Generic.List<string> p_filelist)
         {
             try
             {
@@ -356,7 +356,7 @@ namespace Spartacus.Utils
                         if (p_header)
                         {
                             for (j = 0; j < v_line.Length; j++)
-                                v_table.Columns.Add(v_line [j]);
+                                v_table.Columns.Add(v_line[j]);
                         }
                         else
                         {
@@ -434,7 +434,7 @@ namespace Spartacus.Utils
                         if (p_header)
                         {
                             for (j = 0; j < v_line.Length; j++)
-                                v_table.Columns.Add(v_line [j].Trim(p_delimitator));
+                                v_table.Columns.Add(v_line[j].Trim(p_delimitator));
                         }
                         else
                         {
@@ -601,10 +601,10 @@ namespace Spartacus.Utils
             double v_value;
             int v_col = -1;
             string v_columncontrol = "";
-            System.Collections.ArrayList v_columnlist;
+            System.Collections.Generic.List<Spartacus.Utils.Excel.Column> v_columnlist;
 
             v_table = new System.Data.DataTable(p_sheet.Name);
-            v_columnlist = new System.Collections.ArrayList();
+            v_columnlist = new System.Collections.Generic.List<Spartacus.Utils.Excel.Column>();
 
             try
             {
@@ -668,7 +668,7 @@ namespace Spartacus.Utils
                                 if (v_datanode)
                                 {
                                     if (v_istext)
-                                        v_cellcontent = p_package.words [System.Int32.Parse(v_reader.Value)];
+                                        v_cellcontent = p_package.words[System.Int32.Parse(v_reader.Value)];
                                     else
                                         v_cellcontent = v_reader.Value;
                                     if (v_firstrow)
@@ -676,9 +676,9 @@ namespace Spartacus.Utils
                                     else
                                     {
                                         if (double.TryParse(v_cellcontent, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out v_value))
-                                            v_row [this.ColumnIndex(v_columnlist, v_columncontrol)] = System.Math.Round(v_value, 8).ToString();
+                                            v_row[this.ColumnIndex(v_columnlist, v_columncontrol)] = System.Math.Round(v_value, 8).ToString();
                                         else
-                                            v_row [this.ColumnIndex(v_columnlist, v_columncontrol)] = v_cellcontent;
+                                            v_row[this.ColumnIndex(v_columnlist, v_columncontrol)] = v_cellcontent;
                                     }
                                 }
                                 break;
@@ -708,7 +708,7 @@ namespace Spartacus.Utils
         /// <param name="p_columnindex">Índice da coluna.</param>
         /// <param name="p_columncontrol">Controle da coluna, que é o endereço da célula no Excel.</param>
         /// <param name="p_columnname">Nome da coluna.</param>
-        private void AddColumn(System.Collections.ArrayList p_columnlist, System.Data.DataTable p_table, int p_columnindex, string p_columncontrol, string p_columnname)
+        private void AddColumn(System.Collections.Generic.List<Spartacus.Utils.Excel.Column> p_columnlist, System.Data.DataTable p_table, int p_columnindex, string p_columncontrol, string p_columnname)
         {
             Spartacus.Utils.Excel.Column v_column;
             char[] v_columnarray;
@@ -730,7 +730,7 @@ namespace Spartacus.Utils
                    v_columnarray[k] != '8' &&
                    v_columnarray[k] != '9')
             {
-                v_columncontrol += v_columnarray [k];
+                v_columncontrol += v_columnarray[k];
                 k++;
             }
 
@@ -746,7 +746,7 @@ namespace Spartacus.Utils
         /// <returns>Índice da coluna.</returns>
         /// <param name="p_columnlist">Lista de colunas.</param>
         /// <param name="p_columncontrol">Controle da coluna, que é o endereço da célula no Excel..</param>
-        private int ColumnIndex(System.Collections.ArrayList p_columnlist, string p_columncontrol)
+        private int ColumnIndex(System.Collections.Generic.List<Spartacus.Utils.Excel.Column> p_columnlist, string p_columncontrol)
         {
             char[] v_columnarray;
             string v_columncontrol;
@@ -767,15 +767,15 @@ namespace Spartacus.Utils
                    v_columnarray[k] != '8' &&
                    v_columnarray[k] != '9')
             {
-                v_columncontrol += v_columnarray [k];
+                v_columncontrol += v_columnarray[k];
                 k++;
             }
 
             k = 0;
             while (k < p_columnlist.Count)
             {
-                if (((Spartacus.Utils.Excel.Column)p_columnlist [k]).v_columncontrol == v_columncontrol)
-                    return ((Spartacus.Utils.Excel.Column)p_columnlist [k]).v_columnindex;
+                if (p_columnlist[k].v_columncontrol == v_columncontrol)
+                    return p_columnlist[k].v_columnindex;
                 else
                     k++;
             }
@@ -1004,7 +1004,7 @@ namespace Spartacus.Utils
         /// <param name="p_filename">Nome do arquivo XLSX ou CSV a ser exportado.</param>
         /// <param name="p_templatenames">Nome do arquivo XLSX a ser usado como template.</param>
         /// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
-        public void Export(string p_filename, System.Collections.ArrayList p_templatenames)
+        public void Export(string p_filename, System.Collections.Generic.List<string> p_templatenames)
         {
             Spartacus.Utils.File v_file;
             string v_markup;
@@ -1391,36 +1391,36 @@ namespace Spartacus.Utils
             double v_re_value;
             string v_tail;
 
-            v_info = (Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index-1];
+            v_info = this.v_sheets[p_sheet.Index-1];
 
             if ((v_info.v_currentrow - v_info.v_fixedrows - 1) < v_info.v_data.Rows.Count)
             {
                 p_sheet.BeginRow(v_info.v_currentrow);
-                v_row = v_info.v_data.Rows [v_info.v_currentrow - v_info.v_fixedrows - 1];
+                v_row = v_info.v_data.Rows[v_info.v_currentrow - v_info.v_fixedrows - 1];
                 foreach (System.Collections.Generic.KeyValuePair<int,string> v_pair in v_info.v_mapping)
                 {
                     v_tmp = v_pair.Value.Split('_');
                     v_tail = v_pair.Value.Substring(3);
 
-                    switch (v_tmp [0].ToLower())
+                    switch (v_tmp[0].ToLower())
                     {
                         case "in":
-                            if (int.TryParse(v_row [v_tail].ToString(), out v_in_value))
+                            if (int.TryParse(v_row[v_tail].ToString(), out v_in_value))
                                 p_sheet.WriteCell(v_pair.Key, v_in_value);
                             else
-                                p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
+                                p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
                             break;
                         case "dt":
-                            if (int.TryParse(v_row [v_tail].ToString(), out v_in_value))
+                            if (int.TryParse(v_row[v_tail].ToString(), out v_in_value))
                                 p_sheet.WriteCell(v_pair.Key, v_in_value);
                             else
-                                p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
+                                p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
                             break;
                         case "re":
                             if (double.TryParse(v_row[v_tail].ToString().Replace(",", "."), System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("en-US"), out v_re_value))
                                 p_sheet.WriteCell(v_pair.Key, v_re_value);
                             else
-                                p_sheet.WriteCell(v_pair.Key, v_row [v_tail].ToString());
+                                p_sheet.WriteCell(v_pair.Key, v_row[v_tail].ToString());
                             break;
                         case "fo":
                             p_sheet.WriteFormulaCell(v_pair.Key, v_tail.Replace("#", v_info.v_currentrow.ToString().Replace("@", (v_info.v_fixedrows+1).ToString()).Replace("!", (v_info.v_fixedrows+v_info.v_data.Rows.Count).ToString())));
@@ -1432,11 +1432,11 @@ namespace Spartacus.Utils
                 }
                 p_sheet.EndRow();
 
-                ((Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index - 1]).v_currentrow++;
+                this.v_sheets[p_sheet.Index - 1].v_currentrow++;
 
                 this.v_perc += this.v_inc;
                 this.v_currentrow++;
-                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", this.v_perc, "Planilha " + ((Spartacus.Utils.Excel.Sheet) this.v_sheets [p_sheet.Index - 1]).v_name + ": linha " + this.v_currentrow.ToString() + " de " + this.v_numtotalrows.ToString());
+                this.v_progress.FireEvent("Spartacus.Utils.Excel", "ExportXLSX", this.v_perc, "Planilha " + this.v_sheets[p_sheet.Index - 1].v_name + ": linha " + this.v_currentrow.ToString() + " de " + this.v_numtotalrows.ToString());
             }
         }
 
@@ -1476,9 +1476,9 @@ namespace Spartacus.Utils
             {
                 foreach (OfficeOpenXml.ExcelWorksheet v_worksheet in v_package.Workbook.Worksheets)
                 {
-                    v_table = this.v_set.Tables [v_worksheet.Name];
+                    v_table = this.v_set.Tables[v_worksheet.Name];
 
-                    using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet.Cells ["A1"].Value.ToString()))
+                    using (System.IO.StringReader v_reader = new System.IO.StringReader(v_worksheet.Cells["A1"].Value.ToString()))
                     {
                         /* EXEMPLO DE CONFIGURACAO DE MARKUP:
                             TIPO|CAMPO|POSICAO|OPCIONAL
@@ -1504,7 +1504,7 @@ namespace Spartacus.Utils
                             CO|8,9,10|cfid2,cfrazao2,cfpais2|
                         */
 
-                        v_worksheet.Cells ["A1"].Value = "";
+                        v_worksheet.Cells["A1"].Value = "";
 
                         v_line = string.Empty;
                         k = 0;
@@ -1528,49 +1528,49 @@ namespace Spartacus.Utils
                                         break;
                                     case "ST":
                                         if (int.TryParse(v_options[3], out v_offset))
-                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                         else
-                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                         break;
                                     case "IN":
                                         if (int.TryParse(v_options[3], out v_offset))
                                         {
-                                            if (int.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_in_tmp))
-                                                v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                            if (int.TryParse(v_table.Rows[v_offset][v_options[1]].ToString(), out v_in_tmp))
+                                                v_worksheet.Cells[v_options[2]].Value = v_in_tmp;
                                             else
-                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                         }
                                         else
                                         {
-                                            if (int.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_in_tmp))
-                                                v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                            if (int.TryParse(v_table.Rows[0][v_options[1]].ToString(), out v_in_tmp))
+                                                v_worksheet.Cells[v_options[2]].Value = v_in_tmp;
                                             else
-                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                         }
                                         break;
                                     case "RE":
                                         if (int.TryParse(v_options[3], out v_offset))
                                         {
-                                            if (double.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_re_tmp))
-                                                v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                            if (double.TryParse(v_table.Rows[v_offset][v_options[1]].ToString(), out v_re_tmp))
+                                                v_worksheet.Cells[v_options[2]].Value = v_re_tmp;
                                             else
-                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                         }
                                         else
                                         {
-                                            if (double.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_re_tmp))
-                                                v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                            if (double.TryParse(v_table.Rows[0][v_options[1]].ToString(), out v_re_tmp))
+                                                v_worksheet.Cells[v_options[2]].Value = v_re_tmp;
                                             else
-                                                v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                         }
                                         break;
                                     case "FO":
-                                        v_worksheet.Cells [v_options[2]].Formula = v_options[1];
+                                        v_worksheet.Cells[v_options[2]].Formula = v_options[1];
                                         break;
                                     case "IM":
                                         try
                                         {
-                                            v_imagefilename = v_cryptor.Decrypt(v_table.Rows [0] [v_options[1]].ToString());
+                                            v_imagefilename = v_cryptor.Decrypt(v_table.Rows[0][v_options[1]].ToString());
                                         }
                                         catch (Spartacus.Utils.Exception)
                                         {
@@ -1611,19 +1611,19 @@ namespace Spartacus.Utils
                                         }
                                         break;
                                     case "TO":
-                                        v_worksheet.Cells [v_options[2]].Value = "";
+                                        v_worksheet.Cells[v_options[2]].Value = "";
                                         if (v_options[3].Split(';').Length > 1)
                                         {
                                             k = 0;
-                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1];
+                                            v_worksheet.Cells[v_options[2]].Formula = v_options[1];
                                             foreach (string v_dest in v_options[3].Split(';'))
                                             {
                                                 v_row = v_worksheet.Cells[v_dest].Start.Row;
                                                 v_col = v_worksheet.Cells[v_dest].Start.Column;
                                                 if (v_options[1] != "")
-                                                    v_worksheet.Cells [v_options[2]].Formula = v_worksheet.Cells [v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                    v_worksheet.Cells[v_options[2]].Formula = v_worksheet.Cells[v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
                                                 else
-                                                    v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                    v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                                 k++;
                                             }
                                         }
@@ -1632,9 +1632,9 @@ namespace Spartacus.Utils
                                             v_row = v_worksheet.Cells[v_options[3]].Start.Row;
                                             v_col = v_worksheet.Cells[v_options[3]].Start.Column;
                                             if (v_options[1] != "")
-                                                v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
                                             else
-                                                v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                         }
                                         break;
                                     case "CF":
@@ -1711,7 +1711,7 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Nome do arquivo XLSX com cabeçalho aplicado em todas as planilhas.</returns>
         /// <param name="p_templatenames">Nome dos arquivo XLSX usados como templates.</param>
-        private string ReplaceMarkup(System.Collections.ArrayList p_templatenames)
+        private string ReplaceMarkup(System.Collections.Generic.List<string> p_templatenames)
         {
             Spartacus.Utils.Cryptor v_cryptor;
             System.IO.FileInfo v_src;
@@ -1741,9 +1741,9 @@ namespace Spartacus.Utils
 
             using (OfficeOpenXml.ExcelPackage v_package_dst = new OfficeOpenXml.ExcelPackage(v_dst))
             {
-                for (int t = 0; t < p_templatenames.Count; t++)
+                foreach (string v_templatename in p_templatenames)
                 {
-                    v_src = new System.IO.FileInfo((string)p_templatenames[t]);
+                    v_src = new System.IO.FileInfo(v_templatename);
 
                     using (OfficeOpenXml.ExcelPackage v_package_src = new OfficeOpenXml.ExcelPackage(v_src))
                     {
@@ -1858,26 +1858,26 @@ namespace Spartacus.Utils
                                                     break;
                                                 case "ST":
                                                     if (int.TryParse(v_options[3], out v_offset))
-                                                        v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                        v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                                     else
-                                                        v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                        v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                                     if (v_options[2].Contains(':'))
                                                         v_worksheet.Cells[v_options[2]].Merge = true;
                                                     break;
                                                 case "IN":
                                                     if (int.TryParse(v_options[3], out v_offset))
                                                     {
-                                                        if (int.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_in_tmp))
-                                                            v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                                        if (int.TryParse(v_table.Rows[v_offset][v_options[1]].ToString(), out v_in_tmp))
+                                                            v_worksheet.Cells[v_options[2]].Value = v_in_tmp;
                                                         else
-                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                                     }
                                                     else
                                                     {
-                                                        if (int.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_in_tmp))
-                                                            v_worksheet.Cells [v_options[2]].Value = v_in_tmp;
+                                                        if (int.TryParse(v_table.Rows[0][v_options[1]].ToString(), out v_in_tmp))
+                                                            v_worksheet.Cells[v_options[2]].Value = v_in_tmp;
                                                         else
-                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                                     }
                                                     if (v_options[2].Contains(':'))
                                                         v_worksheet.Cells[v_options[2]].Merge = true;
@@ -1885,17 +1885,17 @@ namespace Spartacus.Utils
                                                 case "RE":
                                                     if (int.TryParse(v_options[3], out v_offset))
                                                     {
-                                                        if (double.TryParse(v_table.Rows [v_offset] [v_options[1]].ToString(), out v_re_tmp))
-                                                            v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                                        if (double.TryParse(v_table.Rows[v_offset][v_options[1]].ToString(), out v_re_tmp))
+                                                            v_worksheet.Cells[v_options[2]].Value = v_re_tmp;
                                                         else
-                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [v_offset] [v_options[1]].ToString());
+                                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[v_offset][v_options[1]].ToString());
                                                     }
                                                     else
                                                     {
-                                                        if (double.TryParse(v_table.Rows [0] [v_options[1]].ToString(), out v_re_tmp))
-                                                            v_worksheet.Cells [v_options[2]].Value = v_re_tmp;
+                                                        if (double.TryParse(v_table.Rows[0][v_options[1]].ToString(), out v_re_tmp))
+                                                            v_worksheet.Cells[v_options[2]].Value = v_re_tmp;
                                                         else
-                                                            v_worksheet.Cells [v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows [0] [v_options[1]].ToString());
+                                                            v_worksheet.Cells[v_options[2]].Value = System.Net.WebUtility.HtmlDecode(v_table.Rows[0][v_options[1]].ToString());
                                                     }
                                                     if (v_options[2].Contains(':'))
                                                         v_worksheet.Cells[v_options[2]].Merge = true;
@@ -1947,19 +1947,19 @@ namespace Spartacus.Utils
                                                     }
                                                     break;
                                                 case "TO":
-                                                    v_worksheet.Cells [v_options[2]].Value = "";
+                                                    v_worksheet.Cells[v_options[2]].Value = "";
                                                     if (v_options[3].Split(';').Length > 1)
                                                     {
                                                         k = 0;
-                                                        v_worksheet.Cells [v_options[2]].Formula = v_options[1];
+                                                        v_worksheet.Cells[v_options[2]].Formula = v_options[1];
                                                         foreach (string v_dest in v_options[3].Split(';'))
                                                         {
                                                             v_row = v_worksheet.Cells[v_dest].Start.Row;
                                                             v_col = v_worksheet.Cells[v_dest].Start.Column;
                                                             if (v_options[1] != "")
-                                                                v_worksheet.Cells [v_options[2]].Formula = v_worksheet.Cells [v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                                v_worksheet.Cells[v_options[2]].Formula = v_worksheet.Cells[v_options[2]].Formula.Replace("#" + k.ToString(), v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
                                                             else
-                                                                v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                                v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                                             k++;
                                                         }
                                                     }
@@ -1968,9 +1968,9 @@ namespace Spartacus.Utils
                                                         v_row = v_worksheet.Cells[v_options[3]].Start.Row;
                                                         v_col = v_worksheet.Cells[v_options[3]].Start.Column;
                                                         if (v_options[1] != "")
-                                                            v_worksheet.Cells [v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address);
+                                                            v_worksheet.Cells[v_options[2]].Formula = v_options[1].Replace("#", v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address);
                                                         else
-                                                            v_worksheet.Cells [v_options[2]].Formula = "SUM(" + v_worksheet.Cells [v_row, v_col].Address + ":" + v_worksheet.Cells [v_table.Rows.Count + v_row - 1, v_col].Address + ")";
+                                                            v_worksheet.Cells[v_options[2]].Formula = "SUM(" + v_worksheet.Cells[v_row, v_col].Address + ":" + v_worksheet.Cells[v_table.Rows.Count + v_row - 1, v_col].Address + ")";
                                                     }
                                                     break;
                                                 case "CF":

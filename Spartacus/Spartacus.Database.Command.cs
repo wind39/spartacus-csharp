@@ -206,9 +206,7 @@ namespace Spartacus.Database
 
 			v_newstring = p_string;
 			for (k = 0; k < v_handler.Length; k++) 
-			{
-				v_newstring = v_newstring.Replace (v_handler [k] [0], v_handler [k] [1]);
-			}
+				v_newstring = v_newstring.Replace (v_handler[k][0], v_handler[k][1]);
 			v_allowed[0] = 'A';
 			v_allowed[1] = 'B';
 			v_allowed[2] = 'C';
@@ -395,9 +393,7 @@ namespace Spartacus.Database
 
             v_newstring = p_string;
             for (k = 0; k < v_handler.Length; k++) 
-            {
-                v_newstring = v_newstring.Replace (v_handler [k] [0], v_handler [k] [1]);
-            }
+                v_newstring = v_newstring.Replace (v_handler[k][0], v_handler[k][1]);
             v_allowed[0] = 'A';
             v_allowed[1] = 'B';
             v_allowed[2] = 'C';
@@ -499,7 +495,7 @@ namespace Spartacus.Database
                         j++;
                 }
                 if (! v_achou)
-                    v_newarray [i] = '_';
+                    v_newarray[i] = '_';
             }
             v_newstring = new string(v_newarray).Replace("'", "''");
 
@@ -584,9 +580,7 @@ namespace Spartacus.Database
 
             v_newstring = p_string;
             for (k = 0; k < v_handler.Length; k++) 
-            {
-                v_newstring = v_newstring.Replace (v_handler [k] [0], v_handler [k] [1]);
-            }
+                v_newstring = v_newstring.Replace (v_handler[k][0], v_handler[k][1]);
             v_allowed[0] = 'A';
             v_allowed[1] = 'B';
             v_allowed[2] = 'C';
@@ -736,7 +730,7 @@ namespace Spartacus.Database
                 }
                 else
                 {
-                    switch (this.v_parameters [k].v_type)
+                    switch (this.v_parameters[k].v_type)
                     {
                         case Spartacus.Database.Type.QUOTEDSTRING:
                             this.v_parameters[k].v_value = RemoveUnwantedCharsQuoted(p_value);
@@ -989,14 +983,14 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (this.v_parameters [k].v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                this.v_parameters [k].v_datemask = p_datemask;
+                this.v_parameters[k].v_datemask = p_datemask;
             else
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
         }
@@ -1023,14 +1017,14 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (this.v_parameters [k].v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                this.v_parameters [k].v_datemask = "to_date('#', '" + p_dateformat + "')";
+                this.v_parameters[k].v_datemask = "to_date('#', '" + p_dateformat + "')";
             else
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
         }
@@ -1057,14 +1051,14 @@ namespace Spartacus.Database
             achou = false;
             while (k < this.v_parameters.Count && !achou)
             {
-                if (this.v_parameters [k].v_name == v_name)
+                if (this.v_parameters[k].v_name == v_name)
                     achou = true;
                 else
                     k++;
             }
 
             if (achou)
-                this.v_parameters [k].v_locale = p_locale;
+                this.v_parameters[k].v_locale = p_locale;
             else
                 throw new Spartacus.Database.Exception("Parâmetro de banco de dados {0} não existe.", v_name);
         }

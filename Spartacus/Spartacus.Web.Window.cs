@@ -69,7 +69,7 @@ namespace Spartacus.Web
 
             for (int k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Clear();
             }
         }
@@ -83,7 +83,7 @@ namespace Spartacus.Web
 
             for (int k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Refresh();
             }
         }
@@ -121,7 +121,7 @@ namespace Spartacus.Web
             k = 0;
             while (k < this.v_containers.Count && !v_achou)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 if (v_container.v_id == p_id)
                     v_achou = true;
                 else
@@ -162,7 +162,7 @@ namespace Spartacus.Web
 
             for (int i = 0; i < this.v_containers.Count; i++)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [i];
+                v_container = this.v_containers[i];
                 switch (v_container.v_type)
                 {
                     case Spartacus.Web.ContainerType.BUTTONS:
@@ -209,7 +209,7 @@ namespace Spartacus.Web
                 v_html += "<script type='text/javascript' class='init'> $(document).ready(function () { ";
                 for (int i = 0; i < this.v_containers.Count; i++)
                 {
-                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    v_container = this.v_containers[i];
                     switch (v_container.v_type)
                     {
                         case Spartacus.Web.ContainerType.GRID:
@@ -236,7 +236,7 @@ namespace Spartacus.Web
 
                 for (int i = 0; i < this.v_containers.Count; i++)
                 {
-                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    v_container = this.v_containers[i];
                     if (v_container.v_type == Spartacus.Web.ContainerType.PROGRESSBAR)
                     {
                         v_progressbar = (Spartacus.Web.Progressbar)v_container;
@@ -258,7 +258,7 @@ namespace Spartacus.Web
 
                 for (int i = 0; i < this.v_containers.Count; i++)
                 {
-                    v_container = (Spartacus.Web.Container)this.v_containers [i];
+                    v_container = this.v_containers[i];
                     if (v_container.v_type == Spartacus.Web.ContainerType.BUTTONS)
                     {
                         v_buttons = (Spartacus.Web.Buttons)v_container;
@@ -321,7 +321,7 @@ namespace Spartacus.Web
             v_html = "<form class='pure-form pure-form-aligned' id='spartacus_window' runat='server'><fieldset>";
             for (int k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Web.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_html += v_container.Render();
             }
             v_html += "</fieldset></form>";

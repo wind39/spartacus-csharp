@@ -36,7 +36,7 @@ namespace Spartacus.Web
         /// <summary>
         /// Lista de botões.
         /// </summary>
-        public System.Collections.ArrayList v_list;
+        public System.Collections.Generic.List<System.Web.UI.HtmlControls.HtmlGenericControl> v_list;
 
         /// <summary>
         /// Se os parâmetros devem estar na forma de array.
@@ -53,7 +53,7 @@ namespace Spartacus.Web
         {
             this.v_type = Spartacus.Web.ContainerType.BUTTONS;
 
-            this.v_list = new System.Collections.ArrayList();
+            this.v_list = new System.Collections.Generic.List<System.Web.UI.HtmlControls.HtmlGenericControl>();
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Spartacus.Web
             v_writer = new System.Web.UI.HtmlTextWriter(new System.IO.StringWriter(v_builder));
 
             for (int k = 0; k < this.v_list.Count; k++)
-                ((System.Web.UI.HtmlControls.HtmlGenericControl)this.v_list[k]).RenderControl(v_writer);
+                this.v_list[k].RenderControl(v_writer);
 
             v_html = "<div class='pure-controls'>";
             v_html += v_builder.ToString();

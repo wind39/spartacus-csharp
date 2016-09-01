@@ -235,7 +235,7 @@ namespace Spartacus.Forms
             {
                 v_row = ((System.Data.DataTable) this.v_lookup.DataSource).Rows[k];
 
-                if (v_row [this.v_lookup.DisplayMember].ToString() == p_text)
+                if (v_row[this.v_lookup.DisplayMember].ToString() == p_text)
                 {
                     this.v_lookup.SelectedIndex = k;
 
@@ -254,13 +254,9 @@ namespace Spartacus.Forms
         {
             if (this.v_lookup.SelectedIndex >= 0 &&
                 this.v_lookup.SelectedIndex < ((System.Data.DataTable)this.v_lookup.DataSource).Rows.Count)
-            {
-                return ((System.Data.DataTable)this.v_lookup.DataSource).Rows [this.v_lookup.SelectedIndex] [this.v_lookup.DisplayMember].ToString();
-            }
+                return ((System.Data.DataTable)this.v_lookup.DataSource).Rows[this.v_lookup.SelectedIndex][this.v_lookup.DisplayMember].ToString();
             else
-            {
                 return null;
-            }
         }
 
         /// <summary>

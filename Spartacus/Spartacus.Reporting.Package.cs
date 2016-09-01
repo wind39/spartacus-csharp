@@ -36,12 +36,12 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Lista de Relatórios.
         /// </summary>
-        public System.Collections.ArrayList v_reports;
+        public System.Collections.Generic.List<Spartacus.Reporting.Report> v_reports;
 
         /// <summary>
         /// Lista de nomes de arquivos (opcional).
         /// </summary>
-        public System.Collections.ArrayList v_filenames;
+        public System.Collections.Generic.List<string> v_filenames;
 
         /// <summary>
         /// Nome do arquivo PDF de saída (opcional).
@@ -55,8 +55,8 @@ namespace Spartacus.Reporting
         /// <param name="p_filename">Nome do arquivo PDF de saída.</param>
         public Package(string p_filename)
         {
-            this.v_reports = new System.Collections.ArrayList();
-            this.v_filenames = new System.Collections.ArrayList();
+            this.v_reports = new System.Collections.Generic.List<Spartacus.Reporting.Report>();
+            this.v_filenames = new System.Collections.Generic.List<string>();
             this.v_filename = p_filename;
         }
 
@@ -66,8 +66,8 @@ namespace Spartacus.Reporting
         /// </summary>
         public Package()
         {
-            this.v_reports = new System.Collections.ArrayList();
-            this.v_filenames = new System.Collections.ArrayList();
+            this.v_reports = new System.Collections.Generic.List<Spartacus.Reporting.Report>();
+            this.v_filenames = new System.Collections.Generic.List<string>();
             this.v_filename = "output.pdf";
         }
 
@@ -97,7 +97,7 @@ namespace Spartacus.Reporting
         public void Execute()
         {
             for (int k = 0; k < this.v_reports.Count; k++)
-                ((Spartacus.Reporting.Report)this.v_reports[k]).Execute();
+                this.v_reports[k].Execute();
         }
 
         /// <summary>
@@ -117,13 +117,13 @@ namespace Spartacus.Reporting
 
                 for (int k = 0; k < this.v_reports.Count; k++)
                 {
-                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                    v_report = this.v_reports[k];
 
                     v_report.v_perc = v_perc;
                     v_report.v_percstep = v_percstep;
                     v_report.v_lastperc = v_lastperc;
 
-                    v_report.Save((string)this.v_filenames[k]);
+                    v_report.Save(this.v_filenames[k]);
 
                     v_perc = v_lastperc;
                     v_lastperc += v_percstep;
@@ -143,7 +143,7 @@ namespace Spartacus.Reporting
         /// Salva todos os relatórios em arquivos separados.
         /// </summary>
         /// <param name="p_filenames">Lista de nomes de arquivos, que deve possuir o mesmo número de elementos.</param>
-        public void SaveSplitted(System.Collections.ArrayList p_filenames)
+        public void SaveSplitted(System.Collections.Generic.List<string> p_filenames)
         {
             Spartacus.Reporting.Report v_report;
             double v_perc, v_percstep, v_lastperc;
@@ -156,13 +156,13 @@ namespace Spartacus.Reporting
 
                 for (int k = 0; k < this.v_reports.Count; k++)
                 {
-                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                    v_report = this.v_reports[k];
 
                     v_report.v_perc = v_perc;
                     v_report.v_percstep = v_percstep;
                     v_report.v_lastperc = v_lastperc;
 
-                    v_report.Save((string)p_filenames[k]);
+                    v_report.Save(p_filenames[k]);
 
                     v_perc = v_lastperc;
                     v_lastperc += v_percstep;
@@ -208,7 +208,7 @@ namespace Spartacus.Reporting
                     {
                         v_encrypted = v_cryptor.RandomString() + ".pdf";
 
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
@@ -217,7 +217,7 @@ namespace Spartacus.Reporting
                         v_report.Save(v_encrypted);
                         if (v_report.v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, this.v_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
 
@@ -235,13 +235,13 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
                         v_report.v_lastperc = v_lastperc;
 
-                        v_report.Save((string)this.v_filenames[k]);
+                        v_report.Save(this.v_filenames[k]);
 
                         v_perc = v_lastperc;
                         v_lastperc += v_percstep;
@@ -263,7 +263,7 @@ namespace Spartacus.Reporting
         /// </summary>
         /// <param name="p_filenames">Lista de nomes de arquivos, que deve possuir o mesmo número de elementos.</param>
         /// <param name="p_compress">Gerar arquivo ZIP com todos os arquivos PDF.</param>
-        public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress)
+        public void SaveSplitted(System.Collections.Generic.List<string> p_filenames, bool p_compress)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Utils.Cryptor v_cryptor;
@@ -288,7 +288,7 @@ namespace Spartacus.Reporting
                     {
                         v_encrypted = v_cryptor.RandomString() + ".pdf";
 
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
@@ -297,7 +297,7 @@ namespace Spartacus.Reporting
                         v_report.Save(v_encrypted);
                         if (v_report.v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, p_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
 
@@ -315,13 +315,13 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
                         v_report.v_lastperc = v_lastperc;
 
-                        v_report.Save((string)p_filenames[k]);
+                        v_report.Save(p_filenames[k]);
 
                         v_perc = v_lastperc;
                         v_lastperc += v_percstep;
@@ -369,7 +369,7 @@ namespace Spartacus.Reporting
                     {
                         v_encrypted = v_cryptor.RandomString() + ".pdf";
 
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
@@ -378,7 +378,7 @@ namespace Spartacus.Reporting
                         v_report.Save(v_encrypted);
                         if (v_report.v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)this.v_filenames[k], "");
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, this.v_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
 
@@ -396,13 +396,13 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
                         v_report.v_lastperc = v_lastperc;
 
-                        v_report.Save((string)this.v_filenames[k]);
+                        v_report.Save(this.v_filenames[k]);
 
                         v_perc = v_lastperc;
                         v_lastperc += v_percstep;
@@ -425,7 +425,7 @@ namespace Spartacus.Reporting
         /// <param name="p_filenames">Lista de nomes de arquivos, que deve possuir o mesmo número de elementos.</param>
         /// <param name="p_compress">Gerar arquivo ZIP com todos os arquivos PDF.</param>
         /// <param name="p_outfilename">Nome do arquivo ZIP de saída.</param>
-        public void SaveSplitted(System.Collections.ArrayList p_filenames, bool p_compress, string p_outfilename)
+        public void SaveSplitted(System.Collections.Generic.List<string> p_filenames, bool p_compress, string p_outfilename)
         {
             Spartacus.ThirdParty.ZipStorer v_zipstorer;
             Spartacus.Utils.Cryptor v_cryptor;
@@ -450,7 +450,7 @@ namespace Spartacus.Reporting
                     {
                         v_encrypted = v_cryptor.RandomString() + ".pdf";
 
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
@@ -459,7 +459,7 @@ namespace Spartacus.Reporting
                         v_report.Save(v_encrypted);
                         if (v_report.v_table.Rows.Count > 0)
                         {
-                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, (string)p_filenames[k], "");
+                            v_zipstorer.AddFile(Spartacus.ThirdParty.ZipStorer.Compression.Deflate, v_encrypted, p_filenames[k], "");
                             (new System.IO.FileInfo(v_encrypted)).Delete();
                         }
 
@@ -477,13 +477,13 @@ namespace Spartacus.Reporting
 
                     for (int k = 0; k < this.v_reports.Count; k++)
                     {
-                        v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                        v_report = this.v_reports[k];
 
                         v_report.v_perc = v_perc;
                         v_report.v_percstep = v_percstep;
                         v_report.v_lastperc = v_lastperc;
 
-                        v_report.Save((string)p_filenames[k]);
+                        v_report.Save(p_filenames[k]);
 
                         v_perc = v_lastperc;
                         v_lastperc += v_percstep;
@@ -524,7 +524,7 @@ namespace Spartacus.Reporting
 
                 for (int k = 0; k < this.v_reports.Count; k++)
                 {
-                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                    v_report = this.v_reports[k];
 
                     v_report.v_perc = v_perc;
                     v_report.v_percstep = v_percstep;
@@ -574,7 +574,7 @@ namespace Spartacus.Reporting
 
                 for (int k = 0; k < this.v_reports.Count; k++)
                 {
-                    v_report = (Spartacus.Reporting.Report) this.v_reports[k];
+                    v_report = this.v_reports[k];
 
                     v_report.v_perc = v_perc;
                     v_report.v_percstep = v_percstep;

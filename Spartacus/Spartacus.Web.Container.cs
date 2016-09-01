@@ -56,7 +56,7 @@ namespace Spartacus.Web
         /// <summary>
         /// Lista de Containers filhos do Container atual.
         /// </summary>
-        public System.Collections.ArrayList v_containers;
+        public System.Collections.Generic.List<Spartacus.Web.Container> v_containers;
 
         /// <summary>
         /// Tipo do Container atual.
@@ -74,7 +74,7 @@ namespace Spartacus.Web
 
             this.v_parent = null;
 
-            this.v_containers = new System.Collections.ArrayList();
+            this.v_containers = new System.Collections.Generic.List<Spartacus.Web.Container>();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Spartacus.Web
 
             this.v_parent = p_parent;
 
-            this.v_containers = new System.Collections.ArrayList();
+            this.v_containers = new System.Collections.Generic.List<Spartacus.Web.Container>();
         }
 
         /// <summary>

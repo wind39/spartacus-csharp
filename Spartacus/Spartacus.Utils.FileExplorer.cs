@@ -74,12 +74,12 @@ namespace Spartacus.Utils
         /// <summary>
         /// Lista de arquivos e diretórios da pasta atual.
         /// </summary>
-        public System.Collections.ArrayList v_files;
+        public System.Collections.Generic.List<Spartacus.Utils.File> v_files;
 
         /// <summary>
         /// Lista original de arquivos e diretórios da pasta atual.
         /// </summary>
-        public System.Collections.ArrayList v_filesorig;
+        public System.Collections.Generic.List<Spartacus.Utils.File> v_filesorig;
 
         /// <summary>
         /// Separador de diretórios.
@@ -120,7 +120,7 @@ namespace Spartacus.Utils
         /// <summary>
         /// Armazena um vetor com o histórico de pastas pai.
         /// </summary>
-        public System.Collections.ArrayList v_returnhistory;
+        public System.Collections.Generic.List<string> v_returnhistory;
 
         /// <summary>
         /// Fonte usada para renderizar o histórico de pastas pai no aplicativo cliente.
@@ -162,9 +162,9 @@ namespace Spartacus.Utils
             this.v_protectpattern = "";
             this.v_showhiddenfiles = false; // padrão é não mostrar arquivos e pastas ocultos
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
-            this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.Generic.List<string>();
             this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
             this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
@@ -193,9 +193,9 @@ namespace Spartacus.Utils
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
-            this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.Generic.List<string>();
             this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
             this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
@@ -229,9 +229,9 @@ namespace Spartacus.Utils
 
             this.v_current.v_protected = true; // raiz sempre é protegida
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
-            this.v_returnhistory = new System.Collections.ArrayList();
+            this.v_returnhistory = new System.Collections.Generic.List<string>();
             this.v_returnhistory_font = new PDFjet.NET.Font(PDFjet.NET.CoreFont.HELVETICA);
             this.v_returnhistory_font.SetSize(12.0);
             this.v_returnhistory_root = "Diretorio Raiz";
@@ -433,16 +433,17 @@ namespace Spartacus.Utils
         /// <param name="p_searchoption">Opção de busca.</param>
         public string[] FilterList(string p_filter, System.IO.SearchOption p_searchoption)
         {
+            System.Collections.Generic.List<string> v_tmp;
             string[] v_filters;
-
-            this.v_files.Clear();
 
             v_filters = p_filter.Split('|');
 
-            foreach (string v_filter in v_filters)
-                this.v_files.AddRange(System.IO.Directory.GetFiles(this.v_root, v_filter, p_searchoption));
+            v_tmp = new System.Collections.Generic.List<string>();
 
-            return (string[]) this.v_files.ToArray(typeof(string));
+            foreach (string v_filter in v_filters)
+                v_tmp.AddRange(System.IO.Directory.GetFiles(this.v_root, v_filter, p_searchoption));
+
+            return (string[]) v_tmp.ToArray();
         }
 
         /// <summary>
@@ -458,7 +459,7 @@ namespace Spartacus.Utils
 
             try
             {
-                v_file = (Spartacus.Utils.File) this.v_files[p_id-1];
+                v_file = this.v_files[p_id-1];
 
                 if (v_file.v_filetype != Spartacus.Utils.FileType.DIRECTORY)
                 {
@@ -652,14 +653,14 @@ namespace Spartacus.Utils
         /// </summary>
         /// <returns>Vetor de histórico de retorno.</returns>
         /// <param name="p_overflow">.</param>
-        public System.Collections.ArrayList GetReturnHistory(out bool p_overflow, out int p_start)
+        public System.Collections.Generic.List<string> GetReturnHistory(out bool p_overflow, out int p_start)
         {
-            System.Collections.ArrayList v_handledhistory;
+            System.Collections.Generic.List<string> v_handledhistory;
             Spartacus.Utils.File v_directory;
             string v_text;
             int k;
 
-            v_handledhistory = new System.Collections.ArrayList();
+            v_handledhistory = new System.Collections.Generic.List<string>();
 
             p_overflow = false;
             k = this.v_returnhistory.Count - 1;
@@ -667,7 +668,7 @@ namespace Spartacus.Utils
 
             while (k > 0 && !p_overflow)
             {
-                v_directory = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.DIRECTORY, (string)this.v_returnhistory [k]);
+                v_directory = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.DIRECTORY, this.v_returnhistory[k]);
 
                 v_text += this.v_returnhistory_sep + (v_directory.v_name);
 
@@ -702,7 +703,7 @@ namespace Spartacus.Utils
         {
             try
             {
-                return (Spartacus.Utils.File)this.v_files[p_id-1];
+                return this.v_files[p_id-1];
             }
             catch (System.Exception e)
             {
@@ -792,7 +793,7 @@ namespace Spartacus.Utils
 
             try
             {
-                v_file = (Spartacus.Utils.File)this.v_files[p_id-1];
+                v_file = this.v_files[p_id-1];
 
                 if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
                     System.IO.Directory.Delete(v_file.CompleteFileName(), true);
@@ -855,7 +856,9 @@ namespace Spartacus.Utils
             int k;
 
             // clonando a lista de arquivos
-            this.v_filesorig = (System.Collections.ArrayList) this.v_files.Clone();
+            this.v_filesorig = new System.Collections.Generic.List<Spartacus.Utils.File>();
+            foreach (Spartacus.Utils.File v_file in this.v_files)
+                this.v_filesorig.Add(v_file);
             this.v_files.Clear();
 
             switch (p_attribute)
@@ -867,26 +870,26 @@ namespace Spartacus.Utils
 
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (v_regex.IsMatch(((Spartacus.Utils.File)this.v_filesorig [k]).v_id.ToString()))
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (v_regex.IsMatch(this.v_filesorig[k].v_id.ToString()))
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     else // busca direta
                     {
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (((Spartacus.Utils.File)this.v_filesorig [k]).v_id.ToString() == p_filter)
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (this.v_filesorig[k].v_id.ToString() == p_filter)
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     break;
                 case Spartacus.Utils.FileAttributes.TYPE: // busca direta
                     for (k = 0; k < this.v_filesorig.Count; k++)
                     {
-                        if (((Spartacus.Utils.File)this.v_filesorig [k]).v_filetype == Spartacus.Utils.FileType.DIRECTORY && p_filter == "D")
-                            this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
-                        if (((Spartacus.Utils.File)this.v_filesorig [k]).v_filetype == Spartacus.Utils.FileType.FILE && p_filter == "A")
-                            this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                        if (this.v_filesorig[k].v_filetype == Spartacus.Utils.FileType.DIRECTORY && p_filter == "D")
+                            this.v_files.Add(this.v_filesorig[k]);
+                        if (this.v_filesorig[k].v_filetype == Spartacus.Utils.FileType.FILE && p_filter == "A")
+                            this.v_files.Add(this.v_filesorig[k]);
                     }
                     break;
                 case Spartacus.Utils.FileAttributes.NAME:
@@ -896,16 +899,16 @@ namespace Spartacus.Utils
 
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (v_regex.IsMatch(((Spartacus.Utils.File)this.v_filesorig [k]).v_name))
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (v_regex.IsMatch(this.v_filesorig[k].v_name))
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     else // busca direta
                     {
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (((Spartacus.Utils.File)this.v_filesorig [k]).v_name == p_filter)
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (this.v_filesorig[k].v_name == p_filter)
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     break;
@@ -916,16 +919,16 @@ namespace Spartacus.Utils
 
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (v_regex.IsMatch(((Spartacus.Utils.File)this.v_filesorig [k]).v_extension))
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (v_regex.IsMatch(this.v_filesorig[k].v_extension))
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     else // busca direta
                     {
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (((Spartacus.Utils.File)this.v_filesorig [k]).v_extension == p_filter)
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (this.v_filesorig[k].v_extension == p_filter)
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     break;
@@ -936,16 +939,16 @@ namespace Spartacus.Utils
 
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (v_regex.IsMatch(((Spartacus.Utils.File)this.v_filesorig [k]).v_lastwritedate.ToString()))
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (v_regex.IsMatch(this.v_filesorig[k].v_lastwritedate.ToString()))
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     else // busca direta
                     {
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (((Spartacus.Utils.File)this.v_filesorig [k]).v_lastwritedate.ToString() == p_filter)
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (this.v_filesorig[k].v_lastwritedate.ToString() == p_filter)
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     break;
@@ -956,16 +959,16 @@ namespace Spartacus.Utils
 
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (v_regex.IsMatch(((Spartacus.Utils.File)this.v_filesorig [k]).GetSize()))
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (v_regex.IsMatch(this.v_filesorig[k].GetSize()))
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     else // busca direta
                     {
                         for (k = 0; k < this.v_filesorig.Count; k++)
                         {
-                            if (((Spartacus.Utils.File)this.v_filesorig [k]).GetSize() == p_filter)
-                                this.v_files.Add((Spartacus.Utils.File)this.v_filesorig [k]);
+                            if (this.v_filesorig[k].GetSize() == p_filter)
+                                this.v_files.Add(this.v_filesorig[k]);
                         }
                     }
                     break;
@@ -983,15 +986,15 @@ namespace Spartacus.Utils
         {
             System.Text.RegularExpressions.Regex v_regex;
 
-            if (p_filter [0] != '%' && p_filter [p_filter.Length - 1] != '%') // filtro tem % no meio
+            if (p_filter[0] != '%' && p_filter[p_filter.Length - 1] != '%') // filtro tem % no meio
                 v_regex = new System.Text.RegularExpressions.Regex("^" + p_filter.Replace("%", ".*") + "$");
             else
             {
-                if (p_filter [0] != '%' && p_filter [p_filter.Length - 1] == '%') // filtro termina com %
+                if (p_filter[0] != '%' && p_filter[p_filter.Length - 1] == '%') // filtro termina com %
                     v_regex = new System.Text.RegularExpressions.Regex("^" + p_filter.Replace("%", ".*"));
                 else
                 {
-                    if (p_filter [0] == '%' && p_filter [p_filter.Length - 1] != '%') // filtro comeca com %
+                    if (p_filter[0] == '%' && p_filter[p_filter.Length - 1] != '%') // filtro comeca com %
                         v_regex = new System.Text.RegularExpressions.Regex(p_filter.Replace("%", ".*") + "$");
                     else
                         v_regex = new System.Text.RegularExpressions.Regex(p_filter.Replace("%", ".*"));
@@ -1051,99 +1054,99 @@ namespace Spartacus.Utils
             }
         }
 
-        private class IdComparerAsc : System.Collections.IComparer
+        private class IdComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_id.CompareTo(((Spartacus.Utils.File)y).v_id);
+                return x.v_id.CompareTo(y.v_id);
             }
         }
 
-        private class IdComparerDesc : System.Collections.IComparer
+        private class IdComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_id.CompareTo(((Spartacus.Utils.File)y).v_id);
+                return -1 * x.v_id.CompareTo(y.v_id);
             }
         }
 
-        private class TypeComparerAsc : System.Collections.IComparer
+        private class TypeComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_filetype.CompareTo(((Spartacus.Utils.File)y).v_filetype);
+                return x.v_filetype.CompareTo(y.v_filetype);
             }
         }
 
-        private class TypeComparerDesc : System.Collections.IComparer
+        private class TypeComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_filetype.CompareTo(((Spartacus.Utils.File)y).v_filetype);
+                return -1 * x.v_filetype.CompareTo(y.v_filetype);
             }
         }
 
-        private class NameComparerAsc : System.Collections.IComparer
+        private class NameComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_name.CompareTo(((Spartacus.Utils.File)y).v_name);
+                return x.v_name.CompareTo(y.v_name);
             }
         }
 
-        private class NameComparerDesc : System.Collections.IComparer
+        private class NameComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_name.CompareTo(((Spartacus.Utils.File)y).v_name);
+                return -1 * x.v_name.CompareTo(y.v_name);
             }
         }
 
-        private class ExtensionComparerAsc : System.Collections.IComparer
+        private class ExtensionComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_extension.CompareTo(((Spartacus.Utils.File)y).v_extension);
+                return x.v_extension.CompareTo(y.v_extension);
             }
         }
 
-        private class ExtensionComparerDesc : System.Collections.IComparer
+        private class ExtensionComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_extension.CompareTo(((Spartacus.Utils.File)y).v_extension);
+                return -1 * x.v_extension.CompareTo(y.v_extension);
             }
         }
 
-        private class LastWriteDateComparerAsc : System.Collections.IComparer
+        private class LastWriteDateComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_lastwritedate.CompareTo(((Spartacus.Utils.File)y).v_lastwritedate);
+                return x.v_lastwritedate.CompareTo(y.v_lastwritedate);
             }
         }
 
-        private class LastWriteDateComparerDesc : System.Collections.IComparer
+        private class LastWriteDateComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_lastwritedate.CompareTo(((Spartacus.Utils.File)y).v_lastwritedate);
+                return -1 * x.v_lastwritedate.CompareTo(y.v_lastwritedate);
             }
         }
 
-        private class SizeComparerAsc : System.Collections.IComparer
+        private class SizeComparerAsc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return ((Spartacus.Utils.File)x).v_size.CompareTo(((Spartacus.Utils.File)y).v_size);
+                return x.v_size.CompareTo(y.v_size);
             }
         }
 
-        private class SizeComparerDesc : System.Collections.IComparer
+        private class SizeComparerDesc : System.Collections.Generic.Comparer<Spartacus.Utils.File>
         {
-            public int Compare(object x, object y)
+            public override int Compare(Spartacus.Utils.File x, Spartacus.Utils.File y)
             {
-                return -1 * ((Spartacus.Utils.File)x).v_size.CompareTo(((Spartacus.Utils.File)y).v_size);
+                return -1 * x.v_size.CompareTo(y.v_size);
             }
         }
 
@@ -1164,7 +1167,7 @@ namespace Spartacus.Utils
                 j = 0;
                 while (j < this.v_numfilesperpage && i < this.v_files.Count)
                 {
-                    ((Spartacus.Utils.File)this.v_files [i]).v_pagenumber = v_currentpage;
+                    this.v_files[i].v_pagenumber = v_currentpage;
 
                     j++;
                     i++;

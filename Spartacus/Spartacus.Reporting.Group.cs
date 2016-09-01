@@ -60,12 +60,12 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Lista de campos do cabeçalho.
         /// </summary>
-        public System.Collections.ArrayList v_headerfields;
+        public System.Collections.Generic.List<Spartacus.Reporting.Field> v_headerfields;
 
         /// <summary>
         /// Lista de campos do rodapé.
         /// </summary>
-        public System.Collections.ArrayList v_footerfields;
+        public System.Collections.Generic.List<Spartacus.Reporting.Field> v_footerfields;
 
         /// <summary>
         /// Tabela com os dados do grupo.
@@ -116,8 +116,8 @@ namespace Spartacus.Reporting
             this.v_showheader = true;
             this.v_showfooter = true;
 
-            this.v_headerfields = new System.Collections.ArrayList();
-            this.v_footerfields = new System.Collections.ArrayList();
+            this.v_headerfields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_footerfields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
 
             this.v_renderedrows = 0;
 
@@ -133,12 +133,12 @@ namespace Spartacus.Reporting
         /// <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
         public void Build(System.Data.DataTable p_table, string p_parentgroupcolumn)
         {
-            System.Collections.ArrayList v_allcolumns_temp;
+            System.Collections.Generic.List<string> v_allcolumns_temp;
             string[] v_allcolumns;
             int k;
 
             // alocando lista de colunas
-            v_allcolumns_temp = new System.Collections.ArrayList();
+            v_allcolumns_temp = new System.Collections.Generic.List<string>();
 
             // adicionando coluna do grupo pai
             if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
@@ -150,15 +150,15 @@ namespace Spartacus.Reporting
             // adicionando todas as colunas do cabeçalho do grupo
             for (k = 0; k < this.v_headerfields.Count; k++)
             {
-                if (! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column) && ((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "")
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
+                if (! v_allcolumns_temp.Contains(this.v_headerfields[k].v_column) && this.v_headerfields[k].v_column != "")
+                    v_allcolumns_temp.Add(this.v_headerfields[k].v_column);
             }
 
             // adicionando todas as colunas do rodapé do grupo
             for (k = 0; k < this.v_footerfields.Count; k++)
             {
-                if (! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column) && ((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column != "")
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column);
+                if (! v_allcolumns_temp.Contains(this.v_footerfields[k].v_column) && this.v_footerfields[k].v_column != "")
+                    v_allcolumns_temp.Add(this.v_footerfields[k].v_column);
             }
 
             // alocando vetor de string
@@ -166,7 +166,7 @@ namespace Spartacus.Reporting
 
             // copiando nomes de colunas para o vetor de string
             for (k = 0; k < v_allcolumns_temp.Count; k++)
-                v_allcolumns [k] = (string) v_allcolumns_temp[k];
+                v_allcolumns[k] = v_allcolumns_temp[k];
 
             // filtrando dados distintos pela lista de colunas, e armazenando em tabela
             if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
@@ -185,14 +185,14 @@ namespace Spartacus.Reporting
         /// <param name="p_parentgroupcolumn">Coluna do grupo pai.</param>
         public void BuildCalculate(System.Data.DataTable p_table, string p_parentgroupcolumn)
         {
-            System.Collections.ArrayList v_allcolumns_temp;
+            System.Collections.Generic.List<string> v_allcolumns_temp;
             string[] v_allcolumns;
             int i, j, k;
 
             // PASSO 1: PEGANDO COLUNAS E DADOS DO GRUPO
 
             // alocando lista de colunas
-            v_allcolumns_temp = new System.Collections.ArrayList();
+            v_allcolumns_temp = new System.Collections.Generic.List<string>();
 
             // adicionando coluna do grupo pai
             if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
@@ -204,19 +204,19 @@ namespace Spartacus.Reporting
             // adicionando todas as colunas do cabeçalho do grupo (exceto as colunas de valor)
             for (k = 0; k < this.v_headerfields.Count; k++)
             {
-                if (((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "" &&
-                    !((Spartacus.Reporting.Field)this.v_headerfields [k]).v_groupedvalue &&
-                    !v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column))
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
+                if (this.v_headerfields[k].v_column != "" &&
+                    !this.v_headerfields[k].v_groupedvalue &&
+                    !v_allcolumns_temp.Contains(this.v_headerfields[k].v_column))
+                    v_allcolumns_temp.Add(this.v_headerfields[k].v_column);
             }
 
             // adicionando todas as colunas do rodapé do grupo (exceto as colunas de valor)
             for (k = 0; k < this.v_footerfields.Count; k++)
             {
-                if (((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column != "" &&
-                    !((Spartacus.Reporting.Field)this.v_footerfields [k]).v_groupedvalue &&
-                    !v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column))
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column);
+                if (this.v_footerfields[k].v_column != "" &&
+                    !this.v_footerfields[k].v_groupedvalue &&
+                    !v_allcolumns_temp.Contains(this.v_footerfields[k].v_column))
+                    v_allcolumns_temp.Add(this.v_footerfields[k].v_column);
             }
 
             // alocando vetor de string
@@ -224,7 +224,7 @@ namespace Spartacus.Reporting
 
             // copiando nomes de colunas para o vetor de string
             for (k = 0; k < v_allcolumns_temp.Count; k++)
-                v_allcolumns [k] = (string)v_allcolumns_temp [k];
+                v_allcolumns[k] = v_allcolumns_temp[k];
 
             // filtrando dados distintos pela lista de colunas, e armazenando em tabela
             if (p_parentgroupcolumn != null && p_parentgroupcolumn != "")
@@ -241,30 +241,30 @@ namespace Spartacus.Reporting
             // adicionando todas as colunas do cabeçalho do grupo (somente as colunas de valor)
             for (k = 0; k < this.v_headerfields.Count; k++)
             {
-                if (((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column != "" &&
-                    ((Spartacus.Reporting.Field)this.v_headerfields [k]).v_groupedvalue &&
-                    ! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column))
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_headerfields [k]).v_column);
+                if (this.v_headerfields[k].v_column != "" &&
+                    this.v_headerfields[k].v_groupedvalue &&
+                    ! v_allcolumns_temp.Contains(this.v_headerfields[k].v_column))
+                    v_allcolumns_temp.Add(this.v_headerfields[k].v_column);
             }
 
             // adicionando todas as colunas do rodapé do grupo (somente as colunas de valor)
             for (k = 0; k < this.v_footerfields.Count; k++)
             {
-                if (((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column != "" &&
-                    ((Spartacus.Reporting.Field)this.v_footerfields [k]).v_groupedvalue &&
-                    ! v_allcolumns_temp.Contains(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column))
-                    v_allcolumns_temp.Add(((Spartacus.Reporting.Field)this.v_footerfields [k]).v_column);
+                if (this.v_footerfields[k].v_column != "" &&
+                    this.v_footerfields[k].v_groupedvalue &&
+                    ! v_allcolumns_temp.Contains(this.v_footerfields[k].v_column))
+                    v_allcolumns_temp.Add(this.v_footerfields[k].v_column);
             }
 
             // criando colunas de valor na tabela do grupo
             for (k = 0; k < v_allcolumns_temp.Count; k++)
-                this.v_table.Columns.Add((string)v_allcolumns_temp [k]);
+                this.v_table.Columns.Add(v_allcolumns_temp[k]);
 
             // preenchendo valores sumarizados
             for (i = 0; i < this.v_table.Rows.Count; i++)
             {
                 for (j = 0; j < v_allcolumns_temp.Count; j++)
-                    this.v_table.Rows [i] [(string)v_allcolumns_temp [j]] = p_table.Compute("Sum(" + ((string)v_allcolumns_temp [j]) + ")", this.v_column + " = '" + this.v_table.Rows [i] [this.v_column].ToString() + "'").ToString();
+                    this.v_table.Rows[i][v_allcolumns_temp[j]] = p_table.Compute("Sum(" + v_allcolumns_temp[j] + ")", this.v_column + " = '" + this.v_table.Rows[i][this.v_column].ToString() + "'").ToString();
             }
         }
     }

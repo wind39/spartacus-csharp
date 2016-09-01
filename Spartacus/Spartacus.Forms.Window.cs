@@ -105,7 +105,7 @@ namespace Spartacus.Forms
             posy = 0;
             for (k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Forms.Container)this.v_containers[k];
+                v_container = this.v_containers[k];
 
                 v_container.Resize(
                     (int) ((double) p_newwidth * (double) v_container.v_width / (double) this.v_width),
@@ -134,7 +134,7 @@ namespace Spartacus.Forms
 
             for (k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Enable();
             }
         }
@@ -149,7 +149,7 @@ namespace Spartacus.Forms
 
             for (k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Disable();
             }
         }
@@ -164,7 +164,7 @@ namespace Spartacus.Forms
 
             for (k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Clear();
             }
         }
@@ -179,7 +179,7 @@ namespace Spartacus.Forms
 
             for (k = 0; k < this.v_containers.Count; k++)
             {
-                v_container = (Spartacus.Forms.Container)this.v_containers [k];
+                v_container = this.v_containers[k];
                 v_container.Refresh();
             }
         }

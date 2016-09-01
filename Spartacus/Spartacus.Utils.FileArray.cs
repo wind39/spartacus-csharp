@@ -31,19 +31,19 @@ namespace Spartacus.Utils
         /// <summary>
         /// Lista de arquivos e/ou diretórios contidos no FileArray.
         /// </summary>
-        public System.Collections.ArrayList v_files;
+        public System.Collections.Generic.List<Spartacus.Utils.File> v_files;
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Utils.FileArray"/>.
         /// </summary>
         /// <param name="p_filenames">Lista de nomes de arquivos ou diretórios.</param>
         /// <param name="p_filetype">Tipo dos nomes, se são arquivos ou diretórios.</param>
-        public FileArray(System.Collections.ArrayList p_filenames, Spartacus.Utils.FileType p_filetype)
+        public FileArray(System.Collections.Generic.List<string> p_filenames, Spartacus.Utils.FileType p_filetype)
         {
             Spartacus.Utils.File v_file;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             k = 1;
             foreach (string v_filename in p_filenames)
@@ -67,7 +67,7 @@ namespace Spartacus.Utils
             string[] v_filenames;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             v_filenames = p_filenames.Split(';');
 
@@ -87,13 +87,13 @@ namespace Spartacus.Utils
         /// </summary>
         /// <param name="p_directorynames">Lista de nomes de diretórios.</param>
         /// <param name="p_filter">Filtro de extensão de arquivos.</param>
-        public FileArray(System.Collections.ArrayList p_directorynames, string p_filter)
+        public FileArray(System.Collections.Generic.List<string> p_directorynames, string p_filter)
         {
             Spartacus.Utils.File v_file;
             string[] v_filenames;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             k = 1;
             foreach (string v_directoryname in p_directorynames)
@@ -123,7 +123,7 @@ namespace Spartacus.Utils
             string[] v_filenames;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             v_directorynames = p_directorynames.Split(';');
 
@@ -149,13 +149,13 @@ namespace Spartacus.Utils
         /// <param name="p_directorynames">Lista de nomes de diretórios.</param>
         /// <param name="p_filter">Filtro de extensão de arquivos.</param>
         /// <param name="p_searchoption">Opção de busca no diretório.</param>
-        public FileArray(System.Collections.ArrayList p_directorynames, string p_filter, System.IO.SearchOption p_searchoption)
+        public FileArray(System.Collections.Generic.List<string> p_directorynames, string p_filter, System.IO.SearchOption p_searchoption)
         {
             Spartacus.Utils.File v_file;
             string[] v_filenames;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             k = 1;
             foreach (string v_directoryname in p_directorynames)
@@ -186,7 +186,7 @@ namespace Spartacus.Utils
             string[] v_filenames;
             int k;
 
-            this.v_files = new System.Collections.ArrayList();
+            this.v_files = new System.Collections.Generic.List<Spartacus.Utils.File>();
 
             v_directorynames = p_directorynames.Split(';');
 
@@ -216,17 +216,17 @@ namespace Spartacus.Utils
         /// <param name="p_searchoption">Opção de busca.</param>
         private string[] FilterList(string p_directoryname, string p_filter, System.IO.SearchOption p_searchoption)
         {
-            System.Collections.ArrayList v_tempfiles;
+            System.Collections.Generic.List<string> v_tempfiles;
             string[] v_filters;
 
-            v_tempfiles = new System.Collections.ArrayList();
+            v_tempfiles = new System.Collections.Generic.List<string>();
 
             v_filters = p_filter.Split('|');
 
             foreach (string v_filter in v_filters)
                 v_tempfiles.AddRange(System.IO.Directory.GetFiles(p_directoryname, v_filter, p_searchoption));
 
-            return (string[]) v_tempfiles.ToArray(typeof(string));
+            return (string[]) v_tempfiles.ToArray();
         }
     }
 }

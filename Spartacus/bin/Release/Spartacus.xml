@@ -6287,7 +6287,7 @@
              Lista de arquivos e/ou diretórios contidos no FileArray.
              </summary>
             </member>
-        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.ArrayList,Spartacus.Utils.FileType)">
+        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.Generic.List{System.String},Spartacus.Utils.FileType)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.FileArray" />.
              </summary>
@@ -6301,7 +6301,7 @@
              <param name="p_filenames">String contendo nomes de arquivos ou diretórios, separados por ponto-e-vírgula.</param>
              <param name="p_filetype">Tipo dos nomes, se são arquivos ou diretórios.</param>
             </member>
-        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.ArrayList,System.String)">
+        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.Generic.List{System.String},System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.FileArray" />.
              </summary>
@@ -6315,7 +6315,7 @@
              <param name="p_directorynames">String contendo nomes de diretórios separados por ponto-e-vírgula.</param>
              <param name="p_filter">Filtro de extensão de arquivos.</param>
             </member>
-        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.ArrayList,System.String,System.IO.SearchOption)">
+        <member name="M:Spartacus.Utils.FileArray.#ctor(System.Collections.Generic.List{System.String},System.String,System.IO.SearchOption)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Utils.FileArray" />.
              </summary>
@@ -6584,7 +6584,7 @@
              <param name="p_encoding">Codificação para leitura do arquivo CSV.</param>
              <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir ler o arquivo de origem, ou quando ocorrer qualquer problema na SejExcel.</exception>
             </member>
-        <member name="M:Spartacus.Utils.Excel.Import(System.Collections.ArrayList)">
+        <member name="M:Spartacus.Utils.Excel.Import(System.Collections.Generic.List{System.String})">
              <summary>
              Importa uma lista de arquivos Excel.
              A lista pode conter arquivos XLSX, CSV ou DBF, e pode ser misturado.
@@ -6634,7 +6634,7 @@
              Não pode haver linhas em branco acima, ou colunas em branco à esquerda dos dados a serem convertidos.
              </remarks>
             </member>
-        <member name="M:Spartacus.Utils.Excel.AddColumn(System.Collections.ArrayList,System.Data.DataTable,System.Int32,System.String,System.String)">
+        <member name="M:Spartacus.Utils.Excel.AddColumn(System.Collections.Generic.List{Spartacus.Utils.Excel.Column},System.Data.DataTable,System.Int32,System.String,System.String)">
              <summary>
              Adiciona uma coluna à lista de colunas, e à <see cref="T:System.Data.DataTable" />.
              </summary>
@@ -6644,7 +6644,7 @@
              <param name="p_columncontrol">Controle da coluna, que é o endereço da célula no Excel.</param>
              <param name="p_columnname">Nome da coluna.</param>
             </member>
-        <member name="M:Spartacus.Utils.Excel.ColumnIndex(System.Collections.ArrayList,System.String)">
+        <member name="M:Spartacus.Utils.Excel.ColumnIndex(System.Collections.Generic.List{Spartacus.Utils.Excel.Column},System.String)">
              <summary>
              Pega o índice da coluna baseado no seu controle.
              </summary>
@@ -6694,7 +6694,7 @@
              <param name="p_replacemarkup">Se deve substituir o markup do cabeçalho ou não.</param>
              <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não conseguir escrever no arquivo de destino, ou quando ocorrer qualquer problema na SejExcel.</exception>
             </member>
-        <member name="M:Spartacus.Utils.Excel.Export(System.String,System.Collections.ArrayList)">
+        <member name="M:Spartacus.Utils.Excel.Export(System.String,System.Collections.Generic.List{System.String})">
              <summary>
              Exporta todas as <see cref="T:System.Data.DataTable" /> dentro de um <see cref="T:System.Data.DataSet" /> para um arquivo Excel.
              O markup do cabeçalho sempre é substituído.
@@ -6764,7 +6764,7 @@
              <returns>Nome do arquivo XLSX com cabeçalho aplicado.</returns>
              <param name="p_templatename">Nome do arquivo XLSX usado como template.</param>
             </member>
-        <member name="M:Spartacus.Utils.Excel.ReplaceMarkup(System.Collections.ArrayList)">
+        <member name="M:Spartacus.Utils.Excel.ReplaceMarkup(System.Collections.Generic.List{System.String})">
              <summary>
              Substitui valores de células conforme configuração do cabeçalho, que deve estar na célula A1 e seguir formato específico.
              Cada planilha a princípio está em um arquivo diferente, e o arquivo resultante contém todas as planilhas de todos os arquivos.
@@ -7003,7 +7003,7 @@
              É necessário que o atributo "v_filenames" tenha sido alimentado e possua o mesmo número de elementos.
              </summary>
             </member>
-        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.ArrayList)">
+        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.Generic.List{System.String})">
              <summary>
              Salva todos os relatórios em arquivos separados.
              </summary>
@@ -7016,7 +7016,7 @@
              </summary>
              <param name="p_compress">Gerar arquivo ZIP com todos os arquivos PDF.</param>
             </member>
-        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.ArrayList,System.Boolean)">
+        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.Generic.List{System.String},System.Boolean)">
              <summary>
              Salva todos os relatórios em arquivos separados.
              </summary>
@@ -7031,7 +7031,7 @@
              <param name="p_compress">Gerar arquivo ZIP com todos os arquivos PDF.</param>
              <param name="p_outfilename">Nome do arquivo ZIP de saída.</param>
             </member>
-        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.ArrayList,System.Boolean,System.String)">
+        <member name="M:Spartacus.Reporting.Package.SaveSplitted(System.Collections.Generic.List{System.String},System.Boolean,System.String)">
              <summary>
              Salva todos os relatórios em arquivos separados.
              </summary>
