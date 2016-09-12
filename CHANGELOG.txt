@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.5: Atualizada EPPlus para 4.1, e vinculada a DLL, removido o código-fonte (esperando que o bug https://epplus.codeplex.com/workitem/15256 esteja resolvido)
 0.43.4: Implementada forma de exportar um DataTable para PDF
 0.43.3: Implementando construtor que não precisa passar largura para Spartacus.Forms.Memobox
 0.43.2: Finalizando troca de ArrayList para List<T>
