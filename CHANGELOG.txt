@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.4: Implementada forma de exportar um DataTable para PDF
+0.43.3: Implementando construtor que não precisa passar largura para Spartacus.Forms.Memobox
 0.43.2: Finalizando troca de ArrayList para List<T>
 0.43.1: Spartacus.Database: Implementados métodos QueryList<T> e QuerySList
         Implementado método estático Spartacus.Utils.Convert.DataTableToList

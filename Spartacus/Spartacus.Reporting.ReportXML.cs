@@ -39,7 +39,7 @@ namespace Spartacus.Reporting
         /// <param name="p_filename">Nome do arquivo XML.</param>
         private void ReadXml(string p_filename)
         {
-            System.Xml.XmlReader v_reader, v_item;
+            System.Xml.XmlReader v_reader = null, v_item;
             System.Xml.XmlReaderSettings v_settings;
 
             v_settings = new System.Xml.XmlReaderSettings();
@@ -102,6 +102,98 @@ namespace Spartacus.Reporting
             catch (Spartacus.Reporting.Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                if (v_reader != null)
+                {
+                    v_reader.Close();
+                    v_reader = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lê o arquivo XML que define o relatório.
+        /// </summary>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_isfilename">Indica se <paramref name="p_content"/> representa nome de arquivo ou não.</param>
+        private void ReadXml(string p_content, bool p_isfilename)
+        {
+            System.Xml.XmlReader v_reader = null, v_item;
+            System.Xml.XmlReaderSettings v_settings;
+
+            v_settings = new System.Xml.XmlReaderSettings();
+            v_settings.IgnoreComments = true;
+            v_settings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
+
+            try
+            {
+                if (p_isfilename)
+                    v_reader = System.Xml.XmlReader.Create(p_content, v_settings);
+                else
+                    v_reader = System.Xml.XmlReader.Create(new System.IO.StringReader(p_content), v_settings);
+
+                while (v_reader.Read())
+                {
+                    if (v_reader.IsStartElement())
+                    {
+                        switch(v_reader.Name)
+                        {
+                            case "connection":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadConnection(v_item);
+                                v_item.Close();
+                                break;
+                            case "settings":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadSettings(v_item);
+                                v_item.Close();
+                                break;
+                            case "command":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadCommand(v_item);
+                                v_item.Close();
+                                break;
+                            case "header":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadHeader(v_item);
+                                v_item.Close();
+                                break;
+                            case "footer":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadFooter(v_item);
+                                v_item.Close();
+                                break;
+                            case "fields":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadFields(v_item);
+                                v_item.Close();
+                                break;
+                            case "groups":
+                                v_item = v_reader.ReadSubtree();
+                                this.ReadGroups(v_item);
+                                v_item.Close();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+
+                v_reader.Close();
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (v_reader != null)
+                {
+                    v_reader.Close();
+                    v_reader = null;
+                }
             }
         }
 

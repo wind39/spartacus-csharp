@@ -4609,6 +4609,11 @@
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.
              </summary>
             </member>
+        <member name="M:Spartacus.Reporting.Field.#ctor(System.String,System.String,Spartacus.Reporting.FieldAlignment,System.Double,Spartacus.Database.Type)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Field" />.
+             </summary>
+            </member>
         <member name="M:Spartacus.Reporting.Field.SetType(System.String)">
              <summary>
              Configura o tipo de dados do campo.
@@ -4749,6 +4754,49 @@
              Número de linhas no cabeçalho de dados.
              </summary>
             </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,Spartacus.Database.Generic)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+             <param name="p_database">Objeto para conexão com o banco de dados.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,System.Data.DataTable)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+             <param name="p_table">Tabela com os dados.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,Spartacus.Database.Generic,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+             <param name="p_database">Objeto para conexão com o banco de dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,System.Data.DataTable,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_filename">Nome do arquivo XML.</param>
+             <param name="p_table">Tabela com os dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
         <member name="M:Spartacus.Reporting.Report.#ctor(System.Int32,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
@@ -4797,6 +4845,73 @@
              <param name="p_filename">Nome do arquivo XML.</param>
              <param name="p_table">Tabela com os dados.</param>
              <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,Spartacus.Database.Generic,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_database">Objeto para conexão com o banco de dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.String,System.Data.DataTable,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_table">Tabela com os dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+             <param name="p_isfilename">Indica se <paramref name="p_content" /> representa nome de arquivo ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.Int32,System.String,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_reportid">Código do Relatório.</param>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+             <param name="p_isfilename">Indica se <paramref name="p_content" /> representa nome de arquivo ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.Int32,System.String,Spartacus.Database.Generic,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_reportid">Código do Relatório.</param>
+             <param name="p_filename">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_database">Objeto para conexão com o banco de dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+             <param name="p_isfilename">Indica se <paramref name="p_content" /> representa nome de arquivo ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.Int32,System.String,System.Data.DataTable,System.Boolean,System.Boolean)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_reportid">Código do Relatório.</param>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_table">Tabela com os dados.</param>
+             <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+             <param name="p_isfilename">Indica se <paramref name="p_content" /> representa nome de arquivo ou não.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.Data.DataTable)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_table">Tabela com os dados.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.#ctor(System.Data.DataTable,System.String,System.Collections.Generic.List{Spartacus.Reporting.Field})">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Reporting.Report" />.
+             </summary>
+             <param name="p_table">Tabela com os dados.</param>
+             <param name="p_titlecolumn">Coluna de título.</param>
+             <param name="p_fields">Campos a serem exibidos no relatório.</param>
             </member>
         <member name="M:Spartacus.Reporting.Report.Execute">
              <summary>
@@ -4867,6 +4982,13 @@
              Lê o arquivo XML que define o relatório.
              </summary>
              <param name="p_filename">Nome do arquivo XML.</param>
+            </member>
+        <member name="M:Spartacus.Reporting.Report.ReadXml(System.String,System.Boolean)">
+             <summary>
+             Lê o arquivo XML que define o relatório.
+             </summary>
+             <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+             <param name="p_isfilename">Indica se <paramref name="p_content" /> representa nome de arquivo ou não.</param>
             </member>
         <member name="M:Spartacus.Reporting.Report.ReadConnection(System.Xml.XmlReader)">
              <summary>
@@ -46160,6 +46282,15 @@
              <summary>
              Controle nativo que representa o Memobox.
              </summary>
+            </member>
+        <member name="M:Spartacus.Forms.Memobox.#ctor(Spartacus.Forms.Container,System.String,System.Int32)">
+             <summary>
+             Inicializa uma nova instância da classe <see cref="T:Spartacus.Forms.Memobox" />.
+             </summary>
+             <param name="p_parent">Container pai.</param>
+             <param name="p_label">Texto exibido no rótulo.</param>
+             <param name="p_width">Largura.</param>
+             <param name="p_height">Altura.</param>
             </member>
         <member name="M:Spartacus.Forms.Memobox.#ctor(Spartacus.Forms.Container,System.String,System.Int32,System.Int32)">
              <summary>

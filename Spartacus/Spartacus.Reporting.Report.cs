@@ -155,6 +155,217 @@ namespace Spartacus.Reporting
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
         /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        public Report(string p_filename)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
+        public Report(string p_filename, Spartacus.Database.Generic p_database)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = p_database;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_table">Tabela com os dados.</param>
+        public Report(string p_filename, System.Data.DataTable p_table)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = false;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(string p_filename, bool p_calculate_groups)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(string p_filename, Spartacus.Database.Generic p_database, bool p_calculate_groups)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = p_database;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_filename">Nome do arquivo XML.</param>
+        /// <param name="p_table">Tabela com os dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(string p_filename, System.Data.DataTable p_table, bool p_calculate_groups)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
         /// <param name="p_reportid">Código do Relatório.</param>
         /// <param name="p_filename">Nome do arquivo XML.</param>
         public Report(int p_reportid, string p_filename)
@@ -362,6 +573,478 @@ namespace Spartacus.Reporting
             try
             {
                 this.ReadXml(p_filename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(string p_content, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        public Report(string p_content, Spartacus.Database.Generic p_database, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = p_database;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_table">Tabela com os dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        /// <param name="p_isfilename">Indica se <paramref name="p_content"/> representa nome de arquivo ou não.</param>
+        public Report(string p_content, System.Data.DataTable p_table, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        /// <param name="p_isfilename">Indica se <paramref name="p_content"/> representa nome de arquivo ou não.</param>
+        public Report(int p_reportid, string p_content, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = p_reportid;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_filename">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_database">Objeto para conexão com o banco de dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        /// <param name="p_isfilename">Indica se <paramref name="p_content"/> representa nome de arquivo ou não.</param>
+        public Report(int p_reportid, string p_content, Spartacus.Database.Generic p_database, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = p_reportid;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = p_database;
+            this.v_tabletemp = null;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_reportid">Código do Relatório.</param>
+        /// <param name="p_content">Nome do arquivo XML ou conteúdo XML.</param>
+        /// <param name="p_table">Tabela com os dados.</param>
+        /// <param name="p_calculate_groups">Se o gerador de relatórios deve calcular os valores agrupados ou não.</param>
+        /// <param name="p_isfilename">Indica se <paramref name="p_content"/> representa nome de arquivo ou não.</param>
+        public Report(int p_reportid, string p_content, System.Data.DataTable p_table, bool p_calculate_groups, bool p_isfilename)
+        {
+            this.v_reportid = p_reportid;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = p_calculate_groups;
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(p_content, p_isfilename);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_table">Tabela com os dados.</param>
+        public Report(System.Data.DataTable p_table)
+        {
+            string v_xml;
+            Spartacus.Reporting.Field v_field;
+            double v_fill;
+
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = false;
+
+            v_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> " +
+                "<report> " +
+                "    <settings> " +
+                "        <layout>LANDSCAPE</layout> " +
+                "        <topmargin>30,0</topmargin> " +
+                "        <bottommargin>20,0</bottommargin> " +
+                "        <leftmargin>30,0</leftmargin> " +
+                "        <rightmargin>20,0</rightmargin> " +
+                "        <dataheaderborder>TOP,BOTTOM</dataheaderborder> " +
+                "        <datafieldborder>NONE</datafieldborder> " +
+                "        <groupheaderborder>NONE</groupheaderborder> " +
+                "        <groupfooterborder>NONE</groupfooterborder> " +
+                "        <reportheaderborder>NONE</reportheaderborder> " +
+                "        <reportfooterborder>TOP</reportfooterborder> " +
+                "        <dataheadercolor>WHITE</dataheadercolor> " +
+                "        <datafieldevencolor>WHITE</datafieldevencolor> " +
+                "        <datafieldoddcolor>SILVER</datafieldoddcolor> " +
+                "        <groupheaderevencolor>SILVER</groupheaderevencolor> " +
+                "        <groupheaderoddcolor>SILVER</groupheaderoddcolor> " +
+                "        <groupfooterevencolor>SILVER</groupfooterevencolor> " +
+                "        <groupfooteroddcolor>SILVER</groupfooteroddcolor> " +
+                "        <reportheaderfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>FALSE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>8,0</size> " +
+                "        </reportheaderfont> " +
+                "        <reportfooterfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>FALSE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>8,0</size> " +
+                "        </reportfooterfont> " +
+                "        <dataheaderfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>FALSE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>6,0</size> " +
+                "        </dataheaderfont> " +
+                "        <datafieldfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>FALSE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>7,0</size> " +
+                "        </datafieldfont> " +
+                "        <groupheaderfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>TRUE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>7,0</size> " +
+                "        </groupheaderfont> " +
+                "        <groupfooterfont> " +
+                "            <family>HELVETICA</family> " +
+                "            <bold>TRUE</bold> " +
+                "            <italic>FALSE</italic> " +
+                "            <size>7,0</size> " +
+                "        </groupfooterfont> " +
+                "    </settings> " +
+                "    <header> " +
+                "        <height>5,0</height> " +
+                "    </header> " +
+                "    <footer> " +
+                "        <height>15,0</height> " +
+                "        <object> " +
+                "            <type>PAGENUMBER</type> " +
+                "            <column></column> " +
+                "            <posx>0,0</posx> " +
+                "            <posy>10,0</posy> " +
+                "            <align>RIGHT</align> " +
+                "        </object> " +
+                "    </footer> " +
+                "    <fields> ";
+
+            v_fill = 100.0 / (double)p_table.Columns.Count;
+            foreach (System.Data.DataColumn c in p_table.Columns)
+            {
+                v_field = new Spartacus.Reporting.Field(
+                    c.ColumnName,
+                    c.ColumnName,
+                    Spartacus.Reporting.FieldAlignment.LEFT,
+                    v_fill,
+                    Spartacus.Database.Type.STRING
+                );
+                v_xml += v_field.ToXML();
+            }
+
+            v_xml += "    </fields> " +
+            "</report>";
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(v_xml, false);
+            }
+            catch (Spartacus.Reporting.Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Report"/>.
+        /// </summary>
+        /// <param name="p_table">Tabela com os dados.</param>
+        /// <param name="p_titlecolumn">Coluna de título.</param>
+        /// <param name="p_fields">Campos a serem exibidos no relatório.</param>
+        public Report(System.Data.DataTable p_table, string p_titlecolumn, System.Collections.Generic.List<Spartacus.Reporting.Field> p_fields)
+        {
+            string v_xml;
+
+            this.v_reportid = 0;
+
+            this.v_header = new Spartacus.Reporting.Block();
+            this.v_footer = new Spartacus.Reporting.Block();
+
+            this.v_fields = new System.Collections.Generic.List<Spartacus.Reporting.Field>();
+            this.v_groups = new System.Collections.Generic.List<Spartacus.Reporting.Group>();
+
+            this.v_database = null;
+            this.v_tabletemp = p_table;
+            this.v_table = null;
+            this.v_rendertable = null;
+
+            this.v_calculate_groups = false;
+
+            v_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> " +
+            "<report> " +
+            "    <settings> " +
+            "        <layout>LANDSCAPE</layout> " +
+            "        <topmargin>30,0</topmargin> " +
+            "        <bottommargin>20,0</bottommargin> " +
+            "        <leftmargin>30,0</leftmargin> " +
+            "        <rightmargin>20,0</rightmargin> " +
+            "        <dataheaderborder>TOP,BOTTOM</dataheaderborder> " +
+            "        <datafieldborder>NONE</datafieldborder> " +
+            "        <groupheaderborder>NONE</groupheaderborder> " +
+            "        <groupfooterborder>NONE</groupfooterborder> " +
+            "        <reportheaderborder>NONE</reportheaderborder> " +
+            "        <reportfooterborder>TOP</reportfooterborder> " +
+            "        <dataheadercolor>WHITE</dataheadercolor> " +
+            "        <datafieldevencolor>WHITE</datafieldevencolor> " +
+            "        <datafieldoddcolor>SILVER</datafieldoddcolor> " +
+            "        <groupheaderevencolor>SILVER</groupheaderevencolor> " +
+            "        <groupheaderoddcolor>SILVER</groupheaderoddcolor> " +
+            "        <groupfooterevencolor>SILVER</groupfooterevencolor> " +
+            "        <groupfooteroddcolor>SILVER</groupfooteroddcolor> " +
+            "        <reportheaderfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>FALSE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>8,0</size> " +
+            "        </reportheaderfont> " +
+            "        <reportfooterfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>FALSE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>8,0</size> " +
+            "        </reportfooterfont> " +
+            "        <dataheaderfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>FALSE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>6,0</size> " +
+            "        </dataheaderfont> " +
+            "        <datafieldfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>FALSE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>7,0</size> " +
+            "        </datafieldfont> " +
+            "        <groupheaderfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>TRUE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>7,0</size> " +
+            "        </groupheaderfont> " +
+            "        <groupfooterfont> " +
+            "            <family>HELVETICA</family> " +
+            "            <bold>TRUE</bold> " +
+            "            <italic>FALSE</italic> " +
+            "            <size>7,0</size> " +
+            "        </groupfooterfont> " +
+            "    </settings> " +
+            "    <header> " +
+            "        <height>15,0</height> " +
+            "        <object> " +
+            "            <type>TEXT</type> " +
+            "            <column>" + p_titlecolumn + "</column> " +
+            "            <posx>0,0</posx> " +
+            "            <posy>10,0</posy> " +
+            "            <align>CENTER</align> " +
+            "        </object> " +
+            "    </header> " +
+            "    <footer> " +
+            "        <height>15,0</height> " +
+            "        <object> " +
+            "            <type>PAGENUMBER</type> " +
+            "            <column></column> " +
+            "            <posx>0,0</posx> " +
+            "            <posy>10,0</posy> " +
+            "            <align>RIGHT</align> " +
+            "        </object> " +
+            "    </footer> " +
+            "    <fields> ";
+
+            foreach (Spartacus.Reporting.Field f in p_fields)
+                v_xml += f.ToXML();
+
+            v_xml += "    </fields> " +
+            "</report>";
+
+            this.v_progress = new Spartacus.Utils.ProgressEventClass();
+            this.v_progress.FireEvent("Spartacus.Reporting.Report", "ExportPDF", 0.0, "Lendo XML do relatorio " + this.v_reportid.ToString());
+
+            try
+            {
+                this.ReadXml(v_xml, false);
             }
             catch (Spartacus.Reporting.Exception e)
             {

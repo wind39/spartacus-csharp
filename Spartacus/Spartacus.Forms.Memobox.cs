@@ -50,6 +50,40 @@ namespace Spartacus.Forms
         /// <param name="p_label">Texto exibido no rótulo.</param>
         /// <param name="p_width">Largura.</param>
         /// <param name="p_height">Altura.</param>
+        public Memobox(Spartacus.Forms.Container p_parent, string p_label, int p_height)
+            : base(p_parent)
+        {
+            this.v_control = new System.Windows.Forms.Panel();
+
+            this.v_isfrozen = false;
+
+            this.v_width = p_parent.v_width;
+            this.v_control.Width = p_parent.v_width - 5;
+
+            this.SetHeight(p_height);
+            this.SetLocation(0, p_parent.v_offsety);
+
+            this.v_label = new System.Windows.Forms.Label();
+            this.v_label.Text = p_label;
+            this.v_label.Location = new System.Drawing.Point(10, 10);
+            this.v_label.AutoSize = true;
+            this.v_label.Parent = this.v_control;
+
+            this.v_textbox = new System.Windows.Forms.TextBox();
+            this.v_textbox.Location = new System.Drawing.Point(5, 35);
+            this.v_textbox.Width = this.v_width - 10 - this.v_textbox.Location.X;
+            this.v_textbox.Height = this.v_height - 35;
+            this.v_textbox.Parent = this.v_control;
+            this.v_textbox.Multiline = true;
+        }
+
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Forms.Memobox"/>.
+        /// </summary>
+        /// <param name="p_parent">Container pai.</param>
+        /// <param name="p_label">Texto exibido no rótulo.</param>
+        /// <param name="p_width">Largura.</param>
+        /// <param name="p_height">Altura.</param>
         public Memobox(Spartacus.Forms.Container p_parent, string p_label, int p_width, int p_height)
             : base(p_parent)
         {

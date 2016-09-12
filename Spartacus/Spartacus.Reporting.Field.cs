@@ -112,6 +112,25 @@ namespace Spartacus.Reporting
         }
 
         /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="Spartacus.Reporting.Field"/>.
+        /// </summary>
+        public Field(string p_column, string p_title, Spartacus.Reporting.FieldAlignment p_align, double p_fill, Spartacus.Database.Type p_type)
+        {
+            this.v_groupedvalue = false;
+            this.v_row = 0;
+            this.v_format = "###,###,###,###,##0.00";
+            this.v_border = null;
+            this.v_blank = "";
+            this.v_font = null;
+
+            this.v_column = p_column;
+            this.v_title = p_title;
+            this.v_align = p_align;
+            this.v_fill = p_fill;
+            this.v_type = p_type;
+        }
+
+        /// <summary>
         /// Configura o tipo de dados do campo.
         /// </summary>
         /// <param name="p_text">Texto representando o tipo de dados.</param>
@@ -184,6 +203,17 @@ namespace Spartacus.Reporting
                 v_ret = this.v_blank;
 
             return v_ret;
+        }
+
+        public string ToXML()
+        {
+            return "<field> " +
+            "    <title>" + this.v_title + "</title> " +
+            "    <column>" + this.v_column + "</column> " +
+            "    <align>" + this.v_align.ToString() + "</align> " +
+            "    <fill>" + this.v_fill.ToString() + "</fill> " +
+            "    <type>" + this.v_type.ToString() + "</type> " +
+            "</field>";
         }
     }
 }
