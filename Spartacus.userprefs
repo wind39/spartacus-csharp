@@ -1,10 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
     <Files>
-      <File FileName="Spartacus/Spartacus.Reporting.Report.cs" Line="711" Column="39" />
-      <File FileName="Spartacus/Spartacus.Reporting.Field.cs" Line="210" Column="13" />
-      <File FileName="CHANGELOG.txt" Line="9" Column="63" />
+      <File FileName="README.md" Line="49" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

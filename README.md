@@ -20,11 +20,11 @@ Spartacus contains this managed libraries:
   - Npgsql (https://github.com/npgsql/npgsql)
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - System.Data.SqlServerCe (https://www.nuget.org/packages/Microsoft.SqlServer.Compact/)
+  - EPPlus (http://epplus.codeplex.com/)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
-  - EPPlus (http://epplus.codeplex.com/)
   - SejExcel, by Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
   - ZipStorer, by Jaime Olivares (https://github.com/jaime-olivares/zipstorer)
   - FastDBF, by Ahmed Lacevic (https://github.com/SocialExplorer/FastDBF)
@@ -43,6 +43,7 @@ Spartacus is successfully used by this projects:
   - OmniDB (http://www.omnidb.com.br)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
-  - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
   - Planning Service Transfer Pricing (http://www.planningservice.com.br)
   - Adsistem Sistemas Administrativos (http://www.adsistem.com.br)
+  - Rafael Thofehrn Castro (http://www.rafaelthca.com.br)
+  - Cristiano Raffi Cunha (http://cristianoprogramador.com)
