@@ -1181,7 +1181,7 @@ namespace Spartacus.Database
                                             v_firstrow = false;
                                         else
                                         {
-                                            for (j = 0; j < p_insert.v_parameters.Count-1; j++)
+                                            for (j = 0; j < p_insert.v_parameters.Count; j++)
                                                 p_insert.SetValue(j, v_row[v_columns.IndexOf(p_insert.v_parameters[j].v_name)]);
 
                                             v_block.Add(p_insert.GetUpdatedText());
@@ -1371,7 +1371,7 @@ namespace Spartacus.Database
                                         }
                                         else
                                         {
-                                            for (j = 0; j < v_insert.v_parameters.Count-1; j++)
+                                            for (j = 0; j < v_insert.v_parameters.Count; j++)
                                                 v_insert.SetValue(j, v_row[v_columns.IndexOf(v_insert.v_parameters[j].v_name)]);
 
                                             v_block.Add(v_insert.GetUpdatedText());

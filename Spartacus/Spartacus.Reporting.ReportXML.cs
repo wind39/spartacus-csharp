@@ -210,6 +210,7 @@ namespace Spartacus.Reporting
             string v_service = null;
             string v_user = null;
             string v_password = null;
+            string v_timeout = null;
 
             while (p_reader.Read())
             {
@@ -237,6 +238,9 @@ namespace Spartacus.Reporting
                             break;
                         case "password":
                             v_password = p_reader.ReadString();
+                            break;
+                        case "timeout":
+                            v_timeout = p_reader.ReadString();
                             break;
                         default:
                             break;
@@ -276,10 +280,16 @@ namespace Spartacus.Reporting
                 case "access":
                     this.v_database = new Spartacus.Database.Access(v_service);
                     break;
+                case "mariadb":
+                    this.v_database = new Spartacus.Database.Mariadb(v_host, v_port, v_service, v_user, v_password);
+                    break;
                 default:
                     this.v_database = null;
                     break;
             }
+
+            if (v_timeout != null)
+                this.v_database.SetTimeout(int.Parse(v_timeout));
         }
 
         /// <summary>
