@@ -2198,6 +2198,11 @@
              Tipo de dados padrão para string.
              </summary>
             </member>
+        <member name="F:Spartacus.Database.Generic.v_blocksize">
+             <summary>
+             Tamanho do bloco para transferências de dados.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Generic.#ctor(System.String,System.String,System.String,System.String,System.String)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Database.Generic" />.

@@ -79,6 +79,11 @@ namespace Spartacus.Database
         /// </summary>
         public string v_default_string;
 
+        /// <summary>
+        /// Tamanho do bloco para transferências de dados.
+        /// </summary>
+        public int v_blocksize;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Database.Generic"/>.
@@ -108,6 +113,7 @@ namespace Spartacus.Database
             this.v_password = p_password;
             this.v_timeout = -1;
             this.v_execute_security = true;
+            this.v_blocksize = 100;
         }
 
         /// <summary>
@@ -130,6 +136,7 @@ namespace Spartacus.Database
             this.v_password = p_password;
             this.v_timeout = -1;
             this.v_execute_security = true;
+            this.v_blocksize = 100;
         }
 
         /// <summary>
@@ -144,6 +151,7 @@ namespace Spartacus.Database
             this.v_service = p_file;
             this.v_timeout = -1;
             this.v_execute_security = true;
+            this.v_blocksize = 100;
         }
 
         /// <summary>
@@ -153,6 +161,7 @@ namespace Spartacus.Database
         {
             this.v_timeout = -1;
             this.v_execute_security = true;
+            this.v_blocksize = 100;
         }
 
         /// <summary>
@@ -708,7 +717,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromCSV(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             System.IO.StreamReader v_reader = null;
             System.Collections.Generic.List<string> v_block, v_columns;
             string[] v_row;
@@ -723,7 +732,6 @@ namespace Spartacus.Database
                 v_columns = new System.Collections.Generic.List<string>();
 
                 v_transfered = 0;
-                v_blocksize = 100;
                 i = 0;
                 k = 0;
                 while (! v_reader.EndOfStream)
@@ -746,7 +754,7 @@ namespace Spartacus.Database
                                 v_block.Add(p_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block, p_columns);
                                     v_transfered += (uint) v_block.Count;
@@ -766,7 +774,7 @@ namespace Spartacus.Database
                                 v_block.Add(p_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block, p_columns);
                                     v_transfered += (uint) v_block.Count;
@@ -804,7 +812,7 @@ namespace Spartacus.Database
                                 v_block.Add(p_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block, p_columns);
                                     v_transfered += (uint) v_block.Count;
@@ -829,7 +837,7 @@ namespace Spartacus.Database
                                     v_block.Add(p_insert.GetUpdatedText());
                                     k++;
 
-                                    if (k == v_blocksize)
+                                    if (k == this.v_blocksize)
                                     {
                                         this.InsertBlock(p_table, v_block, p_columns);
                                         v_transfered += (uint) v_block.Count;
@@ -884,7 +892,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromCSV(string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             System.IO.StreamReader v_reader = null;
             System.Collections.Generic.List<string> v_block, v_columns;
             Spartacus.Database.Command v_insert;
@@ -901,7 +909,6 @@ namespace Spartacus.Database
                 v_insert = new Spartacus.Database.Command();
 
                 v_transfered = 0;
-                v_blocksize = 100;
                 i = 0;
                 k = 0;
                 while (! v_reader.EndOfStream)
@@ -936,7 +943,7 @@ namespace Spartacus.Database
                                 v_block.Add(v_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block);
                                     v_transfered += (uint) v_block.Count;
@@ -956,7 +963,7 @@ namespace Spartacus.Database
                                 v_block.Add(v_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block);
                                     v_transfered += (uint) v_block.Count;
@@ -1026,7 +1033,7 @@ namespace Spartacus.Database
                                 v_block.Add(v_insert.GetUpdatedText());
                                 k++;
 
-                                if (k == v_blocksize)
+                                if (k == this.v_blocksize)
                                 {
                                     this.InsertBlock(p_table, v_block);
                                     v_transfered += (uint) v_block.Count;
@@ -1051,7 +1058,7 @@ namespace Spartacus.Database
                                     v_block.Add(v_insert.GetUpdatedText());
                                     k++;
 
-                                    if (k == v_blocksize)
+                                    if (k == this.v_blocksize)
                                     {
                                         this.InsertBlock(p_table, v_block);
                                         v_transfered += (uint) v_block.Count;
@@ -1104,7 +1111,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromXLSX(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
             Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
             System.Collections.Generic.List<string> v_columns, v_block;
@@ -1131,7 +1138,6 @@ namespace Spartacus.Database
                     v_block = new System.Collections.Generic.List<string>();
 
                     v_transfered = 0;
-                    v_blocksize = 100;
                     k = 0;
                     using (System.Xml.XmlReader v_reader = System.Xml.XmlReader.Create(v_sheet.GetStream()))
                     {
@@ -1187,7 +1193,7 @@ namespace Spartacus.Database
                                             v_block.Add(p_insert.GetUpdatedText());
                                             k++;
 
-                                            if (k == v_blocksize)
+                                            if (k == this.v_blocksize)
                                             {
                                                 this.InsertBlock(p_table, v_block, p_columns);
                                                 v_transfered += (uint) v_block.Count;
@@ -1264,7 +1270,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromXLSX(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             Spartacus.ThirdParty.SejExcel.OoXml v_package = null;
             Spartacus.ThirdParty.SejExcel.gSheet v_sheet;
             System.Collections.Generic.List<string> v_columns, v_block;
@@ -1293,7 +1299,6 @@ namespace Spartacus.Database
                     v_insert = new Spartacus.Database.Command();
 
                     v_transfered = 0;
-                    v_blocksize = 100;
                     k = 0;
                     using (System.Xml.XmlReader v_reader = System.Xml.XmlReader.Create(v_sheet.GetStream()))
                     {
@@ -1377,7 +1382,7 @@ namespace Spartacus.Database
                                             v_block.Add(v_insert.GetUpdatedText());
                                             k++;
 
-                                            if (k == v_blocksize)
+                                            if (k == this.v_blocksize)
                                             {
                                                 this.InsertBlock(p_table, v_block);
                                                 v_transfered += (uint) v_block.Count;
@@ -1456,7 +1461,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromDBF(string p_filename, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             System.Collections.Generic.List<string> v_block, v_columns;
             SocialExplorer.IO.FastDBF.DbfFile v_dbf;
             SocialExplorer.IO.FastDBF.DbfRecord v_record;
@@ -1478,7 +1483,6 @@ namespace Spartacus.Database
                 }
 
                 v_transfered = 0;
-                v_blocksize = 100;
                 k = 0;
                 v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
                 while (v_dbf.ReadNext(v_record))
@@ -1495,7 +1499,7 @@ namespace Spartacus.Database
                         v_block.Add(p_insert.GetUpdatedText());
                         k++;
 
-                        if (k == v_blocksize)
+                        if (k == this.v_blocksize)
                         {
                             this.InsertBlock(p_table, v_block, p_columns);
                             v_transfered += (uint) v_block.Count;
@@ -1536,7 +1540,7 @@ namespace Spartacus.Database
         /// <param name="p_error">Evento de erro.</param>
         private uint TransferFromDBF(string p_filename, string p_table, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
         {
-            uint v_transfered, v_blocksize;
+            uint v_transfered;
             System.Collections.Generic.List<string> v_block, v_columns;
             Spartacus.Database.Command v_insert;
             SocialExplorer.IO.FastDBF.DbfFile v_dbf;
@@ -1584,7 +1588,6 @@ namespace Spartacus.Database
                 this.Execute(v_createtable);
 
                 v_transfered = 0;
-                v_blocksize = 100;
                 k = 0;
                 v_record = new SocialExplorer.IO.FastDBF.DbfRecord(v_dbf.Header);
                 while (v_dbf.ReadNext(v_record))
@@ -1601,7 +1604,7 @@ namespace Spartacus.Database
                         v_block.Add(v_insert.GetUpdatedText());
                         k++;
 
-                        if (k == v_blocksize)
+                        if (k == this.v_blocksize)
                         {
                             this.InsertBlock(p_table, v_block);
                             v_transfered += (uint) v_block.Count;
