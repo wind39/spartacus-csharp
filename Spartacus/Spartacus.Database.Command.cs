@@ -518,7 +518,7 @@ namespace Spartacus.Database
             string v_newstring;
             int i, j, k;
             char[][] v_handler = new char[55][];
-            char[] v_allowed = new char[91];
+            char[] v_allowed = new char[92];
             bool v_achou;
             char[] v_newarray;
 
@@ -672,6 +672,7 @@ namespace Spartacus.Database
             v_allowed[88] = '\\';
             v_allowed[89] = '$';
             v_allowed[90] = '&';
+            v_allowed[91] = '?';
 
             v_newarray = v_newstring.ToCharArray();
             for (i = 0; i < v_newarray.Length; i++)
