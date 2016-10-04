@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>ReportManager</RootNamespace>
     <AssemblyName>ReportManager</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

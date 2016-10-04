@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.10: Spartacus.Database: Classes Firebird e FbEmbed agora identificam o charset automaticamente
+         ReportManager: Parâmetros de data estavam recebendo formato incorreto. Corrigido
 0.43.9: Permitindo o caractere ? no método RemoveUnwantedCharsExecute
 0.43.8: Spartacus.Database: Implementado atributo v_blocksize
 0.43.7: Spartacus.Database: Corrigido bug de não alimentar última coluna no método TransferFromXLSX

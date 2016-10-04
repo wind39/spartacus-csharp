@@ -77,11 +77,28 @@ namespace Spartacus.Database
         public FbEmbed(string p_file)
             : base(p_file)
         {
+            string v_charset;
+
             this.v_connectionstring = "ServerType=1;"
                 + "Database=" + p_file + ";"
                 + "User=sysdba;"
                 + "Password=masterkey;"
                 + "Dialect=3;Charset=NONE;Role=;";
+
+            try
+            {
+                v_charset = this.ExecuteScalar("select RDB$CHARACTER_SET_NAME from RDB$DATABASE");
+            }
+            catch (System.Exception)
+            {
+                v_charset = "ISO8859_1";
+            }
+
+            this.v_connectionstring = "ServerType=1;"
+                + "Database=" + p_file + ";"
+                + "User=sysdba;"
+                + "Password=masterkey;"
+                + "Dialect=3;Charset=" + v_charset + ";Role=;";
 
             this.v_con = null;
             this.v_cmd = null;
@@ -104,11 +121,28 @@ namespace Spartacus.Database
         public FbEmbed(string p_file, string p_user, string p_password)
             : base(p_file, p_user, p_password)
         {
+            string v_charset;
+
             this.v_connectionstring = "ServerType=1;"
                 + "Database=" + p_file + ";"
                 + "User=" + p_user + ";"
                 + "Password=" + p_password + ";"
                 + "Dialect=3;Charset=NONE;Role=;";
+
+            try
+            {
+                v_charset = this.ExecuteScalar("select RDB$CHARACTER_SET_NAME from RDB$DATABASE");
+            }
+            catch (System.Exception)
+            {
+                v_charset = "ISO8859_1";
+            }
+
+            this.v_connectionstring = "ServerType=1;"
+                + "Database=" + p_file + ";"
+                + "User=" + p_user + ";"
+                + "Password=" + p_password + ";"
+                + "Dialect=3;Charset=" + v_charset + ";Role=;";
 
             this.v_con = null;
             this.v_cmd = null;

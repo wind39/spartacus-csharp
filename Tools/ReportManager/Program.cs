@@ -261,7 +261,7 @@ namespace Spartacus.Tools.ReportManager
                         Spartacus.Forms.Datetimepicker v_param = new Spartacus.Forms.Datetimepicker(
                             this.v_paramwindow,
                             this.v_report.v_cmd.v_parameters[k].v_description,
-                            "dd/mm/yyyy"
+                            "dd/MM/yyyy"
                         );
                         this.v_paramwindow.Add(v_param);
                     }

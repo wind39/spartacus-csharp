@@ -89,12 +89,30 @@ namespace Spartacus.Database
         public Firebird(string p_source, string p_port, string p_file, string p_user, string p_password)
             : base(p_source, p_port, p_file, p_user, p_password)
         {
+            string v_charset;
+
             this.v_connectionstring = "DataSource=" + this.v_host + ";"
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
                 + "Dialect=3;Charset=NONE;Role=;";
+
+            try
+            {
+                v_charset = this.ExecuteScalar("select RDB$CHARACTER_SET_NAME from RDB$DATABASE");
+            }
+            catch (System.Exception)
+            {
+                v_charset = "ISO8859_1";
+            }
+
+            this.v_connectionstring = "DataSource=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User=" + this.v_user + ";"
+                + "Password=" + this.v_password + ";"
+                + "Dialect=3;Charset=" + v_charset + ";Role=;";
 
             this.v_con = null;
             this.v_cmd = null;
@@ -120,12 +138,30 @@ namespace Spartacus.Database
         public Firebird(string p_source, string p_file, string p_user, string p_password)
             : base(p_source, "3050", p_file, p_user, p_password)
         {
+            string v_charset;
+
             this.v_connectionstring = "DataSource=" + this.v_host + ";"
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
                 + "Dialect=3;Charset=NONE;Role=;";
+
+            try
+            {
+                v_charset = this.ExecuteScalar("select RDB$CHARACTER_SET_NAME from RDB$DATABASE");
+            }
+            catch (System.Exception)
+            {
+                v_charset = "ISO8859_1";
+            }
+
+            this.v_connectionstring = "DataSource=" + this.v_host + ";"
+                + "Port=" + this.v_port + ";"
+                + "Database=" + this.v_service + ";"
+                + "User=" + this.v_user + ";"
+                + "Password=" + this.v_password + ";"
+                + "Dialect=3;Charset=" + v_charset + ";Role=;";
 
             this.v_con = null;
             this.v_cmd = null;

@@ -1,9 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Firebird.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Command.cs" Line="519" Column="25" />
-      <File FileName="CHANGELOG.txt" Line="24" Column="70" />
+      <File FileName="Spartacus/Spartacus.Forms.Datetimepicker.cs" Line="27" Column="26" />
+      <File FileName="Tools/ReportManager/Program.cs" Line="264" Column="35" />
+      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="156" Column="14" />
+      <File FileName="Spartacus/Spartacus.Database.FbEmbed.cs" Line="134" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
