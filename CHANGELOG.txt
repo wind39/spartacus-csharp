@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.11: Spartacus.Database: Removendo chamadas remanescentes de Command.Cancel no Spartacus.Database.Postgresql
 0.43.10: Spartacus.Database: Classes Firebird e FbEmbed agora identificam o charset automaticamente
          ReportManager: Parâmetros de data estavam recebendo formato incorreto. Corrigido
 0.43.9: Permitindo o caractere ? no método RemoveUnwantedCharsExecute

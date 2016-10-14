@@ -653,7 +653,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        try { this.v_cmd.Cancel(); } catch {}
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
@@ -758,7 +758,7 @@ namespace Spartacus.Database
                 {
                     if (this.v_cmd != null)
                     {
-                        try { this.v_cmd.Cancel(); } catch {}
+                        //try { this.v_cmd.Cancel(); } catch {}
                         this.v_cmd.Dispose();
                         this.v_cmd = null;
                     }
