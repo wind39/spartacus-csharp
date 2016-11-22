@@ -333,6 +333,16 @@ namespace Spartacus.Utils
         }
 
         /// <summary>
+        /// Codifica uma string usando Base64.
+        /// </summary>
+        /// <returns>String codificada.</returns>
+        /// <param name="p_plaintext">Texto puro.</param>
+        public string Base64Encode(string p_plaintext)
+        {
+            return System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(p_plaintext));
+        }
+
+        /// <summary>
         /// Criptografa um arquivo em outro arquivo.
         /// O tamanho do bloco é 1 MB.
         /// </summary>
@@ -541,6 +551,16 @@ namespace Spartacus.Utils
             {
                 throw new Spartacus.Utils.Exception(e);
             }
+        }
+
+        /// <summary>
+        /// Decodifica uma string na Base64.
+        /// </summary>
+        /// <returns>Texto puro.</returns>
+        /// <param name="p_encoded">String codificada.</param>
+        public string Base64Decode(string p_encoded)
+        {
+            return System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(p_encoded));
         }
 
         /// <summary>

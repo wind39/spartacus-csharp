@@ -63,6 +63,11 @@ namespace Spartacus.Net
         /// </summary>
         public int v_numclients;
 
+		/// <summary>
+		/// Gerenciadores de conexão com clientes.
+		/// </summary>
+		public System.Collections.Generic.List<Spartacus.Net.ClientHandler> v_clienthandlers;
+
         /// <summary>
         /// Objeto que gerencia o evento de Conexão.
         /// </summary>
@@ -79,14 +84,9 @@ namespace Spartacus.Net
         public Spartacus.Net.AvailableEventClass v_available;
 
         /// <summary>
-        /// Listener usado para recebe conexões de clientes.
-        /// </summary>
-        private System.Net.Sockets.TcpListener v_listener;
-
-        /// <summary>
-        /// Gerenciadores de conexão com clientes.
-        /// </summary>
-        private System.Collections.Generic.List<Spartacus.Net.ClientHandler> v_clienthandlers;
+		/// Listener usado para recebe conexões de clientes.
+		/// </summary>
+		private System.Net.Sockets.TcpListener v_listener;
 
         /// <summary>
         /// Thread para escuta de novos clientes.
@@ -155,7 +155,7 @@ namespace Spartacus.Net
                         int.Parse(this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[1])
                     ));
 
-                    this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients].v_ip, this.v_clienthandlers[this.v_numclients].v_port);
+                    this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients].v_ip, this.v_clienthandlers[this.v_numclients].v_port, this.v_numclients);
 
                     this.v_numclients++;
                 }
@@ -177,21 +177,29 @@ namespace Spartacus.Net
             {
                 for (int i = 0; i < this.v_numclients; i++)
                 {
-                    v_socketconnected = !(this.v_sockets[i].Client.Poll(1000, System.Net.Sockets.SelectMode.SelectRead) && this.v_sockets[i].Client.Available == 0);
-
-                    if (this.v_clienthandlers[i].v_isconnected && !v_socketconnected)
+                    if (this.v_clienthandlers[i].v_isconnected && this.v_sockets[i] != null && this.v_sockets[i].Client != null)
                     {
-                        this.v_clienthandlers[i].v_isconnected = false;
-                        this.v_disconnect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port);
-                    }
-                    else
-                    {
-                        if (this.v_clienthandlers[i].v_isconnected && v_socketconnected && this.v_sockets[i].Client.Available > 0)
-                            this.v_available.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
+                        v_socketconnected = !(this.v_sockets[i].Client.Poll(1000, System.Net.Sockets.SelectMode.SelectRead) && this.v_sockets[i].Client.Available == 0);
+                        if (!v_socketconnected)
+                        {
+                            this.v_clienthandlers[i].v_isconnected = false;
+                            this.v_disconnect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
+                        }
+                        else
+                        {
+                            if (v_socketconnected && this.v_sockets[i].Client.Available > 0)
+                                this.v_available.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
+                        }
                     }
                 }
                 System.Threading.Thread.Sleep(100);
             }
+        }
+
+        public void StopClient(int p_clientid)
+        {
+            base.Stop(p_clientid);
+            this.v_clienthandlers[p_clientid].v_isconnected = false;
         }
 
         /// <summary>

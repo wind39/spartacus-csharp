@@ -1,12 +1,16 @@
-﻿<Properties GitUserInfo="UsingGIT" StartupItem="Spartacus/Spartacus.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+﻿<Properties StartupConfiguration="{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5}|Default" GitUserInfo="UsingGIT" StartupItem="Tools/ReportManager/ReportManager.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.MailClient.cs">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="21" Column="10" />
+      <File FileName="Spartacus/Spartacus.Net.Server.cs" Line="202" Column="69" />
+      <File FileName="Spartacus/Spartacus.Net.FakeSmtp.cs" Line="53" Column="107" />
+      <File FileName="Spartacus/Spartacus.Net.MailClient.cs" Line="49" Column="33" />
+      <File FileName="Spartacus/Spartacus.Utils.Cryptor.cs" Line="563" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Tools.ReportManager PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

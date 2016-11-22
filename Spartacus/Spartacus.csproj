@@ -12,8 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>
     </ReleaseVersion>
-    <UseMSBuildEngine>False</UseMSBuildEngine>
     <SynchReleaseVersion>false</SynchReleaseVersion>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,6 +91,12 @@
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit">
+      <HintPath>lib\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit">
+      <HintPath>lib\MailKit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +333,13 @@
     <Compile Include="Spartacus.Database.Mariadb.cs" />
     <Compile Include="Spartacus.Forms.Menugroup.cs" />
     <Compile Include="Spartacus.Utils.Convert.cs" />
+    <Compile Include="Spartacus.Game.Animation.cs" />
+    <Compile Include="Spartacus.Game.Keyboard.cs" />
+    <Compile Include="Spartacus.Game.Layer.cs" />
+    <Compile Include="Spartacus.Game.Level.cs" />
+    <Compile Include="Spartacus.Game.Object.cs" />
+    <Compile Include="Spartacus.Net.FakeSmtp.cs" />
+    <Compile Include="Spartacus.Net.MailClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

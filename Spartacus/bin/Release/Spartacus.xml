@@ -13532,6 +13532,13 @@
              <returns>Array de bytes criptografado.</returns>
              <param name="p_plaintextbytes">Array de bytes.</param>
             </member>
+        <member name="M:Spartacus.Utils.Cryptor.Base64Encode(System.String)">
+             <summary>
+             Codifica uma string usando Base64.
+             </summary>
+             <returns>String codificada.</returns>
+             <param name="p_plaintext">Texto puro.</param>
+            </member>
         <member name="M:Spartacus.Utils.Cryptor.EncryptFile(System.String,System.String)">
              <summary>
              Criptografa um arquivo em outro arquivo.
@@ -13588,6 +13595,13 @@
              </summary>
              <returns>Array de bytes descriptografado.</returns>
              <param name="p_ciphertextbytes">Array de bytes criptografado.</param>
+            </member>
+        <member name="M:Spartacus.Utils.Cryptor.Base64Decode(System.String)">
+             <summary>
+             Decodifica uma string na Base64.
+             </summary>
+             <returns>Texto puro.</returns>
+             <param name="p_encoded">String codificada.</param>
             </member>
         <member name="M:Spartacus.Utils.Cryptor.DecryptFile(System.String,System.String)">
              <summary>
@@ -16698,6 +16712,11 @@
              Número de clientes conectados.
              </summary>
             </member>
+        <member name="F:Spartacus.Net.Server.v_clienthandlers">
+             <summary>
+             Gerenciadores de conexão com clientes.
+             </summary>
+            </member>
         <member name="F:Spartacus.Net.Server.v_connect">
              <summary>
              Objeto que gerencia o evento de Conexão.
@@ -16716,11 +16735,6 @@
         <member name="F:Spartacus.Net.Server.v_listener">
              <summary>
              Listener usado para recebe conexões de clientes.
-             </summary>
-            </member>
-        <member name="F:Spartacus.Net.Server.v_clienthandlers">
-             <summary>
-             Gerenciadores de conexão com clientes.
              </summary>
             </member>
         <member name="F:Spartacus.Net.Server.v_threadaccept">
@@ -17750,6 +17764,41 @@
              <returns>Número de linhas transferidas.</returns>
              <param name="p_query">Consulta a ser executada no banco de dados atual.</param>
              <param name="p_filename">Nome do arquivo de destino.</param>
+            </member>
+        <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+             Envia um único e-mail para um único destinatário.
+             </summary>
+             <param name="p_host">Servidor.</param>
+             <param name="p_port">Porta.</param>
+             <param name="p_user">Usuário.</param>
+             <param name="p_password">Senha.</param>
+             <param name="p_from">Remetente.</param>
+             <param name="p_to">Destinatário.</param>
+             <param name="p_subject">Assunto.</param>
+             <param name="p_body">Corpo.</param>
+            </member>
+        <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String)">
+             <summary>
+             Envia um único e-mail para uma lista de destinatários.
+             </summary>
+             <param name="p_host">Servidor.</param>
+             <param name="p_port">Porta.</param>
+             <param name="p_user">Usuário.</param>
+             <param name="p_password">Senha.</param>
+             <param name="p_from">Remetente.</param>
+             <param name="p_to">Destinatário.</param>
+             <param name="p_subject">Assunto.</param>
+             <param name="p_body">Corpo.</param>
+            </member>
+        <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.Net.NetworkCredential,System.String)">
+             <summary>
+             Envia um único e-mail usando MimeKit e MailKit.
+             </summary>
+             <param name="p_host">Servidor.</param>
+             <param name="p_port">Porta.</param>
+             <param name="p_credential">Credenciais.</param>
+             <param name="p_message">E-mail a ser enviado.</param>
             </member>
     </members>
 </doc>

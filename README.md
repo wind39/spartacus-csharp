@@ -21,6 +21,8 @@ Spartacus contains this managed libraries:
   - MySQL Connector/NET (http://dev.mysql.com/downloads/connector/net/1.0.html)
   - System.Data.SqlServerCe (https://www.nuget.org/packages/Microsoft.SqlServer.Compact/)
   - EPPlus (http://epplus.codeplex.com/)
+  - MimeKit (https://github.com/jstedfast/MimeKit)
+  - MailKit (https://github.com/jstedfast/MailKit)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)
