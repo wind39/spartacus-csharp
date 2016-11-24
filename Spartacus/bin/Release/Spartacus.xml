@@ -16747,6 +16747,16 @@
              Thread para verificação de clientes conectados.
              </summary>
             </member>
+        <member name="F:Spartacus.Net.Server.v_threadclean">
+             <summary>
+             Thread para limpeza de clientes que já foram desconectados.
+             </summary>
+            </member>
+        <member name="F:Spartacus.Net.Server.v_lock">
+             <summary>
+             Semáforo para controle de pool de clientes.
+             </summary>
+            </member>
         <member name="M:Spartacus.Net.Server.#ctor(System.String,System.Int32)">
              <summary>
              Inicializa uma nova instância da classe <see cref="T:Spartacus.Net.Server" />.
@@ -16768,6 +16778,17 @@
              <summary>
              Thread para verificação de clientes conectados.
              </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.ThreadClean">
+             <summary>
+             Thread para limpeza de clientes que já foram desconectados.
+             </summary>
+            </member>
+        <member name="M:Spartacus.Net.Server.StopClient(System.Int32)">
+             <summary>
+             Encerra a conexão com um cliente.
+             </summary>
+             <param name="p_clientid">Código do cliente.</param>
             </member>
         <member name="M:Spartacus.Net.Server.StopServer">
              <summary>

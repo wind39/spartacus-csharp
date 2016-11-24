@@ -28,6 +28,8 @@ namespace Spartacus.Game
 {
     public class Object
     {
+        public string v_name;
+
         public System.Drawing.Rectangle v_rectangle;
 
 		public System.Collections.Generic.List<System.Drawing.Image> v_images;
@@ -36,9 +38,12 @@ namespace Spartacus.Game
 
 		public System.Collections.Generic.List<Spartacus.Game.Animation> v_animations;
 
+        public Spartacus.Game.Layer v_layer;
 
-        public Object(int p_x, int p_y, int p_width, int p_height)
+
+        public Object(string p_name, int p_x, int p_y, int p_width, int p_height)
         {
+            this.v_name = p_name;
             this.v_rectangle = new System.Drawing.Rectangle(p_x, p_y, p_width, p_height);
 			this.v_images = new System.Collections.Generic.List<System.Drawing.Image>();
             this.v_currentimage = null;
@@ -64,6 +69,48 @@ namespace Spartacus.Game
             this.v_animations.Add(p_animation);
         }
 
+        public void SetLayer(Spartacus.Game.Layer p_layer)
+        {
+            this.v_layer = p_layer;
+        }
+
+        public void SetPosition(int p_x, int p_y)
+        {
+            this.v_rectangle.X = p_x;
+            this.v_rectangle.Y = p_y;
+        }
+
+        public void Move(int p_offsetx, int p_offsety)
+        {
+            this.v_rectangle.X += p_offsetx;
+            this.v_rectangle.Y += p_offsety;
+        }
+
+        public void Move(int p_offsetx, int p_offsety, bool p_collide)
+        {
+            this.v_rectangle.X += p_offsetx;
+            this.v_rectangle.Y += p_offsety;
+
+            if (p_collide)
+            {
+                int k = 0;
+                bool v_achou = false;
+                while (k < this.v_layer.v_objects.Count && !v_achou)
+                {
+                    if (this.v_name != this.v_layer.v_objects[k].v_name &&
+                        this.v_rectangle.IntersectsWith(this.v_layer.v_objects[k].v_rectangle))
+                        v_achou = true;
+                    else
+                        k++;
+                }
+                if (v_achou)
+                {
+                    this.v_rectangle.X -= p_offsetx;
+                    this.v_rectangle.Y -= p_offsety;
+                }
+            }
+        }
+
         public void Render(System.Drawing.Graphics p_graphics)
         {
             for (int k = 0; k < this.v_animations.Count; k++)
@@ -76,7 +123,8 @@ namespace Spartacus.Game
                 }
             }
 
-            p_graphics.DrawImage(this.v_currentimage, this.v_rectangle);
+            if (this.v_currentimage != null)
+                p_graphics.DrawImage(this.v_currentimage, this.v_rectangle);
         }
     }
 }

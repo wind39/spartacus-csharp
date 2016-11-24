@@ -28,13 +28,53 @@ namespace Spartacus.Game
 {
     public class Keyboard
     {
+        private System.Collections.Generic.List<System.Windows.Forms.Keys> v_keysdown;
+
+        private readonly object v_keysdown_lock;
+
+        private System.Windows.Forms.Timer v_timer;
+
+        public delegate void KeyEvent(System.Windows.Forms.Keys p_key);
+
+        public event KeyEvent KeyDown;
+        public event KeyEvent KeyUp;
+        public event KeyEvent KeyPress;
+
+
+        public Keyboard(Spartacus.Forms.Window p_window)
+        {
+            this.v_keysdown = new System.Collections.Generic.List<System.Windows.Forms.Keys>();
+            this.v_keysdown_lock = new object();
+
+            this.v_timer = new System.Windows.Forms.Timer();
+            this.v_timer.Tick += new System.EventHandler(this.OnTimer);
+
+            ((System.Windows.Forms.Form) p_window.v_control).KeyPreview = true;
+            ((System.Windows.Forms.Form) p_window.v_control).PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.OnPreviewKeyDown);
+            ((System.Windows.Forms.Form) p_window.v_control).KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            ((System.Windows.Forms.Form) p_window.v_control).KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            ((System.Windows.Forms.Form) p_window.v_control).KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressed);
+        }
+
         public Keyboard(System.Windows.Forms.Form p_screen)
         {
+            this.v_keysdown = new System.Collections.Generic.List<System.Windows.Forms.Keys>();
+            this.v_keysdown_lock = new object();
+
+            this.v_timer = new System.Windows.Forms.Timer();
+            this.v_timer.Tick += new System.EventHandler(this.OnTimer);
+
             p_screen.KeyPreview = true;
             p_screen.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.OnPreviewKeyDown);
             p_screen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             p_screen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             p_screen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressed);
+        }
+
+        public void Start(int p_framerate)
+        {
+            this.v_timer.Interval = 1000 / p_framerate;
+            this.v_timer.Start();
         }
 
         private void OnPreviewKeyDown(object sender, System.Windows.Forms.PreviewKeyDownEventArgs e)
@@ -44,18 +84,37 @@ namespace Spartacus.Game
 
         private void OnKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            Console.WriteLine("KeyDown: '" + e.KeyCode + "' down.");
+            if (!this.v_keysdown.Contains(e.KeyCode))
+            {
+                lock (this.v_keysdown_lock)
+                {
+                    this.v_keysdown.Add(e.KeyCode);
+                }
+            }
         }
 
-        private void OnKeyPressed(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void OnTimer(object sender, System.EventArgs e)
         {
-            Console.WriteLine("KeyPressed: '" + e.KeyChar.ToString() + "' pressed.");
+            foreach (System.Windows.Forms.Keys k in this.v_keysdown)
+                this.KeyDown(k);
         }
 
         private void OnKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            Console.WriteLine("KeyUp: '" + e.KeyCode + "' up.");
+            if (this.v_keysdown.Contains(e.KeyCode))
+            {
+                lock (this.v_keysdown_lock)
+                {
+                    this.v_keysdown.Remove(e.KeyCode);
+                }
+            }
+
             e.Handled = true;
+        }
+
+        private void OnKeyPressed(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            this.KeyPress((System.Windows.Forms.Keys)char.ToUpper(e.KeyChar));
         }
     }
 }

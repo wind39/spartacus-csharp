@@ -38,6 +38,25 @@ namespace Spartacus.Game
 
         private System.Windows.Forms.Timer v_timer;
 
+        public delegate void TimeEvent();
+
+        public event TimeEvent Time;
+
+
+        public Level(Spartacus.Forms.Window p_window)
+        {
+            this.v_layers = new System.Collections.Generic.List<Spartacus.Game.Layer>();
+
+            this.v_screen = (System.Windows.Forms.Form) p_window.v_control;
+
+            this.v_context = System.Drawing.BufferedGraphicsManager.Current;
+            this.v_context.MaximumBuffer = new System.Drawing.Size(this.v_screen.Width + 1, this.v_screen.Height + 1);
+
+            this.v_bufferedgraphics = v_context.Allocate(this.v_screen.CreateGraphics(), new System.Drawing.Rectangle(0, 0, this.v_screen.Width, this.v_screen.Height));
+
+            this.v_timer = new System.Windows.Forms.Timer();
+            this.v_timer.Tick += new System.EventHandler(this.OnTimer);
+        }
 
         public Level(System.Windows.Forms.Form p_screen)
         {
@@ -51,7 +70,6 @@ namespace Spartacus.Game
             this.v_bufferedgraphics = v_context.Allocate(this.v_screen.CreateGraphics(), new System.Drawing.Rectangle(0, 0, this.v_screen.Width, this.v_screen.Height));
 
             this.v_timer = new System.Windows.Forms.Timer();
-            this.v_timer.Enabled = true;
             this.v_timer.Tick += new System.EventHandler(this.OnTimer);
         }
 
@@ -75,6 +93,8 @@ namespace Spartacus.Game
                 this.v_layers[k].Render(v_graphics);
 
             this.v_bufferedgraphics.Render(System.Drawing.Graphics.FromHwnd(this.v_screen.Handle));
+
+            this.Time();
         }
     }
 }

@@ -218,159 +218,167 @@ namespace Spartacus.Net
                 {
                     v_line = v_reader.ReadLine();
 
-                    if (v_line.StartsWith("HELO") || v_line.StartsWith("EHLO"))
+                    if (!string.IsNullOrWhiteSpace(v_line))
                     {
-                        if (this.v_credential == null)
+                        if (v_line.StartsWith("HELO") || v_line.StartsWith("EHLO"))
                         {
-                            this.v_credential = new System.Net.NetworkCredential("", "");
+                            if (this.v_credential == null)
+                            {
+                                this.v_credential = new System.Net.NetworkCredential("", "");
 
-                            v_writer.WriteLine("250 AUTH LOGIN");
-                            v_line = v_reader.ReadLine();
+                                v_writer.WriteLine("250 AUTH LOGIN");
+                                v_line = v_reader.ReadLine();
 
-                            v_writer.WriteLine("334 VXNlcm5hbWU6");
-                            this.v_credential.UserName = v_cryptor.Base64Decode(v_reader.ReadLine());
+                                v_writer.WriteLine("334 VXNlcm5hbWU6");
+                                this.v_credential.UserName = v_cryptor.Base64Decode(v_reader.ReadLine());
 
-                            v_writer.WriteLine("334 UGFzc3dvcmQ6");
-                            this.v_credential.Password = v_cryptor.Base64Decode(v_reader.ReadLine());
+                                v_writer.WriteLine("334 UGFzc3dvcmQ6");
+                                this.v_credential.Password = v_cryptor.Base64Decode(v_reader.ReadLine());
 
-                            v_writer.WriteLine("235 OK");
+                                v_writer.WriteLine("235 OK");
+                            }
+                            else
+                                v_writer.WriteLine("250 OK");
                         }
-                        else
+                        else if (v_line.StartsWith("MAIL FROM:"))
+                        {
+                            v_message.From = new System.Net.Mail.MailAddress(v_line.Substring("MAIL FROM:".Length+1, v_line.Length-("MAIL FROM:".Length+2)).Replace("<", "").Replace(">", ""));
                             v_writer.WriteLine("250 OK");
-                    }
-                    else if (v_line.StartsWith("MAIL FROM:"))
-                    {
-                        v_message.From = new System.Net.Mail.MailAddress(v_line.Substring("MAIL FROM:".Length+1, v_line.Length-("MAIL FROM:".Length+2)));
-                        v_writer.WriteLine("250 OK");
-                    }
-                    else if (v_line.StartsWith("RCPT TO:"))
-                    {
-                        v_message.To.Add(new System.Net.Mail.MailAddress(v_line.Substring("RCPT TO:".Length+1, v_line.Length-("RCPT TO:".Length+2))));
-                        v_writer.WriteLine("250 OK");
-                    }
-                    else if (v_line == "DATA")
-                    {
-                        v_writer.WriteLine("354 Start input, end data with <CRLF>.<CRLF>");
-
-                        v_data = new System.Text.StringBuilder();
-
-                        v_line = v_reader.ReadLine();
-
-                        while (v_line != null && v_line != ".")
+                        }
+                        else if (v_line.StartsWith("RCPT TO:"))
                         {
-                            if (v_line.StartsWith("Subject: "))
-                                v_message.Subject = v_line.Substring("Subject: ".Length);
+                            v_message.To.Add(new System.Net.Mail.MailAddress(v_line.Substring("RCPT TO:".Length+1, v_line.Length-("RCPT TO:".Length+2)).Replace("<", "").Replace(">", "")));
+                            v_writer.WriteLine("250 OK");
+                        }
+                        else if (v_line == "DATA")
+                        {
+                            v_writer.WriteLine("354 Start input, end data with <CRLF>.<CRLF>");
 
-                            v_data.AppendLine(v_line);
+                            v_data = new System.Text.StringBuilder();
+
                             v_line = v_reader.ReadLine();
-                        }
 
-                        v_message.Body = v_data.ToString();
-
-                        // logando mensagem
-                        if (this.v_log)
-                        {
-                            Console.WriteLine("===============================================================================");
-                            Console.WriteLine("Received ­email");
-                            Console.WriteLine("-------------------------------------------------------------------------------");
-                            Console.WriteLine("User: {0}", this.v_credential.UserName);
-                            Console.WriteLine("Password: {0}", this.v_credential.Password);
-                            Console.WriteLine("-------------------------------------------------------------------------------");
-                            Console.WriteLine("From: " + v_message.From);
-                            Console.Write("To: ");
-                            foreach (System.Net.Mail.MailAddress m in v_message.To)
-                                Console.Write("{0} ", m.Address);
-                            Console.WriteLine();
-                            Console.WriteLine("Subject: " + v_message.Subject);
-                            if (this.v_logeml)
+                            while (v_line != null && v_line != ".")
                             {
+                                if (v_line.StartsWith("Subject: "))
+                                    v_message.Subject = v_line.Substring("Subject: ".Length);
+
+                                v_data.AppendLine(v_line);
+                                v_line = v_reader.ReadLine();
+                            }
+
+                            v_message.Body = v_data.ToString();
+
+                            // logando mensagem
+                            if (this.v_log)
+                            {
+                                Console.WriteLine("===============================================================================");
+                                Console.WriteLine("Received ­email");
                                 Console.WriteLine("-------------------------------------------------------------------------------");
-                                Console.WriteLine(v_message.Body);
-                            }
-                            Console.WriteLine("===============================================================================");
-                        }
-
-                        // redirecionando mensagem
-                        if (this.v_redirect)
-                        {
-                            if (this.v_log)
-                                Console.Write("Sending message to {0}:{1}... ", this.v_realhost, this.v_realport);
-
-                            this.v_mailclient.Send(this.v_realhost, this.v_realport, v_credential, v_message.Body);
-
-                            if (this.v_log)
-                                Console.WriteLine("OK");
-                        }
-
-                        // inserindo enderecos na whitelist
-                        if (this.v_whitelist)
-                        {
-                            if (this.v_log)
-                                Console.Write("Updating whitelist... ");
-
-                            v_inserted = 0;
-                            this.v_database.Open();
-                            v_table = this.v_database.Query(this.v_select, "WHITELIST");
-
-                            k = 0;
-                            v_achou = false;
-                            while (k < v_table.Rows.Count && !v_achou)
-                            {
-                                if (v_table.Rows[k][0].ToString() == v_message.From.Address)
-                                    v_achou = true;
-                                else
-                                    k++;
-                            }
-                            if (!v_achou)
-                            {
-                                this.v_insert.SetValue(0, v_message.From.Address);
-                                this.v_database.Execute(this.v_insert.GetUpdatedText());
-                                v_inserted++;
-                            }
-
-                            foreach (System.Net.Mail.MailAddress m in v_message.To)
-                            {
-                                if (m.Address != v_message.From.Address)
+                                Console.WriteLine("User: {0}", this.v_credential.UserName);
+                                Console.WriteLine("Password: {0}", this.v_credential.Password);
+                                Console.WriteLine("-------------------------------------------------------------------------------");
+                                Console.WriteLine("From: " + v_message.From);
+                                Console.Write("To: ");
+                                foreach (System.Net.Mail.MailAddress m in v_message.To)
+                                    Console.Write("{0} ", m.Address);
+                                Console.WriteLine();
+                                Console.WriteLine("Subject: " + v_message.Subject);
+                                if (this.v_logeml)
                                 {
-                                    k = 0;
-                                    v_achou = false;
-                                    while (k < v_table.Rows.Count && !v_achou)
+                                    Console.WriteLine("-------------------------------------------------------------------------------");
+                                    Console.WriteLine(v_message.Body);
+                                }
+                                Console.WriteLine("===============================================================================");
+                            }
+
+                            // redirecionando mensagem
+                            if (this.v_redirect)
+                            {
+                                if (this.v_log)
+                                    Console.Write("Sending message to {0}:{1}... ", this.v_realhost, this.v_realport);
+
+                                this.v_mailclient.Send(this.v_realhost, this.v_realport, v_credential, v_message.Body);
+
+                                if (this.v_log)
+                                    Console.WriteLine("OK");
+                            }
+
+                            // inserindo enderecos na whitelist
+                            if (this.v_whitelist)
+                            {
+                                if (this.v_log)
+                                    Console.Write("Updating whitelist... ");
+
+                                v_inserted = 0;
+                                this.v_database.Open();
+                                v_table = this.v_database.Query(this.v_select, "WHITELIST");
+
+                                k = 0;
+                                v_achou = false;
+                                while (k < v_table.Rows.Count && !v_achou)
+                                {
+                                    if (v_table.Rows[k][0].ToString() == v_message.From.Address)
+                                        v_achou = true;
+                                    else
+                                        k++;
+                                }
+                                if (!v_achou)
+                                {
+                                    this.v_insert.SetValue(0, v_message.From.Address);
+                                    this.v_database.Execute(this.v_insert.GetUpdatedText());
+                                    v_inserted++;
+                                }
+
+                                foreach (System.Net.Mail.MailAddress m in v_message.To)
+                                {
+                                    if (m.Address != v_message.From.Address)
                                     {
-                                        if (v_table.Rows[k][0].ToString() == m.Address)
-                                            v_achou = true;
-                                        else
-                                            k++;
-                                    }
-                                    if (!v_achou)
-                                    {
-                                        this.v_insert.SetValue(0, m.Address);
-                                        this.v_database.Execute(this.v_insert.GetUpdatedText());
-                                        v_inserted++;
+                                        k = 0;
+                                        v_achou = false;
+                                        while (k < v_table.Rows.Count && !v_achou)
+                                        {
+                                            if (v_table.Rows[k][0].ToString() == m.Address)
+                                                v_achou = true;
+                                            else
+                                                k++;
+                                        }
+                                        if (!v_achou)
+                                        {
+                                            this.v_insert.SetValue(0, m.Address);
+                                            this.v_database.Execute(this.v_insert.GetUpdatedText());
+                                            v_inserted++;
+                                        }
                                     }
                                 }
+
+                                this.v_database.Close();
+                                if (this.v_log)
+                                    Console.WriteLine("OK, {0} addresses inserted on whitelist.", v_inserted);
                             }
 
-                            this.v_database.Close();
                             if (this.v_log)
-                                Console.WriteLine("OK, {0} addresses inserted on whitelist.", v_inserted);
+                                Console.WriteLine();
+
+                            v_writer.WriteLine("250 OK");
                         }
-
-                        if (this.v_log)
-                            Console.WriteLine();
-
-                        v_writer.WriteLine("250 OK");
-                    }
-                    else if (v_line == "QUIT")
-                    {
-                        v_writer.WriteLine("250 OK");
-                        v_reader = null;
+                        else if (v_line == "QUIT")
+                        {
+                            v_writer.WriteLine("250 OK");
+                            v_reader = null;
+                        }
+                        else
+                        {
+                            if (this.v_log)
+                                Console.WriteLine("UNHANDLED: {0}", v_line);
+                            v_writer.WriteLine("250 OK");
+                        }
                     }
                     else
                     {
                         if (this.v_log)
-                            Console.WriteLine("UNHANDLED: {0}", v_line);
+                            Console.WriteLine("EMPTY: {0}", v_line);
                         v_writer.WriteLine("250 OK");
-                        break;
                     }
                 }
             }

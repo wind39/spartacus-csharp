@@ -98,6 +98,16 @@ namespace Spartacus.Net
         /// </summary>
         private System.Threading.Thread v_threadcheck;
 
+        /// <summary>
+        /// Thread para limpeza de clientes que já foram desconectados.
+        /// </summary>
+        private System.Threading.Thread v_threadclean;
+
+        /// <summary>
+        /// Semáforo para controle de pool de clientes.
+        /// </summary>
+        private readonly object v_lock;
+
 
         /// <summary>
         /// Inicializa uma nova instância da classe <see cref="Spartacus.Net.Server"/>.
@@ -123,6 +133,9 @@ namespace Spartacus.Net
 
             this.v_threadaccept = new System.Threading.Thread(this.ThreadAccept);
             this.v_threadcheck = new System.Threading.Thread(this.ThreadCheck);
+            this.v_threadclean = new System.Threading.Thread(this.ThreadClean);
+
+            this.v_lock = new object();
         }
 
         /// <summary>
@@ -136,6 +149,7 @@ namespace Spartacus.Net
 
             this.v_threadaccept.Start();
             this.v_threadcheck.Start();
+            this.v_threadclean.Start();
         }
 
         /// <summary>
@@ -147,17 +161,20 @@ namespace Spartacus.Net
             {
                 try
                 {
-                    this.v_sockets.Add(this.v_listener.AcceptTcpClient());
-                    this.v_streams.Add(this.v_sockets[this.v_numclients].GetStream());
+                    lock(this.v_lock)
+                    {
+                        this.v_sockets.Add(this.v_listener.AcceptTcpClient());
+                        this.v_streams.Add(this.v_sockets[this.v_numclients].GetStream());
 
-                    this.v_clienthandlers.Add(new Spartacus.Net.ClientHandler(
-                        this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[0],
-                        int.Parse(this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[1])
-                    ));
+                        this.v_clienthandlers.Add(new Spartacus.Net.ClientHandler(
+                            this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[0],
+                            int.Parse(this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[1])
+                        ));
 
-                    this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients].v_ip, this.v_clienthandlers[this.v_numclients].v_port, this.v_numclients);
+                        this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients].v_ip, this.v_clienthandlers[this.v_numclients].v_port, this.v_numclients);
 
-                    this.v_numclients++;
+                        this.v_numclients++;
+                    }
                 }
                 catch (System.Exception e)
                 {
@@ -192,10 +209,48 @@ namespace Spartacus.Net
                         }
                     }
                 }
+
                 System.Threading.Thread.Sleep(100);
             }
         }
 
+        /// <summary>
+        /// Thread para limpeza de clientes que já foram desconectados.
+        /// </summary>
+        private void ThreadClean()
+        {
+            bool v_achou;
+            int k;
+
+            while (this.v_status == Spartacus.Net.ServerStatus.LISTENING)
+            {
+                v_achou = false;
+                k = this.v_numclients - 1;
+                while (k >= 0 && !v_achou)
+                {
+                    if (!this.v_clienthandlers[k].v_isconnected)
+                    {
+                        lock (this.v_lock)
+                        {
+                            this.v_sockets.RemoveAt(k);
+                            this.v_streams.RemoveAt(k);
+                            this.v_clienthandlers.RemoveAt(k);
+                            this.v_numclients--;
+                        }
+                        k--;
+                    }
+                    else
+                        v_achou = true;
+                }
+
+                System.Threading.Thread.Sleep(10000);
+            }
+        }
+
+        /// <summary>
+        /// Encerra a conexão com um cliente.
+        /// </summary>
+        /// <param name="p_clientid">Código do cliente.</param>
         public void StopClient(int p_clientid)
         {
             base.Stop(p_clientid);

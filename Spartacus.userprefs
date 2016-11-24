@@ -1,10 +1,12 @@
-﻿<Properties StartupConfiguration="{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5}|Default" GitUserInfo="UsingGIT" StartupItem="Tools/ReportManager/ReportManager.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Net.MailClient.cs">
+﻿<Properties StartupConfiguration="{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5}|Default" GitUserInfo="UsingGIT" StartupItem="Tools/Cryptor/Cryptor.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/Pong/Program.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Net.Server.cs" Line="202" Column="69" />
-      <File FileName="Spartacus/Spartacus.Net.FakeSmtp.cs" Line="53" Column="107" />
-      <File FileName="Spartacus/Spartacus.Net.MailClient.cs" Line="49" Column="33" />
-      <File FileName="Spartacus/Spartacus.Utils.Cryptor.cs" Line="563" Column="13" />
+      <File FileName="Spartacus/Spartacus.Game.Level.cs" Line="100" Column="2" />
+      <File FileName="Spartacus/Spartacus.Game.Layer.cs" Line="44" Column="10" />
+      <File FileName="Spartacus/Spartacus.Game.Object.cs" Line="115" Column="10" />
+      <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="117" Column="13" />
+      <File FileName="Spartacus/Spartacus.Game.Text.cs" Line="48" Column="107" />
+      <File FileName="Tools/Pong/Program.cs" Line="27" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

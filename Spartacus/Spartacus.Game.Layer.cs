@@ -30,21 +30,44 @@ namespace Spartacus.Game
     {
 		public System.Collections.Generic.List<Spartacus.Game.Object> v_objects;
 
+        public System.Collections.Generic.List<Spartacus.Game.Text> v_texts;
+
+        public delegate void CollisionEvent(Spartacus.Game.Object p_object1, Spartacus.Game.Object p_object2);
+
+        public event CollisionEvent Collision;
+
 
         public Layer()
         {
 			this.v_objects = new System.Collections.Generic.List<Spartacus.Game.Object>();
+            this.v_texts = new System.Collections.Generic.List<Spartacus.Game.Text>();
         }
 
         public void AddObject(Spartacus.Game.Object p_object)
         {
+            p_object.SetLayer(this);
             this.v_objects.Add(p_object);
+        }
+
+        public void AddText(Spartacus.Game.Text p_text)
+        {
+            this.v_texts.Add(p_text);
         }
 
         public void Render(System.Drawing.Graphics p_graphics)
         {
+            for (int i = 0; i < this.v_objects.Count - 1; i++)
+            {
+                for (int j = i + 1; j < this.v_objects.Count; j++)
+                    if (this.v_objects[i].v_rectangle.IntersectsWith(this.v_objects[j].v_rectangle))
+                        this.Collision(this.v_objects[i], this.v_objects[j]);
+            }
+
             for (int k = 0; k < this.v_objects.Count; k++)
                 this.v_objects[k].Render(p_graphics);
+
+            for (int k = 0; k < this.v_texts.Count; k++)
+                this.v_texts[k].Render(p_graphics);
         }
     }
 }

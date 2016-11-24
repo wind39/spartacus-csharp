@@ -340,6 +340,7 @@
     <Compile Include="Spartacus.Game.Object.cs" />
     <Compile Include="Spartacus.Net.FakeSmtp.cs" />
     <Compile Include="Spartacus.Net.MailClient.cs" />
+    <Compile Include="Spartacus.Game.Text.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
