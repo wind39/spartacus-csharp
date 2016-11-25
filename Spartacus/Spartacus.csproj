@@ -332,6 +332,7 @@
     <Compile Include="Spartacus.Net.MailClient.cs" />
     <Compile Include="Spartacus.Game.Text.cs" />
     <Compile Include="Spartacus.Game.Keys.cs" />
+    <Compile Include="Spartacus.Database.Pollydb.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -384,8 +385,6 @@
     <None Include="lib\access\IKVM.OpenJDK.XML.Bind.dll" />
     <None Include="lib\access\IKVM.OpenJDK.XML.Parse.dll" />
     <None Include="dist\Spartacus.dll.mdb" />
-    <None Include="icon\pollydb.png" />
-    <None Include="icon\pollydb_extended.png" />
     <None Include="lib\sqlce\windows_x64\msvcr90.dll" />
     <None Include="lib\sqlce\windows_x64\sqlceca40.dll" />
     <None Include="lib\sqlce\windows_x64\sqlcecompact40.dll" />
@@ -442,6 +441,11 @@
     <None Include="lib\web\js\notify.min.js" />
     <None Include="lib\web\js\pikaday.js" />
     <None Include="lib\web\lang\portuguese_brasil.json" />
+    <None Include="lib\EPPlus.dll" />
+    <None Include="lib\MailKit.dll" />
+    <None Include="lib\MimeKit.dll" />
+    <None Include="icon\pollydb_128x128.png" />
+    <None Include="icon\pollydb_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

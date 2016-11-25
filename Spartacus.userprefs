@@ -1,8 +1,11 @@
 ﻿<Properties StartupConfiguration="{C74FAFBD-42D9-4A11-A366-DEBA8F6735E6}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/Pong/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/Pong/Properties/AssemblyInfo.cs">
     <Files>
-      <File FileName="Tools/Pong/Program.cs" Line="97" Column="29" />
-      <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="108" Column="50" />
+      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="352" Column="9" />
+      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="1271" Column="70" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Pollydb.cs" Line="369" Column="35" />
+      <File FileName="Tools/Pong/Properties/AssemblyInfo.cs" Line="20" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
