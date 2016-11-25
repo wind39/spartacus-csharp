@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.15: Criada enum Spartacus.Game.Keys
 0.43.14: Melhorias no Spartacus.Game e criado jogo Pong
 0.43.13: Melhorias no Spartacus.Net.FakeSmtp
 0.43.12: Spartacus.Net: Implementadas classes FakeSmtp e MailClient

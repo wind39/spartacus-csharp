@@ -1,4 +1,4 @@
-﻿/*
+/*
 The MIT License (MIT)
 
 Copyright (c) 2014-2016 William Ivanski
@@ -26,15 +26,15 @@ using System;
 
 namespace Spartacus.Game
 {
-    public class Keyboard
+	public class Keyboard
     {
-        private System.Collections.Generic.List<System.Windows.Forms.Keys> v_keysdown;
+        private System.Collections.Generic.List<Spartacus.Game.Keys> v_keysdown;
 
         private readonly object v_keysdown_lock;
 
         private System.Windows.Forms.Timer v_timer;
 
-        public delegate void KeyEvent(System.Windows.Forms.Keys p_key);
+        public delegate void KeyEvent(Spartacus.Game.Keys p_key);
 
         public event KeyEvent KeyDown;
         public event KeyEvent KeyUp;
@@ -43,7 +43,7 @@ namespace Spartacus.Game
 
         public Keyboard(Spartacus.Forms.Window p_window)
         {
-            this.v_keysdown = new System.Collections.Generic.List<System.Windows.Forms.Keys>();
+            this.v_keysdown = new System.Collections.Generic.List<Spartacus.Game.Keys>();
             this.v_keysdown_lock = new object();
 
             this.v_timer = new System.Windows.Forms.Timer();
@@ -58,7 +58,7 @@ namespace Spartacus.Game
 
         public Keyboard(System.Windows.Forms.Form p_screen)
         {
-            this.v_keysdown = new System.Collections.Generic.List<System.Windows.Forms.Keys>();
+            this.v_keysdown = new System.Collections.Generic.List<Spartacus.Game.Keys>();
             this.v_keysdown_lock = new object();
 
             this.v_timer = new System.Windows.Forms.Timer();
@@ -84,28 +84,28 @@ namespace Spartacus.Game
 
         private void OnKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (!this.v_keysdown.Contains(e.KeyCode))
+			if (!this.v_keysdown.Contains((Spartacus.Game.Keys)e.KeyCode))
             {
                 lock (this.v_keysdown_lock)
                 {
-                    this.v_keysdown.Add(e.KeyCode);
+					this.v_keysdown.Add((Spartacus.Game.Keys)e.KeyCode);
                 }
             }
         }
 
         private void OnTimer(object sender, System.EventArgs e)
         {
-            foreach (System.Windows.Forms.Keys k in this.v_keysdown)
+            foreach (Spartacus.Game.Keys k in this.v_keysdown)
                 this.KeyDown(k);
         }
 
         private void OnKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (this.v_keysdown.Contains(e.KeyCode))
+			if (this.v_keysdown.Contains((Spartacus.Game.Keys)e.KeyCode))
             {
                 lock (this.v_keysdown_lock)
                 {
-                    this.v_keysdown.Remove(e.KeyCode);
+					this.v_keysdown.Remove((Spartacus.Game.Keys)e.KeyCode);
                 }
             }
 
@@ -114,7 +114,7 @@ namespace Spartacus.Game
 
         private void OnKeyPressed(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            this.KeyPress((System.Windows.Forms.Keys)char.ToUpper(e.KeyChar));
+            this.KeyPress((Spartacus.Game.Keys)char.ToUpper(e.KeyChar));
         }
     }
 }

@@ -1,18 +1,16 @@
-﻿<Properties StartupConfiguration="{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5}|Default" GitUserInfo="UsingGIT" StartupItem="Tools/Cryptor/Cryptor.csproj">
+﻿<Properties StartupConfiguration="{C74FAFBD-42D9-4A11-A366-DEBA8F6735E6}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="Tools/Pong/Program.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Game.Level.cs" Line="100" Column="2" />
-      <File FileName="Spartacus/Spartacus.Game.Layer.cs" Line="44" Column="10" />
-      <File FileName="Spartacus/Spartacus.Game.Object.cs" Line="115" Column="10" />
-      <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="117" Column="13" />
-      <File FileName="Spartacus/Spartacus.Game.Text.cs" Line="48" Column="107" />
-      <File FileName="Tools/Pong/Program.cs" Line="27" Column="31" />
+      <File FileName="Tools/Pong/Program.cs" Line="97" Column="29" />
+      <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="108" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Tools.Cryptor PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Tools.Pong PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Tools.ReportManager PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

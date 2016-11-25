@@ -100,22 +100,22 @@ namespace Spartacus.Tools.Pong
             v_window.Run();
         }
 
-        private void OnKeyDown(System.Windows.Forms.Keys p_key)
+        private void OnKeyDown(Spartacus.Game.Keys p_key)
         {
             if (!v_paused)
             {
                 switch (p_key)
                 {
-                    case System.Windows.Forms.Keys.Up:
+                    case Spartacus.Game.Keys.Up:
                         v_racket_right.Move(0, -10, true);
                         break;
-                    case System.Windows.Forms.Keys.Down:
+                    case Spartacus.Game.Keys.Down:
                         v_racket_right.Move(0, 10, true);
                         break;
-                    case System.Windows.Forms.Keys.Q:
+                    case Spartacus.Game.Keys.A:
                         v_racket_left.Move(0, -10, true);
                         break;
-                    case System.Windows.Forms.Keys.X:
+                    case Spartacus.Game.Keys.Z:
                         v_racket_left.Move(0, 10, true);
                         break;
                     default:
@@ -124,9 +124,9 @@ namespace Spartacus.Tools.Pong
             }
         }
 
-        private void OnKeyPress(System.Windows.Forms.Keys p_key)
+        private void OnKeyPress(Spartacus.Game.Keys p_key)
         {
-            if (p_key == System.Windows.Forms.Keys.Space)
+            if (p_key == Spartacus.Game.Keys.Space)
                 v_paused = ! v_paused;
 
             if (v_paused)

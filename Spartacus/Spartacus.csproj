@@ -24,11 +24,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="AfterBuild" command="${ProjectDir}/dist/merge_debug.sh" workingdir="${ProjectDir}" externalConsole="True" />
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -38,11 +33,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\Spartacus.xml</DocumentationFile>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="AfterBuild" command="${ProjectDir}/dist/merge_release.sh" workingdir="${ProjectDir}" externalConsole="True" />
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -341,6 +331,7 @@
     <Compile Include="Spartacus.Net.FakeSmtp.cs" />
     <Compile Include="Spartacus.Net.MailClient.cs" />
     <Compile Include="Spartacus.Game.Text.cs" />
+    <Compile Include="Spartacus.Game.Keys.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
