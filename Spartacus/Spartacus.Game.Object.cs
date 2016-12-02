@@ -40,6 +40,26 @@ namespace Spartacus.Game
 
         public Spartacus.Game.Layer v_layer;
 
+		private bool v_ismoving;
+		private int v_mov_numframes;
+		private int v_mov_curframe;
+		private int v_mov_stepx;
+		private int v_mov_stepy;
+		private int v_mov_prevx;
+		private int v_mov_prevy;
+		private int v_mov_offsetx;
+		private int v_mov_offsety;
+
+
+		public Object(int p_x, int p_y, int p_width, int p_height)
+		{
+			this.v_name = null;
+			this.v_rectangle = new System.Drawing.Rectangle(p_x, p_y, p_width, p_height);
+			this.v_images = new System.Collections.Generic.List<System.Drawing.Image>();
+			this.v_currentimage = null;
+			this.v_animations = new System.Collections.Generic.List<Spartacus.Game.Animation>();
+			this.v_ismoving = false;
+		}
 
         public Object(string p_name, int p_x, int p_y, int p_width, int p_height)
         {
@@ -48,6 +68,7 @@ namespace Spartacus.Game
 			this.v_images = new System.Collections.Generic.List<System.Drawing.Image>();
             this.v_currentimage = null;
 			this.v_animations = new System.Collections.Generic.List<Spartacus.Game.Animation>();
+			this.v_ismoving = false;
         }
 
         public void AddImage(string p_filename)
@@ -63,6 +84,29 @@ namespace Spartacus.Game
             if (this.v_currentimage == null)
                 this.v_currentimage = this.v_images[0];
         }
+
+		public void AddImage(string p_filename, bool p_transparent)
+		{
+			if (p_transparent)
+			{
+				System.Drawing.Bitmap v_image = new System.Drawing.Bitmap(p_filename);
+				System.Drawing.Color v_color;
+				for (int i = 0; i < v_image.Width; i++)
+				{
+					for (int j = 0; j < v_image.Height; j++)
+					{
+						v_color = v_image.GetPixel(i, j);
+						if (v_color.R >= 150 && v_color.G <= 100 && v_color.B >= 150)
+							v_image.SetPixel(i, j, System.Drawing.Color.FromArgb(0, 0, 0, 0));
+					}
+				}
+				this.v_images.Add(v_image);
+				if (this.v_currentimage == null)
+					this.v_currentimage = this.v_images[0];
+			}
+			else
+				this.AddImage(p_filename);
+		}
 
         public void AddAnimation(Spartacus.Game.Animation p_animation)
         {
@@ -111,8 +155,32 @@ namespace Spartacus.Game
             }
         }
 
+		public void Move(int p_offsetx, int p_offsety, int p_numframes)
+		{
+			this.v_mov_numframes = p_numframes;
+			this.v_mov_stepx = p_offsetx / p_numframes;
+			this.v_mov_stepy = p_offsety / p_numframes;
+			this.v_mov_curframe = 0;
+			this.v_mov_prevx = this.v_rectangle.X;
+			this.v_mov_prevy = this.v_rectangle.Y;
+			this.v_mov_offsetx = p_offsetx;
+			this.v_mov_offsety = p_offsety;
+			this.v_ismoving = true;
+		}
+
         public void Render(System.Drawing.Graphics p_graphics)
         {
+			if (this.v_ismoving)
+			{
+				this.Move(this.v_mov_stepx, this.v_mov_stepy);
+				this.v_mov_curframe++;
+				if (this.v_mov_curframe == this.v_mov_numframes)
+				{
+					this.v_ismoving = false;
+					this.SetPosition(this.v_mov_prevx+this.v_mov_offsetx, this.v_mov_prevy+this.v_mov_offsety);
+				}
+			}
+
             for (int k = 0; k < this.v_animations.Count; k++)
             {
                 if (this.v_animations[k].v_isrunning)

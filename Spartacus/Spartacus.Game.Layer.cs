@@ -54,7 +54,7 @@ namespace Spartacus.Game
             this.v_texts.Add(p_text);
         }
 
-        public void Render(System.Drawing.Graphics p_graphics)
+		public void Render(System.Drawing.Graphics p_graphics)
         {
             for (int i = 0; i < this.v_objects.Count - 1; i++)
             {

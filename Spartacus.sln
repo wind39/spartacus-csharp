@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptor", "Tools\Cryptor\Cr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong", "Tools\Pong\Pong.csproj", "{C74FAFBD-42D9-4A11-A366-DEBA8F6735E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverLord", "Tools\OverLord\OverLord.csproj", "{AD387A59-0878-4894-8A7D-7CA28410B134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,11 +43,16 @@ Global
 		{E6BCB8AC-7A6C-4DC5-8989-27D1908B923E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6BCB8AC-7A6C-4DC5-8989-27D1908B923E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6BCB8AC-7A6C-4DC5-8989-27D1908B923E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD387A59-0878-4894-8A7D-7CA28410B134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD387A59-0878-4894-8A7D-7CA28410B134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD387A59-0878-4894-8A7D-7CA28410B134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD387A59-0878-4894-8A7D-7CA28410B134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5} = {C18F2187-EA7E-420E-88E0-86822852E26B}
 		{E6BCB8AC-7A6C-4DC5-8989-27D1908B923E} = {C18F2187-EA7E-420E-88E0-86822852E26B}
 		{C74FAFBD-42D9-4A11-A366-DEBA8F6735E6} = {C18F2187-EA7E-420E-88E0-86822852E26B}
+		{AD387A59-0878-4894-8A7D-7CA28410B134} = {C18F2187-EA7E-420E-88E0-86822852E26B}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 

@@ -1,0 +1,6 @@
+/home/william/Documents/Projects/spartacus/Tools/OverLord/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Tools/OverLord/bin/Debug/OverLord.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/OverLord/bin/Debug/OverLord.exe
+/home/william/Documents/Projects/spartacus/Tools/OverLord/obj/Debug/OverLord.exe
+/home/william/Documents/Projects/spartacus/Tools/OverLord/obj/Debug/OverLord.exe.mdb
+/home/william/Documents/Projects/spartacus/Tools/OverLord/bin/Debug/Spartacus.dll

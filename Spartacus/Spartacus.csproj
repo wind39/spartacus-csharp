@@ -461,5 +461,6 @@
     <Folder Include="lib\sqlce\windows_x64\" />
     <Folder Include="lib\fbembed\" />
     <Folder Include="lib\fbembed\windows_x86\" />
+    <Folder Include="npython\" />
   </ItemGroup>
 </Project>

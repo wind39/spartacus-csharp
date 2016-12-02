@@ -36,18 +36,15 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="Spartacus">
+      <HintPath>..\..\Spartacus\dist\Spartacus.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\..\Spartacus\Spartacus.csproj">
-      <Project>{A8064BFE-DDEC-4DE2-82C4-EE36348ACBA8}</Project>
-      <Name>Spartacus</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="bin\Release\ball.png" />
     <None Include="bin\Release\Pong.exe" />

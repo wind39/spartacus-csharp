@@ -34,6 +34,8 @@ namespace Spartacus.Game
 
     public class Animation
     {
+		public string v_name;
+
         public bool v_circular;
 
 		public System.Collections.Generic.List<Spartacus.Game.AnimationStep> v_steps;
@@ -47,10 +49,19 @@ namespace Spartacus.Game
 
         public Animation(bool p_circular)
         {
+			this.v_name = null;
             this.v_circular = p_circular;
             this.v_steps = new System.Collections.Generic.List<Spartacus.Game.AnimationStep>();
             this.v_isrunning = false;
         }
+
+		public Animation(string p_name, bool p_circular)
+		{
+			this.v_name = p_name;
+			this.v_circular = p_circular;
+			this.v_steps = new System.Collections.Generic.List<Spartacus.Game.AnimationStep>();
+			this.v_isrunning = false;
+		}
 
         public void AddStep(int p_imageindex, int p_relativeframe)
         {
@@ -78,7 +89,7 @@ namespace Spartacus.Game
         {
             if (this.v_isrunning)
             {
-                this.v_currentframe++;
+				this.v_currentframe++;
 
                 if (this.v_currentframe == this.v_steps[this.v_currentstep].v_relativeframe)
                 {

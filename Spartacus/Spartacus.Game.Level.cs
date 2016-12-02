@@ -84,17 +84,17 @@ namespace Spartacus.Game
             this.v_timer.Start();
         }
 
-        private void OnTimer(object sender, System.EventArgs e)
+		private void OnTimer(object sender, System.EventArgs e)
         {
-            System.Drawing.Graphics v_graphics = this.v_bufferedgraphics.Graphics;
-            v_graphics.Clear(System.Drawing.Color.Black);
+			System.Drawing.Graphics v_graphics = this.v_bufferedgraphics.Graphics;
+			v_graphics.Clear(System.Drawing.Color.Black);
 
-            for (int k = 0; k < this.v_layers.Count; k++)
-                this.v_layers[k].Render(v_graphics);
+			for (int k = 0; k < this.v_layers.Count; k++)
+				this.v_layers[k].Render(v_graphics);
 
-            this.v_bufferedgraphics.Render(System.Drawing.Graphics.FromHwnd(this.v_screen.Handle));
+			this.v_bufferedgraphics.Render(System.Drawing.Graphics.FromHwnd(this.v_screen.Handle));
 
-            this.Time();
+			this.Time();
         }
     }
 }
