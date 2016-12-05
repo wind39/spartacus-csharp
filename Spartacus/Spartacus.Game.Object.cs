@@ -40,6 +40,8 @@ namespace Spartacus.Game
 
         public Spartacus.Game.Layer v_layer;
 
+		public System.Drawing.Pen v_border;
+
 		private bool v_ismoving;
 		private int v_mov_numframes;
 		private int v_mov_curframe;
@@ -59,6 +61,7 @@ namespace Spartacus.Game
 			this.v_currentimage = null;
 			this.v_animations = new System.Collections.Generic.List<Spartacus.Game.Animation>();
 			this.v_ismoving = false;
+			this.v_border = null;
 		}
 
         public Object(string p_name, int p_x, int p_y, int p_width, int p_height)
@@ -69,6 +72,7 @@ namespace Spartacus.Game
             this.v_currentimage = null;
 			this.v_animations = new System.Collections.Generic.List<Spartacus.Game.Animation>();
 			this.v_ismoving = false;
+			this.v_border = null;
         }
 
         public void AddImage(string p_filename)
@@ -193,6 +197,31 @@ namespace Spartacus.Game
 
             if (this.v_currentimage != null)
                 p_graphics.DrawImage(this.v_currentimage, this.v_rectangle);
+			this.DrawBorder(p_graphics);
         }
+
+		public void SetBorder(System.Drawing.Color p_color, int p_width)
+		{
+			this.v_border = new System.Drawing.Pen(p_color, p_width);
+		}
+
+		public void RemoveBorder()
+		{
+			this.v_border = null;
+		}
+
+		private void DrawBorder(System.Drawing.Graphics p_graphics)
+		{
+			if (this.v_border != null)
+			{
+				System.Drawing.Rectangle r = new System.Drawing.Rectangle(
+					this.v_rectangle.X,
+					this.v_rectangle.Y,
+					this.v_rectangle.Width,
+					this.v_rectangle.Height
+				);
+				p_graphics.DrawRectangle(this.v_border, r);
+			}
+		}
     }
 }

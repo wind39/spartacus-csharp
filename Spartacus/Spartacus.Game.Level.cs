@@ -56,6 +56,8 @@ namespace Spartacus.Game
 
             this.v_timer = new System.Windows.Forms.Timer();
             this.v_timer.Tick += new System.EventHandler(this.OnTimer);
+
+			((System.Windows.Forms.Form) p_window.v_control).MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
         }
 
         public Level(System.Windows.Forms.Form p_screen)
@@ -71,6 +73,8 @@ namespace Spartacus.Game
 
             this.v_timer = new System.Windows.Forms.Timer();
             this.v_timer.Tick += new System.EventHandler(this.OnTimer);
+
+			p_screen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClick);
         }
 
         public void AddLayer(Spartacus.Game.Layer p_layer)
@@ -96,5 +100,17 @@ namespace Spartacus.Game
 
 			this.Time();
         }
+
+		private void OnMouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			for (int i = 0; i < this.v_layers.Count; i++)
+			{
+				for (int j = 0; j < this.v_layers[i].v_objects.Count; j++)
+				{
+					if (this.v_layers[i].v_objects[j].v_rectangle.Contains(e.X, e.Y))
+						this.v_layers[i].FireMouseClick(this.v_layers[i].v_objects[j]);
+				}
+			}
+		}
     }
 }

@@ -36,6 +36,10 @@ namespace Spartacus.Game
 
         public event CollisionEvent Collision;
 
+		public delegate void MouseEvent(Spartacus.Game.Object p_object);
+
+		public event MouseEvent MouseClick;
+
 
         public Layer()
         {
@@ -69,5 +73,10 @@ namespace Spartacus.Game
             for (int k = 0; k < this.v_texts.Count; k++)
                 this.v_texts[k].Render(p_graphics);
         }
+
+		public void FireMouseClick(Spartacus.Game.Object p_object)
+		{
+			this.MouseClick(p_object);
+		}
     }
 }
