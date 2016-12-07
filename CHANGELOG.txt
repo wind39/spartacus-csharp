@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.17: Spartacus.Game funcional para jogos 2D baseados em tiles
+         Removendo chamada de Command.Cancel no Spartacus.Database.Mysql
 0.43.16: Reinserida classe Spartacus.Database.Pollydb com suporte a leitura
 0.43.15: Criada enum Spartacus.Game.Keys
 0.43.14: Melhorias no Spartacus.Game e criado jogo Pong

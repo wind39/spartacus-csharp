@@ -58,6 +58,13 @@ namespace Spartacus.Tools.OverLord
 
 		public Direction v_direction;
 
+		public string v_name;
+		public int v_health;
+		public int v_actions;
+		public int v_stamina;
+		public int v_ammo;
+		public int v_grenades;
+
 		private System.Random v_random;
 
 		/*
@@ -126,6 +133,12 @@ namespace Spartacus.Tools.OverLord
 
 			this.v_mapx = p_mapx;
 			this.v_mapy = p_mapy;
+			this.v_name = p_name;
+			this.v_health = 100;
+			this.v_actions = 3;
+			this.v_stamina = 100;
+			this.v_ammo = 20;
+			this.v_grenades = 2;
 
 			this.v_object = new Spartacus.Game.Object(p_name, 0, 0, 96, 96);
 
@@ -154,6 +167,33 @@ namespace Spartacus.Tools.OverLord
 							k++;
 							f += 2;
 						}
+						switch (d)
+						{
+							case Direction.SOUTH:
+								v_animation.AddStep(0, f);
+								break;
+							case Direction.SOUTHWEST:
+								v_animation.AddStep(1, f);
+								break;
+							case Direction.WEST:
+								v_animation.AddStep(2, f);
+								break;
+							case Direction.NORTHWEST:
+								v_animation.AddStep(3, f);
+								break;
+							case Direction.NORTH:
+								v_animation.AddStep(4, f);
+								break;
+							case Direction.NORTHEAST:
+								v_animation.AddStep(5, f);
+								break;
+							case Direction.EAST:
+								v_animation.AddStep(6, f);
+								break;
+							case Direction.SOUTHEAST:
+								v_animation.AddStep(7, f);
+								break;
+						}
 						this.v_object.AddAnimation(v_animation);
 					}
 				}
@@ -162,7 +202,7 @@ namespace Spartacus.Tools.OverLord
 			this.v_random = new System.Random();
 
 			this.v_direction = v_directions[this.v_random.Next(v_directions.Length)];
-			this.Stop();
+			this.Start();
 		}
 
 		private string DirectionToString(Direction p_direction)
@@ -190,7 +230,7 @@ namespace Spartacus.Tools.OverLord
 			}
 		}
 
-		public void Stop()
+		private void Start()
 		{
 			switch(this.v_direction)
 			{
@@ -250,6 +290,11 @@ namespace Spartacus.Tools.OverLord
 					this.v_object.v_animations[7].Start();
 					break;
 			}
+		}
+
+		public void Stop()
+		{
+			this.v_actions = 0;
 		}
 
 		public void Walk(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
@@ -322,6 +367,86 @@ namespace Spartacus.Tools.OverLord
 				this.v_mapy++;
 				this.v_direction = Direction.SOUTHEAST;
 			}
+
+			this.v_actions--;
+			//this.EndMovement();
+		}
+
+		//TODO: melhorar este método para não ir somente reto, respeitando obstáculos
+		public void Run(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
+		{
+			//Direction.SOUTH
+			if (this.v_mapx == (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[16].Start();
+				this.v_object.Move(0, 192, 16);
+				this.v_mapy++;
+				this.v_direction = Direction.SOUTH;
+			}
+			//Direction.SOUTHWEST
+			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[17].Start();
+				this.v_object.Move(-192, 192, 16);
+				this.v_mapx--;
+				this.v_mapy++;
+				this.v_direction = Direction.SOUTHWEST;
+			}
+			//Direction.WEST
+			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy == (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[18].Start();
+				this.v_object.Move(-192, 0, 192);
+				this.v_mapx--;
+				this.v_direction = Direction.WEST;
+			}
+			//Direction.NORTHWEST
+			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[19].Start();
+				this.v_object.Move(-192, -192, 16);
+				this.v_mapx--;
+				this.v_mapy--;
+				this.v_direction = Direction.NORTHWEST;
+			}
+			//Direction.NORTH
+			else if (this.v_mapx == (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[20].Start();
+				this.v_object.Move(0, -192, 16);
+				this.v_mapy--;
+				this.v_direction = Direction.NORTH;
+			}
+			//Direction.NORTHEAST
+			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[21].Start();
+				this.v_object.Move(192, -192, 16);
+				this.v_mapx++;
+				this.v_mapy--;
+				this.v_direction = Direction.NORTHEAST;
+			}
+			//Direction.EAST
+			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy == (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[22].Start();
+				this.v_object.Move(192, 0, 16);
+				this.v_mapx++;
+				this.v_direction = Direction.EAST;
+			}
+			//Direction.SOUTHEAST
+			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
+			{
+				this.v_object.v_animations[23].Start();
+				this.v_object.Move(192, 192, 16);
+				this.v_mapx++;
+				this.v_mapy++;
+				this.v_direction = Direction.SOUTHEAST;
+			}
+
+			this.v_actions--;
+			this.v_stamina -= 10;
+			//this.EndMovement();
 		}
 	}
 }

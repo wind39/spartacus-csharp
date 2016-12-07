@@ -88,6 +88,9 @@
     <Reference Include="MailKit">
       <HintPath>lib\MailKit.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Spartacus.Utils.Exception.cs" />
@@ -384,7 +387,6 @@
     <None Include="lib\access\IKVM.OpenJDK.XML.API.dll" />
     <None Include="lib\access\IKVM.OpenJDK.XML.Bind.dll" />
     <None Include="lib\access\IKVM.OpenJDK.XML.Parse.dll" />
-    <None Include="dist\Spartacus.dll.mdb" />
     <None Include="lib\sqlce\windows_x64\msvcr90.dll" />
     <None Include="lib\sqlce\windows_x64\sqlceca40.dll" />
     <None Include="lib\sqlce\windows_x64\sqlcecompact40.dll" />
@@ -446,6 +448,7 @@
     <None Include="lib\MimeKit.dll" />
     <None Include="icon\pollydb_128x128.png" />
     <None Include="icon\pollydb_16x16.png" />
+    <None Include="lib\BouncyCastle.Crypto.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

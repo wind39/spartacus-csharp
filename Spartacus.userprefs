@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{AD387A59-0878-4894-8A7D-7CA28410B134}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tools/OverLord/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Game.Animation.cs">
     <Files>
-      <File FileName="Tools/OverLord/Program.cs" Line="59" Column="18" />
+      <File FileName="Tools/OverLord/Program.cs" Line="345" Column="23" />
       <File FileName="Tools/OverLord/Tile.cs" Line="27" Column="2" />
-      <File FileName="Tools/OverLord/Soldier.cs" Line="11" Column="49" />
-      <File FileName="Spartacus/Spartacus.Game.Level.cs" Line="102" Column="10" />
-      <File FileName="Spartacus/Spartacus.Game.Layer.cs" Line="79" Column="30" />
-      <File FileName="Spartacus/Spartacus.Game.Object.cs" Line="200" Column="32" />
+      <File FileName="Tools/OverLord/Soldier.cs" Line="404" Column="50" />
+      <File FileName="Tools/OverLord/Range.cs" Line="85" Column="10" />
+      <File FileName="Spartacus/Spartacus.Game.Level.cs" Line="51" Column="4" />
+      <File FileName="Spartacus/Spartacus.Game.Layer.cs" Line="82" Column="2" />
+      <File FileName="Spartacus/Spartacus.Game.Object.cs" Line="37" Column="45" />
       <File FileName="Spartacus/Spartacus.Game.Keyboard.cs" Line="40" Column="37" />
-      <File FileName="Spartacus/Spartacus.Game.Animation.cs" Line="2" Column="1" />
+      <File FileName="Spartacus/Spartacus.Game.Animation.cs" Line="37" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

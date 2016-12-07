@@ -43,6 +43,11 @@ namespace Spartacus.Tools.OverLord
 		int v_mapview_x = 0;
 		int v_mapview_y = 0;
 		int v_tree_chance = 20;
+		int v_maxhealth = 100;
+		int v_maxactions = 3;
+		int v_maxstamina = 100;
+		int v_maxammo = 50;
+		int v_maxgrenades = 5;
 
 		Spartacus.Database.Generic v_database;
 		Spartacus.Forms.Window v_window;
@@ -57,6 +62,9 @@ namespace Spartacus.Tools.OverLord
 		Tile[,] v_tileset;
 		Soldier[] v_soldiers;
 		int v_selected;
+		string v_action;
+		TeamColor v_turn;
+		Range v_range;
 
 
 		public void Initialize()
@@ -86,6 +94,12 @@ namespace Spartacus.Tools.OverLord
 				2, 3
 			);
 			this.v_selected = -1;
+
+			this.v_action = "";
+
+			this.v_turn = TeamColor.GREEN;
+
+			this.v_range = new Range(this.v_tileset, this.v_map_size, this.v_mapview_width, this.v_mapview_height);
 
 			this.v_soldiersview = new Spartacus.Game.Layer();
 			this.v_soldiersview.MouseClick += this.OnSoldierMouseClick;
@@ -137,6 +151,14 @@ namespace Spartacus.Tools.OverLord
 						{
 							this.v_soldiers[w].v_object.SetPosition(this.v_tile_size*x, this.v_tile_size*y);
 							this.v_soldiersview.AddObject(this.v_soldiers[w].v_object);
+
+							if (this.v_soldiers[w].v_color == this.v_turn)
+							{
+								if (this.v_soldiers[w].v_actions > 0)
+									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.White, 5);
+								else
+									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, 5);
+							}
 						}
 					}
 				}
@@ -150,32 +172,32 @@ namespace Spartacus.Tools.OverLord
 
 			// 0 - Soldier Name
 			v_text = new Spartacus.Game.Text(700, 100, "Courier New", 16, 255, 255, 255, 255);
-			v_text.SetMessage("Soldier 1");
+			//v_text.SetMessage("Soldier 1");
 			this.v_guiview.AddText(v_text);
 
 			// 1 - Soldier Health
 			v_text = new Spartacus.Game.Text(880, 155, "Courier New", 12, 255, 255, 255, 255);
-			v_text.SetMessage("100/100");
+			//v_text.SetMessage("100/100");
 			this.v_guiview.AddText(v_text);
 
 			// 2 - Soldier Actions
 			v_text = new Spartacus.Game.Text(920, 205, "Courier New", 12, 255, 255, 255, 255);
-			v_text.SetMessage("3/3");
+			//v_text.SetMessage("3/3");
 			this.v_guiview.AddText(v_text);
 
 			// 3 - Soldier Stamina
 			v_text = new Spartacus.Game.Text(880, 355, "Courier New", 12, 255, 255, 255, 255);
-			v_text.SetMessage("100/100");
+			//v_text.SetMessage("100/100");
 			this.v_guiview.AddText(v_text);
 
 			// 4 - Soldier Ammo
 			v_text = new Spartacus.Game.Text(900, 405, "Courier New", 12, 255, 255, 255, 255);
-			v_text.SetMessage("20/20");
+			//v_text.SetMessage("20/20");
 			this.v_guiview.AddText(v_text);
 
 			// 5 - Soldier Grenades
 			v_text = new Spartacus.Game.Text(920, 455, "Courier New", 12, 255, 255, 255, 255);
-			v_text.SetMessage("2/2");
+			//v_text.SetMessage("2/2");
 			this.v_guiview.AddText(v_text);
 
 			v_object = new Spartacus.Game.Object("health", 700, 150, 32, 32);
@@ -293,10 +315,57 @@ namespace Spartacus.Tools.OverLord
 			{
 				for (int w = 0; w < this.v_soldiers.Length; w++)
 				{
-					if (this.v_soldiers[w].v_object.v_name == p_object.v_name)
+					if (this.v_soldiers[w].v_object.v_name == p_object.v_name &&
+					    this.v_soldiers[w].v_health > 0 &&
+					    this.v_soldiers[w].v_actions > 0 &&
+					    this.v_action != "")
 					{
-						this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, 5);
-						this.v_soldiers[w].Greet();
+						switch (this.v_action)
+						{
+							case "stop":
+								this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, 5);
+								this.v_soldiers[w].Greet();
+								this.v_soldiers[w].Stop();
+								break;
+							case "walk":
+								this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, 5);
+								this.v_soldiers[w].Greet();
+								for (int x = 0; x < this.v_mapview_width; x++)
+								{
+									for (int y = 0; y < this.v_mapview_height; y++)
+									{
+										if (this.v_range.CanWalk(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
+										    this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, 5);
+									}
+								}
+								break;
+							case "run":
+								this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, 5);
+								this.v_soldiers[w].Greet();
+								for (int x = 0; x < this.v_mapview_width; x++)
+								{
+									for (int y = 0; y < this.v_mapview_height; y++)
+									{
+										if (this.v_range.CanRun(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
+											this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, 5);
+									}
+								}
+								break;
+							case "shoot":
+								break;
+							case "throw":
+								break;
+							default:
+								break;
+						}
+
+						this.v_guiview.v_texts[0].SetMessage(this.v_soldiers[w].v_name);
+						this.v_guiview.v_texts[1].SetMessage(string.Format("{0:000}/{1:000}", this.v_soldiers[w].v_health, this.v_maxhealth));
+						this.v_guiview.v_texts[2].SetMessage(string.Format("{0:0}/{1:0}", this.v_soldiers[w].v_actions, this.v_maxactions));
+						this.v_guiview.v_texts[3].SetMessage(string.Format("{0:000}/{1:000}", this.v_soldiers[w].v_stamina, this.v_maxstamina));
+						this.v_guiview.v_texts[4].SetMessage(string.Format("{0:00}/{1:00}", this.v_soldiers[w].v_ammo, this.v_maxammo));
+						this.v_guiview.v_texts[5].SetMessage(string.Format("{0:0}/{1:0}", this.v_soldiers[w].v_grenades, this.v_maxgrenades));
+
 						this.v_selected = w;
 					}
 				}
@@ -305,18 +374,71 @@ namespace Spartacus.Tools.OverLord
 
 		private void OnMapMouseClick(Spartacus.Game.Object p_object)
 		{
-			if (this.v_selected >= 0 && string.IsNullOrWhiteSpace(p_object.v_name))
+			if (this.v_selected >= 0 &&
+			    string.IsNullOrWhiteSpace(p_object.v_name) &&
+			    this.v_action != "" &&
+			    p_object.v_border != null)
 			{
-				this.v_soldiers[this.v_selected].v_object.RemoveBorder();
-				this.v_soldiers[this.v_selected].Walk(p_object.v_rectangle.X/96, p_object.v_rectangle.Y/96, this.v_mapview_x, this.v_mapview_y);
-				this.v_soldiers[this.v_selected].Stop();
+				switch (this.v_action)
+				{
+					case "stop":
+						break;
+					case "walk":
+						this.v_soldiers[this.v_selected].Walk(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
+						break;
+					case "run":
+						this.v_soldiers[this.v_selected].Run(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
+						break;
+					case "shoot":
+						break;
+					case "throw":
+						break;
+					default:
+						break;
+				}
+
+				if (this.v_soldiers[this.v_selected].v_actions > 0)
+				    this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.White, 5);
+				else
+				    this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.Black, 5);
+
+				this.v_guiview.v_texts[0].SetMessage(this.v_soldiers[this.v_selected].v_name);
+				this.v_guiview.v_texts[1].SetMessage(string.Format("{0:000}/{1:000}", this.v_soldiers[this.v_selected].v_health, this.v_maxhealth));
+				this.v_guiview.v_texts[2].SetMessage(string.Format("{0:0}/{1:0}", this.v_soldiers[this.v_selected].v_actions, this.v_maxactions));
+				this.v_guiview.v_texts[3].SetMessage(string.Format("{0:000}/{1:000}", this.v_soldiers[this.v_selected].v_stamina, this.v_maxstamina));
+				this.v_guiview.v_texts[4].SetMessage(string.Format("{0:00}/{1:00}", this.v_soldiers[this.v_selected].v_ammo, this.v_maxammo));
+				this.v_guiview.v_texts[5].SetMessage(string.Format("{0:0}/{1:0}", this.v_soldiers[this.v_selected].v_grenades, this.v_maxgrenades));
+
 				this.v_selected = -1;
+
+				for (int x = 0; x < this.v_mapview_width; x++)
+				{
+					for (int y = 0; y < this.v_mapview_height; y++)
+						this.v_mapview.v_objects[x*this.v_mapview_width+y].RemoveBorder();
+				}
 			}
 		}
 
 		private void OnGuiMouseClick(Spartacus.Game.Object p_object)
 		{
-			
+			for (int k = 0; k < this.v_guiview.v_objects.Count; k++)
+			{
+				if (p_object.v_name == "stop" ||
+				    p_object.v_name == "walk" ||
+				    p_object.v_name == "run" ||
+				    p_object.v_name == "shoot" ||
+				    p_object.v_name == "throw")
+				{
+					this.v_action = p_object.v_name;
+
+					if (p_object.v_name == this.v_guiview.v_objects[k].v_name)
+						this.v_guiview.v_objects[k].v_currentimage = this.v_guiview.v_objects[k].v_images[1];
+					else
+						this.v_guiview.v_objects[k].v_currentimage = this.v_guiview.v_objects[k].v_images[0];
+				}
+				else if (p_object.v_name == "endturn")
+					this.v_action = p_object.v_name;
+			}
 		}
 
 		private void OnTime()

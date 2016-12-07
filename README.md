@@ -23,6 +23,7 @@ Spartacus contains this managed libraries:
   - EPPlus (http://epplus.codeplex.com/)
   - MimeKit (https://github.com/jstedfast/MimeKit)
   - MailKit (https://github.com/jstedfast/MailKit)
+  - Bouncy Castle (https://www.bouncycastle.org/csharp/index.html)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)

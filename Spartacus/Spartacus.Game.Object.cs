@@ -34,7 +34,7 @@ namespace Spartacus.Game
 
 		public System.Collections.Generic.List<System.Drawing.Image> v_images;
 
-        public System.Drawing.Image v_currentimage;
+		public System.Drawing.Image v_currentimage;
 
 		public System.Collections.Generic.List<Spartacus.Game.Animation> v_animations;
 
