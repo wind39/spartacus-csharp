@@ -9,5 +9,5 @@ v_list.Add("gary")
 v_list.Add("michael")
 
 for a in v_list:
-	Console.WriteLine("Esse eh meu amigo " + a)
+	print "Esse eh meu amigo " + a
 
