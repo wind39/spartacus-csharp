@@ -1275,6 +1275,84 @@ namespace Spartacus.Database
             }
         }
 
+		/// <summary>
+		/// Lista os campos (ou colunas) de uma determinada consulta.
+		/// </summary>
+		/// <returns>Vetor de campos.</returns>
+		/// <param name="p_sql">Consulta SQL.</param>
+		public override System.Collections.Generic.List<Spartacus.Database.Field> GetFields(string p_sql)
+		{
+			System.Collections.Generic.List<Spartacus.Database.Field> v_list;
+
+			if (this.v_con == null)
+			{
+				try
+				{
+					this.v_con = new System.Data.SqlServerCe.SqlCeConnection(this.v_connectionstring);
+					this.v_con.Open();
+					this.v_cmd = new System.Data.SqlServerCe.SqlCeCommand(p_sql, this.v_con);
+					if (this.v_timeout > -1)
+						this.v_cmd.CommandTimeout = this.v_timeout;
+					this.v_reader = this.v_cmd.ExecuteReader();
+
+					v_list = new System.Collections.Generic.List<Spartacus.Database.Field>();
+					for (int i = 0; i < this.v_reader.FieldCount; i++)
+						v_list.Add(new Spartacus.Database.Field(this.v_reader.GetName(i), this.v_reader.GetFieldType(i)));
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_cmd != null)
+					{
+						try { this.v_cmd.Cancel(); } catch {}
+						this.v_cmd.Dispose();
+						this.v_cmd = null;
+					}
+					if (this.v_reader != null)
+					{
+						this.v_reader.Close();
+						this.v_reader = null;
+					}
+					if (this.v_con != null)
+					{
+						this.v_con.Close();
+						this.v_con = null;
+					}
+				}
+			}
+			else
+			{
+				try
+				{
+					this.v_cmd.CommandText = p_sql;
+					this.v_reader = this.v_cmd.ExecuteReader();
+
+					v_list = new System.Collections.Generic.List<Spartacus.Database.Field>();
+					for (int i = 0; i < this.v_reader.FieldCount; i++)
+						v_list.Add(new Spartacus.Database.Field(this.v_reader.GetName(i), this.v_reader.GetFieldType(i)));
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_reader != null)
+					{
+						this.v_reader.Close();
+						this.v_reader = null;
+					}
+				}
+			}
+		}
+
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.

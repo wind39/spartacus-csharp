@@ -336,6 +336,7 @@
     <Compile Include="Spartacus.Game.Text.cs" />
     <Compile Include="Spartacus.Game.Keys.cs" />
     <Compile Include="Spartacus.Database.Pollydb.cs" />
+    <Compile Include="Spartacus.Database.Field.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

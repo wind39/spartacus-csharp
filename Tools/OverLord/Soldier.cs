@@ -135,7 +135,7 @@ namespace Spartacus.Tools.OverLord
 			this.v_mapy = p_mapy;
 			this.v_name = p_name;
 			this.v_health = 100;
-			this.v_actions = 3;
+			this.v_actions = 5;
 			this.v_stamina = 100;
 			this.v_ammo = 20;
 			this.v_grenades = 2;
@@ -368,18 +368,16 @@ namespace Spartacus.Tools.OverLord
 				this.v_direction = Direction.SOUTHEAST;
 			}
 
-			this.v_actions--;
-			//this.EndMovement();
+			this.v_actions -= 2;
 		}
 
-		//TODO: melhorar este método para não ir somente reto, respeitando obstáculos
 		public void Run(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
 		{
 			//Direction.SOUTH
 			if (this.v_mapx == (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[16].Start();
-				this.v_object.Move(0, 192, 16);
+				this.v_object.Move(0, 96, 16);
 				this.v_mapy++;
 				this.v_direction = Direction.SOUTH;
 			}
@@ -387,7 +385,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[17].Start();
-				this.v_object.Move(-192, 192, 16);
+				this.v_object.Move(-96, 96, 16);
 				this.v_mapx--;
 				this.v_mapy++;
 				this.v_direction = Direction.SOUTHWEST;
@@ -396,7 +394,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy == (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[18].Start();
-				this.v_object.Move(-192, 0, 192);
+				this.v_object.Move(-96, 0, 16);
 				this.v_mapx--;
 				this.v_direction = Direction.WEST;
 			}
@@ -404,7 +402,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx > (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[19].Start();
-				this.v_object.Move(-192, -192, 16);
+				this.v_object.Move(-96, -96, 16);
 				this.v_mapx--;
 				this.v_mapy--;
 				this.v_direction = Direction.NORTHWEST;
@@ -413,7 +411,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx == (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[20].Start();
-				this.v_object.Move(0, -192, 16);
+				this.v_object.Move(0, -96, 16);
 				this.v_mapy--;
 				this.v_direction = Direction.NORTH;
 			}
@@ -421,7 +419,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy > (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[21].Start();
-				this.v_object.Move(192, -192, 16);
+				this.v_object.Move(96, -96, 16);
 				this.v_mapx++;
 				this.v_mapy--;
 				this.v_direction = Direction.NORTHEAST;
@@ -430,7 +428,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy == (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[22].Start();
-				this.v_object.Move(192, 0, 16);
+				this.v_object.Move(96, 0, 16);
 				this.v_mapx++;
 				this.v_direction = Direction.EAST;
 			}
@@ -438,7 +436,7 @@ namespace Spartacus.Tools.OverLord
 			else if (this.v_mapx < (p_mapview_x + p_x) && this.v_mapy < (p_mapview_y + p_y))
 			{
 				this.v_object.v_animations[23].Start();
-				this.v_object.Move(192, 192, 16);
+				this.v_object.Move(96, 96, 16);
 				this.v_mapx++;
 				this.v_mapy++;
 				this.v_direction = Direction.SOUTHEAST;
@@ -446,7 +444,6 @@ namespace Spartacus.Tools.OverLord
 
 			this.v_actions--;
 			this.v_stamina -= 10;
-			//this.EndMovement();
 		}
 	}
 }

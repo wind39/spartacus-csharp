@@ -45,7 +45,7 @@ namespace Spartacus.Tools.OverLord
 			this.v_mapview_height = p_mapview_height;
 		}
 
-		public bool CanWalk(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		private bool HasSoldier(Soldier[] p_soldiers, int p_x, int p_y)
 		{
 			bool v_achou = false;
 			int k = 0;
@@ -58,11 +58,32 @@ namespace Spartacus.Tools.OverLord
 				else
 					k++;
 			}
+			return v_achou;
+		}
 
+		private bool HasEnemySoldier(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		{
+			bool v_achou = false;
+			int k = 0;
+			while (k < p_soldiers.Length && ! v_achou)
+			{
+				if (p_soldiers[k].v_mapx == p_x &&
+				    p_soldiers[k].v_mapy == p_y &&
+				    p_soldiers[k].v_health > 0 &&
+				    p_soldiers[k].v_color != p_soldier.v_color)
+					v_achou = true;
+				else
+					k++;
+			}
+			return v_achou;
+		}
+
+		public bool CanWalk(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		{
 			int v_distance_x = p_x - p_soldier.v_mapx;
 			int v_distance_y = p_y - p_soldier.v_mapy;
 
-			return (! v_achou &&
+			return (! this.HasSoldier(p_soldiers, p_x, p_y) &&
 			        this.v_tileset[p_x, p_y].v_canstep &&
 			        ! this.v_tileset[p_x, p_y].v_block &&
 			        v_distance_x >= -1 &&
@@ -73,32 +94,67 @@ namespace Spartacus.Tools.OverLord
 
 		public bool CanRun(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
 		{
-			bool v_achou = false;
-			int k = 0;
-			while (k < p_soldiers.Length && ! v_achou)
-			{
-				if (p_soldiers[k].v_mapx == p_x &&
-				    p_soldiers[k].v_mapy == p_y &&
-				    p_soldiers[k].v_health > 0)
-					v_achou = true;
-				else
-					k++;
-			}
-
 			int v_distance_x = p_x - p_soldier.v_mapx;
 			int v_distance_y = p_y - p_soldier.v_mapy;
 
-			return (! v_achou &&
+			return (! this.HasSoldier(p_soldiers, p_x, p_y) &&
 			        this.v_tileset[p_x, p_y].v_canstep &&
 			        ! this.v_tileset[p_x, p_y].v_block &&
-			        v_distance_x >= -2 &&
-			        v_distance_x <= 2 &&
-			        v_distance_y >= -2 &&
-			        v_distance_y <= 2 &&
-			        !(v_distance_x >= -1 &&
-			          v_distance_x <= 1 &&
-			          v_distance_y >= -1 &&
-			          v_distance_y <= 1));
+			        v_distance_x >= -1 &&
+			        v_distance_x <= 1 &&
+			        v_distance_y >= -1 &&
+			        v_distance_y <= 1);
+		}
+
+		public bool CanShoot(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		{
+			if (this.HasEnemySoldier(p_soldiers, p_soldier, p_x, p_y))
+				return true;
+			else
+				return false;
+		}
+
+		public bool CanThrow(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		{
+			int v_distance_x = p_x - p_soldier.v_mapx;
+			int v_distance_y = p_y - p_soldier.v_mapy;
+
+			return (v_distance_x >= -3 &&
+			        v_distance_x <= 3 &&
+			        v_distance_y >= -3 &&
+			        v_distance_y <= 3);
 		}
 	}
 }
+
+
+/* Bresenham algorithm
+ public void line(int x,int y,int x2, int y2, int color) {
+    int w = x2 - x ;
+    int h = y2 - y ;
+    int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0 ;
+    if (w<0) dx1 = -1 ; else if (w>0) dx1 = 1 ;
+    if (h<0) dy1 = -1 ; else if (h>0) dy1 = 1 ;
+    if (w<0) dx2 = -1 ; else if (w>0) dx2 = 1 ;
+    int longest = Math.abs(w) ;
+    int shortest = Math.abs(h) ;
+    if (!(longest>shortest)) {
+        longest = Math.abs(h) ;
+        shortest = Math.abs(w) ;
+        if (h<0) dy2 = -1 ; else if (h>0) dy2 = 1 ;
+        dx2 = 0 ;            
+    }
+    int numerator = longest >> 1 ;
+    for (int i=0;i<=longest;i++) {
+        putpixel(x,y,color) ;
+        numerator += shortest ;
+        if (!(numerator<longest)) {
+            numerator -= longest ;
+            x += dx1 ;
+            y += dy1 ;
+        } else {
+            x += dx2 ;
+            y += dy2 ;
+        }
+    }
+}*/

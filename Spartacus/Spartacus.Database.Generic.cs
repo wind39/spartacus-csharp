@@ -351,6 +351,13 @@ namespace Spartacus.Database
         /// <param name="p_query">Consulta SQL.</param>
         public abstract string[,] GetColumnNamesAndTypes(string p_query);
 
+		/// <summary>
+		/// Lista os campos (ou colunas) de uma determinada consulta.
+		/// </summary>
+		/// <returns>Vetor de campos.</returns>
+		/// <param name="p_query">Consulta SQL.</param>
+		public abstract System.Collections.Generic.List<Spartacus.Database.Field> GetFields(string p_query);
+
         /// <summary>
         /// Configura CommandTimeout de todas as conexões feitas com a instância atual.
         /// </summary>

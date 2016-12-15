@@ -475,6 +475,18 @@ namespace Spartacus.Database
 		}
 
 		/// <summary>
+		/// Lista os campos (ou colunas) de uma determinada consulta.
+		/// </summary>
+		/// <returns>Vetor de campos.</returns>
+		/// <param name="p_sql">Consulta SQL.</param>
+		public override System.Collections.Generic.List<Spartacus.Database.Field> GetFields(string p_sql)
+		{
+			System.Collections.Generic.List<Spartacus.Database.Field> v_list;
+
+			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetFields");
+		}
+
+		/// <summary>
 		/// Transfere dados do banco de dados atual para um banco de dados de destino.
 		/// Conexão com o banco de destino precisa estar aberta.
 		/// </summary>

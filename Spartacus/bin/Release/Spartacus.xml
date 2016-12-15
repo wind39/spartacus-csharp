@@ -2440,6 +2440,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_query">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Generic.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_query">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Generic.SetTimeout(System.Int32)">
              <summary>
              Configura CommandTimeout de todas as conexões feitas com a instância atual.
@@ -3015,6 +3022,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Odbc.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Odbc.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3515,6 +3529,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Firebird.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Firebird.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -3925,6 +3946,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Mysql.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Mysql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -4319,6 +4347,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Oledb.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.Oledb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -5845,6 +5880,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Sqlite.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Sqlite.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -6253,6 +6295,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Postgresql.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.Postgresql.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -7431,6 +7480,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Oracle.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.Oracle.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -11971,6 +12027,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Memory.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Memory.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -13228,6 +13291,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.SqlServer.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.SqlServer.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -15134,6 +15204,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Access.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Access.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -15513,6 +15590,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Sqlce.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.Sqlce.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -15908,6 +15992,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.FbEmbed.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.FbEmbed.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
@@ -17632,6 +17723,13 @@
              <returns>Matriz com os nomes e tipos de colunas.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
+        <member name="M:Spartacus.Database.Mariadb.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
         <member name="M:Spartacus.Database.Mariadb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">
              <summary>
              Transfere dados do banco de dados atual para um banco de dados de destino.
@@ -18100,6 +18198,13 @@
              Lista os nomes e tipos de colunas de uma determinada consulta.
              </summary>
              <returns>Matriz com os nomes e tipos de colunas.</returns>
+             <param name="p_sql">Consulta SQL.</param>
+            </member>
+        <member name="M:Spartacus.Database.Pollydb.GetFields(System.String)">
+             <summary>
+             Lista os campos (ou colunas) de uma determinada consulta.
+             </summary>
+             <returns>Vetor de campos.</returns>
              <param name="p_sql">Consulta SQL.</param>
             </member>
         <member name="M:Spartacus.Database.Pollydb.Transfer(System.String,Spartacus.Database.Command,Spartacus.Database.Generic)">

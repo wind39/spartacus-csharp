@@ -42,9 +42,10 @@ namespace Spartacus.Tools.OverLord
 		int v_mapview_height = 7;
 		int v_mapview_x = 0;
 		int v_mapview_y = 0;
+		int v_border_width = 10;
 		int v_tree_chance = 20;
 		int v_maxhealth = 100;
-		int v_maxactions = 3;
+		int v_maxactions = 5;
 		int v_maxstamina = 100;
 		int v_maxammo = 50;
 		int v_maxgrenades = 5;
@@ -86,17 +87,22 @@ namespace Spartacus.Tools.OverLord
 			this.v_player = "green";
 			this.v_playercolor = System.Drawing.Color.Green;
 
-			this.v_soldiers = new Soldier[1];
+			this.v_soldiers = new Soldier[2];
 			this.v_soldiers[0] = new Soldier(
 				this.v_database,
 				TeamColor.GREEN,
 				"green_1",
 				2, 3
 			);
+			this.v_soldiers[1] = new Soldier(
+				this.v_database,
+				TeamColor.RED,
+				"red_1",
+				6, 1
+			);
+
 			this.v_selected = -1;
-
 			this.v_action = "";
-
 			this.v_turn = TeamColor.GREEN;
 
 			this.v_range = new Range(this.v_tileset, this.v_map_size, this.v_mapview_width, this.v_mapview_height);
@@ -155,9 +161,9 @@ namespace Spartacus.Tools.OverLord
 							if (this.v_soldiers[w].v_color == this.v_turn)
 							{
 								if (this.v_soldiers[w].v_actions > 0)
-									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.White, 5);
+									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.White, this.v_border_width);
 								else
-									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, 5);
+									this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, this.v_border_width);
 							}
 						}
 					}
@@ -313,6 +319,7 @@ namespace Spartacus.Tools.OverLord
 			    ! string.IsNullOrWhiteSpace(p_object.v_name) &&
 			    p_object.v_name.StartsWith(this.v_player))
 			{
+				Console.WriteLine("foi 1");
 				for (int w = 0; w < this.v_soldiers.Length; w++)
 				{
 					if (this.v_soldiers[w].v_object.v_name == p_object.v_name &&
@@ -323,37 +330,66 @@ namespace Spartacus.Tools.OverLord
 						switch (this.v_action)
 						{
 							case "stop":
-								this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, 5);
+								this.v_soldiers[w].v_object.SetBorder(System.Drawing.Color.Black, this.v_border_width);
 								this.v_soldiers[w].Greet();
 								this.v_soldiers[w].Stop();
 								break;
 							case "walk":
-								this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, 5);
+								this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, this.v_border_width);
 								this.v_soldiers[w].Greet();
 								for (int x = 0; x < this.v_mapview_width; x++)
 								{
 									for (int y = 0; y < this.v_mapview_height; y++)
 									{
 										if (this.v_range.CanWalk(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
-										    this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, 5);
+											this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, this.v_border_width);
 									}
 								}
 								break;
 							case "run":
-								this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, 5);
-								this.v_soldiers[w].Greet();
-								for (int x = 0; x < this.v_mapview_width; x++)
+								if (this.v_soldiers[w].v_stamina >= 10)
 								{
-									for (int y = 0; y < this.v_mapview_height; y++)
+									this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, this.v_border_width);
+									this.v_soldiers[w].Greet();
+									for (int x = 0; x < this.v_mapview_width; x++)
 									{
-										if (this.v_range.CanRun(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
-											this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, 5);
+										for (int y = 0; y < this.v_mapview_height; y++)
+										{
+											if (this.v_range.CanRun(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
+												this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, this.v_border_width);
+										}
 									}
 								}
 								break;
 							case "shoot":
+								if (this.v_soldiers[w].v_ammo > 0)
+								{
+									this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, this.v_border_width);
+									this.v_soldiers[w].Greet();
+									for (int x = 0; x < this.v_mapview_width; x++)
+									{
+										for (int y = 0; y < this.v_mapview_height; y++)
+										{
+											if (this.v_range.CanShoot(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
+												this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, this.v_border_width);
+										}
+									}
+								}
 								break;
 							case "throw":
+								if (this.v_soldiers[w].v_grenades > 0)
+								{
+									this.v_soldiers[w].v_object.SetBorder(this.v_playercolor, this.v_border_width);
+									this.v_soldiers[w].Greet();
+									for (int x = 0; x < this.v_mapview_width; x++)
+									{
+										for (int y = 0; y < this.v_mapview_height; y++)
+										{
+											if (this.v_range.CanThrow(this.v_soldiers, this.v_soldiers[w], this.v_mapview_x+x, this.v_mapview_y+y))
+												this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(this.v_playercolor, this.v_border_width);
+										}
+									}
+								}
 								break;
 							default:
 								break;
@@ -370,26 +406,50 @@ namespace Spartacus.Tools.OverLord
 					}
 				}
 			}
+			else if (this.v_selected >= 0 &&
+			         ! string.IsNullOrWhiteSpace(p_object.v_name) &&
+			         ! p_object.v_name.StartsWith(this.v_player))
+			{
+				Console.WriteLine("foi 2");
+				for (int w = 0; w < this.v_soldiers.Length; w++)
+				{
+					if (this.v_soldiers[w].v_object.v_name == p_object.v_name &&
+					    this.v_soldiers[w].v_health > 0 &&
+					    this.v_soldiers[w].v_actions > 0 &&
+					    this.v_action != "")
+					{
+						if (this.v_action == "shoot")
+						{
+							this.DrawLine(
+								this.v_soldiers[this.v_selected].v_object.v_rectangle.X/this.v_tile_size,
+								this.v_soldiers[this.v_selected].v_object.v_rectangle.Y/this.v_tile_size,
+								//p_object.v_rectangle.X/this.v_tile_size,
+								this.v_soldiers[w].v_object.v_rectangle.X/this.v_tile_size,
+								//p_object.v_rectangle.Y/this.v_tile_size
+								this.v_soldiers[w].v_object.v_rectangle.Y/this.v_tile_size
+							);
+						}
+					}
+				}
+			}
+			Console.WriteLine("foi 3 [{0}], {1}", p_object.v_name, this.v_selected);
 		}
 
 		private void OnMapMouseClick(Spartacus.Game.Object p_object)
 		{
+			Console.WriteLine("foi map");
 			if (this.v_selected >= 0 &&
-			    string.IsNullOrWhiteSpace(p_object.v_name) &&
+			    //string.IsNullOrWhiteSpace(p_object.v_name) &&
 			    this.v_action != "" &&
 			    p_object.v_border != null)
 			{
 				switch (this.v_action)
 				{
-					case "stop":
-						break;
 					case "walk":
 						this.v_soldiers[this.v_selected].Walk(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
 						break;
 					case "run":
 						this.v_soldiers[this.v_selected].Run(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
-						break;
-					case "shoot":
 						break;
 					case "throw":
 						break;
@@ -398,9 +458,9 @@ namespace Spartacus.Tools.OverLord
 				}
 
 				if (this.v_soldiers[this.v_selected].v_actions > 0)
-				    this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.White, 5);
+					this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.White, this.v_border_width);
 				else
-				    this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.Black, 5);
+					this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.Black, this.v_border_width);
 
 				this.v_guiview.v_texts[0].SetMessage(this.v_soldiers[this.v_selected].v_name);
 				this.v_guiview.v_texts[1].SetMessage(string.Format("{0:000}/{1:000}", this.v_soldiers[this.v_selected].v_health, this.v_maxhealth));
@@ -409,7 +469,8 @@ namespace Spartacus.Tools.OverLord
 				this.v_guiview.v_texts[4].SetMessage(string.Format("{0:00}/{1:00}", this.v_soldiers[this.v_selected].v_ammo, this.v_maxammo));
 				this.v_guiview.v_texts[5].SetMessage(string.Format("{0:0}/{1:0}", this.v_soldiers[this.v_selected].v_grenades, this.v_maxgrenades));
 
-				this.v_selected = -1;
+				if (this.v_action != "shoot")
+					this.v_selected = -1;
 
 				for (int x = 0; x < this.v_mapview_width; x++)
 				{
@@ -438,6 +499,57 @@ namespace Spartacus.Tools.OverLord
 				}
 				else if (p_object.v_name == "endturn")
 					this.v_action = p_object.v_name;
+			}
+
+			if (this.v_selected >= 0)
+			{
+				if (this.v_soldiers[this.v_selected].v_actions > 0)
+					this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.White, this.v_border_width);
+				else
+					this.v_soldiers[this.v_selected].v_object.SetBorder(System.Drawing.Color.Black, this.v_border_width);
+			}
+
+			this.v_selected = -1;
+
+			for (int x = 0; x < this.v_mapview_width; x++)
+			{
+				for (int y = 0; y < this.v_mapview_height; y++)
+					this.v_mapview.v_objects[x*this.v_mapview_width+y].RemoveBorder();
+			}
+		}
+
+		private void DrawLine(int x, int y, int x2, int y2)
+		{
+			int w = x2 - x;
+			int h = y2 - y;
+			int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+			if (w<0) dx1 = -1 ; else if (w>0) dx1 = 1;
+			if (h<0) dy1 = -1 ; else if (h>0) dy1 = 1;
+			if (w<0) dx2 = -1 ; else if (w>0) dx2 = 1;
+			int longest = Math.Abs(w);
+			int shortest = Math.Abs(h);
+			if (!(longest>shortest))
+			{
+				longest = Math.Abs(h);
+				shortest = Math.Abs(w);
+				if (h<0) dy2 = -1; else if (h>0) dy2 = 1;
+				dx2 = 0;
+			}
+			int numerator = longest >> 1;
+			for (int i=0;i<=longest;i++)
+			{
+				this.v_mapview.v_objects[x*this.v_mapview_width+y].SetBorder(System.Drawing.Color.Orange, this.v_border_width);
+				numerator += shortest;
+				if (!(numerator<longest))
+				{
+					numerator -= longest;
+					x += dx1;
+					y += dy1;
+				} else
+				{
+					x += dx2;
+					y += dy2;
+				}
 			}
 		}
 

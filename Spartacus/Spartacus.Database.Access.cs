@@ -1266,6 +1266,89 @@ namespace Spartacus.Database
             }
         }
 
+		/// <summary>
+		/// Lista os campos (ou colunas) de uma determinada consulta.
+		/// </summary>
+		/// <returns>Vetor de campos.</returns>
+		/// <param name="p_sql">Consulta SQL.</param>
+		public override System.Collections.Generic.List<Spartacus.Database.Field> GetFields(string p_sql)
+		{
+			java.sql.ResultSetMetaData v_resmd;
+			System.Collections.Generic.List<Spartacus.Database.Field> v_list;
+
+			if (this.v_con == null)
+			{
+				try
+				{
+					this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
+					this.v_cmd = this.v_con.createStatement();
+					if (this.v_timeout > -1)
+						this.v_cmd.setQueryTimeout(this.v_timeout);
+					this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+					v_resmd = this.v_reader.getMetaData();
+
+					v_list = new System.Collections.Generic.List<Spartacus.Database.Field>();
+					for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+						//TODO: usar java.sql.Types para definir o tipo correto
+						v_list.Add(new Spartacus.Database.Field(v_resmd.getColumnLabel(i), Spartacus.Database.Type.STRING));
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_cmd != null)
+					{
+						try { this.v_cmd.cancel(); } catch {}
+						this.v_cmd.close();
+						this.v_cmd = null;
+					}
+					if (this.v_reader != null)
+					{
+						this.v_reader.close();
+						this.v_reader = null;
+					}
+					if (this.v_con != null)
+					{
+						this.v_con.close();
+						this.v_con = null;
+					}
+				}
+			}
+			else
+			{
+				try
+				{
+					this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+					v_resmd = this.v_reader.getMetaData();
+
+					v_list = new System.Collections.Generic.List<Spartacus.Database.Field>();
+					for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+						//TODO: usar java.sql.Types para definir o tipo correto
+						v_list.Add(new Spartacus.Database.Field(v_resmd.getColumnLabel(i), Spartacus.Database.Type.STRING));
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_reader != null)
+					{
+						this.v_reader.close();
+						this.v_reader = null;
+					}
+				}
+			}
+		}
+
         /// <summary>
         /// Transfere dados do banco de dados atual para um banco de dados de destino.
         /// Conexão com o banco de destino precisa estar aberta.
