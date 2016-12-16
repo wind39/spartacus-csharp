@@ -32,13 +32,20 @@ namespace Spartacus.Database
     public enum Type
     {
         INTEGER,
+		SMALLINTEGER,
+		BIGINTEGER,
         REAL,
+		FLOAT,
+		DOUBLE,
+		DECIMAL,
         BOOLEAN,
         CHAR,
         DATE,
+		DATETIME,
         STRING,
         QUOTEDSTRING,
-        UNDEFINED
+        UNDEFINED,
+		BYTE
     }
 
     /// <summary>

@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.18: Criados tipos específicos para Spartacus.Database.Type
 0.43.17: Spartacus.Game funcional para jogos 2D baseados em tiles
          Removendo chamada de Command.Cancel no Spartacus.Database.Mysql e Spartacus.Database.Mariadb
          Implementado método Spartacus.Database.GetFields

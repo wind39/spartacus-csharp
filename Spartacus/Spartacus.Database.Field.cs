@@ -47,54 +47,86 @@ namespace Spartacus.Database
 		{
 			this.v_name = p_name;
 
-			/*
-			INTEGER,
-			REAL,
-			BOOLEAN,
-			CHAR,
-			DATE,
-			STRING,
-			QUOTEDSTRING,
-			UNDEFINED
-
-			Boolean ok
-			Byte
-			Char ok
-			DateTime ok
-			Decimal ok
-			Double ok
-			Guid
-			Int16 ok
-			Int32 ok
-			Int64 ok
-			SByte
-			Single ok
-			String ok
-			TimeSpan ok
-			UInt16 ok
-			UInt32 ok
-			UInt64 ok
-			*/
-
 			if (p_type == typeof(System.Boolean))
 				this.v_type = Spartacus.Database.Type.BOOLEAN;
 			else if (p_type == typeof(System.Char))
 				this.v_type = Spartacus.Database.Type.CHAR;
-			else if (p_type == typeof(System.DateTime) ||
-			         p_type == typeof(System.TimeSpan))
-				this.v_type = Spartacus.Database.Type.DATE;
-			else if (p_type == typeof(System.Decimal) ||
-			         p_type == typeof(System.Double) ||
-			         p_type == typeof(System.Single))
-				this.v_type = Spartacus.Database.Type.REAL;
-			else if (p_type == typeof(System.Int16) || p_type == typeof(System.UInt16) ||
-			         p_type == typeof(System.Int32) || p_type == typeof(System.UInt32) ||
-			         p_type == typeof(System.Int64) || p_type == typeof(System.UInt64))
+			else if (p_type == typeof(System.DateTime) || p_type == typeof(System.TimeSpan))
+				this.v_type = Spartacus.Database.Type.DATETIME;
+			else if (p_type == typeof(System.Decimal))
+				this.v_type = Spartacus.Database.Type.DECIMAL;
+			else if (p_type == typeof(System.Double))
+				this.v_type = Spartacus.Database.Type.DOUBLE;
+			else if (p_type == typeof(System.Single))
+				this.v_type = Spartacus.Database.Type.FLOAT;
+			else if (p_type == typeof(System.Int16) || p_type == typeof(System.UInt16))
+				this.v_type = Spartacus.Database.Type.SMALLINTEGER;
+			else if (p_type == typeof(System.Int32) || p_type == typeof(System.UInt32))
 				this.v_type = Spartacus.Database.Type.INTEGER;
-			else if (p_type == typeof(System.String))
+			else if (p_type == typeof(System.Int64) || p_type == typeof(System.UInt64))
+				this.v_type = Spartacus.Database.Type.DOUBLE;
+			else if (p_type == typeof(System.String) || p_type == typeof(System.Guid))
 				this.v_type = Spartacus.Database.Type.STRING;
+			else if (p_type == typeof(System.Byte) || p_type == typeof(System.SByte))
+				this.v_type = Spartacus.Database.Type.BYTE;
 			else
 				this.v_type = Spartacus.Database.Type.UNDEFINED;
+		}
+
+		public Field(string p_name, System.Type p_type, bool p_generic)
+		{
+			this.v_name = p_name;
+
+			if (p_generic)
+			{
+				if (p_type == typeof(System.Boolean))
+					this.v_type = Spartacus.Database.Type.BOOLEAN;
+				else if (p_type == typeof(System.Char))
+					this.v_type = Spartacus.Database.Type.CHAR;
+				else if (p_type == typeof(System.DateTime) || p_type == typeof(System.TimeSpan))
+					this.v_type = Spartacus.Database.Type.DATETIME;
+				else if (p_type == typeof(System.Decimal) ||
+				         p_type == typeof(System.Double) ||
+				         p_type == typeof(System.Single))
+					this.v_type = Spartacus.Database.Type.REAL;
+				else if (p_type == typeof(System.Int16) || p_type == typeof(System.UInt16) ||
+				         p_type == typeof(System.Int32) || p_type == typeof(System.UInt32) ||
+				         p_type == typeof(System.Int64) || p_type == typeof(System.UInt64))
+					this.v_type = Spartacus.Database.Type.INTEGER;
+				else if (p_type == typeof(System.String) || p_type == typeof(System.Guid))
+					this.v_type = Spartacus.Database.Type.STRING;
+				else if (p_type == typeof(System.Byte) || p_type == typeof(System.SByte))
+					this.v_type = Spartacus.Database.Type.BYTE;
+				else
+					this.v_type = Spartacus.Database.Type.UNDEFINED;
+			}
+			else
+			{
+				if (p_type == typeof(System.Boolean))
+					this.v_type = Spartacus.Database.Type.BOOLEAN;
+				else if (p_type == typeof(System.Char))
+					this.v_type = Spartacus.Database.Type.CHAR;
+				else if (p_type == typeof(System.DateTime) || p_type == typeof(System.TimeSpan))
+					this.v_type = Spartacus.Database.Type.DATE;
+				else if (p_type == typeof(System.Decimal))
+					this.v_type = Spartacus.Database.Type.DECIMAL;
+				else if (p_type == typeof(System.Double))
+					this.v_type = Spartacus.Database.Type.DOUBLE;
+				else if (p_type == typeof(System.Single))
+					this.v_type = Spartacus.Database.Type.FLOAT;
+				else if (p_type == typeof(System.Int16) || p_type == typeof(System.UInt16))
+					this.v_type = Spartacus.Database.Type.SMALLINTEGER;
+				else if (p_type == typeof(System.Int32) || p_type == typeof(System.UInt32))
+					this.v_type = Spartacus.Database.Type.INTEGER;
+				else if (p_type == typeof(System.Int64) || p_type == typeof(System.UInt64))
+					this.v_type = Spartacus.Database.Type.DOUBLE;
+				else if (p_type == typeof(System.String) || p_type == typeof(System.Guid))
+					this.v_type = Spartacus.Database.Type.STRING;
+				else if (p_type == typeof(System.Byte) || p_type == typeof(System.SByte))
+					this.v_type = Spartacus.Database.Type.BYTE;
+				else
+					this.v_type = Spartacus.Database.Type.UNDEFINED;
+			}
 		}
 	}
 }

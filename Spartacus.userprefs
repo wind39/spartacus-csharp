@@ -1,23 +1,12 @@
 ﻿<Properties StartupConfiguration="{AD387A59-0878-4894-8A7D-7CA28410B134}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Field.cs">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Field.cs" Line="7" Column="32" />
-      <File FileName="Spartacus/Spartacus.Database.Generic.cs" Line="359" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Access.cs" Line="1295" Column="6" />
-      <File FileName="Spartacus/Spartacus.Database.FbEmbed.cs" Line="1405" Column="6" />
-      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="1432" Column="4" />
-      <File FileName="Spartacus/Spartacus.Database.Mariadb.cs" Line="1412" Column="4" />
-      <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="1412" Column="4" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlite.cs" Line="1351" Column="4" />
-      <File FileName="Spartacus/Spartacus.Database.Memory.cs" Line="725" Column="7" />
-      <File FileName="Spartacus/Spartacus.Database.Pollydb.cs" Line="486" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Odbc.cs" Line="1316" Column="32" />
-      <File FileName="Spartacus/Spartacus.Database.Oledb.cs" Line="1349" Column="44" />
-      <File FileName="Spartacus/Spartacus.Database.Oracle.cs" Line="1438" Column="43" />
-      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="1369" Column="9" />
-      <File FileName="Spartacus/Spartacus.Database.Sqlce.cs" Line="1293" Column="52" />
-      <File FileName="Spartacus/Spartacus.Database.SqlServer.cs" Line="1401" Column="42" />
-      <File FileName="CHANGELOG.txt" Line="25" Column="87" />
+      <File FileName="Tools/OverLord/Program.cs" Line="1" Column="1" />
+      <File FileName="Tools/OverLord/Soldier.cs" Line="1" Column="1" />
+      <File FileName="Tools/OverLord/Range.cs" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Database.Field.cs" Line="89" Column="48" />
+      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="44" Column="12" />
+      <File FileName="Spartacus/Properties/AssemblyInfo.cs" Line="20" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
