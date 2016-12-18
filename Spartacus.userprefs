@@ -1,15 +1,14 @@
 ﻿<Properties StartupConfiguration="{AD387A59-0878-4894-8A7D-7CA28410B134}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Spartacus/Spartacus.Database.Field.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
       <File FileName="Tools/OverLord/Program.cs" Line="1" Column="1" />
       <File FileName="Tools/OverLord/Soldier.cs" Line="1" Column="1" />
       <File FileName="Tools/OverLord/Range.cs" Line="1" Column="1" />
-      <File FileName="Spartacus/Spartacus.Database.Field.cs" Line="89" Column="48" />
-      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="44" Column="12" />
-      <File FileName="Spartacus/Properties/AssemblyInfo.cs" Line="20" Column="36" />
+      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="82" Column="21" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

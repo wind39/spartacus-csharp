@@ -166,23 +166,25 @@ namespace Spartacus.Database
             {
                 if (this.v_value.Trim() == "")
                 {
-                    switch (this.v_type)
+					switch (this.v_type)
                     {
                         case Spartacus.Database.Type.INTEGER:
-                            return "null";
-                        case Spartacus.Database.Type.REAL:
-                            return "null";
+                        case Spartacus.Database.Type.SMALLINTEGER:
+						case Spartacus.Database.Type.BIGINTEGER:
+						case Spartacus.Database.Type.REAL:
+                        case Spartacus.Database.Type.FLOAT:
+						case Spartacus.Database.Type.DOUBLE:
+						case Spartacus.Database.Type.DECIMAL:
+						case Spartacus.Database.Type.DATE:
+						case Spartacus.Database.Type.DATETIME:
+							return "null";
                         case Spartacus.Database.Type.BOOLEAN:
-                            return "''";
-                        case Spartacus.Database.Type.CHAR:
-                            return "''";
-                        case Spartacus.Database.Type.DATE:
-                            return "null";
-                        case Spartacus.Database.Type.STRING:
-                            return "''";
-                        case Spartacus.Database.Type.QUOTEDSTRING:
+						case Spartacus.Database.Type.CHAR:
+						case Spartacus.Database.Type.STRING:
+						case Spartacus.Database.Type.QUOTEDSTRING:
                             return "''";
                         case Spartacus.Database.Type.UNDEFINED:
+						case Spartacus.Database.Type.BYTE:
                             return this.v_value.Trim();
                         default:
                             return "null";
@@ -193,23 +195,26 @@ namespace Spartacus.Database
                     switch (this.v_type)
                     {
                         case Spartacus.Database.Type.INTEGER:
+						case Spartacus.Database.Type.SMALLINTEGER:
+						case Spartacus.Database.Type.BIGINTEGER:
                             return this.v_value.Trim().Replace(".", "").Replace(",", "");
                         case Spartacus.Database.Type.REAL:
+						case Spartacus.Database.Type.FLOAT:
+						case Spartacus.Database.Type.DOUBLE:
+						case Spartacus.Database.Type.DECIMAL:
                             if (this.v_locale == Spartacus.Database.Locale.AMERICAN)
                                 return this.v_value.Trim().Replace(",", "");
                             else
                                 return this.v_value.Trim().Replace(".", "").Replace(",", ".");
                         case Spartacus.Database.Type.BOOLEAN:
-                            return "'" + this.v_value.Trim() + "'";
-                        case Spartacus.Database.Type.CHAR:
-                            return "'" + this.v_value.Trim() + "'";
+						case Spartacus.Database.Type.CHAR:
+						case Spartacus.Database.Type.STRING:
+						case Spartacus.Database.Type.QUOTEDSTRING:
+							return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.DATE:
                             return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
-                        case Spartacus.Database.Type.STRING:
-                            return "'" + this.v_value.Trim() + "'";
-                        case Spartacus.Database.Type.QUOTEDSTRING:
-                            return "'" + this.v_value.Trim() + "'";
                         case Spartacus.Database.Type.UNDEFINED:
+						case Spartacus.Database.Type.BYTE:	
                             return this.v_value.Trim();
                         default:
                             return "null";
