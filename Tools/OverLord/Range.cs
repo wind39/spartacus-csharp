@@ -78,6 +78,43 @@ namespace Spartacus.Tools.OverLord
 			return v_achou;
 		}
 
+		private bool FreeStraightPath(Soldier[] p_soldiers, int x, int y, int x2, int y2)
+		{
+			int w = x2 - x;
+			int h = y2 - y;
+			int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+			if (w<0) dx1 = -1 ; else if (w>0) dx1 = 1;
+			if (h<0) dy1 = -1 ; else if (h>0) dy1 = 1;
+			if (w<0) dx2 = -1 ; else if (w>0) dx2 = 1;
+			int longest = Math.Abs(w);
+			int shortest = Math.Abs(h);
+			if (!(longest>shortest))
+			{
+				longest = Math.Abs(h);
+				shortest = Math.Abs(w);
+				if (h<0) dy2 = -1; else if (h>0) dy2 = 1;
+				dx2 = 0;
+			}
+			int numerator = longest >> 1;
+			for (int i=0;i<=longest;i++)
+			{
+				if (this.v_tileset[x, y].v_block || this.HasSoldier(p_soldiers, x, y))
+					return false;
+				numerator += shortest;
+				if (!(numerator<longest))
+				{
+					numerator -= longest;
+					x += dx1;
+					y += dy1;
+				} else
+				{
+					x += dx2;
+					y += dy2;
+				}
+			}
+			return true;
+		}
+
 		public bool CanWalk(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
 		{
 			int v_distance_x = p_x - p_soldier.v_mapx;
@@ -108,7 +145,8 @@ namespace Spartacus.Tools.OverLord
 
 		public bool CanShoot(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
 		{
-			if (this.HasEnemySoldier(p_soldiers, p_soldier, p_x, p_y))
+			if (this.HasEnemySoldier(p_soldiers, p_soldier, p_x, p_y) &&
+			    this.FreeStraightPath(p_soldiers, p_soldier.v_mapx, p_soldier.v_mapy, p_x, p_y))
 				return true;
 			else
 				return false;

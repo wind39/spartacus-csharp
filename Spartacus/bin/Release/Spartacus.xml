@@ -1922,6 +1922,18 @@
              String a ser tratada.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Command.RemoveUnwantedCharsInjection(System.String)">
+             <summary>
+             Remove de uma string todos os caracteres com acentuação ou proibidos para a inserção SQL.
+             Proteje strings contra SQL Injection, ideal para ser usado em validações de login.
+             </summary>
+             <returns>
+             String livre de caracteres com acentuação ou proibidos para a inserção SQL.
+             </returns>
+             <param name="p_string">
+             String a ser tratada.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Command.SetValue(System.String,System.String)">
              <summary>
              Atribui o valor do Parâmetro de nome <paramref name="p_name" />.

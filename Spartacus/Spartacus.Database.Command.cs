@@ -694,6 +694,190 @@ namespace Spartacus.Database
             return v_newstring;
         }
 
+		/// <summary>
+		/// Remove de uma string todos os caracteres com acentuação ou proibidos para a inserção SQL.
+		/// Proteje strings contra SQL Injection, ideal para ser usado em validações de login.
+		/// </summary>
+		/// <returns>
+		/// String livre de caracteres com acentuação ou proibidos para a inserção SQL.
+		/// </returns>
+		/// <param name='p_string'>
+		/// String a ser tratada.
+		/// </param>
+		public static string RemoveUnwantedCharsInjection(string p_string)
+		{
+			string v_newstring;
+			int i, j, k;
+			char[][] v_handler = new char[56][];
+			char[] v_allowed = new char[84];
+			bool v_achou;
+			char[] v_newarray;
+
+			v_handler[0] = new char[] { 'Á', 'A' };
+			v_handler[1] = new char[] { 'À', 'A' };
+			v_handler[2] = new char[] { 'Ã', 'A' };
+			v_handler[3] = new char[] { 'Â', 'A' };
+			v_handler[4] = new char[] { 'Ä', 'A' };
+			v_handler[5] = new char[] { 'É', 'E' };
+			v_handler[6] = new char[] { 'È', 'E' };
+			v_handler[7] = new char[] { 'Ë', 'E' };
+			v_handler[8] = new char[] { 'Ê', 'E' };
+			v_handler[9] = new char[] { 'Í', 'I' };
+			v_handler[10] = new char[] { 'Ì', 'I' };
+			v_handler[11] = new char[] { 'Î', 'I' };
+			v_handler[12] = new char[] { 'Ï', 'I' };
+			v_handler[13] = new char[] { 'Ó', 'O' };
+			v_handler[14] = new char[] { 'Õ', 'O' };
+			v_handler[15] = new char[] { 'Ô', 'O' };
+			v_handler[16] = new char[] { 'Ò', 'O' };
+			v_handler[17] = new char[] { 'Ö', 'O' };
+			v_handler[18] = new char[] { 'Ú', 'U' };
+			v_handler[19] = new char[] { 'Ü', 'U' };
+			v_handler[20] = new char[] { 'Ù', 'U' };
+			v_handler[21] = new char[] { 'Û', 'U' };
+			v_handler[22] = new char[] { 'Š', 'S' };
+			v_handler[23] = new char[] { 'Ý', 'Y' };
+			v_handler[24] = new char[] { 'Ÿ', 'Y' };
+			v_handler[25] = new char[] { 'Ž', 'Z' };
+			v_handler[26] = new char[] { 'Ç', 'C' };
+			v_handler[27] = new char[] { 'Ñ', 'N' };
+			v_handler[28] = new char[] { 'ñ', 'n' };
+			v_handler[29] = new char[] { 'á', 'a' };
+			v_handler[30] = new char[] { 'à', 'a' };
+			v_handler[31] = new char[] { 'ã', 'a' };
+			v_handler[32] = new char[] { 'â', 'a' };
+			v_handler[33] = new char[] { 'ä', 'a' };
+			v_handler[34] = new char[] { 'é', 'e' };
+			v_handler[35] = new char[] { 'ê', 'e' };
+			v_handler[36] = new char[] { 'è', 'e' };
+			v_handler[37] = new char[] { 'ë', 'e' };
+			v_handler[38] = new char[] { 'í', 'i' };
+			v_handler[39] = new char[] { 'ì', 'i' };
+			v_handler[40] = new char[] { 'î', 'i' };
+			v_handler[41] = new char[] { 'ï', 'i' };
+			v_handler[42] = new char[] { 'ó', 'o' };
+			v_handler[43] = new char[] { 'õ', 'o' };
+			v_handler[44] = new char[] { 'ô', 'o' };
+			v_handler[45] = new char[] { 'ò', 'o' };
+			v_handler[46] = new char[] { 'ö', 'o' };
+			v_handler[47] = new char[] { 'ú', 'u' };
+			v_handler[48] = new char[] { 'ü', 'u' };
+			v_handler[49] = new char[] { 'ù', 'u' };
+			v_handler[50] = new char[] { 'û', 'u' };
+			v_handler[51] = new char[] { 'ç', 'c' };
+			v_handler[52] = new char[] { 'ý', 'y' };
+			v_handler[53] = new char[] { 'ÿ', 'y' };
+			v_handler[54] = new char[] { 'ž', 'z' };
+			v_handler[55] = new char[] { '&', 'e' };
+
+			v_newstring = p_string;
+			for (k = 0; k < v_handler.Length; k++) 
+				v_newstring = v_newstring.Replace (v_handler[k][0], v_handler[k][1]);
+			v_allowed[0] = 'A';
+			v_allowed[1] = 'B';
+			v_allowed[2] = 'C';
+			v_allowed[3] = 'D';
+			v_allowed[4] = 'E';
+			v_allowed[5] = 'F';
+			v_allowed[6] = 'G';
+			v_allowed[7] = 'H';
+			v_allowed[8] = 'I';
+			v_allowed[9] = 'J';
+			v_allowed[10] = 'K';
+			v_allowed[11] = 'L';
+			v_allowed[12] = 'M';
+			v_allowed[13] = 'N';
+			v_allowed[14] = 'O';
+			v_allowed[15] = 'P';
+			v_allowed[16] = 'Q';
+			v_allowed[17] = 'R';
+			v_allowed[18] = 'S';
+			v_allowed[19] = 'T';
+			v_allowed[20] = 'U';
+			v_allowed[21] = 'V';
+			v_allowed[22] = 'W';
+			v_allowed[23] = 'X';
+			v_allowed[24] = 'Y';
+			v_allowed[25] = 'Z';
+			v_allowed[26] = 'a';
+			v_allowed[27] = 'b';
+			v_allowed[28] = 'c';
+			v_allowed[29] = 'd';
+			v_allowed[30] = 'e';
+			v_allowed[31] = 'f';
+			v_allowed[32] = 'g';
+			v_allowed[33] = 'h';
+			v_allowed[34] = 'i';
+			v_allowed[35] = 'j';
+			v_allowed[36] = 'k';
+			v_allowed[37] = 'l';
+			v_allowed[38] = 'm';
+			v_allowed[39] = 'n';
+			v_allowed[40] = 'o';
+			v_allowed[41] = 'p';
+			v_allowed[42] = 'q';
+			v_allowed[43] = 'r';
+			v_allowed[44] = 's';
+			v_allowed[45] = 't';
+			v_allowed[46] = 'u';
+			v_allowed[47] = 'v';
+			v_allowed[48] = 'w';
+			v_allowed[49] = 'x';
+			v_allowed[50] = 'y';
+			v_allowed[51] = 'z';
+			v_allowed[52] = '(';
+			v_allowed[53] = ')';
+			v_allowed[54] = '-';
+			v_allowed[55] = '_';
+			v_allowed[56] = '=';
+			v_allowed[57] = '/';
+			v_allowed[58] = '|';
+			v_allowed[59] = '#';
+			v_allowed[60] = '@';
+			v_allowed[61] = ',';
+			v_allowed[62] = '.';
+			v_allowed[63] = '*';
+			v_allowed[64] = '+';
+			v_allowed[65] = '0';
+			v_allowed[66] = '1';
+			v_allowed[67] = '2';
+			v_allowed[68] = '3';
+			v_allowed[79] = '4';
+			v_allowed[70] = '5';
+			v_allowed[71] = '6';
+			v_allowed[72] = '7';
+			v_allowed[73] = '8';
+			v_allowed[74] = '9';
+			v_allowed[75] = ':';
+			v_allowed[76] = '\n';
+			v_allowed[77] = '\r';
+			v_allowed[78] = '\t';
+			v_allowed[79] = '<';
+			v_allowed[80] = '>';
+			v_allowed[81] = '[';
+			v_allowed[82] = ']';
+			v_allowed[83] = '$';
+
+			v_newarray = v_newstring.ToCharArray();
+			for (i = 0; i < v_newarray.Length; i++)
+			{
+				v_achou = false;
+				j = 0;
+				while (j < v_allowed.Length && ! v_achou)
+				{
+					if (v_newarray[i] == v_allowed[j])
+						v_achou = true;
+					else
+						j++;
+				}
+				if (! v_achou)
+					v_newarray[i] = '_';
+			}
+			v_newstring = new string(v_newarray);
+
+			return v_newstring;
+		}
+
         /// <summary>
         /// Atribui o valor do Parâmetro de nome <paramref name="p_name"/>.
         /// </summary>
@@ -736,6 +920,9 @@ namespace Spartacus.Database
                         case Spartacus.Database.Type.QUOTEDSTRING:
                             this.v_parameters[k].v_value = RemoveUnwantedCharsQuoted(p_value);
                             break;
+						case Spartacus.Database.Type.SECURESTRING:
+							this.v_parameters[k].v_value = RemoveUnwantedCharsInjection(p_value);
+							break;
                         case Spartacus.Database.Type.UNDEFINED:
                             this.v_parameters[k].v_value = p_value;
                             break;
@@ -797,6 +984,9 @@ namespace Spartacus.Database
                             case Spartacus.Database.Type.QUOTEDSTRING:
                                 this.v_parameters[k].v_value = RemoveUnwantedCharsQuoted(p_value);
                                 break;
+							case Spartacus.Database.Type.SECURESTRING:
+								this.v_parameters[k].v_value = RemoveUnwantedCharsInjection(p_value);
+								break;
                             case Spartacus.Database.Type.UNDEFINED:
                                 this.v_parameters[k].v_value = p_value;
                                 break;
@@ -878,6 +1068,9 @@ namespace Spartacus.Database
                         case Spartacus.Database.Type.QUOTEDSTRING:
                             this.v_parameters[p_index].v_value = RemoveUnwantedCharsQuoted(p_value);
                             break;
+						case Spartacus.Database.Type.SECURESTRING:
+							this.v_parameters[p_index].v_value = RemoveUnwantedCharsInjection(p_value);
+							break;
                         case Spartacus.Database.Type.UNDEFINED:
                             this.v_parameters[p_index].v_value = p_value;
                             break;
@@ -923,6 +1116,9 @@ namespace Spartacus.Database
                             case Spartacus.Database.Type.QUOTEDSTRING:
                                 this.v_parameters[p_index].v_value = RemoveUnwantedCharsQuoted(p_value);
                                 break;
+							case Spartacus.Database.Type.SECURESTRING:
+								this.v_parameters[p_index].v_value = RemoveUnwantedCharsInjection(p_value);
+								break;
                             case Spartacus.Database.Type.UNDEFINED:
                                 this.v_parameters[p_index].v_value = p_value;
                                 break;

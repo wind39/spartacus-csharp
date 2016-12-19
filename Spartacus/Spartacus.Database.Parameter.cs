@@ -44,6 +44,7 @@ namespace Spartacus.Database
 		DATETIME,
         STRING,
         QUOTEDSTRING,
+		SECURESTRING,
         UNDEFINED,
 		BYTE
     }
@@ -182,6 +183,7 @@ namespace Spartacus.Database
 						case Spartacus.Database.Type.CHAR:
 						case Spartacus.Database.Type.STRING:
 						case Spartacus.Database.Type.QUOTEDSTRING:
+						case Spartacus.Database.Type.SECURESTRING:	
                             return "''";
                         case Spartacus.Database.Type.UNDEFINED:
 						case Spartacus.Database.Type.BYTE:
@@ -210,7 +212,8 @@ namespace Spartacus.Database
 						case Spartacus.Database.Type.CHAR:
 						case Spartacus.Database.Type.STRING:
 						case Spartacus.Database.Type.QUOTEDSTRING:
-							return "'" + this.v_value.Trim() + "'";
+						case Spartacus.Database.Type.SECURESTRING:
+							return "'" + this.v_value + "'";
                         case Spartacus.Database.Type.DATE:
                             return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
                         case Spartacus.Database.Type.UNDEFINED:

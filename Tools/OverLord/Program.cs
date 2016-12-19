@@ -319,7 +319,6 @@ namespace Spartacus.Tools.OverLord
 			    ! string.IsNullOrWhiteSpace(p_object.v_name) &&
 			    p_object.v_name.StartsWith(this.v_player))
 			{
-				Console.WriteLine("foi 1");
 				for (int w = 0; w < this.v_soldiers.Length; w++)
 				{
 					if (this.v_soldiers[w].v_object.v_name == p_object.v_name &&
@@ -410,7 +409,6 @@ namespace Spartacus.Tools.OverLord
 			         ! string.IsNullOrWhiteSpace(p_object.v_name) &&
 			         ! p_object.v_name.StartsWith(this.v_player))
 			{
-				Console.WriteLine("foi 2");
 				for (int w = 0; w < this.v_soldiers.Length; w++)
 				{
 					if (this.v_soldiers[w].v_object.v_name == p_object.v_name &&
@@ -420,6 +418,9 @@ namespace Spartacus.Tools.OverLord
 					{
 						if (this.v_action == "shoot")
 						{
+							this.v_soldiers[this.v_selected].Shoot(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
+
+
 							this.DrawLine(
 								this.v_soldiers[this.v_selected].v_object.v_rectangle.X/this.v_tile_size,
 								this.v_soldiers[this.v_selected].v_object.v_rectangle.Y/this.v_tile_size,
@@ -432,14 +433,12 @@ namespace Spartacus.Tools.OverLord
 					}
 				}
 			}
-			Console.WriteLine("foi 3 [{0}], {1}", p_object.v_name, this.v_selected);
 		}
 
 		private void OnMapMouseClick(Spartacus.Game.Object p_object)
 		{
-			Console.WriteLine("foi map");
 			if (this.v_selected >= 0 &&
-			    //string.IsNullOrWhiteSpace(p_object.v_name) &&
+			    string.IsNullOrWhiteSpace(p_object.v_name) &&
 			    this.v_action != "" &&
 			    p_object.v_border != null)
 			{

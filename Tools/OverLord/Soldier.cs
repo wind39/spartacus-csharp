@@ -445,5 +445,15 @@ namespace Spartacus.Tools.OverLord
 			this.v_actions--;
 			this.v_stamina -= 10;
 		}
+
+		public void Shoot(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
+		{
+			
+		}
+
+		public void Throw(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
+		{
+			
+		}
 	}
 }
