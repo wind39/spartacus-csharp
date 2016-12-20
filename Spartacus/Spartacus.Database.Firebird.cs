@@ -96,7 +96,7 @@ namespace Spartacus.Database
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
-                + "Dialect=3;Charset=NONE;Role=;";
+				+ "Dialect=3;Charset=NONE;Role=;Pooling=false";
 
             try
             {
@@ -112,7 +112,7 @@ namespace Spartacus.Database
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
-                + "Dialect=3;Charset=" + v_charset + ";Role=;";
+				+ "Dialect=3;Charset=" + v_charset + ";Role=;Pooling=false";
 
             this.v_con = null;
             this.v_cmd = null;
@@ -145,7 +145,7 @@ namespace Spartacus.Database
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
-                + "Dialect=3;Charset=NONE;Role=;";
+				+ "Dialect=3;Charset=NONE;Role=;Pooling=false";
 
             try
             {
@@ -161,7 +161,7 @@ namespace Spartacus.Database
                 + "Database=" + this.v_service + ";"
                 + "User=" + this.v_user + ";"
                 + "Password=" + this.v_password + ";"
-                + "Dialect=3;Charset=" + v_charset + ";Role=;";
+				+ "Dialect=3;Charset=" + v_charset + ";Role=;Pooling=false";
 
             this.v_con = null;
             this.v_cmd = null;

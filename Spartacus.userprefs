@@ -4,9 +4,9 @@
       <File FileName="Tools/OverLord/Program.cs" Line="553" Column="4" />
       <File FileName="Tools/OverLord/Soldier.cs" Line="448" Column="3" />
       <File FileName="Tools/OverLord/Range.cs" Line="131" Column="3" />
-      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="216" Column="33" />
-      <File FileName="Spartacus/Spartacus.Database.Command.cs" Line="10" Column="67" />
-      <File FileName="CHANGELOG.txt" Line="24" Column="27" />
+      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="170" Column="10" />
+      <File FileName="Spartacus/Properties/AssemblyInfo.cs" Line="20" Column="41" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
