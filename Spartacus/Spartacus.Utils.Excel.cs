@@ -1465,6 +1465,7 @@ namespace Spartacus.Utils
             int v_in_tmp;
             double v_re_tmp;
             string[] v_co1, v_co2;
+			NCalc.Expression v_exp;
             int r, c;
             bool v_achou;
 
@@ -1605,7 +1606,7 @@ namespace Spartacus.Utils
                                                     v_picture.SetSize(v_width, v_height);
                                                 }
                                             }
-                                            catch (System.Exception)
+                                            catch
                                             {
                                             }
                                         }
@@ -1667,9 +1668,9 @@ namespace Spartacus.Utils
                                     case "CO":
                                         v_co1 = v_options[1].Split(',');
                                         v_co2 = v_options[2].Split(',');
-                                        if (v_co1.Length == v_co2.Length)
+                                        if (v_options[3] == "" && v_co1.Length == v_co2.Length) // ocultar coluna apenas se estiver vazia
                                         {
-                                            for (c = 0; c < v_co1.Length; c++)
+											for (c = 0; c < v_co1.Length; c++)
                                             {
                                                 r = 0;
                                                 v_achou = false;
@@ -1684,6 +1685,36 @@ namespace Spartacus.Utils
                                                     v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
                                             }
                                         }
+										else
+										{
+											if (v_options[3] != "") // ocultar coluna se condicao verdadeira
+											{
+												v_exp = new NCalc.Expression(v_options[3]);
+
+												for (c = 0; c < v_co2.Length; c++)
+												{
+													double v_soma = 0.0;
+													foreach (System.Data.DataRow l in v_table.Rows)
+													{
+														if (double.TryParse(l[v_co2[c]].ToString(), out v_re_tmp))
+															v_soma += v_re_tmp;
+													}
+													v_exp.Parameters[v_co2[c]] = v_soma;
+												}
+
+												try
+												{
+													if ((bool) v_exp.Evaluate())
+													{
+														for (c = 0; c < v_co1.Length; c++)
+															v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
+													}
+												}
+												catch
+												{
+												}
+											}
+										}
                                         break;
                                     default:
                                         break;
@@ -1731,6 +1762,7 @@ namespace Spartacus.Utils
             int v_in_tmp;
             double v_re_tmp;
             string[] v_co1, v_co2;
+			NCalc.Expression v_exp;
             int r, c;
             bool v_achou;
 
@@ -1941,7 +1973,7 @@ namespace Spartacus.Utils
                                                                 v_picture.SetSize(v_width, v_height);
                                                             }
                                                         }
-                                                        catch (System.Exception)
+                                                        catch
                                                         {
                                                         }
                                                     }
@@ -2001,26 +2033,56 @@ namespace Spartacus.Utils
                                                     v_rule2.Formula = v_options[1];
                                                     break;
                                                 case "CO":
-                                                    v_co1 = v_options[1].Split(',');
-                                                    v_co2 = v_options[2].Split(',');
-                                                    if (v_co1.Length == v_co2.Length)
-                                                    {
-                                                        for (c = 0; c < v_co1.Length; c++)
-                                                        {
-                                                            r = 0;
-                                                            v_achou = false;
-                                                            while (r < v_table.Rows.Count && ! v_achou)
-                                                            {
-                                                                if (v_table.Rows[r][v_co2[c]].ToString() != "")
-                                                                    v_achou = true;
-                                                                else
-                                                                    r++;
-                                                            }
-                                                            if (!v_achou)
-                                                                v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
-                                                        }
-                                                    }
-                                                    break;
+													v_co1 = v_options[1].Split(',');
+													v_co2 = v_options[2].Split(',');
+													if (v_options[3] == "" && v_co1.Length == v_co2.Length) // ocultar coluna apenas se estiver vazia
+													{
+														for (c = 0; c < v_co1.Length; c++)
+														{
+															r = 0;
+															v_achou = false;
+															while (r < v_table.Rows.Count && ! v_achou)
+															{
+																if (v_table.Rows[r][v_co2[c]].ToString() != "")
+																	v_achou = true;
+																else
+																	r++;
+															}
+															if (!v_achou)
+																v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
+														}
+													}
+													else
+													{
+														if (v_options[3] != "") // ocultar coluna se condicao verdadeira
+														{
+															v_exp = new NCalc.Expression(v_options[3]);
+
+															for (c = 0; c < v_co2.Length; c++)
+															{
+																double v_soma = 0.0;
+																foreach (System.Data.DataRow l in v_table.Rows)
+																{
+																	if (double.TryParse(l[v_co2[c]].ToString(), out v_re_tmp))
+																		v_soma += v_re_tmp;
+																}
+																v_exp.Parameters[v_co2[c]] = v_soma;
+															}
+
+															try
+															{
+																if ((bool) v_exp.Evaluate())
+																{
+																	for (c = 0; c < v_co1.Length; c++)
+																		v_worksheet.Column(int.Parse(v_co1[c])).Hidden = true;
+																}
+															}
+															catch
+															{
+															}
+														}
+													}
+													break;
                                                 default:
                                                     break;
                                             }

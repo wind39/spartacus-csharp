@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{AD387A59-0878-4894-8A7D-7CA28410B134}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Tools/OverLord/Program.cs" Line="553" Column="4" />
+      <File FileName="Tools/OverLord/Program.cs" Line="549" Column="15" />
       <File FileName="Tools/OverLord/Soldier.cs" Line="448" Column="3" />
       <File FileName="Tools/OverLord/Range.cs" Line="131" Column="3" />
-      <File FileName="Spartacus/Spartacus.Database.Firebird.cs" Line="170" Column="10" />
-      <File FileName="Spartacus/Properties/AssemblyInfo.cs" Line="20" Column="41" />
-      <File FileName="CHANGELOG.txt" Line="24" Column="39" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="2070" Column="17" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
