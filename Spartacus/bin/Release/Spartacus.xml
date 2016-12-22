@@ -17922,6 +17922,34 @@
              <param name="p_subject">Assunto.</param>
              <param name="p_body">Corpo.</param>
             </member>
+        <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+             <summary>
+             Envia um único e-mail para um único destinatário.
+             </summary>
+             <param name="p_host">Servidor.</param>
+             <param name="p_port">Porta.</param>
+             <param name="p_user">Usuário.</param>
+             <param name="p_password">Senha.</param>
+             <param name="p_from">Remetente.</param>
+             <param name="p_to">Destinatário.</param>
+             <param name="p_subject">Assunto.</param>
+             <param name="p_body">Corpo.</param>
+             <param name="p_htmlbody">Se o corpo é HTML.</param>
+            </member>
+        <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Boolean)">
+             <summary>
+             Envia um único e-mail para uma lista de destinatários.
+             </summary>
+             <param name="p_host">Servidor.</param>
+             <param name="p_port">Porta.</param>
+             <param name="p_user">Usuário.</param>
+             <param name="p_password">Senha.</param>
+             <param name="p_from">Remetente.</param>
+             <param name="p_to">Destinatário.</param>
+             <param name="p_subject">Assunto.</param>
+             <param name="p_body">Corpo.</param>
+             <param name="p_htmlbody">Se o corpo é HTML.</param>
+            </member>
         <member name="M:Spartacus.Net.MailClient.Send(System.String,System.Int32,System.Net.NetworkCredential,System.String)">
              <summary>
              Envia um único e-mail usando MimeKit e MailKit.

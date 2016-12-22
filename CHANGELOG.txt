@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.43.23: Spartacus.Net.MailClient: Suporte a envio de e-mails com corpo HTML
 0.43.22: Spartacus.Utils.Excel: Implementada condição para ocultar colunas no CO
 0.43.21: Spartacus.Database.Firebird: Atualizado driver e desabilitado Connection Pooling
 0.43.20: Implementado Spartacus.Database.Type.SECURESTRING, contra SQL Injection
