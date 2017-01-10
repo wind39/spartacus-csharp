@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>SpartacusMin</id>
+    <version>0.42.0</version>
+    <authors>William Ivanski</authors>
+    <owners>William Ivanski</owners>
+    <licenseUrl>https://raw.githubusercontent.com/wind39/spartacus/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/wind39/spartacus</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Spartacus is a database connection and reporting engine written in C#.</description>
+    <copyright>Copyright 2014-2016</copyright>
+    <tags>Database Report Business</tags>
+    <dependencies></dependencies>
+  </metadata>
+  <files>
+    <file src="SpartacusMin.dll" target="lib/net40" />
+  </files>
+</package>
+

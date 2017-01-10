@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73C72C02-280A-4856-9448-1F5ACA8DB125}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SpartacusMin</RootNamespace>
+    <AssemblyName>SpartacusMin</AssemblyName>
+    <ReleaseVersion></ReleaseVersion>
+    <UseMSBuildEngine>false</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>lib\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit">
+      <HintPath>lib\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit">
+      <HintPath>lib\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Tds">
+      <HintPath>lib\Mono.Data.Tds.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>lib\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>lib\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpartacusMin.Database.Command.cs" />
+    <Compile Include="SpartacusMin.Database.Exception.cs" />
+    <Compile Include="SpartacusMin.Database.Field.cs" />
+    <Compile Include="SpartacusMin.Database.Firebird.cs" />
+    <Compile Include="SpartacusMin.Database.Generic.cs" />
+    <Compile Include="SpartacusMin.Database.Memory.cs" />
+    <Compile Include="SpartacusMin.Database.Parameter.cs" />
+    <Compile Include="SpartacusMin.Database.Postgresql.cs" />
+    <Compile Include="SpartacusMin.Database.SqlServer.cs" />
+    <Compile Include="SpartacusMin.Net.AvailableEvent.cs" />
+    <Compile Include="SpartacusMin.Net.Client.cs" />
+    <Compile Include="SpartacusMin.Net.ConnectEvent.cs" />
+    <Compile Include="SpartacusMin.Net.DisconnectEvent.cs" />
+    <Compile Include="SpartacusMin.Net.Endpoint.cs" />
+    <Compile Include="SpartacusMin.Net.Exception.cs" />
+    <Compile Include="SpartacusMin.Net.FakeSmtp.cs" />
+    <Compile Include="SpartacusMin.Net.MailClient.cs" />
+    <Compile Include="SpartacusMin.Net.Packet.cs" />
+    <Compile Include="SpartacusMin.Net.Server.cs" />
+    <Compile Include="SpartacusMin.Utils.Convert.cs" />
+    <Compile Include="SpartacusMin.Utils.Cryptor.cs" />
+    <Compile Include="SpartacusMin.Utils.ErrorEvent.cs" />
+    <Compile Include="SpartacusMin.Utils.Exception.cs" />
+    <Compile Include="SpartacusMin.Utils.NotImplementedException.cs" />
+    <Compile Include="SpartacusMin.Utils.NotSupportedException.cs" />
+    <Compile Include="SpartacusMin.Utils.ProgressEvent.cs" />
+    <Compile Include="SpartacusMin.Utils.WarningEvent.cs" />
+    <Compile Include="SpartacusMin.Database.Sqlite.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\BouncyCastle.Crypto.dll" />
+    <None Include="bin\Debug\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Debug\MailKit.dll" />
+    <None Include="bin\Debug\MimeKit.dll" />
+    <None Include="bin\Debug\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Debug\Mono.Data.Tds.dll" />
+    <None Include="bin\Debug\Mono.Security.dll" />
+    <None Include="bin\Debug\Npgsql.dll" />
+    <None Include="bin\Debug\SpartacusMin.dll" />
+    <None Include="bin\Debug\SpartacusMin.dll.mdb" />
+    <None Include="bin\Release\BouncyCastle.Crypto.dll" />
+    <None Include="bin\Release\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="bin\Release\MailKit.dll" />
+    <None Include="bin\Release\MimeKit.dll" />
+    <None Include="bin\Release\Mono.Data.Sqlite.dll" />
+    <None Include="bin\Release\Mono.Data.Tds.dll" />
+    <None Include="bin\Release\Mono.Security.dll" />
+    <None Include="bin\Release\Npgsql.dll" />
+    <None Include="bin\Release\SpartacusMin.dll" />
+    <None Include="dist\ILRepack.exe" />
+    <None Include="dist\merge_debug.sh" />
+    <None Include="dist\merge_release.sh" />
+    <None Include="dist\SpartacusMin.nuspec" />
+    <None Include="lib\BouncyCastle.Crypto.dll" />
+    <None Include="lib\FirebirdSql.Data.FirebirdClient.dll" />
+    <None Include="lib\MailKit.dll" />
+    <None Include="lib\MimeKit.dll" />
+    <None Include="lib\Mono.Data.Sqlite.dll" />
+    <None Include="lib\Mono.Data.Tds.dll" />
+    <None Include="lib\Mono.Security.dll" />
+    <None Include="lib\Npgsql.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -87,7 +87,7 @@ namespace Spartacus.Tools.OverLord
 			this.v_player = "green";
 			this.v_playercolor = System.Drawing.Color.Green;
 
-			this.v_soldiers = new Soldier[2];
+			this.v_soldiers = new Soldier[4];
 			this.v_soldiers[0] = new Soldier(
 				this.v_database,
 				TeamColor.GREEN,
@@ -96,9 +96,21 @@ namespace Spartacus.Tools.OverLord
 			);
 			this.v_soldiers[1] = new Soldier(
 				this.v_database,
+				TeamColor.GREEN,
+				"green_2",
+				2, 4
+			);
+			this.v_soldiers[2] = new Soldier(
+				this.v_database,
 				TeamColor.RED,
 				"red_1",
 				6, 1
+			);
+			this.v_soldiers[3] = new Soldier(
+				this.v_database,
+				TeamColor.BLUE,
+				"blue_1",
+				1, 6
 			);
 
 			this.v_selected = -1;
@@ -421,14 +433,14 @@ namespace Spartacus.Tools.OverLord
 							this.v_soldiers[this.v_selected].Shoot(p_object.v_rectangle.X/this.v_tile_size, p_object.v_rectangle.Y/this.v_tile_size, this.v_mapview_x, this.v_mapview_y);
 
 
-							this.DrawLine(
+							/*this.DrawLine(
 								this.v_soldiers[this.v_selected].v_object.v_rectangle.X/this.v_tile_size,
 								this.v_soldiers[this.v_selected].v_object.v_rectangle.Y/this.v_tile_size,
 								//p_object.v_rectangle.X/this.v_tile_size,
 								this.v_soldiers[w].v_object.v_rectangle.X/this.v_tile_size,
 								//p_object.v_rectangle.Y/this.v_tile_size
 								this.v_soldiers[w].v_object.v_rectangle.Y/this.v_tile_size
-							);
+							);*/
 						}
 					}
 				}

@@ -78,7 +78,29 @@ namespace Spartacus.Tools.OverLord
 			return v_achou;
 		}
 
-		private bool FreeStraightPath(Soldier[] p_soldiers, int x, int y, int x2, int y2)
+		private bool HasFriendSoldier(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
+		{
+			bool v_achou = false;
+			int k = 0;
+			while (k < p_soldiers.Length && ! v_achou)
+			{
+				if (p_soldiers[k].v_mapx == p_x &&
+				    p_soldiers[k].v_mapy == p_y &&
+				    p_soldiers[k].v_health > 0 &&
+				    p_soldiers[k].v_color == p_soldier.v_color)
+					v_achou = true;
+				else
+					k++;
+			}
+			return v_achou;
+		}
+
+		private bool HasCurrentSoldier(Soldier p_soldier, int p_x, int p_y)
+		{
+			return p_soldier.v_mapx == p_x && p_soldier.v_mapy == p_y;
+		}
+
+		private bool FreeStraightPath(Soldier[] p_soldiers, Soldier p_soldier, int x, int y, int x2, int y2)
 		{
 			int w = x2 - x;
 			int h = y2 - y;
@@ -98,7 +120,8 @@ namespace Spartacus.Tools.OverLord
 			int numerator = longest >> 1;
 			for (int i=0;i<=longest;i++)
 			{
-				if (this.v_tileset[x, y].v_block || this.HasSoldier(p_soldiers, x, y))
+				if (! this.HasCurrentSoldier(p_soldier, x, y) &&
+				    (this.v_tileset[x, y].v_block || this.HasFriendSoldier(p_soldiers, p_soldier, x, y)))
 					return false;
 				numerator += shortest;
 				if (!(numerator<longest))
@@ -146,7 +169,7 @@ namespace Spartacus.Tools.OverLord
 		public bool CanShoot(Soldier[] p_soldiers, Soldier p_soldier, int p_x, int p_y)
 		{
 			if (this.HasEnemySoldier(p_soldiers, p_soldier, p_x, p_y) &&
-			    this.FreeStraightPath(p_soldiers, p_soldier.v_mapx, p_soldier.v_mapy, p_x, p_y))
+			    this.FreeStraightPath(p_soldiers, p_soldier, p_soldier.v_mapx, p_soldier.v_mapy, p_x, p_y))
 				return true;
 			else
 				return false;

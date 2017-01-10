@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong", "Tools\Pong\Pong.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverLord", "Tools\OverLord\OverLord.csproj", "{AD387A59-0878-4894-8A7D-7CA28410B134}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartacusMin", "SpartacusMin\SpartacusMin.csproj", "{73C72C02-280A-4856-9448-1F5ACA8DB125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{AD387A59-0878-4894-8A7D-7CA28410B134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD387A59-0878-4894-8A7D-7CA28410B134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD387A59-0878-4894-8A7D-7CA28410B134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C72C02-280A-4856-9448-1F5ACA8DB125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C72C02-280A-4856-9448-1F5ACA8DB125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C72C02-280A-4856-9448-1F5ACA8DB125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C72C02-280A-4856-9448-1F5ACA8DB125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BD2B4BE0-DF80-43DB-97A6-19B94F2BBAC5} = {C18F2187-EA7E-420E-88E0-86822852E26B}

@@ -1,0 +1,13 @@
+/home/william/Documents/Projects/spartacus/SpartacusMin/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/SpartacusMin.dll.mdb
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/SpartacusMin.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/obj/Debug/SpartacusMin.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/obj/Debug/SpartacusMin.dll.mdb
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/BouncyCastle.Crypto.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/FirebirdSql.Data.FirebirdClient.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/MailKit.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/MimeKit.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/Mono.Data.Sqlite.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/Mono.Data.Tds.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/Mono.Security.dll
+/home/william/Documents/Projects/spartacus/SpartacusMin/bin/Debug/Npgsql.dll

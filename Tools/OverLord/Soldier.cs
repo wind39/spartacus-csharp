@@ -446,9 +446,30 @@ namespace Spartacus.Tools.OverLord
 			this.v_stamina -= 10;
 		}
 
-		public void Shoot(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
+		public int Shoot(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
 		{
-			
+			int v_damage = 0;
+
+			return v_damage;
+		}
+
+		private int Damage(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
+		{
+			double v_distance;
+
+			v_distance = Math.Sqrt(Math.Pow((p_x + p_mapview_x) - this.v_mapx, 2) + Math.Pow((p_y + p_mapview_y) - this.v_mapy, 2));
+			if (v_distance >= 0.0 && v_distance <= 1.0)
+				return this.v_random.Next(80, 101);
+			else if (v_distance > 1.0 && v_distance <= 2.0)
+				return this.v_random.Next(60, 81);
+			else if (v_distance > 2.0 && v_distance <= 3.0)
+				return this.v_random.Next(40, 61);
+			else if (v_distance > 3.0 && v_distance <= 4.0)
+				return this.v_random.Next(20, 41);
+			if (v_distance > 4.0)
+				return this.v_random.Next(0, 21);
+			else
+				return 0;
 		}
 
 		public void Throw(int p_x, int p_y, int p_mapview_x, int p_mapview_y)
