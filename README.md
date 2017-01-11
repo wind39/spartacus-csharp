@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/spartacuslibrary/Lobby](https://img.shields.io/badge/GITTER-JOIN%20CHAT-brightgreen.svg)](https://gitter.im/spartacuslibrary/Lobby)
+
 ![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png)
 
 Spartacus is a business library written in C#, focused on:
