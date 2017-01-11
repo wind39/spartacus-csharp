@@ -187,7 +187,6 @@ namespace Spartacus.Net
             System.Text.StringBuilder v_data;
             Spartacus.Utils.Cryptor v_cryptor;
             System.Net.Mail.MailMessage v_message;
-            Spartacus.Net.MailClient v_mailclient;
             string v_line = null;
             System.Data.DataTable v_table;
             bool v_achou;

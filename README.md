@@ -4,9 +4,14 @@ Spartacus is a business library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
   - Render reports from a unique XML markup to PDF, using own database objects;
   - Really fast import and export spreadsheets (CSV, DBF and XLSX), with no need of Excel or any other piece of software;
-  - Easy to work with cryptography of files and messages.
+  - Easy to work with cryptography of files and messages;
+  - Simple networking classes (server, client, webserver, etc);
+  - Simple 2D game engine over System.Drawing and System.Windows.Forms.
 
-NuGet package: https://www.nuget.org/packages/Spartacus
+SpartacusMin is a subset of Spartacus designed to work on Xamarin Android.
+
+Spartacus NuGet package: https://www.nuget.org/packages/Spartacus
+SpartacusMin NuGet package: https://www.nuget.org/packages/SpartacusMin
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
@@ -27,6 +32,7 @@ Spartacus contains this managed libraries:
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)
+  - Mono's ASP.NET hosting server (https://github.com/mono/xsp)
   - PDFjet Open Source Edition (http://pdfjet.com/os/edition.html)
   - SejExcel, by Jose Segarra (https://github.com/jsegarra1971/SejExcelExport)
   - ZipStorer, by Jaime Olivares (https://github.com/jaime-olivares/zipstorer)

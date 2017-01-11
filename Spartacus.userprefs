@@ -1,7 +1,11 @@
-﻿<Properties StartupConfiguration="{AD387A59-0878-4894-8A7D-7CA28410B134}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
+﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="24" Column="19" />
+      <File FileName="CHANGELOG.txt" Line="23" Column="1" />
+      <File FileName="Spartacus/Spartacus.Net.FakeSmtp.cs" Line="242" Column="34" />
+      <File FileName="Spartacus/Spartacus.Net.WebServer.cs" Line="54" Column="9" />
+      <File FileName="Tools/WebServer/Program.cs" Line="39" Column="24" />
+      <File FileName="README.md" Line="9" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
@@ -13,4 +17,5 @@
   <MonoDevelop.Ide.ItemProperties.Tools.OverLord PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Tools.Pong PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Tools.ReportManager PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Tools.WebServer PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

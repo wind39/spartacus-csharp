@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -33,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\Spartacus.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -93,6 +95,10 @@
     </Reference>
     <Reference Include="NCalc">
       <HintPath>lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="Mono.Posix">
+      <HintPath>lib\Mono.Posix.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +346,70 @@
     <Compile Include="Spartacus.Game.Keys.cs" />
     <Compile Include="Spartacus.Database.Pollydb.cs" />
     <Compile Include="Spartacus.Database.Field.cs" />
+    <Compile Include="xsp\Log\FileLogger.cs" />
+    <Compile Include="xsp\Log\ILogger.cs" />
+    <Compile Include="xsp\Log\Logger.cs" />
+    <Compile Include="xsp\Log\LogLevel.cs" />
+    <Compile Include="xsp\Options\Settings\BoolSetting.cs" />
+    <Compile Include="xsp\Options\Settings\EnumSetting.cs" />
+    <Compile Include="xsp\Options\Settings\Int32Setting.cs" />
+    <Compile Include="xsp\Options\Settings\ISetting.cs" />
+    <Compile Include="xsp\Options\Settings\NullableInt32Setting.cs" />
+    <Compile Include="xsp\Options\Settings\NullableSetting.cs" />
+    <Compile Include="xsp\Options\Settings\NullableUInt16Setting.cs" />
+    <Compile Include="xsp\Options\Settings\Parser.cs" />
+    <Compile Include="xsp\Options\Settings\Setting.cs" />
+    <Compile Include="xsp\Options\Settings\SettingsCollection.cs" />
+    <Compile Include="xsp\Options\Settings\SettingSource.cs" />
+    <Compile Include="xsp\Options\Settings\StringSetting.cs" />
+    <Compile Include="xsp\Options\Settings\UInt16Setting.cs" />
+    <Compile Include="xsp\Options\Settings\UInt32Setting.cs" />
+    <Compile Include="xsp\Options\ConfigurationManager.cs" />
+    <Compile Include="xsp\Options\ConfigurationManager.Fields.cs" />
+    <Compile Include="xsp\Options\ConfigurationManagerExtensions.cs" />
+    <Compile Include="xsp\Options\Descriptions.cs" />
+    <Compile Include="xsp\Options\IHelpConfigurationManager.cs" />
+    <Compile Include="xsp\Options\Options.cs" />
+    <Compile Include="xsp\Options\ServerConfigurationManager.cs" />
+    <Compile Include="xsp\ApplicationServer.cs" />
+    <Compile Include="xsp\BaseApplicationHost.cs" />
+    <Compile Include="xsp\BaseRequestBroker.cs" />
+    <Compile Include="xsp\CompatTuple.cs" />
+    <Compile Include="xsp\ConfigurationManager.cs" />
+    <Compile Include="xsp\EndOfRequestHandler.cs" />
+    <Compile Include="xsp\FinePlatformID.cs" />
+    <Compile Include="xsp\HttpErrors.cs" />
+    <Compile Include="xsp\IApplicationHost.cs" />
+    <Compile Include="xsp\IdentityToken.cs" />
+    <Compile Include="xsp\InitialWorkerRequest.cs" />
+    <Compile Include="xsp\IRequestBroker.cs" />
+    <Compile Include="xsp\LingeringNetworkStream.cs" />
+    <Compile Include="xsp\LockRecursionException.cs" />
+    <Compile Include="xsp\LockRecursionPolicy.cs" />
+    <Compile Include="xsp\main.cs" />
+    <Compile Include="xsp\MapPathEventArgs.cs" />
+    <Compile Include="xsp\MapPathEventHandler.cs" />
+    <Compile Include="xsp\MonoWorkerRequest.cs" />
+    <Compile Include="xsp\Paths.cs" />
+    <Compile Include="xsp\Platform.cs" />
+    <Compile Include="xsp\RequestData.cs" />
+    <Compile Include="xsp\RequestLineException.cs" />
+    <Compile Include="xsp\SearchPattern.cs" />
+    <Compile Include="xsp\SecurityConfiguration.cs" />
+    <Compile Include="xsp\SslInformation.cs" />
+    <Compile Include="xsp\UnregisterRequestEventArgs.cs" />
+    <Compile Include="xsp\UnregisterRequestEventHandler.cs" />
+    <Compile Include="xsp\Version.cs" />
+    <Compile Include="xsp\VPathToHost.cs" />
+    <Compile Include="xsp\WebSource.cs" />
+    <Compile Include="xsp\WebTrace.cs" />
+    <Compile Include="xsp\Worker.cs" />
+    <Compile Include="xsp\XSPApplicationHost.cs" />
+    <Compile Include="xsp\XSPRequestBroker.cs" />
+    <Compile Include="xsp\XSPWebSource.cs" />
+    <Compile Include="xsp\XSPWorker.cs" />
+    <Compile Include="xsp\XSPWorkerRequest.cs" />
+    <Compile Include="Spartacus.Net.WebServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
