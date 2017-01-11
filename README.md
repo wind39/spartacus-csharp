@@ -10,8 +10,9 @@ Spartacus is a business library written in C#, focused on:
 
 SpartacusMin is a subset of Spartacus designed to work on Xamarin Android.
 
-Spartacus NuGet package: https://www.nuget.org/packages/Spartacus
-SpartacusMin NuGet package: https://www.nuget.org/packages/SpartacusMin
+NuGet packages:
+  - https://www.nuget.org/packages/Spartacus
+  - https://www.nuget.org/packages/SpartacusMin
 
 Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
