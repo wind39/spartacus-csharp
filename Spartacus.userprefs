@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="23" Column="1" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="50" />
       <File FileName="Spartacus/Spartacus.Net.FakeSmtp.cs" Line="242" Column="34" />
       <File FileName="Spartacus/Spartacus.Net.WebServer.cs" Line="27" Column="24" />
       <File FileName="Tools/WebServer/Program.cs" Line="27" Column="36" />
-      <File FileName="README.md" Line="1" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="63" Column="23" />
+      <File FileName="Spartacus/Spartacus.Utils.Excel.cs" Line="1104" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

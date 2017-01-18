@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.44.2:  Atualizado driver MS Access (UCanAccess)
 0.44.1:  Implementado Spartacus.Net.WebServer a partir do código do Mono XSP
 0.44.0:  Criando SpartacusMin, para utilizar no Xamarin
 
