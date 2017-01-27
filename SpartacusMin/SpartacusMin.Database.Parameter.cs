@@ -26,28 +26,28 @@ using System;
 
 namespace SpartacusMin.Database
 {
-    /// <summary>
-    /// Tipos de Dados.
-    /// </summary>
-    public enum Type
-    {
-        INTEGER,
+	/// <summary>
+	/// Tipos de Dados.
+	/// </summary>
+	public enum Type
+	{
+		INTEGER,
+		REAL,
+		BOOLEAN,
+		CHAR,
+		DATE,
+		STRING,
+		QUOTEDSTRING,
+		UNDEFINED,
 		SMALLINTEGER,
 		BIGINTEGER,
-        REAL,
 		FLOAT,
 		DOUBLE,
 		DECIMAL,
-        BOOLEAN,
-        CHAR,
-        DATE,
 		DATETIME,
-        STRING,
-        QUOTEDSTRING,
 		SECURESTRING,
-        UNDEFINED,
 		BYTE
-    }
+	}
 
     /// <summary>
     /// Representações de números reais:
@@ -155,75 +155,59 @@ namespace SpartacusMin.Database
             this.v_lookup = "";
         }
 
-        /// <summary>
-        /// Escreve o valor do Parâmetro em formato de string, para ser usado dentro do Comando SQL.
-        /// Monta a string de acordo com os atributos do Parâmetro.
-        /// </summary>
-        public string Text()
-        {
-            if (this.v_null || this.v_value == null)
-                return "null";
-            else
-            {
-                if (this.v_value.Trim() == "")
-                {
-					switch (this.v_type)
-                    {
-                        case SpartacusMin.Database.Type.INTEGER:
-                        case SpartacusMin.Database.Type.SMALLINTEGER:
-						case SpartacusMin.Database.Type.BIGINTEGER:
-						case SpartacusMin.Database.Type.REAL:
-                        case SpartacusMin.Database.Type.FLOAT:
-						case SpartacusMin.Database.Type.DOUBLE:
-						case SpartacusMin.Database.Type.DECIMAL:
-						case SpartacusMin.Database.Type.DATE:
-						case SpartacusMin.Database.Type.DATETIME:
-							return "null";
-                        case SpartacusMin.Database.Type.BOOLEAN:
-						case SpartacusMin.Database.Type.CHAR:
-						case SpartacusMin.Database.Type.STRING:
-						case SpartacusMin.Database.Type.QUOTEDSTRING:
-						case SpartacusMin.Database.Type.SECURESTRING:	
-                            return "''";
-                        case SpartacusMin.Database.Type.UNDEFINED:
-						case SpartacusMin.Database.Type.BYTE:
-                            return this.v_value.Trim();
-                        default:
-                            return "null";
-                    }
-                }
-                else
-                {
-                    switch (this.v_type)
-                    {
-                        case SpartacusMin.Database.Type.INTEGER:
-						case SpartacusMin.Database.Type.SMALLINTEGER:
-						case SpartacusMin.Database.Type.BIGINTEGER:
-                            return this.v_value.Trim().Replace(".", "").Replace(",", "");
-                        case SpartacusMin.Database.Type.REAL:
-						case SpartacusMin.Database.Type.FLOAT:
-						case SpartacusMin.Database.Type.DOUBLE:
-						case SpartacusMin.Database.Type.DECIMAL:
-                            if (this.v_locale == SpartacusMin.Database.Locale.AMERICAN)
-                                return this.v_value.Trim().Replace(",", "");
-                            else
-                                return this.v_value.Trim().Replace(".", "").Replace(",", ".");
-                        case SpartacusMin.Database.Type.BOOLEAN:
-						case SpartacusMin.Database.Type.CHAR:
-						case SpartacusMin.Database.Type.STRING:
-						case SpartacusMin.Database.Type.QUOTEDSTRING:
-						case SpartacusMin.Database.Type.SECURESTRING:
-							return "'" + this.v_value + "'";
-                        case SpartacusMin.Database.Type.DATE:
-                            return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
-                        case SpartacusMin.Database.Type.UNDEFINED:
-						case SpartacusMin.Database.Type.BYTE:	
-                            return this.v_value.Trim();
-                        default:
-                            return "null";
-                    }
-                }
-            }
-        }
+		/// <summary>
+		/// Escreve o valor do Parâmetro em formato de string, para ser usado dentro do Comando SQL.
+		/// Monta a string de acordo com os atributos do Parâmetro.
+		/// </summary>
+		public string Text()
+		{
+			if (this.v_null || this.v_value == null)
+				return "null";
+			else
+			{
+				if (this.v_value.Trim() == "")
+				{
+					if (this.v_type == SpartacusMin.Database.Type.BOOLEAN ||
+					    this.v_type == SpartacusMin.Database.Type.CHAR ||
+					    this.v_type == SpartacusMin.Database.Type.STRING ||
+					    this.v_type == SpartacusMin.Database.Type.QUOTEDSTRING ||
+					    this.v_type == SpartacusMin.Database.Type.SECURESTRING)
+						return "''";
+					else
+						return "null";
+				}
+				else
+				{
+					if (this.v_type == SpartacusMin.Database.Type.INTEGER ||
+					    this.v_type == SpartacusMin.Database.Type.SMALLINTEGER ||
+					    this.v_type == SpartacusMin.Database.Type.BIGINTEGER)
+						return this.v_value.Trim().Replace(".", "").Replace(",", "");
+					else if (this.v_type == SpartacusMin.Database.Type.REAL ||
+					         this.v_type == SpartacusMin.Database.Type.FLOAT ||
+					         this.v_type == SpartacusMin.Database.Type.DOUBLE ||
+					         this.v_type == SpartacusMin.Database.Type.DECIMAL)
+					{
+						if (this.v_locale == SpartacusMin.Database.Locale.AMERICAN)
+							return this.v_value.Trim().Replace(",", "");
+						else
+							return this.v_value.Trim().Replace(".", "").Replace(",", ".");
+					}
+					else if (this.v_type == SpartacusMin.Database.Type.BOOLEAN ||
+					         this.v_type == SpartacusMin.Database.Type.CHAR ||
+					         this.v_type == SpartacusMin.Database.Type.STRING ||
+					         this.v_type == SpartacusMin.Database.Type.QUOTEDSTRING ||
+					         this.v_type == SpartacusMin.Database.Type.SECURESTRING)
+						return "'" + this.v_value + "'";
+					else if (this.v_type == SpartacusMin.Database.Type.DATE ||
+					         this.v_type == SpartacusMin.Database.Type.DATETIME)
+						return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
+					else if (this.v_type == SpartacusMin.Database.Type.BYTE ||
+					         this.v_type == SpartacusMin.Database.Type.UNDEFINED)
+						return this.v_value.Trim();
+					else
+						return "null";
+				}
+			}
+		}
     }
 }

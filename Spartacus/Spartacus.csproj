@@ -78,9 +78,6 @@
     <Reference Include="MySql.Data">
       <HintPath>lib\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>lib\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="EPPlus">
       <HintPath>lib\EPPlus.dll</HintPath>
     </Reference>
@@ -99,6 +96,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="Mono.Posix">
       <HintPath>lib\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

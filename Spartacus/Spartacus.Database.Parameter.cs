@@ -31,21 +31,21 @@ namespace Spartacus.Database
     /// </summary>
     public enum Type
     {
-        INTEGER,
+		INTEGER,
+		REAL,
+		BOOLEAN,
+		CHAR,
+		DATE,
+		STRING,
+		QUOTEDSTRING,
+		UNDEFINED,
 		SMALLINTEGER,
 		BIGINTEGER,
-        REAL,
 		FLOAT,
 		DOUBLE,
 		DECIMAL,
-        BOOLEAN,
-        CHAR,
-        DATE,
 		DATETIME,
-        STRING,
-        QUOTEDSTRING,
 		SECURESTRING,
-        UNDEFINED,
 		BYTE
     }
 
@@ -167,61 +167,55 @@ namespace Spartacus.Database
             {
                 if (this.v_value.Trim() == "")
                 {
-					switch (this.v_type)
-                    {
-                        case Spartacus.Database.Type.INTEGER:
-                        case Spartacus.Database.Type.SMALLINTEGER:
-						case Spartacus.Database.Type.BIGINTEGER:
-						case Spartacus.Database.Type.REAL:
-                        case Spartacus.Database.Type.FLOAT:
-						case Spartacus.Database.Type.DOUBLE:
-						case Spartacus.Database.Type.DECIMAL:
-						case Spartacus.Database.Type.DATE:
-						case Spartacus.Database.Type.DATETIME:
-							return "null";
-                        case Spartacus.Database.Type.BOOLEAN:
-						case Spartacus.Database.Type.CHAR:
-						case Spartacus.Database.Type.STRING:
-						case Spartacus.Database.Type.QUOTEDSTRING:
-						case Spartacus.Database.Type.SECURESTRING:	
-                            return "''";
-                        case Spartacus.Database.Type.UNDEFINED:
-						case Spartacus.Database.Type.BYTE:
-                            return this.v_value.Trim();
-                        default:
-                            return "null";
-                    }
+					if (this.v_type == Spartacus.Database.Type.BOOLEAN ||
+				        this.v_type == Spartacus.Database.Type.CHAR ||
+				        this.v_type == Spartacus.Database.Type.STRING ||
+				        this.v_type == Spartacus.Database.Type.QUOTEDSTRING ||
+				        this.v_type == Spartacus.Database.Type.SECURESTRING)
+						return "''";
+					else
+						return "null";
                 }
                 else
                 {
-                    switch (this.v_type)
-                    {
-                        case Spartacus.Database.Type.INTEGER:
-						case Spartacus.Database.Type.SMALLINTEGER:
-						case Spartacus.Database.Type.BIGINTEGER:
-                            return this.v_value.Trim().Replace(".", "").Replace(",", "");
-                        case Spartacus.Database.Type.REAL:
-						case Spartacus.Database.Type.FLOAT:
-						case Spartacus.Database.Type.DOUBLE:
-						case Spartacus.Database.Type.DECIMAL:
-                            if (this.v_locale == Spartacus.Database.Locale.AMERICAN)
-                                return this.v_value.Trim().Replace(",", "");
-                            else
-                                return this.v_value.Trim().Replace(".", "").Replace(",", ".");
-                        case Spartacus.Database.Type.BOOLEAN:
-						case Spartacus.Database.Type.CHAR:
-						case Spartacus.Database.Type.STRING:
-						case Spartacus.Database.Type.QUOTEDSTRING:
-						case Spartacus.Database.Type.SECURESTRING:
-							return "'" + this.v_value + "'";
-                        case Spartacus.Database.Type.DATE:
-                            return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
-                        case Spartacus.Database.Type.UNDEFINED:
-						case Spartacus.Database.Type.BYTE:	
-                            return this.v_value.Trim();
-                        default:
-                            return "null";
-                    }
+					if (this.v_type == Spartacus.Database.Type.INTEGER ||
+					    this.v_type == Spartacus.Database.Type.SMALLINTEGER ||
+					    this.v_type == Spartacus.Database.Type.BIGINTEGER)
+					{
+						return this.v_value.Trim().Replace(".", "").Replace(",", "");
+					}
+					else if (this.v_type == Spartacus.Database.Type.REAL ||
+					         this.v_type == Spartacus.Database.Type.FLOAT ||
+					         this.v_type == Spartacus.Database.Type.DOUBLE ||
+					         this.v_type == Spartacus.Database.Type.DECIMAL)
+					{
+						if (this.v_locale == Spartacus.Database.Locale.AMERICAN)
+							return this.v_value.Trim().Replace(",", "");
+						else
+							return this.v_value.Trim().Replace(".", "").Replace(",", ".");
+					}
+					else if (this.v_type == Spartacus.Database.Type.BOOLEAN ||
+					         this.v_type == Spartacus.Database.Type.CHAR ||
+					         this.v_type == Spartacus.Database.Type.STRING ||
+					         this.v_type == Spartacus.Database.Type.QUOTEDSTRING ||
+					         this.v_type == Spartacus.Database.Type.SECURESTRING)
+					{
+						return "'" + this.v_value + "'";
+					}
+					else if (this.v_type == Spartacus.Database.Type.DATE ||
+					         this.v_type == Spartacus.Database.Type.DATETIME)
+					{
+						return this.v_datemask.Trim().Replace("#", this.v_value.Trim());
+					}
+					else if (this.v_type == Spartacus.Database.Type.BYTE ||
+					         this.v_type == Spartacus.Database.Type.UNDEFINED)
+					{
+						return this.v_value.Trim();
+					}
+					else
+					{
+						return "null";
+					}
                 }
             }
         }
