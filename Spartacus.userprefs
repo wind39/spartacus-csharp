@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="CHANGELOG.txt" Line="26" Column="50" />
-      <File FileName="Spartacus/Spartacus.Database.Parameter.cs" Line="177" Column="21" />
-      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="1853" Column="61" />
-      <File FileName="Spartacus/Spartacus.Database.Command.cs" Line="122" Column="40" />
-      <File FileName="SpartacusMin/SpartacusMin.Database.Parameter.cs" Line="33" Column="3" />
+      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="837" Column="5" />
+      <File FileName="Spartacus/Spartacus.Utils.File.cs" Line="57" Column="42" />
+      <File FileName="Spartacus/Spartacus.Database.Mariadb.cs" Line="128" Column="63" />
+      <File FileName="Spartacus/Spartacus.Database.Mysql.cs" Line="129" Column="4" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

@@ -806,6 +806,41 @@ namespace Spartacus.Utils
             }
         }
 
+		/// <summary>
+		/// Renomeia o arquivo ou diretório.
+		/// </summary>
+		/// <param name='p_id'>
+		/// Código do arquivo dentro da lista de arquivos e diretórios.
+		/// </param>
+		/// <param name='p_newbasename'>
+		/// Novo nome base para arquivo ou diretório.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível renomear o arquivo ou diretório.</exception>
+		public void Rename(int p_id, string p_newbasename)
+		{
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				v_file = this.v_files[p_id-1];
+
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+					System.IO.Directory.Move(v_file.CompleteFileName(), v_file.v_path + v_separator + p_newbasename);
+				else
+					System.IO.File.Move(v_file.CompleteFileName(), v_file.v_path + v_separator + p_newbasename);
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
         /// <summary>
         /// Aplica o filtro do grid AJAX na lista de arquivos.
         /// </summary>

@@ -1525,6 +1525,18 @@
              </param>
              <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível remover o arquivo ou diretório.</exception>
             </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Rename(System.Int32,System.String)">
+             <summary>
+             Renomeia o arquivo ou diretório.
+             </summary>
+             <param name="p_id">
+             Código do arquivo dentro da lista de arquivos e diretórios.
+             </param>
+             <param name="p_newbasename">
+             Novo nome base para arquivo ou diretório.
+             </param>
+             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível renomear o arquivo ou diretório.</exception>
+            </member>
         <!--FIXME: Invalid documentation markup was found for member M:Spartacus.Utils.FileExplorer.FilterAllAttributes(System.String)-->
         <member name="M:Spartacus.Utils.FileExplorer.FilterAttribute(Spartacus.Utils.FileAttributes,System.String)">
              <summary>

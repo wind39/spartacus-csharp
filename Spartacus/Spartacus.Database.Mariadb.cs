@@ -94,7 +94,7 @@ namespace Spartacus.Database
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
                 + "Uid=" + this.v_user + ";"
-                + "Pwd=" + this.v_password;
+				+ "Pwd=" + this.v_password + ";Allow User Variables=True";
 
             this.v_con = null;
             this.v_cmd = null;
@@ -125,7 +125,7 @@ namespace Spartacus.Database
                 + "Port=" + this.v_port + ";"
                 + "Database=" + this.v_service + ";"
                 + "Uid=" + this.v_user + ";"
-                + "Pwd=" + this.v_password;
+				+ "Pwd=" + this.v_password + ";Allow User Variables=True";
 
             this.v_con = null;
             this.v_cmd = null;

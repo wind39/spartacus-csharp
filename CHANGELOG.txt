@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.44.5:  Spartacus.Database: Alterada connection string padrão do MySQL e MariaDB, para permitir compilação
+         Spartacus.Utils.FileExplorer: Implementado método Rename
 0.44.4:  Reorganizando Spartacus.Database.Type para OmniConversion
 0.44.3:  Voltando a utilizar driver Npgsql 2
 0.44.2:  Atualizado driver MS Access (UCanAccess)
