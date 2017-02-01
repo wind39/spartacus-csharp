@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.44.6:  Spartacus.Database.Oracle: Setados parâmetros InitialLONGFetchSize e InitialLOBFetchSize em -1
 0.44.5:  Spartacus.Database: Alterada connection string padrão do MySQL e MariaDB, para permitir compilação
          Spartacus.Utils.FileExplorer: Implementado método Rename
 0.44.4:  Reorganizando Spartacus.Database.Type para OmniConversion

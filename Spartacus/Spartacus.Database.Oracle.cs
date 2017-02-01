@@ -160,6 +160,8 @@ namespace Spartacus.Database
                 this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                 this.v_con.Open();
                 this.v_cmd = new OracleManaged.OracleCommand();
+				this.v_cmd.InitialLONGFetchSize = -1;
+				this.v_cmd.InitialLOBFetchSize = -1;
                 this.v_cmd.Connection = this.v_con;
                 if (this.v_timeout > -1)
                     this.v_cmd.CommandTimeout = this.v_timeout;
@@ -196,6 +198,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -304,6 +308,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -489,6 +495,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -608,6 +616,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     v_parameter = new OracleManaged.OracleParameter(p_outparam, OracleManaged.OracleDbType.RefCursor);
@@ -727,6 +737,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -837,6 +849,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -936,6 +950,8 @@ namespace Spartacus.Database
                         this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     else
                         this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -1009,6 +1025,8 @@ namespace Spartacus.Database
                         this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
                         this.v_cmd = new OracleManaged.OracleCommand(v_block, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -1094,6 +1112,8 @@ namespace Spartacus.Database
                         this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(v_block), this.v_con);
                     else
                         this.v_cmd = new OracleManaged.OracleCommand(v_block, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_cmd.ExecuteNonQuery();
@@ -1170,6 +1190,8 @@ namespace Spartacus.Database
                         this.v_cmd = new OracleManaged.OracleCommand(Spartacus.Database.Command.RemoveUnwantedCharsExecute(p_sql), this.v_con);
                     else
                         this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     v_tmp = this.v_cmd.ExecuteScalar();
@@ -1274,6 +1296,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1352,6 +1376,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1436,6 +1462,8 @@ namespace Spartacus.Database
 					this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
 					this.v_con.Open();
 					this.v_cmd = new OracleManaged.OracleCommand(p_sql, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
 					if (this.v_timeout > -1)
 						this.v_cmd.CommandTimeout = this.v_timeout;
 					this.v_reader = this.v_cmd.ExecuteReader();
@@ -1517,6 +1545,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -1613,6 +1643,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2139,6 +2171,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2252,6 +2286,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2373,6 +2409,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
@@ -2494,6 +2532,8 @@ namespace Spartacus.Database
                     this.v_con = new OracleManaged.OracleConnection(this.v_connectionstring);
                     this.v_con.Open();
                     this.v_cmd = new OracleManaged.OracleCommand(p_query, this.v_con);
+					this.v_cmd.InitialLONGFetchSize = -1;
+					this.v_cmd.InitialLOBFetchSize = -1;
                     if (this.v_timeout > -1)
                         this.v_cmd.CommandTimeout = this.v_timeout;
                     this.v_reader = this.v_cmd.ExecuteReader();
