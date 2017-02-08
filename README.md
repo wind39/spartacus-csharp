@@ -52,7 +52,8 @@ Spartacus optionally use this libraries:
 Spartacus DLL is built with Mono C# Compiler (http://www.mono-project.com/docs/about-mono/languages/csharp/), merged with ILRepack (https://github.com/gluck/il-repack) and packaged with NuGet (https://www.nuget.org/).
 
 Spartacus is successfully used by this projects:
-  - OmniDB (http://www.omnidb.com.br)
+  - OmniDB (https://github.com/OmniDB/OmniDB)
+  - DotCEP (https://github.com/CristianoRC/DotCEP)
 
 I also would like to thank the following people and companies for help testing and suggesting improvements:
   - Planning Service Transfer Pricing (http://www.planningservice.com.br)

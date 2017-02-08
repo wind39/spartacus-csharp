@@ -38,6 +38,9 @@ namespace Spartacus.ThirdParty.WebServer
 	{
 		public static void GetPathsFromUri (IApplicationHost appHost, string verb, string uri, out string realUri, out string pathInfo)
 		{
+			if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "--debug") > -1)
+				Console.WriteLine("{0} - {1} - {2}", System.DateTime.Now, verb.PadRight(4), uri);
+
 			// There's a hidden missing feature here... :)
 			realUri = uri; pathInfo = String.Empty;
 			string vpath = HttpRuntime.AppDomainAppVirtualPath;

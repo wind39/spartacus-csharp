@@ -106,6 +106,8 @@ namespace Spartacus.Net
         /// <param name="p_clientport">Porta do Cliente.</param>
         public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
         {
+			System.Threading.Thread v_thread;
+
             if (this.ConnectEvent != null)
             {
                 this.ConnectEventArgs.v_serverip = p_serverip;
@@ -113,7 +115,8 @@ namespace Spartacus.Net
                 this.ConnectEventArgs.v_clientip = p_clientip;
                 this.ConnectEventArgs.v_clientport = p_clientport;
 
-                this.ConnectEvent(this, this.ConnectEventArgs);
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
             }
         }
 
@@ -127,6 +130,8 @@ namespace Spartacus.Net
         /// <param name="p_index">Índice do Cliente.</param>
         public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
         {
+			System.Threading.Thread v_thread;
+
             if (this.ConnectEvent != null)
             {
                 this.ConnectEventArgs.v_serverip = p_serverip;
@@ -135,8 +140,17 @@ namespace Spartacus.Net
                 this.ConnectEventArgs.v_clientport = p_clientport;
                 this.ConnectEventArgs.v_index = p_index;
 
-                this.ConnectEvent(this, this.ConnectEventArgs);
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
             }
         }
+
+		/// <summary>
+		/// Executes the event in a thread.
+		/// </summary>
+		private void Thread()
+		{
+			this.ConnectEvent(this, this.ConnectEventArgs);
+		}
     }
 }

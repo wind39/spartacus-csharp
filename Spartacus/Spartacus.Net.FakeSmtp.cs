@@ -211,13 +211,14 @@ namespace Spartacus.Net
 
             try
             {
-                v_writer.WriteLine("220 {0} -- Spartacus FakeSMTP Server");
+                v_writer.WriteLine("220 Spartacus FakeSMTP Server");
 
                 while (v_reader != null)
                 {
                     v_line = v_reader.ReadLine();
+					Console.WriteLine("Client: {0} - Line: [{1}]", e.v_index, v_line);
 
-                    if (!string.IsNullOrWhiteSpace(v_line))
+					if (!string.IsNullOrWhiteSpace(v_line))
                     {
                         if (v_line.StartsWith("HELO") || v_line.StartsWith("EHLO"))
                         {
@@ -272,7 +273,8 @@ namespace Spartacus.Net
                             if (this.v_log)
                             {
                                 Console.WriteLine("===============================================================================");
-                                Console.WriteLine("Received ­email");
+								Console.WriteLine("{0}: Currently connected clients: {1}", System.DateTime.Now, this.v_numclients);
+                                Console.WriteLine("All good, Received ­email");
                                 Console.WriteLine("-------------------------------------------------------------------------------");
                                 Console.WriteLine("User: {0}", this.v_credential.UserName);
                                 Console.WriteLine("Password: {0}", this.v_credential.Password);
@@ -287,8 +289,9 @@ namespace Spartacus.Net
                                 {
                                     Console.WriteLine("-------------------------------------------------------------------------------");
                                     Console.WriteLine(v_message.Body);
+									Console.WriteLine("-------------------------------------------------------------------------------");
                                 }
-                                Console.WriteLine("===============================================================================");
+								Console.WriteLine("===============================================================================");
                             }
 
                             // redirecionando mensagem

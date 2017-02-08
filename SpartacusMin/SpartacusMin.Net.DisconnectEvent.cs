@@ -96,46 +96,60 @@ namespace SpartacusMin.Net
             this.DisconnectEventArgs = new SpartacusMin.Net.DisconnectEventArgs();
         }
 
-        /// <summary>
-        /// Dispara o evento de Desconexão.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
-        {
-            if (this.DisconnectEvent != null)
-            {
-                this.DisconnectEventArgs.v_serverip = p_serverip;
-                this.DisconnectEventArgs.v_serverport = p_serverport;
-                this.DisconnectEventArgs.v_clientip = p_clientip;
-                this.DisconnectEventArgs.v_clientport = p_clientport;
+		/// <summary>
+		/// Dispara o evento de Desconexão.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
+		{
+			System.Threading.Thread v_thread;
 
-                this.DisconnectEvent(this, this.DisconnectEventArgs);
-            }
-        }
+			if (this.DisconnectEvent != null)
+			{
+				this.DisconnectEventArgs.v_serverip = p_serverip;
+				this.DisconnectEventArgs.v_serverport = p_serverport;
+				this.DisconnectEventArgs.v_clientip = p_clientip;
+				this.DisconnectEventArgs.v_clientport = p_clientport;
 
-        /// <summary>
-        /// Dispara o evento de Desconexão.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        /// <param name="p_index">Índice do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
-        {
-            if (this.DisconnectEvent != null)
-            {
-                this.DisconnectEventArgs.v_serverip = p_serverip;
-                this.DisconnectEventArgs.v_serverport = p_serverport;
-                this.DisconnectEventArgs.v_clientip = p_clientip;
-                this.DisconnectEventArgs.v_clientport = p_clientport;
-                this.DisconnectEventArgs.v_index = p_index;
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
 
-                this.DisconnectEvent(this, this.DisconnectEventArgs);
-            }
-        }
+		/// <summary>
+		/// Dispara o evento de Desconexão.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		/// <param name="p_index">Índice do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
+		{
+			System.Threading.Thread v_thread;
+
+			if (this.DisconnectEvent != null)
+			{
+				this.DisconnectEventArgs.v_serverip = p_serverip;
+				this.DisconnectEventArgs.v_serverport = p_serverport;
+				this.DisconnectEventArgs.v_clientip = p_clientip;
+				this.DisconnectEventArgs.v_clientport = p_clientport;
+				this.DisconnectEventArgs.v_index = p_index;
+
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
+
+		/// <summary>
+		/// Executes the event in a thread.
+		/// </summary>
+		private void Thread()
+		{
+			this.DisconnectEvent(this, this.DisconnectEventArgs);
+		}
     }
 }

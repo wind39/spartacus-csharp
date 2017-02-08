@@ -1,0 +1,4 @@
+/home/william/Documents/Projects/spartacus/Tools/WebServer/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/william/Documents/Projects/spartacus/Tools/WebServer/bin/Release/WebServer.exe
+/home/william/Documents/Projects/spartacus/Tools/WebServer/obj/Release/WebServer.exe
+/home/william/Documents/Projects/spartacus/Tools/WebServer/bin/Release/Spartacus.dll

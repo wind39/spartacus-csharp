@@ -30,15 +30,36 @@ namespace Spartacus.Tools.WebServer
 	{
 		public static void Main(string[] args)
 		{
-			Spartacus.Net.WebServer v_server;
+			Spartacus.Net.WebServer v_server = null;
+			int v_port;
 
-			v_server = new Spartacus.Net.WebServer(8080);
+			if (args.Length == 2 && args[1] == "--debug" && int.TryParse(args[0], out v_port))
+				v_server = new Spartacus.Net.WebServer(v_port);
+			else
+			{
+				if (args.Length == 1 && args[0] == "--debug")
+					v_server = new Spartacus.Net.WebServer(9000);
+				else
+				{
+					if (args.Length == 1 && int.TryParse(args[0], out v_port))
+						v_server = new Spartacus.Net.WebServer(v_port);
+					else
+					{
+						if (args.Length == 0)
+							v_server = new Spartacus.Net.WebServer(9000);
+						else
+						{
+							Console.WriteLine("Usage: WebServer.exe [port] [--debug]");
+							System.Environment.Exit(0);
+						}
+					}
+				}
+			}
 
 			v_server.Start();
 
 			Console.WriteLine();
-			Console.WriteLine("Press any key to shut down Spartacus web server.");
-			Console.ReadKey();
+			Console.Read();
 
 			v_server.Stop();
 		}

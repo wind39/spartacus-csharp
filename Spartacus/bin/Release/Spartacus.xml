@@ -16261,6 +16261,11 @@
              <param name="p_clientport">Porta do Cliente.</param>
              <param name="p_index">Índice do Cliente.</param>
             </member>
+        <member name="M:Spartacus.Net.AvailableEventClass.Thread">
+             <summary>
+             Executes the event in a thread.
+             </summary>
+            </member>
         <member name="T:Spartacus.Net.Client">
              <summary>
              Classe Client.
@@ -16374,6 +16379,11 @@
              <param name="p_clientport">Porta do Cliente.</param>
              <param name="p_index">Índice do Cliente.</param>
             </member>
+        <member name="M:Spartacus.Net.ConnectEventClass.Thread">
+             <summary>
+             Executes the event in a thread.
+             </summary>
+            </member>
         <member name="T:Spartacus.Net.DisconnectEventArgs">
              <summary>
              Classe DisconnectEventArgs.
@@ -16455,6 +16465,11 @@
              <param name="p_clientip">IP do Cliente.</param>
              <param name="p_clientport">Porta do Cliente.</param>
              <param name="p_index">Índice do Cliente.</param>
+            </member>
+        <member name="M:Spartacus.Net.DisconnectEventClass.Thread">
+             <summary>
+             Executes the event in a thread.
+             </summary>
             </member>
         <member name="T:Spartacus.Net.Endpoint">
              <summary>

@@ -96,46 +96,60 @@ namespace SpartacusMin.Net
             this.AvailableEventArgs = new SpartacusMin.Net.AvailableEventArgs();
         }
 
-        /// <summary>
-        /// Dispara o evento de Dados Disponíveis.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
-        {
-            if (this.AvailableEvent != null)
-            {
-                this.AvailableEventArgs.v_serverip = p_serverip;
-                this.AvailableEventArgs.v_serverport = p_serverport;
-                this.AvailableEventArgs.v_clientip = p_clientip;
-                this.AvailableEventArgs.v_clientport = p_clientport;
+		/// <summary>
+		/// Dispara o evento de Dados Disponíveis.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
+		{
+			System.Threading.Thread v_thread;
 
-                this.AvailableEvent(this, this.AvailableEventArgs);
-            }
-        }
+			if (this.AvailableEvent != null)
+			{
+				this.AvailableEventArgs.v_serverip = p_serverip;
+				this.AvailableEventArgs.v_serverport = p_serverport;
+				this.AvailableEventArgs.v_clientip = p_clientip;
+				this.AvailableEventArgs.v_clientport = p_clientport;
 
-        /// <summary>
-        /// Dispara o evento de Dados Disponíveis.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        /// <param name="p_index">Índice do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
-        {
-            if (this.AvailableEvent != null)
-            {
-                this.AvailableEventArgs.v_serverip = p_serverip;
-                this.AvailableEventArgs.v_serverport = p_serverport;
-                this.AvailableEventArgs.v_clientip = p_clientip;
-                this.AvailableEventArgs.v_clientport = p_clientport;
-                this.AvailableEventArgs.v_index = p_index;
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
 
-                this.AvailableEvent(this, this.AvailableEventArgs);
-            }
-        }
+		/// <summary>
+		/// Dispara o evento de Dados Disponíveis.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		/// <param name="p_index">Índice do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
+		{
+			System.Threading.Thread v_thread;
+
+			if (this.AvailableEvent != null)
+			{
+				this.AvailableEventArgs.v_serverip = p_serverip;
+				this.AvailableEventArgs.v_serverport = p_serverport;
+				this.AvailableEventArgs.v_clientip = p_clientip;
+				this.AvailableEventArgs.v_clientport = p_clientport;
+				this.AvailableEventArgs.v_index = p_index;
+
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
+
+		/// <summary>
+		/// Executes the event in a thread.
+		/// </summary>
+		private void Thread()
+		{
+			this.AvailableEvent(this, this.AvailableEventArgs);
+		}
     }
 }

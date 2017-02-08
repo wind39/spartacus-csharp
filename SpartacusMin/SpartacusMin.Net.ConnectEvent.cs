@@ -97,46 +97,60 @@ namespace SpartacusMin.Net
             this.ConnectEventArgs = new SpartacusMin.Net.ConnectEventArgs();
         }
 
-        /// <summary>
-        /// Dispara o evento de Conexão.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
-        {
-            if (this.ConnectEvent != null)
-            {
-                this.ConnectEventArgs.v_serverip = p_serverip;
-                this.ConnectEventArgs.v_serverport = p_serverport;
-                this.ConnectEventArgs.v_clientip = p_clientip;
-                this.ConnectEventArgs.v_clientport = p_clientport;
+		/// <summary>
+		/// Dispara o evento de Conexão.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport)
+		{
+			System.Threading.Thread v_thread;
 
-                this.ConnectEvent(this, this.ConnectEventArgs);
-            }
-        }
+			if (this.ConnectEvent != null)
+			{
+				this.ConnectEventArgs.v_serverip = p_serverip;
+				this.ConnectEventArgs.v_serverport = p_serverport;
+				this.ConnectEventArgs.v_clientip = p_clientip;
+				this.ConnectEventArgs.v_clientport = p_clientport;
 
-        /// <summary>
-        /// Dispara o evento de Conexão.
-        /// </summary>
-        /// <param name="p_serverip">IP do Servidor.</param>
-        /// <param name="p_serverport">Porta do Servidor.</param>
-        /// <param name="p_clientip">IP do Cliente.</param>
-        /// <param name="p_clientport">Porta do Cliente.</param>
-        /// <param name="p_index">Índice do Cliente.</param>
-        public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
-        {
-            if (this.ConnectEvent != null)
-            {
-                this.ConnectEventArgs.v_serverip = p_serverip;
-                this.ConnectEventArgs.v_serverport = p_serverport;
-                this.ConnectEventArgs.v_clientip = p_clientip;
-                this.ConnectEventArgs.v_clientport = p_clientport;
-                this.ConnectEventArgs.v_index = p_index;
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
 
-                this.ConnectEvent(this, this.ConnectEventArgs);
-            }
-        }
+		/// <summary>
+		/// Dispara o evento de Conexão.
+		/// </summary>
+		/// <param name="p_serverip">IP do Servidor.</param>
+		/// <param name="p_serverport">Porta do Servidor.</param>
+		/// <param name="p_clientip">IP do Cliente.</param>
+		/// <param name="p_clientport">Porta do Cliente.</param>
+		/// <param name="p_index">Índice do Cliente.</param>
+		public void FireEvent(string p_serverip, int p_serverport, string p_clientip, int p_clientport, int p_index)
+		{
+			System.Threading.Thread v_thread;
+
+			if (this.ConnectEvent != null)
+			{
+				this.ConnectEventArgs.v_serverip = p_serverip;
+				this.ConnectEventArgs.v_serverport = p_serverport;
+				this.ConnectEventArgs.v_clientip = p_clientip;
+				this.ConnectEventArgs.v_clientport = p_clientport;
+				this.ConnectEventArgs.v_index = p_index;
+
+				v_thread = new System.Threading.Thread(this.Thread);
+				v_thread.Start();
+			}
+		}
+
+		/// <summary>
+		/// Executes the event in a thread.
+		/// </summary>
+		private void Thread()
+		{
+			this.ConnectEvent(this, this.ConnectEventArgs);
+		}
     }
 }

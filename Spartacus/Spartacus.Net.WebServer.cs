@@ -41,6 +41,7 @@ namespace Spartacus.Net
 		public void Start()
 		{
 			string v_filename;
+			string v_separator;
 
 			v_filename = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
@@ -49,7 +50,13 @@ namespace Spartacus.Net
 				if (! System.IO.Directory.Exists("bin"))
 					System.IO.Directory.CreateDirectory("bin");
 
-				System.IO.File.Copy(v_filename, "bin/" + System.IO.Path.GetFileName(v_filename), true);
+				if (System.Environment.OSVersion.Platform == System.PlatformID.Unix ||
+				    System.Environment.OSVersion.Platform == System.PlatformID.MacOSX)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+				
+				System.IO.File.Copy(v_filename, "bin" + v_separator + System.IO.Path.GetFileName(v_filename), true);
 			}
 			catch
 			{

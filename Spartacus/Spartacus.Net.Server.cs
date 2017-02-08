@@ -157,10 +157,13 @@ namespace Spartacus.Net
         /// </summary>
         private void ThreadAccept()
         {
+			bool v_fire;
+
             while (this.v_status == Spartacus.Net.ServerStatus.LISTENING)
             {
                 try
                 {
+					v_fire = false;
                     lock(this.v_lock)
                     {
                         this.v_sockets.Add(this.v_listener.AcceptTcpClient());
@@ -171,10 +174,11 @@ namespace Spartacus.Net
                             int.Parse(this.v_sockets[this.v_numclients].Client.RemoteEndPoint.ToString().Split(':')[1])
                         ));
 
-                        this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients].v_ip, this.v_clienthandlers[this.v_numclients].v_port, this.v_numclients);
-
                         this.v_numclients++;
+						v_fire = true;
                     }
+					if (v_fire)
+						this.v_connect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[this.v_numclients-1].v_ip, this.v_clienthandlers[this.v_numclients-1].v_port, this.v_numclients-1);
                 }
                 catch (System.Exception e)
                 {
@@ -192,23 +196,41 @@ namespace Spartacus.Net
 
             while (this.v_status == Spartacus.Net.ServerStatus.LISTENING)
             {
-                for (int i = 0; i < this.v_numclients; i++)
-                {
-                    if (this.v_clienthandlers[i].v_isconnected && this.v_sockets[i] != null && this.v_sockets[i].Client != null)
-                    {
-                        v_socketconnected = !(this.v_sockets[i].Client.Poll(1000, System.Net.Sockets.SelectMode.SelectRead) && this.v_sockets[i].Client.Available == 0);
-                        if (!v_socketconnected)
-                        {
-                            this.v_clienthandlers[i].v_isconnected = false;
-                            this.v_disconnect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
-                        }
-                        else
-                        {
-                            if (v_socketconnected && this.v_sockets[i].Client.Available > 0)
-                                this.v_available.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
-                        }
-                    }
-                }
+				try
+				{
+					lock(this.v_lock)
+					{
+		                for (int i = 0; i < this.v_numclients; i++)
+		                {
+		                    if (this.v_clienthandlers[i].v_isconnected && this.v_sockets[i] != null && this.v_sockets[i].Client != null)
+		                    {
+								try
+								{
+		                        	v_socketconnected = !(this.v_sockets[i].Client.Poll(1000, System.Net.Sockets.SelectMode.SelectRead) && this.v_sockets[i].Client.Available == 0);
+								}
+								catch
+								{
+									v_socketconnected = false;
+								}
+
+		                        if (!v_socketconnected)
+		                        {
+		                            this.v_clienthandlers[i].v_isconnected = false;
+		                            this.v_disconnect.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
+		                        }
+		                        else
+		                        {
+		                            if (v_socketconnected && this.v_sockets[i].Client.Available > 0)
+		                                this.v_available.FireEvent(this.v_ip, this.v_port, this.v_clienthandlers[i].v_ip, this.v_clienthandlers[i].v_port, i);
+		                        }
+		                    }
+		                }
+					}
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Net.Exception(e);
+				}
 
                 System.Threading.Thread.Sleep(100);
             }
@@ -224,24 +246,31 @@ namespace Spartacus.Net
 
             while (this.v_status == Spartacus.Net.ServerStatus.LISTENING)
             {
-                v_achou = false;
-                k = this.v_numclients - 1;
-                while (k >= 0 && !v_achou)
-                {
-                    if (!this.v_clienthandlers[k].v_isconnected)
-                    {
-                        lock (this.v_lock)
-                        {
-                            this.v_sockets.RemoveAt(k);
-                            this.v_streams.RemoveAt(k);
-                            this.v_clienthandlers.RemoveAt(k);
-                            this.v_numclients--;
-                        }
-                        k--;
-                    }
-                    else
-                        v_achou = true;
-                }
+				try
+				{
+					lock (this.v_lock)
+					{
+		                v_achou = false;
+		                k = this.v_numclients - 1;
+		                while (k >= 0 && !v_achou)
+		                {
+		                    if (!this.v_clienthandlers[k].v_isconnected)
+		                    {
+		                        this.v_sockets.RemoveAt(k);
+		                        this.v_streams.RemoveAt(k);
+		                        this.v_clienthandlers.RemoveAt(k);
+		                        this.v_numclients--;
+		                        k--;
+		                    }
+		                    else
+		                        v_achou = true;
+		                }
+					}
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Net.Exception(e);
+				}
 
                 System.Threading.Thread.Sleep(10000);
             }
@@ -253,8 +282,11 @@ namespace Spartacus.Net
         /// <param name="p_clientid">Código do cliente.</param>
         public void StopClient(int p_clientid)
         {
-            base.Stop(p_clientid);
-            this.v_clienthandlers[p_clientid].v_isconnected = false;
+            lock (this.v_lock)
+			{
+				base.Stop(p_clientid);
+            	this.v_clienthandlers[p_clientid].v_isconnected = false;
+			}
         }
 
         /// <summary>
