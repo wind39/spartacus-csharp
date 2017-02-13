@@ -193,10 +193,7 @@ namespace Spartacus.Net
             int k, v_inserted;
 
             if (this.v_log)
-            {
                 Console.WriteLine("Cliente {0} - {1}:{2} conectado", e.v_index, e.v_clientip, e.v_clientport);
-                Console.WriteLine();
-            }
 
             v_reader = new System.IO.StreamReader(this.v_streams[e.v_index]);
             v_writer = new System.IO.StreamWriter(this.v_streams[e.v_index]);
@@ -216,7 +213,8 @@ namespace Spartacus.Net
                 while (v_reader != null)
                 {
                     v_line = v_reader.ReadLine();
-					Console.WriteLine("Client: {0} - Line: [{1}]", e.v_index, v_line);
+					if (this.v_log)
+						Console.WriteLine("Client: {0} - Line: [{1}]", e.v_index, v_line);
 
 					if (!string.IsNullOrWhiteSpace(v_line))
                     {
@@ -274,7 +272,7 @@ namespace Spartacus.Net
                             {
                                 Console.WriteLine("===============================================================================");
 								Console.WriteLine("{0}: Currently connected clients: {1}", System.DateTime.Now, this.v_numclients);
-                                Console.WriteLine("All good, Received ­email");
+                                Console.WriteLine("All good, received ­email");
                                 Console.WriteLine("-------------------------------------------------------------------------------");
                                 Console.WriteLine("User: {0}", this.v_credential.UserName);
                                 Console.WriteLine("Password: {0}", this.v_credential.Password);
@@ -368,6 +366,8 @@ namespace Spartacus.Net
                         {
                             v_writer.WriteLine("250 OK");
                             v_reader = null;
+							if (this.v_log)
+								Console.WriteLine();
                         }
                         else
                         {
@@ -386,7 +386,8 @@ namespace Spartacus.Net
             }
             catch(System.Exception exc)
             {
-                throw new Spartacus.Net.Exception(exc);
+				if (this.v_log)
+					Console.WriteLine("ERROR: {0}", exc.Message);
             }
             finally
             {
