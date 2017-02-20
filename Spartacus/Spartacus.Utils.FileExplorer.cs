@@ -841,6 +841,197 @@ namespace Spartacus.Utils
 			}
 		}
 
+		/// <summary>
+		/// Move o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_id'>
+		/// Código do arquivo dentro da lista de arquivos e diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde o arquivo ou diretório será movido.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+		public void Move(int p_id, string p_directory)
+		{
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				v_file = this.v_files[p_id-1];
+
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+					System.IO.Directory.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				else
+					System.IO.File.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Move os arquivos ou diretórios para outro diretório.
+		/// </summary>
+		/// <param name='p_idlist'>
+		/// Lista de códigos de arquivos dentro da lista de arquivos e diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde os arquivos ou diretórios serão movidos.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover os arquivos ou diretórios.</exception>
+		public void Move(System.Collections.Generic.List<int> p_idlist, string p_directory)
+		{
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				foreach (int v_id in p_idlist)
+				{
+					v_file = this.v_files[v_id-1];
+
+					if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+						v_separator = "/";
+					else
+						v_separator = "\\";
+
+					if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+						System.IO.Directory.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+					else
+						System.IO.File.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Copia o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_id'>
+		/// Código do arquivo dentro da lista de arquivos e diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde o arquivo ou diretório será copiado.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível copiar o arquivo ou diretório.</exception>
+		public void Copy(int p_id, string p_directory)
+		{
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				v_file = this.v_files[p_id-1];
+
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+					this.DirectoryCopy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name, true);
+				else
+					System.IO.File.Copy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Copia os arquivos ou diretórios para outro diretório.
+		/// </summary>
+		/// <param name='p_idlist'>
+		/// Lista de códigos de arquivos dentro da lista de arquivos e diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde os arquivos ou diretórios serão copiados.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível copiar os arquivos ou diretórios.</exception>
+		public void Copy(System.Collections.Generic.List<int> p_idlist, string p_directory)
+		{
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				foreach (int v_id in p_idlist)
+				{
+					v_file = this.v_files[v_id-1];
+
+					if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+						v_separator = "/";
+					else
+						v_separator = "\\";
+
+					if (v_file.v_filetype == Spartacus.Utils.FileType.DIRECTORY)
+						this.DirectoryCopy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name, true);
+					else
+						System.IO.File.Copy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Copia um diretório para outro, podendo ser recursivo.
+		/// </summary>
+		/// <remarks>Implementação de exemplo da Microsoft, disponível em https://msdn.microsoft.com/en-us/library/bb762914(v=vs.110).aspx</remarks>
+		/// <param name="sourceDirName">Nome do diretório de origem.</param>
+		/// <param name="destDirName">Nome do diretório de destino.</param>
+		/// <param name="copySubDirs">Se deve copiar recursivamente ou não.</param>
+		private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+		{
+			// Get the subdirectories for the specified directory.
+			System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(sourceDirName);
+
+			if (!dir.Exists)
+			{
+				throw new System.IO.DirectoryNotFoundException(
+					"Source directory does not exist or could not be found: "
+					+ sourceDirName);
+			}
+
+			System.IO.DirectoryInfo[] dirs = dir.GetDirectories();
+			// If the destination directory doesn't exist, create it.
+			if (!System.IO.Directory.Exists(destDirName))
+			{
+				System.IO.Directory.CreateDirectory(destDirName);
+			}
+
+			// Get the files in the directory and copy them to the new location.
+			System.IO.FileInfo[] files = dir.GetFiles();
+			foreach (System.IO.FileInfo file in files)
+			{
+				string temppath = System.IO.Path.Combine(destDirName, file.Name);
+				file.CopyTo(temppath, false);
+			}
+
+			// If copying subdirectories, copy them and their contents to new location.
+			if (copySubDirs)
+			{
+				foreach (System.IO.DirectoryInfo subdir in dirs)
+				{
+					string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+					DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+				}
+			}
+		}
+
         /// <summary>
         /// Aplica o filtro do grid AJAX na lista de arquivos.
         /// </summary>
