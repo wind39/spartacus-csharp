@@ -1,7 +1,7 @@
-﻿/*
+/*
 The MIT License (MIT)
 
-Copyright (c) 2014-2016 William Ivanski
+Copyright (c) 2014-2017 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -353,6 +353,25 @@ namespace Spartacus.Database
 			System.Collections.Generic.List<System.Collections.Generic.List<string>> v_list;
 			this.BuildCache(p_sql);
 			v_list = this.v_database.QuerySList(p_sql);
+			this.DestroyCache();
+			return v_list;
+		}
+
+		/// <summary>
+		/// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+		/// Utiliza um DataReader para buscar em blocos.
+		/// </summary>
+		/// <param name="p_sql">
+		/// Código SQL a ser consultado no banco de dados.
+		/// </param>
+		/// <param name="p_header">
+		/// Lista de nomes de colunas.
+		/// </param>
+		public override System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql, out System.Collections.Generic.List<string> p_header)
+		{
+			System.Collections.Generic.List<System.Collections.Generic.List<string>> v_list;
+			this.BuildCache(p_sql);
+			v_list = this.v_database.QuerySList(p_sql, out p_header);
 			this.DestroyCache();
 			return v_list;
 		}

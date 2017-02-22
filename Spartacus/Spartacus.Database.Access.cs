@@ -1,7 +1,7 @@
-﻿/*
+/*
 The MIT License (MIT)
 
-Copyright (c) 2014-2016 William Ivanski
+Copyright (c) 2014-2017 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -760,6 +760,121 @@ namespace Spartacus.Database
                 }
             }
         }
+
+		/// <summary>
+		/// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+		/// Utiliza um DataReader para buscar em blocos.
+		/// </summary>
+		/// <param name="p_sql">
+		/// Código SQL a ser consultado no banco de dados.
+		/// </param>
+		/// <param name="p_header">
+		/// Lista de nomes de colunas.
+		/// </param>
+		public override System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql, out System.Collections.Generic.List<string> p_header)
+		{
+			java.sql.ResultSetMetaData v_resmd;
+			System.Collections.Generic.List<System.Collections.Generic.List<string>> v_list;
+			System.Collections.Generic.List<string> v_row;
+
+			#if DEBUG
+			    Console.WriteLine("Spartacus.Database.Access.QuerySList: " + p_sql);
+            #endif
+
+			if (this.v_con == null)
+			{
+				try
+				{
+					this.v_con = java.sql.DriverManager.getConnection("jdbc:ucanaccess://" + this.v_service);
+					this.v_cmd = this.v_con.createStatement();
+					if (this.v_timeout > -1)
+						this.v_cmd.setQueryTimeout(this.v_timeout);
+					this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+					p_header = new System.Collections.Generic.List<string>();
+
+					v_resmd = this.v_reader.getMetaData();
+					for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+						p_header.Add(v_resmd.getColumnLabel(i));
+
+					v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+					while (this.v_reader.next())
+					{
+						v_row = new System.Collections.Generic.List<string>();
+
+						for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+							v_row.Add(this.v_reader.getString(i));
+
+						v_list.Add(v_row);
+					}
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_cmd != null)
+					{
+						try { this.v_cmd.cancel(); } catch {}
+						this.v_cmd.close();
+						this.v_cmd = null;
+					}
+					if (this.v_reader != null)
+					{
+						this.v_reader.close();
+						this.v_reader = null;
+					}
+					if (this.v_con != null)
+					{
+						this.v_con.close();
+						this.v_con = null;
+					}
+				}
+			}
+			else
+			{
+				try
+				{
+					this.v_reader = this.v_cmd.executeQuery(p_sql);
+
+					p_header = new System.Collections.Generic.List<string>();
+
+					v_resmd = this.v_reader.getMetaData();
+					for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+						p_header.Add(v_resmd.getColumnLabel(i));
+
+					v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+					while (this.v_reader.next())
+					{
+						v_row = new System.Collections.Generic.List<string>();
+
+						for (int i = 1; i <= v_resmd.getColumnCount(); i++)
+							v_row.Add(this.v_reader.getString(i));
+
+						v_list.Add(v_row);
+					}
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_reader != null)
+					{
+						this.v_reader.close();
+						this.v_reader = null;
+					}
+				}
+			}
+		}
 
         /// <summary>
         /// Executa um código SQL no banco de dados.

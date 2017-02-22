@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014-2016 William Ivanski
+Copyright (c) 2014-2017 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -276,6 +276,18 @@ namespace Spartacus.Database
         /// Código SQL a ser consultado no banco de dados.
         /// </param>
         public abstract System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql);
+
+		/// <summary>
+		/// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+		/// Utiliza um DataReader para buscar em blocos.
+		/// </summary>
+		/// <param name="p_sql">
+		/// Código SQL a ser consultado no banco de dados.
+		/// </param>
+		/// <param name="p_header">
+		/// Lista de nomes de colunas.
+		/// </param>
+		public abstract System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql, out System.Collections.Generic.List<string> p_header);
 
         /// <summary>
         /// Executa uma instrução SQL no banco de dados.

@@ -1,8 +1,7 @@
 ﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="880" Column="40" />
-      <File FileName="CHANGELOG.txt" Line="24" Column="36" />
+      <File FileName="CHANGELOG.txt" Line="24" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

@@ -2447,6 +2447,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Generic.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Generic.Execute(System.String)">
              <summary>
              Executa uma instrução SQL no banco de dados.
@@ -3029,6 +3041,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Odbc.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Odbc.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -3536,6 +3560,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Firebird.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Firebird.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -3953,6 +3989,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Mysql.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Mysql.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -4354,6 +4402,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Oledb.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.Oledb.Execute(System.String)">
@@ -5887,6 +5947,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Sqlite.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Sqlite.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -6302,6 +6374,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Postgresql.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.Postgresql.Execute(System.String)">
@@ -7487,6 +7571,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Oracle.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.Oracle.Execute(System.String)">
@@ -12034,6 +12130,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Memory.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Memory.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -13298,6 +13406,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.SqlServer.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.SqlServer.Execute(System.String)">
@@ -15211,6 +15331,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Access.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Access.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -15597,6 +15729,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Sqlce.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.Sqlce.Execute(System.String)">
@@ -15999,6 +16143,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.FbEmbed.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.FbEmbed.Execute(System.String)">
@@ -17745,6 +17901,18 @@
              Código SQL a ser consultado no banco de dados.
              </param>
             </member>
+        <member name="M:Spartacus.Database.Mariadb.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
+             </param>
+            </member>
         <member name="M:Spartacus.Database.Mariadb.Execute(System.String)">
              <summary>
              Executa um código SQL no banco de dados.
@@ -18248,6 +18416,18 @@
              </summary>
              <param name="p_sql">
              Código SQL a ser consultado no banco de dados.
+             </param>
+            </member>
+        <member name="M:Spartacus.Database.Pollydb.QuerySList(System.String,System.Collections.Generic.List{System.String}@)">
+             <summary>
+             Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+             Utiliza um DataReader para buscar em blocos.
+             </summary>
+             <param name="p_sql">
+             Código SQL a ser consultado no banco de dados.
+             </param>
+             <param name="p_header">
+             Lista de nomes de colunas.
              </param>
             </member>
         <member name="M:Spartacus.Database.Pollydb.Execute(System.String)">

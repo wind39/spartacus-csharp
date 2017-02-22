@@ -1,7 +1,7 @@
-﻿/*
+/*
 The MIT License (MIT)
 
-Copyright (c) 2014-2016 William Ivanski
+Copyright (c) 2014-2017 William Ivanski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -827,6 +827,117 @@ namespace Spartacus.Database
                 }
             }
         }
+
+		/// <summary>
+		/// Realiza uma consulta no banco de dados, armazenando os dados de retorno em uma lista de listas de string.
+		/// Utiliza um DataReader para buscar em blocos.
+		/// </summary>
+		/// <param name="p_sql">
+		/// Código SQL a ser consultado no banco de dados.
+		/// </param>
+		/// <param name="p_header">
+		/// Lista de nomes de colunas.
+		/// </param>
+		public override System.Collections.Generic.List<System.Collections.Generic.List<string>> QuerySList(string p_sql, out System.Collections.Generic.List<string> p_header)
+		{
+			System.Collections.Generic.List<System.Collections.Generic.List<string>> v_list;
+			System.Collections.Generic.List<string> v_row;
+
+			#if DEBUG
+			    Console.WriteLine("Spartacus.Database.FbEmbed.QuerySList: " + p_sql);
+            #endif
+
+			if (this.v_con == null)
+			{
+				try
+				{
+					this.v_con = new FirebirdSql.Data.FirebirdClient.FbConnection(this.v_connectionstring);
+					this.v_con.Open();
+					this.v_cmd = new FirebirdSql.Data.FirebirdClient.FbCommand(p_sql, this.v_con);
+					if (this.v_timeout > -1)
+						this.v_cmd.CommandTimeout = this.v_timeout;
+					this.v_reader = this.v_cmd.ExecuteReader();
+
+					p_header = new System.Collections.Generic.List<string>();
+					for (int i = 0; i < this.v_reader.FieldCount; i++)
+						p_header.Add(this.v_reader.GetName(i));
+
+					v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+					while (this.v_reader.Read())
+					{
+						v_row = new System.Collections.Generic.List<string>();
+
+						for (int i = 0; i < this.v_reader.FieldCount; i++)
+							v_row.Add(this.v_reader[i].ToString());
+
+						v_list.Add(v_row);
+					}
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_cmd != null)
+					{
+						try { this.v_cmd.Cancel(); } catch {}
+						this.v_cmd.Dispose();
+						this.v_cmd = null;
+					}
+					if (this.v_reader != null)
+					{
+						this.v_reader.Close();
+						this.v_reader = null;
+					}
+					if (this.v_con != null)
+					{
+						this.v_con.Close();
+						this.v_con = null;
+					}
+				}
+			}
+			else
+			{
+				try
+				{
+					this.v_reader = this.v_cmd.ExecuteReader();
+
+					p_header = new System.Collections.Generic.List<string>();
+					for (int i = 0; i < this.v_reader.FieldCount; i++)
+						p_header.Add(this.v_reader.GetName(i));
+
+					v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
+
+					while (this.v_reader.Read())
+					{
+						v_row = new System.Collections.Generic.List<string>();
+
+						for (int i = 0; i < this.v_reader.FieldCount; i++)
+							v_row.Add(this.v_reader[i].ToString());
+
+						v_list.Add(v_row);
+					}
+
+					return v_list;
+				}
+				catch (System.Exception e)
+				{
+					throw new Spartacus.Database.Exception(e);
+				}
+				finally
+				{
+					if (this.v_reader != null)
+					{
+						this.v_reader.Close();
+						this.v_reader = null;
+					}
+				}
+			}
+		}
 
         /// <summary>
         /// Executa um código SQL no banco de dados.
