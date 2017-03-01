@@ -48,7 +48,7 @@ namespace Spartacus.Database
 		/// <summary>
 		/// Lista de arquivos em cache.
 		/// </summary>
-		System.Collections.Generic.List<string> v_tables;
+		private System.Collections.Generic.List<string> v_tables;
 
 		/// <summary>
 		/// Separador de campos.
@@ -207,9 +207,6 @@ namespace Spartacus.Database
 					Spartacus.Utils.File f = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, s);
 					this.v_files.Add(f.v_name);
 				}
-
-				if (this.v_files.Count == 0)
-					throw new Spartacus.Database.Exception("Directory '{0}' does not contain any supported files.", this.v_service);
 			}
 			else
 				throw new Spartacus.Database.Exception("Directory '{0}' does not exist.", this.v_service);
@@ -386,7 +383,7 @@ namespace Spartacus.Database
 		{
 			this.BuildCache(p_sql);
 			this.v_database.Execute(p_sql);
-			//TODO: atualizar arquivos
+			this.UpdateFiles();
 			this.DestroyCache();
 		}
 
@@ -403,7 +400,7 @@ namespace Spartacus.Database
 		{
 			this.BuildCache(p_table);
 			this.v_database.InsertBlock(p_table, p_rows);
-			//TODO: atualizar arquivos
+			this.UpdateFiles();
 			this.DestroyCache();
 		}
 
@@ -423,7 +420,7 @@ namespace Spartacus.Database
 		{
 			this.BuildCache(p_table);
 			this.v_database.InsertBlock(p_table, p_rows, p_columnnames);
-			//TODO: atualizar arquivos
+			this.UpdateFiles();
 			this.DestroyCache();
 		}
 
@@ -478,7 +475,11 @@ namespace Spartacus.Database
 		{
 			string[] v_array;
 
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetColumnNames");
+			this.BuildCache(p_sql);
+			v_array = this.v_database.GetColumnNames(p_sql);
+			this.DestroyCache();
+
+			return v_array;
 		}
 
 		/// <summary>
@@ -490,7 +491,11 @@ namespace Spartacus.Database
 		{
 			string[,] v_matrix;
 
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetColumnNamesAndTypes");
+			this.BuildCache(p_sql);
+			v_matrix = this.v_database.GetColumnNamesAndTypes(p_sql);
+			this.DestroyCache();
+
+			return v_matrix;
 		}
 
 		/// <summary>
@@ -502,7 +507,11 @@ namespace Spartacus.Database
 		{
 			System.Collections.Generic.List<Spartacus.Database.Field> v_list;
 
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.GetFields");
+			this.BuildCache(p_sql);
+			v_list = this.v_database.GetFields(p_sql);
+			this.DestroyCache();
+
+			return v_list;
 		}
 
 		/// <summary>
@@ -515,7 +524,11 @@ namespace Spartacus.Database
 		/// <param name="p_destdatabase">Conexão com o banco de destino.</param>
 		public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_insert, p_destdatabase);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -530,7 +543,11 @@ namespace Spartacus.Database
 		/// <param name="p_log">Log de inserção.</param>
 		public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, out string p_log)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_insert, p_destdatabase, out p_log);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -546,7 +563,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_insert, p_destdatabase, p_startrow, p_endrow, out p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -564,7 +585,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_insert, p_destdatabase, ref p_log, p_startrow, p_endrow, out p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -581,7 +606,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_table, p_insert, p_destdatabase, p_startrow, p_endrow, out  p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -599,7 +628,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, string p_table, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_table, p_insert, p_destdatabase, ref p_log, p_startrow, p_endrow, out p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -617,7 +650,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_table, p_columns, p_insert, p_destdatabase, p_startrow, p_endrow, out p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -636,7 +673,11 @@ namespace Spartacus.Database
 		/// <param name='p_hasmoredata'>Indica se ainda há mais dados a serem lidos.</param>
 		public override uint Transfer(string p_query, string p_table, string p_columns, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, ref string p_log, uint p_startrow, uint p_endrow, out bool p_hasmoredata)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_table, p_columns, p_insert, p_destdatabase, ref p_log, p_startrow, p_endrow, out p_hasmoredata);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -652,7 +693,11 @@ namespace Spartacus.Database
 		/// <param name="p_error">Evento de erro.</param>
 		public override uint Transfer(string p_query, Spartacus.Database.Command p_insert, Spartacus.Database.Generic p_destdatabase, Spartacus.Utils.ProgressEventClass p_progress, Spartacus.Utils.ErrorEventClass p_error)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.Transfer");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.Transfer(p_query, p_insert, p_destdatabase, p_progress, p_error);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -668,7 +713,11 @@ namespace Spartacus.Database
 		/// <param name="p_encoding">Codificação do arquivo.</param>
 		public override uint TransferToCSV(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToCSV");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.TransferToCSV(p_query, p_filename, p_separator, p_delimiter, p_header, p_encoding);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -680,7 +729,11 @@ namespace Spartacus.Database
 		/// <param name="p_filename">Nome do arquivo de destino.</param>
 		public override uint TransferToXLSX(string p_query, string p_filename)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToXLSX");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.TransferToXLSX(p_query, p_filename);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -692,7 +745,11 @@ namespace Spartacus.Database
 		/// <param name="p_filename">Nome do arquivo de destino.</param>
 		public override uint TransferToDBF(string p_query, string p_filename)
 		{
-			throw new Spartacus.Utils.NotImplementedException("Spartacus.Database.Pollydb.TransferToDBF");
+			uint v_transfered;
+			this.BuildCache(p_query);
+			v_transfered = this.v_database.TransferToDBF(p_query, p_filename);
+			this.DestroyCache();
+			return v_transfered;
 		}
 
 		/// <summary>
@@ -720,7 +777,12 @@ namespace Spartacus.Database
 						this.v_tables.Add(s);
 					}
 					else
-						throw new Spartacus.Database.Exception("File '{0}' does not exist.", s);
+					{
+						if (p_sql.ToLower().Contains("create table " + s.ToLower()))
+							this.v_tables.Add(s);
+						else
+							throw new Spartacus.Database.Exception("File '{0}' does not exist and is not going to be created.", s);
+					}
 				}
 			}
 
@@ -784,6 +846,15 @@ namespace Spartacus.Database
 			}
 
 			return v_matched;
+		}
+
+		/// <summary>
+		/// Atualiza arquivos do banco de dados.
+		/// </summary>
+		private void UpdateFiles()
+		{
+			foreach (string t in this.v_tables)
+				this.v_database.TransferToFile("select * from [" + t + "]", t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding);
 		}
 
 		/// <summary>

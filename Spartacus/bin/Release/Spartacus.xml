@@ -18680,6 +18680,11 @@
              <param name="p_start">Delimitador inicial.</param>
              <param name="p_end">Delimitador final.</param>
             </member>
+        <member name="M:Spartacus.Database.Pollydb.UpdateFiles">
+             <summary>
+             Atualiza arquivos do banco de dados.
+             </summary>
+            </member>
         <member name="M:Spartacus.Database.Pollydb.DestroyCache">
              <summary>
              Destrói o banco de dados temporário.

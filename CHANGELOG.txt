@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.44.11: Spartacus.Database.Pollydb completo funcional para leitura e escrita
 0.44.10: Spartacus.Database: Implementada sobrecarga do QuerySList pra retornar o cabeçalho
 0.44.9:  Spartacus.Utils.Explorer: Implementados métodos Move e Copy
 0.44.8:  Spartacus.Net.FakeSMTP: Em caso de exceção no System.Net, ela somente é logada, e conexão com o cliente é terminada
