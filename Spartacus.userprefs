@@ -1,7 +1,6 @@
 ﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Spartacus/Spartacus.Database.Pollydb.cs" Line="207" Column="20" />
       <File FileName="CHANGELOG.txt" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

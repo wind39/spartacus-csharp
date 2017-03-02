@@ -383,6 +383,7 @@ namespace Spartacus.Database
 
             try
             {
+				this.v_cmd.CommandText = p_sql;
                 this.v_reader = this.v_cmd.ExecuteReader();
 
                 v_list = new System.Collections.Generic.List<T>();
@@ -436,13 +437,14 @@ namespace Spartacus.Database
 
             try
             {
+				this.v_cmd.CommandText = p_sql;
                 this.v_reader = this.v_cmd.ExecuteReader();
 
                 v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
 
                 while (this.v_reader.Read())
                 {
-                    v_row = new System.Collections.Generic.List<string>();
+					v_row = new System.Collections.Generic.List<string>();
 
                     for (int i = 0; i < this.v_reader.FieldCount; i++)
                         v_row.Add(this.v_reader[i].ToString());
@@ -487,6 +489,7 @@ namespace Spartacus.Database
 
 			try
 			{
+				this.v_cmd.CommandText = p_sql;
 				this.v_reader = this.v_cmd.ExecuteReader();
 
 				p_header = new System.Collections.Generic.List<string>();

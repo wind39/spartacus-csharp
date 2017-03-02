@@ -619,7 +619,7 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_reader = this.v_cmd.executeQuery(p_sql);
+					this.v_reader = this.v_cmd.executeQuery(p_sql);
 
                     v_resmd = this.v_reader.getMetaData();
 

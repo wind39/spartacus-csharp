@@ -183,7 +183,7 @@ namespace Spartacus.Utils
         {
             this.v_root = p_root;
             this.v_pathseparator = Spartacus.Utils.PathSeparator.SLASH;
-            this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
+            this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
 
@@ -219,7 +219,7 @@ namespace Spartacus.Utils
         {
             this.v_root = p_root;
             this.v_pathseparator = p_pathseparator;
-            this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
+            this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
             this.v_currentlevel = 0;
             this.v_protectedminlevel = -1; // proteção a princípio está desabilitada
 
@@ -251,7 +251,7 @@ namespace Spartacus.Utils
         public void SetRoot(string p_root)
         {
             this.v_root = p_root;
-            this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
+            this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, this.v_root, this.v_pathseparator);
             this.v_currentlevel = 0;
 
             this.v_current.v_protected = true; // raiz sempre é protegida
@@ -467,7 +467,7 @@ namespace Spartacus.Utils
                 }
                 else
                 {
-                    this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, v_file.CompleteFileName());
+                    this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, v_file.CompleteFileName());
                     this.v_current.v_protected = v_file.v_protected;
                     this.v_currentlevel++;
 
@@ -497,7 +497,7 @@ namespace Spartacus.Utils
 
             try
             {
-                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, p_completename, Spartacus.Utils.PathSeparator.SLASH);
+                this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, p_completename, Spartacus.Utils.PathSeparator.SLASH);
                 this.v_current.v_protected = p_protected;
 
                 v_ch = '/';
@@ -542,7 +542,7 @@ namespace Spartacus.Utils
 
             try
             {
-                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, p_completename, p_pathseparator);
+                this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, p_completename, p_pathseparator);
                 this.v_current.v_protected = p_protected;
 
                 if (p_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
@@ -585,7 +585,7 @@ namespace Spartacus.Utils
             else
             {
                 v_parent = this.v_current.v_path;
-                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, v_parent);
+                this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, v_parent);
 
                 this.v_currentlevel--;
 
@@ -612,7 +612,7 @@ namespace Spartacus.Utils
             else
             {
                 v_parent = this.v_current.v_path;
-                this.v_current = new Spartacus.Utils.File(0, 0, Spartacus.Utils.FileType.DIRECTORY, v_parent);
+                this.v_current = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, v_parent);
 
                 this.v_currentlevel--;
 
@@ -1444,5 +1444,38 @@ namespace Spartacus.Utils
 
             return v_zipfile;
         }
+
+		/// <summary>
+		/// Clona o FileExplorer atual.
+		/// </summary>
+		public Spartacus.Utils.FileExplorer Clone()
+		{
+			Spartacus.Utils.FileExplorer v_explorer;
+
+			v_explorer = new Spartacus.Utils.FileExplorer();
+
+			v_explorer.v_root = this.v_root;
+			v_explorer.v_pathseparator = this.v_pathseparator;
+			v_explorer.v_currentlevel = this.v_currentlevel;
+			v_explorer.v_protectedminlevel = this.v_protectedminlevel;
+
+			v_explorer.v_showpatterntype = this.v_showpatterntype;
+			v_explorer.v_protectpattern = this.v_protectpattern;
+			v_explorer.v_showhiddenfiles = this.v_showhiddenfiles;
+
+			v_explorer.v_current = new Spartacus.Utils.File(this.v_current.v_filetype, this.v_current.CompleteFileName());
+			v_explorer.v_currentlevel = this.v_currentlevel;
+			v_explorer.List();
+
+			foreach (string s in this.v_returnhistory)
+				v_explorer.v_returnhistory.Add(s);
+			v_explorer.v_returnhistory_font.SetSize(this.v_returnhistory_font.GetSize());
+			v_explorer.v_returnhistory_root = this.v_returnhistory_root;
+			v_explorer.v_returnhistory_sep = this.v_returnhistory_sep;
+			v_explorer.v_returnhistory_first = this.v_returnhistory_first;
+			v_explorer.v_returnhistory_maxwidth = this.v_returnhistory_maxwidth;
+
+			return v_explorer;
+		}
     }
 }

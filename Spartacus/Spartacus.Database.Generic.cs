@@ -1303,17 +1303,17 @@ namespace Spartacus.Database
             int v_col = -1;
             int j, k;
 
-            try
+			try
             {
                 v_package = new Spartacus.ThirdParty.SejExcel.OoXml(p_filename);
 
                 if (v_package != null && v_package.sheets != null && v_package.sheets.Count == 1)
                 {
-                    foreach (string s in v_package.sheets.Keys)
+					foreach (string s in v_package.sheets.Keys)
                         v_key = s;
                     v_sheet = v_package.sheets[v_key];
 
-                    v_columns = new System.Collections.Generic.List<string>();
+					v_columns = new System.Collections.Generic.List<string>();
                     v_block = new System.Collections.Generic.List<string>();
                     v_insert = new Spartacus.Database.Command();
 
@@ -1323,7 +1323,7 @@ namespace Spartacus.Database
                     {
                         while (v_reader.Read())
                         {
-                            switch (v_reader.NodeType)
+							switch (v_reader.NodeType)
                             {
                                 case System.Xml.XmlNodeType.Element:
                                     v_datanode = false;
@@ -1395,8 +1395,8 @@ namespace Spartacus.Database
                                         }
                                         else
                                         {
-                                            for (j = 0; j < v_insert.v_parameters.Count; j++)
-                                                v_insert.SetValue(j, v_row[v_columns.IndexOf(v_insert.v_parameters[j].v_name)]);
+											for (j = 0; j < v_insert.v_parameters.Count; j++)
+												v_insert.SetValue(j, v_row[v_columns.IndexOf(v_insert.v_parameters[j].v_name)]);
 
                                             v_block.Add(v_insert.GetUpdatedText());
                                             k++;
@@ -1662,18 +1662,26 @@ namespace Spartacus.Database
         public uint TransferToFile(string p_query, string p_filename)
         {
             Spartacus.Utils.File v_file;
+			System.IO.FileInfo v_info;
 
             try
             {
                 v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+				v_info = new System.IO.FileInfo(p_filename);
 
                 switch (v_file.v_extension.ToLower())
                 {
                     case "csv":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToCSV(p_query, p_filename, ";", "\"", true, System.Text.Encoding.Default);
                     case "xlsx":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToXLSX(p_query, p_filename);
                     case "dbf":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToDBF(p_query, p_filename);
                     default:
                         throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());
@@ -1699,18 +1707,26 @@ namespace Spartacus.Database
         public uint TransferToFile(string p_query, string p_filename, string p_separator, string p_delimiter, bool p_header, System.Text.Encoding p_encoding)
         {
             Spartacus.Utils.File v_file;
+			System.IO.FileInfo v_info;
 
             try
             {
                 v_file = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_filename);
+				v_info = new System.IO.FileInfo(p_filename);
 
                 switch (v_file.v_extension.ToLower())
                 {
                     case "csv":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToCSV(p_query, p_filename, p_separator, p_delimiter, p_header, p_encoding);
                     case "xlsx":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToXLSX(p_query, p_filename);
                     case "dbf":
+						if (v_info.Exists)
+							v_info.Delete();
                         return this.TransferToDBF(p_query, p_filename);
                     default:
                         throw new Spartacus.Database.Exception("Extensao {0} desconhecida.", v_file.v_extension.ToLower());

@@ -36,11 +36,6 @@ namespace Spartacus.Database
 	public class Pollydb : Spartacus.Database.Generic
 	{
 		/// <summary>
-		/// Lista de arquivos.
-		/// </summary>
-		private System.Collections.Generic.List<string> v_files;
-
-		/// <summary>
 		/// Limiar para saber se a cache deve ficar em memória ou em disco.
 		/// </summary>
 		private long v_cachethreshold;
@@ -80,6 +75,11 @@ namespace Spartacus.Database
 		/// </summary>
 		private string v_tempdatabase;
 
+		/// <summary>
+		/// Nome da tabela que será excluída.
+		/// </summary>
+		private string v_tabletodrop;
+
 
 		/// <summary>
 		/// Inicializa uma nova instancia da classe <see cref="Spartacus.Database.Pollydb"/>.
@@ -94,7 +94,6 @@ namespace Spartacus.Database
 			this.v_delimiter = "\"";
 			this.v_header = true;
 			this.v_encoding = System.Text.Encoding.Default;
-			this.v_files = new System.Collections.Generic.List<string>();
 			this.v_tables = new System.Collections.Generic.List<string>();
 			this.v_tempdatabase = "";
 
@@ -119,13 +118,12 @@ namespace Spartacus.Database
 			this.v_delimiter = "\"";
 			this.v_header = true;
 			this.v_encoding = System.Text.Encoding.Default;
-			this.v_files = new System.Collections.Generic.List<string>();
 			this.v_tables = new System.Collections.Generic.List<string>();
 			this.v_tempdatabase = "";
 
 			this.v_connectionstring = p_directory;
 			this.v_default_string = "text";
-			this.v_cachethreshold = 268435456; // 250 MB
+			this.v_cachethreshold = p_cachethreshold;
 		}
 
 		/// <summary>
@@ -156,7 +154,6 @@ namespace Spartacus.Database
 			this.v_delimiter = p_delimiter;
 			this.v_header = p_header;
 			this.v_encoding = p_encoding;
-			this.v_files = new System.Collections.Generic.List<string>();
 			this.v_tables = new System.Collections.Generic.List<string>();
 			this.v_tempdatabase = "";
 
@@ -187,29 +184,6 @@ namespace Spartacus.Database
 		/// </summary>
 		public override void Open()
 		{
-			System.Collections.Generic.List<string> v_tmpfiles;
-			System.IO.DirectoryInfo v_info;
-
-			v_tmpfiles = new System.Collections.Generic.List<string>();
-			v_info = new System.IO.DirectoryInfo(this.v_service);
-
-			if (v_info.Exists)
-			{
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.csv", System.IO.SearchOption.TopDirectoryOnly));
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.CSV", System.IO.SearchOption.TopDirectoryOnly));
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.dbf", System.IO.SearchOption.TopDirectoryOnly));
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.DBF", System.IO.SearchOption.TopDirectoryOnly));
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.xlsx", System.IO.SearchOption.TopDirectoryOnly));
-				v_tmpfiles.AddRange(System.IO.Directory.GetFiles(this.v_service, "*.XLSX", System.IO.SearchOption.TopDirectoryOnly));
-
-				foreach(string s in v_tmpfiles)
-				{
-					Spartacus.Utils.File f = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, s);
-					this.v_files.Add(f.v_name);
-				}
-			}
-			else
-				throw new Spartacus.Database.Exception("Directory '{0}' does not exist.", this.v_service);
 		}
 
 		/// <summary>
@@ -445,8 +419,6 @@ namespace Spartacus.Database
 		/// </summary>
 		public override void Close()
 		{
-			this.DestroyCache();
-			this.v_files.Clear();
 		}
 
 		/// <summary>
@@ -767,19 +739,22 @@ namespace Spartacus.Database
 			v_totalsize = 0;
 			foreach (string s in this.ExtractFromString(p_sql, "[", "]"))
 			{
-				if (this.v_files.Contains(s))
+				if (!s.StartsWith("."))
 				{
-					v_info = new System.IO.FileInfo(s);
+					v_info = new System.IO.FileInfo(this.v_service + "/" + s);
 
 					if (v_info.Exists)
 					{
+						if (p_sql.ToLower().Contains("drop table [" + s.ToLower() + "]"))
+							this.v_tabletodrop = s.ToLower();
+						
 						v_totalsize += v_info.Length;
 						this.v_tables.Add(s);
 					}
 					else
 					{
-						if (p_sql.ToLower().Contains("create table " + s.ToLower()))
-							this.v_tables.Add(s);
+						if (p_sql.ToLower().Contains("create table [" + s.ToLower() + "]"))
+							this.v_tables.Add(s.ToLower());
 						else
 							throw new Spartacus.Database.Exception("File '{0}' does not exist and is not going to be created.", s);
 					}
@@ -809,7 +784,11 @@ namespace Spartacus.Database
 			v_error.ErrorEvent += new Spartacus.Utils.ErrorEventClass.ErrorEventHandler(OnError);
 
 			foreach (string t in this.v_tables)
-				this.v_database.TransferFromFile(t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding, "[" + t + "]", v_progress, v_error);
+			{
+				v_info = new System.IO.FileInfo(this.v_service + "/" + t);
+				if (v_info.Exists)
+					this.v_database.TransferFromFile(this.v_service + "/" + t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding, "[" + t + "]", v_progress, v_error);
+			}
 		}
 
 		/// <summary>
@@ -853,8 +832,20 @@ namespace Spartacus.Database
 		/// </summary>
 		private void UpdateFiles()
 		{
+			System.IO.FileInfo v_info;
+
+			if (this.v_tabletodrop != "")
+			{
+				v_info = new System.IO.FileInfo(this.v_service + "/" + this.v_tabletodrop);
+				if (v_info.Exists)
+					v_info.Delete();
+			}
+
 			foreach (string t in this.v_tables)
-				this.v_database.TransferToFile("select * from [" + t + "]", t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding);
+			{
+				if (t != this.v_tabletodrop)
+					this.v_database.TransferToFile("select * from [" + t + "]", this.v_service + "/" + t, this.v_separator, this.v_delimiter, this.v_header, this.v_encoding);
+			}
 		}
 
 		/// <summary>
@@ -866,6 +857,7 @@ namespace Spartacus.Database
 
 			this.v_database.Close();
 			this.v_tables.Clear();
+			this.v_tabletodrop = "";
 
 			if (this.v_tempdatabase != "")
 			{

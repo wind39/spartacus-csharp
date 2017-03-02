@@ -21,6 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.45.0: Spartacus.Database.Pollydb: Correção de bugs
+        Spartacus.Database: Correção de bug no QueryList e no QuerySList
+        Spartacus.Utils.FileExplorer: Implementado método Clone
+
 0.44.11: Spartacus.Database.Pollydb completo funcional para leitura e escrita
 0.44.10: Spartacus.Database: Implementada sobrecarga do QuerySList pra retornar o cabeçalho
 0.44.9:  Spartacus.Utils.Explorer: Implementados métodos Move e Copy

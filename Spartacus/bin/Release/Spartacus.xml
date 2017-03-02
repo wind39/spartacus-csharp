@@ -1630,6 +1630,11 @@
              <param name="p_zipfilename">Nome do arquivo ZIP a ser criado.</param>
              <param name="p_directory">Diretório a ser compactado.</param>
             </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Clone">
+             <summary>
+             Clona o FileExplorer atual.
+             </summary>
+            </member>
         <member name="T:Spartacus.Utils.ProgressEventArgs">
              <summary>
              Classe ProgressEventArgs.
@@ -18218,11 +18223,6 @@
              Utiliza o Mono.Data.Sqlite para acessar arquivos CSV, XLSX e DBF.
              </summary>
             </member>
-        <member name="F:Spartacus.Database.Pollydb.v_files">
-             <summary>
-             Lista de arquivos.
-             </summary>
-            </member>
         <member name="F:Spartacus.Database.Pollydb.v_cachethreshold">
              <summary>
              Limiar para saber se a cache deve ficar em memória ou em disco.
@@ -18261,6 +18261,11 @@
         <member name="F:Spartacus.Database.Pollydb.v_tempdatabase">
              <summary>
              Nome do banco de dados temporário (se for SQLite).
+             </summary>
+            </member>
+        <member name="F:Spartacus.Database.Pollydb.v_tabletodrop">
+             <summary>
+             Nome da tabela que será excluída.
              </summary>
             </member>
         <member name="M:Spartacus.Database.Pollydb.#ctor(System.String)">

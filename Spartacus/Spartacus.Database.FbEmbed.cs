@@ -692,7 +692,8 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_reader = this.v_cmd.ExecuteReader();
+					this.v_cmd.CommandText = p_sql;
+					this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_list = new System.Collections.Generic.List<T>();
                     v_type = typeof(T);
@@ -797,7 +798,8 @@ namespace Spartacus.Database
             {
                 try
                 {
-                    this.v_reader = this.v_cmd.ExecuteReader();
+					this.v_cmd.CommandText = p_sql;
+					this.v_reader = this.v_cmd.ExecuteReader();
 
                     v_list = new System.Collections.Generic.List<System.Collections.Generic.List<string>>();
 
