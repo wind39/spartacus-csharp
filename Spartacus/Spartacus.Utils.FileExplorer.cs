@@ -915,6 +915,91 @@ namespace Spartacus.Utils
 		}
 
 		/// <summary>
+		/// Move o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_source'>
+		/// Nome completo do arquivo ou diretório.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde o arquivo ou diretório será movido.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+		public void Move(string p_source, string p_directory)
+		{
+			System.IO.FileAttributes v_attr;
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				v_attr = System.IO.File.GetAttributes(p_source);
+				if (v_attr.HasFlag(System.IO.FileAttributes.Directory))
+				{
+					v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, p_source);
+					System.IO.Directory.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+				else
+				{
+					v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, p_source);
+					System.IO.File.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Move o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_sourcelist'>
+		/// Lista de nomes completos de arquivos ou diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde os arquivos ou diretórios serão movidos.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+		public void Move(System.Collections.Generic.List<string> p_sourcelist, string p_directory)
+		{
+			System.IO.FileAttributes v_attr;
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				foreach (string v_source in p_sourcelist)
+				{
+					v_attr = System.IO.File.GetAttributes(v_source);
+					if (v_attr.HasFlag(System.IO.FileAttributes.Directory))
+					{
+						v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, v_source);
+						System.IO.Directory.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+					}
+					else
+					{
+						v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, v_source);
+						System.IO.File.Move(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+					}
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
 		/// Copia o arquivo ou diretório para outro diretório.
 		/// </summary>
 		/// <param name='p_id'>
@@ -979,6 +1064,91 @@ namespace Spartacus.Utils
 						this.DirectoryCopy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name, true);
 					else
 						System.IO.File.Copy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Copia o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_source'>
+		/// Nome completo do arquivo ou diretório.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde o arquivo ou diretório será copiado.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+		public void Copy(string p_source, string p_directory)
+		{
+			System.IO.FileAttributes v_attr;
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				v_attr = System.IO.File.GetAttributes(p_source);
+				if (v_attr.HasFlag(System.IO.FileAttributes.Directory))
+				{
+					v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, p_source);
+					this.DirectoryCopy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name, true);
+				}
+				else
+				{
+					v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, p_source);
+					System.IO.File.Copy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+				}
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+		}
+
+		/// <summary>
+		/// Copia o arquivo ou diretório para outro diretório.
+		/// </summary>
+		/// <param name='p_sourcelist'>
+		/// Lista de nomes completos de arquivos ou diretórios.
+		/// </param>
+		/// <param name='p_directory'>
+		/// Diretório para onde os arquivo ou diretórios serão copiados.
+		/// </param>
+		/// <exception cref="Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+		public void Copy(System.Collections.Generic.List<string> p_sourcelist, string p_directory)
+		{
+			System.IO.FileAttributes v_attr;
+			Spartacus.Utils.File v_file;
+			string v_separator;
+
+			try
+			{
+				if (this.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+					v_separator = "/";
+				else
+					v_separator = "\\";
+
+				foreach (string v_source in p_sourcelist)
+				{
+					v_attr = System.IO.File.GetAttributes(v_source);
+					if (v_attr.HasFlag(System.IO.FileAttributes.Directory))
+					{
+						v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.DIRECTORY, v_source);
+						this.DirectoryCopy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name, true);
+					}
+					else
+					{
+						v_file = new Spartacus.Utils.File(Spartacus.Utils.FileType.FILE, v_source);
+						System.IO.File.Copy(v_file.CompleteFileName(), p_directory + v_separator + v_file.v_name);
+					}
 				}
 			}
 			catch (System.Exception e)

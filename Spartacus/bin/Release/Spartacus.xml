@@ -1561,6 +1561,30 @@
              </param>
              <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível mover os arquivos ou diretórios.</exception>
             </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Move(System.String,System.String)">
+             <summary>
+             Move o arquivo ou diretório para outro diretório.
+             </summary>
+             <param name="p_source">
+             Nome completo do arquivo ou diretório.
+             </param>
+             <param name="p_directory">
+             Diretório para onde o arquivo ou diretório será movido.
+             </param>
+             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+            </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Move(System.Collections.Generic.List{System.String},System.String)">
+             <summary>
+             Move o arquivo ou diretório para outro diretório.
+             </summary>
+             <param name="p_sourcelist">
+             Lista de nomes completos de arquivos ou diretórios.
+             </param>
+             <param name="p_directory">
+             Diretório para onde os arquivos ou diretórios serão movidos.
+             </param>
+             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+            </member>
         <member name="M:Spartacus.Utils.FileExplorer.Copy(System.Int32,System.String)">
              <summary>
              Copia o arquivo ou diretório para outro diretório.
@@ -1584,6 +1608,30 @@
              Diretório para onde os arquivos ou diretórios serão copiados.
              </param>
              <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível copiar os arquivos ou diretórios.</exception>
+            </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Copy(System.String,System.String)">
+             <summary>
+             Copia o arquivo ou diretório para outro diretório.
+             </summary>
+             <param name="p_source">
+             Nome completo do arquivo ou diretório.
+             </param>
+             <param name="p_directory">
+             Diretório para onde o arquivo ou diretório será copiado.
+             </param>
+             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
+            </member>
+        <member name="M:Spartacus.Utils.FileExplorer.Copy(System.Collections.Generic.List{System.String},System.String)">
+             <summary>
+             Copia o arquivo ou diretório para outro diretório.
+             </summary>
+             <param name="p_sourcelist">
+             Lista de nomes completos de arquivos ou diretórios.
+             </param>
+             <param name="p_directory">
+             Diretório para onde os arquivo ou diretórios serão copiados.
+             </param>
+             <exception cref="T:Spartacus.Utils.Exception">Exceção acontece quando não é possível mover o arquivo ou diretório.</exception>
             </member>
         <member name="M:Spartacus.Utils.FileExplorer.DirectoryCopy(System.String,System.String,System.Boolean)">
              <summary>
