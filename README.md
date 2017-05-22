@@ -1,6 +1,6 @@
 [![Join the chat at https://gitter.im/spartacuslibrary/Lobby](https://img.shields.io/badge/GITTER-JOIN%20CHAT-brightgreen.svg)](https://gitter.im/spartacuslibrary/Lobby)
 
-![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png)
+![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus-csharp/master/Spartacus/icon/spartacus_128x128.png)
 
 Spartacus is a business library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
@@ -16,7 +16,7 @@ NuGet packages:
   - https://www.nuget.org/packages/Spartacus
   - https://www.nuget.org/packages/SpartacusMin
 
-Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
+Examples of how to use Spartacus are here: https://github.com/wind39/spartacus-csharp/wiki
 
 Discussion about Spartacus is here: https://www.reddit.com/r/spartacuslibrary/
 
