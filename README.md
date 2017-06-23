@@ -1,6 +1,6 @@
 [![Join the chat at https://gitter.im/spartacuslibrary/Lobby](https://img.shields.io/badge/GITTER-JOIN%20CHAT-brightgreen.svg)](https://gitter.im/spartacuslibrary/Lobby)
 
-![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus-csharp/master/Spartacus/icon/spartacus_128x128.png)
+![Spartacus Icon](https://raw.githubusercontent.com/wind39/spartacus/master/Spartacus/icon/spartacus_128x128.png)
 
 Spartacus is a business library written in C#, focused on:
   - Access many types of databases in a fast, easy to use and generic way;
@@ -16,7 +16,7 @@ NuGet packages:
   - https://www.nuget.org/packages/Spartacus
   - https://www.nuget.org/packages/SpartacusMin
 
-Examples of how to use Spartacus are here: https://github.com/wind39/spartacus-csharp/wiki
+Examples of how to use Spartacus are here: https://github.com/wind39/spartacus/wiki
 
 Discussion about Spartacus is here: https://www.reddit.com/r/spartacuslibrary/
 
@@ -32,6 +32,7 @@ Spartacus contains this managed libraries:
   - MimeKit (https://github.com/jstedfast/MimeKit)
   - MailKit (https://github.com/jstedfast/MailKit)
   - Bouncy Castle (https://www.bouncycastle.org/csharp/index.html)
+  - DotNetZip (https://dotnetzip.codeplex.com/)
   
 Spartacus reuse code from this C# projects:
   - Mono open source implementation of Microsoft's .NET Framework (https://github.com/mono/mono)

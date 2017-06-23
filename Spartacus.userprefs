@@ -1,9 +1,13 @@
 ﻿<Properties StartupConfiguration="{50C2FEA2-16CA-4A34-841C-4104493C1A22}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workbench ActiveDocument="CHANGELOG.txt">
     <Files>
-      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="1145" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.FileExplorer.cs" Line="1612" Column="5" />
+      <File FileName="Spartacus/Spartacus.Database.Postgresql.cs" Line="173" Column="1" />
+      <File FileName="Spartacus/Spartacus.Utils.ProgressEvent.cs" Line="219" Column="14" />
+      <File FileName="Tools/Compressor/Program.cs" Line="52" Column="71" />
+      <File FileName="README.md" Line="35" Column="48" />
       <File FileName="Spartacus/Properties/AssemblyInfo.cs" Line="20" Column="35" />
-      <File FileName="CHANGELOG.txt" Line="24" Column="9" />
+      <File FileName="CHANGELOG.txt" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

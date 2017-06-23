@@ -1368,6 +1368,11 @@
              Largura máxima para mostrar o texto renderizado do histórico de pastas pai.
              </summary>
             </member>
+        <member name="F:Spartacus.Utils.FileExplorer.v_compress_progress">
+             <summary>
+             Evento de progresso para compressão.
+             </summary>
+            </member>
         <member name="M:Spartacus.Utils.FileExplorer.#ctor">
              <summary>
              Initializa uma nova instância da classe <see cref="T:Spartacus.Utils.FileExplorer" />.
@@ -1677,6 +1682,20 @@
              <returns>Arquivo ZIP.</returns>
              <param name="p_zipfilename">Nome do arquivo ZIP a ser criado.</param>
              <param name="p_directory">Diretório a ser compactado.</param>
+            </member>
+        <member name="M:Spartacus.Utils.FileExplorer.CompressDirectory(System.String,Spartacus.Utils.File,Spartacus.Utils.ProgressEventClass)">
+             <summary>
+             Cria um arquivo ZIP a partir de um diretório, no diretório pai do mesmo diretório.
+             </summary>
+             <returns>Arquivo ZIP.</returns>
+             <param name="p_zipfilename">Nome do arquivo ZIP a ser criado.</param>
+             <param name="p_directory">Diretório a ser compactado.</param>
+             <param name="p_progress">Evento de progresso de compactação.</param>
+            </member>
+        <member name="M:Spartacus.Utils.FileExplorer.CompressSaveProgress(System.Object,Ionic.Zip.SaveProgressEventArgs)">
+             <summary>
+             Evento intermediário de progresso de compressão.
+             </summary>
             </member>
         <member name="M:Spartacus.Utils.FileExplorer.Clone">
              <summary>

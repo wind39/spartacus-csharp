@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+0.45.2: Spartacus.Utils.FileExplorer: Implementada sobrecarga de CompressDirectory,
+                                      que permite escutar evento Spartacus.Utils.ProgressEvent
 0.45.1: Spartacus.Utils.FileExplorer: Implementadas sobrecargas de Move e Copy
 0.45.0: Spartacus.Database.Pollydb: Correção de bugs
         Spartacus.Database: Correção de bug no QueryList e no QuerySList

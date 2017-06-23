@@ -147,6 +147,11 @@ namespace Spartacus.Utils
         /// </summary>
         public double v_returnhistory_maxwidth;
 
+		/// <summary>
+		/// Evento de progresso para compressão.
+		/// </summary>
+		private Spartacus.Utils.ProgressEventClass v_compress_progress;
+
 
         /// <summary>
         /// Initializa uma nova instância da classe <see cref="Spartacus.Utils.FileExplorer"/>.
@@ -1614,6 +1619,55 @@ namespace Spartacus.Utils
 
             return v_zipfile;
         }
+
+		/// <summary>
+		/// Cria um arquivo ZIP a partir de um diretório, no diretório pai do mesmo diretório.
+		/// </summary>
+		/// <returns>Arquivo ZIP.</returns>
+		/// <param name="p_zipfilename">Nome do arquivo ZIP a ser criado.</param>
+		/// <param name="p_directory">Diretório a ser compactado.</param>
+		/// <param name="p_progress">Evento de progresso de compactação.</param>
+		public Spartacus.Utils.File CompressDirectory(string p_zipfilename, Spartacus.Utils.File p_directory, Spartacus.Utils.ProgressEventClass p_progress)
+		{
+			Spartacus.Utils.File v_zipfiletmp, v_zipfile;
+			System.IO.FileInfo v_fileinfo;
+
+			if (p_directory.v_pathseparator == Spartacus.Utils.PathSeparator.SLASH)
+				v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "/" + p_zipfilename);
+			else
+				v_zipfiletmp = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, p_directory.v_path + "\\" + p_zipfilename);
+
+			try
+			{
+				this.v_compress_progress = p_progress;
+
+				using (Ionic.Zip.ZipFile v_zip = new Ionic.Zip.ZipFile())
+				{
+					v_zip.SaveProgress += this.CompressSaveProgress;
+					v_zip.AddDirectory(p_directory.CompleteFileName());
+					v_zip.Save(v_zipfiletmp.CompleteFileName());
+				}
+
+				v_fileinfo = new System.IO.FileInfo(v_zipfiletmp.CompleteFileName());
+
+				v_zipfile = new Spartacus.Utils.File(1, 1, Spartacus.Utils.FileType.FILE, v_zipfiletmp.CompleteFileName(), v_fileinfo.LastWriteTime, v_fileinfo.Length);
+			}
+			catch (System.Exception e)
+			{
+				throw new Spartacus.Utils.Exception(e);
+			}
+
+			return v_zipfile;
+		}
+
+		/// <summary>
+		/// Evento intermediário de progresso de compressão.
+		/// </summary>
+		private void CompressSaveProgress(object sender, Ionic.Zip.SaveProgressEventArgs e)
+		{
+			if(e.EventType == Ionic.Zip.ZipProgressEventType.Saving_AfterWriteEntry)
+				this.v_compress_progress.FireEvent(e.EntriesSaved * 100.0 / e.EntriesTotal, "Comprimiu " + e.CurrentEntry.FileName);
+		}
 
 		/// <summary>
 		/// Clona o FileExplorer atual.
